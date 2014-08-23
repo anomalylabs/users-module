@@ -1,4 +1,4 @@
-<?php namespace Addon\Module\Users\Model;
+<?php namespace Streams\Addon\Module\Users\Model;
 
 use Cartalyst\Sentry\Users\Eloquent\User;
 

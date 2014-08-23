@@ -1,4 +1,4 @@
-<?php namespace Addon\Module\Users;
+<?php namespace Streams\Addon\Module\Users;
 
 use Streams\Core\Addon\ModuleAbstract;
 
