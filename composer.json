@@ -1,0 +1,23 @@
+{
+    "name": "streams/users-module",
+    "description": "Users module for Streams Platform",
+    "type": "streams-module",
+    "version" : "1.0.0",
+    "authors": [
+        {
+            "name": "AnomalyLabs",
+            "email": "projects@aiwebsystems.com"
+        }
+    ],
+    "source" : {
+        "type" : "vcs",
+        "url" : "git@github.com:anomalylabs/users-module.git",
+        "reference" : "master"
+    },
+    "minimum-stability": "dev",
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
+    }
+}
