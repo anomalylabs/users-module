@@ -1,8 +1,7 @@
 {
-    "name": "streams/users-module",
+    "name": "anomalylabs/users-module",
+    "type": "module",
     "description": "Users module for Streams Platform",
-    "type": "streams-module",
-    "version" : "1.0.0",
     "authors": [
         {
             "name": "AnomalyLabs",
@@ -14,10 +13,5 @@
         "url" : "git@github.com:anomalylabs/users-module.git",
         "reference" : "master"
     },
-    "minimum-stability": "dev",
-    "extra": {
-        "branch-alias": {
-            "dev-master": "1.0.x-dev"
-        }
-    }
+    "minimum-stability": "stable",
 }
