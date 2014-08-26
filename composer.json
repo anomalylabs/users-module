@@ -12,6 +12,5 @@
         "type" : "vcs",
         "url" : "git@github.com:anomalylabs/users-module.git",
         "reference" : "master"
-    },
-    "minimum-stability": "stable",
+    }
 }
