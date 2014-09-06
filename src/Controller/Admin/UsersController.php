@@ -1,7 +1,7 @@
 <?php namespace Streams\Addon\Module\Users\Controller\Admin;
 
 use Streams\Core\Ui\TableUi;
-use Streams\Core\Controller\AdminController;
+use Streams\Core\Http\Controller\AdminController;
 use Addon\Module\Users\Model\UserEntryModel;
 
 class UsersController extends AdminController
