@@ -1,13 +1,7 @@
-<?php namespace Anomaly\Streams\Module\Users;
+<?php namespace Anomaly\Streams\Addon\Module\Users;
 
-use Streams\Core\Addon\ModuleAbstract;
+use Anomaly\Streams\Platform\Addon\Module\ModuleAddon;
 
-class UsersModule extends ModuleAbstract
+class UsersModule extends ModuleAddon
 {
-    /**
-     * The icon to represent the module.
-     *
-     * @var string
-     */
-    public $icon = '<i class="fa fa-users"></i>';
 }
