@@ -1,4 +1,4 @@
-<?php namespace Streams\Addon\Module\Users\Installer;
+<?php namespace Anomaly\Streams\Module\Users\Installer;
 
 use Streams\Core\Stream\Installer\StreamInstaller;
 

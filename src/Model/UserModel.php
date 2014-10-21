@@ -1,4 +1,4 @@
-<?php namespace Streams\Addon\Module\Users\Model;
+<?php namespace Anomaly\Streams\Module\Users\Model;
 
 use Addon\Module\Users\Presenter\UserPresenter;
 use Cartalyst\Sentry\Users\Eloquent\User;

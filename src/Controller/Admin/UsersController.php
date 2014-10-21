@@ -1,4 +1,4 @@
-<?php namespace Streams\Addon\Module\Users\Controller\Admin;
+<?php namespace Anomaly\Streams\Module\Users\Controller\Admin;
 
 use Streams\Core\Ui\TableUi;
 use Streams\Core\Http\Controller\AdminController;

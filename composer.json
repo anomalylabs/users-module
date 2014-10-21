@@ -1,16 +1,17 @@
 {
-    "name": "anomalylabs/users-module",
-    "type": "module",
-    "description": "Users module for Streams Platform",
+    "name": "anomaly/users-module",
+    "type": "streams-addon",
+    "description": "Users module.",
     "authors": [
         {
             "name": "AnomalyLabs",
-            "email": "projects@aiwebsystems.com"
+            "email": "hello@anomaly.is"
         }
     ],
-    "source" : {
-        "type" : "vcs",
-        "url" : "git@github.com:anomalylabs/users-module.git",
-        "reference" : "master"
-    }
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
+    },
+    "minimum-stability": "dev"
 }
