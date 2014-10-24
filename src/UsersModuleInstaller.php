@@ -13,8 +13,6 @@ class UsersModuleInstaller extends ModuleInstaller
         'Anomaly\Streams\Addon\Module\Users\Installer\UsersFieldInstaller',
         'Anomaly\Streams\Addon\Module\Users\Installer\UsersStreamInstaller',
         'Anomaly\Streams\Addon\Module\Users\Installer\RolesStreamInstaller',
-        'Anomaly\Streams\Addon\Module\Users\Installer\FlagsStreamInstaller',
-        'Anomaly\Streams\Addon\Module\Users\Installer\TokensStreamInstaller',
     ];
 }
  

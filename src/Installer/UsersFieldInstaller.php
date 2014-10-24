@@ -11,10 +11,10 @@ class UsersFieldInstaller extends FieldInstaller
      * @var array
      */
     protected $fields = [
-        /**
-         * Users Fields
-         */
         'email'            => [
+            'type' => 'email',
+        ],
+        'username'         => [
             'type' => 'email',
         ],
         'password'         => [
@@ -38,31 +38,10 @@ class UsersFieldInstaller extends FieldInstaller
                 'relation_model' => 'AwesomeModel',
             ],
         ],
-        /**
-         * Roles Fields
-         */
         'slug'             => [
             'type' => 'slug',
         ],
         'name'             => [
-            'type' => 'text',
-        ],
-        /**
-         * Flags Fields
-         */
-        'flag_type'        => [
-            'type' => 'text',
-        ],
-        'is_flagged'       => [
-            'type' => 'boolean',
-        ],
-        /**
-         * Tokens Fields
-         */
-        'token_type'       => [
-            'type' => 'text',
-        ],
-        'token'            => [
             'type' => 'text',
         ],
     ];

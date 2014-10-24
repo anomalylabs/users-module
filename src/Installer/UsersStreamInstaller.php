@@ -11,6 +11,7 @@ class UsersStreamInstaller extends StreamInstaller
      */
     protected $assignments = [
         'email'            => [],
+        'username'         => [],
         'password'         => [],
         'permissions'      => [],
         'first_name'       => [],
