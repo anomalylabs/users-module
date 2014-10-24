@@ -11,25 +11,58 @@ class UsersFieldInstaller extends FieldInstaller
      * @var array
      */
     protected $fields = [
-        'email'       => [
+        /**
+         * Users Fields
+         */
+        'email'            => [
             'type' => 'email',
         ],
-        'password'    => [
+        'password'         => [
             'type' => 'text',
         ],
-        'permissions' => [
+        'permissions'      => [
             'type' => 'textarea',
         ],
-        'first_name'  => [
+        'first_name'       => [
             'type' => 'text',
         ],
-        'last_name'   => [
+        'last_name'        => [
             'type' => 'text',
         ],
-        'slug'        => [
+        'last_activity_at' => [
+            'type' => 'datetime',
+        ],
+        'roles'            => [
+            'type'     => 'multiple',
+            'settings' => [
+                'relation_model' => 'AwesomeModel',
+            ],
+        ],
+        /**
+         * Roles Fields
+         */
+        'slug'             => [
             'type' => 'slug',
         ],
-        'name'        => [
+        'name'             => [
+            'type' => 'text',
+        ],
+        /**
+         * Flags Fields
+         */
+        'flag_type'        => [
+            'type' => 'text',
+        ],
+        'is_flagged'       => [
+            'type' => 'boolean',
+        ],
+        /**
+         * Tokens Fields
+         */
+        'token_type'       => [
+            'type' => 'text',
+        ],
+        'token'            => [
             'type' => 'text',
         ],
     ];

@@ -10,11 +10,12 @@ class UsersStreamInstaller extends StreamInstaller
      * @var array
      */
     protected $assignments = [
-        'email'       => [],
-        'password'    => [],
-        'permissions' => [],
-        'first_name'  => [],
-        'last_name'   => [],
+        'email'            => [],
+        'password'         => [],
+        'permissions'      => [],
+        'first_name'       => [],
+        'last_name'        => [],
+        'last_activity_at' => [],
     ];
 }
  
