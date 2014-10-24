@@ -1,5 +1,6 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\Activation;
 
+use Anomaly\Streams\Addon\Module\Users\Activation\Command\ForceActivationCommand;
 use Anomaly\Streams\Platform\Traits\CommandableTrait;
 use Anomaly\Streams\Addon\Module\Users\User\UserInterface;
 use Anomaly\Streams\Addon\Module\Users\Activation\Command\CreateActivationCommand;
@@ -14,6 +15,13 @@ class ActivationService
     public function create(UserInterface $user)
     {
         $command = new CreateActivationCommand($user->getAuthIdentifier());
+
+        return $this->execute($command);
+    }
+
+    public function force(UserInterface $user)
+    {
+        $command = new ForceActivationCommand($user->getAuthIdentifier());
 
         return $this->execute($command);
     }

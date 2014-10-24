@@ -52,11 +52,22 @@ class ActivationModel extends UsersActivationsEntryModel
         return false;
     }
 
+    public function forceActivation($userId)
+    {
+        $activation = $this->findByUserId($userId);
+
+        if (!$activation) {
+
+            $activation = $activation->createActivation($userId);
+
+        }
+
+        return $activation->complete($userId, $activation->code);
+    }
+
     public function findByUserId($userId)
     {
-        $activation = $this->whereUserId($userId)->first();
-
-        return $activation ? : false;
+        return $this->whereUserId($userId)->first();;
     }
 }
  
