@@ -2,19 +2,17 @@
 
 use Anomaly\Streams\Platform\Stream\StreamInstaller;
 
-class UsersStreamInstaller extends StreamInstaller
+class RolesStreamInstaller extends StreamInstaller
 {
     /**
-     * Field assignments for the Users stream.
+     * Field assignments for the Roles stream.
      *
      * @var array
      */
     protected $assignments = [
-        'email'       => [],
-        'password'    => [],
+        'name'        => [],
+        'slug'        => ['is_unique' => true],
         'permissions' => [],
-        'first_name'  => [],
-        'last_name'   => [],
     ];
 }
  
