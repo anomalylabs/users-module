@@ -4,8 +4,9 @@ use Anomaly\Streams\Platform\Stream\StreamInstaller;
 
 class UsersStreamInstaller extends StreamInstaller
 {
+
     /**
-     * Field assignments for the Users stream.
+     * Stream field assignments.
      *
      * @var array
      */
@@ -19,5 +20,6 @@ class UsersStreamInstaller extends StreamInstaller
         'last_action_at' => [],
         'last_login_at'  => [],
     ];
+
 }
  
