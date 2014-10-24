@@ -1,14 +1,14 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\User\Command;
 
-use Anomaly\Streams\Addon\Module\Users\User\UserModel;
+use Anomaly\Streams\Addon\Module\Users\User\Contract\UserRepositoryInterface;
 
 class FindUserByCredentialsCommandHandler
 {
-    protected $user;
+    protected $users;
 
-    function __construct(UserModel $user)
+    function __construct(UserRepositoryInterface $users)
     {
-        $this->user = $user;
+        $this->users = $users;
     }
 
     public function handle(FindUserByCredentialsCommand $command)
@@ -25,7 +25,7 @@ class FindUserByCredentialsCommandHandler
 
         }
 
-        return $this->user->findByLoginAndPassword($login, $credentials['password']);
+        return $this->users->findByLoginAndPassword($login, $credentials['password']);
     }
 }
  

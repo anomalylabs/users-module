@@ -1,12 +1,12 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\User\Event;
 
-use Anomaly\Streams\Addon\Module\Users\User\UserModel;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 class PasswordWasChangedEvent
 {
     protected $user;
 
-    function __construct(UserModel $user)
+    function __construct(UserInterface $user)
     {
         $this->user = $user;
     }

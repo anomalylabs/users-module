@@ -1,13 +1,14 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\User;
 
-use Anomaly\Streams\Addon\Module\Users\Activation\ActivationService;
-use Anomaly\Streams\Addon\Module\Users\User\Command\CreateUserCommand;
-use Anomaly\Streams\Addon\Module\Users\User\Command\FindUserByCredentialsCommand;
-use Anomaly\Streams\Addon\Module\Users\User\Command\FindUserByIdCommand;
-use Anomaly\Streams\Addon\Module\Users\User\Command\FindUserByPersistenceCodeCommand;
-use Anomaly\Streams\Addon\Module\Users\User\Command\UpdateUserCommand;
 use Anomaly\Streams\Platform\Traits\CommandableTrait;
+use Anomaly\Streams\Addon\Module\Users\User\Contract\UserInterface;
+use Anomaly\Streams\Addon\Module\Users\Activation\ActivationService;
+use Anomaly\Streams\Addon\Module\Users\User\Command\UpdateUserCommand;
+use Anomaly\Streams\Addon\Module\Users\User\Command\CreateUserCommand;
+use Anomaly\Streams\Addon\Module\Users\User\Command\FindUserByIdCommand;
 use Anomaly\Streams\Addon\Module\Users\User\Command\ChangePasswordCommand;
+use Anomaly\Streams\Addon\Module\Users\User\Command\FindUserByCredentialsCommand;
+use Anomaly\Streams\Addon\Module\Users\User\Command\FindUserByPersistenceCodeCommand;
 
 class UserService
 {
@@ -37,7 +38,7 @@ class UserService
 
     public function update(UserInterface $user, array $credentials = [], array $data = [])
     {
-        $command = new UpdateUserCommand($user->getAuthIdentifier(), $credentials, $data);
+        $command = new UpdateUserCommand($user->getUserId(), $credentials, $data);
 
         return $this->execute($command);
     }
@@ -65,7 +66,7 @@ class UserService
 
     public function changePassword(UserInterface $user, $password)
     {
-        $command = new ChangePasswordCommand($user->getAuthIdentifier(), $password);
+        $command = new ChangePasswordCommand($user->getUserId(), $password);
 
         return $this->execute($command);
     }
