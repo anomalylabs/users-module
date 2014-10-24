@@ -1,11 +1,11 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\Activation;
 
-use Anomaly\Streams\Addon\Module\Users\Activation\Command\CheckIfActivationExistsCommand;
-use Anomaly\Streams\Addon\Module\Users\Activation\Command\CompleteActivationCommand;
+use Anomaly\Streams\Platform\Traits\CommandableTrait;
+use Anomaly\Streams\Addon\Module\Users\User\UserInterface;
 use Anomaly\Streams\Addon\Module\Users\Activation\Command\CreateActivationCommand;
 use Anomaly\Streams\Addon\Module\Users\Activation\Command\RemoveActivationCommand;
-use Anomaly\Streams\Addon\Module\Users\User\UserInterface;
-use Anomaly\Streams\Platform\Traits\CommandableTrait;
+use Anomaly\Streams\Addon\Module\Users\Activation\Command\CompleteActivationCommand;
+use Anomaly\Streams\Addon\Module\Users\Activation\Command\CheckIfActivationExistsCommand;
 
 class ActivationService
 {

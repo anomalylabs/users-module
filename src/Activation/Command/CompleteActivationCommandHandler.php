@@ -19,7 +19,7 @@ class CompleteActivationCommandHandler
     {
         $activation = $this->activation->complete($command->getUserId(), $command->getCode());
 
-        if ($activation instanceof ActivationModel) {
+        if ($activation) {
 
             $activation->raise(new ActivationWasCompletedEvent($activation));
 
