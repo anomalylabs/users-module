@@ -6,6 +6,44 @@ class UserModel extends UsersUsersEntryModel
 {
     protected $hidden = ['password'];
 
+    public function createUser($credentials)
+    {
+        $this->email    = $credentials['email'];
+        $this->username = $credentials['username'];
+        $this->password = $credentials['password'];
+
+        $this->save();
+
+        return $this;
+    }
+
+    public function updateUser($userId, $credentials, $data)
+    {
+        $user = $this->find($userId);
+
+        if ($user) {
+
+            $user->fill($data);
+
+            if (isset($credentials['email'])) {
+
+                $user->email = $credentials['email'];
+
+            }
+
+            if (isset($credentials['username'])) {
+
+                $this->username = $credentials['username'];
+
+            }
+
+            $user->save();
+
+        }
+
+        return $user;
+    }
+
     public function findByLoginAndPassword($login, $password)
     {
         return $this
@@ -18,17 +56,6 @@ class UserModel extends UsersUsersEntryModel
             )
             ->wherePassword($password)
             ->first();
-    }
-
-    public function register($credentials)
-    {
-        $this->email    = $credentials['email'];
-        $this->username = $credentials['username'];
-        $this->password = $credentials['password'];
-
-        $this->save();
-
-        return $this;
     }
 
     public function setPasswordAttribute($password)

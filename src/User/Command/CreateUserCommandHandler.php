@@ -1,8 +1,8 @@
-<?php namespace Anomaly\Streams\Addon\Module\Users\Registration\Command;
+<?php namespace Anomaly\Streams\Addon\Module\Users\User\Command;
 
 use Anomaly\Streams\Addon\Module\Users\User\UserModel;
 
-class RegisterUserCommandHandler
+class CreateUserCommandHandler
 {
     protected $user;
 
@@ -11,7 +11,7 @@ class RegisterUserCommandHandler
         $this->user = $user;
     }
 
-    public function handle(RegisterUserCommand $command)
+    public function handle(CreateUserCommand $command)
     {
         return $this->user->createUser($command->getCredentials());
     }
