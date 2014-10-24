@@ -24,9 +24,9 @@ class ReminderService
         return $this->execute($command);
     }
 
-    public function complete(UserInterface $user, $code)
+    public function complete(UserInterface $user, $code, $password)
     {
-        $command = new CompleteReminderCommand($user->getAuthIdentifier(), $code);
+        $command = new CompleteReminderCommand($user->getAuthIdentifier(), $code, $password);
 
         return $this->execute($command);
     }

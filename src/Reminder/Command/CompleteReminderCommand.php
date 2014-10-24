@@ -6,10 +6,21 @@ class CompleteReminderCommand
 
     protected $code;
 
-    function __construct($userId, $code)
+    protected $password;
+
+    function __construct($userId, $code, $password)
     {
-        $this->code   = $code;
-        $this->userId = $userId;
+        $this->code     = $code;
+        $this->userId   = $userId;
+        $this->password = $password;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPassword()
+    {
+        return $this->password;
     }
 
     /**

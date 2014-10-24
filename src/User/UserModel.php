@@ -9,6 +9,6 @@ class UserModel extends UsersUsersEntryModel
      *
      * @var array
      */
-    protected $hidden = ['password', 'remember_token'];
+    protected $hidden = ['password'];
 }
  

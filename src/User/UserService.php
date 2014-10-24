@@ -1,23 +1,17 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\User;
 
 use Anomaly\Streams\Platform\Traits\CommandableTrait;
+use Anomaly\Streams\Addon\Module\Users\User\Command\ChangePasswordCommand;
 
 class UserService
 {
     use CommandableTrait;
 
-    public function register($data)
+    public function changePassword(UserInterface $user, $password)
     {
-        $command = 'Anomaly\Streams\Addon\Module\Users\User\Command\RegisterUserCommand';
+        $command = new ChangePasswordCommand($user->getAuthIdentifier(), $password);
 
-        return $this->execute($command, $data);
-    }
-
-    public function registerAndActivate($data)
-    {
-        $user = $this->register($data);
-
-        // Activate
+        return $this->execute($command);
     }
 }
  
