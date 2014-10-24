@@ -2,7 +2,7 @@
 
 use Anomaly\Streams\Platform\Stream\StreamInstaller;
 
-class RolesStreamInstaller extends StreamInstaller
+class ThrottlesStreamInstaller extends StreamInstaller
 {
     /**
      * Stream information.
@@ -19,9 +19,9 @@ class RolesStreamInstaller extends StreamInstaller
      * @var array
      */
     protected $assignments = [
-        'name'        => [],
-        'slug'        => ['is_unique' => true],
-        'permissions' => [],
+        'user'       => [],
+        'type'       => [],
+        'ip_address' => [],
     ];
 }
  

@@ -11,37 +11,61 @@ class UsersFieldInstaller extends FieldInstaller
      * @var array
      */
     protected $fields = [
-        'email'            => [
+        'email'          => [
             'type' => 'email',
         ],
-        'username'         => [
-            'type' => 'email',
-        ],
-        'password'         => [
+        'username'       => [
             'type' => 'text',
         ],
-        'permissions'      => [
+        'password'       => [
+            'type' => 'text',
+        ],
+        'permissions'    => [
             'type' => 'textarea',
         ],
-        'first_name'       => [
+        'first_name'     => [
             'type' => 'text',
         ],
-        'last_name'        => [
+        'last_name'      => [
             'type' => 'text',
         ],
-        'last_activity_at' => [
+        'last_action_at' => [
             'type' => 'datetime',
         ],
-        'roles'            => [
+        'last_login_at'  => [
+            'type' => 'datetime',
+        ],
+        'roles'          => [
             'type'     => 'multiple',
             'settings' => [
                 'relation_model' => 'AwesomeModel',
             ],
         ],
-        'slug'             => [
+        'slug'           => [
             'type' => 'slug',
         ],
-        'name'             => [
+        'name'           => [
+            'type' => 'text',
+        ],
+        'user'           => [
+            'type'     => 'relationship',
+            'settings' => [
+                'relation_model' => 'AwesomeModel',
+            ],
+        ],
+        'code'           => [
+            'type' => 'text',
+        ],
+        'is_completed'   => [
+            'type' => 'boolean',
+        ],
+        'completed_at'   => [
+            'type' => 'datetime',
+        ],
+        'type'           => [
+            'type' => 'text', // TODO: Extension field type?
+        ],
+        'ip_address'     => [
             'type' => 'text',
         ],
     ];
