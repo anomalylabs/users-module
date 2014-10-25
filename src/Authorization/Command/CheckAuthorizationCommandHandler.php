@@ -6,7 +6,7 @@ class CheckAuthorizationCommandHandler
     {
         // TODO: Check authorization
 
-        return true;
+        return null;
     }
 }
  

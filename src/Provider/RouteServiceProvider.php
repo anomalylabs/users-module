@@ -1,7 +1,5 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\Provider;
 
-use Illuminate\Routing\Router;
-
 class RouteServiceProvider extends \Illuminate\Foundation\Support\Providers\RouteServiceProvider
 {
 
@@ -28,7 +26,7 @@ class RouteServiceProvider extends \Illuminate\Foundation\Support\Providers\Rout
      * @param  Router $router
      * @return void
      */
-    public function before(Router $router)
+    public function before()
     {
         //
     }
@@ -38,10 +36,28 @@ class RouteServiceProvider extends \Illuminate\Foundation\Support\Providers\Rout
      *
      * @return void
      */
-    public function map(Router $router)
+    public function map()
+    {
+        $this->registerLoginRoutes();
+        $this->registerLogoutRoutes();
+
+        $this->registerUsersRoutes();
+    }
+
+    protected function registerLoginRoutes()
     {
         get('admin/login', 'Anomaly\Streams\Addon\Module\Users\Http\Controller\Admin\LoginController@login');
         post('admin/login', 'Anomaly\Streams\Addon\Module\Users\Http\Controller\Admin\LoginController@attempt');
+    }
+
+    protected function registerLogoutRoutes()
+    {
+        get('admin/logout', 'Anomaly\Streams\Addon\Module\Users\Http\Controller\Admin\LogoutController@logout');
+    }
+
+    private function registerUsersRoutes()
+    {
+        get('admin/users', 'Anomaly\Streams\Addon\Module\Users\Http\Controller\Admin\UsersController@index');
     }
 
 }
