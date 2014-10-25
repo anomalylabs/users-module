@@ -26,7 +26,7 @@ class LoginController extends AdminController
 
                 $login->login($user->getResource());
 
-                return $redirect->intended('admin/dashboard'); // TODO: Get landing page from preferences
+                return $redirect->intended(preference('module.users::home_page', 'admin/dashboard'));
 
             }
 
