@@ -45,6 +45,8 @@ class ActivationModel extends UsersActivationsEntryModel
             $activation->is_complete  = true;
             $activation->completed_at = time();
 
+            $activation->save();
+
             return $activation;
 
         }
@@ -58,7 +60,7 @@ class ActivationModel extends UsersActivationsEntryModel
 
         if (!$activation) {
 
-            $activation = $activation->createActivation($userId);
+            $activation = $this->createActivation($userId);
 
         }
 

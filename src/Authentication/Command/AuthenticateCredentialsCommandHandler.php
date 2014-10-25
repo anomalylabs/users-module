@@ -1,5 +1,6 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\Authentication\Command;
 
+use Anomaly\Streams\Addon\Module\Users\Exception\UserNotFoundWithCredentialsException;
 use Anomaly\Streams\Addon\Module\Users\User\UserModel;
 
 class AuthenticateCredentialsCommandHandler
@@ -27,9 +28,13 @@ class AuthenticateCredentialsCommandHandler
 
         $user = $this->user->findByLoginAndPassword($login, $credentials['password']);
 
-        // LOGIN
+        if (!$user) {
 
-        return $user ? : false;
+            throw new UserNotFoundWithCredentialsException;
+
+        }
+
+        return $user;
     }
 }
  

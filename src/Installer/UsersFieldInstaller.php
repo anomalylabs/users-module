@@ -56,7 +56,7 @@ class UsersFieldInstaller extends FieldInstaller
         'code'           => [
             'type' => 'text',
         ],
-        'is_completed'   => [
+        'is_complete'   => [
             'type' => 'boolean',
         ],
         'completed_at'   => [

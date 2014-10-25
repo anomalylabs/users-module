@@ -1,5 +1,6 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\User;
 
+use Illuminate\Database\Eloquent\Builder;
 use Anomaly\Streams\Platform\Model\Users\UsersUsersEntryModel;
 use Anomaly\Streams\Addon\Module\Users\User\Contract\UserInterface;
 use Anomaly\Streams\Addon\Module\Users\User\Contract\UserRepositoryInterface;
@@ -63,16 +64,23 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, UserRepos
 
     public function findByLoginAndPassword($login, $password)
     {
-        return $this
+        $user = $this
             ->where(
-                function ($query) use ($login) {
+                function (Builder $query) use ($login) {
 
-                    $query->whereUsername($login)->orWhereEmail($login);
+                    $query->where('username', $login)->orWhere('email', $login);
 
                 }
             )
-            ->wherePassword($password)
             ->first();
+
+        if ($user) {
+
+            return app('hash')->check($password, $user->password) ? $user : null;
+
+        }
+
+        return null;
     }
 
     public function findByUserId($userId)
@@ -82,7 +90,7 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, UserRepos
 
     public function setPasswordAttribute($password)
     {
-        $this->attributes['password'] = app('hash')->make($password);
+        return app('hash')->make($password);
     }
 
     public function getUserId()

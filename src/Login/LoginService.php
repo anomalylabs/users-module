@@ -1,10 +1,10 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\Login;
 
-use Anomaly\Streams\Addon\Module\Users\Authorization\AuthorizationService;
-use Anomaly\Streams\Addon\Module\Users\Login\Command\LogoutUserCommand;
 use Anomaly\Streams\Platform\Traits\CommandableTrait;
-use Anomaly\Streams\Addon\Module\Users\User\UserInterface;
+use Anomaly\Streams\Addon\Module\Users\User\Contract\UserInterface;
 use Anomaly\Streams\Addon\Module\Users\Login\Command\LoginUserCommand;
+use Anomaly\Streams\Addon\Module\Users\Login\Command\LogoutUserCommand;
+use Anomaly\Streams\Addon\Module\Users\Authorization\AuthorizationService;
 
 class LoginService
 {

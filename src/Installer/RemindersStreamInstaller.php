@@ -21,7 +21,7 @@ class RemindersStreamInstaller extends StreamInstaller
     protected $assignments = [
         'user'         => [],
         'code'         => [],
-        'is_completed' => [],
+        'is_complete' => [],
         'completed_at' => [],
     ];
 }
