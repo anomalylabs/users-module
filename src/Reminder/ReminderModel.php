@@ -13,7 +13,7 @@ class ReminderModel extends UsersRemindersEntryModel
     {
         $this->code         = rand_string(40);
         $this->user_id      = $userId;
-        $this->is_completed = false;
+        $this->is_complete  = false;
 
         $this->save();
 
