@@ -1,5 +1,7 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\Provider;
 
+use Anomaly\Streams\Addon\Module\Users\Login\LoginService;
+
 class RouteServiceProvider extends \Illuminate\Foundation\Support\Providers\RouteServiceProvider
 {
 
@@ -23,7 +25,6 @@ class RouteServiceProvider extends \Illuminate\Foundation\Support\Providers\Rout
      * Called before routes are registered.
      * Register any model bindings or pattern based filters.
      *
-     * @param  Router $router
      * @return void
      */
     public function before()
@@ -38,10 +39,23 @@ class RouteServiceProvider extends \Illuminate\Foundation\Support\Providers\Rout
      */
     public function map()
     {
+        $this->registerAdminRoutes();
         $this->registerLoginRoutes();
         $this->registerLogoutRoutes();
 
         $this->registerUsersRoutes();
+    }
+
+    protected function registerAdminRoutes()
+    {
+        get(
+            'admin',
+            function () {
+
+                return redirect(preference('module.users::home_page', 'admin/dashboard'));
+
+            }
+        );
     }
 
     protected function registerLoginRoutes()
@@ -52,7 +66,16 @@ class RouteServiceProvider extends \Illuminate\Foundation\Support\Providers\Rout
 
     protected function registerLogoutRoutes()
     {
-        get('admin/logout', 'Anomaly\Streams\Addon\Module\Users\Http\Controller\Admin\LogoutController@logout');
+        get(
+            'admin/logout',
+            function (LoginService $login) {
+
+                $login->logout();
+
+                return redirect('admin/login');
+
+            }
+        );
     }
 
     private function registerUsersRoutes()
