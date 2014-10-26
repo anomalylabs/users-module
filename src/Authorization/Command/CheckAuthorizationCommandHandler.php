@@ -8,12 +8,12 @@ class CheckAuthorizationCommandHandler
 {
     protected $session;
 
-    protected $users;
+    protected $repository;
 
-    function __construct(SessionManager $session, UserRepositoryInterface $users)
+    function __construct(SessionManager $session, UserRepositoryInterface $repository)
     {
-        $this->users   = $users;
-        $this->session = $session;
+        $this->session    = $session;
+        $this->repository = $repository;
     }
 
 
@@ -23,7 +23,10 @@ class CheckAuthorizationCommandHandler
 
         if ($userId) {
 
-            return $this->users->findByUserId($userId);
+            // TODO: Move this to an event.
+            $this->repository->touchLastActivity($userId);
+
+            return $this->repository->findByUserId($userId);
 
         }
 

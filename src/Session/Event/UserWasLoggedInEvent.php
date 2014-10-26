@@ -1,4 +1,4 @@
-<?php namespace Anomaly\Streams\Addon\Module\Users\User\Event;
+<?php namespace Anomaly\Streams\Addon\Module\Users\Session\Event;
 
 class UserWasLoggedInEvent
 {

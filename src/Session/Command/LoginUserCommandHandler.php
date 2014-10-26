@@ -3,7 +3,7 @@
 use Anomaly\Streams\Platform\Traits\EventableTrait;
 use Anomaly\Streams\Platform\Traits\DispatchableTrait;
 use Anomaly\Streams\Addon\Module\Users\Session\SessionManager;
-use Anomaly\Streams\Addon\Module\Users\User\Event\UserWasLoggedInEvent;
+use Anomaly\Streams\Addon\Module\Users\Session\Event\UserWasLoggedInEvent;
 
 class LoginUserCommandHandler
 {

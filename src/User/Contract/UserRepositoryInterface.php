@@ -13,5 +13,9 @@ interface UserRepositoryInterface
 
     public function findByUserId($userId);
 
+    public function touchLastActivity($userId);
+
+    public function touchLastLogin($userId);
+
 }
  

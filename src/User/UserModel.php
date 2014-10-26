@@ -88,6 +88,16 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, UserRepos
         return $this->find($userId);
     }
 
+    public function touchLastActivity($userId)
+    {
+        $this->whereId($userId)->update(['last_activity_at' => date('Y-m-d H:i:s')]);
+    }
+
+    public function touchLastLogin($userId)
+    {
+        $this->whereId($userId)->update(['last_login_at' => date('Y-m-d H:i:s')]);
+    }
+
     public function setPasswordAttribute($password)
     {
         return app('hash')->make($password);
