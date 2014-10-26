@@ -51,7 +51,7 @@ class RouteServiceProvider extends \Illuminate\Foundation\Support\Providers\Rout
 
     protected function registerAdminRoutes(Router $router)
     {
-        get(
+        $router->get(
             'admin',
             function () {
 
@@ -64,12 +64,15 @@ class RouteServiceProvider extends \Illuminate\Foundation\Support\Providers\Rout
     protected function registerLoginRoutes(Router $router)
     {
         $router->get('admin/login', 'Anomaly\Streams\Addon\Module\Users\Http\Controller\Admin\LoginController@login');
-        post('admin/login', 'Anomaly\Streams\Addon\Module\Users\Http\Controller\Admin\LoginController@attempt');
+        $router->post(
+            'admin/login',
+            'Anomaly\Streams\Addon\Module\Users\Http\Controller\Admin\LoginController@attempt'
+        );
     }
 
     protected function registerLogoutRoutes(Router $router)
     {
-        get(
+        $router->get(
             'admin/logout',
             function (SessionService $login) {
 
@@ -81,9 +84,9 @@ class RouteServiceProvider extends \Illuminate\Foundation\Support\Providers\Rout
         );
     }
 
-    private function registerUsersRoutes(Router $routerr)
+    private function registerUsersRoutes(Router $router)
     {
-        $routerr->any('admin/users', 'Anomaly\Streams\Addon\Module\Users\Http\Controller\Admin\UsersController@index');
+        $router->any('admin/users', 'Anomaly\Streams\Addon\Module\Users\Http\Controller\Admin\UsersController@index');
     }
 
 }
