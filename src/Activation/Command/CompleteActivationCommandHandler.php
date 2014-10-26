@@ -1,23 +1,23 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\Activation\Command;
 
 use Anomaly\Streams\Platform\Traits\DispatchableTrait;
-use Anomaly\Streams\Addon\Module\Users\Activation\ActivationModel;
 use Anomaly\Streams\Addon\Module\Users\Activation\Event\ActivationWasCompletedEvent;
+use Anomaly\Streams\Addon\Module\Users\Activation\Contract\ActivationRepositoryInterface;
 
 class CompleteActivationCommandHandler
 {
     use DispatchableTrait;
 
-    protected $activation;
+    protected $repository;
 
-    function __construct(ActivationModel $activation)
+    function __construct(ActivationRepositoryInterface $repository)
     {
-        $this->activation = $activation;
+        $this->repository = $repository;
     }
 
     public function handle(CompleteActivationCommand $command)
     {
-        $activation = $this->activation->complete($command->getUserId(), $command->getCode());
+        $activation = $this->repository->complete($command->getUserId(), $command->getCode());
 
         if ($activation) {
 

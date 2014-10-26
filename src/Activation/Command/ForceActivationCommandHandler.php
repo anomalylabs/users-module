@@ -1,19 +1,19 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\Activation\Command;
 
-use Anomaly\Streams\Addon\Module\Users\Activation\ActivationModel;
+use Anomaly\Streams\Addon\Module\Users\Activation\Contract\ActivationRepositoryInterface;
 
 class ForceActivationCommandHandler
 {
-    protected $activation;
+    protected $repository;
 
-    function __construct(ActivationModel $activation)
+    function __construct(ActivationRepositoryInterface $repository)
     {
-        $this->activation = $activation;
+        $this->repository = $repository;
     }
 
     public function handle(ForceActivationCommand $command)
     {
-        return $this->activation->forceActivation($command->getUserId());
+        return $this->repository->forceActivation($command->getUserId());
     }
 }
  

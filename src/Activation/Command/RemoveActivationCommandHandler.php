@@ -1,19 +1,19 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\Activation\Command;
 
-use Anomaly\Streams\Addon\Module\Users\Activation\ActivationModel;
+use Anomaly\Streams\Addon\Module\Users\Activation\Contract\ActivationRepositoryInterface;
 
 class RemoveActivationCommandHandler
 {
-    protected $activation;
+    protected $repository;
 
-    function __construct(ActivationModel $activation)
+    function __construct(ActivationRepositoryInterface $repository)
     {
-        $this->activation = $activation;
+        $this->repository = $repository;
     }
 
     public function handle(RemoveActivationCommand $command)
     {
-        return $this->activation->removeActivation($command->getUserId());
+        return $this->repository->removeActivation($command->getUserId());
     }
 }
  
