@@ -6,9 +6,11 @@ use Anomaly\Streams\Platform\Http\Controller\AdminController;
 class UsersController extends AdminController
 {
 
-    public function index(UserTableUi $ui)
+    public function index()
     {
-        return $ui->render();
+        $ui = new UserTableUi();
+
+        return $ui->make();
     }
 
 }
