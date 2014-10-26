@@ -1,8 +1,8 @@
-<?php namespace Anomaly\Streams\Addon\Module\Users\Login\Command;
+<?php namespace Anomaly\Streams\Addon\Module\Users\Session\Command;
 
 use Anomaly\Streams\Platform\Traits\EventableTrait;
 use Anomaly\Streams\Platform\Traits\DispatchableTrait;
-use Anomaly\Streams\Addon\Module\Users\User\UserSession;
+use Anomaly\Streams\Addon\Module\Users\Session\SessionManager;
 
 class LogoutUserCommandHandler
 {
@@ -11,7 +11,7 @@ class LogoutUserCommandHandler
 
     protected $session;
 
-    function __construct(UserSession $session)
+    function __construct(SessionManager $session)
     {
         $this->session = $session;
     }

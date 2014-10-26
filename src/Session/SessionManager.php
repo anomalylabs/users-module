@@ -1,9 +1,9 @@
-<?php namespace Anomaly\Streams\Addon\Module\Users\User;
+<?php namespace Anomaly\Streams\Addon\Module\Users\Session;
 
 use Anomaly\Streams\Addon\Module\Users\Persistence\PersistenceModel;
 use Anomaly\Streams\Addon\Module\Users\Persistence\PersistenceService;
 
-class UserSession
+class SessionManager
 {
     protected $persistence;
 

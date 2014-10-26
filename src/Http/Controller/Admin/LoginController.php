@@ -2,8 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
-use Anomaly\Streams\Addon\Module\Users\Login\LoginService;
 use Anomaly\Streams\Platform\Http\Controller\AdminController;
+use Anomaly\Streams\Addon\Module\Users\Session\SessionService;
 use Anomaly\Streams\Addon\Module\Users\Exception\UserNotFoundException;
 use Anomaly\Streams\Addon\Module\Users\Authentication\AuthenticationService;
 
@@ -17,7 +17,7 @@ class LoginController extends AdminController
     public function attempt(
         Request $request,
         Redirector $redirect,
-        LoginService $login,
+        SessionService $login,
         AuthenticationService $authentication
     ) {
         try {

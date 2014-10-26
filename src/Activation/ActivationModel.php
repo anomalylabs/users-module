@@ -11,9 +11,9 @@ class ActivationModel extends UsersActivationsEntryModel
 
     public function createActivation($userId)
     {
-        $this->code         = rand_string(40);
-        $this->user_id      = $userId;
-        $this->is_complete  = false;
+        $this->code        = rand_string(40);
+        $this->user_id     = $userId;
+        $this->is_complete = false;
 
         $this->save();
 

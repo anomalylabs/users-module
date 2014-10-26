@@ -1,12 +1,12 @@
-<?php namespace Anomaly\Streams\Addon\Module\Users\Login;
+<?php namespace Anomaly\Streams\Addon\Module\Users\Session;
 
 use Anomaly\Streams\Platform\Traits\CommandableTrait;
 use Anomaly\Streams\Addon\Module\Users\User\Contract\UserInterface;
-use Anomaly\Streams\Addon\Module\Users\Login\Command\LoginUserCommand;
-use Anomaly\Streams\Addon\Module\Users\Login\Command\LogoutUserCommand;
+use Anomaly\Streams\Addon\Module\Users\Session\Command\LoginUserCommand;
+use Anomaly\Streams\Addon\Module\Users\Session\Command\LogoutUserCommand;
 use Anomaly\Streams\Addon\Module\Users\Authorization\AuthorizationService;
 
-class LoginService
+class SessionService
 {
     use CommandableTrait;
 

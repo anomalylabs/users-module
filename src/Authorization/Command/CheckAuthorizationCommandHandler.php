@@ -1,7 +1,7 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\Authorization\Command;
 
 use Anomaly\Streams\Platform\Traits\CommandableTrait;
-use Anomaly\Streams\Addon\Module\Users\User\UserSession;
+use Anomaly\Streams\Addon\Module\Users\Session\SessionManager;
 use Anomaly\Streams\Addon\Module\Users\User\Contract\UserRepositoryInterface;
 
 class CheckAuthorizationCommandHandler
@@ -10,7 +10,7 @@ class CheckAuthorizationCommandHandler
 
     protected $users;
 
-    function __construct(UserSession $session, UserRepositoryInterface $users)
+    function __construct(SessionManager $session, UserRepositoryInterface $users)
     {
         $this->users   = $users;
         $this->session = $session;

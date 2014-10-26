@@ -1,7 +1,7 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\Provider;
 
-use Anomaly\Streams\Addon\Module\Users\Login\LoginService;
 use Illuminate\Routing\Router;
+use Anomaly\Streams\Addon\Module\Users\Session\SessionService;
 
 class RouteServiceProvider extends \Illuminate\Foundation\Support\Providers\RouteServiceProvider
 {
@@ -71,7 +71,7 @@ class RouteServiceProvider extends \Illuminate\Foundation\Support\Providers\Rout
     {
         get(
             'admin/logout',
-            function (LoginService $login) {
+            function (SessionService $login) {
 
                 $login->logout();
 

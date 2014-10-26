@@ -1,4 +1,4 @@
-<?php namespace Anomaly\Streams\Addon\Module\Users\Login\Command;
+<?php namespace Anomaly\Streams\Addon\Module\Users\Session\Command;
 
 class LoginUserCommand
 {
