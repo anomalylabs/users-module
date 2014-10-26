@@ -62,6 +62,16 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, UserRepos
         return $user;
     }
 
+    public function findByEmail($email)
+    {
+        return $this->whereEmail($email)->first();
+    }
+
+    public function findByUsername($username)
+    {
+        return $this->whereUsername($username)->first();
+    }
+
     public function findByLoginAndPassword($login, $password)
     {
         $user = $this

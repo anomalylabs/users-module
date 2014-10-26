@@ -9,6 +9,10 @@ interface UserRepositoryInterface
 
     public function changePassword($userId, $password);
 
+    public function findByEmail($email);
+
+    public function findByUsername($username);
+
     public function findByLoginAndPassword($login, $password);
 
     public function findByUserId($userId);
