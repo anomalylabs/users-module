@@ -1,9 +1,10 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\Reminder\Command;
 
-use Anomaly\Streams\Addon\Module\Users\User\Command\ChangePasswordCommand;
+use Anomaly\Streams\Addon\Module\Users\Reminder\Contract\ReminderRepositoryInterface;
 use Anomaly\Streams\Platform\Traits\CommandableTrait;
 use Anomaly\Streams\Platform\Traits\DispatchableTrait;
 use Anomaly\Streams\Addon\Module\Users\Reminder\ReminderModel;
+use Anomaly\Streams\Addon\Module\Users\User\Command\ChangePasswordCommand;
 use Anomaly\Streams\Addon\Module\Users\Reminder\Event\ReminderWasCompletedEvent;
 
 class CompleteReminderCommandHandler
@@ -11,18 +12,18 @@ class CompleteReminderCommandHandler
     use CommandableTrait;
     use DispatchableTrait;
 
-    protected $reminder;
+    protected $repository;
 
-    function __construct(ReminderModel $reminder)
+    function __construct(ReminderRepositoryInterface $repository)
     {
-        $this->reminder = $reminder;
+        $this->repository = $repository;
     }
 
     public function handle(CompleteReminderCommand $command)
     {
-        $reminder = $this->reminder->complete($command->getUserId(), $command->getCode());
+        $reminder = $this->repository->complete($command->getUserId(), $command->getCode());
 
-        if ($reminder) {
+        if ($reminder instanceof ReminderRepositoryInterface) {
 
             $reminder->raise(new ReminderWasCompletedEvent($reminder));
 

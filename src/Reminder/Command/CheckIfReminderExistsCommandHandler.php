@@ -1,19 +1,19 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\Reminder\Command;
 
-use Anomaly\Streams\Addon\Module\Users\Reminder\ReminderModel;
+use Anomaly\Streams\Addon\Module\Users\Reminder\Contract\ReminderRepositoryInterface;
 
 class CheckIfReminderExistsCommandHandler
 {
-    protected $reminder;
+    protected $repository;
 
-    function __construct(ReminderModel $reminder)
+    function __construct(ReminderRepositoryInterface $repository)
     {
-        $this->reminder = $reminder;
+        $this->repository = $repository;
     }
 
     public function handle(CheckIfReminderExistsCommand $command)
     {
-        return $this->reminder->findByUserId($command->getUserId());
+        return $this->repository->findByUserId($command->getUserId());
     }
 }
  

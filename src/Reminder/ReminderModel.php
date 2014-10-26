@@ -1,8 +1,10 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\Reminder;
 
 use Anomaly\Streams\Platform\Model\Users\UsersRemindersEntryModel;
+use Anomaly\Streams\Addon\Module\Users\Reminder\Contract\ReminderInterface;
+use Anomaly\Streams\Addon\Module\Users\Reminder\Contract\ReminderRepositoryInterface;
 
-class ReminderModel extends UsersRemindersEntryModel
+class ReminderModel extends UsersRemindersEntryModel implements ReminderRepositoryInterface, ReminderInterface
 {
     public function scopeCompleted($query)
     {
@@ -11,9 +13,9 @@ class ReminderModel extends UsersRemindersEntryModel
 
     public function createReminder($userId)
     {
-        $this->code         = rand_string(40);
-        $this->user_id      = $userId;
-        $this->is_complete  = false;
+        $this->code        = rand_string(40);
+        $this->user_id     = $userId;
+        $this->is_complete = false;
 
         $this->save();
 
@@ -24,7 +26,7 @@ class ReminderModel extends UsersRemindersEntryModel
     {
         $reminder = $this->findByUserId($userId);
 
-        if ($reminder and $reminder->code == $code) {
+        if ($reminder instanceof ReminderInterface and $reminder->getCode() == $code) {
 
             $reminder->code         = null;
             $reminder->is_complete  = true;
@@ -42,6 +44,11 @@ class ReminderModel extends UsersRemindersEntryModel
         $reminder = $this->whereUserId($userId)->first();
 
         return $reminder ? : false;
+    }
+
+    public function getCode()
+    {
+        return $this->code;
     }
 }
  

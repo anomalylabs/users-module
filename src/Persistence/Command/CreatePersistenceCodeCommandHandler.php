@@ -1,19 +1,19 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\Persistence\Command;
 
-use Anomaly\Streams\Addon\Module\Users\Persistence\PersistenceModel;
+use Anomaly\Streams\Addon\Module\Users\Persistence\Contract\PersistenceRepositoryInterface;
 
 class CreatePersistenceCodeCommandHandler
 {
-    protected $persistences;
+    protected $repository;
 
-    function __construct(PersistenceModel $persistences)
+    function __construct(PersistenceRepositoryInterface $repository)
     {
-        $this->persistences = $persistences;
+        $this->repository = $repository;
     }
 
     public function handle(CreatePersistenceCodeCommand $command)
     {
-        return $this->persistences->findByIdOrCreate($command->getUserId());
+        return $this->repository->findByIdOrCreate($command->getUserId());
     }
 }
  

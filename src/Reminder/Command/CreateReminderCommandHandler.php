@@ -1,29 +1,34 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\Reminder\Command;
 
-use Anomaly\Streams\Addon\Module\Users\Reminder\Event\ReminderWasCreatedEvent;
-use Anomaly\Streams\Addon\Module\Users\Reminder\ReminderModel;
+use Anomaly\Streams\Addon\Module\Users\Reminder\Contract\ReminderInterface;
 use Anomaly\Streams\Platform\Traits\DispatchableTrait;
+use Anomaly\Streams\Addon\Module\Users\Reminder\Event\ReminderWasCreatedEvent;
+use Anomaly\Streams\Addon\Module\Users\Reminder\Contract\ReminderRepositoryInterface;
 
 class CreateReminderCommandHandler
 {
     use DispatchableTrait;
 
-    protected $reminder;
+    protected $repository;
 
-    function __construct(ReminderModel $reminder)
+    function __construct(ReminderRepositoryInterface $repository)
     {
-        $this->reminder = $reminder;
+        $this->repository = $repository;
     }
 
     public function handle(CreateReminderCommand $command)
     {
-        $reminder = $this->reminder->createReminder($command->getUserId());
+        $reminder = $this->repository->createReminder($command->getUserId());
 
-        $reminder->raise(new ReminderWasCreatedEvent($reminder));
+        if ($reminder instanceof ReminderInterface) {
 
-        $this->dispatchEventsFor($reminder);
+            $reminder->raise(new ReminderWasCreatedEvent($reminder));
 
-        return $reminder ? : false;
+            $this->dispatchEventsFor($reminder);
+
+        }
+
+        return $reminder;
     }
 }
  

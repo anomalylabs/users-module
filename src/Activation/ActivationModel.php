@@ -1,8 +1,9 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\Activation;
 
 use Anomaly\Streams\Platform\Model\Users\UsersActivationsEntryModel;
+use Anomaly\Streams\Addon\Module\Users\Activation\Contract\ActivationRepositoryInterface;
 
-class ActivationModel extends UsersActivationsEntryModel
+class ActivationModel extends UsersActivationsEntryModel implements ActivationRepositoryInterface
 {
     public function scopeCompleted($query)
     {
