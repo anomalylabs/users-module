@@ -38,18 +38,18 @@ class RouteServiceProvider extends \Illuminate\Foundation\Support\Providers\Rout
      *
      * @return void
      */
-    public function map(Router $route)
+    public function map(Router $router)
     {
-        $route->when('admin*', 'auth');
+        $router->when('admin*', 'auth');
 
-        $this->registerAdminRoutes();
-        $this->registerLoginRoutes();
-        $this->registerLogoutRoutes();
+        $this->registerAdminRoutes($router);
+        $this->registerLoginRoutes($router);
+        $this->registerLogoutRoutes($router);
 
-        $this->registerUsersRoutes();
+        $this->registerUsersRoutes($router);
     }
 
-    protected function registerAdminRoutes()
+    protected function registerAdminRoutes(Router $router)
     {
         get(
             'admin',
@@ -61,13 +61,13 @@ class RouteServiceProvider extends \Illuminate\Foundation\Support\Providers\Rout
         );
     }
 
-    protected function registerLoginRoutes()
+    protected function registerLoginRoutes(Router $router)
     {
-        get('admin/login', 'Anomaly\Streams\Addon\Module\Users\Http\Controller\Admin\LoginController@login');
+        $router->get('admin/login', 'Anomaly\Streams\Addon\Module\Users\Http\Controller\Admin\LoginController@login');
         post('admin/login', 'Anomaly\Streams\Addon\Module\Users\Http\Controller\Admin\LoginController@attempt');
     }
 
-    protected function registerLogoutRoutes()
+    protected function registerLogoutRoutes(Router $router)
     {
         get(
             'admin/logout',
@@ -81,9 +81,9 @@ class RouteServiceProvider extends \Illuminate\Foundation\Support\Providers\Rout
         );
     }
 
-    private function registerUsersRoutes()
+    private function registerUsersRoutes(Router $routerr)
     {
-        get('admin/users', 'Anomaly\Streams\Addon\Module\Users\Http\Controller\Admin\UsersController@index');
+        $routerr->any('admin/users', 'Anomaly\Streams\Addon\Module\Users\Http\Controller\Admin\UsersController@index');
     }
 
 }
