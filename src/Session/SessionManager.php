@@ -50,7 +50,15 @@ class SessionManager
 
     public function check()
     {
-        return app('session')->get($this->getSessionKey(), $this->getPersistentUserId());
+        $userId = app('session')->get($this->getSessionKey());
+
+        if (!$userId) {
+
+            $userId = $this->getPersistentUserId();
+
+        }
+
+        return $userId;
     }
 
     protected function updateSession($userId)
