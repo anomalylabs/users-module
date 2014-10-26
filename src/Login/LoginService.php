@@ -19,7 +19,7 @@ class LoginService
 
     public function login(UserInterface $user, $remember = false)
     {
-        $command = new LoginUserCommand($user, $remember);
+        $command = new LoginUserCommand($user->getUserId(), $remember);
 
         return $this->execute($command);
     }
@@ -34,7 +34,7 @@ class LoginService
 
         if ($user) {
 
-            $command = new LogoutUserCommand($user);
+            $command = new LogoutUserCommand($user->getUserId());
 
             $this->execute($command);
 

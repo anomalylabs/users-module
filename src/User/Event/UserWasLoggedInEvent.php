@@ -1,22 +1,20 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\User\Event;
 
-use Anomaly\Streams\Addon\Module\Users\User\Contract\UserInterface;
-
 class UserWasLoggedInEvent
 {
-    protected $user;
+    protected $userId;
 
-    function __construct(UserInterface $user)
+    function __construct($userId)
     {
-        $this->user = $user;
+        $this->userId = $userId;
     }
 
     /**
      * @return mixed
      */
-    public function getUser()
+    public function getUserId()
     {
-        return $this->user;
+        return $this->userId;
     }
 }
  

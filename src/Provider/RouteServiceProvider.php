@@ -1,6 +1,7 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\Provider;
 
 use Anomaly\Streams\Addon\Module\Users\Login\LoginService;
+use Illuminate\Routing\Router;
 
 class RouteServiceProvider extends \Illuminate\Foundation\Support\Providers\RouteServiceProvider
 {
@@ -18,7 +19,7 @@ class RouteServiceProvider extends \Illuminate\Foundation\Support\Providers\Rout
      * @var array
      */
     protected $middleware = [
-        'auth' => 'Anomaly\Streams\Addon\Module\Users\Middleware\Authenticator',
+        'auth' => 'Anomaly\Streams\Addon\Module\Users\Http\Middleware\Authenticator',
     ];
 
     /**
@@ -37,8 +38,10 @@ class RouteServiceProvider extends \Illuminate\Foundation\Support\Providers\Rout
      *
      * @return void
      */
-    public function map()
+    public function map(Router $route)
     {
+        $route->when('admin*', 'auth');
+
         $this->registerAdminRoutes();
         $this->registerLoginRoutes();
         $this->registerLogoutRoutes();

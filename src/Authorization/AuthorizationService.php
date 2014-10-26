@@ -14,7 +14,7 @@ class AuthorizationService
         return $this->execute($command);
     }
 
-    public function guest()
+    public function isGuest()
     {
         return !($this->check());
     }

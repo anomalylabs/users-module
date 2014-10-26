@@ -1,16 +1,9 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\User;
 
-use Anomaly\Streams\Addon\Module\Users\User\Event\UserWasLoggedInEvent;
-use Anomaly\Streams\Platform\Traits\EventableTrait;
-use Anomaly\Streams\Platform\Traits\DispatchableTrait;
-use Anomaly\Streams\Addon\Module\Users\User\Contract\UserInterface;
 use Anomaly\Streams\Addon\Module\Users\Persistence\PersistenceService;
 
 class UserSession
 {
-    use EventableTrait;
-    use DispatchableTrait;
-
     protected $persistence;
 
     function __construct(PersistenceService $persistence)
@@ -18,42 +11,69 @@ class UserSession
         $this->persistence = $persistence;
     }
 
-    public function login(UserInterface $user, $remember = false)
+    public function login($userId, $remember = false)
     {
-        $this->updateSession($user->getUserId());
+        $this->updateSession($userId);
 
         if ($remember) {
 
-            $this->persistence->persist($user);
+            $code = $this->persistence->persist($userId);
+
+            $this->storePersistenceCode($userId, $code);
 
         }
-
-        $this->raise(new UserWasLoggedInEvent($user));
-
-        $this->dispatchEventsFor($this);
     }
 
     public function logout()
     {
-        // TODO: Clear the session.
+        $userId = $this->check();
+
+        $this->flushSession();
+
+        if ($userId) {
+
+            $this->persistence->forget($userId);
+
+        }
+    }
+
+    public function check()
+    {
+        return app('session')->get($this->getSessionKey(), $this->getPersistentUserId());
     }
 
     protected function updateSession($userId)
     {
-        app('session')->put('login_' . md5(get_class($this)), $userId);
+        app('session')->put($this->getSessionKey(), $userId);
 
         app('session')->migrate(true);
     }
 
-    /**
-     * @param mixed $user
-     * return $this
-     */
-    public function setUser(UserInterface $user)
+    protected function flushSession()
     {
-        $this->user = $user;
+        app('session')->flush();
+    }
 
-        return $this;
+    protected function storePersistenceCode($userId, $code)
+    {
+        $cookie = app('cookie');
+
+        $cookie->queue($cookie->forever($this->getPersistenceKey(), "{$userId}|{$code}"));
+    }
+
+    protected function getSessionKey()
+    {
+        return 'login_' . md5(get_class($this));
+    }
+
+    protected function getPersistenceKey()
+    {
+        return 'remember_' . md5(get_class($this));
+    }
+
+    protected function getPersistentUserId()
+    {
+        return null;
     }
 }
  

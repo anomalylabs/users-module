@@ -2,5 +2,5 @@
 
 return [
     'name'        => 'Users',
-    'description' => 'Manage users, groups and permissions.',
+    'description' => 'Users and authentication management module.',
 ];

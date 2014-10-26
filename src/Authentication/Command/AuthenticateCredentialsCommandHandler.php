@@ -1,6 +1,6 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\Authentication\Command;
 
-use Anomaly\Streams\Addon\Module\Users\Exception\UserNotFoundWithCredentialsException;
+use Anomaly\Streams\Addon\Module\Users\Exception\UserNotFoundException;
 use Anomaly\Streams\Addon\Module\Users\User\UserModel;
 
 class AuthenticateCredentialsCommandHandler
@@ -30,7 +30,7 @@ class AuthenticateCredentialsCommandHandler
 
         if (!$user) {
 
-            throw new UserNotFoundWithCredentialsException;
+            throw new UserNotFoundException;
 
         }
 

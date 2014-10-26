@@ -1,25 +1,20 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\Login\Command;
 
-use Anomaly\Streams\Addon\Module\Users\User\UserInterface;
-
 class LoginUserCommand
 {
-    protected $user;
+    protected $userId;
 
     protected $remember;
 
-    function __construct($user, $remember)
+    function __construct($userId, $remember)
     {
-        $this->user     = $user;
+        $this->userId   = $userId;
         $this->remember = $remember;
     }
 
-    /**
-     * @return \Anomaly\Streams\Addon\Module\Users\User\UserInterface
-     */
-    public function getUser()
+    public function getUserId()
     {
-        return $this->user;
+        return $this->userId;
     }
 }
  

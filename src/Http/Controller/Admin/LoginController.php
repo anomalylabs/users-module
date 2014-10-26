@@ -5,12 +5,14 @@ use Illuminate\Routing\Redirector;
 use Anomaly\Streams\Addon\Module\Users\Login\LoginService;
 use Anomaly\Streams\Platform\Http\Controller\AdminController;
 use Anomaly\Streams\Addon\Module\Users\Authentication\AuthenticationService;
-use Anomaly\Streams\Addon\Module\Users\Exception\UserNotFoundWithCredentialsException;
+use Anomaly\Streams\Addon\Module\Users\Exception\UserNotFoundException;
 
 class LoginController extends AdminController
 {
     public function login()
     {
+        print_r(app('session')->all());
+
         return view('module.users::admin/login');
     }
 
@@ -30,7 +32,7 @@ class LoginController extends AdminController
 
             }
 
-        } catch (UserNotFoundWithCredentialsException $e) {
+        } catch (UserNotFoundException $e) {
 
             app('streams.messages')->add('error', 'module.users::error.user_not_found');
 
