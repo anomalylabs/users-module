@@ -16,5 +16,10 @@ class LoginUserCommand
     {
         return $this->userId;
     }
+
+    public function getRemember()
+    {
+        return $this->remember;
+    }
 }
  

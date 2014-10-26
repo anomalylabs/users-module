@@ -7,9 +7,9 @@ class AuthenticationService
 {
     use CommandableTrait;
 
-    public function authenticate($credentials, $remember = false)
+    public function authenticate($credentials)
     {
-        $command = new AuthenticateCredentialsCommand($credentials, $remember);
+        $command = new AuthenticateCredentialsCommand($credentials);
 
         return $this->execute($command);
     }

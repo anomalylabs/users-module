@@ -1,14 +1,18 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\User;
 
+use Anomaly\Streams\Addon\Module\Users\Persistence\PersistenceModel;
 use Anomaly\Streams\Addon\Module\Users\Persistence\PersistenceService;
 
 class UserSession
 {
     protected $persistence;
 
-    function __construct(PersistenceService $persistence)
+    protected $persistences;
+
+    function __construct(PersistenceService $persistence, PersistenceModel $persistences)
     {
-        $this->persistence = $persistence;
+        $this->persistence  = $persistence;
+        $this->persistences = $persistences;
     }
 
     public function login($userId, $remember = false)
@@ -28,13 +32,20 @@ class UserSession
     {
         $userId = $this->check();
 
-        $this->flushSession();
+        $this->flushAndForget();
 
         if ($userId) {
 
             $this->persistence->forget($userId);
 
         }
+    }
+
+    protected function flushAndForget()
+    {
+        app('session')->flush();
+
+        app('cookie')->queue(app('cookie')->forget($this->getPersistenceKey()));
     }
 
     public function check()
@@ -47,11 +58,6 @@ class UserSession
         app('session')->put($this->getSessionKey(), $userId);
 
         app('session')->migrate(true);
-    }
-
-    protected function flushSession()
-    {
-        app('session')->flush();
     }
 
     protected function storePersistenceCode($userId, $code)
@@ -73,6 +79,33 @@ class UserSession
 
     protected function getPersistentUserId()
     {
+        if ($remember = $this->getPersistenceValue()) {
+
+            list($userId, $code) = explode('|', $remember);
+
+            if ($this->persistence->check($userId, $code)) {
+
+                $this->updateSession($userId);
+
+                return $userId;
+
+            }
+
+        }
+
+        return null;
+    }
+
+    protected function getPersistenceValue()
+    {
+        $value = app('request')->cookies->get($this->getPersistenceKey());
+
+        if (str_contains($value, '|')) {
+
+            return $value;
+
+        }
+
         return null;
     }
 }

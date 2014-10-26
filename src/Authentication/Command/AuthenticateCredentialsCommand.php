@@ -4,11 +4,8 @@ class AuthenticateCredentialsCommand
 {
     protected $credentials;
 
-    protected $remember;
-
-    function __construct($credentials, $remember)
+    function __construct($credentials)
     {
-        $this->remember    = $remember;
         $this->credentials = $credentials;
     }
 

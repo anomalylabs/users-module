@@ -4,15 +4,13 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
 use Anomaly\Streams\Addon\Module\Users\Login\LoginService;
 use Anomaly\Streams\Platform\Http\Controller\AdminController;
-use Anomaly\Streams\Addon\Module\Users\Authentication\AuthenticationService;
 use Anomaly\Streams\Addon\Module\Users\Exception\UserNotFoundException;
+use Anomaly\Streams\Addon\Module\Users\Authentication\AuthenticationService;
 
 class LoginController extends AdminController
 {
     public function login()
     {
-        print_r(app('session')->all());
-
         return view('module.users::admin/login');
     }
 
@@ -24,9 +22,9 @@ class LoginController extends AdminController
     ) {
         try {
 
-            if ($user = $authentication->authenticate($request->all(), false)) {
+            if ($user = $authentication->authenticate($request->all())) {
 
-                $login->login($user->getResource());
+                $login->login($user->getResource(), ($request->get('remember') == 'on'));
 
                 return $redirect->intended(preference('module.users::home_page', 'admin/dashboard'));
 

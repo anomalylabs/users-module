@@ -21,7 +21,7 @@ class LoginUserCommandHandler
     {
         $userId = $command->getUserId();
 
-        $this->session->login($userId);
+        $this->session->login($userId, $command->getRemember());
 
         $this->raise(new UserWasLoggedInEvent($userId));
 
