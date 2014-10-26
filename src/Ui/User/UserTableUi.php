@@ -13,6 +13,10 @@ class UserTableUi extends TableUi
             [
                 'first_name',
                 'last_name',
+                'email',
+                'username',
+                'last_login_at',
+                'last_activity_at',
             ]
         );
     }

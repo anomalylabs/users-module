@@ -13,6 +13,10 @@ class ListenerServiceProvider extends ServiceProvider
     public function register()
     {
         app('events')->listen(
+            'Anomaly.Streams.Addon.Module.Users.Authorization.*',
+            'Anomaly\Streams\Addon\Module\Users\Authorization\AuthorizationListener'
+        );
+        app('events')->listen(
             'Anomaly.Streams.Addon.Module.Users.Session.*',
             'Anomaly\Streams\Addon\Module\Users\Session\SessionListener'
         );

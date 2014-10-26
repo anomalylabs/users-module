@@ -29,7 +29,7 @@ class UsersFieldInstaller extends FieldInstaller
         'last_name'      => [
             'type' => 'text',
         ],
-        'last_action_at' => [
+        'last_activity_at' => [
             'type' => 'datetime',
         ],
         'last_login_at'  => [
