@@ -7,7 +7,7 @@ interface ActivationRepositoryInterface
 
     public function removeActivation($userId);
 
-    public function complete($userId);
+    public function complete($userId, $code);
 
     public function forceActivation($userId);
 

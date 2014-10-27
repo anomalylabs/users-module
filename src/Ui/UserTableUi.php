@@ -37,10 +37,8 @@ class UserTableUi extends TableUi
     {
         $this->setButtons(
             [
-                [
-                    'text' => 'Test Buttons',
-                    'url'  => 'admin/login',
-                ]
+                'view',
+                'edit',
             ]
         );
     }
@@ -49,9 +47,7 @@ class UserTableUi extends TableUi
     {
         $this->setActions(
             [
-                [
-                    'text' => 'misc.untitled',
-                ]
+                'delete',
             ]
         );
     }
