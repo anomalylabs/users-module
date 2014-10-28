@@ -8,6 +8,7 @@ class UserTableUi extends TableUi
     protected function boot()
     {
         $this->setUpModel();
+        $this->setUpFilters();
         $this->setUpColumns();
         $this->setUpButtons();
         $this->setUpActions();
@@ -19,14 +20,26 @@ class UserTableUi extends TableUi
         $this->setModel(new UserModel());
     }
 
+    protected function setUpFilters()
+    {
+        $this->setFilters(
+            [
+                'first_name',
+                'email',
+            ]
+        );
+    }
+
     protected function setUpColumns()
     {
         $this->setColumns(
             [
-                'first_name',
-                'last_name',
-                'email',
+                [
+                    'heading' => 'Name',
+                    'value'   => '{first_name} {last_name}',
+                ],
                 'username',
+                'email.link',
                 'last_login_at',
                 'last_activity_at',
             ]
@@ -47,7 +60,11 @@ class UserTableUi extends TableUi
     {
         $this->setActions(
             [
-                'delete',
+                [
+                    'type'    => 'delete',
+                    'slug'    => 'delete',
+                    'handler' => 'Anomaly\Streams\Platform\Ui\Table\TableAction',
+                ],
             ]
         );
     }
