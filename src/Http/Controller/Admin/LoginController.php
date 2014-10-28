@@ -1,6 +1,7 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\Http\Controller\Admin;
 
 use Anomaly\Streams\Addon\Module\Users\Authorization\AuthorizationService;
+use Anomaly\Streams\Addon\Module\Users\User\Contract\UserInterface;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
 use Anomaly\Streams\Platform\Http\Controller\AdminController;
@@ -31,9 +32,9 @@ class LoginController extends AdminController
     ) {
         try {
 
-            if ($user = $authentication->authenticate($request->all())) {
+            if ($user = $authentication->authenticate($request->all()) and $user instanceof UserInterface) {
 
-                $login->login($user->getResource(), ($request->get('remember') == 'on'));
+                $login->login($user, ($request->get('remember') == 'on'));
 
                 return $redirect->intended(preference('module.users::home_page', 'admin/dashboard'));
 
