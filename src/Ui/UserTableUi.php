@@ -61,8 +61,7 @@ class UserTableUi extends TableUi
                 ],
                 'username',
                 'email.link',
-                'last_login_at',
-                'last_activity_at',
+                'last_login_at.valueAndDiffForHumans',
             ]
         );
     }
