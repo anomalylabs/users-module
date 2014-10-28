@@ -8,6 +8,7 @@ class UserTableUi extends TableUi
     protected function boot()
     {
         $this->setUpModel();
+        $this->setUpViews();
         $this->setUpFilters();
         $this->setUpColumns();
         $this->setUpButtons();
@@ -18,6 +19,26 @@ class UserTableUi extends TableUi
     protected function setUpModel()
     {
         $this->setModel(new UserModel());
+    }
+
+    protected function setUpViews()
+    {
+        $this->setViews(
+            [
+                [
+                    'title'   => 'Test View',
+                    'slug'    => 'foo',
+                    'handler' => 'Anomaly\Streams\Platform\Ui\Table\TableView',
+                ],
+                [
+                    'title'   => 'Inactive',
+                    'slug'    => 'bar',
+                    'handler' => function ($query) {
+                            return $query->whereUsername('admin');
+                        },
+                ]
+            ]
+        );
     }
 
     protected function setUpFilters()
