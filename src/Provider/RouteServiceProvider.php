@@ -86,7 +86,20 @@ class RouteServiceProvider extends \Illuminate\Foundation\Support\Providers\Rout
 
     private function registerUsersRoutes(Router $router)
     {
-        $router->any('admin/users', 'Anomaly\Streams\Addon\Module\Users\Http\Controller\Admin\UsersController@index');
+        $router->any(
+            'admin/users',
+            'Anomaly\Streams\Addon\Module\Users\Http\Controller\Admin\UsersController@index'
+        );
+
+        $router->any(
+            'admin/users/create',
+            'Anomaly\Streams\Addon\Module\Users\Http\Controller\Admin\UsersController@create'
+        );
+
+        $router->any(
+            'admin/users/edit/{id}',
+            'Anomaly\Streams\Addon\Module\Users\Http\Controller\Admin\UsersController@edit'
+        );
     }
 
 }
