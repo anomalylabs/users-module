@@ -45,6 +45,17 @@ class UserTableUi extends TableUi
     {
         $this->setFilters(
             [
+                [
+                    'type'    => 'select',
+                    'slug'    => 'lsadfj',
+                    'options' => [
+                        'foo' => 'Foo',
+                        'bar' => 'Bar',
+                    ],
+                    'handler' => function ($ui) {
+                            dd(get_class($ui));
+                        }
+                ],
                 'first_name',
                 'email',
             ]

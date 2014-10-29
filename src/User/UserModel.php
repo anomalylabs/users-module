@@ -110,7 +110,7 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, UserRepos
 
     public function setPasswordAttribute($password)
     {
-        return app('hash')->make($password);
+        $this->attributes['password'] = app('hash')->make($password);
     }
 
     public function getUserId()
