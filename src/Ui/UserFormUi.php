@@ -47,6 +47,8 @@ class UserFormUi extends FormUi
                     'fields' => [
                         'first_name',
                         'last_name',
+                        'username',
+                        'email',
                     ],
                 ],
                 [
