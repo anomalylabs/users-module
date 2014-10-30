@@ -3,6 +3,14 @@
 use Anomaly\Streams\Addon\Module\Users\Session\SessionService;
 use Illuminate\Routing\Router;
 
+/**
+ * Class RouteServiceProvider
+ *
+ * @link          http://anomaly.is/streams-platform
+ * @author        AnomalyLabs, Inc. <hello@anomaly.is>
+ * @author        Ryan Thompson <ryan@anomaly.is>
+ * @package       Anomaly\Streams\Addon\Module\Users\Provider
+ */
 class RouteServiceProvider extends \Illuminate\Foundation\Support\Providers\RouteServiceProvider
 {
 
@@ -19,7 +27,7 @@ class RouteServiceProvider extends \Illuminate\Foundation\Support\Providers\Rout
      * @var array
      */
     protected $middleware = [
-        'auth' => 'Anomaly\Streams\Addon\Module\Users\Http\Middleware\Authenticator',
+        'auth' => 'Anomaly\Streams\Addon\Module\Users\Http\Middleware\CheckAuthentication',
     ];
 
     /**
@@ -49,6 +57,11 @@ class RouteServiceProvider extends \Illuminate\Foundation\Support\Providers\Rout
         $this->registerUsersRoutes($router);
     }
 
+    /**
+     * Register admin routes.
+     *
+     * @param Router $router
+     */
     protected function registerAdminRoutes(Router $router)
     {
         $router->get(
@@ -60,6 +73,11 @@ class RouteServiceProvider extends \Illuminate\Foundation\Support\Providers\Rout
         );
     }
 
+    /**
+     * Register login routes.
+     *
+     * @param Router $router
+     */
     protected function registerLoginRoutes(Router $router)
     {
         $router->get('admin/login', 'Anomaly\Streams\Addon\Module\Users\Http\Controller\Admin\LoginController@login');
@@ -69,6 +87,11 @@ class RouteServiceProvider extends \Illuminate\Foundation\Support\Providers\Rout
         );
     }
 
+    /**
+     * Register the logout route.
+     *
+     * @param Router $router
+     */
     protected function registerLogoutRoutes(Router $router)
     {
         $router->get(
@@ -82,6 +105,11 @@ class RouteServiceProvider extends \Illuminate\Foundation\Support\Providers\Rout
         );
     }
 
+    /**
+     * Register user routes.
+     *
+     * @param Router $router
+     */
     private function registerUsersRoutes(Router $router)
     {
         $router->any(
