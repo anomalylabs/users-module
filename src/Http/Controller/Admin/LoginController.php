@@ -1,15 +1,15 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\Http\Controller\Admin;
 
+use Anomaly\Streams\Addon\Module\Users\Authentication\AuthenticationService;
 use Anomaly\Streams\Addon\Module\Users\Authentication\Exception\EmailOrUsernameRequiredException;
 use Anomaly\Streams\Addon\Module\Users\Authentication\Exception\PasswordRequiredException;
-use Illuminate\Http\Request;
-use Illuminate\Routing\Redirector;
-use Anomaly\Streams\Platform\Http\Controller\AdminController;
+use Anomaly\Streams\Addon\Module\Users\Authorization\AuthorizationService;
+use Anomaly\Streams\Addon\Module\Users\Exception\UserNotFoundException;
 use Anomaly\Streams\Addon\Module\Users\Session\SessionService;
 use Anomaly\Streams\Addon\Module\Users\User\Contract\UserInterface;
-use Anomaly\Streams\Addon\Module\Users\Exception\UserNotFoundException;
-use Anomaly\Streams\Addon\Module\Users\Authorization\AuthorizationService;
-use Anomaly\Streams\Addon\Module\Users\Authentication\AuthenticationService;
+use Anomaly\Streams\Platform\Http\Controller\AdminController;
+use Illuminate\Http\Request;
+use Illuminate\Routing\Redirector;
 
 /**
  * Class LoginController
@@ -37,11 +37,9 @@ class LoginController extends AdminController
         if ($authorization->check()) {
 
             return redirect(preference('module.users::home_page', 'admin/dashboard'));
-
         } else {
 
             return view('module.users::admin/login');
-
         }
     }
 
@@ -71,21 +69,16 @@ class LoginController extends AdminController
                 $session->login($user, ($request->get('remember') == 'on'));
 
                 return $redirect->intended(preference('module.users::home_page', 'admin/dashboard'));
-
             }
-
         } catch (UserNotFoundException $e) {
 
             app('streams.messages')->add('error', 'module.users::error.user_not_found');
-
         } catch (EmailOrUsernameRequiredException $e) {
 
             app('streams.messages')->add('error', 'module.users::error.email_or_username_required');
-
         } catch (PasswordRequiredException $e) {
 
             app('streams.messages')->add('error', 'module.users::error.password_required');
-
         }
 
         /**
@@ -96,6 +89,5 @@ class LoginController extends AdminController
 
         return $redirect->to('admin/login');
     }
-
 }
  

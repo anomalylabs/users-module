@@ -20,6 +20,5 @@ class UsersStreamInstaller extends StreamInstaller
         'last_login_at'    => [],
         'last_activity_at' => [],
     ];
-
 }
  

@@ -1,11 +1,12 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\Reminder;
 
-use Anomaly\Streams\Platform\Model\Users\UsersRemindersEntryModel;
 use Anomaly\Streams\Addon\Module\Users\Reminder\Contract\ReminderInterface;
 use Anomaly\Streams\Addon\Module\Users\Reminder\Contract\ReminderRepositoryInterface;
+use Anomaly\Streams\Platform\Model\Users\UsersRemindersEntryModel;
 
 class ReminderModel extends UsersRemindersEntryModel implements ReminderRepositoryInterface, ReminderInterface
 {
+
     public function scopeCompleted($query)
     {
         return $query->whereIsCompleted(true);
@@ -33,7 +34,6 @@ class ReminderModel extends UsersRemindersEntryModel implements ReminderReposito
             $reminder->completed_at = time();
 
             return $reminder;
-
         }
 
         return false;

@@ -4,6 +4,7 @@ use Anomaly\Streams\Platform\Stream\StreamInstaller;
 
 class PersistencesStreamInstaller extends StreamInstaller
 {
+
     /**
      * Stream information.
      *

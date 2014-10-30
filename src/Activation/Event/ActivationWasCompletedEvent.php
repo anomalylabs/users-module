@@ -39,6 +39,5 @@ class ActivationWasCompletedEvent
     {
         return $this->activation;
     }
-
 }
  

@@ -40,6 +40,5 @@ class RemoveActivationCommandHandler
     {
         return $this->repository->removeActivation($command->getUserId());
     }
-
 }
  

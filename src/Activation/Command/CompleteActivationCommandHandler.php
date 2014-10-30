@@ -1,8 +1,8 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\Activation\Command;
 
-use Anomaly\Streams\Platform\Traits\DispatchableTrait;
-use Anomaly\Streams\Addon\Module\Users\Activation\Event\ActivationWasCompletedEvent;
 use Anomaly\Streams\Addon\Module\Users\Activation\Contract\ActivationRepositoryInterface;
+use Anomaly\Streams\Addon\Module\Users\Activation\Event\ActivationWasCompletedEvent;
+use Anomaly\Streams\Platform\Traits\DispatchableTrait;
 
 /**
  * Class CompleteActivationCommandHandler
@@ -49,11 +49,9 @@ class CompleteActivationCommandHandler
             $activation->raise(new ActivationWasCompletedEvent($activation));
 
             $this->dispatchEventsFor($activation);
-
         }
 
         return $activation;
     }
-
 }
  

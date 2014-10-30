@@ -4,6 +4,7 @@ use Anomaly\Streams\Addon\Module\Users\User\Contract\UserRepositoryInterface;
 
 class UpdateUserCommandHandler
 {
+
     protected $users;
 
     function __construct(UserRepositoryInterface $user)

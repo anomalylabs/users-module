@@ -1,8 +1,8 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\Activation;
 
-use Anomaly\Streams\Platform\Support\Listener;
-use Anomaly\Streams\Addon\Module\Users\Activation\Event\ActivationWasCreatedEvent;
 use Anomaly\Streams\Addon\Module\Users\Activation\Event\ActivationWasCompletedEvent;
+use Anomaly\Streams\Addon\Module\Users\Activation\Event\ActivationWasCreatedEvent;
+use Anomaly\Streams\Platform\Support\Listener;
 
 /**
  * Class ActivationListener
@@ -34,6 +34,5 @@ class ActivationListener extends Listener
     {
         // Now would be a good time to fire off those emails son.
     }
-
 }
  

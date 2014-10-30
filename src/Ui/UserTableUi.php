@@ -1,10 +1,11 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\Ui;
 
-use Anomaly\Streams\Platform\Ui\Table\TableUi;
 use Anomaly\Streams\Addon\Module\Users\User\UserModel;
+use Anomaly\Streams\Platform\Ui\Table\TableUi;
 
 class UserTableUi extends TableUi
 {
+
     protected function boot()
     {
         $this->setUpModel();

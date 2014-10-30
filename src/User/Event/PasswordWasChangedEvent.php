@@ -4,6 +4,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 class PasswordWasChangedEvent
 {
+
     protected $user;
 
     function __construct(UserInterface $user)

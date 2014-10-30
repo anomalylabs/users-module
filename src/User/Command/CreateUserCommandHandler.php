@@ -4,6 +4,7 @@ use Anomaly\Streams\Addon\Module\Users\User\Contract\UserRepositoryInterface;
 
 class CreateUserCommandHandler
 {
+
     protected $users;
 
     function __construct(UserRepositoryInterface $users)

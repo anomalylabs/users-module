@@ -36,15 +36,12 @@ class AuthenticateCredentialsCommandValidator
         if (!isset($credentials['login']) and empty($credentials['login'])) {
 
             throw new EmailOrUsernameRequiredException();
-
         }
 
         if (!isset($credentials['password']) or empty($credentials['password'])) {
 
             throw new PasswordRequiredException();
-
         }
     }
-
 }
  

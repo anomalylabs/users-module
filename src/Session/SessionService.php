@@ -1,13 +1,14 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\Session;
 
-use Anomaly\Streams\Platform\Traits\CommandableTrait;
-use Anomaly\Streams\Addon\Module\Users\User\Contract\UserInterface;
+use Anomaly\Streams\Addon\Module\Users\Authorization\AuthorizationService;
 use Anomaly\Streams\Addon\Module\Users\Session\Command\LoginUserCommand;
 use Anomaly\Streams\Addon\Module\Users\Session\Command\LogoutUserCommand;
-use Anomaly\Streams\Addon\Module\Users\Authorization\AuthorizationService;
+use Anomaly\Streams\Addon\Module\Users\User\Contract\UserInterface;
+use Anomaly\Streams\Platform\Traits\CommandableTrait;
 
 class SessionService
 {
+
     use CommandableTrait;
 
     protected $authorization;
@@ -29,7 +30,6 @@ class SessionService
         if (!$user) {
 
             $user = $this->authorization->check();
-
         }
 
         if ($user) {
@@ -37,7 +37,6 @@ class SessionService
             $command = new LogoutUserCommand($user->getUserId());
 
             $this->execute($command);
-
         }
     }
 }

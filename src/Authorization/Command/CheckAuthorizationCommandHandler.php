@@ -1,6 +1,11 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\Authorization\Command;
 
-use Anomaly\Streams\Addon\Module\Users\Authorization\Event\CheckAuthorizationPasses;use Anomaly\Streams\Addon\Module\Users\Session\SessionManager;use Anomaly\Streams\Addon\Module\Users\User\Contract\UserRepositoryInterface;use Anomaly\Streams\Platform\Traits\CommandableTrait;use Anomaly\Streams\Platform\Traits\DispatchableTrait;use Anomaly\Streams\Platform\Traits\EventableTrait;
+use Anomaly\Streams\Addon\Module\Users\Authorization\Event\CheckAuthorizationPasses;
+use Anomaly\Streams\Addon\Module\Users\Session\SessionManager;
+use Anomaly\Streams\Addon\Module\Users\User\Contract\UserRepositoryInterface;
+use Anomaly\Streams\Platform\Traits\CommandableTrait;
+use Anomaly\Streams\Platform\Traits\DispatchableTrait;
+use Anomaly\Streams\Platform\Traits\EventableTrait;
 
 class CheckAuthorizationCommandHandler
 {

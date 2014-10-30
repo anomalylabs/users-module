@@ -1,12 +1,13 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\User;
 
-use Illuminate\Database\Eloquent\Builder;
-use Anomaly\Streams\Platform\Model\Users\UsersUsersEntryModel;
 use Anomaly\Streams\Addon\Module\Users\User\Contract\UserInterface;
 use Anomaly\Streams\Addon\Module\Users\User\Contract\UserRepositoryInterface;
+use Anomaly\Streams\Platform\Model\Users\UsersUsersEntryModel;
+use Illuminate\Database\Eloquent\Builder;
 
 class UserModel extends UsersUsersEntryModel implements UserInterface, UserRepositoryInterface
 {
+
     protected $hidden = ['password'];
 
     public function createUser(array $credentials)
@@ -31,17 +32,14 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, UserRepos
             if (isset($credentials['email'])) {
 
                 $user->email = $credentials['email'];
-
             }
 
             if (isset($credentials['username'])) {
 
                 $this->username = $credentials['username'];
-
             }
 
             $user->save();
-
         }
 
         return $user;
@@ -56,7 +54,6 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, UserRepos
             $this->password = $password;
 
             $user->save();
-
         }
 
         return $user;
@@ -69,7 +66,6 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, UserRepos
                 function (Builder $query) use ($login) {
 
                     $query->where('email', $login)->orWhere('username', $login);
-
                 }
             )
             ->first();
@@ -80,7 +76,6 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, UserRepos
         if ($user = $this->findByLogin($login)) {
 
             return app('hash')->check($password, $user->password) ? $user : null;
-
         }
 
         return null;

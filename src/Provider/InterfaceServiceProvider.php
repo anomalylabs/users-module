@@ -32,6 +32,5 @@ class InterfaceServiceProvider extends ServiceProvider
             'Anomaly\Streams\Addon\Module\Users\User\UserModel'
         );
     }
-
 }
  

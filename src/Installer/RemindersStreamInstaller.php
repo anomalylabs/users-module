@@ -4,6 +4,7 @@ use Anomaly\Streams\Platform\Stream\StreamInstaller;
 
 class RemindersStreamInstaller extends StreamInstaller
 {
+
     /**
      * Stream information.
      *
@@ -21,7 +22,7 @@ class RemindersStreamInstaller extends StreamInstaller
     protected $assignments = [
         'user'         => [],
         'code'         => [],
-        'is_complete' => [],
+        'is_complete'  => [],
         'completed_at' => [],
     ];
 }

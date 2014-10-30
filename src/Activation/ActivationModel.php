@@ -1,7 +1,7 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\Activation;
 
-use Anomaly\Streams\Platform\Model\Users\UsersActivationsEntryModel;
 use Anomaly\Streams\Addon\Module\Users\Activation\Contract\ActivationRepositoryInterface;
+use Anomaly\Streams\Platform\Model\Users\UsersActivationsEntryModel;
 
 /**
  * Class ActivationModel
@@ -57,7 +57,6 @@ class ActivationModel extends UsersActivationsEntryModel implements ActivationRe
             $activation->delete();
 
             return $activation;
-
         }
 
         return null;
@@ -83,7 +82,6 @@ class ActivationModel extends UsersActivationsEntryModel implements ActivationRe
             $activation->save();
 
             return $activation;
-
         }
 
         return false;
@@ -102,7 +100,6 @@ class ActivationModel extends UsersActivationsEntryModel implements ActivationRe
         if (!$activation) {
 
             $activation = $this->createActivation($userId);
-
         }
 
         return $activation->complete($userId, $activation->code);

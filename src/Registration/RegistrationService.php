@@ -1,11 +1,12 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\Registration;
 
 use Anomaly\Streams\Addon\Module\Users\Activation\ActivationService;
-use Anomaly\Streams\Platform\Traits\CommandableTrait;
 use Anomaly\Streams\Addon\Module\Users\Registration\Command\RegisterUserCommand;
+use Anomaly\Streams\Platform\Traits\CommandableTrait;
 
 class RegistrationService
 {
+
     use CommandableTrait;
 
     protected $activation;
@@ -24,7 +25,6 @@ class RegistrationService
         if (evaluate($activate) == true) {
 
             $this->activation->force($user);
-
         }
     }
 }

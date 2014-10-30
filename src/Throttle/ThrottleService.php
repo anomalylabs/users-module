@@ -4,6 +4,7 @@ use Anomaly\Streams\Platform\Traits\CommandableTrait;
 
 class ThrottleService
 {
+
     use CommandableTrait;
 }
  

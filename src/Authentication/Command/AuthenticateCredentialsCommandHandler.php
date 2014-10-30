@@ -1,8 +1,8 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\Authentication\Command;
 
-use Anomaly\Streams\Addon\Module\Users\User\Contract\UserInterface;
-use Anomaly\Streams\Addon\Module\Users\Exception\UserNotFoundException;
 use Anomaly\Streams\Addon\Module\Users\Authentication\Contract\AuthenticatorInterface;
+use Anomaly\Streams\Addon\Module\Users\Exception\UserNotFoundException;
+use Anomaly\Streams\Addon\Module\Users\User\Contract\UserInterface;
 
 /**
  * Class AuthenticateCredentialsCommandHandler
@@ -31,7 +31,6 @@ class AuthenticateCredentialsCommandHandler
         if (!$user) {
 
             throw new UserNotFoundException;
-
         }
 
         return $user;
@@ -59,9 +58,7 @@ class AuthenticateCredentialsCommandHandler
             if ($user instanceof UserInterface) {
 
                 return $user;
-
             }
-
         }
 
         return null;
@@ -79,11 +76,9 @@ class AuthenticateCredentialsCommandHandler
         if ($authenticator instanceof AuthenticatorInterface) {
 
             return $authenticator->authenticate($credentials);
-
         }
 
         return null;
     }
-
 }
  

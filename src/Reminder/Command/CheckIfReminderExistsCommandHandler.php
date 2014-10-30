@@ -4,6 +4,7 @@ use Anomaly\Streams\Addon\Module\Users\Reminder\Contract\ReminderRepositoryInter
 
 class CheckIfReminderExistsCommandHandler
 {
+
     protected $repository;
 
     function __construct(ReminderRepositoryInterface $repository)

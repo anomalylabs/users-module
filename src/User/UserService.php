@@ -1,17 +1,18 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\User;
 
-use Anomaly\Streams\Platform\Traits\CommandableTrait;
-use Anomaly\Streams\Addon\Module\Users\User\Contract\UserInterface;
 use Anomaly\Streams\Addon\Module\Users\Activation\ActivationService;
-use Anomaly\Streams\Addon\Module\Users\User\Command\UpdateUserCommand;
-use Anomaly\Streams\Addon\Module\Users\User\Command\CreateUserCommand;
-use Anomaly\Streams\Addon\Module\Users\User\Command\FindUserByIdCommand;
 use Anomaly\Streams\Addon\Module\Users\User\Command\ChangePasswordCommand;
+use Anomaly\Streams\Addon\Module\Users\User\Command\CreateUserCommand;
 use Anomaly\Streams\Addon\Module\Users\User\Command\FindUserByCredentialsCommand;
+use Anomaly\Streams\Addon\Module\Users\User\Command\FindUserByIdCommand;
 use Anomaly\Streams\Addon\Module\Users\User\Command\FindUserByPersistenceCodeCommand;
+use Anomaly\Streams\Addon\Module\Users\User\Command\UpdateUserCommand;
+use Anomaly\Streams\Addon\Module\Users\User\Contract\UserInterface;
+use Anomaly\Streams\Platform\Traits\CommandableTrait;
 
 class UserService
 {
+
     use CommandableTrait;
 
     protected $activation;
@@ -30,7 +31,6 @@ class UserService
         if (evaluate($activate) == true) {
 
             $this->activation->force($user);
-
         }
 
         return $user;

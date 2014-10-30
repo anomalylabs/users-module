@@ -1,12 +1,12 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\Activation;
 
-use Anomaly\Streams\Platform\Traits\CommandableTrait;
-use Anomaly\Streams\Addon\Module\Users\User\Contract\UserInterface;
-use Anomaly\Streams\Addon\Module\Users\Activation\Command\ForceActivationCommand;
-use Anomaly\Streams\Addon\Module\Users\Activation\Command\CreateActivationCommand;
-use Anomaly\Streams\Addon\Module\Users\Activation\Command\RemoveActivationCommand;
-use Anomaly\Streams\Addon\Module\Users\Activation\Command\CompleteActivationCommand;
 use Anomaly\Streams\Addon\Module\Users\Activation\Command\CheckIfActivationExistsCommand;
+use Anomaly\Streams\Addon\Module\Users\Activation\Command\CompleteActivationCommand;
+use Anomaly\Streams\Addon\Module\Users\Activation\Command\CreateActivationCommand;
+use Anomaly\Streams\Addon\Module\Users\Activation\Command\ForceActivationCommand;
+use Anomaly\Streams\Addon\Module\Users\Activation\Command\RemoveActivationCommand;
+use Anomaly\Streams\Addon\Module\Users\User\Contract\UserInterface;
+use Anomaly\Streams\Platform\Traits\CommandableTrait;
 
 /**
  * Class ActivationService
@@ -86,6 +86,5 @@ class ActivationService
 
         return $this->execute($command);
     }
-
 }
  

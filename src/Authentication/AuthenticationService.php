@@ -1,7 +1,7 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\Authentication;
 
-use Anomaly\Streams\Platform\Traits\CommandableTrait;
 use Anomaly\Streams\Addon\Module\Users\Authentication\Command\AuthenticateCredentialsCommand;
+use Anomaly\Streams\Platform\Traits\CommandableTrait;
 
 /**
  * Class AuthenticationService

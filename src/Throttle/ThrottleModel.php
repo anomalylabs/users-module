@@ -4,5 +4,6 @@ use Anomaly\Streams\Platform\Model\Users\UsersThrottlesEntryModel;
 
 class ThrottleModel extends UsersThrottlesEntryModel
 {
+
 }
  

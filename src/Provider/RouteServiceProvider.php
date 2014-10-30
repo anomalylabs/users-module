@@ -1,7 +1,7 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\Provider;
 
-use Illuminate\Routing\Router;
 use Anomaly\Streams\Addon\Module\Users\Session\SessionService;
+use Illuminate\Routing\Router;
 
 class RouteServiceProvider extends \Illuminate\Foundation\Support\Providers\RouteServiceProvider
 {
@@ -56,7 +56,6 @@ class RouteServiceProvider extends \Illuminate\Foundation\Support\Providers\Rout
             function () {
 
                 return redirect(preference('module.users::home_page', 'admin/dashboard'));
-
             }
         );
     }
@@ -79,7 +78,6 @@ class RouteServiceProvider extends \Illuminate\Foundation\Support\Providers\Rout
                 $login->logout();
 
                 return redirect('admin/login');
-
             }
         );
     }
@@ -101,5 +99,4 @@ class RouteServiceProvider extends \Illuminate\Foundation\Support\Providers\Rout
             'Anomaly\Streams\Addon\Module\Users\Http\Controller\Admin\UsersController@edit'
         );
     }
-
 }

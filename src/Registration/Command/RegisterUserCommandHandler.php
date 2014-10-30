@@ -4,6 +4,7 @@ use Anomaly\Streams\Addon\Module\Users\User\UserModel;
 
 class RegisterUserCommandHandler
 {
+
     protected $user;
 
     function __construct(UserModel $user)

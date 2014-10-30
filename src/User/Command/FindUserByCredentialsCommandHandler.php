@@ -4,6 +4,7 @@ use Anomaly\Streams\Addon\Module\Users\User\Contract\UserRepositoryInterface;
 
 class FindUserByCredentialsCommandHandler
 {
+
     protected $users;
 
     function __construct(UserRepositoryInterface $users)
@@ -18,11 +19,9 @@ class FindUserByCredentialsCommandHandler
         if (isset($credentials['email'])) {
 
             $login = $credentials['email'];
-
         } else {
 
             $login = $credentials['username'];
-
         }
 
         return $this->users->findByLoginAndPassword($login, $credentials['password']);

@@ -40,6 +40,5 @@ class ForceActivationCommandHandler
     {
         return $this->repository->forceActivation($command->getUserId());
     }
-
 }
  

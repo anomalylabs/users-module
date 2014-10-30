@@ -5,6 +5,7 @@ use Anomaly\Streams\Addon\Module\Users\Persistence\PersistenceService;
 
 class SessionManager
 {
+
     protected $persistence;
 
     protected $persistences;
@@ -24,7 +25,6 @@ class SessionManager
             $code = $this->persistence->persist($userId);
 
             $this->storePersistenceCode($userId, $code);
-
         }
     }
 
@@ -37,7 +37,6 @@ class SessionManager
         if ($userId) {
 
             $this->persistence->forget($userId);
-
         }
     }
 
@@ -55,7 +54,6 @@ class SessionManager
         if (!$userId) {
 
             $userId = $this->getPersistentUserId();
-
         }
 
         return $userId;
@@ -96,9 +94,7 @@ class SessionManager
                 $this->updateSession($userId);
 
                 return $userId;
-
             }
-
         }
 
         return null;
@@ -111,7 +107,6 @@ class SessionManager
         if (str_contains($value, '|')) {
 
             return $value;
-
         }
 
         return null;

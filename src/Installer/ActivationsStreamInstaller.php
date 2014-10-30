@@ -4,6 +4,7 @@ use Anomaly\Streams\Platform\Stream\StreamInstaller;
 
 class ActivationsStreamInstaller extends StreamInstaller
 {
+
     /**
      * Stream information.
      *
@@ -21,7 +22,7 @@ class ActivationsStreamInstaller extends StreamInstaller
     protected $assignments = [
         'user'         => [],
         'code'         => [],
-        'is_complete' => [],
+        'is_complete'  => [],
         'completed_at' => [],
     ];
 }

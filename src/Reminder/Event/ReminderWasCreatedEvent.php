@@ -4,6 +4,7 @@ use Anomaly\Streams\Addon\Module\Users\Reminder\Contract\ReminderInterface;
 
 class ReminderWasCreatedEvent
 {
+
     protected $reminder;
 
     function __construct(ReminderInterface $reminder)

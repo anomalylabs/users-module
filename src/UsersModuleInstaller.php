@@ -4,6 +4,7 @@ use Anomaly\Streams\Platform\Addon\Module\ModuleInstaller;
 
 class UsersModuleInstaller extends ModuleInstaller
 {
+
     /**
      * Installers to run during module installation.
      *

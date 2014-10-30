@@ -4,6 +4,7 @@ use Anomaly\Streams\Addon\Module\Users\Persistence\PersistenceService;
 
 class FindUserByPersistenceCodeCommandHandler
 {
+
     protected $persistence;
 
     function __construct(PersistenceService $persistence)
@@ -18,7 +19,6 @@ class FindUserByPersistenceCodeCommandHandler
         if ($persistence) {
 
             return $persistence->user;
-
         }
 
         return null;

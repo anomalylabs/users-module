@@ -4,6 +4,7 @@ use Anomaly\Streams\Addon\Module\Users\Persistence\Contract\PersistenceRepositor
 
 class ForgetPersistenceCodesCommandHandler
 {
+
     protected $repository;
 
     function __construct(PersistenceRepositoryInterface $repository)

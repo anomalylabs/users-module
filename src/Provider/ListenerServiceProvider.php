@@ -21,6 +21,5 @@ class ListenerServiceProvider extends ServiceProvider
             'Anomaly\Streams\Addon\Module\Users\Session\SessionListener'
         );
     }
-
 }
  

@@ -4,4 +4,5 @@ use Anomaly\Streams\Platform\Addon\Module\ModuleAddon;
 
 class UsersModule extends ModuleAddon
 {
+
 }

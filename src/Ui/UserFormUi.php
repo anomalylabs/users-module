@@ -1,7 +1,7 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\Ui;
 
-use Anomaly\Streams\Platform\Ui\Form\FormUi;
 use Anomaly\Streams\Addon\Module\Users\User\UserModel;
+use Anomaly\Streams\Platform\Ui\Form\FormUi;
 
 class UserFormUi extends FormUi
 {
@@ -57,6 +57,5 @@ class UserFormUi extends FormUi
             ]
         );
     }
-
 }
  

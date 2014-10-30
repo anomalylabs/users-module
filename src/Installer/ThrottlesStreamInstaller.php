@@ -4,6 +4,7 @@ use Anomaly\Streams\Platform\Stream\StreamInstaller;
 
 class ThrottlesStreamInstaller extends StreamInstaller
 {
+
     /**
      * Stream information.
      *

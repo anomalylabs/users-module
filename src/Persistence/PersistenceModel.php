@@ -1,10 +1,11 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\Persistence;
 
-use Anomaly\Streams\Platform\Model\Users\UsersPersistencesEntryModel;
 use Anomaly\Streams\Addon\Module\Users\Persistence\Contract\PersistenceRepositoryInterface;
+use Anomaly\Streams\Platform\Model\Users\UsersPersistencesEntryModel;
 
 class PersistenceModel extends UsersPersistencesEntryModel implements PersistenceRepositoryInterface
 {
+
     public function findByIdOrCreate($userId)
     {
         $persistence = $this->findByUserId($userId);
@@ -14,7 +15,6 @@ class PersistenceModel extends UsersPersistencesEntryModel implements Persistenc
             $persistence = $this->newInstance();
 
             $persistence->user_id = $userId;
-
         }
 
         $persistence->code = rand_string(40);
@@ -41,7 +41,6 @@ class PersistenceModel extends UsersPersistencesEntryModel implements Persistenc
         if ($persistence) {
 
             return $persistence->user_id;
-
         }
 
         return null;

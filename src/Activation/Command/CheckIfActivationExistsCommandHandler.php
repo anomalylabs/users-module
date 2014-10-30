@@ -40,6 +40,5 @@ class CheckIfActivationExistsCommandHandler
     {
         return $this->repository->findByUserId($command->getUserId());
     }
-
 }
  

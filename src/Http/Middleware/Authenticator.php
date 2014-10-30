@@ -1,8 +1,8 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\Http\Middleware;
 
+use Anomaly\Streams\Addon\Module\Users\Authorization\AuthorizationService;
 use Closure;
 use Illuminate\Contracts\Routing\Middleware;
-use Anomaly\Streams\Addon\Module\Users\Authorization\AuthorizationService;
 
 class Authenticator implements Middleware
 {
@@ -28,11 +28,9 @@ class Authenticator implements Middleware
         if (in_array($request->path(), $ignore) or $this->authorization->check()) {
 
             return $next($request);
-
         }
 
         return redirect('admin/login');
     }
-
 }
  

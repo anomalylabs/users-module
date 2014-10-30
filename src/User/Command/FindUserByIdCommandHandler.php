@@ -4,6 +4,7 @@ use Anomaly\Streams\Addon\Module\Users\User\Contract\UserRepositoryInterface;
 
 class FindUserByIdCommandHandler
 {
+
     protected $users;
 
     function __construct(UserRepositoryInterface $users)

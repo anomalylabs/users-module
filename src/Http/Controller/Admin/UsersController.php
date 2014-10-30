@@ -51,6 +51,5 @@ class UsersController extends AdminController
     {
         return $ui->make($id);
     }
-
 }
  

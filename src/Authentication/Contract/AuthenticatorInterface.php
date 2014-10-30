@@ -20,6 +20,5 @@ interface AuthenticatorInterface
      * @return UserInterface
      */
     public function authenticate(array $credentials);
-
 }
  
