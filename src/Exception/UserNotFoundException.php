@@ -3,6 +3,5 @@
 class UserNotFoundException extends \Exception
 {
 
-    //
 }
  
