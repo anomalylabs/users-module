@@ -1,4 +1,4 @@
-<?php namespace Anomaly\Streams\Addon\Module\Users\Authentication\Contract;
+<?php namespace Anomaly\Streams\Addon\Module\Users\Extension;
 
 use Anomaly\Streams\Addon\Module\Users\User\Contract\UserInterface;
 
@@ -8,7 +8,7 @@ use Anomaly\Streams\Addon\Module\Users\User\Contract\UserInterface;
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
- * @package       Anomaly\Streams\Addon\Module\Users\Authentication\Contract
+ * @package       Anomaly\Streams\Addon\Module\Users\Extension
  */
 interface AuthenticatorInterface
 {

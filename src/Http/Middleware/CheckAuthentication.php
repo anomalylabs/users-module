@@ -12,7 +12,7 @@ use Illuminate\Contracts\Routing\Middleware;
  * @author        Ryan Thompson <ryan@anomaly.is>
  * @package       Anomaly\Streams\Addon\Module\Users\Http\Middleware
  */
-class CheckAuthorization implements Middleware
+class CheckAuthentication implements Middleware
 {
 
     /**

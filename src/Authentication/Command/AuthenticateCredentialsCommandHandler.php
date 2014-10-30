@@ -1,6 +1,6 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\Authentication\Command;
 
-use Anomaly\Streams\Addon\Module\Users\Authentication\Contract\AuthenticatorInterface;
+use Anomaly\Streams\Addon\Module\Users\Extension\AuthenticatorInterface;
 use Anomaly\Streams\Addon\Module\Users\Exception\UserNotFoundException;
 use Anomaly\Streams\Addon\Module\Users\User\Contract\UserInterface;
 
