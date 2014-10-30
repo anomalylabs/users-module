@@ -10,6 +10,5 @@ interface ReminderRepositoryInterface
     public function findByUserId($userId);
 
     public function raise($event);
-
 }
  

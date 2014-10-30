@@ -2,6 +2,7 @@
 
 class CreateReminderCommand
 {
+
     protected $userId;
 
     function __construct($userId)

@@ -10,5 +10,6 @@
  */
 class EmailOrUsernameRequiredException extends \Exception
 {
+
 }
  

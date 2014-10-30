@@ -37,6 +37,5 @@ class CreateActivationCommand
     {
         return $this->userId;
     }
-
 }
  

@@ -6,6 +6,5 @@ interface UserInterface
     public function getUserId();
 
     public function setPasswordAttribute($password);
-
 }
  

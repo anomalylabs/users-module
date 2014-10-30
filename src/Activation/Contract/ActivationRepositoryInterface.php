@@ -51,6 +51,5 @@ interface ActivationRepositoryInterface
      * @return mixed
      */
     public function findByUserId($userId);
-
 }
  

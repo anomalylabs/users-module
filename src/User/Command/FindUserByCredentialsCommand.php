@@ -2,6 +2,7 @@
 
 class FindUserByCredentialsCommand
 {
+
     protected $credentials;
 
     function __construct(array $credentials)

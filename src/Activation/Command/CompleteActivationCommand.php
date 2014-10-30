@@ -56,6 +56,5 @@ class CompleteActivationCommand
     {
         return $this->userId;
     }
-
 }
  

@@ -10,6 +10,5 @@ interface PersistenceRepositoryInterface
     public function findByUserId($userId);
 
     public function findByUserIdAndCode($userId, $code);
-    
 }
  

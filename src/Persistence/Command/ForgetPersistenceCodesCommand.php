@@ -2,6 +2,7 @@
 
 class ForgetPersistenceCodesCommand
 {
+
     protected $userId;
 
     function __construct($userId)

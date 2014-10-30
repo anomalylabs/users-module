@@ -71,6 +71,5 @@ interface UserRepositoryInterface
      * @return mixed
      */
     public function touchLastLogin($userId);
-
 }
  

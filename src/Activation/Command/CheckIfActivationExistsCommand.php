@@ -37,6 +37,5 @@ class CheckIfActivationExistsCommand
     {
         return $this->userId;
     }
-
 }
  

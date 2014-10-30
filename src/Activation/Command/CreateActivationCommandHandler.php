@@ -1,8 +1,8 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\Activation\Command;
 
-use Anomaly\Streams\Platform\Traits\DispatchableTrait;
-use Anomaly\Streams\Addon\Module\Users\Activation\Event\ActivationWasCreatedEvent;
 use Anomaly\Streams\Addon\Module\Users\Activation\Contract\ActivationRepositoryInterface;
+use Anomaly\Streams\Addon\Module\Users\Activation\Event\ActivationWasCreatedEvent;
+use Anomaly\Streams\Platform\Traits\DispatchableTrait;
 
 /**
  * Class CreateActivationCommandHandler
@@ -50,6 +50,5 @@ class CreateActivationCommandHandler
 
         return $activation ? : false;
     }
-
 }
  

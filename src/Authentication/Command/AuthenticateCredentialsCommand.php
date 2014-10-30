@@ -37,6 +37,5 @@ class AuthenticateCredentialsCommand
     {
         return $this->credentials;
     }
-
 }
  

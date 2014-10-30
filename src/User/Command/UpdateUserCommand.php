@@ -2,6 +2,7 @@
 
 class UpdateUserCommand
 {
+
     protected $userId;
 
     protected $credentials;

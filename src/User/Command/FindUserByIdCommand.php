@@ -2,6 +2,7 @@
 
 class FindUserByIdCommand
 {
+
     protected $userId;
 
     function __construct($userId)

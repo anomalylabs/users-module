@@ -2,6 +2,7 @@
 
 class FindUserByPersistenceCodeCommand
 {
+
     protected $code;
 
     function __construct($code)

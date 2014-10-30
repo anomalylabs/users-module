@@ -2,6 +2,7 @@
 
 class RegisterUserCommand
 {
+
     protected $credentials;
 
     function __construct($credentials)

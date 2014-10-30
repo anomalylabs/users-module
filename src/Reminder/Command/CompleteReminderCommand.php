@@ -2,6 +2,7 @@
 
 class CompleteReminderCommand
 {
+
     protected $userId;
 
     protected $code;

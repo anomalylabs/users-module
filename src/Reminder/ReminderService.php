@@ -1,13 +1,14 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\Reminder;
 
-use Anomaly\Streams\Platform\Traits\CommandableTrait;
-use Anomaly\Streams\Addon\Module\Users\User\UserInterface;
-use Anomaly\Streams\Addon\Module\Users\Reminder\Command\CreateReminderCommand;
-use Anomaly\Streams\Addon\Module\Users\Reminder\Command\CompleteReminderCommand;
 use Anomaly\Streams\Addon\Module\Users\Reminder\Command\CheckIfReminderExistsCommand;
+use Anomaly\Streams\Addon\Module\Users\Reminder\Command\CompleteReminderCommand;
+use Anomaly\Streams\Addon\Module\Users\Reminder\Command\CreateReminderCommand;
+use Anomaly\Streams\Addon\Module\Users\User\UserInterface;
+use Anomaly\Streams\Platform\Traits\CommandableTrait;
 
 class ReminderService
 {
+
     use CommandableTrait;
 
     public function create(UserInterface $user)

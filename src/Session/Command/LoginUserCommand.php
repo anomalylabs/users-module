@@ -2,6 +2,7 @@
 
 class LoginUserCommand
 {
+
     protected $userId;
 
     protected $remember;

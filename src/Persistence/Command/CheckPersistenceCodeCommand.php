@@ -2,6 +2,7 @@
 
 class CheckPersistenceCodeCommand
 {
+
     protected $userId;
 
     protected $code;

@@ -2,6 +2,7 @@
 
 class CheckAuthorizationPasses
 {
+
     protected $userId;
 
     function __construct($userId)

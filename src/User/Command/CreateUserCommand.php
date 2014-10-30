@@ -2,6 +2,7 @@
 
 class CreateUserCommand
 {
+
     protected $credentials;
 
     function __construct(array $credentials)

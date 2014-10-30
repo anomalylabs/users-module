@@ -37,6 +37,5 @@ class RemoveActivationCommand
     {
         return $this->userId;
     }
-
 }
  

@@ -6,6 +6,5 @@ interface ReminderInterface
     public function getCode();
 
     public function raise($event);
-
 }
  

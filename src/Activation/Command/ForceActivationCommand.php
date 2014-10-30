@@ -37,6 +37,5 @@ class ForceActivationCommand
     {
         return $this->userId;
     }
-
 }
  

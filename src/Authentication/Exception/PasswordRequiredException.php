@@ -10,5 +10,6 @@
  */
 class PasswordRequiredException extends \Exception
 {
+
 }
  

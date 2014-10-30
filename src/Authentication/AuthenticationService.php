@@ -15,6 +15,7 @@ use Anomaly\Streams\Addon\Module\Users\Authentication\Command\AuthenticateCreden
  */
 class AuthenticationService
 {
+
     use CommandableTrait;
 
     /**

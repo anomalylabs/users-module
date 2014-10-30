@@ -2,9 +2,9 @@
 
 class CreateUserCommandValidator
 {
+
     public function validate(CreateUserCommand $command)
     {
-
     }
 }
  

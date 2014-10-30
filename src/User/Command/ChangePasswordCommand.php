@@ -2,6 +2,7 @@
 
 class ChangePasswordCommand
 {
+
     protected $userId;
 
     protected $password;

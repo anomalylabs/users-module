@@ -11,63 +11,62 @@ class UsersFieldInstaller extends FieldInstaller
      * @var array
      */
     protected $fields = [
-        'email'          => [
+        'email'            => [
             'type' => 'email',
         ],
-        'username'       => [
+        'username'         => [
             'type' => 'text',
         ],
-        'password'       => [
+        'password'         => [
             'type' => 'text',
         ],
-        'permissions'    => [
+        'permissions'      => [
             'type' => 'textarea',
         ],
-        'first_name'     => [
+        'first_name'       => [
             'type' => 'text',
         ],
-        'last_name'      => [
+        'last_name'        => [
             'type' => 'text',
         ],
         'last_activity_at' => [
             'type' => 'datetime',
         ],
-        'last_login_at'  => [
+        'last_login_at'    => [
             'type' => 'datetime',
         ],
-        'roles'          => [
+        'roles'            => [
             'type'     => 'multiple',
             'settings' => [
                 'relation_model' => 'AwesomeModel',
             ],
         ],
-        'slug'           => [
+        'slug'             => [
             'type' => 'slug',
         ],
-        'name'           => [
+        'name'             => [
             'type' => 'text',
         ],
-        'user'           => [
+        'user'             => [
             'type'     => 'relationship',
             'settings' => [
                 'relation_model' => 'AwesomeModel',
             ],
         ],
-        'code'           => [
+        'code'             => [
             'type' => 'text',
         ],
-        'is_complete'   => [
+        'is_complete'      => [
             'type' => 'boolean',
         ],
-        'completed_at'   => [
+        'completed_at'     => [
             'type' => 'datetime',
         ],
-        'type'           => [
+        'type'             => [
             'type' => 'text', // TODO: Extension field type?
         ],
-        'ip_address'     => [
+        'ip_address'       => [
             'type' => 'text',
         ],
     ];
-
 }
