@@ -49,6 +49,7 @@ class AuthenticateCredentialsCommandHandler
      */
     protected function tryAuthenticators($credentials)
     {
+        // TODO: IMPLEMENT LEVEL 2 LICENSE CHECK HERE (Pro)
         $authenticators = app('streams.extensions')->find('module.users::*.authenticator');
 
         foreach ($authenticators as $authenticator) {
