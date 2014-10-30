@@ -25,18 +25,11 @@ class UserTableUi extends TableUi
     {
         $this->setViews(
             [
-                [
-                    'title'   => 'Test View',
-                    'slug'    => 'foo',
-                    'handler' => 'Anomaly\Streams\Platform\Ui\Table\TableView',
-                ],
-                [
-                    'title'   => 'Inactive',
-                    'slug'    => 'bar',
-                    'handler' => function ($query) {
-                            return $query->whereUsername('admin');
-                        },
-                ]
+                'all',
+                'latest',
+                'newest',
+                'recently_created',
+                'recently_modified',
             ]
         );
     }
