@@ -4,11 +4,29 @@ use Anomaly\Streams\Addon\Module\Users\Authorization\AuthorizationService;
 use Closure;
 use Illuminate\Contracts\Routing\Middleware;
 
-class Authenticator implements Middleware
+/**
+ * Class CheckAuthorization
+ *
+ * @link          http://anomaly.is/streams-platform
+ * @author        AnomalyLabs, Inc. <hello@anomaly.is>
+ * @author        Ryan Thompson <ryan@anomaly.is>
+ * @package       Anomaly\Streams\Addon\Module\Users\Http\Middleware
+ */
+class CheckAuthorization implements Middleware
 {
 
+    /**
+     * The authorization service object.
+     *
+     * @var \Anomaly\Streams\Addon\Module\Users\Authorization\AuthorizationService
+     */
     protected $authorization;
 
+    /**
+     * Create a new CheckAuthorization instance.
+     *
+     * @param AuthorizationService $authorization
+     */
     function __construct(AuthorizationService $authorization)
     {
         $this->authorization = $authorization;
