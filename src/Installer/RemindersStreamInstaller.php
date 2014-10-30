@@ -2,6 +2,14 @@
 
 use Anomaly\Streams\Platform\Stream\StreamInstaller;
 
+/**
+ * Class RemindersStreamInstaller
+ *
+ * @link          http://anomaly.is/streams-platform
+ * @author        AnomalyLabs, Inc. <hello@anomaly.is>
+ * @author        Ryan Thompson <ryan@anomaly.is>
+ * @package       Anomaly\Streams\Addon\Module\Users\Installer
+ */
 class RemindersStreamInstaller extends StreamInstaller
 {
 
@@ -20,8 +28,8 @@ class RemindersStreamInstaller extends StreamInstaller
      * @var array
      */
     protected $assignments = [
-        'user'         => [],
-        'code'         => [],
+        'user'         => ['is_required' => true],
+        'code'         => ['is_required' => true],
         'is_complete'  => [],
         'completed_at' => [],
     ];

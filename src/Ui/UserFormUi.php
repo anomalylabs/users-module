@@ -3,9 +3,20 @@
 use Anomaly\Streams\Addon\Module\Users\User\UserModel;
 use Anomaly\Streams\Platform\Ui\Form\FormUi;
 
+/**
+ * Class UserFormUi
+ *
+ * @link          http://anomaly.is/streams-platform
+ * @author        AnomalyLabs, Inc. <hello@anomaly.is>
+ * @author        Ryan Thompson <ryan@anomaly.is>
+ * @package       Anomaly\Streams\Addon\Module\Users\Ui
+ */
 class UserFormUi extends FormUi
 {
 
+    /**
+     * Setup the form class.
+     */
     protected function boot()
     {
         $this->setUpModel();
@@ -14,11 +25,17 @@ class UserFormUi extends FormUi
         $this->setUpRedirects();
     }
 
+    /**
+     * Set up the model.
+     */
     protected function setUpModel()
     {
         $this->setModel(new UserModel());
     }
 
+    /**
+     * Set up form redirects.
+     */
     protected function setUpRedirects()
     {
         $this->setRedirects(
@@ -28,6 +45,9 @@ class UserFormUi extends FormUi
         );
     }
 
+    /**
+     * Set up the form actions.
+     */
     protected function setUpActions()
     {
         $this->setActions(
@@ -38,6 +58,9 @@ class UserFormUi extends FormUi
         );
     }
 
+    /**
+     * Set up the form sections.
+     */
     protected function setUpSections()
     {
         $this->setSections(

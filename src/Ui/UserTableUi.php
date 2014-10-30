@@ -3,9 +3,20 @@
 use Anomaly\Streams\Addon\Module\Users\User\UserModel;
 use Anomaly\Streams\Platform\Ui\Table\TableUi;
 
+/**
+ * Class UserTableUi
+ *
+ * @link          http://anomaly.is/streams-platform
+ * @author        AnomalyLabs, Inc. <hello@anomaly.is>
+ * @author        Ryan Thompson <ryan@anomaly.is>
+ * @package       Anomaly\Streams\Addon\Module\Users\Ui
+ */
 class UserTableUi extends TableUi
 {
 
+    /**
+     * Set up the table class.
+     */
     protected function boot()
     {
         $this->setUpModel();
@@ -17,11 +28,17 @@ class UserTableUi extends TableUi
         $this->setUpOptions();
     }
 
+    /**
+     * Set up the model.
+     */
     protected function setUpModel()
     {
         $this->setModel(new UserModel());
     }
 
+    /**
+     * Set up the table views.
+     */
     protected function setUpViews()
     {
         $this->setViews(
@@ -35,6 +52,9 @@ class UserTableUi extends TableUi
         );
     }
 
+    /**
+     * Set up the table filters.
+     */
     protected function setUpFilters()
     {
         $this->setFilters(
@@ -45,6 +65,9 @@ class UserTableUi extends TableUi
         );
     }
 
+    /**
+     * Set up the table columns.
+     */
     protected function setUpColumns()
     {
         $this->setColumns(
@@ -60,6 +83,9 @@ class UserTableUi extends TableUi
         );
     }
 
+    /**
+     *
+     */
     protected function setUpButtons()
     {
         $this->setButtons(
@@ -70,6 +96,9 @@ class UserTableUi extends TableUi
         );
     }
 
+    /**
+     * Set up the table actions.
+     */
     protected function setUpActions()
     {
         $this->setActions(
@@ -83,6 +112,9 @@ class UserTableUi extends TableUi
         );
     }
 
+    /**
+     * Set up the table options.
+     */
     protected function setUpOptions()
     {
         $this->setSortable(true);

@@ -2,6 +2,14 @@
 
 use Anomaly\Streams\Platform\Stream\StreamInstaller;
 
+/**
+ * Class ThrottlesStreamInstaller
+ *
+ * @link          http://anomaly.is/streams-platform
+ * @author        AnomalyLabs, Inc. <hello@anomaly.is>
+ * @author        Ryan Thompson <ryan@anomaly.is>
+ * @package       Anomaly\Streams\Addon\Module\Users\Installer
+ */
 class ThrottlesStreamInstaller extends StreamInstaller
 {
 
@@ -20,9 +28,9 @@ class ThrottlesStreamInstaller extends StreamInstaller
      * @var array
      */
     protected $assignments = [
-        'user'       => [],
-        'type'       => [],
-        'ip_address' => [],
+        'user'       => ['is_required' => true],
+        'type'       => ['is_required' => true],
+        'ip_address' => ['is_required' => true],
     ];
 }
  

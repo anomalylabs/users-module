@@ -2,6 +2,14 @@
 
 use Anomaly\Streams\Platform\Stream\StreamInstaller;
 
+/**
+ * Class UsersStreamInstaller
+ *
+ * @link          http://anomaly.is/streams-platform
+ * @author        AnomalyLabs, Inc. <hello@anomaly.is>
+ * @author        Ryan Thompson <ryan@anomaly.is>
+ * @package       Anomaly\Streams\Addon\Module\Users\Installer
+ */
 class UsersStreamInstaller extends StreamInstaller
 {
 
@@ -11,9 +19,9 @@ class UsersStreamInstaller extends StreamInstaller
      * @var array
      */
     protected $assignments = [
-        'email'            => [],
-        'username'         => [],
-        'password'         => [],
+        'email'            => ['is_required' => true],
+        'username'         => ['is_required' => true],
+        'password'         => ['is_required' => true],
         'permissions'      => [],
         'first_name'       => [],
         'last_name'        => [],
