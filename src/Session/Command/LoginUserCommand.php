@@ -19,9 +19,9 @@ class LoginUserCommand
     protected $userId;
 
     /**
-     * The remember flag..
+     * The remember flag.
      *
-     * @var
+     * @var bool
      */
     protected $remember;
 
@@ -31,7 +31,7 @@ class LoginUserCommand
      * @param $userId
      * @param $remember
      */
-    function __construct($userId, $remember)
+    function __construct($userId, $remember = false)
     {
         $this->userId   = $userId;
         $this->remember = $remember;
@@ -50,7 +50,7 @@ class LoginUserCommand
     /**
      * Get the remember flag.
      *
-     * @return mixed
+     * @return bool
      */
     public function getRemember()
     {

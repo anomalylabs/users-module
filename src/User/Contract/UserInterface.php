@@ -14,17 +14,17 @@ interface UserInterface
     /**
      * @return mixed
      */
-    public function getUserId();
+    public function getId();
 
     /**
-     * @return mixed
-     */
-    public function isBlocked();
-
-    /**
+     * Set the user password.
+     *
+     * This should implement
+     * the hashing method too.
+     *
      * @param $password
      * @return mixed
      */
-    public function setPasswordAttribute($password);
+    public function setPassword($password);
 }
  

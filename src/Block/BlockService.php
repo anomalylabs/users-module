@@ -27,7 +27,7 @@ class BlockService
      */
     public function block(UserInterface $user)
     {
-        $command = new BlockUserCommand($user->getUserId());
+        $command = new BlockUserCommand($user->getId());
 
         $this->execute($command);
     }
@@ -39,7 +39,7 @@ class BlockService
      */
     public function unblock(UserInterface $user)
     {
-        $command = new UnblockUserCommand($user->getUserId());
+        $command = new UnblockUserCommand($user->getId());
 
         $this->execute($command);
     }

@@ -14,7 +14,7 @@ class FindUserByIdCommandHandler
 {
 
     /**
-     * The users repository interface object.
+     * The users repository object.
      *
      * @var \Anomaly\Streams\Addon\Module\Users\User\Contract\UserRepositoryInterface
      */
@@ -38,7 +38,7 @@ class FindUserByIdCommandHandler
      */
     public function handle(FindUserByIdCommand $command)
     {
-        return $this->users->findByUserId($command->getUserId());
+        return $this->users->findUserById($command->getUserId());
     }
 }
  

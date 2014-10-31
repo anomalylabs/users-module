@@ -1,6 +1,6 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\Registration\Command;
 
-use Anomaly\Streams\Addon\Module\Users\User\Contract\UserInterface;
+use Anomaly\Streams\Addon\Module\Users\User\Contract\UserRepositoryInterface;
 
 /**
  * Class RegisterUserCommandHandler
@@ -14,20 +14,20 @@ class RegisterUserCommandHandler
 {
 
     /**
-     * A user interface.
+     * The user repository object.
      *
-     * @var \Anomaly\Streams\Addon\Module\Users\User\Contract\UserInterface
+     * @var
      */
-    protected $user;
+    protected $users;
 
     /**
      * Create a new RegisterUserCommandHandler instance.
      *
-     * @param UserInterface $user
+     * @param UserRepositoryInterface $users
      */
-    function __construct(UserInterface $user)
+    function __construct(UserRepositoryInterface $users)
     {
-        $this->user = $user;
+        $this->users = $users;
     }
 
     /**
@@ -38,7 +38,7 @@ class RegisterUserCommandHandler
      */
     public function handle(RegisterUserCommand $command)
     {
-        return $this->user->createUser($command->getCredentials());
+        return $this->users->registerUser($command->getCredentials());
     }
 }
  

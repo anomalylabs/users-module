@@ -45,7 +45,7 @@ class SessionService
      */
     public function login(UserInterface $user, $remember = false)
     {
-        $command = new LoginUserCommand($user->getUserId(), $remember);
+        $command = new LoginUserCommand($user->getId(), $remember);
 
         return $this->execute($command);
     }
@@ -64,7 +64,7 @@ class SessionService
 
         if ($user) {
 
-            $command = new LogoutUserCommand($user->getUserId());
+            $command = new LogoutUserCommand($user->getId());
 
             $this->execute($command);
         }

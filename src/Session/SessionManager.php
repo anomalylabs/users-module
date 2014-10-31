@@ -4,6 +4,8 @@ use Anomaly\Streams\Addon\Module\Users\Exception\CouldNotPersistUserIdException;
 use Anomaly\Streams\Addon\Module\Users\Persistence\Contract\PersistenceInterface;
 use Anomaly\Streams\Addon\Module\Users\Persistence\PersistenceModel;
 use Anomaly\Streams\Addon\Module\Users\Persistence\PersistenceService;
+use Anomaly\Streams\Addon\Module\Users\Session\Event\UserWasLoggedInEvent;
+use Anomaly\Streams\Platform\Traits\DispatchableTrait;
 
 /**
  * Class SessionManager
@@ -15,6 +17,8 @@ use Anomaly\Streams\Addon\Module\Users\Persistence\PersistenceService;
  */
 class SessionManager
 {
+
+    use DispatchableTrait;
 
     /**
      * The persistence service.
@@ -56,6 +60,8 @@ class SessionManager
 
             $this->persist($userId);
         }
+
+        $this->dispatch(new UserWasLoggedInEvent($userId));
     }
 
     /**

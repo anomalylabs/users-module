@@ -40,6 +40,11 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, UserRepos
         return $this;
     }
 
+    public function registerUser(array $credentials)
+    {
+        return $this->createUser($credentials);
+    }
+
     /**
      * Update an existing user.
      *
@@ -50,7 +55,7 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, UserRepos
      */
     public function updateUser($userId, array $credentials, array $data = [])
     {
-        $user = $this->findByUserId($userId);
+        $user = $this->findUserById($userId);
 
         if ($user) {
 
@@ -79,9 +84,9 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, UserRepos
      * @param $password
      * @return \Illuminate\Support\Collection|null|static
      */
-    public function changePassword($userId, $password)
+    public function changeUserPassword($userId, $password)
     {
-        $user = $this->findByUserId($userId);
+        $user = $this->findUserById($userId);
 
         if ($user) {
 
@@ -99,7 +104,7 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, UserRepos
      * @param $login
      * @return mixed
      */
-    public function findByLogin($login)
+    public function findUserByLogin($login)
     {
         return $this
             ->where(
@@ -118,9 +123,9 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, UserRepos
      * @param $password
      * @return mixed|null
      */
-    public function findByLoginAndPassword($login, $password)
+    public function findUserByLoginAndPassword($login, $password)
     {
-        if ($user = $this->findByLogin($login)) {
+        if ($user = $this->findUserByLogin($login)) {
 
             return app('hash')->check($password, $user->password) ? $user : null;
         }
@@ -134,7 +139,7 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, UserRepos
      * @param $userId
      * @return \Illuminate\Support\Collection|null|static
      */
-    public function findByUserId($userId)
+    public function findUserById($userId)
     {
         return $this->find($userId);
     }
@@ -144,7 +149,7 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, UserRepos
      *
      * @param $userId
      */
-    public function touchLastActivity($userId)
+    public function updateLastActivity($userId)
     {
         $this->whereId($userId)->update(['last_activity_at' => date('Y-m-d H:i:s')]);
     }
@@ -154,7 +159,7 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, UserRepos
      *
      * @param $userId
      */
-    public function touchLastLogin($userId)
+    public function updateLastLoggedIn($userId)
     {
         $this->whereId($userId)->update(['last_login_at' => date('Y-m-d H:i:s')]);
     }
@@ -164,7 +169,7 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, UserRepos
      *
      * @param $password
      */
-    public function setPasswordAttribute($password)
+    public function setPassword($password)
     {
         $this->attributes['password'] = app('hash')->make($password);
     }
@@ -174,19 +179,9 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, UserRepos
      *
      * @return mixed
      */
-    public function getUserId()
+    public function getId()
     {
         return $this->getKey();
-    }
-
-    /**
-     * Return the blocked flag.
-     *
-     * @return mixed
-     */
-    public function isBlocked()
-    {
-        return ($this->is_blocked);
     }
 }
  

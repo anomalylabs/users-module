@@ -1,6 +1,5 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\Registration;
 
-use Anomaly\Streams\Addon\Module\Users\Activation\ActivationService;
 use Anomaly\Streams\Addon\Module\Users\Registration\Command\RegisterUserCommand;
 use Anomaly\Streams\Platform\Traits\CommandableTrait;
 
@@ -18,23 +17,6 @@ class RegistrationService
     use CommandableTrait;
 
     /**
-     * The activation service object.
-     *
-     * @var \Anomaly\Streams\Addon\Module\Users\Activation\ActivationService
-     */
-    protected $activation;
-
-    /**
-     * Create a new RegistrationService instance.
-     *
-     * @param ActivationService $activation
-     */
-    function __construct(ActivationService $activation)
-    {
-        $this->activation = $activation;
-    }
-
-    /**
      * Register a new user's credentials.
      *
      * @param array $credentials
@@ -42,14 +24,9 @@ class RegistrationService
      */
     public function register(array $credentials, $activate = false)
     {
-        $command = new RegisterUserCommand($credentials);
+        $command = new RegisterUserCommand($credentials, $activate);
 
-        $user = $this->execute($command);
-
-        if (evaluate($activate) == true) {
-
-            $this->activation->force($user);
-        }
+        return $this->execute($command);
     }
 }
  

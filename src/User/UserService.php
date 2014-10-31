@@ -69,7 +69,7 @@ class UserService
      */
     public function update(UserInterface $user, array $credentials = [], array $data = [])
     {
-        $command = new UpdateUserCommand($user->getUserId(), $credentials, $data);
+        $command = new UpdateUserCommand($user->getId(), $credentials, $data);
 
         return $this->execute($command);
     }
@@ -122,7 +122,7 @@ class UserService
      */
     public function changePassword(UserInterface $user, $password)
     {
-        $command = new ChangePasswordCommand($user->getUserId(), $password);
+        $command = new ChangePasswordCommand($user->getId(), $password);
 
         return $this->execute($command);
     }

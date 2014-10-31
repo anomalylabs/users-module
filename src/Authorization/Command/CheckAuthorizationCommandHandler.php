@@ -1,7 +1,7 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\Authorization\Command;
 
-use Anomaly\Streams\Addon\Module\Users\Activation\Exception\UserBlockedException;
-use Anomaly\Streams\Addon\Module\Users\Activation\Exception\UserNotActivatedException;
+use Anomaly\Streams\Addon\Module\Users\Exception\UserBlockedException;
+use Anomaly\Streams\Addon\Module\Users\Exception\UserNotActivatedException;
 use Anomaly\Streams\Addon\Module\Users\Extension\CheckInterface;
 use Anomaly\Streams\Addon\Module\Users\Session\SessionManager;
 use Anomaly\Streams\Addon\Module\Users\User\Contract\UserInterface;
@@ -60,7 +60,7 @@ class CheckAuthorizationCommandHandler
     {
         $userId = $this->session->check();
 
-        $user = $this->repository->findByUserId($userId);
+        $user = $this->repository->findUserById($userId);
 
         if ($user instanceof UserInterface) {
 

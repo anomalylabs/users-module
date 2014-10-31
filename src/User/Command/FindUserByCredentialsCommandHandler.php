@@ -14,7 +14,7 @@ class FindUserByCredentialsCommandHandler
 {
 
     /**
-     * The user repository interface object.
+     * The user repository object.
      *
      * @var \Anomaly\Streams\Addon\Module\Users\User\Contract\UserRepositoryInterface
      */
@@ -48,7 +48,7 @@ class FindUserByCredentialsCommandHandler
             $login = $credentials['username'];
         }
 
-        return $this->users->findByLoginAndPassword($login, $credentials['password']);
+        return $this->users->findUserByLoginAndPassword($login, $credentials['password']);
     }
 }
  

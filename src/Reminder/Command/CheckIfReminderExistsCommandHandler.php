@@ -38,7 +38,7 @@ class CheckIfReminderExistsCommandHandler
      */
     public function handle(CheckIfReminderExistsCommand $command)
     {
-        return $this->repository->findByUserId($command->getUserId());
+        return $this->repository->findUserById($command->getUserId());
     }
 }
  

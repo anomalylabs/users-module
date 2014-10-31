@@ -16,20 +16,20 @@ class SessionListener extends Listener
 {
 
     /**
-     * The user repository interface object.
+     * The user repository object.
      *
      * @var \Anomaly\Streams\Addon\Module\Users\User\Contract\UserRepositoryInterface
      */
-    protected $repository;
+    protected $users;
 
     /**
      * Create a new SessionListener instance.
      *
-     * @param UserRepositoryInterface $repository
+     * @param UserRepositoryInterface $users
      */
-    function __construct(UserRepositoryInterface $repository)
+    function __construct(UserRepositoryInterface $users)
     {
-        $this->repository = $repository;
+        $this->users = $users;
     }
 
     /**
@@ -39,7 +39,7 @@ class SessionListener extends Listener
      */
     protected function whenUserWasLoggedIn(UserWasLoggedInEvent $event)
     {
-        $this->repository->touchLastLogin($event->getUserId());
+        $this->users->updateLastLoggedIn($event->getUserId());
     }
 }
  

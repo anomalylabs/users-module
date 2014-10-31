@@ -19,13 +19,32 @@ class RegisterUserCommand
     protected $credentials;
 
     /**
+     * The activate flag.
+     *
+     * @var
+     */
+    protected $activate;
+
+    /**
      * Create a new RegisterUserCommand instance.
      *
-     * @param $credentials
+     * @param array $credentials
+     * @param       $activate
      */
-    function __construct(array $credentials)
+    function __construct(array $credentials, $activate = false)
     {
         $this->credentials = $credentials;
+        $this->activate    = $activate;
+    }
+
+    /**
+     * Get the activate flag.
+     *
+     * @return mixed
+     */
+    public function getActivate()
+    {
+        return $this->activate;
     }
 
     /**

@@ -30,7 +30,7 @@ class ActivationService
      */
     public function create(UserInterface $user)
     {
-        $command = new CreateActivationCommand($user->getUserId());
+        $command = new CreateActivationCommand($user->getId());
 
         return $this->execute($command);
     }
@@ -42,7 +42,7 @@ class ActivationService
      */
     public function force(UserInterface $user)
     {
-        $command = new ForceActivationCommand($user->getUserId());
+        $command = new ForceActivationCommand($user->getId());
 
         $this->execute($command);
     }
@@ -55,7 +55,7 @@ class ActivationService
      */
     public function exists(UserInterface $user)
     {
-        $command = new CheckIfActivationExistsCommand($user->getUserId());
+        $command = new CheckIfActivationExistsCommand($user->getId());
 
         return $this->execute($command);
     }
@@ -68,7 +68,7 @@ class ActivationService
      */
     public function complete(UserInterface $user, $code)
     {
-        $command = new CompleteActivationCommand($user->getUserId(), $code);
+        $command = new CompleteActivationCommand($user->getId(), $code);
 
         $this->execute($command);
     }
