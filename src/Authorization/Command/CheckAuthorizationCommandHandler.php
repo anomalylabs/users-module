@@ -1,7 +1,7 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\Authorization\Command;
 
 use Anomaly\Streams\Addon\Module\Users\Activation\Exception\UserNotActivatedException;
-use Anomaly\Streams\Addon\Module\Users\Extension\CheckpointInterface;
+use Anomaly\Streams\Addon\Module\Users\Extension\CheckInterface;
 use Anomaly\Streams\Addon\Module\Users\Session\SessionManager;
 use Anomaly\Streams\Addon\Module\Users\User\Contract\UserInterface;
 use Anomaly\Streams\Addon\Module\Users\User\Contract\UserRepositoryInterface;
@@ -82,9 +82,9 @@ class CheckAuthorizationCommandHandler
 
         foreach ($securityChecks as $securityCheck) {
 
-            if (!$securityCheck instanceof CheckpointInterface) {
+            if (!$securityCheck instanceof CheckInterface) {
 
-                throw new \Exception("The [$securityCheck->getSlug()] check extension must implement Anomaly\\Streams\\Addon\\Module\\Users\\Extension\\CheckpointInterface");
+                throw new \Exception("The [$securityCheck->getSlug()] check extension must implement Anomaly\\Streams\\Addon\\Module\\Users\\Extension\\CheckInterface");
             }
 
             try {
