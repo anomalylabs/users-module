@@ -40,6 +40,7 @@ class UnblockUsersTableAction implements TableActionInterface
     public function handle(array $ids)
     {
         foreach ($ids as $id) {
+
             $this->blocks->removeBlock($id);
         }
 

@@ -40,8 +40,11 @@ class BlockUsersTableAction implements TableActionInterface
     public function handle(array $ids)
     {
         foreach ($ids as $id) {
+
             $this->blocks->createBlock($id);
         }
+
+        app('streams.messages')->add('success', 'success.generic');
     }
 
     /**
