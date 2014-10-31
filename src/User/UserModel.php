@@ -40,6 +40,12 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, UserRepos
         return $this;
     }
 
+    /**
+     * Register a user.
+     *
+     * @param array $credentials
+     * @return $this
+     */
     public function registerUser(array $credentials)
     {
         return $this->createUser($credentials);
@@ -172,6 +178,16 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, UserRepos
      * @param $password
      */
     public function setPassword($password)
+    {
+        $this->setAttribute('password', $password);
+    }
+
+    /**
+     * Set the password attribute.
+     *
+     * @param $password
+     */
+    protected function setPasswordAttribute($password)
     {
         $this->attributes['password'] = app('hash')->make($password);
     }
