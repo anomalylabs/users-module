@@ -84,6 +84,12 @@ class LoginController extends AdminController
             app('streams.messages')->add('error', 'module.users::error.password_required');
         } catch (\Exception $e) {
 
+            // If debug - bitch.
+            if (config('app.debug')) {
+
+                throw new \Exception($e->getMessage());
+            }
+
             // There was some other error.
             app('streams.messages')->add('error', 'error.generic');
         }
