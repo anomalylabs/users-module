@@ -1,5 +1,6 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\Activation;
 
+use Anomaly\Streams\Addon\Module\Users\Activation\Contract\ActivationInterface;
 use Anomaly\Streams\Addon\Module\Users\Activation\Contract\ActivationRepositoryInterface;
 use Anomaly\Streams\Platform\Model\Users\UsersActivationsEntryModel;
 
@@ -11,7 +12,7 @@ use Anomaly\Streams\Platform\Model\Users\UsersActivationsEntryModel;
  * @author        Ryan Thompson <ryan@anomaly.is>
  * @package       Anomaly\Streams\Addon\Module\Users\Activation
  */
-class ActivationModel extends UsersActivationsEntryModel implements ActivationRepositoryInterface
+class ActivationModel extends UsersActivationsEntryModel implements ActivationRepositoryInterface, ActivationInterface
 {
 
     /**
@@ -114,6 +115,16 @@ class ActivationModel extends UsersActivationsEntryModel implements ActivationRe
     public function findByUserId($userId)
     {
         return $this->whereUserId($userId)->first();
+    }
+
+    /**
+     * Return is_complete flag.
+     *
+     * @return mixed
+     */
+    public function isComplete()
+    {
+        return ($this->is_complete);
     }
 }
  

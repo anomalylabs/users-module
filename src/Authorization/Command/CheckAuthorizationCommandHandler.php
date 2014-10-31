@@ -1,6 +1,9 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\Authorization\Command;
 
+use Anomaly\Streams\Addon\Module\Users\Activation\Exception\UserNotActivatedException;
+use Anomaly\Streams\Addon\Module\Users\Extension\SecurityCheckInterface;
 use Anomaly\Streams\Addon\Module\Users\Session\SessionManager;
+use Anomaly\Streams\Addon\Module\Users\User\Contract\UserInterface;
 use Anomaly\Streams\Addon\Module\Users\User\Contract\UserRepositoryInterface;
 use Anomaly\Streams\Platform\Traits\CommandableTrait;
 use Anomaly\Streams\Platform\Traits\DispatchableTrait;
@@ -56,15 +59,46 @@ class CheckAuthorizationCommandHandler
     {
         $userId = $this->session->check();
 
-        if ($userId) {
+        $user = $this->repository->findByUserId($userId);
 
-            if ($user = $this->repository->findByUserId($userId)) {
+        if ($user instanceof UserInterface) {
 
-                return $user;
-            }
+            return $this->runSecurityChecks($user);
         }
 
         return null;
+    }
+
+    /**
+     * Run the security checks.
+     *
+     * These are powered by the extensions layer.
+     *
+     * @param UserInterface $user
+     */
+    protected function runSecurityChecks(UserInterface $user)
+    {
+        $securityChecks = app('streams.extensions')->find('module.users::*.check');
+
+        foreach ($securityChecks as $securityCheck) {
+
+            if (!$securityCheck instanceof SecurityCheckInterface) {
+
+                throw new \Exception("The [$securityCheck->getSlug()] check extension must implement Anomaly\\Streams\\Addon\\Module\\Users\\Extension\\SecurityCheckInterface");
+            }
+
+            try {
+
+                $securityCheck->check($user);
+            } catch (UserNotActivatedException $e) {
+
+                app('streams.messages')->add('error', 'module.users::error.account_not_activated');
+
+                return null;
+            }
+        }
+
+        return $user;
     }
 }
  

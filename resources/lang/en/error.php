@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'user_not_found'             => 'A user could not be found with the provided credentials.',
-    'email_or_username_required' => 'Please provide a valid email or username.',
-    'password_required'          => 'Please provide a password.',
+    'user_not_found'        => 'User not found.',
+    'account_not_activated' => 'Your account is not activated.',
+    'account_blocked'       => 'Your account has been blocked.',
 ];

@@ -41,9 +41,17 @@ class CheckAuthentication implements Middleware
      */
     public function handle($request, Closure $next)
     {
-        $ignore = ['admin/login', 'admin/logout'];
+        if (starts_with($request->path(), 'installer')) {
 
-        if (in_array($request->path(), $ignore) or $this->authorization->check()) {
+            return $next($request);
+        }
+
+        if (in_array($request->path(), ['admin/login', 'admin/logout'])) {
+
+            return $next($request);
+        }
+
+        if ($this->authorization->check()) {
 
             return $next($request);
         }
