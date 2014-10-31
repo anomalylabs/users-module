@@ -104,7 +104,13 @@ class UserTableUi extends TableUi
         $this->setActions(
             [
                 [
-                    'type'    => 'confirm',
+                    'type'    => 'danger',
+                    'slug'    => 'block',
+                    'title'   => 'module.users::button.block',
+                    'handler' => 'Anomaly\Streams\Addon\Module\Users\Ui\Table\Action\BlockUsersTableAction',
+                ],
+                [
+                    'type'    => 'danger',
                     'slug'    => 'deactivate',
                     'title'   => 'module.users::button.deactivate',
                     'handler' => 'Anomaly\Streams\Addon\Module\Users\Ui\Table\Action\DeactivateUsersTableAction',
