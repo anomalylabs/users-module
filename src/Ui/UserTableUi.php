@@ -107,19 +107,19 @@ class UserTableUi extends TableUi
                     'type'    => 'danger',
                     'slug'    => 'block',
                     'title'   => 'module.users::button.block',
-                    'handler' => 'Anomaly\Streams\Addon\Module\Users\Ui\Table\Action\BlockUsersTableAction',
+                    'handler' => 'Anomaly\Streams\Addon\Module\Users\Ui\Action\BlockUsersTableAction',
                 ],
                 [
                     'type'    => 'danger',
                     'slug'    => 'deactivate',
                     'title'   => 'module.users::button.deactivate',
-                    'handler' => 'Anomaly\Streams\Addon\Module\Users\Ui\Table\Action\DeactivateUsersTableAction',
+                    'handler' => 'Anomaly\Streams\Addon\Module\Users\Ui\Action\DeactivateUsersTableAction',
                 ],
                 [
                     'type'    => 'success',
                     'slug'    => 'activate',
                     'title'   => 'module.users::button.activate',
-                    'handler' => 'Anomaly\Streams\Addon\Module\Users\Ui\Table\Action\ActivateUsersTableAction',
+                    'handler' => 'Anomaly\Streams\Addon\Module\Users\Ui\Action\ActivateUsersTableAction',
                 ],
             ]
         );
