@@ -14,31 +14,30 @@ class ForceActivationCommandHandler
 {
 
     /**
-     * The user repository object.
+     * The activation repository object.
      *
      * @var \Anomaly\Streams\Addon\Module\Users\Activation\Contract\ActivationRepositoryInterface
      */
-    protected $repository;
+    protected $activations;
 
     /**
      * Create a new ForceActivationCommandHandler interface.
      *
-     * @param ActivationRepositoryInterface $repository
+     * @param ActivationRepositoryInterface $activations
      */
-    function __construct(ActivationRepositoryInterface $repository)
+    function __construct(ActivationRepositoryInterface $activations)
     {
-        $this->repository = $repository;
+        $this->activations = $activations;
     }
 
     /**
      * Handle the command.
      *
      * @param ForceActivationCommand $command
-     * @return mixed
      */
     public function handle(ForceActivationCommand $command)
     {
-        return $this->repository->forceActivation($command->getUserId());
+        $this->activations->forceActivation($command->getUserId());
     }
 }
  

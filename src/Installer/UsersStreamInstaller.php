@@ -22,7 +22,6 @@ class UsersStreamInstaller extends StreamInstaller
         'email'            => ['is_required' => true],
         'username'         => ['is_required' => true],
         'password'         => ['is_required' => true],
-        'is_blocked'       => [],
         'permissions'      => [],
         'first_name'       => [],
         'last_name'        => [],

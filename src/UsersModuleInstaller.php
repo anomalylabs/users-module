@@ -22,6 +22,7 @@ class UsersModuleInstaller extends ModuleInstaller
         'Anomaly\Streams\Addon\Module\Users\Installer\UsersFieldInstaller',
         'Anomaly\Streams\Addon\Module\Users\Installer\UsersStreamInstaller',
         'Anomaly\Streams\Addon\Module\Users\Installer\RolesStreamInstaller',
+        'Anomaly\Streams\Addon\Module\Users\Installer\BlocksStreamInstaller',
         'Anomaly\Streams\Addon\Module\Users\Installer\RemindersStreamInstaller',
         'Anomaly\Streams\Addon\Module\Users\Installer\ThrottlesStreamInstaller',
         'Anomaly\Streams\Addon\Module\Users\Installer\ActivationsStreamInstaller',

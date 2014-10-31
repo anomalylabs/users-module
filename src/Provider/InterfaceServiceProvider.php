@@ -26,6 +26,11 @@ class InterfaceServiceProvider extends ServiceProvider
         );
 
         $this->app->bind(
+            'Anomaly\Streams\Addon\Module\Users\Block\Contract\BlockRepositoryInterface',
+            'Anomaly\Streams\Addon\Module\Users\Block\BlockModel'
+        );
+
+        $this->app->bind(
             'Anomaly\Streams\Addon\Module\Users\Persistence\Contract\PersistenceRepositoryInterface',
             'Anomaly\Streams\Addon\Module\Users\Persistence\PersistenceModel'
         );

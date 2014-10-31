@@ -1,4 +1,4 @@
-<?php namespace Anomaly\Streams\Addon\Module\Users\Activation\Exception;
+<?php namespace Anomaly\Streams\Addon\Module\Users\Exception;
 
 /**
  * Class UserNotActivatedException
@@ -6,7 +6,7 @@
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
- * @package       Anomaly\Streams\Addon\Module\Users\Activation\Exception
+ * @package       Anomaly\Streams\Addon\Module\Users\Exception
  */
 class UserNotActivatedException extends \Exception
 {

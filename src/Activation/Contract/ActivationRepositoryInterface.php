@@ -15,7 +15,6 @@ interface ActivationRepositoryInterface
      * Create a new activation for a user.
      *
      * @param $userId
-     * @return mixed
      */
     public function createActivation($userId);
 
@@ -23,7 +22,6 @@ interface ActivationRepositoryInterface
      * Remove activation for a user.
      *
      * @param $userId
-     * @return mixed
      */
     public function removeActivation($userId);
 
@@ -32,24 +30,31 @@ interface ActivationRepositoryInterface
      *
      * @param $userId
      * @param $code
-     * @return mixed
      */
-    public function complete($userId, $code);
+    public function completeActivation($userId, $code);
 
     /**
      * Force completed activation for a user.
      *
      * @param $userId
-     * @return mixed
      */
     public function forceActivation($userId);
 
     /**
-     * Find an activation code for a user.
+     * Find an activation by it's user ID.
      *
      * @param $userId
      * @return mixed
      */
-    public function findByUserId($userId);
+    public function findActivationByUserId($userId);
+
+    /**
+     * Find an activation by it's user ID and code.
+     *
+     * @param $userId
+     * @param $code
+     * @return mixed
+     */
+    public function findActivationByUserIdAndCode($userId, $code);
 }
  

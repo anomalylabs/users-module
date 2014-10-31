@@ -14,20 +14,20 @@ class CheckIfActivationExistsCommandHandler
 {
 
     /**
-     * The user repository object.
+     * The activation repository object.
      *
      * @var \Anomaly\Streams\Addon\Module\Users\Activation\Contract\ActivationRepositoryInterface
      */
-    protected $repository;
+    protected $activations;
 
     /**
      * Create a new CheckIfActivationExistsCommandHandler instance.
      *
-     * @param ActivationRepositoryInterface $repository
+     * @param ActivationRepositoryInterface $activations
      */
-    function __construct(ActivationRepositoryInterface $repository)
+    function __construct(ActivationRepositoryInterface $activations)
     {
-        $this->repository = $repository;
+        $this->activations = $activations;
     }
 
     /**
@@ -38,7 +38,7 @@ class CheckIfActivationExistsCommandHandler
      */
     public function handle(CheckIfActivationExistsCommand $command)
     {
-        return $this->repository->findByUserId($command->getUserId());
+        return $this->activations->findActivationByUserId($command->getUserId());
     }
 }
  

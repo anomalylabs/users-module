@@ -16,6 +16,6 @@ interface ActivationInterface
      *
      * @return mixed
      */
-    public function isComplete();
+    public function itIsComplete();
 }
  

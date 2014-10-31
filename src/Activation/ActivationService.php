@@ -5,6 +5,7 @@ use Anomaly\Streams\Addon\Module\Users\Activation\Command\CompleteActivationComm
 use Anomaly\Streams\Addon\Module\Users\Activation\Command\CreateActivationCommand;
 use Anomaly\Streams\Addon\Module\Users\Activation\Command\ForceActivationCommand;
 use Anomaly\Streams\Addon\Module\Users\Activation\Command\RemoveActivationCommand;
+use Anomaly\Streams\Addon\Module\Users\Activation\Contract\ActivationInterface;
 use Anomaly\Streams\Addon\Module\Users\User\Contract\UserInterface;
 use Anomaly\Streams\Platform\Traits\CommandableTrait;
 
@@ -38,20 +39,19 @@ class ActivationService
      * Force the completed activation for a user.
      *
      * @param UserInterface $user
-     * @return mixed
      */
     public function force(UserInterface $user)
     {
         $command = new ForceActivationCommand($user->getUserId());
 
-        return $this->execute($command);
+        $this->execute($command);
     }
 
     /**
      * Check if an activation exists for a user.
      *
      * @param UserInterface $user
-     * @return mixed
+     * @return ActivationInterface
      */
     public function exists(UserInterface $user)
     {
@@ -65,26 +65,24 @@ class ActivationService
      *
      * @param UserInterface $user
      * @param               $code
-     * @return mixed
      */
     public function complete(UserInterface $user, $code)
     {
         $command = new CompleteActivationCommand($user->getUserId(), $code);
 
-        return $this->execute($command);
+        $this->execute($command);
     }
 
     /**
      * Remove the activation codes for a user.
      *
      * @param UserInterface $user
-     * @return mixed
      */
     public function remove(UserInterface $user)
     {
         $command = new RemoveActivationCommand($user->getAuthIdentifier());
 
-        return $this->execute($command);
+        $this->execute($command);
     }
 }
  

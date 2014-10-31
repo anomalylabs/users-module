@@ -1,7 +1,6 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\Activation\Command;
 
 use Anomaly\Streams\Addon\Module\Users\Activation\Contract\ActivationRepositoryInterface;
-use Anomaly\Streams\Addon\Module\Users\Activation\Event\ActivationWasCompletedEvent;
 use Anomaly\Streams\Platform\Traits\DispatchableTrait;
 
 /**
@@ -18,20 +17,20 @@ class CompleteActivationCommandHandler
     use DispatchableTrait;
 
     /**
-     * The user repository object.
+     * The activation repository object.
      *
      * @var \Anomaly\Streams\Addon\Module\Users\Activation\Contract\ActivationRepositoryInterface
      */
-    protected $repository;
+    protected $activations;
 
     /**
      * Create a new ForceActivationCommandHandler instance.
      *
-     * @param ActivationRepositoryInterface $repository
+     * @param ActivationRepositoryInterface $activations
      */
-    function __construct(ActivationRepositoryInterface $repository)
+    function __construct(ActivationRepositoryInterface $activations)
     {
-        $this->repository = $repository;
+        $this->activations = $activations;
     }
 
     /**
@@ -42,16 +41,7 @@ class CompleteActivationCommandHandler
      */
     public function handle(CompleteActivationCommand $command)
     {
-        $activation = $this->repository->complete($command->getUserId(), $command->getCode());
-
-        if ($activation) {
-
-            $activation->raise(new ActivationWasCompletedEvent($activation));
-
-            $this->dispatchEventsFor($activation);
-        }
-
-        return $activation;
+        $this->activations->completeActivation($command->getUserId(), $command->getCode());
     }
 }
  

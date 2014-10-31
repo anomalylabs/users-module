@@ -14,31 +14,30 @@ class RemoveActivationCommandHandler
 {
 
     /**
-     * The user repository object.
+     * The activation repository object.
      *
      * @var \Anomaly\Streams\Addon\Module\Users\Activation\Contract\ActivationRepositoryInterface
      */
-    protected $repository;
+    protected $activations;
 
     /**
      * Create a new RemoveActivationCommandHandler instance.
      *
-     * @param ActivationRepositoryInterface $repository
+     * @param ActivationRepositoryInterface $activations
      */
-    function __construct(ActivationRepositoryInterface $repository)
+    function __construct(ActivationRepositoryInterface $activations)
     {
-        $this->repository = $repository;
+        $this->activations = $activations;
     }
 
     /**
      * Handle the command.
      *
      * @param RemoveActivationCommand $command
-     * @return mixed
      */
     public function handle(RemoveActivationCommand $command)
     {
-        return $this->repository->removeActivation($command->getUserId());
+        $this->activations->removeActivation($command->getUserId());
     }
 }
  

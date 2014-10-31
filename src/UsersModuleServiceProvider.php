@@ -25,4 +25,3 @@ class UsersModuleServiceProvider extends ServiceProvider
         $this->app->register('Anomaly\Streams\Addon\Module\Users\Provider\InterfaceServiceProvider');
     }
 }
- 

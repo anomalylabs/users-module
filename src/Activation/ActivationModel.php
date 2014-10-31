@@ -16,6 +16,16 @@ class ActivationModel extends UsersActivationsEntryModel implements ActivationRe
 {
 
     /**
+     * Observable events.
+     *
+     * @var array
+     */
+    protected $observables = [
+        'activated',
+        'deactivated',
+    ];
+
+    /**
      * Show only completed activations.
      *
      * @param $query
@@ -44,18 +54,20 @@ class ActivationModel extends UsersActivationsEntryModel implements ActivationRe
     }
 
     /**
-     * Remove an activation by user ID.
+     * Remove an activation by it's user ID.
      *
      * @param $userId
      * @return null
      */
     public function removeActivation($userId)
     {
-        $activation = $this->findByUserId($userId);
+        $activation = $this->findActivationByUserId($userId);
 
         if ($activation) {
 
             $activation->delete();
+
+            $activation->fireModelEvent('deactivated');
 
             return $activation;
         }
@@ -70,9 +82,9 @@ class ActivationModel extends UsersActivationsEntryModel implements ActivationRe
      * @param $code
      * @return bool
      */
-    public function complete($userId, $code)
+    public function completeActivation($userId, $code)
     {
-        $activation = $this->findByUserId($userId);
+        $activation = $this->findActivationByUserId($userId);
 
         if ($activation and $activation->code == $code) {
 
@@ -82,10 +94,12 @@ class ActivationModel extends UsersActivationsEntryModel implements ActivationRe
 
             $activation->save();
 
+            $this->fireModelEvent('activated');
+
             return $activation;
         }
 
-        return false;
+        return null;
     }
 
     /**
@@ -96,14 +110,14 @@ class ActivationModel extends UsersActivationsEntryModel implements ActivationRe
      */
     public function forceActivation($userId)
     {
-        $activation = $this->findByUserId($userId);
+        $activation = $this->findActivationByUserId($userId);
 
         if (!$activation) {
 
             $activation = $this->createActivation($userId);
         }
 
-        return $activation->complete($userId, $activation->code);
+        return $activation->completeActivation($userId, $activation->code);
     }
 
     /**
@@ -112,9 +126,21 @@ class ActivationModel extends UsersActivationsEntryModel implements ActivationRe
      * @param $userId
      * @return mixed
      */
-    public function findByUserId($userId)
+    public function findActivationByUserId($userId)
     {
         return $this->whereUserId($userId)->first();
+    }
+
+    /**
+     * Find an activation by it's user ID and code.
+     *
+     * @param $userId
+     * @param $code
+     * @return mixed
+     */
+    public function findActivationByUserIdAndCode($userId, $code)
+    {
+        return $this->whereUserId($userId)->whereCode($code)->first();
     }
 
     /**
@@ -122,7 +148,7 @@ class ActivationModel extends UsersActivationsEntryModel implements ActivationRe
      *
      * @return mixed
      */
-    public function isComplete()
+    public function itIsComplete()
     {
         return ($this->is_complete);
     }

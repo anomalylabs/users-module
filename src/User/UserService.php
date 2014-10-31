@@ -51,7 +51,7 @@ class UserService
 
         $user = $this->execute($command);
 
-        if (evaluate($activate) == true) {
+        if ($activate == true) {
 
             $this->activation->force($user);
         }
