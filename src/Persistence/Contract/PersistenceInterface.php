@@ -8,7 +8,7 @@
  * @author        Ryan Thompson <ryan@anomaly.is>
  * @package       Anomaly\Streams\Addon\Module\Users\Persistence\Contract
  */
-class PersistenceInterface
+interface PersistenceInterface
 {
 
     /**
@@ -16,9 +16,6 @@ class PersistenceInterface
      *
      * @return mixed
      */
-    public function getCode()
-    {
-        return $this->code;
-    }
+    public function getCode();
 }
  

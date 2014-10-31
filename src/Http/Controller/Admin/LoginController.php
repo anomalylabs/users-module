@@ -1,9 +1,9 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\Http\Controller\Admin;
 
 use Anomaly\Streams\Addon\Module\Users\Authentication\AuthenticationService;
-use Anomaly\Streams\Addon\Module\Users\Authentication\Exception\EmailOrUsernameRequiredException;
-use Anomaly\Streams\Addon\Module\Users\Authentication\Exception\PasswordRequiredException;
 use Anomaly\Streams\Addon\Module\Users\Authorization\AuthorizationService;
+use Anomaly\Streams\Addon\Module\Users\Exception\LoginEmailOrUsernameRequiredException;
+use Anomaly\Streams\Addon\Module\Users\Exception\LoginPasswordRequiredException;
 use Anomaly\Streams\Addon\Module\Users\Exception\UserNotFoundException;
 use Anomaly\Streams\Addon\Module\Users\Session\SessionService;
 use Anomaly\Streams\Addon\Module\Users\User\Contract\UserInterface;
@@ -74,11 +74,11 @@ class LoginController extends AdminController
 
             // The user was not found.
             app('streams.messages')->add('error', 'module.users::error.user_not_found');
-        } catch (EmailOrUsernameRequiredException $e) {
+        } catch (LoginEmailOrUsernameRequiredException $e) {
 
             // Input validation failed.
             app('streams.messages')->add('error', 'module.users::error.email_or_username_required');
-        } catch (PasswordRequiredException $e) {
+        } catch (LoginPasswordRequiredException $e) {
 
             // Input validation failed.
             app('streams.messages')->add('error', 'module.users::error.password_required');

@@ -1,5 +1,6 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\Persistence;
 
+use Anomaly\Streams\Addon\Module\Users\Persistence\Contract\PersistenceInterface;
 use Anomaly\Streams\Addon\Module\Users\Persistence\Contract\PersistenceRepositoryInterface;
 use Anomaly\Streams\Platform\Model\Users\UsersPersistencesEntryModel;
 
@@ -11,7 +12,7 @@ use Anomaly\Streams\Platform\Model\Users\UsersPersistencesEntryModel;
  * @author        Ryan Thompson <ryan@anomaly.is>
  * @package       Anomaly\Streams\Addon\Module\Users\Persistence
  */
-class PersistenceModel extends UsersPersistencesEntryModel implements PersistenceRepositoryInterface
+class PersistenceModel extends UsersPersistencesEntryModel implements PersistenceRepositoryInterface, PersistenceInterface
 {
 
     /**
@@ -22,7 +23,7 @@ class PersistenceModel extends UsersPersistencesEntryModel implements Persistenc
      */
     public function findPersistenceByIdOrCreate($userId)
     {
-        $persistence = $this->findByUserId($userId);
+        $persistence = $this->findPersistenceByUserId($userId);
 
         if (!$persistence) {
 
@@ -76,6 +77,16 @@ class PersistenceModel extends UsersPersistencesEntryModel implements Persistenc
         }
 
         return null;
+    }
+
+    /**
+     * Get the persistence code.
+     *
+     * @return mixed
+     */
+    public function getCode()
+    {
+        return $this->code;
     }
 }
  
