@@ -25,7 +25,6 @@ class UserTableUi extends TableUi
         $this->setUpColumns();
         $this->setUpButtons();
         $this->setUpActions();
-        $this->setUpOptions();
     }
 
     /**
@@ -95,13 +94,12 @@ class UserTableUi extends TableUi
     }
 
     /**
-     *
+     * Set up table buttons.
      */
     protected function setUpButtons()
     {
         $this->setButtons(
             [
-                'view',
                 'edit',
             ]
         );
@@ -164,14 +162,6 @@ class UserTableUi extends TableUi
                 ],
             ]
         );
-    }
-
-    /**
-     * Set up the table options.
-     */
-    protected function setUpOptions()
-    {
-        $this->setSortable(true);
     }
 }
  

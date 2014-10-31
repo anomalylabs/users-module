@@ -54,7 +54,8 @@ class RouteServiceProvider extends \Illuminate\Foundation\Support\Providers\Rout
         $this->registerLoginRoutes($router);
         $this->registerLogoutRoutes($router);
 
-        $this->registerUsersRoutes($router);
+        $this->registerUserRoutes($router);
+        $this->registerRoleRoutes($router);
     }
 
     /**
@@ -110,7 +111,7 @@ class RouteServiceProvider extends \Illuminate\Foundation\Support\Providers\Rout
      *
      * @param Router $router
      */
-    private function registerUsersRoutes(Router $router)
+    private function registerUserRoutes(Router $router)
     {
         $router->any(
             'admin/users',
@@ -125,6 +126,29 @@ class RouteServiceProvider extends \Illuminate\Foundation\Support\Providers\Rout
         $router->any(
             'admin/users/edit/{id}',
             'Anomaly\Streams\Addon\Module\Users\Http\Controller\Admin\UsersController@edit'
+        );
+    }
+
+    /**
+     * Register role routes.
+     *
+     * @param $router
+     */
+    protected function registerRoleRoutes($router)
+    {
+        $router->any(
+            'admin/users/roles',
+            'Anomaly\Streams\Addon\Module\Users\Http\Controller\Admin\RolesController@index'
+        );
+
+        $router->any(
+            'admin/users/roles/create',
+            'Anomaly\Streams\Addon\Module\Users\Http\Controller\Admin\RolesController@create'
+        );
+
+        $router->any(
+            'admin/users/roles/edit/{id}',
+            'Anomaly\Streams\Addon\Module\Users\Http\Controller\Admin\RolesController@edit'
         );
     }
 }

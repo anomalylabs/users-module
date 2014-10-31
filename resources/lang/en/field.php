@@ -26,4 +26,13 @@ return [
     'last_activity_at' => [
         'name' => 'Last Activity',
     ],
+    'name'             => [
+        'name' => 'Name',
+    ],
+    'slug'             => [
+        'name' => 'Slug',
+    ],
+    'permissions'      => [
+        'name' => 'Permissions',
+    ]
 ];
