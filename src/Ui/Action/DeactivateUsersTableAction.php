@@ -1,4 +1,4 @@
-<?php namespace Anomaly\Streams\Addon\Module\Users\Ui\Table\Action;
+<?php namespace Anomaly\Streams\Addon\Module\Users\Ui\Action;
 
 use Anomaly\Streams\Addon\Module\Users\Activation\ActivationService;
 use Anomaly\Streams\Addon\Module\Users\Activation\Contract\ActivationRepositoryInterface;

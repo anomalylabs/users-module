@@ -1,4 +1,4 @@
-<?php namespace Anomaly\Streams\Addon\Module\Users\Ui\Table\Action;
+<?php namespace Anomaly\Streams\Addon\Module\Users\Ui\Action;
 
 use Anomaly\Streams\Platform\Ui\Table\Contract\TableActionInterface;
 
@@ -13,7 +13,9 @@ class ActivateUsersTableAction implements TableActionInterface
      */
     public function handle(array $ids)
     {
-        // TODO: Implement handle() method.
+        $count = count($ids);
+
+        app('streams.messages')->add('success', trans('module.users::message.users_activated', compact('count')));
     }
 
     /**
