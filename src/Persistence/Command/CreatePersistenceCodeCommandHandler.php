@@ -14,20 +14,20 @@ class CreatePersistenceCodeCommandHandler
 {
 
     /**
-     * The user repository object.
+     * The persistence repository object.
      *
      * @var \Anomaly\Streams\Addon\Module\Users\Persistence\Contract\PersistenceRepositoryInterface
      */
-    protected $repository;
+    protected $persistences;
 
     /**
      * Create a new CreatePersistenceCodeCommandHandler instance.
      *
-     * @param PersistenceRepositoryInterface $repository
+     * @param PersistenceRepositoryInterface $persistences
      */
-    function __construct(PersistenceRepositoryInterface $repository)
+    function __construct(PersistenceRepositoryInterface $persistences)
     {
-        $this->repository = $repository;
+        $this->persistences = $persistences;
     }
 
     /**
@@ -38,7 +38,7 @@ class CreatePersistenceCodeCommandHandler
      */
     public function handle(CreatePersistenceCodeCommand $command)
     {
-        return $this->repository->findByIdOrCreate($command->getUserId());
+        return $this->persistences->findPersistenceByIdOrCreate($command->getUserId());
     }
 }
  

@@ -17,15 +17,14 @@ interface PersistenceRepositoryInterface
      * @param $userId
      * @return mixed
      */
-    public function findByIdOrCreate($userId);
+    public function findPersistenceByIdOrCreate($userId);
 
     /**
-     * Forget a persistence code.
+     * Forget persistence for a user.
      *
      * @param $userId
-     * @return mixed
      */
-    public function forget($userId);
+    public function forgetPersistence($userId);
 
     /**
      * Find a persistence code by ID.
@@ -33,15 +32,15 @@ interface PersistenceRepositoryInterface
      * @param $userId
      * @return mixed
      */
-    public function findByUserId($userId);
+    public function findPersistenceByUserId($userId);
 
     /**
-     * Find a persistence object by user ID and it's code.
+     * Find a persistence by user ID and code.
      *
      * @param $userId
      * @param $code
      * @return mixed
      */
-    public function findByUserIdAndCode($userId, $code);
+    public function findPersistenceByUserIdAndCode($userId, $code);
 }
  

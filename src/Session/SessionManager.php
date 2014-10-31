@@ -1,5 +1,7 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\Session;
 
+use Anomaly\Streams\Addon\Module\Users\Exception\CouldNotPersistUserIdException;
+use Anomaly\Streams\Addon\Module\Users\Persistence\Contract\PersistenceInterface;
 use Anomaly\Streams\Addon\Module\Users\Persistence\PersistenceModel;
 use Anomaly\Streams\Addon\Module\Users\Persistence\PersistenceService;
 
@@ -52,9 +54,7 @@ class SessionManager
 
         if ($remember) {
 
-            $code = $this->persistence->persist($userId);
-
-            $this->storePersistenceCode($userId, $code);
+            $this->persist($userId);
         }
     }
 
@@ -74,7 +74,25 @@ class SessionManager
     }
 
     /**
-     * Flush and forget everything.
+     * Persist a user ID.
+     *
+     * @param $userId
+     * @throws \Anomaly\Streams\Addon\Module\Users\Exception\CouldNotPersistUserIdException
+     */
+    protected function persist($userId)
+    {
+        $persistence = $this->persistence->persist($userId);
+
+        if (!$persistence instanceof PersistenceInterface) {
+
+            throw new CouldNotPersistUserIdException("The user ID could not be persisted.");
+        }
+
+        $this->storePersistenceCode($userId, $persistence->getCode());
+    }
+
+    /**
+     * Flush and forgetPersistence everything.
      */
     protected function flushAndForget()
     {

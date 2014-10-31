@@ -14,20 +14,20 @@ class ForgetPersistenceCodesCommandHandler
 {
 
     /**
-     * The user repository object.
+     * The persistence repository object.
      *
      * @var \Anomaly\Streams\Addon\Module\Users\Persistence\Contract\PersistenceRepositoryInterface
      */
-    protected $repository;
+    protected $persistences;
 
     /**
      * Create a new ForgetPersistenceCodesCommandHandler instance.
      *
-     * @param PersistenceRepositoryInterface $repository
+     * @param PersistenceRepositoryInterface $persistences
      */
-    function __construct(PersistenceRepositoryInterface $repository)
+    function __construct(PersistenceRepositoryInterface $persistences)
     {
-        $this->repository = $repository;
+        $this->persistences = $persistences;
     }
 
     /**
@@ -37,7 +37,7 @@ class ForgetPersistenceCodesCommandHandler
      */
     public function handle(ForgetPersistenceCodesCommand $command)
     {
-        $this->repository->forget($command->getUserId());
+        $this->persistences->forgetPersistence($command->getUserId());
     }
 }
  

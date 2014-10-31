@@ -61,18 +61,9 @@ class ActivationModel extends UsersActivationsEntryModel implements ActivationRe
      */
     public function removeActivation($userId)
     {
-        $activation = $this->findActivationByUserId($userId);
+        $this->whereByUserId($userId)->delete();
 
-        if ($activation) {
-
-            $activation->delete();
-
-            $activation->fireModelEvent('deactivated');
-
-            return $activation;
-        }
-
-        return null;
+        $this->fireModelEvent('deactivated');
     }
 
     /**

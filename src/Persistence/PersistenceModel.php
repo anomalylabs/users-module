@@ -18,9 +18,9 @@ class PersistenceModel extends UsersPersistencesEntryModel implements Persistenc
      * Find a persistence code by ID or create a new one.
      *
      * @param $userId
-     * @return string
+     * @return static
      */
-    public function findByIdOrCreate($userId)
+    public function findPersistenceByIdOrCreate($userId)
     {
         $persistence = $this->findByUserId($userId);
 
@@ -35,15 +35,15 @@ class PersistenceModel extends UsersPersistencesEntryModel implements Persistenc
 
         $persistence->save();
 
-        return $persistence->code;
+        return $persistence;
     }
 
     /**
-     * Delete a persistence code.
+     * Delete a persistence for a user.
      *
      * @param $userId
      */
-    public function forget($userId)
+    public function forgetPersistence($userId)
     {
         $this->whereUserId($userId)->delete();
     }
@@ -54,7 +54,7 @@ class PersistenceModel extends UsersPersistencesEntryModel implements Persistenc
      * @param $userId
      * @return mixed
      */
-    public function findByUserId($userId)
+    public function findPersistenceByUserId($userId)
     {
         return $this->whereUserId($userId)->first();
     }
@@ -64,15 +64,15 @@ class PersistenceModel extends UsersPersistencesEntryModel implements Persistenc
      *
      * @param $userId
      * @param $code
-     * @return null
+     * @return mixed|null
      */
-    public function findByUserIdAndCode($userId, $code)
+    public function findPersistenceByUserIdAndCode($userId, $code)
     {
         $persistence = $this->whereUserId($userId)->whereCode($code)->first();
 
         if ($persistence) {
 
-            return $persistence->user_id;
+            return $persistence;
         }
 
         return null;

@@ -50,17 +50,9 @@ class BlockModel extends UsersBlocksEntryModel implements BlockInterface, BlockR
      */
     public function removeBlock($userId)
     {
-        $block = $this->findBlockByUserId($userId);
+        $this->whereUserId($userId)->delete();
 
-        if ($block) {
-
-            $block->delete();
-
-            $block->fireModelEvent('unblocked');
-        }
-
-
-        return $block;
+        $this->fireModelEvent('unblocked');
     }
 
     /**

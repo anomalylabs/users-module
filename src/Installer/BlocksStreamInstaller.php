@@ -2,6 +2,14 @@
 
 use Anomaly\Streams\Platform\Stream\StreamInstaller;
 
+/**
+ * Class BlocksStreamInstaller
+ *
+ * @link          http://anomaly.is/streams-platform
+ * @author        AnomalyLabs, Inc. <hello@anomaly.is>
+ * @author        Ryan Thompson <ryan@anomaly.is>
+ * @package       Anomaly\Streams\Addon\Module\Users\Installer
+ */
 class BlocksStreamInstaller extends StreamInstaller
 {
 
