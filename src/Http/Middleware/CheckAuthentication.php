@@ -53,8 +53,12 @@ class CheckAuthentication implements Middleware
 
         if ($this->authorization->check()) {
 
+            app('session')->remove('url.intended');
+
             return $next($request);
         }
+
+        app('session')->put('url.intended', $request->fullUrl());
 
         return redirect('admin/login');
     }
