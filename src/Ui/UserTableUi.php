@@ -44,10 +44,21 @@ class UserTableUi extends TableUi
         $this->setViews(
             [
                 'all',
-                'latest',
-                'newest',
-                'recently_created',
-                'recently_modified',
+                [
+                    'slug'    => 'active',
+                    'title'   => 'module.users::ui.active',
+                    'handler' => 'Anomaly\Streams\Addon\Module\Users\Ui\View\ActiveUsersTableView',
+                ],
+                [
+                    'slug'    => 'inactive',
+                    'title'   => 'module.users::ui.inactive',
+                    'handler' => 'Anomaly\Streams\Addon\Module\Users\Ui\View\InactiveUsersTableView',
+                ],
+                [
+                    'slug'    => 'blocked',
+                    'title'   => 'module.users::ui.blocked',
+                    'handler' => 'Anomaly\Streams\Addon\Module\Users\Ui\View\BlockedUsersTableView',
+                ],
             ]
         );
     }
@@ -114,6 +125,12 @@ class UserTableUi extends TableUi
                     'slug'    => 'deactivate',
                     'title'   => 'module.users::button.deactivate',
                     'handler' => 'Anomaly\Streams\Addon\Module\Users\Ui\Action\DeactivateUsersTableAction',
+                ],
+                [
+                    'type'    => 'success',
+                    'slug'    => 'unblock',
+                    'title'   => 'module.users::button.unblock',
+                    'handler' => 'Anomaly\Streams\Addon\Module\Users\Ui\Action\UnblockUsersTableAction',
                 ],
                 [
                     'type'    => 'success',

@@ -2,6 +2,7 @@
 
 return [
     'block'      => 'Block',
-    'deactivate' => 'Deactivate',
+    'unblock'    => 'Unblock',
     'activate'   => 'Activate',
+    'deactivate' => 'Deactivate',
 ];
