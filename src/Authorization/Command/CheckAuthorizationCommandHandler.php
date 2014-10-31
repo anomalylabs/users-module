@@ -1,5 +1,6 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\Authorization\Command;
 
+use Anomaly\Streams\Addon\Module\Users\Activation\Exception\UserBlockedException;
 use Anomaly\Streams\Addon\Module\Users\Activation\Exception\UserNotActivatedException;
 use Anomaly\Streams\Addon\Module\Users\Extension\CheckInterface;
 use Anomaly\Streams\Addon\Module\Users\Session\SessionManager;
@@ -93,6 +94,11 @@ class CheckAuthorizationCommandHandler
             } catch (UserNotActivatedException $e) {
 
                 app('streams.messages')->add('error', 'module.users::error.account_not_activated');
+
+                return null;
+            } catch (UserBlockedException $e) {
+
+                app('streams.messages')->add('error', 'module.users::error.account_blocked');
 
                 return null;
             }

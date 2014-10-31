@@ -178,5 +178,15 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, UserRepos
     {
         return $this->getKey();
     }
+
+    /**
+     * Return the blocked flag.
+     *
+     * @return mixed
+     */
+    public function isBlocked()
+    {
+        return ($this->is_blocked);
+    }
 }
  

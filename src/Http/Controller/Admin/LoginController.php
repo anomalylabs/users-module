@@ -72,13 +72,20 @@ class LoginController extends AdminController
             }
         } catch (UserNotFoundException $e) {
 
+            // The user was not found.
             app('streams.messages')->add('error', 'module.users::error.user_not_found');
         } catch (EmailOrUsernameRequiredException $e) {
 
+            // Input validation failed.
             app('streams.messages')->add('error', 'module.users::error.email_or_username_required');
         } catch (PasswordRequiredException $e) {
 
+            // Input validation failed.
             app('streams.messages')->add('error', 'module.users::error.password_required');
+        } catch (\Exception $e) {
+
+            // There was some other error.
+            app('streams.messages')->add('error', 'error.generic');
         }
 
         /**
