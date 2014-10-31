@@ -37,6 +37,9 @@ class UsersFieldInstaller extends FieldInstaller
         'last_name'        => [
             'type' => 'text',
         ],
+        'is_blocked'       => [
+            'type' => 'boolean',
+        ],
         'last_activity_at' => [
             'type' => 'datetime',
         ],
