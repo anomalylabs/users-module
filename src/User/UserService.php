@@ -101,19 +101,6 @@ class UserService
     }
 
     /**
-     * Find a user by persistence code.
-     *
-     * @param $code
-     * @return mixed
-     */
-    public function findByPersistenceCode($code)
-    {
-        $command = new FindUserByPersistenceCodeCommand($code);
-
-        return $this->execute($command);
-    }
-
-    /**
      * Chance the password for a user.
      *
      * @param UserInterface $user

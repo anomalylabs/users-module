@@ -50,6 +50,14 @@ interface UserRepositoryInterface
     public function changeUserPassword($userId, $password);
 
     /**
+     * Find a user by their ID.
+     *
+     * @param $userId
+     * @return mixed
+     */
+    public function findUserById($userId);
+
+    /**
      * Find a user by their login.
      *
      * @param $login
@@ -65,14 +73,6 @@ interface UserRepositoryInterface
      * @return mixed
      */
     public function findUserByLoginAndPassword($login, $password);
-
-    /**
-     * Find a user by their ID.
-     *
-     * @param $userId
-     * @return mixed
-     */
-    public function findUserById($userId);
 
     /**
      * Update the users last activity timestamp.

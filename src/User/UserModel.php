@@ -93,6 +93,8 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, UserRepos
             $this->password = $password;
 
             $user->save();
+
+            $user->fireModelEvent('password_changed');
         }
 
         return $user;

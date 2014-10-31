@@ -40,15 +40,7 @@ class FindUserByCredentialsCommandHandler
     {
         $credentials = $command->getCredentials();
 
-        if (isset($credentials['email'])) {
-
-            $login = $credentials['email'];
-        } else {
-
-            $login = $credentials['username'];
-        }
-
-        return $this->users->findUserByLoginAndPassword($login, $credentials['password']);
+        return $this->users->findUserByLoginAndPassword($credentials['login'], $credentials['password']);
     }
 }
  

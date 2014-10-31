@@ -14,7 +14,7 @@ class UpdateUserCommandHandler
 {
 
     /**
-     * The user repository interface object.
+     * The user repository object.
      *
      * @var \Anomaly\Streams\Addon\Module\Users\User\Contract\UserRepositoryInterface
      */

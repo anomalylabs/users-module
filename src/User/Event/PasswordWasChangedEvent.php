@@ -1,7 +1,5 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\User\Event;
 
-use Symfony\Component\Security\Core\User\UserInterface;
-
 /**
  * Class PasswordWasChangedEvent
  *
@@ -14,30 +12,30 @@ class PasswordWasChangedEvent
 {
 
     /**
-     * The user interface object.
+     * The user ID.
      *
-     * @var \Symfony\Component\Security\Core\User\UserInterface
+     * @var
      */
-    protected $user;
+    protected $userId;
 
     /**
      * Create a new PasswordWasChangedEvent instance.
      *
-     * @param UserInterface $user
+     * @param $userId
      */
-    function __construct(UserInterface $user)
+    function __construct($userId)
     {
-        $this->user = $user;
+        $this->userId = $userId;
     }
 
     /**
-     * Get the use interface object.
+     * Get the user ID.
      *
      * @return mixed
      */
-    public function getUser()
+    public function getUserId()
     {
-        return $this->user;
+        return $this->userId;
     }
 }
  

@@ -1,7 +1,6 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\User\Command;
 
 use Anomaly\Streams\Addon\Module\Users\User\Contract\UserRepositoryInterface;
-use Anomaly\Streams\Addon\Module\Users\User\Event\PasswordWasChangedEvent;
 use Anomaly\Streams\Platform\Traits\DispatchableTrait;
 
 /**
@@ -18,7 +17,7 @@ class ChangePasswordCommandHandler
     use DispatchableTrait;
 
     /**
-     * The users repository interface object.
+     * The users repository object.
      *
      * @var \Anomaly\Streams\Addon\Module\Users\User\Contract\UserRepositoryInterface
      */
@@ -38,20 +37,10 @@ class ChangePasswordCommandHandler
      * Handle the command.
      *
      * @param ChangePasswordCommand $command
-     * @return bool
      */
     public function handle(ChangePasswordCommand $command)
     {
-        $user = $this->users->changePassword($command->getUserId(), $command->getPassword());
-
-        if ($user) {
-
-            $user->raise(new PasswordWasChangedEvent($user));
-
-            $this->dispatchEventsFor($user);
-        }
-
-        return $user;
+        $this->users->changePassword($command->getUserId(), $command->getPassword());
     }
 }
  

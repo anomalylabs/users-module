@@ -1,6 +1,5 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\User;
 
-use Anomaly\Streams\Addon\Module\Users\User\Event\PasswordWasChangedEvent;
 use Anomaly\Streams\Platform\Support\Listener;
 
 /**
@@ -14,9 +13,5 @@ use Anomaly\Streams\Platform\Support\Listener;
 class UserListener extends Listener
 {
 
-    public function whenPasswordWasChanged(PasswordWasChangedEvent $event)
-    {
-        $user = $event->getUser();
-    }
 }
  
