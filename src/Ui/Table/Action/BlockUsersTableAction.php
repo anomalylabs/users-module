@@ -1,5 +1,6 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\Ui\Table\Action;
 
+use Anomaly\Streams\Addon\Module\Users\Block\Contract\BlockRepositoryInterface;
 use Anomaly\Streams\Platform\Ui\Table\Contract\TableActionInterface;
 
 /**
@@ -14,6 +15,23 @@ class BlockUsersTableAction implements TableActionInterface
 {
 
     /**
+     * The block repository object.
+     *
+     * @var
+     */
+    protected $blocks;
+
+    /**
+     * Create a new BlockUsersTableAction instance.
+     *
+     * @param BlockRepositoryInterface $blocks
+     */
+    function __construct(BlockRepositoryInterface $blocks)
+    {
+        $this->blocks = $blocks;
+    }
+
+    /**
      * Handle the table action.
      *
      * @param array $ids
@@ -22,7 +40,7 @@ class BlockUsersTableAction implements TableActionInterface
     public function handle(array $ids)
     {
         foreach ($ids as $id) {
-            // Block them.
+            $this->blocks->createBlock($id);
         }
     }
 
