@@ -1,7 +1,7 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\Authentication\Command;
 
-use Anomaly\Streams\Addon\Module\Users\Authentication\Exception\EmailOrUsernameRequiredException;
-use Anomaly\Streams\Addon\Module\Users\Authentication\Exception\PasswordRequiredException;
+use Anomaly\Streams\Addon\Module\Users\Exception\LoginEmailOrUsernameRequiredException;
+use Anomaly\Streams\Addon\Module\Users\Exception\LoginPasswordRequiredException;
 
 /**
  * Class AuthenticateCredentialsCommandValidator
@@ -25,22 +25,22 @@ class AuthenticateCredentialsCommandValidator
     }
 
     /**
-     * Validate the credentials array.
+     * Validate the provided credentials.
      *
      * @param $credentials
-     * @throws \Anomaly\Streams\Addon\Module\Users\Authentication\Exception\EmailOrUsernameRequiredException
-     * @throws \Anomaly\Streams\Addon\Module\Users\Authentication\Exception\PasswordRequiredException
+     * @throws \Anomaly\Streams\Addon\Module\Users\Exception\LoginPasswordRequiredException
+     * @throws \Anomaly\Streams\Addon\Module\Users\Exception\LoginEmailOrUsernameRequiredException
      */
     protected function validateCredentials($credentials)
     {
         if (!isset($credentials['login']) and empty($credentials['login'])) {
 
-            throw new EmailOrUsernameRequiredException();
+            throw new LoginEmailOrUsernameRequiredException();
         }
 
         if (!isset($credentials['password']) or empty($credentials['password'])) {
 
-            throw new PasswordRequiredException();
+            throw new LoginPasswordRequiredException();
         }
     }
 }
