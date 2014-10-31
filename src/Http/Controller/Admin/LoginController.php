@@ -77,7 +77,7 @@ class LoginController extends AdminController
         } catch (LoginRequiredException $e) {
 
             // Input validation failed.
-            app('streams.messages')->add('error', 'module.users::error.email_or_username_required');
+            app('streams.messages')->add('error', 'module.users::error.login_required');
         } catch (PasswordRequiredException $e) {
 
             // Input validation failed.

@@ -33,7 +33,7 @@ class AuthenticateCredentialsCommandValidator
      */
     protected function validateCredentials($credentials)
     {
-        if (!isset($credentials['login']) and empty($credentials['login'])) {
+        if (!isset($credentials['login']) or empty($credentials['login'])) {
 
             throw new LoginRequiredException();
         }
