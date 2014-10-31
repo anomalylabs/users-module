@@ -1,4 +1,4 @@
-<?php namespace Anomaly\Streams\Addon\Module\Users\Ui;
+<?php namespace Anomaly\Streams\Addon\Module\Users\Ui\Table;
 
 use Anomaly\Streams\Addon\Module\Users\User\UserModel;
 use Anomaly\Streams\Platform\Ui\Table\TableUi;
@@ -47,17 +47,17 @@ class UserTableUi extends TableUi
                 [
                     'slug'    => 'active',
                     'title'   => 'module.users::ui.active',
-                    'handler' => 'Anomaly\Streams\Addon\Module\Users\Ui\View\ActiveUsersTableView',
+                    'handler' => 'Anomaly\Streams\Addon\Module\Users\Ui\Table\View\ActiveUsersTableView',
                 ],
                 [
                     'slug'    => 'inactive',
                     'title'   => 'module.users::ui.inactive',
-                    'handler' => 'Anomaly\Streams\Addon\Module\Users\Ui\View\InactiveUsersTableView',
+                    'handler' => 'Anomaly\Streams\Addon\Module\Users\Ui\Table\View\InactiveUsersTableView',
                 ],
                 [
                     'slug'    => 'blocked',
                     'title'   => 'module.users::ui.blocked',
-                    'handler' => 'Anomaly\Streams\Addon\Module\Users\Ui\View\BlockedUsersTableView',
+                    'handler' => 'Anomaly\Streams\Addon\Module\Users\Ui\Table\View\BlockedUsersTableView',
                 ],
             ]
         );
@@ -118,25 +118,49 @@ class UserTableUi extends TableUi
                     'type'    => 'danger',
                     'slug'    => 'block',
                     'title'   => 'module.users::button.block',
-                    'handler' => 'Anomaly\Streams\Addon\Module\Users\Ui\Action\BlockUsersTableAction',
+                    'handler' => 'Anomaly\Streams\Addon\Module\Users\Ui\Table\Action\BlockUsersTableAction',
+                    'enabled' => function (TableUi $ui) {
+
+                            $view = app('request')->get($ui->getPrefix() . 'view', 'all');
+
+                            return ($view == 'all' or $view == 'active');
+                        }
                 ],
                 [
                     'type'    => 'danger',
                     'slug'    => 'deactivate',
                     'title'   => 'module.users::button.deactivate',
-                    'handler' => 'Anomaly\Streams\Addon\Module\Users\Ui\Action\DeactivateUsersTableAction',
+                    'handler' => 'Anomaly\Streams\Addon\Module\Users\Ui\Table\Action\DeactivateUsersTableAction',
+                    'enabled' => function (TableUi $ui) {
+
+                            $view = app('request')->get($ui->getPrefix() . 'view', 'all');
+
+                            return ($view == 'all' or $view == 'active');
+                        }
                 ],
                 [
                     'type'    => 'success',
                     'slug'    => 'unblock',
                     'title'   => 'module.users::button.unblock',
-                    'handler' => 'Anomaly\Streams\Addon\Module\Users\Ui\Action\UnblockUsersTableAction',
+                    'handler' => 'Anomaly\Streams\Addon\Module\Users\Ui\Table\Action\UnblockUsersTableAction',
+                    'enabled' => function (TableUi $ui) {
+
+                            $view = app('request')->get($ui->getPrefix() . 'view', 'all');
+
+                            return ($view == 'all' or $view == 'blocked');
+                        }
                 ],
                 [
                     'type'    => 'success',
                     'slug'    => 'activate',
                     'title'   => 'module.users::button.activate',
-                    'handler' => 'Anomaly\Streams\Addon\Module\Users\Ui\Action\ActivateUsersTableAction',
+                    'handler' => 'Anomaly\Streams\Addon\Module\Users\Ui\Table\Action\ActivateUsersTableAction',
+                    'enabled' => function (TableUi $ui) {
+
+                            $view = app('request')->get($ui->getPrefix() . 'view', 'all');
+
+                            return ($view == 'all' or $view == 'inactive');
+                        }
                 ],
             ]
         );

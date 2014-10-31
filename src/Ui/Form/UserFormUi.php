@@ -1,4 +1,4 @@
-<?php namespace Anomaly\Streams\Addon\Module\Users\Ui;
+<?php namespace Anomaly\Streams\Addon\Module\Users\Ui\Form;
 
 use Anomaly\Streams\Addon\Module\Users\User\UserModel;
 use Anomaly\Streams\Platform\Ui\Form\FormUi;

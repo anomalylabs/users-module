@@ -1,7 +1,7 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\Http\Controller\Admin;
 
-use Anomaly\Streams\Addon\Module\Users\Ui\UserFormUi;
-use Anomaly\Streams\Addon\Module\Users\Ui\UserTableUi;
+use Anomaly\Streams\Addon\Module\Users\Ui\Form\UserFormUi;
+use Anomaly\Streams\Addon\Module\Users\Ui\Table\UserTableUi;
 use Anomaly\Streams\Platform\Http\Controller\AdminController;
 
 /**
@@ -32,7 +32,7 @@ class UsersController extends AdminController
     /**
      * Return the form UI for creating a new user.
      *
-     * @param UserFormUi $ui
+     * @param \Anomaly\Streams\Addon\Module\Users\Ui\Form\UserFormUi $ui
      * @return \Illuminate\View\View
      */
     public function create(UserFormUi $ui)
@@ -43,7 +43,7 @@ class UsersController extends AdminController
     /**
      * Return the form UI for an existing user.
      *
-     * @param UserFormUi $ui
+     * @param \Anomaly\Streams\Addon\Module\Users\Ui\Form\UserFormUi $ui
      * @param            $id
      * @return \Illuminate\View\View
      */

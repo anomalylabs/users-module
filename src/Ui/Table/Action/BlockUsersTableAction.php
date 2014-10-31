@@ -1,4 +1,4 @@
-<?php namespace Anomaly\Streams\Addon\Module\Users\Ui\Action;
+<?php namespace Anomaly\Streams\Addon\Module\Users\Ui\Table\Action;
 
 use Anomaly\Streams\Platform\Ui\Table\Contract\TableActionInterface;
 

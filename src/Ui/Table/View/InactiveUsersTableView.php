@@ -1,4 +1,4 @@
-<?php namespace Anomaly\Streams\Addon\Module\Users\Ui\View;
+<?php namespace Anomaly\Streams\Addon\Module\Users\Ui\Table\View;
 
 use Anomaly\Streams\Platform\Ui\Table\TableView;
 

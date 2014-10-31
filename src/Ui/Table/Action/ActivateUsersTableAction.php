@@ -1,31 +1,30 @@
-<?php namespace Anomaly\Streams\Addon\Module\Users\Ui\Action;
+<?php namespace Anomaly\Streams\Addon\Module\Users\Ui\Table\Action;
 
-use Anomaly\Streams\Addon\Module\Users\Activation\ActivationService;
 use Anomaly\Streams\Addon\Module\Users\Activation\Contract\ActivationRepositoryInterface;
 use Anomaly\Streams\Platform\Ui\Table\Contract\TableActionInterface;
 
 /**
- * Class DeactivateUsersTableAction
+ * Class ActivateUsersTableAction
  *
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
- * @package       Anomaly\Streams\Addon\Module\Users\Ui\Table\Action
+ * @package       Anomaly\Streams\Addon\Module\Users\Ui\Action
  */
-class DeactivateUsersTableAction implements TableActionInterface
+class ActivateUsersTableAction implements TableActionInterface
 {
 
     /**
-     * The activation repository service.
+     * The activation repository interface object.
      *
      * @var
      */
     protected $activations;
 
     /**
-     * Create a new DeactivateUsersTableAction instance.
+     * Create a new ActivateUsersTableAction instance.
      *
-     * @param ActivationService $activations
+     * @param ActivationRepositoryInterface $service
      */
     function __construct(ActivationRepositoryInterface $activations)
     {
@@ -36,14 +35,18 @@ class DeactivateUsersTableAction implements TableActionInterface
      * Handle the table action.
      *
      * @param array $ids
-     * @return mixed|void
+     * @return mixed
      */
     public function handle(array $ids)
     {
+        $count = count($ids);
+
         foreach ($ids as $id) {
 
-            $this->activations->removeActivation($id);
+            $this->activations->forceActivation($id);
         }
+
+        app('streams.messages')->add('success', trans('module.users::message.users_activated', compact('count')));
     }
 
     /**
