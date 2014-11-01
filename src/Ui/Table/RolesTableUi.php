@@ -3,7 +3,7 @@
 use Anomaly\Streams\Platform\Model\Users\UsersRolesEntryModel;
 use Anomaly\Streams\Platform\Ui\Table\TableUi;
 
-class RoleTableUi extends TableUi
+class RolesTableUi extends TableUi
 {
 
     /**

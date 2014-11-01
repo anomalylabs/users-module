@@ -4,14 +4,14 @@ use Anomaly\Streams\Addon\Module\Users\User\UserModel;
 use Anomaly\Streams\Platform\Ui\Table\TableUi;
 
 /**
- * Class UserTableUi
+ * Class UsersTableUi
  *
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
  * @package       Anomaly\Streams\Addon\Module\Users\Ui
  */
-class UserTableUi extends TableUi
+class UsersTableUi extends TableUi
 {
 
     /**
