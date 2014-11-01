@@ -32,7 +32,9 @@ class UsersTableUi extends TableUi
      */
     protected function setUpModel()
     {
-        $this->setModel(new UserModel());
+        $this
+            ->setModel(new UserModel())
+            ->setEager(['activation']);
     }
 
     /**
@@ -85,6 +87,10 @@ class UsersTableUi extends TableUi
                 [
                     'heading' => 'Name',
                     'value'   => '{first_name} {last_name}',
+                ],
+                [
+                    'heading'  => 'Activation Completed',
+                    'relation' => 'activation.completed_at.diffForHumans',
                 ],
                 'username',
                 'email.link',
