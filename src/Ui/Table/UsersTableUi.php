@@ -143,6 +143,18 @@ class UsersTableUi extends TableUi
         $this->setActions(
             [
                 [
+                    'type'    => 'default',
+                    'slug'    => 'reset_password',
+                    'title'   => 'module.users::button.reset_password',
+                    'handler' => 'Anomaly\Streams\Addon\Module\Users\Ui\Table\Action\BlockUsersTableAction',
+                    'enabled' => function (TableUi $ui) {
+
+                            $view = app('request')->get($ui->getPrefix() . 'view', 'all');
+
+                            return ($view == 'all' or $view == 'active');
+                        }
+                ],
+                [
                     'type'    => 'danger',
                     'slug'    => 'block',
                     'title'   => 'module.users::button.block',
