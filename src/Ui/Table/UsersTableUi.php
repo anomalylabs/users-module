@@ -90,7 +90,6 @@ class UsersTableUi extends TableUi
                 ],
                 [
                     'heading' => 'module::ui.status',
-                    'class'   => 'text-center',
                     'value'   => function (TableUi $ui, $entry) {
 
                             $class = null;
