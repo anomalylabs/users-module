@@ -201,5 +201,15 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, UserRepos
     {
         return $this->getKey();
     }
+
+    /**
+     * Return the activation relationship.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function activation()
+    {
+        return $this->hasOne('Anomaly\Streams\Addon\Module\Users\Activation\ActivationModel');
+    }
 }
  
