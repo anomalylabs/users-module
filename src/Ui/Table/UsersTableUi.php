@@ -96,12 +96,6 @@ class UsersTableUi extends TableUi
                             $class = null;
                             $title = null;
 
-                            if ($entry->block) {
-
-                                $class = 'danger';
-                                $title = 'module::ui.blocked';
-                            }
-
                             if (!$entry->activation or !$entry->activation->itIsComplete()) {
 
                                 $class = 'default';
@@ -112,6 +106,12 @@ class UsersTableUi extends TableUi
 
                                 $class = 'success';
                                 $title = 'module::ui.active';
+                            }
+
+                            if ($entry->block) {
+
+                                $class = 'danger';
+                                $title = 'module::ui.blocked';
                             }
 
                             return '<span class="label label-' . $class . '">' . trans($title) . '</span>';
