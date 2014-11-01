@@ -97,9 +97,9 @@ class RouteServiceProvider extends \Illuminate\Foundation\Support\Providers\Rout
     {
         $router->get(
             'admin/logout',
-            function (SessionService $login) {
+            function (SessionService $session) {
 
-                $login->logout();
+                $session->logout();
 
                 return redirect('admin/login');
             }
