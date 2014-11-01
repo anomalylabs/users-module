@@ -34,7 +34,7 @@ class UsersTableUi extends TableUi
     {
         $this
             ->setModel(new UserModel())
-            ->setEager(['activation']);
+            ->setEager(['activation', 'block']);
     }
 
     /**
@@ -89,8 +89,33 @@ class UsersTableUi extends TableUi
                     'value'   => '{first_name} {last_name}',
                 ],
                 [
-                    'heading'  => 'Activation Completed',
-                    'relation' => 'activation.completed_at.diffForHumans',
+                    'heading' => 'module::ui.status',
+                    'class'   => 'text-center',
+                    'value'   => function (TableUi $ui, $entry) {
+
+                            $class = null;
+                            $title = null;
+
+                            if ($entry->block) {
+
+                                $class = 'danger';
+                                $title = 'module::ui.blocked';
+                            }
+
+                            if (!$entry->activation or !$entry->activation->itIsComplete()) {
+
+                                $class = 'default';
+                                $title = 'module::ui.inactive';
+                            }
+
+                            if ($entry->activation and $entry->activation->itIsComplete()) {
+
+                                $class = 'success';
+                                $title = 'module::ui.active';
+                            }
+
+                            return '<span class="label label-' . $class . '">' . trans($title) . '</span>';
+                        },
                 ],
                 'username',
                 'email.link',

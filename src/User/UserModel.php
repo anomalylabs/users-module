@@ -211,5 +211,15 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, UserRepos
     {
         return $this->hasOne('Anomaly\Streams\Addon\Module\Users\Activation\ActivationModel');
     }
+
+    /**
+     * Return the block relationship.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function block()
+    {
+        return $this->hasOne('Anomaly\Streams\Addon\Module\Users\Block\BlockModel');
+    }
 }
  
