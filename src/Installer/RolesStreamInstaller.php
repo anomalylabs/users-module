@@ -19,7 +19,8 @@ class RolesStreamInstaller extends StreamInstaller
      * @var array
      */
     protected $stream = [
-        'is_hidden' => true,
+        'is_hidden'       => true,
+        'is_translatable' => true,
     ];
 
     /**
@@ -28,7 +29,7 @@ class RolesStreamInstaller extends StreamInstaller
      * @var array
      */
     protected $assignments = [
-        'name'        => ['is_required' => true],
+        'name'        => ['is_required' => true, 'is_translatable' => true],
         'slug'        => ['is_unique' => true],
         'permissions' => [],
     ];
