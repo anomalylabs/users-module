@@ -1,7 +1,5 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\Extension;
 
-use Anomaly\Streams\Addon\Module\Users\User\Contract\UserInterface;
-
 /**
  * Interface CheckInterface
  *
@@ -13,20 +11,6 @@ use Anomaly\Streams\Addon\Module\Users\User\Contract\UserInterface;
 interface CheckInterface
 {
 
-    /**
-     * Security check during login.
-     *
-     * @param UserInterface $user
-     * @return mixed
-     */
-    public function login(UserInterface $user);
-
-    /**
-     * Security check during authentication check.
-     *
-     * @param UserInterface $user
-     * @return mixed
-     */
-    public function check(UserInterface $user);
+    public function toHandler();
 }
  

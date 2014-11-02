@@ -83,24 +83,22 @@ class CheckAuthorizationCommandHandler
 
         foreach ($securityChecks as $securityCheck) {
 
-            if (!$securityCheck instanceof CheckInterface) {
+            if ($securityCheck instanceof CheckInterface and $handler = $securityCheck->toHandler()) {
 
-                throw new \Exception("The [$securityCheck->getSlug()] check extension must implement Anomaly\\Streams\\Addon\\Module\\Users\\Extension\\CheckInterface");
-            }
+                try {
 
-            try {
+                    app()->call($handler . '@check', compact('user'));
+                } catch (UserNotActivatedException $e) {
 
-                $securityCheck->check($user);
-            } catch (UserNotActivatedException $e) {
+                    app('streams.messages')->add('error', 'module.users::error.account_not_activated');
 
-                app('streams.messages')->add('error', 'module.users::error.account_not_activated');
+                    return null;
+                } catch (UserBlockedException $e) {
 
-                return null;
-            } catch (UserBlockedException $e) {
+                    app('streams.messages')->add('error', 'module.users::error.account_blocked');
 
-                app('streams.messages')->add('error', 'module.users::error.account_blocked');
-
-                return null;
+                    return null;
+                }
             }
         }
 

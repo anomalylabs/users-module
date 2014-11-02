@@ -1,7 +1,5 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\Extension;
 
-use Anomaly\Streams\Addon\Module\Users\User\Contract\UserInterface;
-
 /**
  * Interface AuthenticatorInterface
  *
@@ -14,11 +12,12 @@ interface AuthenticatorInterface
 {
 
     /**
-     * Authenticate some credentials.
+     * Return the authenticator handler.
+     * The handler should have at least an
+     * authenticate method.
      *
-     * @param array $credentials
-     * @return UserInterface
+     * @return mixed
      */
-    public function authenticate(array $credentials);
+    public function toHandler();
 }
  

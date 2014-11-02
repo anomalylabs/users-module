@@ -73,15 +73,15 @@ class AuthenticateCredentialsCommandHandler
      * Authenticator extensions should return a user interface
      * upon successful authentication.
      *
-     * @param $authenticator
-     * @param $credentials
-     * @return UserInterface|null
+     * @param AuthenticatorInterface $authenticator
+     * @param                        $credentials
+     * @return null
      */
-    protected function attemptAuthentication($authenticator, $credentials)
+    protected function attemptAuthentication(AuthenticatorInterface $authenticator, $credentials)
     {
-        if ($authenticator instanceof AuthenticatorInterface) {
+        if ($handler = $authenticator->toHandler()) {
 
-            return $authenticator->authenticate($credentials);
+            return app()->call($handler . '@authenticate', compact('credentials'));
         }
 
         return null;
