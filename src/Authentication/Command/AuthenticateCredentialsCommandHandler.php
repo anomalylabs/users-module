@@ -1,6 +1,7 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\Authentication\Command;
 
 use Anomaly\Streams\Addon\Module\Users\Exception\UserNotFoundException;
+use Anomaly\Streams\Addon\Module\Users\Extension\AuthenticatorExtension;
 use Anomaly\Streams\Addon\Module\Users\Extension\AuthenticatorInterface;
 use Anomaly\Streams\Addon\Module\Users\User\Contract\UserInterface;
 use Anomaly\Streams\Platform\Traits\DispatchableTrait;
@@ -72,11 +73,11 @@ class AuthenticateCredentialsCommandHandler
      * Authenticator extensions should return a user interface
      * upon successful authentication.
      *
-     * @param AuthenticatorInterface $authenticator
+     * @param AuthenticatorExtension $authenticator
      * @param                        $credentials
      * @return null
      */
-    protected function attemptAuthentication(AuthenticatorInterface $authenticator, $credentials)
+    protected function attemptAuthentication(AuthenticatorExtension $authenticator, $credentials)
     {
         if ($handler = $authenticator->toHandler()) {
 

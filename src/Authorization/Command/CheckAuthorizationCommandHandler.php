@@ -2,7 +2,7 @@
 
 use Anomaly\Streams\Addon\Module\Users\Exception\UserBlockedException;
 use Anomaly\Streams\Addon\Module\Users\Exception\UserNotActivatedException;
-use Anomaly\Streams\Addon\Module\Users\Extension\CheckInterface;
+use Anomaly\Streams\Addon\Module\Users\Extension\CheckExtension;
 use Anomaly\Streams\Addon\Module\Users\Session\SessionManager;
 use Anomaly\Streams\Addon\Module\Users\User\Contract\UserInterface;
 use Anomaly\Streams\Addon\Module\Users\User\Contract\UserRepositoryInterface;
@@ -83,26 +83,42 @@ class CheckAuthorizationCommandHandler
 
         foreach ($securityChecks as $securityCheck) {
 
-            if ($securityCheck instanceof CheckInterface and $handler = $securityCheck->toHandler()) {
+            if (!$this->runCheck($securityCheck, $user)) {
 
-                try {
-
-                    app()->call($handler . '@check', compact('user'));
-                } catch (UserNotActivatedException $e) {
-
-                    app('streams.messages')->add('error', 'module.users::error.account_not_activated');
-
-                    return null;
-                } catch (UserBlockedException $e) {
-
-                    app('streams.messages')->add('error', 'module.users::error.account_blocked');
-
-                    return null;
-                }
+                return false;
             }
         }
 
         return $user;
+    }
+
+    /**
+     * Run a security check.
+     *
+     * @param CheckExtension $securityCheck
+     * @param UserInterface  $user
+     * @return bool
+     */
+    protected function runCheck(CheckExtension $securityCheck, UserInterface $user)
+    {
+        $handler = $securityCheck->toHandler();
+
+        try {
+
+            app()->call($handler . '@check', compact('user'));
+
+            return true;
+        } catch (UserNotActivatedException $e) {
+
+            app('streams.messages')->add('error', 'module.users::error.account_not_activated');
+
+            return false;
+        } catch (UserBlockedException $e) {
+
+            app('streams.messages')->add('error', 'module.users::error.account_blocked');
+
+            return false;
+        }
     }
 }
  
