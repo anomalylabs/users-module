@@ -143,54 +143,6 @@ class UsersTableUi extends TableUi
         $this->setActions(
             [
                 [
-                    'type'    => 'default',
-                    'slug'    => 'reset_password',
-                    'title'   => 'module.users::button.reset_password',
-                    'handler' => 'Anomaly\Streams\Addon\Module\Users\Ui\Table\Action\BlockUsersTableAction',
-                    'enabled' => function (TableUi $ui) {
-
-                            $view = app('request')->get($ui->getPrefix() . 'view', 'all');
-
-                            return ($view == 'all' or $view == 'active');
-                        }
-                ],
-                [
-                    'type'    => 'danger',
-                    'slug'    => 'block',
-                    'title'   => 'module.users::button.block',
-                    'handler' => 'Anomaly\Streams\Addon\Module\Users\Ui\Table\Action\BlockUsersTableAction',
-                    'enabled' => function (TableUi $ui) {
-
-                            $view = app('request')->get($ui->getPrefix() . 'view', 'all');
-
-                            return ($view == 'all' or $view == 'active');
-                        }
-                ],
-                [
-                    'type'    => 'danger',
-                    'slug'    => 'deactivate',
-                    'title'   => 'module.users::button.deactivate',
-                    'handler' => 'Anomaly\Streams\Addon\Module\Users\Ui\Table\Action\DeactivateUsersTableAction',
-                    'enabled' => function (TableUi $ui) {
-
-                            $view = app('request')->get($ui->getPrefix() . 'view', 'all');
-
-                            return ($view == 'all' or $view == 'active');
-                        }
-                ],
-                [
-                    'type'    => 'success',
-                    'slug'    => 'unblock',
-                    'title'   => 'module.users::button.unblock',
-                    'handler' => 'Anomaly\Streams\Addon\Module\Users\Ui\Table\Action\UnblockUsersTableAction',
-                    'enabled' => function (TableUi $ui) {
-
-                            $view = app('request')->get($ui->getPrefix() . 'view', 'all');
-
-                            return ($view == 'all' or $view == 'blocked');
-                        }
-                ],
-                [
                     'type'    => 'success',
                     'slug'    => 'activate',
                     'title'   => 'module.users::button.activate',
@@ -199,7 +151,20 @@ class UsersTableUi extends TableUi
 
                             $view = app('request')->get($ui->getPrefix() . 'view', 'all');
 
-                            return ($view == 'all' or $view == 'inactive');
+                            return ($view == 'all');
+                        }
+                ],
+                [
+                    'type'    => 'delete',
+                    'icon'    => 'fa fa-trash',
+                    'slug'    => 'delete',
+                    'title'   => 'button.delete',
+                    'handler' => 'Anomaly\Streams\Addon\Module\Users\Ui\Table\Action\DeleteUsersTableAction',
+                    'enabled' => function (TableUi $ui) {
+
+                            $view = app('request')->get($ui->getPrefix() . 'view', 'all');
+
+                            return ($view == 'all');
                         }
                 ],
             ]
