@@ -22,34 +22,34 @@ class UsersController extends AdminController
      * Return the table UI for users.
      *
      * @param UsersTableUi $ui
-     * @return \Illuminate\View\View
+     * @return string
      */
     public function index(UsersTableUi $ui)
     {
-        return $ui->make();
+        return $ui->render();
     }
 
     /**
      * Return the form UI for creating a new user.
      *
-     * @param \Anomaly\Streams\Addon\Module\Users\Ui\Form\UserFormUi $ui
-     * @return \Illuminate\View\View
+     * @param UserFormUi $ui
+     * @return mixed
      */
     public function create(UserFormUi $ui)
     {
-        return $ui->make();
+        return $ui->render();
     }
 
     /**
      * Return the form UI for an existing user.
      *
-     * @param \Anomaly\Streams\Addon\Module\Users\Ui\Form\UserFormUi $ui
+     * @param UserFormUi $ui
      * @param            $id
-     * @return \Illuminate\View\View
+     * @return mixed
      */
     public function edit(UserFormUi $ui, $id)
     {
-        return $ui->make($id);
+        return $ui->render($id);
     }
 }
  
