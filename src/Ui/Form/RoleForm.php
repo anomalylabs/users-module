@@ -1,9 +1,9 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\Ui\Form;
 
 use Anomaly\Streams\Addon\Module\Users\Role\RoleModel;
-use Anomaly\Streams\Platform\Ui\Form\FormUi;
+use Anomaly\Streams\Platform\Ui\Form\Form;
 
-class RoleFormUi extends FormUi
+class RoleForm extends Form
 {
 
     /**

@@ -1,17 +1,17 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\Ui\Form;
 
 use Anomaly\Streams\Addon\Module\Users\User\UserModel;
-use Anomaly\Streams\Platform\Ui\Form\FormUi;
+use Anomaly\Streams\Platform\Ui\Form\Form;
 
 /**
- * Class UserFormUi
+ * Class UserForm
  *
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
  * @package       Anomaly\Streams\Addon\Module\Users\Ui
  */
-class UserFormUi extends FormUi
+class UserForm extends Form
 {
 
     /**
