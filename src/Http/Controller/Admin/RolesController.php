@@ -16,26 +16,37 @@ class RolesController extends AdminController
 {
 
     /**
-     * Return the table UI for roles.
+     * Return the table for existing roles.
      *
      * @param RoleTable $ui
-     * @return \Illuminate\View\View
+     * @return mixed|null
      */
     public function index(RoleTable $ui)
     {
-        return $ui->make();
+        return $ui->render();
     }
 
     /**
-     * Return the form UI for an existing role.
+     * Return the form for a new role.
      *
      * @param RoleForm $ui
-     * @param             $id
-     * @return \Illuminate\View\View
+     * @return mixed|null
+     */
+    public function create(RoleForm $ui)
+    {
+        return $ui->render();
+    }
+
+    /**
+     * Return the form for an existing role.
+     *
+     * @param RoleForm $ui
+     * @param          $id
+     * @return mixed|null
      */
     public function edit(RoleForm $ui, $id)
     {
-        return $ui->make($id);
+        return $ui->render($id);
     }
 }
  
