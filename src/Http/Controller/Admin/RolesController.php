@@ -1,7 +1,7 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\Http\Controller\Admin;
 
 use Anomaly\Streams\Addon\Module\Users\Ui\Form\RoleFormUi;
-use Anomaly\Streams\Addon\Module\Users\Ui\Table\RoleTableUi;
+use Anomaly\Streams\Addon\Module\Users\Ui\Table\RoleTable;
 use Anomaly\Streams\Platform\Http\Controller\AdminController;
 
 /**
@@ -18,10 +18,10 @@ class RolesController extends AdminController
     /**
      * Return the table UI for roles.
      *
-     * @param RoleTableUi $ui
+     * @param RoleTable $ui
      * @return \Illuminate\View\View
      */
-    public function index(RoleTableUi $ui)
+    public function index(RoleTable $ui)
     {
         return $ui->make();
     }

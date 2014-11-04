@@ -1,7 +1,7 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\Http\Controller\Admin;
 
 use Anomaly\Streams\Addon\Module\Users\Ui\Form\UserFormUi;
-use Anomaly\Streams\Addon\Module\Users\Ui\Table\UserTableUi;
+use Anomaly\Streams\Addon\Module\Users\Ui\Table\UserTable;
 use Anomaly\Streams\Platform\Http\Controller\AdminController;
 
 /**
@@ -21,10 +21,10 @@ class UsersController extends AdminController
     /**
      * Return the table UI for users.
      *
-     * @param UserTableUi $ui
+     * @param UserTable $ui
      * @return string
      */
-    public function index(UserTableUi $ui)
+    public function index(UserTable $ui)
     {
         return $ui->render();
     }

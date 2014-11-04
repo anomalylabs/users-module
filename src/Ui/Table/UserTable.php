@@ -1,17 +1,17 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\Ui\Table;
 
 use Anomaly\Streams\Addon\Module\Users\User\UserModel;
-use Anomaly\Streams\Platform\Ui\Table\TableUi;
+use Anomaly\Streams\Platform\Ui\Table\Table;
 
 /**
- * Class UserTableUi
+ * Class UserTable
  *
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
  * @package       Anomaly\Streams\Addon\Module\Users\Ui
  */
-class UserTableUi extends TableUi
+class UserTable extends Table
 {
 
     /**
@@ -90,7 +90,7 @@ class UserTableUi extends TableUi
                 ],
                 [
                     'heading' => 'module::ui.status',
-                    'value'   => function (TableUi $ui, $entry) {
+                    'value'   => function (Table $ui, $entry) {
 
                             $class = null;
                             $title = null;
@@ -147,7 +147,7 @@ class UserTableUi extends TableUi
                     'slug'    => 'activate',
                     'title'   => 'module.users::button.activate',
                     'handler' => 'Anomaly\Streams\Addon\Module\Users\Ui\Table\Action\ActivateUsersTableAction',
-                    'enabled' => function (TableUi $ui) {
+                    'enabled' => function (Table $ui) {
 
                             $view = app('request')->get($ui->getPrefix() . 'view', 'all');
 
@@ -160,7 +160,7 @@ class UserTableUi extends TableUi
                     'slug'    => 'delete',
                     'title'   => 'button.delete',
                     'handler' => 'Anomaly\Streams\Addon\Module\Users\Ui\Table\Action\DeleteUsersTableAction',
-                    'enabled' => function (TableUi $ui) {
+                    'enabled' => function (Table $ui) {
 
                             $view = app('request')->get($ui->getPrefix() . 'view', 'all');
 
