@@ -3,7 +3,7 @@
 use Anomaly\Streams\Addon\Module\Users\Role\RoleModel;
 use Anomaly\Streams\Platform\Ui\Form\FormUi;
 
-class RolesFormUi extends FormUi
+class RoleFormUi extends FormUi
 {
 
     /**
