@@ -1,6 +1,6 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\Extension;
 
-use Anomaly\Streams\Platform\Addon\Extension\ExtensionAddon;
+use Anomaly\Streams\Platform\Addon\Extension\Extension;
 
 /**
  * Class AuthenticatorExtension
@@ -14,7 +14,7 @@ use Anomaly\Streams\Platform\Addon\Extension\ExtensionAddon;
  * @author        Ryan Thompson <ryan@anomaly.is>
  * @package       Anomaly\Streams\Addon\Module\Users\Extension
  */
-class AuthenticatorExtension extends ExtensionAddon
+class AuthenticatorExtension extends Extension
 {
 
     /**

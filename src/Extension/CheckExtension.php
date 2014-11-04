@@ -1,6 +1,6 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\Extension;
 
-use Anomaly\Streams\Platform\Addon\Extension\ExtensionAddon;
+use Anomaly\Streams\Platform\Addon\Extension\Extension;
 
 /**
  * Class CheckExtension
@@ -13,7 +13,7 @@ use Anomaly\Streams\Platform\Addon\Extension\ExtensionAddon;
  * @author        Ryan Thompson <ryan@anomaly.is>
  * @package       Anomaly\Streams\Addon\Module\Users\Extension
  */
-class CheckExtension extends ExtensionAddon
+class CheckExtension extends Extension
 {
 
     /**
