@@ -1,6 +1,6 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users;
 
-use Anomaly\Streams\Platform\Addon\Module\ModuleAddon;
+use Anomaly\Streams\Platform\Addon\Module\Module;
 
 /**
  * Class UsersModule
@@ -10,7 +10,7 @@ use Anomaly\Streams\Platform\Addon\Module\ModuleAddon;
  * @author        Ryan Thompson <ryan@anomaly.is>
  * @package       Anomaly\Streams\Addon\Module\Users
  */
-class UsersModule extends ModuleAddon
+class UsersModule extends Module
 {
 
 }
