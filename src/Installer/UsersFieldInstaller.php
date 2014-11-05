@@ -29,7 +29,7 @@ class UsersFieldInstaller extends FieldInstaller
             'type' => 'text',
         ],
         'permissions'      => [
-            'type' => 'textarea',
+            'type' => 'checkboxes',
         ],
         'first_name'       => [
             'type' => 'text',

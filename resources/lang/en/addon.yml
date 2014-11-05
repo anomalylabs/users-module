@@ -1,2 +1,6 @@
 name: Users
 description: Users and authentication management.
+
+section:
+    users: Users
+    roles: Roles

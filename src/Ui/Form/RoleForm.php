@@ -61,6 +61,7 @@ class RoleForm extends Form
                     'fields' => [
                         'name',
                         'slug',
+                        'permissions',
                     ],
                 ],
             ]
