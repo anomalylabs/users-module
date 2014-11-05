@@ -79,7 +79,7 @@ class CheckAuthorizationCommandHandler
      */
     protected function runSecurityChecks(UserInterface $user)
     {
-        $securityChecks = app('streams.extensions')->find('module.users::check');
+        $securityChecks = app('streams.extensions')->search('module.users::check');
 
         foreach ($securityChecks as $securityCheck) {
 

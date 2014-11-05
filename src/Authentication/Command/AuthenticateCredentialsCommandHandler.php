@@ -52,7 +52,7 @@ class AuthenticateCredentialsCommandHandler
      */
     protected function tryAuthenticators($credentials)
     {
-        $authenticators = app('streams.extensions')->find('module.users::authenticator');
+        $authenticators = app('streams.extensions')->search('module.users::authenticator');
 
         foreach ($authenticators as $authenticator) {
 
