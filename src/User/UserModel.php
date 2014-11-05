@@ -221,5 +221,10 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, UserRepos
     {
         return $this->hasOne('Anomaly\Streams\Addon\Module\Users\Block\BlockModel');
     }
+
+    public function decorate()
+    {
+        return new UserModelPresenter($this);
+    }
 }
  
