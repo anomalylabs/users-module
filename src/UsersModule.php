@@ -13,4 +13,25 @@ use Anomaly\Streams\Platform\Addon\Module\Module;
 class UsersModule extends Module
 {
 
+    protected $nav = 'nav.system';
+
+    protected $sections = [
+        'users' => [
+            'path' => 'admin/users',
+        ],
+        'roles' => [
+            'path' => 'admin/users/roles',
+        ]
+    ];
+
+    protected $menu = [
+        'settings'    => [
+            'title' => 'Settings',
+            'path'  => 'admin/users/settings',
+        ],
+        'preferences' => [
+            'title' => 'Preferences',
+            'path'  => 'admin/users/preferences',
+        ]
+    ];
 }
