@@ -1,5 +1,5 @@
 name: Users
-description: Users and authentication management.
+description: Users module.
 
 section:
     users: Users
