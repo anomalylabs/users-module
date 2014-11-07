@@ -20,6 +20,7 @@ class UserForm extends Form
     protected function boot()
     {
         $this->setUpModel();
+        $this->setUpSkips();
         $this->setUpActions();
         $this->setUpSections();
         $this->setUpRedirects();
@@ -31,6 +32,20 @@ class UserForm extends Form
     protected function setUpModel()
     {
         $this->setModel(new UserModel());
+    }
+
+    /**
+     * Set up the skipped fields.
+     */
+    protected function setUpSkips()
+    {
+        $this->setSkips(
+            [
+                'password',
+                'last_login_at',
+                'last_activity_at',
+            ]
+        );
     }
 
     /**
@@ -66,16 +81,23 @@ class UserForm extends Form
         $this->setSections(
             [
                 [
-                    'title'  => 'General Information',
-                    'fields' => [
-                        'first_name',
-                        'last_name',
-                        'username',
-                        'email',
-                    ],
-                ],
-                [
                     'type' => 'tabbed',
+                    'tabs' => [
+                        [
+                            'title'  => 'Test Tab',
+                            'fields' => [
+                                'first_name',
+                                'last_name',
+                            ],
+                        ],
+                        [
+                            'title'  => 'Another!',
+                            'fields' => [
+                                'username',
+                                'email',
+                            ],
+                        ]
+                    ]
                 ]
             ]
         );

@@ -49,7 +49,20 @@ class RoleTable extends Table
             [
                 'name',
                 'slug',
-                'permissions',
+                [
+                    'field' => 'permissions',
+                    'value' => function ($entry) {
+                            if ($entry->permissions) {
+
+                                return implode('.', $entry->permissions);
+                            }
+
+                            if (!$entry->permissions)
+                            {
+                                return 'No permissions';
+                            }
+                        },
+                ],
             ]
         );
     }
