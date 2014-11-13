@@ -121,6 +121,7 @@ class RouteServiceProvider extends \Anomaly\Streams\Platform\Provider\RouteServi
             'get::admin/users/deactivate/{id}' => 'Admin\UsersController@deactivate',
             'get::admin/users/block/{id}'      => 'Admin\UsersController@block',
             'get::admin/users/unblock/{id}'    => 'Admin\UsersController@unblock',
+            'get::admin/users/logout/{id}'     => 'Admin\UsersController@logout',
         ];
 
         $this->route($router, $routes);

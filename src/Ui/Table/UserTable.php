@@ -1,6 +1,7 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\Ui\Table;
 
 use Anomaly\Streams\Addon\Module\Users\Activation\Contract\ActivationInterface;
+use Anomaly\Streams\Addon\Module\Users\Block\Contract\BlockInterface;
 use Anomaly\Streams\Addon\Module\Users\User\Contract\UserInterface;
 use Anomaly\Streams\Addon\Module\Users\User\UserModel;
 use Anomaly\Streams\Platform\Ui\Table\Table;
@@ -36,7 +37,7 @@ class UserTable extends Table
     {
         $this
             ->setModel(new UserModel())
-            ->setEager(['activation']);
+            ->setEager(['activation', 'block']);
     }
 
     /**
@@ -103,6 +104,7 @@ class UserTable extends Table
                             $class = null;
                             $title = null;
 
+                            $block      = $entry->getBlock();
                             $activation = $entry->getActivation();
 
                             if (!$activation instanceof ActivationInterface or !$activation->isComplete()) {
@@ -117,7 +119,7 @@ class UserTable extends Table
                                 $title = 'module::ui.active';
                             }
 
-                            if ($entry->is_blocked) {
+                            if ($block instanceof BlockInterface) {
 
                                 $class = 'danger';
                                 $title = 'module::ui.blocked';

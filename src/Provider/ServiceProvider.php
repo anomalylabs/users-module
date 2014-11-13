@@ -19,6 +19,7 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
     public function register()
     {
         $this->bindUserInterfaces();
+        $this->bindBlockInterfaces();
         $this->bindActivationInterfaces();
         $this->bindPersistenceInterfaces();
     }
@@ -56,6 +57,18 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
         $this->app->bind(
             'Anomaly\Streams\Addon\Module\Users\Activation\Contract\ActivationRepositoryInterface',
             config('module.users::config.activations.repository')
+        );
+    }
+
+    protected function bindBlockInterfaces()
+    {
+        $this->app->bind(
+            'Anomaly\Streams\Addon\Module\Users\Block\BlockModel',
+            config('module.users::config.blocks.model')
+        );
+        $this->app->bind(
+            'Anomaly\Streams\Addon\Module\Users\Block\Contract\BlockRepositoryInterface',
+            config('module.users::config.blocks.repository')
         );
     }
 }

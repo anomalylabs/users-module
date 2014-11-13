@@ -1,9 +1,11 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\User;
 
 use Anomaly\Streams\Addon\Module\Users\User\Command\ActivateUserCommand;
+use Anomaly\Streams\Addon\Module\Users\User\Command\BlockUserCommand;
 use Anomaly\Streams\Addon\Module\Users\User\Command\CompleteActivationCommand;
 use Anomaly\Streams\Addon\Module\Users\User\Command\CreateUserCommand;
 use Anomaly\Streams\Addon\Module\Users\User\Command\DeactivateUserCommand;
+use Anomaly\Streams\Addon\Module\Users\User\Command\UnblockUserCommand;
 use Anomaly\Streams\Addon\Module\Users\User\Contract\UserInterface;
 use Anomaly\Streams\Platform\Traits\CommandableTrait;
 
@@ -43,10 +45,11 @@ class UserService
      * Activate a user.
      *
      * @param UserInterface $user
+     * @return mixed
      */
     public function activate(UserInterface $user)
     {
-        $this->execute(new ActivateUserCommand($user));
+        return $this->execute(new ActivateUserCommand($user));
     }
 
     /**
@@ -68,6 +71,27 @@ class UserService
     public function complete(UserInterface $user, $code)
     {
         $this->execute(new CompleteActivationCommand($user, $code));
+    }
+
+    /**
+     * Block a user.
+     *
+     * @param UserInterface $user
+     * @return mixed
+     */
+    public function block(UserInterface $user)
+    {
+        return $this->execute(new BlockUserCommand($user));
+    }
+
+    /**
+     * Unblock a user.
+     *
+     * @param UserInterface $user
+     */
+    public function unblock(UserInterface $user)
+    {
+        $this->execute(new UnblockUserCommand($user));
     }
 }
  

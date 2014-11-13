@@ -46,6 +46,13 @@ return [
         'lottery'    => [2, 100],
     ],
     /**
+     * Block management configuration.
+     */
+    'blocks'       => [
+        'model'      => 'Anomaly\Streams\Addon\Module\Users\Block\BlockModel',
+        'repository' => 'Anomaly\Streams\Addon\Module\Users\Block\BlockRepository',
+    ],
+    /**
      * Password reset management configuration.
      */
     'resets'       => [

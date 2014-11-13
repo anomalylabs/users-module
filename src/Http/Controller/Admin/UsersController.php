@@ -1,9 +1,12 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\Http\Controller\Admin;
 
+use Anomaly\Streams\Addon\Module\Users\Foundation\Command\LogoutUserCommand;
 use Anomaly\Streams\Addon\Module\Users\Ui\Form\UserForm;
 use Anomaly\Streams\Addon\Module\Users\Ui\Table\UserTable;
 use Anomaly\Streams\Addon\Module\Users\User\Command\ActivateUserCommand;
+use Anomaly\Streams\Addon\Module\Users\User\Command\BlockUserCommand;
 use Anomaly\Streams\Addon\Module\Users\User\Command\DeactivateUserCommand;
+use Anomaly\Streams\Addon\Module\Users\User\Command\UnblockUserCommand;
 use Anomaly\Streams\Addon\Module\Users\User\Contract\UserRepositoryInterface;
 use Anomaly\Streams\Platform\Http\Controller\AdminController;
 
@@ -79,6 +82,48 @@ class UsersController extends AdminController
     public function deactivate(UserRepositoryInterface $users, $id)
     {
         $this->execute(new DeactivateUserCommand($users->find($id)));
+
+        return redirect(referer('admin/users'));
+    }
+
+    /**
+     * Block a user.
+     *
+     * @param UserRepositoryInterface $users
+     * @param                         $id
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function block(UserRepositoryInterface $users, $id)
+    {
+        $this->execute(new BlockUserCommand($users->find($id)));
+
+        return redirect(referer('admin/users'));
+    }
+
+    /**
+     * Unblock a user.
+     *
+     * @param UserRepositoryInterface $users
+     * @param                         $id
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function unblock(UserRepositoryInterface $users, $id)
+    {
+        $this->execute(new UnblockUserCommand($users->find($id)));
+
+        return redirect(referer('admin/users'));
+    }
+
+    /**
+     * Log a user out.
+     *
+     * @param UserRepositoryInterface $users
+     * @param                         $id
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function logout(UserRepositoryInterface $users, $id)
+    {
+        $this->execute(new LogoutUserCommand($users->find($id)));
 
         return redirect(referer('admin/users'));
     }

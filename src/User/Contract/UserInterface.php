@@ -45,5 +45,12 @@ interface UserInterface
      * @return mixed
      */
     public function getActivation();
+
+    /**
+     * Get the related block.
+     *
+     * @return mixed
+     */
+    public function getBlock();
 }
  
