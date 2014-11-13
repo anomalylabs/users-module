@@ -1,6 +1,5 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\Provider;
 
-use Anomaly\Streams\Addon\Module\Users\Foundation\SessionManager;
 use Illuminate\Routing\Router;
 
 /**
@@ -11,7 +10,7 @@ use Illuminate\Routing\Router;
  * @author        Ryan Thompson <ryan@anomaly.is>
  * @package       Anomaly\Streams\Addon\Module\Users\Provider
  */
-class RouteServiceProvider extends \Illuminate\Foundation\Support\Providers\RouteServiceProvider
+class RouteServiceProvider extends \Anomaly\Streams\Platform\Provider\RouteServiceProvider
 {
 
     /**
@@ -34,9 +33,10 @@ class RouteServiceProvider extends \Illuminate\Foundation\Support\Providers\Rout
      * Called before routes are registered.
      * Register any model bindings or pattern based filters.
      *
+     * @param Router $router
      * @return void
      */
-    public function before()
+    public function before(Router $router)
     {
         //
     }
@@ -113,20 +113,17 @@ class RouteServiceProvider extends \Illuminate\Foundation\Support\Providers\Rout
      */
     private function registerUserRoutes(Router $router)
     {
-        $router->any(
-            'admin/users',
-            'Anomaly\Streams\Addon\Module\Users\Http\Controller\Admin\UsersController@index'
-        );
+        $routes = [
+            'any::admin/users'                 => 'Admin\UsersController@index',
+            'any::admin/users/create'          => 'Admin\UsersController@create',
+            'any::admin/users/edit/{id}'       => 'Admin\UsersController@edit',
+            'get::admin/users/activate/{id}'   => 'Admin\UsersController@activate',
+            'get::admin/users/deactivate/{id}' => 'Admin\UsersController@deactivate',
+            'get::admin/users/block/{id}'      => 'Admin\UsersController@block',
+            'get::admin/users/unblock/{id}'    => 'Admin\UsersController@unblock',
+        ];
 
-        $router->any(
-            'admin/users/create',
-            'Anomaly\Streams\Addon\Module\Users\Http\Controller\Admin\UsersController@create'
-        );
-
-        $router->any(
-            'admin/users/edit/{id}',
-            'Anomaly\Streams\Addon\Module\Users\Http\Controller\Admin\UsersController@edit'
-        );
+        $this->route($router, $routes);
     }
 
     /**

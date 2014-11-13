@@ -19,6 +19,7 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
     public function register()
     {
         $this->bindUserInterfaces();
+        $this->bindActivationInterfaces();
         $this->bindPersistenceInterfaces();
     }
 
@@ -43,6 +44,18 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
         $this->app->bind(
             'Anomaly\Streams\Addon\Module\Users\Persistence\Contract\PersistenceRepositoryInterface',
             config('module.users::config.persistences.repository')
+        );
+    }
+
+    protected function bindActivationInterfaces()
+    {
+        $this->app->bind(
+            'Anomaly\Streams\Addon\Module\Users\Activation\ActivationModel',
+            config('module.users::config.activations.model')
+        );
+        $this->app->bind(
+            'Anomaly\Streams\Addon\Module\Users\Activation\Contract\ActivationRepositoryInterface',
+            config('module.users::config.activations.repository')
         );
     }
 }

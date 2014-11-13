@@ -63,5 +63,25 @@ class UserModel extends UsersUsersEntryModel implements UserInterface
     {
         $this->attributes['password'] = app('hash')->make($password);
     }
+
+    /**
+     * Get the related activation.
+     *
+     * @return mixed
+     */
+    public function getActivation()
+    {
+        return $this->activation;
+    }
+
+    /**
+     * Return the activation relation.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function activation()
+    {
+        return $this->hasOne(config('module.users::config.activations.model'), 'user_id');
+    }
 }
  

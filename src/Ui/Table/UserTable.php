@@ -1,5 +1,7 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\Ui\Table;
 
+use Anomaly\Streams\Addon\Module\Users\Activation\Contract\ActivationInterface;
+use Anomaly\Streams\Addon\Module\Users\User\Contract\UserInterface;
 use Anomaly\Streams\Addon\Module\Users\User\UserModel;
 use Anomaly\Streams\Platform\Ui\Table\Table;
 
@@ -33,7 +35,8 @@ class UserTable extends Table
     protected function setUpModel()
     {
         $this
-            ->setModel(new UserModel());
+            ->setModel(new UserModel())
+            ->setEager(['activation']);
     }
 
     /**
@@ -95,18 +98,20 @@ class UserTable extends Table
                 'email.link',
                 'last_login_at.valueAndDiffForHumans',
                 [
-                    'value' => function ($entry) {
+                    'value' => function (UserInterface $entry) {
 
                             $class = null;
                             $title = null;
 
-                            if (!$entry->is_activated) {
+                            $activation = $entry->getActivation();
+
+                            if (!$activation instanceof ActivationInterface or !$activation->isComplete()) {
 
                                 $class = 'default';
                                 $title = 'module::ui.inactive';
                             }
 
-                            if ($entry->is_activated) {
+                            if ($activation instanceof ActivationInterface and $activation->isComplete()) {
 
                                 $class = 'success';
                                 $title = 'module::ui.active';

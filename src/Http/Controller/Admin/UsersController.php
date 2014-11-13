@@ -2,6 +2,9 @@
 
 use Anomaly\Streams\Addon\Module\Users\Ui\Form\UserForm;
 use Anomaly\Streams\Addon\Module\Users\Ui\Table\UserTable;
+use Anomaly\Streams\Addon\Module\Users\User\Command\ActivateUserCommand;
+use Anomaly\Streams\Addon\Module\Users\User\Command\DeactivateUserCommand;
+use Anomaly\Streams\Addon\Module\Users\User\Contract\UserRepositoryInterface;
 use Anomaly\Streams\Platform\Http\Controller\AdminController;
 
 /**
@@ -43,13 +46,41 @@ class UsersController extends AdminController
     /**
      * Return the form UI for an existing user.
      *
-     * @param UserForm $ui
+     * @param UserForm   $ui
      * @param            $id
      * @return mixed
      */
     public function edit(UserForm $ui, $id)
     {
         return $ui->render($id);
+    }
+
+    /**
+     * Activate a user.
+     *
+     * @param UserRepositoryInterface $users
+     * @param                         $id
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function activate(UserRepositoryInterface $users, $id)
+    {
+        $this->execute(new ActivateUserCommand($users->find($id)));
+
+        return redirect(referer('admin/users'));
+    }
+
+    /**
+     * Deactivate a user.
+     *
+     * @param UserRepositoryInterface $users
+     * @param                         $id
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function deactivate(UserRepositoryInterface $users, $id)
+    {
+        $this->execute(new DeactivateUserCommand($users->find($id)));
+
+        return redirect(referer('admin/users'));
     }
 }
  

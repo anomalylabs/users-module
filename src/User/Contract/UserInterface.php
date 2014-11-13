@@ -38,5 +38,12 @@ interface UserInterface
      * @return mixed
      */
     public function getPassword();
+
+    /**
+     * Get the related activation.
+     *
+     * @return mixed
+     */
+    public function getActivation();
 }
  
