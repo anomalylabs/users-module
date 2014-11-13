@@ -29,22 +29,6 @@ interface PersistenceRepositoryInterface
     public function create(UserInterface $user);
 
     /**
-     * Delete a persistence code.
-     *
-     * @param $code
-     * @return mixed
-     */
-    public function delete($code);
-
-    /**
-     * Find a persistence by it's code.
-     *
-     * @param $code
-     * @return mixed
-     */
-    public function findByCode($code);
-
-    /**
      * Persist a user session.
      *
      * @param UserInterface $user
@@ -67,5 +51,13 @@ interface PersistenceRepositoryInterface
      * @return mixed
      */
     public function forget();
+
+    /**
+     * Find a persistence by it's code.
+     *
+     * @param $code
+     * @return mixed
+     */
+    public function findByCode($code);
 }
  

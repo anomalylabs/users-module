@@ -150,17 +150,6 @@ class PersistenceRepository implements PersistenceRepositoryInterface
     }
 
     /**
-     * Delete a persistence code.
-     *
-     * @param $code
-     * @return mixed
-     */
-    public function delete($code)
-    {
-        $this->model->where('code', $code)->delete();
-    }
-
-    /**
      * Remove the persistence bound to the current session.
      *
      * @return mixed
