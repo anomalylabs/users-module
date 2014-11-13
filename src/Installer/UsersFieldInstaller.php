@@ -14,67 +14,56 @@ class UsersFieldInstaller extends FieldInstaller
 {
 
     /**
-     * Fields to install.
+     * Stream fields to install.
      *
      * @var array
      */
     protected $fields = [
-        'email'            => [
-            'type' => 'email',
-        ],
-        'username'         => [
-            'type' => 'text',
-        ],
+        /**
+         * User fields.
+         */
+        'email'            => 'email',
+        'username'         => 'text',
         'password'         => [
-            'type' => 'text',
+            'type'  => 'text',
+            'rules' => [
+                'confirmed'
+            ]
         ],
-        'permissions'      => [
-            'type' => 'checkboxes',
-        ],
-        'first_name'       => [
-            'type' => 'text',
-        ],
-        'last_name'        => [
-            'type' => 'text',
-        ],
-        'last_activity_at' => [
-            'type' => 'datetime',
-        ],
-        'last_login_at'    => [
-            'type' => 'datetime',
-        ],
+        'ip_address'       => 'text',
+        'last_activity_at' => 'datetime',
+        'last_login_at'    => 'datetime',
         'roles'            => [
             'type'     => 'multiple',
             'settings' => [
-                'relation_model' => 'AwesomeModel',
+                'related' => 'AwesomeModel',
             ],
         ],
-        'slug'             => [
-            'type' => 'slug',
-        ],
-        'name'             => [
-            'type' => 'text',
-        ],
+        /**
+         * Profile fields.
+         */
+        'display_name'     => 'text',
+        'first_name'       => 'text',
+        'last_name'        => 'text',
+        'website'          => 'url',
+        /**
+         * Role fields.
+         */
+        'name'             => 'text',
+        'slug'             => 'slug',
+        'permissions'      => 'checkboxes',
         'user'             => [
             'type'     => 'relationship',
             'settings' => [
-                'relation_model' => 'AwesomeModel',
+                'related' => 'AwesomeModel',
             ],
         ],
-        'code'             => [
-            'type' => 'text',
-        ],
-        'is_complete'      => [
-            'type' => 'boolean',
-        ],
-        'completed_at'     => [
-            'type' => 'datetime',
-        ],
-        'type'             => [
-            'type' => 'text', // TODO: Extension field type?
-        ],
-        'ip_address'       => [
-            'type' => 'text',
-        ],
+        /**
+         * Activation / block / etc fields.
+         */
+        'code'             => 'text',
+        'is_complete'      => 'boolean',
+        'completed_at'     => 'datetime',
+        'type'             => 'text',
     ];
 }

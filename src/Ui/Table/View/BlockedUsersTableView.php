@@ -21,9 +21,7 @@ class BlockedUsersTableView extends TableView
      */
     public function handle($query)
     {
-        return $query
-            ->leftJoin('users_blocks', 'users_blocks.user_id', '=', 'users_users.id')
-            ->where('users_blocks.id', '>', 0);
+        return $query->where('is_blocked', 1);
     }
 }
  

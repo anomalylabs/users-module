@@ -1,12 +1,6 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\Http\Controller\Admin;
 
-use Anomaly\Streams\Addon\Module\Users\Authentication\AuthenticationService;
-use Anomaly\Streams\Addon\Module\Users\Authorization\AuthorizationService;
-use Anomaly\Streams\Addon\Module\Users\Exception\LoginRequiredException;
-use Anomaly\Streams\Addon\Module\Users\Exception\PasswordRequiredException;
-use Anomaly\Streams\Addon\Module\Users\Exception\UserNotFoundException;
-use Anomaly\Streams\Addon\Module\Users\Session\SessionService;
-use Anomaly\Streams\Addon\Module\Users\User\Contract\UserInterface;
+use Anomaly\Streams\Addon\Module\Users\User\UserModel;
 use Anomaly\Streams\Platform\Http\Controller\AdminController;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
@@ -25,16 +19,15 @@ class LoginController extends AdminController
     /**
      * Show the login screen.
      *
-     * @param AuthorizationService $authorization
      * @return \Illuminate\Http\RedirectResponse|Redirector|\Illuminate\View\View
      */
-    public function login(AuthorizationService $authorization)
+    public function login()
     {
         /**
          * If the user is already logged in
          * then send them to their home page.
          */
-        if ($authorization->check()) {
+        if (app('auth')->check()) {
 
             return redirect(preference('module.users::home_page', 'admin/dashboard'));
         } else {
@@ -46,17 +39,13 @@ class LoginController extends AdminController
     /**
      * Attempt to login a user.
      *
-     * @param Request               $request
-     * @param Redirector            $redirect
-     * @param SessionService        $session
-     * @param AuthenticationService $authentication
+     * @param Request    $request
+     * @param Redirector $redirect
      * @return \Illuminate\Http\RedirectResponse
      */
     public function attempt(
         Request $request,
-        Redirector $redirect,
-        SessionService $session,
-        AuthenticationService $authentication
+        Redirector $redirect
     ) {
         /**
          * Attempt to login and start a session. Otherwise
@@ -64,9 +53,9 @@ class LoginController extends AdminController
          */
         try {
 
-            if ($user = $authentication->authenticate($request->all()) and $user instanceof UserInterface) {
+            if ($user = app('auth')->authenticate($request->all()) and $user instanceof UserModel) {
 
-                $session->login($user, ($request->get('remember') == 'on'));
+                app('auth')->login($user, ($request->get('remember') == 'on'));
 
                 return $redirect->intended(preference('module.users::home_page', 'admin/dashboard'));
             }

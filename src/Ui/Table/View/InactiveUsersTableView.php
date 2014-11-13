@@ -21,10 +21,7 @@ class InactiveUsersTableView extends TableView
      */
     public function handle($query)
     {
-        return $query
-            ->leftJoin('users_activations', 'users_activations.user_id', '=', 'users_users.id')
-            ->where('users_activations.is_complete', '<', 1)
-            ->orWhereNull('users_activations.id');
+        return $query->where('is_activated', NULL);
     }
 }
  

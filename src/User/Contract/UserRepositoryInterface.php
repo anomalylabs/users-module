@@ -3,9 +3,6 @@
 /**
  * Interface UserRepositoryInterface
  *
- * This interface assures that other implementations of
- * users can operate in the users module successfully.
- *
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
@@ -15,79 +12,60 @@ interface UserRepositoryInterface
 {
 
     /**
-     * Create a user.
+     * Find a user by it's ID.
+     *
+     * @param $id
+     * @return mixed
+     */
+    public function find($id);
+
+    /**
+     * Find a user by it's credentials.
      *
      * @param array $credentials
      * @return mixed
      */
-    public function createUser(array $credentials);
+    public function findByCredentials(array $credentials);
 
     /**
-     * Register a user.
+     * Find a user by a persistence code.
+     *
+     * @param $code
+     * @return mixed
+     */
+    public function findByPersistenceCode($code);
+
+    /**
+     * Touch the last login stamp.
+     *
+     * @param UserInterface $user
+     * @return mixed
+     */
+    public function touchLogin(UserInterface $user);
+
+    /**
+     * Touch the last activity stamp and IP.
+     *
+     * @param UserInterface $user
+     * @return mixed
+     */
+    public function touch(UserInterface $user);
+
+    /**
+     * Create a new user.
      *
      * @param array $credentials
      * @return mixed
      */
-    public function registerUser(array $credentials);
+    public function create(array $credentials);
 
     /**
-     * Update a user.
+     * Update an existing user.
      *
-     * @param       $userId
-     * @param array $credentials
-     * @param array $data
+     * @param UserInterface $user
+     * @param array         $credentials
      * @return mixed
      */
-    public function updateUser($userId, array $credentials, array $data = []);
-
-    /**
-     * Change a user's password.
-     *
-     * @param $userId
-     * @param $password
-     * @return mixed
-     */
-    public function changeUserPassword($userId, $password);
-
-    /**
-     * Find a user by their ID.
-     *
-     * @param $userId
-     * @return mixed
-     */
-    public function findUserById($userId);
-
-    /**
-     * Find a user by their login.
-     *
-     * @param $login
-     * @return mixed
-     */
-    public function findUserByLogin($login);
-
-    /**
-     * Find a user by their login and password.
-     *
-     * @param $login
-     * @param $password
-     * @return mixed
-     */
-    public function findUserByLoginAndPassword($login, $password);
-
-    /**
-     * Update the users last activity timestamp.
-     *
-     * @param $userId
-     * @return mixed
-     */
-    public function updateLastActivity($userId);
-
-    /**
-     * Update the users last logged in timestamp.
-     *
-     * @param $userId
-     * @return mixed
-     */
-    public function updateLastLoggedIn($userId);
+    public function update(UserInterface $user, array $credentials);
 }
  

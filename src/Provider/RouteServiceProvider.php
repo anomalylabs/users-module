@@ -1,6 +1,6 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\Provider;
 
-use Anomaly\Streams\Addon\Module\Users\Session\SessionService;
+use Anomaly\Streams\Addon\Module\Users\Foundation\SessionManager;
 use Illuminate\Routing\Router;
 
 /**
@@ -97,9 +97,9 @@ class RouteServiceProvider extends \Illuminate\Foundation\Support\Providers\Rout
     {
         $router->get(
             'admin/logout',
-            function (SessionService $session) {
+            function () {
 
-                $session->logout();
+                app('auth')->logout();
 
                 return redirect('admin/login');
             }

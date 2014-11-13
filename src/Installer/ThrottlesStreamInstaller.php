@@ -14,7 +14,7 @@ class ThrottlesStreamInstaller extends StreamInstaller
 {
 
     /**
-     * Stream information.
+     * The stream details.
      *
      * @var array
      */
@@ -23,14 +23,14 @@ class ThrottlesStreamInstaller extends StreamInstaller
     ];
 
     /**
-     * Stream field assignments.
+     * The stream assignments.
      *
      * @var array
      */
     protected $assignments = [
-        'user'       => ['is_required' => true],
-        'type'       => ['is_required' => true],
-        'ip_address' => ['is_required' => true],
+        'user'       => [],
+        'type'       => [],
+        'ip_address' => [],
     ];
 }
  

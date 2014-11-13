@@ -14,23 +14,21 @@ class BlocksStreamInstaller extends StreamInstaller
 {
 
     /**
-     * Stream information.
+     * The stream details.
      *
      * @var array
      */
-    protected
-        $stream = [
+    protected $stream = [
         'is_hidden' => true,
     ];
 
     /**
-     * Stream field assignments.
+     * The stream assignments.
      *
      * @var array
      */
-    protected
-        $assignments = [
-        'user' => ['is_required' => true],
+    protected $assignments = [
+        'user',
     ];
 }
  

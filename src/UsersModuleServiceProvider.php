@@ -20,8 +20,10 @@ class UsersModuleServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->app->register('Anomaly\Streams\Addon\Module\Users\Provider\ServiceProvider');
+
+        $this->app->register('Anomaly\Streams\Addon\Module\Users\Provider\AuthServiceProvider');
         $this->app->register('Anomaly\Streams\Addon\Module\Users\Provider\RouteServiceProvider');
         $this->app->register('Anomaly\Streams\Addon\Module\Users\Provider\ListenerServiceProvider');
-        $this->app->register('Anomaly\Streams\Addon\Module\Users\Provider\InterfaceServiceProvider');
     }
 }

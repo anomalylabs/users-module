@@ -21,11 +21,7 @@ class ActiveUsersTableView extends TableView
      */
     public function handle($query)
     {
-        return $query
-            ->leftJoin('users_activations', 'users_activations.user_id', '=', 'users_users.id')
-            ->leftJoin('users_blocks', 'users_blocks.user_id', '=', 'users_users.id')
-            ->where('users_activations.is_complete', '=', 1)
-            ->whereNull('users_blocks.id');
+        return $query->where('is_activated', 1)->where('is_blocked', null);
     }
 }
  

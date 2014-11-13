@@ -1,6 +1,6 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\Ui\Table;
 
-use Anomaly\Streams\Platform\Model\Users\UsersRolesEntryModel;
+use Anomaly\Streams\Addon\Module\Users\Role\RoleModel;
 use Anomaly\Streams\Platform\Ui\Table\Table;
 
 class RoleTable extends Table
@@ -21,7 +21,7 @@ class RoleTable extends Table
 
     protected function setUpModel()
     {
-        $this->setModel(new UsersRolesEntryModel());
+        $this->setModel(new RoleModel());
     }
 
     protected function setUpViews()
@@ -57,8 +57,7 @@ class RoleTable extends Table
                                 return implode('.', $entry->permissions);
                             }
 
-                            if (!$entry->permissions)
-                            {
+                            if (!$entry->permissions) {
                                 return 'No permissions';
                             }
                         },

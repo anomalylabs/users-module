@@ -14,22 +14,22 @@ class RolesStreamInstaller extends StreamInstaller
 {
 
     /**
-     * Stream information.
+     * The stream details.
      *
      * @var array
      */
     protected $stream = [
         'is_hidden'       => true,
-        'is_translatable' => true,
+        'is_translatable' => true
     ];
 
     /**
-     * Stream field assignments.
+     * The stream assignments.
      *
      * @var array
      */
     protected $assignments = [
-        'name'        => ['is_required' => true, 'is_translatable' => true],
+        'name'        => ['is_required' => true, 'is_unique' => true, 'is_translatable' => true],
         'slug'        => ['is_required' => true, 'is_unique' => true],
         'permissions' => [],
     ];

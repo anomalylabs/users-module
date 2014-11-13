@@ -6,25 +6,37 @@
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
- * @package       Anomaly\Streams\Addon\Module\Users\User\Contract
+ * @package       Anomaly\Streams\Addon\Module\Users\User
  */
 interface UserInterface
 {
 
     /**
+     * Get the user's ID.
+     *
      * @return mixed
      */
     public function getId();
 
     /**
-     * Set the user password.
+     * Get the user's email.
      *
-     * This should implement
-     * the hashing method too.
-     *
-     * @param $password
      * @return mixed
      */
-    public function setPassword($password);
+    public function getEmail();
+
+    /**
+     * Get the user's username.
+     *
+     * @return mixed
+     */
+    public function getUsername();
+
+    /**
+     * Get the user's password.
+     *
+     * @return mixed
+     */
+    public function getPassword();
 }
  

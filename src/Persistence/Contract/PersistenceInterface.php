@@ -1,7 +1,7 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\Persistence\Contract;
 
 /**
- * Class PersistenceInterface
+ * Interface PersistenceInterface
  *
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
@@ -12,10 +12,17 @@ interface PersistenceInterface
 {
 
     /**
-     * Get the persistence code.
+     * Get the persistence's code.
      *
      * @return mixed
      */
     public function getCode();
+
+    /**
+     * Get the related user.
+     *
+     * @return mixed
+     */
+    public function getUser();
 }
  

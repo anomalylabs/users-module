@@ -41,7 +41,7 @@ class RolesController extends AdminController
      * Return the form for an existing role.
      *
      * @param RoleForm $ui
-     * @param          $id
+     * @param           $id
      * @return mixed|null
      */
     public function edit(RoleForm $ui, $id)

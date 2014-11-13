@@ -1,5 +1,6 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\Ui\Form;
 
+use Anomaly\Streams\Addon\Module\Users\Addon\FieldType\PasswordTextFieldType;
 use Anomaly\Streams\Addon\Module\Users\User\UserModel;
 use Anomaly\Streams\Platform\Ui\Form\Form;
 
@@ -22,6 +23,7 @@ class UserForm extends Form
         $this->setUpModel();
         $this->setUpSkips();
         $this->setUpActions();
+        $this->setUpIncludes();
         $this->setUpSections();
         $this->setUpRedirects();
     }
@@ -41,9 +43,16 @@ class UserForm extends Form
     {
         $this->setSkips(
             [
-                'password',
-                'last_login_at',
+                'persistence_code',
                 'last_activity_at',
+                'activation_code',
+                'last_login_at',
+                'is_activated',
+                'activated_at',
+                'reset_code',
+                'is_blocked',
+                'blocked_at',
+                'roles',
             ]
         );
     }
@@ -81,26 +90,37 @@ class UserForm extends Form
         $this->setSections(
             [
                 [
-                    'type' => 'tabbed',
-                    'tabs' => [
-                        [
-                            'title'  => 'Test Tab',
-                            'fields' => [
-                                'first_name',
-                                'last_name',
-                            ],
-                        ],
-                        [
-                            'title'  => 'Another!',
-                            'fields' => [
-                                'username',
-                                'email',
-                            ],
+                    'type'   => 'default',
+                    'title'  => 'UserModel Information',
+                    'fields' => [
+                        'username',
+                        'email',
+                        'password',
+                        'password_confirmation' => [
+                            'label'        => 'module.users::field.password_confirmation.label',
+                            'instructions' => 'module.users::field.password_confirmation.instructions',
+                            'type'         => 'text',
                         ]
                     ]
                 ]
             ]
         );
+    }
+
+    protected function setUpIncludes()
+    {
+        $this->setInclude(
+            [
+                'password_confirmation',
+            ]
+        );
+    }
+
+    protected function onValidating(array $data)
+    {
+        $data['en']['password_confirmation'] = $data['include']['password_confirmation'];
+
+        return $data;
     }
 }
  

@@ -14,7 +14,7 @@ class UsersModule extends Module
 {
 
     /**
-     * The module nav group.
+     * The module nav role.
      *
      * @var string
      */
@@ -26,7 +26,7 @@ class UsersModule extends Module
      * @var array
      */
     protected $sections = [
-        'users' => [
+        'users'  => [
             'url'     => 'admin/users',
             'buttons' => [
                 'create' => []

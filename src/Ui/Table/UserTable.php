@@ -33,8 +33,7 @@ class UserTable extends Table
     protected function setUpModel()
     {
         $this
-            ->setModel(new UserModel())
-            ->setEager(['activation', 'block']);
+            ->setModel(new UserModel());
     }
 
     /**
@@ -71,7 +70,6 @@ class UserTable extends Table
     {
         $this->setFilters(
             [
-                'first_name',
                 'email',
             ]
         );
@@ -86,28 +84,35 @@ class UserTable extends Table
             [
                 [
                     'heading' => 'Name',
-                    'value'   => '{first_name} {last_name}',
+                    'value'   => function ($entry) {
+                            if ($profile = $entry->profile) {
+
+                                return $profile->display_name;
+                            }
+                        },
                 ],
+                'username',
+                'email.link',
+                'last_login_at.valueAndDiffForHumans',
                 [
-                    'heading' => 'module::ui.status',
-                    'value'   => function (Table $ui, $entry) {
+                    'value' => function ($entry) {
 
                             $class = null;
                             $title = null;
 
-                            if (!$entry->activation or !$entry->activation->itIsComplete()) {
+                            if (!$entry->is_activated) {
 
                                 $class = 'default';
                                 $title = 'module::ui.inactive';
                             }
 
-                            if ($entry->activation and $entry->activation->itIsComplete()) {
+                            if ($entry->is_activated) {
 
                                 $class = 'success';
                                 $title = 'module::ui.active';
                             }
 
-                            if ($entry->block) {
+                            if ($entry->is_blocked) {
 
                                 $class = 'danger';
                                 $title = 'module::ui.blocked';
@@ -116,9 +121,23 @@ class UserTable extends Table
                             return '<span class="label label-' . $class . '">' . trans($title) . '</span>';
                         },
                 ],
-                'username',
-                'email.link',
-                'last_login_at.valueAndDiffForHumans',
+                [
+                    'value' => function ($entry) {
+
+                            $active = date('Y-m-d H:i:s', strtotime('-15 minutes'));
+
+                            $class = 'default';
+                            $title = 'Offline';
+
+                            if ($entry->last_activity_at > $active) {
+
+                                $class = 'success';
+                                $title = 'Online';
+                            }
+
+                            return '<span class="label label-' . $class . '">' . trans($title) . '</span>';
+                        },
+                ],
             ]
         );
     }

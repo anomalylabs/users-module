@@ -1,6 +1,5 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\Http\Middleware;
 
-use Anomaly\Streams\Addon\Module\Users\Authorization\AuthorizationService;
 use Closure;
 use Illuminate\Contracts\Routing\Middleware;
 
@@ -16,48 +15,35 @@ class CheckAuthentication implements Middleware
 {
 
     /**
-     * The authorization service object.
+     * Handle the request.
      *
-     * @var \Anomaly\Streams\Addon\Module\Users\Authorization\AuthorizationService
-     */
-    protected $authorization;
-
-    /**
-     * Create a new CheckAuthorization instance.
-     *
-     * @param AuthorizationService $authorization
-     */
-    function __construct(AuthorizationService $authorization)
-    {
-        $this->authorization = $authorization;
-    }
-
-    /**
-     * Handle an incoming request.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @param  \Closure                 $next
-     * @return mixed
+     * @param \Illuminate\Http\Request $request
+     * @param callable                 $next
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function handle($request, Closure $next)
     {
+        // Skip if we're in the installer.
         if (starts_with($request->path(), 'installer')) {
 
             return $next($request);
         }
 
+        // Skip if logging in or out.
         if (in_array($request->path(), ['admin/login', 'admin/logout'])) {
 
             return $next($request);
         }
 
-        if ($this->authorization->check()) {
+        // If we're good, proceed.
+        if (app('auth')->check()) {
 
             app('session')->remove('url.intended');
 
             return $next($request);
         }
 
+        // Login! Stash intended URL.
         app('session')->put('url.intended', $request->fullUrl());
 
         return redirect('admin/login');

@@ -3,24 +3,15 @@
 use Anomaly\Streams\Platform\Stream\StreamInstaller;
 
 /**
- * Class PersistencesStreamInstaller
+ * Class ProfilesStreamInstaller
  *
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
  * @package       Anomaly\Streams\Addon\Module\Users\Installer
  */
-class PersistencesStreamInstaller extends StreamInstaller
+class ProfilesStreamInstaller extends StreamInstaller
 {
-
-    /**
-     * The stream details.
-     *
-     * @var array
-     */
-    protected $stream = [
-        'is_hidden' => true,
-    ];
 
     /**
      * The stream assignments.
@@ -28,8 +19,11 @@ class PersistencesStreamInstaller extends StreamInstaller
      * @var array
      */
     protected $assignments = [
-        'user' => [],
-        'code' => [],
+        'user'         => [],
+        'display_name' => [],
+        'first_name'   => [],
+        'last_name'    => [],
+        'website'      => [],
     ];
 }
  

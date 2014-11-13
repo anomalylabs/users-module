@@ -1,5 +1,7 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\Persistence\Contract;
 
+use Anomaly\Streams\Addon\Module\Users\User\Contract\UserInterface;
+
 /**
  * Interface PersistenceRepositoryInterface
  *
@@ -12,35 +14,58 @@ interface PersistenceRepositoryInterface
 {
 
     /**
-     * Find a persistence code by user ID or create one.
+     * Check the current session for a persistence code.
      *
-     * @param $userId
      * @return mixed
      */
-    public function findPersistenceByIdOrCreate($userId);
+    public function check();
 
     /**
-     * Forget persistence for a user.
+     * Create a new persistence code for a user.
      *
-     * @param $userId
-     */
-    public function forgetPersistence($userId);
-
-    /**
-     * Find a persistence code by ID.
-     *
-     * @param $userId
+     * @param UserInterface $user
      * @return mixed
      */
-    public function findPersistenceByUserId($userId);
+    public function create(UserInterface $user);
 
     /**
-     * Find a persistence by user ID and code.
+     * Delete a persistence code.
      *
-     * @param $userId
      * @param $code
      * @return mixed
      */
-    public function findPersistenceByUserIdAndCode($userId, $code);
+    public function delete($code);
+
+    /**
+     * Find a persistence by it's code.
+     *
+     * @param $code
+     * @return mixed
+     */
+    public function findByCode($code);
+
+    /**
+     * Persist a user session.
+     *
+     * @param UserInterface $user
+     * @param bool          $remember
+     * @return mixed
+     */
+    public function persist(UserInterface $user, $remember = false);
+
+    /**
+     * Flush persistence for a user.
+     *
+     * @param UserInterface $user
+     * @return mixed
+     */
+    public function flush(UserInterface $user);
+
+    /**
+     * Remove the persistence bound to the current session.
+     *
+     * @return mixed
+     */
+    public function forget();
 }
  

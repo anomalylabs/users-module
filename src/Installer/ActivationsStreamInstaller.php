@@ -14,7 +14,7 @@ class ActivationsStreamInstaller extends StreamInstaller
 {
 
     /**
-     * Stream information.
+     * The stream details.
      *
      * @var array
      */
@@ -23,13 +23,13 @@ class ActivationsStreamInstaller extends StreamInstaller
     ];
 
     /**
-     * Stream field assignments.
+     * The stream assignments.
      *
      * @var array
      */
     protected $assignments = [
-        'user'         => ['is_required' => true],
-        'code'         => ['is_required' => true],
+        'user'         => [],
+        'code'         => [],
         'is_complete'  => [],
         'completed_at' => [],
     ];
