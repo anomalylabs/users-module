@@ -86,7 +86,7 @@ class ActivationRepository implements ActivationRepositoryInterface
      */
     public function deleteExpired()
     {
-        $expired = date('Y-m-d H:i:s', time()->config('module.users::config.activations.expires'));
+        $expired = date('Y-m-d H:i:s', time() - config('module.users::config.activations.expires'));
 
         $this->model->where('created_at', '<', $expired)->delete();
     }

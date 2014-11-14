@@ -12,6 +12,24 @@ interface RoleRepositoryInterface
 {
 
     /**
+     * Create a new role.
+     *
+     * @param       $name
+     * @param       $slug
+     * @param array $permissions
+     * @return mixed
+     */
+    public function create($name, $slug, array $permissions = []);
+
+    /**
+     * Delete a role by it's slug.
+     *
+     * @param $slug
+     * @return mixed
+     */
+    public function delete($slug);
+
+    /**
      * Find a role by it's ID.
      *
      * @param $id

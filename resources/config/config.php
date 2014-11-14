@@ -15,11 +15,11 @@ return [
         'repository' => 'Anomaly\Streams\Addon\Module\Users\User\UserRepository',
     ],
     /**
-     * Group management configuration.
+     * Role management configuration.
      */
-    'groups'          => [
-        'model'      => 'Anomaly\Streams\Addon\Module\Users\Group\GroupModel',
-        'repository' => 'Anomaly\Streams\Addon\Module\Users\Group\GroupRepository',
+    'roles'           => [
+        'model'      => 'Anomaly\Streams\Addon\Module\Users\Role\RoleModel',
+        'repository' => 'Anomaly\Streams\Addon\Module\Users\Role\RoleRepository',
     ],
     /**
      * Persistence management configuration.

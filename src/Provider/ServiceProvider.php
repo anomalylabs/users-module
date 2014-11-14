@@ -77,7 +77,7 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
     protected function bindRoleInterfaces()
     {
         $this->app->bind(
-            'Anomaly\Streams\Addon\Module\Users\Role\BlockModel',
+            'Anomaly\Streams\Addon\Module\Users\Role\RoleModel',
             config('module.users::config.roles.model')
         );
         $this->app->bind(

@@ -51,5 +51,41 @@ class RoleRepository implements RoleRepositoryInterface
     {
         return $this->model->where('slug', $slug)->first();
     }
+
+    /**
+     * Create a new role.
+     *
+     * @param       $name
+     * @param       $slug
+     * @param array $permissions
+     * @return mixed
+     */
+    public function create($name, $slug, array $permissions = [])
+    {
+        $role = $this->model->newInstance();
+
+        $role->name        = $name;
+        $role->slug        = $slug;
+        $role->permissions = $permissions;
+
+        $role->save();
+
+        return $role;
+    }
+
+    /**
+     * Delete a role by it's slug.
+     *
+     * @param $slug
+     * @return mixed
+     */
+    public function delete($slug)
+    {
+        $role = $this->findBySlug($slug);
+
+        $role->delete();
+
+        return $role;
+    }
 }
  
