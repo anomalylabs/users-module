@@ -34,8 +34,8 @@ class UsersFieldInstaller extends FieldInstaller
         'last_activity_at' => 'datetime',
         'last_login_at'    => 'datetime',
         'roles'            => [
-            'type'     => 'multiple',
-            'settings' => [
+            'type'   => 'multiple',
+            'config' => [
                 'related' => 'AwesomeModel',
             ],
         ],
@@ -53,8 +53,8 @@ class UsersFieldInstaller extends FieldInstaller
         'slug'             => 'slug',
         'permissions'      => 'checkboxes',
         'user'             => [
-            'type'     => 'relationship',
-            'settings' => [
+            'type'   => 'relationship',
+            'config' => [
                 'related' => 'AwesomeModel',
             ],
         ],
