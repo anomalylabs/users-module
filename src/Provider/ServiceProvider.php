@@ -21,6 +21,7 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
         $this->bindUserInterfaces();
         $this->bindRoleInterfaces();
         $this->bindBlockInterfaces();
+        $this->bindThrottleInterfaces();
         $this->bindActivationInterfaces();
         $this->bindPersistenceInterfaces();
     }
@@ -82,6 +83,18 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
         $this->app->bind(
             'Anomaly\Streams\Addon\Module\Users\Role\Contract\RoleRepositoryInterface',
             config('module.users::config.roles.repository')
+        );
+    }
+
+    protected function bindThrottleInterfaces()
+    {
+        $this->app->bind(
+            'Anomaly\Streams\Addon\Module\Users\Throttle\ThrottleModel',
+            config('module.users::config.throttling.model')
+        );
+        $this->app->bind(
+            'Anomaly\Streams\Addon\Module\Users\Throttle\Contract\ThrottleRepositoryInterface',
+            config('module.users::config.throttling.repository')
         );
     }
 }

@@ -1,9 +1,11 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\Foundation\Command;
 
+use Anomaly\Streams\Addon\Module\Users\Foundation\Event\UserWasAuthorizedEvent;
 use Anomaly\Streams\Addon\Module\Users\Persistence\Contract\PersistenceInterface;
 use Anomaly\Streams\Addon\Module\Users\Persistence\Contract\PersistenceRepositoryInterface;
 use Anomaly\Streams\Addon\Module\Users\User\Contract\UserInterface;
 use Anomaly\Streams\Addon\Module\Users\User\Contract\UserRepositoryInterface;
+use Anomaly\Streams\Platform\Traits\DispatchableTrait;
 
 /**
  * Class CheckAuthorizationCommandHandler
@@ -15,6 +17,8 @@ use Anomaly\Streams\Addon\Module\Users\User\Contract\UserRepositoryInterface;
  */
 class CheckAuthorizationCommandHandler
 {
+
+    use DispatchableTrait;
 
     /**
      * Handle the command.
@@ -31,6 +35,8 @@ class CheckAuthorizationCommandHandler
 
             return false;
         }
+
+        $this->dispatch(new UserWasAuthorizedEvent($user));
 
         $users->touch($user);
 

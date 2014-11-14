@@ -5,41 +5,41 @@ return [
     /**
      * Session and Cookie keys. Leave as NULL to use an MD5 hash.
      */
-    'session'      => null,
-    'cookie'       => null,
+    'session'         => null,
+    'cookie'          => null,
     /**
      * User management configuration.
      */
-    'users'        => [
+    'users'           => [
         'model'      => 'Anomaly\Streams\Addon\Module\Users\User\UserModel',
         'repository' => 'Anomaly\Streams\Addon\Module\Users\User\UserRepository',
     ],
     /**
      * Group management configuration.
      */
-    'groups'       => [
+    'groups'          => [
         'model'      => 'Anomaly\Streams\Addon\Module\Users\Group\GroupModel',
         'repository' => 'Anomaly\Streams\Addon\Module\Users\Group\GroupRepository',
     ],
     /**
      * Persistence management configuration.
      */
-    'persistences' => [
+    'persistences'    => [
         'model'      => 'Anomaly\Streams\Addon\Module\Users\Persistence\PersistenceModel',
         'repository' => 'Anomaly\Streams\Addon\Module\Users\Persistence\PersistenceRepository',
     ],
     /**
      * Security checkpoints to run.
      */
-    'checkpoints'  => [
-        'throttle',
+    'security_checks' => [
+        //'throttle',
         'blocked',
         'activation',
     ],
     /**
      * Activation management configuration.
      */
-    'activations'  => [
+    'activations'     => [
         'model'      => 'Anomaly\Streams\Addon\Module\Users\Activation\ActivationModel',
         'repository' => 'Anomaly\Streams\Addon\Module\Users\Activation\ActivationRepository',
         'expires'    => 259200,
@@ -48,14 +48,14 @@ return [
     /**
      * Block management configuration.
      */
-    'blocks'       => [
+    'blocks'          => [
         'model'      => 'Anomaly\Streams\Addon\Module\Users\Block\BlockModel',
         'repository' => 'Anomaly\Streams\Addon\Module\Users\Block\BlockRepository',
     ],
     /**
      * Password reset management configuration.
      */
-    'resets'       => [
+    'resets'          => [
         'model'      => 'Anomaly\Streams\Addon\Module\Users\Reset\ResetModel',
         'repository' => 'Anomaly\Streams\Addon\Module\Users\Reset\ResetRepository',
         'expires'    => 14400, // 10 Days
@@ -64,7 +64,7 @@ return [
     /**
      * Throttle management configuration.
      */
-    'throttling'   => [
+    'throttling'      => [
         'model'      => 'Anomaly\Streams\Addon\Module\Users\Throttle\ThrottleModel',
         'repository' => 'Anomaly\Streams\Addon\Module\Users\Throttle\ThrottleRepository',
         'global'     => [

@@ -14,12 +14,7 @@ class ListenerServiceProvider extends ServiceProvider
     {
         app('events')->listen(
             'Anomaly.Streams.Addon.Module.Users.Foundation.Event.*',
-            'Anomaly\Streams\Addon\Module\Users\Foundation\EventListener'
-        );
-
-        app('events')->listen(
-            'Anomaly.Streams.Addon.Module.Users.Event.*',
-            'Anomaly\Streams\Addon\Module\Users\Profile\ProfileListener'
+            'Anomaly\Streams\Addon\Module\Users\Foundation\AuthListener'
         );
     }
 }
