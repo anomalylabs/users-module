@@ -15,6 +15,13 @@ return [
         'repository' => 'Anomaly\Streams\Addon\Module\Users\User\UserRepository',
     ],
     /**
+     * Profile management configuration.
+     */
+    'profiles'        => [
+        'model'      => 'Anomaly\Streams\Addon\Module\Users\Profile\ProfileModel',
+        'repository' => 'Anomaly\Streams\Addon\Module\Users\Profile\ProfileRepository',
+    ],
+    /**
      * Role management configuration.
      */
     'roles'           => [
