@@ -14,11 +14,11 @@ class UsersModule extends Module
 {
 
     /**
-     * The module nav role.
+     * The module navigation role.
      *
      * @var string
      */
-    protected $nav = 'nav.system';
+    protected $navigation = 'admin.navigation.system';
 
     /**
      * The module sections.
