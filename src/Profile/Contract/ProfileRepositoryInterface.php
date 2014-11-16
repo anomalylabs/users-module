@@ -21,5 +21,13 @@ interface ProfileRepositoryInterface
      * @return mixed
      */
     public function create(UserInterface $user, array $data = []);
+
+    /**
+     * Delete the profile attached to a user ID.
+     *
+     * @param $userId
+     * @return mixed
+     */
+    public function delete($userId);
 }
  

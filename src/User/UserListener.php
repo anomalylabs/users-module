@@ -1,7 +1,9 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\User;
 
 use Anomaly\Streams\Addon\Module\Users\Profile\Command\CreateProfileCommand;
+use Anomaly\Streams\Addon\Module\Users\Profile\Command\DeleteProfileCommand;
 use Anomaly\Streams\Addon\Module\Users\User\Event\UserWasCreatedEvent;
+use Anomaly\Streams\Addon\Module\Users\User\Event\UserWasDeletedEvent;
 use Anomaly\Streams\Platform\Support\Listener;
 
 /**
@@ -24,6 +26,19 @@ class UserListener extends Listener
     public function whenUserWasCreated(UserWasCreatedEvent $event)
     {
         return $this->execute(new CreateProfileCommand($event->getUser()));
+    }
+
+    /**
+     * Fire after a user was deleted.
+     *
+     * @param UserWasDeletedEvent $event
+     * @return mixed
+     */
+    public function whenUserWasDeleted(UserWasDeletedEvent $event)
+    {
+        $user = $event->getUser();
+
+        return $this->execute(new DeleteProfileCommand($user->getId()));
     }
 }
  

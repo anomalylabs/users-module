@@ -1,6 +1,7 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\User;
 
 use Anomaly\Streams\Addon\Module\Users\User\Event\UserWasCreatedEvent;
+use Anomaly\Streams\Addon\Module\Users\User\Event\UserWasDeletedEvent;
 use Anomaly\Streams\Platform\Entry\EntryModelObserver;
 
 /**
@@ -24,6 +25,18 @@ class UserModelObserver extends EntryModelObserver
         $this->dispatch(new UserWasCreatedEvent($model));
 
         parent::created($model);
+    }
+
+    /**
+     * Fire after a user is deleted.
+     *
+     * @param $model
+     */
+    public function deleted($model)
+    {
+        $this->dispatch(new UserWasDeletedEvent($model));
+
+        parent::deleted($model);
     }
 }
  

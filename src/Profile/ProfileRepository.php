@@ -48,5 +48,16 @@ class ProfileRepository implements ProfileRepositoryInterface
 
         return $profile;
     }
+
+    /**
+     * Delete the profile attached to a user ID.
+     *
+     * @param $userId
+     * @return mixed
+     */
+    public function delete($userId)
+    {
+        $this->model->where('user_id', $userId)->delete();
+    }
 }
  
