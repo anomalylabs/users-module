@@ -1,6 +1,7 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\Profile;
 
 use Anomaly\Streams\Addon\Module\Users\Profile\Contract\ProfileRepositoryInterface;
+use Anomaly\Streams\Addon\Module\Users\User\Contract\UserInterface;
 
 /**
  * Class ProfileRepository
@@ -33,15 +34,15 @@ class ProfileRepository implements ProfileRepositoryInterface
     /**
      * Create a new user profile.
      *
-     * @param       $userId
-     * @param array $data
-     * @return mixed
+     * @param UserInterface $user
+     * @param array         $data
+     * @return mixed|static
      */
-    public function create($userId, array $data = [])
+    public function create(UserInterface $user, array $data = [])
     {
         $profile = $this->model->newInstance();
 
-        $profile->user_id = $userId;
+        $profile->user_id = $user->getId();
 
         $profile->save();
 

@@ -52,5 +52,12 @@ interface UserInterface
      * @return mixed
      */
     public function getBlock();
+
+    /**
+     * Get the related profile.
+     *
+     * @return mixed
+     */
+    public function getProfile();
 }
  

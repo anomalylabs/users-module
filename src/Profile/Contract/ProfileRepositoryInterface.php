@@ -1,5 +1,7 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\Profile\Contract;
 
+use Anomaly\Streams\Addon\Module\Users\User\Contract\UserInterface;
+
 /**
  * Interface ProfileRepositoryInterface
  *
@@ -14,10 +16,10 @@ interface ProfileRepositoryInterface
     /**
      * Create a new user profile.
      *
-     * @param       $userId
-     * @param array $data
+     * @param UserInterface $user
+     * @param array         $data
      * @return mixed
      */
-    public function create($userId, array $data = []);
+    public function create(UserInterface $user, array $data = []);
 }
  

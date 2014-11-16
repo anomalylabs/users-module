@@ -85,6 +85,16 @@ class UserModel extends UsersUsersEntryModel implements UserInterface
     }
 
     /**
+     * Get the related profile.
+     *
+     * @return mixed
+     */
+    public function getProfile()
+    {
+        return $this->profile;
+    }
+
+    /**
      * Return the activation relation.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
@@ -102,6 +112,16 @@ class UserModel extends UsersUsersEntryModel implements UserInterface
     public function block()
     {
         return $this->hasOne(config('module.users::config.blocks.model'), 'user_id');
+    }
+
+    /**
+     * Return the profile relation.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function profile()
+    {
+        return $this->hasOne(config('module.users::config.profiles.model'), 'user_id');
     }
 }
  

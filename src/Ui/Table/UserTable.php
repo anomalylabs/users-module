@@ -2,6 +2,7 @@
 
 use Anomaly\Streams\Addon\Module\Users\Activation\Contract\ActivationInterface;
 use Anomaly\Streams\Addon\Module\Users\Block\Contract\BlockInterface;
+use Anomaly\Streams\Addon\Module\Users\Profile\Contract\ProfileInterface;
 use Anomaly\Streams\Addon\Module\Users\User\Contract\UserInterface;
 use Anomaly\Streams\Addon\Module\Users\User\UserModel;
 use Anomaly\Streams\Platform\Ui\Table\Table;
@@ -88,8 +89,11 @@ class UserTable extends Table
             [
                 [
                     'heading' => 'Name',
-                    'value'   => function ($entry) {
-                            if ($profile = $entry->profile) {
+                    'value'   => function (UserInterface $entry) {
+
+                            $profile = $entry->getProfile();
+
+                            if ($profile instanceof ProfileInterface) {
 
                                 return $profile->display_name;
                             }
