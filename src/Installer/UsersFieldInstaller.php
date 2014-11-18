@@ -24,12 +24,7 @@ class UsersFieldInstaller extends FieldInstaller
          */
         'email'            => 'email',
         'username'         => 'text',
-        'password'         => [
-            'type'  => 'text',
-            'rules' => [
-                'confirmed'
-            ]
-        ],
+        'password'         => 'Anomaly\Streams\Addon\Module\Users\Addon\FieldType\PasswordTextFieldType',
         'ip_address'       => 'text',
         'last_activity_at' => 'datetime',
         'last_login_at'    => 'datetime',

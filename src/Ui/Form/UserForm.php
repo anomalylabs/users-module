@@ -52,7 +52,6 @@ class UserForm extends Form
                 'reset_code',
                 'is_blocked',
                 'blocked_at',
-                'roles',
             ]
         );
     }
@@ -95,6 +94,7 @@ class UserForm extends Form
                     'fields' => [
                         'username',
                         'email',
+                        'roles',
                         'password',
                         'password_confirmation' => [
                             'label'        => 'module.users::field.password_confirmation.label',

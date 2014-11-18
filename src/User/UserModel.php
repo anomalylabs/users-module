@@ -55,16 +55,6 @@ class UserModel extends UsersUsersEntryModel implements UserInterface
     }
 
     /**
-     * Set the user's password attribute.
-     *
-     * @param $password
-     */
-    public function setPasswordAttribute($password)
-    {
-        $this->attributes['password'] = app('hash')->make($password);
-    }
-
-    /**
      * Get the related activation.
      *
      * @return mixed
