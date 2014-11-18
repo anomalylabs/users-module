@@ -1,5 +1,6 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\Foundation\Command;
 
+use Anomaly\Streams\Addon\Module\Users\Extension\AuthenticatorExtension;
 use Anomaly\Streams\Addon\Module\Users\User\Contract\UserInterface;
 use Anomaly\Streams\Addon\Module\Users\User\Contract\UserRepositoryInterface;
 
@@ -23,14 +24,31 @@ class AuthenticateCredentialsCommandHandler
      */
     public function handle(AuthenticateCredentialsCommand $command, UserRepositoryInterface $repository)
     {
-        $user = $repository->findByCredentials($command->getCredentials());
+        $credentials = $command->getCredentials();
 
-        if (!$user instanceof UserInterface) {
+        foreach (app('streams.extensions')->search('module.users::*.authenticator') as $extension) {
 
-            return false;
+            $result = $this->runAuthenticator($extension, $credentials);
+
+            if ($result instanceof UserInterface) {
+
+                return $result;
+            }
         }
 
-        return $user;
+        return null;
+    }
+
+    /**
+     * Run the authenticator.
+     *
+     * @param AuthenticatorExtension $extension
+     * @param array                  $credentials
+     * @return mixed
+     */
+    protected function runAuthenticator(AuthenticatorExtension $extension, array $credentials)
+    {
+        return $extension->authenticate($credentials);
     }
 }
  
