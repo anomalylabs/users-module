@@ -38,8 +38,6 @@ class CheckAuthorizationCommandHandler
 
         $this->dispatch(new UserWasAuthorizedEvent($user));
 
-        $users->touch($user);
-
         return $user;
     }
 
