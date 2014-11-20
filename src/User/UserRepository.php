@@ -4,11 +4,29 @@ use Anomaly\Streams\Addon\Module\Users\User\Contract\UserInterface;
 use Anomaly\Streams\Addon\Module\Users\User\Contract\UserRepositoryInterface;
 use Illuminate\Database\Eloquent\Builder;
 
+/**
+ * Class UserRepository
+ *
+ * @link          http://anomaly.is/streams-platform
+ * @author        AnomalyLabs, Inc. <hello@anomaly.is>
+ * @author        Ryan Thompson <ryan@anomaly.is>
+ * @package       Anomaly\Streams\Addon\Module\Users\User
+ */
 class UserRepository implements UserRepositoryInterface
 {
 
+    /**
+     * The model object.
+     *
+     * @var UserModel
+     */
     protected $model;
 
+    /**
+     * Create a new UserRepository instance.
+     *
+     * @param UserModel $model
+     */
     function __construct(UserModel $model)
     {
         $this->model = $model;

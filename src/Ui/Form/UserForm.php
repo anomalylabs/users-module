@@ -1,6 +1,5 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\Ui\Form;
 
-use Anomaly\Streams\Addon\Module\Users\Addon\FieldType\PasswordTextFieldType;
 use Anomaly\Streams\Addon\Module\Users\User\UserModel;
 use Anomaly\Streams\Platform\Ui\Form\Form;
 
@@ -107,6 +106,9 @@ class UserForm extends Form
         );
     }
 
+    /**
+     * Set up included non-stream fields.
+     */
     protected function setUpIncludes()
     {
         $this->setInclude(
@@ -114,13 +116,6 @@ class UserForm extends Form
                 'password_confirmation',
             ]
         );
-    }
-
-    protected function onValidating(array $data)
-    {
-        $data['en']['password_confirmation'] = $data['include']['password_confirmation'];
-
-        return $data;
     }
 }
  
