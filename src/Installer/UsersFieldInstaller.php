@@ -31,7 +31,7 @@ class UsersFieldInstaller extends FieldInstaller
         'roles'            => [
             'type'   => 'multiple',
             'config' => [
-                'related' => 'AwesomeModel',
+                'related' => 'Anomaly\Streams\Addon\Module\Users\Role\RoleModel',
             ],
         ],
         /**
@@ -50,7 +50,7 @@ class UsersFieldInstaller extends FieldInstaller
         'user'             => [
             'type'   => 'relationship',
             'config' => [
-                'related' => 'AwesomeModel',
+                'related' => 'Anomaly\Streams\Addon\Module\Users\User\UserModel',
             ],
         ],
         /**
