@@ -1,5 +1,7 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\Http\Middleware;
 
+use Anomaly\Streams\Addon\Module\Users\User\Contract\UserInterface;
+use Anomaly\Streams\Addon\Module\Users\User\Contract\UserRepositoryInterface;
 use Closure;
 use Illuminate\Contracts\Routing\Middleware;
 
@@ -13,6 +15,23 @@ use Illuminate\Contracts\Routing\Middleware;
  */
 class CheckAuthentication implements Middleware
 {
+
+    /**
+     * The user repository.
+     *
+     * @var \Anomaly\Streams\Addon\Module\Users\User\Contract\UserRepositoryInterface
+     */
+    protected $users;
+
+    /**
+     * Create a new CheckAuthentication instance.
+     *
+     * @param UserRepositoryInterface $users
+     */
+    public function __construct(UserRepositoryInterface $users)
+    {
+        $this->users = $users;
+    }
 
     /**
      * Handle the request.
@@ -36,7 +55,9 @@ class CheckAuthentication implements Middleware
         }
 
         // If we're good, proceed.
-        if (app('auth')->check()) {
+        if ($user = app('auth')->check() and $user instanceof UserInterface) {
+
+            $this->users->touch($user);
 
             app('session')->remove('url.intended');
 
