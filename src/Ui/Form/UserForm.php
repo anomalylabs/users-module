@@ -89,7 +89,7 @@ class UserForm extends Form
             [
                 [
                     'type'   => 'default',
-                    'title'  => 'UserModel Information',
+                    'title'  => 'User Information',
                     'fields' => [
                         'username',
                         'email',
