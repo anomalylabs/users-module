@@ -26,11 +26,11 @@ class RoleForm extends Form
     }
 
     /**
-     * Set up form redirects.
+     * Set up form actions.
      */
     protected function setUpRedirects()
     {
-        $this->setRedirects(
+        $this->setActions(
             [
                 'save',
             ]
@@ -38,11 +38,11 @@ class RoleForm extends Form
     }
 
     /**
-     * Set up the form actions.
+     * Set up the form buttons.
      */
     protected function setUpActions()
     {
-        $this->setActions(
+        $this->setButtons(
             [
                 'cancel',
                 'delete',

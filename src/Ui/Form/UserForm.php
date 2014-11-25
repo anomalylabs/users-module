@@ -21,10 +21,10 @@ class UserForm extends Form
     {
         $this->setUpModel();
         $this->setUpSkips();
+        $this->setUpButtons();
         $this->setUpActions();
         $this->setUpIncludes();
         $this->setUpSections();
-        $this->setUpRedirects();
     }
 
     /**
@@ -56,11 +56,11 @@ class UserForm extends Form
     }
 
     /**
-     * Set up form redirects.
+     * Set up form actions.
      */
-    protected function setUpRedirects()
+    protected function setUpActions()
     {
-        $this->setRedirects(
+        $this->setActions(
             [
                 'save',
             ]
@@ -68,11 +68,11 @@ class UserForm extends Form
     }
 
     /**
-     * Set up the form actions.
+     * Set up the form buttons.
      */
-    protected function setUpActions()
+    protected function setUpButtons()
     {
-        $this->setActions(
+        $this->setButtons(
             [
                 'cancel',
                 'delete',

@@ -77,11 +77,11 @@ class RoleTable extends Table
 
     protected function setUpActions()
     {
-        /*$this->setActions(
+        $this->setActions(
             [
                 'delete',
             ]
-        );*/
+        );
     }
 }
  
