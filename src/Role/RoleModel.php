@@ -27,16 +27,6 @@ class RoleModel extends UsersRolesEntryModel implements RoleInterface
     }
 
     /**
-     * Get the role ID.
-     *
-     * @return mixed
-     */
-    public function getId()
-    {
-        // TODO: Implement getId() method.
-    }
-
-    /**
      * Get the role slug.
      *
      * @return mixed

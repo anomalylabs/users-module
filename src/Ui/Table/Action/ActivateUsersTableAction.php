@@ -1,7 +1,6 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\Ui\Table\Action;
 
 use Anomaly\Streams\Addon\Module\Users\Activation\Contract\ActivationRepositoryInterface;
-use Anomaly\Streams\Platform\Ui\Table\Contract\TableActionInterface;
 
 /**
  * Class ActivateUsersTableAction
@@ -11,52 +10,26 @@ use Anomaly\Streams\Platform\Ui\Table\Contract\TableActionInterface;
  * @author        Ryan Thompson <ryan@anomaly.is>
  * @package       Anomaly\Streams\Addon\Module\Users\Ui\Action
  */
-class ActivateUsersTableAction implements TableActionInterface
+class ActivateUsersTableAction
 {
-
-    /**
-     * The activation repository interface object.
-     *
-     * @var
-     */
-    protected $activations;
-
-    /**
-     * Create a new ActivateUsersTableAction instance.
-     *
-     * @param ActivationRepositoryInterface $service
-     */
-    function __construct(ActivationRepositoryInterface $activations)
-    {
-        $this->activations = $activations;
-    }
 
     /**
      * Handle the table action.
      *
-     * @param array $ids
+     * @param array                         $ids
+     * @param ActivationRepositoryInterface $activations
      * @return mixed
      */
-    public function handle(array $ids)
+    public function handle(array $ids, ActivationRepositoryInterface $activations)
     {
         $count = count($ids);
 
-        foreach ($ids as $id) {
+        /*foreach ($ids as $id) {
 
             $this->activations->forceActivation($id);
-        }
+        }*/
 
         app('streams.messages')->add('success', trans('module.users::message.users_activated', compact('count')));
-    }
-
-    /**
-     * Authorize the user to process the action.
-     *
-     * @return mixed
-     */
-    public function authorize()
-    {
-        // TODO: Implement authorize() method.
     }
 }
  

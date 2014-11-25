@@ -171,30 +171,10 @@ class UserTable extends Table
     {
         $this->setActions(
             [
-                [
-                    'type'    => 'success',
-                    'slug'    => 'activate',
+                'success' => [
                     'title'   => 'module.users::button.activate',
-                    'handler' => 'Anomaly\Streams\Addon\Module\Users\Ui\Table\Action\ActivateUsersTableAction',
-                    'enabled' => function (Table $ui) {
-
-                            $view = app('request')->get($ui->getPrefix() . 'view', 'all');
-
-                            return ($view == 'all');
-                        }
-                ],
-                [
-                    'type'    => 'delete',
-                    'icon'    => 'fa fa-trash',
-                    'slug'    => 'delete',
-                    'title'   => 'button.delete',
-                    'handler' => 'Anomaly\Streams\Addon\Module\Users\Ui\Table\Action\DeleteUsersTableAction',
-                    'enabled' => function (Table $ui) {
-
-                            $view = app('request')->get($ui->getPrefix() . 'view', 'all');
-
-                            return ($view == 'all');
-                        }
+                    'handler' => 'ActivateUsersTableAction@handle',
+                    'enabled' => true
                 ],
             ]
         );
