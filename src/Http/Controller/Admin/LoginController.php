@@ -27,7 +27,7 @@ class LoginController extends AdminController
          * If the user is already logged in
          * then send them to their home page.
          */
-        if (app('auth')->check()) {
+        if (app('streams.auth')->check()) {
 
             return redirect(preference('module.users::home_page', 'admin/dashboard'));
         } else {
@@ -53,9 +53,9 @@ class LoginController extends AdminController
          */
         try {
 
-            if ($user = app('auth')->authenticate($request->all()) and $user instanceof UserModel) {
+            if ($user = app('streams.auth')->authenticate($request->all()) and $user instanceof UserModel) {
 
-                app('auth')->login($user, ($request->get('remember') == 'on'));
+                app('streams.auth')->login($user, ($request->get('remember') == 'on'));
 
                 return $redirect->intended(preference('module.users::home_page', 'admin/dashboard'));
             }

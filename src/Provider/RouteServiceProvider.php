@@ -48,7 +48,7 @@ class RouteServiceProvider extends \Anomaly\Streams\Platform\Provider\RouteServi
      */
     public function map(Router $router)
     {
-        $router->when('admin*', 'auth');
+        $router->when('admin*', 'streams.auth');
 
         $this->registerAdminRoutes($router);
         $this->registerLoginRoutes($router);
@@ -99,7 +99,7 @@ class RouteServiceProvider extends \Anomaly\Streams\Platform\Provider\RouteServi
             'admin/logout',
             function () {
 
-                app('auth')->logout();
+                app('streams.auth')->logout();
 
                 return redirect('admin/login');
             }
