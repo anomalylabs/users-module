@@ -55,7 +55,7 @@ class CheckAuthentication implements Middleware
         }
 
         // If we're good, proceed.
-        if ($user = app('auth')->check() and $user instanceof UserInterface) {
+        if ($user = app('streams.auth')->check() and $user instanceof UserInterface) {
 
             $this->users->touch($user);
 

@@ -26,7 +26,7 @@ class RouteServiceProvider extends \Anomaly\Streams\Platform\Provider\RouteServi
      * @var array
      */
     protected $middleware = [
-        'auth' => 'Anomaly\Streams\Addon\Module\Users\Http\Middleware\CheckAuthentication',
+        'streams.auth' => 'Anomaly\Streams\Addon\Module\Users\Http\Middleware\CheckAuthentication',
     ];
 
     /**

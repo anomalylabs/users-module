@@ -19,7 +19,7 @@ class AuthServiceProvider extends \Illuminate\Support\ServiceProvider
     public function register()
     {
         $this->app->singleton(
-            'auth',
+            'streams.auth',
             function () {
 
                 return app('Anomaly\Streams\Addon\Module\Users\Foundation\AuthService');
