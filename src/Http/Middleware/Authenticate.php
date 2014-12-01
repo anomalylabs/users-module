@@ -6,14 +6,14 @@ use Closure;
 use Illuminate\Contracts\Routing\Middleware;
 
 /**
- * Class CheckAuthorization
+ * Class Authenticate
  *
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
  * @package       Anomaly\Streams\Addon\Module\Users\Http\Middleware
  */
-class CheckAuthentication implements Middleware
+class Authenticate implements Middleware
 {
 
     /**
@@ -24,7 +24,7 @@ class CheckAuthentication implements Middleware
     protected $users;
 
     /**
-     * Create a new CheckAuthentication instance.
+     * Create a new Authenticate instance.
      *
      * @param UserRepositoryInterface $users
      */

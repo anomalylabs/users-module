@@ -27,35 +27,35 @@ class UsersController extends AdminController
     /**
      * Return the table UI for users.
      *
-     * @param UserTable $ui
+     * @param UserTable $table
      * @return string
      */
-    public function index(UserTable $ui)
+    public function index(UserTable $table)
     {
-        return $ui->render();
+        return $table->render();
     }
 
     /**
      * Return the form UI for creating a new user.
      *
-     * @param UserForm $ui
+     * @param UserForm $form
      * @return mixed
      */
-    public function create(UserForm $ui)
+    public function create(UserForm $form)
     {
-        return $ui->render();
+        return $form->render();
     }
 
     /**
      * Return the form UI for an existing user.
      *
-     * @param UserForm   $ui
+     * @param UserForm   $form
      * @param            $id
      * @return mixed
      */
-    public function edit(UserForm $ui, $id)
+    public function edit(UserForm $form, $id)
     {
-        return $ui->render($id);
+        return $form->render($id);
     }
 
     /**

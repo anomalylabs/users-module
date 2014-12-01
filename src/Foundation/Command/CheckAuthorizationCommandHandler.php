@@ -47,9 +47,8 @@ class CheckAuthorizationCommandHandler
      * @param PersistenceRepositoryInterface $persistences
      * @return bool|mixed
      */
-    protected function getUser(
-        PersistenceRepositoryInterface $persistences
-    ) {
+    protected function getUser(PersistenceRepositoryInterface $persistences)
+    {
         $code = $persistences->check();
 
         if (!$code) {

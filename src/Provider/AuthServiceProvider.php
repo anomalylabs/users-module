@@ -18,6 +18,15 @@ class AuthServiceProvider extends \Illuminate\Support\ServiceProvider
      */
     public function register()
     {
+        $this->registerAuthService();
+        $this->registerAuthMiddleware();
+    }
+
+    /**
+     * Register the auth service.
+     */
+    protected function registerAuthService()
+    {
         $this->app->singleton(
             'streams.auth',
             function () {
@@ -25,6 +34,14 @@ class AuthServiceProvider extends \Illuminate\Support\ServiceProvider
                 return app('Anomaly\Streams\Addon\Module\Users\Foundation\AuthService');
             }
         );
+    }
+
+    /**
+     * Register auth middleware.
+     */
+    protected function registerAuthMiddleware()
+    {
+        $this->app->bind('Authenticate', 'Anomaly\Streams\Addon\Module\Users\Http\Middleware\Authenticate');
     }
 }
  

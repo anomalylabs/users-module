@@ -1,7 +1,5 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\Provider;
 
-use Illuminate\Routing\Router;
-
 /**
  * Class RouteServiceProvider
  *
@@ -10,62 +8,35 @@ use Illuminate\Routing\Router;
  * @author        Ryan Thompson <ryan@anomaly.is>
  * @package       Anomaly\Streams\Addon\Module\Users\Provider
  */
-class RouteServiceProvider extends \Anomaly\Streams\Platform\Provider\RouteServiceProvider
+class RouteServiceProvider extends \Illuminate\Foundation\Support\Providers\RouteServiceProvider
 {
 
     /**
-     * The controllers to scan for route annotations.
+     * The controller namespace prefix for this addon.
      *
-     * @var array
+     * @var string
      */
-    protected $scan = [];
-
-    /**
-     * All of the module's route middleware keys.
-     *
-     * @var array
-     */
-    protected $middleware = [
-        'streams.auth' => 'Anomaly\Streams\Addon\Module\Users\Http\Middleware\CheckAuthentication',
-    ];
-
-    /**
-     * Called before routes are registered.
-     * Register any model bindings or pattern based filters.
-     *
-     * @param Router $router
-     * @return void
-     */
-    public function before(Router $router)
-    {
-        //
-    }
+    protected $prefix = 'Anomaly\Streams\Addon\Module\Users\Http\Controller\\';
 
     /**
      * Define the routes for the application.
-     *
-     * @return void
      */
-    public function map(Router $router)
+    public function map()
     {
-        $router->when('admin*', 'streams.auth');
+        $this->registerAdminRoutes();
+        $this->registerLoginRoutes();
+        $this->registerLogoutRoutes();
 
-        $this->registerAdminRoutes($router);
-        $this->registerLoginRoutes($router);
-        $this->registerLogoutRoutes($router);
-
-        $this->registerUserRoutes($router);
-        $this->registerRoleRoutes($router);
+        $this->registerUserRoutes();
+        $this->registerRoleRoutes();
     }
 
     /**
      * Register admin routes.
-     *
-     * @param Router $router
      */
-    protected function registerAdminRoutes(Router $router)
+    protected function registerAdminRoutes()
     {
-        $router->get(
+        app('router')->get(
             'admin',
             function () {
 
@@ -76,26 +47,25 @@ class RouteServiceProvider extends \Anomaly\Streams\Platform\Provider\RouteServi
 
     /**
      * Register login routes.
-     *
-     * @param Router $router
      */
-    protected function registerLoginRoutes(Router $router)
+    protected function registerLoginRoutes()
     {
-        $router->get('admin/login', 'Anomaly\Streams\Addon\Module\Users\Http\Controller\Admin\LoginController@login');
-        $router->post(
+        app('router')->get(
             'admin/login',
-            'Anomaly\Streams\Addon\Module\Users\Http\Controller\Admin\LoginController@attempt'
+            $this->prefix . 'Admin\LoginController@login'
+        );
+        app('router')->post(
+            'admin/login',
+            $this->prefix . 'Admin\LoginController@attempt'
         );
     }
 
     /**
      * Register the logout route.
-     *
-     * @param Router $router
      */
-    protected function registerLogoutRoutes(Router $router)
+    protected function registerLogoutRoutes()
     {
-        $router->get(
+        app('router')->get(
             'admin/logout',
             function () {
 
@@ -108,45 +78,26 @@ class RouteServiceProvider extends \Anomaly\Streams\Platform\Provider\RouteServi
 
     /**
      * Register user routes.
-     *
-     * @param Router $router
      */
-    private function registerUserRoutes(Router $router)
+    private function registerUserRoutes()
     {
-        $routes = [
-            'any::admin/users'                 => 'Admin\UsersController@index',
-            'any::admin/users/create'          => 'Admin\UsersController@create',
-            'any::admin/users/edit/{id}'       => 'Admin\UsersController@edit',
-            'get::admin/users/activate/{id}'   => 'Admin\UsersController@activate',
-            'get::admin/users/deactivate/{id}' => 'Admin\UsersController@deactivate',
-            'get::admin/users/block/{id}'      => 'Admin\UsersController@block',
-            'get::admin/users/unblock/{id}'    => 'Admin\UsersController@unblock',
-            'get::admin/users/logout/{id}'     => 'Admin\UsersController@logout',
-        ];
-
-        $this->route($router, $routes);
+        app('router')->any('admin/users', $this->prefix . 'Admin\UsersController@index');
+        app('router')->any('admin/users/create', $this->prefix . 'Admin\UsersController@create');
+        app('router')->any('admin/users/edit/{id}', $this->prefix . 'Admin\UsersController@edit');
+        app('router')->any('admin/users/activate/{id}', $this->prefix . 'Admin\UsersController@activate');
+        app('router')->any('admin/users/deactivate/{id}', $this->prefix . 'Admin\UsersController@deactivate');
+        app('router')->any('admin/users/block/{id}', $this->prefix . 'Admin\UsersController@block');
+        app('router')->any('admin/users/unblock/{id}', $this->prefix . 'Admin\UsersController@unblock');
+        app('router')->any('admin/users/logout/{id}', $this->prefix . 'Admin\UsersController@logout');
     }
 
     /**
      * Register role routes.
-     *
-     * @param $router
      */
-    protected function registerRoleRoutes($router)
+    protected function registerRoleRoutes()
     {
-        $router->any(
-            'admin/users/roles',
-            'Anomaly\Streams\Addon\Module\Users\Http\Controller\Admin\RolesController@index'
-        );
-
-        $router->any(
-            'admin/users/roles/create',
-            'Anomaly\Streams\Addon\Module\Users\Http\Controller\Admin\RolesController@create'
-        );
-
-        $router->any(
-            'admin/users/roles/edit/{id}',
-            'Anomaly\Streams\Addon\Module\Users\Http\Controller\Admin\RolesController@edit'
-        );
+        app('router')->any('admin/users/roles', $this->prefix . 'Admin\RolesController@index');
+        app('router')->any('admin/users/roles/create', $this->prefix . 'Admin\RolesController@create');
+        app('router')->any('admin/users/roles/edit/{id}', $this->prefix . 'Admin\RolesController@edit');
     }
 }
