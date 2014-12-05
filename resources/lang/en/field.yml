@@ -3,3 +3,6 @@ username:
 
 name:
     name: Name
+
+email:
+    name: Email
