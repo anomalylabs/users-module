@@ -41,6 +41,10 @@ class UserTable extends TableBuilder
         ],
     ];
 
-    protected $actions = [];
+    protected $actions = [
+        'test' => [
+            'text' => 'Action'
+        ]
+    ];
 }
  

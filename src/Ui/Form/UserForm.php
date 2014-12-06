@@ -17,7 +17,11 @@ class UserForm extends FormBuilder
 
     protected $sections = [
         [
-            'layout' => 'Test HTML'
+            'title'  => 'Test Title',
+            'fields' => [
+                'username',
+                'email',
+            ]
         ]
     ];
 
