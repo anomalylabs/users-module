@@ -18,7 +18,7 @@ class UsersModule extends Module
      *
      * @var string
      */
-    protected $navigation = 'admin.navigation.system';
+    protected $navigation = 'navigation.system';
 
     /**
      * The module sections.
