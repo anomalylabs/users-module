@@ -1,8 +1,8 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\Http\Controller\Admin;
 
 use Anomaly\Streams\Addon\Module\Users\Foundation\Command\LogoutUserCommand;
-use Anomaly\Streams\Addon\Module\Users\Ui\Form\UserForm;
-use Anomaly\Streams\Addon\Module\Users\Ui\Table\UserTable;
+use Anomaly\Streams\Addon\Module\Users\Ui\Form\UserFormBuilder;
+use Anomaly\Streams\Addon\Module\Users\Ui\Table\UserTableBuilder;
 use Anomaly\Streams\Addon\Module\Users\User\Command\ActivateUserCommand;
 use Anomaly\Streams\Addon\Module\Users\User\Command\BlockUserCommand;
 use Anomaly\Streams\Addon\Module\Users\User\Command\DeactivateUserCommand;
@@ -27,10 +27,10 @@ class UsersController extends AdminController
     /**
      * Return the table UI for users.
      *
-     * @param UserTable $table
+     * @param UserTableBuilder $table
      * @return string
      */
-    public function index(UserTable $table)
+    public function index(UserTableBuilder $table)
     {
         return $table->render();
     }
@@ -38,10 +38,10 @@ class UsersController extends AdminController
     /**
      * Return the form UI for creating a new user.
      *
-     * @param UserForm $form
+     * @param UserFormBuilder $form
      * @return mixed
      */
-    public function create(UserForm $form)
+    public function create(UserFormBuilder $form)
     {
         return $form->render();
     }
@@ -49,11 +49,11 @@ class UsersController extends AdminController
     /**
      * Return the form UI for an existing user.
      *
-     * @param UserForm   $form
+     * @param UserFormBuilder   $form
      * @param            $id
      * @return mixed
      */
-    public function edit(UserForm $form, $id)
+    public function edit(UserFormBuilder $form, $id)
     {
         return $form->render($id);
     }

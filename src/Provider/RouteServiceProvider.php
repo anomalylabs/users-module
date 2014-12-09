@@ -29,6 +29,7 @@ class RouteServiceProvider extends \Illuminate\Foundation\Support\Providers\Rout
 
         $this->registerUserRoutes();
         $this->registerRoleRoutes();
+        $this->registerPermissionsRoutes();
     }
 
     /**
@@ -99,5 +100,13 @@ class RouteServiceProvider extends \Illuminate\Foundation\Support\Providers\Rout
         app('router')->any('admin/users/roles', $this->prefix . 'Admin\RolesController@index');
         app('router')->any('admin/users/roles/create', $this->prefix . 'Admin\RolesController@create');
         app('router')->any('admin/users/roles/edit/{id}', $this->prefix . 'Admin\RolesController@edit');
+    }
+
+    /**
+     * Register permission routes.
+     */
+    protected function registerPermissionsRoutes()
+    {
+        app('router')->any('admin/users/permissions', $this->prefix . 'Admin\PermissionsController@index');
     }
 }

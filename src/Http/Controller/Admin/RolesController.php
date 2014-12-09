@@ -1,7 +1,7 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\Http\Controller\Admin;
 
-use Anomaly\Streams\Addon\Module\Users\Ui\Form\RoleForm;
-use Anomaly\Streams\Addon\Module\Users\Ui\Table\RoleTable;
+use Anomaly\Streams\Addon\Module\Users\Ui\Form\RoleFormBuilder;
+use Anomaly\Streams\Addon\Module\Users\Ui\Table\RoleTableBuilder;
 use Anomaly\Streams\Platform\Http\Controller\AdminController;
 
 /**
@@ -18,10 +18,10 @@ class RolesController extends AdminController
     /**
      * Return the table for existing roles.
      *
-     * @param RoleTable $ui
+     * @param RoleTableBuilder $ui
      * @return mixed|null
      */
-    public function index(RoleTable $ui)
+    public function index(RoleTableBuilder $ui)
     {
         return $ui->render();
     }
@@ -29,10 +29,10 @@ class RolesController extends AdminController
     /**
      * Return the form for a new role.
      *
-     * @param RoleForm $ui
+     * @param RoleFormBuilder $ui
      * @return mixed|null
      */
-    public function create(RoleForm $ui)
+    public function create(RoleFormBuilder $ui)
     {
         return $ui->render();
     }
@@ -40,11 +40,11 @@ class RolesController extends AdminController
     /**
      * Return the form for an existing role.
      *
-     * @param RoleForm $ui
+     * @param RoleFormBuilder $ui
      * @param           $id
      * @return mixed|null
      */
-    public function edit(RoleForm $ui, $id)
+    public function edit(RoleFormBuilder $ui, $id)
     {
         return $ui->render($id);
     }

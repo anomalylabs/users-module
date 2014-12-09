@@ -3,14 +3,14 @@
 use Anomaly\Streams\Platform\Ui\Form\FormBuilder;
 
 /**
- * Class UserForm
+ * Class UserFormBuilder
  *
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
  * @package       Anomaly\Streams\Addon\Module\Users\Ui
  */
-class UserForm extends FormBuilder
+class UserFormBuilder extends FormBuilder
 {
 
     protected $model = 'Anomaly\Streams\Addon\Module\Users\User\UserModel';
@@ -21,6 +21,7 @@ class UserForm extends FormBuilder
             'fields' => [
                 'username',
                 'email',
+                'roles',
             ]
         ]
     ];

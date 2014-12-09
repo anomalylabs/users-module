@@ -85,6 +85,16 @@ class UserModel extends UsersUsersEntryModel implements UserInterface
     }
 
     /**
+     * Set the password attribute only after hashing it.
+     *
+     * @param $password
+     */
+    public function setPasswordAttribute($password)
+    {
+        $this->attributes['password'] = app('hash')->make($password);
+    }
+
+    /**
      * Return the activation relation.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasOne

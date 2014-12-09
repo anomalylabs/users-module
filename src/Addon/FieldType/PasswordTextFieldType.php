@@ -22,20 +22,10 @@ class PasswordTextFieldType extends TextFieldType
     {
         $data = parent::getInputData();
 
-        $data['type'] = 'password';
+        $data['type']  = 'password';
+        $data['value'] = null;
 
         return $data;
-    }
-
-    /**
-     * Hash the password before setting on the model.
-     *
-     * @param $value
-     * @return mixed
-     */
-    public function mutate($value)
-    {
-        return app('hash')->make($value);
     }
 }
  

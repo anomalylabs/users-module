@@ -4,7 +4,7 @@ use Anomaly\Streams\Addon\Module\Users\Role\RoleModel;
 use Anomaly\Streams\Platform\Ui\Table\Table;
 use Anomaly\Streams\Platform\Ui\Table\TableBuilder;
 
-class RoleTable extends TableBuilder
+class RoleTableBuilder extends TableBuilder
 {
 
     function __construct(Table $table)

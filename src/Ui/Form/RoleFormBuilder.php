@@ -5,14 +5,14 @@ use Anomaly\Streams\Platform\Ui\Form\Form;
 use Anomaly\Streams\Platform\Ui\Form\FormBuilder;
 
 /**
- * Class RoleForm
+ * Class RoleFormBuilder
  *
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
  * @package       Anomaly\Streams\Addon\Module\Users\Ui\Form
  */
-class RoleForm extends FormBuilder
+class RoleFormBuilder extends FormBuilder
 {
 
     protected $sections = [
@@ -20,13 +20,12 @@ class RoleForm extends FormBuilder
             'fields' => [
                 'name',
                 'slug',
-                'permissions',
             ],
         ],
     ];
 
     /**
-     * Create new RoleForm instance.
+     * Create new RoleFormBuilder instance.
      *
      * @param Form $form
      */
