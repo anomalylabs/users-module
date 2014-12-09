@@ -1,8 +1,6 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\Role;
 
-use Anomaly\Streams\Addon\Module\Users\Role\Command\CreateRoleCommand;
-use Anomaly\Streams\Addon\Module\Users\Role\Command\DeleteRoleCommand;
-use Anomaly\Streams\Platform\Traits\CommandableTrait;
+use Laracasts\Commander\CommanderTrait;
 
 /**
  * Class RoleService
@@ -15,7 +13,7 @@ use Anomaly\Streams\Platform\Traits\CommandableTrait;
 class RoleService
 {
 
-    use CommandableTrait;
+    use CommanderTrait;
 
     /**
      * Create a new role.
@@ -27,7 +25,10 @@ class RoleService
      */
     public function create($name, $slug, array $permissions = [])
     {
-        return $this->execute(new CreateRoleCommand($name, $slug, $permissions));
+        return $this->execute(
+            'Anomaly\Streams\Addon\Module\Users\Role\Command\CreateRoleCommand',
+            compact('name', 'slug', 'permissions')
+        );
     }
 
     /**
@@ -38,7 +39,10 @@ class RoleService
      */
     public function delete($slug)
     {
-        return $this->execute(new DeleteRoleCommand($slug));
+        return $this->execute(
+            'Anomaly\Streams\Addon\Module\Users\Role\Command\DeleteRoleCommand',
+            compact('slug')
+        );
     }
 }
  

@@ -11,5 +11,8 @@
 class CheckAuthorizationCommand
 {
 
+    public function __construct()
+    {
+    }
 }
  

@@ -1,13 +1,7 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\User;
 
-use Anomaly\Streams\Addon\Module\Users\User\Command\ActivateUserCommand;
-use Anomaly\Streams\Addon\Module\Users\User\Command\BlockUserCommand;
-use Anomaly\Streams\Addon\Module\Users\User\Command\CompleteActivationCommand;
-use Anomaly\Streams\Addon\Module\Users\User\Command\CreateUserCommand;
-use Anomaly\Streams\Addon\Module\Users\User\Command\DeactivateUserCommand;
-use Anomaly\Streams\Addon\Module\Users\User\Command\UnblockUserCommand;
 use Anomaly\Streams\Addon\Module\Users\User\Contract\UserInterface;
-use Anomaly\Streams\Platform\Traits\CommandableTrait;
+use Laracasts\Commander\CommanderTrait;
 
 /**
  * Class UserService
@@ -20,7 +14,7 @@ use Anomaly\Streams\Platform\Traits\CommandableTrait;
 class UserService
 {
 
-    use CommandableTrait;
+    use CommanderTrait;
 
     /**
      * Register a new user.
@@ -31,7 +25,10 @@ class UserService
      */
     public function register(array $credentials, $activate = false)
     {
-        $user = $this->execute(new CreateUserCommand($credentials));
+        $user = $this->execute(
+            'Anomaly\Streams\Addon\Module\Users\User\Command\CreateUserCommand',
+            compact('credentials')
+        );
 
         if ($activate) {
 
@@ -49,7 +46,10 @@ class UserService
      */
     public function activate(UserInterface $user)
     {
-        return $this->execute(new ActivateUserCommand($user));
+        return $this->execute(
+            'Anomaly\Streams\Addon\Module\Users\User\Command\ActivateUserCommand',
+            compact('user')
+        );
     }
 
     /**
@@ -59,7 +59,10 @@ class UserService
      */
     public function deactivate(UserInterface $user)
     {
-        $this->execute(new DeactivateUserCommand($user));
+        $this->execute(
+            'Anomaly\Streams\Addon\Module\Users\User\Command\DeactivateUserCommand',
+            compact('user')
+        );
     }
 
     /**
@@ -70,7 +73,10 @@ class UserService
      */
     public function complete(UserInterface $user, $code)
     {
-        $this->execute(new CompleteActivationCommand($user, $code));
+        $this->execute(
+            'Anomaly\Streams\Addon\Module\Users\User\Command\CompleteActivationCommand',
+            compact('user', 'code')
+        );
     }
 
     /**
@@ -81,7 +87,10 @@ class UserService
      */
     public function block(UserInterface $user)
     {
-        return $this->execute(new BlockUserCommand($user));
+        return $this->execute(
+            'Anomaly\Streams\Addon\Module\Users\User\Command\BlockUserCommand',
+            compact('user')
+        );
     }
 
     /**
@@ -91,7 +100,10 @@ class UserService
      */
     public function unblock(UserInterface $user)
     {
-        $this->execute(new UnblockUserCommand($user));
+        $this->execute(
+            'Anomaly\Streams\Addon\Module\Users\User\Command\UnblockUserCommand',
+            compact('user')
+        );
     }
 }
  

@@ -1,12 +1,7 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\Foundation;
 
-use Anomaly\Streams\Addon\Module\Users\Foundation\Command\AuthenticateCredentialsCommand;
-use Anomaly\Streams\Addon\Module\Users\Foundation\Command\CheckAuthorizationCommand;
-use Anomaly\Streams\Addon\Module\Users\Foundation\Command\GetUserCommand;
-use Anomaly\Streams\Addon\Module\Users\Foundation\Command\LoginUserCommand;
-use Anomaly\Streams\Addon\Module\Users\Foundation\Command\LogoutUserCommand;
 use Anomaly\Streams\Addon\Module\Users\User\Contract\UserInterface;
-use Anomaly\Streams\Platform\Traits\CommandableTrait;
+use Laracasts\Commander\CommanderTrait;
 
 /**
  * Class AuthService
@@ -19,14 +14,7 @@ use Anomaly\Streams\Platform\Traits\CommandableTrait;
 class AuthService
 {
 
-    use CommandableTrait;
-
-    /**
-     * Runtime cache.
-     *
-     * @var array
-     */
-    protected $cache = [];
+    use CommanderTrait;
 
     /**
      * Check if a user is logged in.
@@ -35,12 +23,7 @@ class AuthService
      */
     public function check()
     {
-        if (isset($this->cache['current'])) {
-
-            return $this->cache['current'];
-        }
-
-        return $this->cache['current'] = $this->execute(new CheckAuthorizationCommand());
+        return $this->execute('\Anomaly\Streams\Addon\Module\Users\Foundation\Command\CheckAuthorizationCommand');
     }
 
     /**
@@ -51,7 +34,10 @@ class AuthService
      */
     public function authenticate(array $credentials)
     {
-        return $this->execute(new AuthenticateCredentialsCommand($credentials));
+        return $this->execute(
+            'Anomaly\Streams\Addon\Module\Users\Foundation\Command\AuthenticateCredentialsCommand',
+            compact('credentials')
+        );
     }
 
     /**
@@ -62,7 +48,10 @@ class AuthService
      */
     public function login(UserInterface $user, $remember = false)
     {
-        $this->execute(new LoginUserCommand($user, $remember));
+        $this->execute(
+            'Anomaly\Streams\Addon\Module\Users\Foundation\Command\LoginUserCommand',
+            compact('user', 'remember')
+        );
     }
 
     /**
@@ -81,7 +70,10 @@ class AuthService
 
         if ($user instanceof UserInterface) {
 
-            $this->execute(new LogoutUserCommand($user, $forget));
+            $this->execute(
+                'Anomaly\Streams\Addon\Module\Users\Foundation\Command\LogoutUserCommand',
+                compact('user', 'forget')
+            );
         }
     }
 
@@ -91,19 +83,17 @@ class AuthService
      * @param null $id
      * @return mixed
      */
-    public function getUser($id = 'current')
+    public function getUser($id = null)
     {
-        if (isset($this->cache[$id])) {
+        if ($id) {
 
-            return $this->cache[$id];
+            return $this->execute(
+                'Anomaly\Streams\Addon\Module\Users\Foundation\Command\GetUserCommand',
+                compact('id')
+            );
         }
 
-        if (is_numeric($id)) {
-
-            return $this->cache[$id] = $this->execute(new GetUserCommand($id));
-        }
-
-        return $this->cache[$id] = $this->check();
+        return $this->check();
     }
 }
  

@@ -1,9 +1,8 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\Foundation;
 
-use Anomaly\Streams\Addon\Module\Users\Foundation\Command\RunSecurityChecksCommand;
 use Anomaly\Streams\Addon\Module\Users\Foundation\Event\UserWasAuthorizedEvent;
 use Anomaly\Streams\Platform\Support\Listener;
-use Anomaly\Streams\Platform\Traits\CommandableTrait;
+use Laracasts\Commander\CommanderTrait;
 
 /**
  * Class AuthListener
@@ -16,7 +15,7 @@ use Anomaly\Streams\Platform\Traits\CommandableTrait;
 class AuthListener extends Listener
 {
 
-    use CommandableTrait;
+    use CommanderTrait;
 
     /**
      * Fired after auth->check()
@@ -25,7 +24,12 @@ class AuthListener extends Listener
      */
     public function whenUserWasAuthorized(UserWasAuthorizedEvent $event)
     {
-        $this->execute(new RunSecurityChecksCommand($event->getUser(), 'check'));
+        $user = $event->getUser();
+
+        $this->execute(
+            'Anomaly\Streams\Addon\Module\Users\Foundation\Command\RunSecurityChecksCommand',
+            compact('user', 'check')
+        );
     }
 }
  
