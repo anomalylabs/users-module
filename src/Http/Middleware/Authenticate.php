@@ -17,23 +17,6 @@ class Authenticate implements Middleware
 {
 
     /**
-     * The user repository.
-     *
-     * @var \Anomaly\Streams\Addon\Module\Users\User\Contract\UserRepositoryInterface
-     */
-    protected $users;
-
-    /**
-     * Create a new Authenticate instance.
-     *
-     * @param UserRepositoryInterface $users
-     */
-    public function __construct(UserRepositoryInterface $users)
-    {
-        $this->users = $users;
-    }
-
-    /**
      * Handle the request.
      *
      * @param \Illuminate\Http\Request $request
@@ -42,6 +25,8 @@ class Authenticate implements Middleware
      */
     public function handle($request, Closure $next)
     {
+        return $next($request);
+
         // Skip if we're in the installer.
         if (starts_with($request->path(), 'installer')) {
 
