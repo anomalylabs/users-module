@@ -19,46 +19,33 @@ class UsersFieldInstaller extends FieldInstaller
      * @var array
      */
     protected $fields = [
-        /**
-         * User fields.
-         */
-        'email'            => 'email',
-        'username'         => 'text',
-        'password'         => 'Anomaly\Streams\Addon\Module\Users\Addon\FieldType\PasswordTextFieldType',
-        'ip_address'       => 'text',
-        'last_activity_at' => 'datetime',
-        'last_login_at'    => 'datetime',
-        'roles'            => [
+        'email'             => 'email',
+        'username'          => 'text',
+        'password'          => 'Anomaly\Streams\Addon\Module\Users\Addon\FieldType\PasswordTextFieldType',
+        'confirmation_code' => 'text',
+        'remember_token'    => 'text',
+        'ip_address'        => 'text',
+        'last_activity_at'  => 'datetime',
+        'last_login_at'     => 'datetime',
+        'confirmed'         => 'boolean',
+        'confirmed_at'      => 'datetime',
+        'permissions'       => 'checkboxes',
+        'token'             => 'text',
+        'display_name'      => 'text',
+        'first_name'        => 'text',
+        'last_name'         => 'text',
+        'website'           => 'url',
+        'roles'             => [
             'type'   => 'multiple',
             'config' => [
                 'related' => 'Anomaly\Streams\Addon\Module\Users\Role\RoleModel',
             ],
         ],
-        /**
-         * Profile fields.
-         */
-        'display_name'     => 'text',
-        'first_name'       => 'text',
-        'last_name'        => 'text',
-        'website'          => 'url',
-        /**
-         * Role fields.
-         */
-        'name'             => 'text',
-        'slug'             => 'slug',
-        'permissions'      => 'checkboxes',
-        'user'             => [
+        'user'              => [
             'type'   => 'relationship',
             'config' => [
                 'related' => 'Anomaly\Streams\Addon\Module\Users\User\UserModel',
             ],
         ],
-        /**
-         * Activation / block / etc fields.
-         */
-        'code'             => 'text',
-        'is_complete'      => 'boolean',
-        'completed_at'     => 'datetime',
-        'type'             => 'text',
     ];
 }
