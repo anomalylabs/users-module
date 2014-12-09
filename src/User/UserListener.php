@@ -1,10 +1,9 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\User;
 
-use Anomaly\Streams\Addon\Module\Users\Profile\Command\CreateProfileCommand;
-use Anomaly\Streams\Addon\Module\Users\Profile\Command\DeleteProfileCommand;
 use Anomaly\Streams\Addon\Module\Users\User\Event\UserWasCreatedEvent;
 use Anomaly\Streams\Addon\Module\Users\User\Event\UserWasDeletedEvent;
-use Anomaly\Streams\Platform\Support\Listener;
+use Laracasts\Commander\CommanderTrait;
+use Laracasts\Commander\Events\EventListener;
 
 /**
  * Class UserListener
@@ -14,8 +13,10 @@ use Anomaly\Streams\Platform\Support\Listener;
  * @author        Ryan Thompson <ryan@anomaly.is>
  * @package       Anomaly\Streams\Addon\Module\Users\User
  */
-class UserListener extends Listener
+class UserListener extends EventListener
 {
+
+    use CommanderTrait;
 
     /**
      * Fired after a user was created.
@@ -25,7 +26,12 @@ class UserListener extends Listener
      */
     public function whenUserWasCreated(UserWasCreatedEvent $event)
     {
-        return $this->execute(new CreateProfileCommand($event->getUser()));
+        $user = $event->getUser();
+
+        return $this->execute(
+            'Anomaly\Streams\Addon\Module\Users\Profile\Command\CreateProfileCommand',
+            compact('user')
+        );
     }
 
     /**
@@ -37,8 +43,12 @@ class UserListener extends Listener
     public function whenUserWasDeleted(UserWasDeletedEvent $event)
     {
         $user = $event->getUser();
+        $id   = $user->getId();
 
-        return $this->execute(new DeleteProfileCommand($user->getId()));
+        return $this->execute(
+            'Anomaly\Streams\Addon\Module\Users\Profile\Command\DeleteProfileCommand',
+            compact('id')
+        );
     }
 }
  

@@ -1,8 +1,8 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\Foundation;
 
 use Anomaly\Streams\Addon\Module\Users\Foundation\Event\UserWasAuthorizedEvent;
-use Anomaly\Streams\Platform\Support\Listener;
 use Laracasts\Commander\CommanderTrait;
+use Laracasts\Commander\Events\EventListener;
 
 /**
  * Class AuthListener
@@ -12,7 +12,7 @@ use Laracasts\Commander\CommanderTrait;
  * @author        Ryan Thompson <ryan@anomaly.is>
  * @package       Anomaly\Streams\Addon\Module\Users\Foundation
  */
-class AuthListener extends Listener
+class AuthListener extends EventListener
 {
 
     use CommanderTrait;
