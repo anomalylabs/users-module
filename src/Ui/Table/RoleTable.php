@@ -2,35 +2,24 @@
 
 use Anomaly\Streams\Addon\Module\Users\Role\RoleModel;
 use Anomaly\Streams\Platform\Ui\Table\Table;
+use Anomaly\Streams\Platform\Ui\Table\TableBuilder;
 
-class RoleTable extends Table
+class RoleTable extends TableBuilder
 {
 
-    /**
-     * Set up the table class.
-     */
-    protected function boot()
+    function __construct(Table $table)
     {
         $this->setUpModel();
-        $this->setUpViews();
         $this->setUpFilters();
         $this->setUpColumns();
         $this->setUpButtons();
-        $this->setUpActions();
+
+        parent::__construct($table);
     }
 
     protected function setUpModel()
     {
         $this->setModel(new RoleModel());
-    }
-
-    protected function setUpViews()
-    {
-        /*$this->setViews(
-            [
-                'edit',
-            ]
-        );*/
     }
 
     protected function setUpFilters()
@@ -50,8 +39,8 @@ class RoleTable extends Table
                 'name',
                 'slug',
                 [
-                    'field' => 'permissions',
-                    'value' => function ($entry) {
+                    'header' => 'permissions',
+                    'value'  => function ($entry) {
                             if ($entry->permissions) {
 
                                 return implode('.', $entry->permissions);
@@ -71,15 +60,6 @@ class RoleTable extends Table
         $this->setButtons(
             [
                 'edit',
-            ]
-        );
-    }
-
-    protected function setUpActions()
-    {
-        $this->setActions(
-            [
-                'delete',
             ]
         );
     }

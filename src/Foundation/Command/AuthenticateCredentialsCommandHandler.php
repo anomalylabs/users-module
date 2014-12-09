@@ -26,7 +26,7 @@ class AuthenticateCredentialsCommandHandler
     {
         $credentials = $command->getCredentials();
 
-        foreach (app('streams.extensions')->search('module.users::*.authenticator') as $extension) {
+        foreach (app('streams.extensions')->search('module.users::authenticator.*') as $extension) {
 
             $result = $this->runAuthenticator($extension, $credentials);
 

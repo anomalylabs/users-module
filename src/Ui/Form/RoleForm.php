@@ -2,19 +2,32 @@
 
 use Anomaly\Streams\Addon\Module\Users\Role\RoleModel;
 use Anomaly\Streams\Platform\Ui\Form\Form;
+use Anomaly\Streams\Platform\Ui\Form\FormBuilder;
 
-class RoleForm extends Form
+/**
+ * Class RoleForm
+ *
+ * @link          http://anomaly.is/streams-platform
+ * @author        AnomalyLabs, Inc. <hello@anomaly.is>
+ * @author        Ryan Thompson <ryan@anomaly.is>
+ * @package       Anomaly\Streams\Addon\Module\Users\Ui\Form
+ */
+class RoleForm extends FormBuilder
 {
 
     /**
-     * Setup the form class.
+     * Create new RoleForm instance.
+     *
+     * @param Form $form
      */
-    protected function boot()
+    function __construct(Form $form)
     {
         $this->setUpModel();
-        $this->setUpActions();
+        $this->setUpButtons();
         $this->setUpSections();
-        $this->setUpRedirects();
+        $this->setUpActions();
+
+        parent::__construct($form);
     }
 
     /**
@@ -28,7 +41,7 @@ class RoleForm extends Form
     /**
      * Set up form actions.
      */
-    protected function setUpRedirects()
+    protected function setUpActions()
     {
         $this->setActions(
             [
@@ -40,7 +53,7 @@ class RoleForm extends Form
     /**
      * Set up the form buttons.
      */
-    protected function setUpActions()
+    protected function setUpButtons()
     {
         $this->setButtons(
             [
