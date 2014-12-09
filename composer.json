@@ -8,10 +8,6 @@
             "email": "hello@anomaly.is"
         }
     ],
-    "require": {
-        "zizaco/confide": "~4.0@dev",
-        "zizaco/entrust": "1.2.*@dev"
-    },
     "extra": {
         "branch-alias": {
             "dev-master": "1.0.x-dev"
