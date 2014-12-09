@@ -13,15 +13,21 @@ use Anomaly\Streams\Addon\Module\Users\Activation\Contract\ActivationRepositoryI
 class DeactivateUserCommandHandler
 {
 
+    protected $activations;
+
+    function __construct(ActivationRepositoryInterface $activations)
+    {
+        $this->activations = $activations;
+    }
+
     /**
      * Handle the command.
      *
-     * @param DeactivateUserCommand         $command
-     * @param ActivationRepositoryInterface $activations
+     * @param DeactivateUserCommand $command
      */
-    public function handle(DeactivateUserCommand $command, ActivationRepositoryInterface $activations)
+    public function handle(DeactivateUserCommand $command)
     {
-        $activations->delete($command->getUser());
+        $this->activations->delete($command->getUser());
     }
 }
  

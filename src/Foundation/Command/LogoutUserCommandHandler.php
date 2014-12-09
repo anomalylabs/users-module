@@ -14,19 +14,25 @@ use Anomaly\Streams\Addon\Module\Users\Persistence\PersistenceService;
 class LogoutUserCommandHandler
 {
 
+    protected $persistences;
+
+    function __construct(PersistenceRepositoryInterface $persistences)
+    {
+        $this->persistences = $persistences;
+    }
+
     /**
      * Handle the command.
      *
-     * @param LogoutUserCommand              $command
-     * @param PersistenceRepositoryInterface $persistences
+     * @param LogoutUserCommand $command
      */
-    public function handle(LogoutUserCommand $command, PersistenceRepositoryInterface $persistences)
+    public function handle(LogoutUserCommand $command)
     {
-        $persistences->flush($command->getUser());
+        $this->persistences->flush($command->getUser());
 
         if ($command->getForget()) {
 
-            $persistences->forget();
+            $this->persistences->forget();
         }
     }
 }

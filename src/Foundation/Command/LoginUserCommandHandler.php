@@ -14,24 +14,29 @@ use Anomaly\Streams\Addon\Module\Users\User\Contract\UserRepositoryInterface;
 class LoginUserCommandHandler
 {
 
+    protected $users;
+
+    protected $persistences;
+
+    function __construct(UserRepositoryInterface $users, PersistenceRepositoryInterface $persistences)
+    {
+        $this->users        = $users;
+        $this->persistences = $persistences;
+    }
+
     /**
      * Handle the command.
      *
-     * @param LoginUserCommand               $command
-     * @param UserRepositoryInterface        $users
-     * @param PersistenceRepositoryInterface $persistences
+     * @param LoginUserCommand $command
      */
-    public function handle(
-        LoginUserCommand $command,
-        UserRepositoryInterface $users,
-        PersistenceRepositoryInterface $persistences
-    ) {
+    public function handle(LoginUserCommand $command)
+    {
         $user     = $command->getUser();
         $remember = $command->getRemember();
 
-        $users->touchLogin($user);
+        $this->users->touchLogin($user);
 
-        $persistences->persist($user, $remember);
+        $this->persistences->persist($user, $remember);
     }
 }
  

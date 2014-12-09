@@ -13,15 +13,21 @@ use Anomaly\Streams\Addon\Module\Users\Profile\Contract\ProfileRepositoryInterfa
 class CreateProfileCommandHandler
 {
 
+    protected $profiles;
+
+    function __construct(ProfileRepositoryInterface $profiles)
+    {
+        $this->profiles = $profiles;
+    }
+
     /**
      * Handle the command.
      *
-     * @param CreateProfileCommand       $command
-     * @param ProfileRepositoryInterface $profiles
+     * @param CreateProfileCommand $command
      */
-    public function handle(CreateProfileCommand $command, ProfileRepositoryInterface $profiles)
+    public function handle(CreateProfileCommand $command)
     {
-        return $profiles->create($command->getUser());
+        return $this->profiles->create($command->getUser());
     }
 }
  

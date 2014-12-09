@@ -13,15 +13,21 @@ use Anomaly\Streams\Addon\Module\Users\Activation\Contract\ActivationRepositoryI
 class CompleteActivationCommandHandler
 {
 
+    protected $activations;
+
+    function __construct(ActivationRepositoryInterface $activations)
+    {
+        $this->activations = $activations;
+    }
+
     /**
      * Handle the command.
      *
-     * @param CompleteActivationCommand     $command
-     * @param ActivationRepositoryInterface $activations
+     * @param CompleteActivationCommand $command
      */
-    public function handle(CompleteActivationCommand $command, ActivationRepositoryInterface $activations)
+    public function handle(CompleteActivationCommand $command)
     {
-        $activations->complete($command->getUser(), $command->getCode());
+        $this->activations->complete($command->getUser(), $command->getCode());
     }
 }
  

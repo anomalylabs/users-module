@@ -20,6 +20,13 @@ class CheckAuthorizationCommandHandler
 
     use DispatchableTrait;
 
+    protected $persistences;
+
+    function __construct(PersistenceRepositoryInterface $persistences)
+    {
+        $this->persistences = $persistences;
+    }
+
     /**
      * Handle the command.
      *
@@ -27,9 +34,9 @@ class CheckAuthorizationCommandHandler
      * @param UserRepositoryInterface        $users
      * @return bool|mixed
      */
-    public function handle(PersistenceRepositoryInterface $persistences, UserRepositoryInterface $users)
+    public function handle(CheckAuthorizationCommand $command)
     {
-        $user = $this->getUser($persistences);
+        $user = $this->getUser();
 
         if (!$user instanceof UserInterface) {
 
@@ -44,26 +51,25 @@ class CheckAuthorizationCommandHandler
     /**
      * Get the user from persistence.
      *
-     * @param PersistenceRepositoryInterface $persistences
      * @return bool|mixed
      */
-    protected function getUser(PersistenceRepositoryInterface $persistences)
+    protected function getUser()
     {
-        $code = $persistences->check();
+        $code = $this->persistences->check();
 
         if (!$code) {
 
             return false;
         }
 
-        $persistences = $persistences->findByCode($code);
+        $persistence = $this->persistences->findByCode($code);
 
-        if (!$persistences instanceof PersistenceInterface) {
+        if (!$persistence instanceof PersistenceInterface) {
 
             return false;
         }
 
-        return $persistences->getUser();
+        return $persistence->getUser();
     }
 }
  

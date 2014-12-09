@@ -13,16 +13,22 @@ use Anomaly\Streams\Addon\Module\Users\User\Contract\UserRepositoryInterface;
 class CreateUserCommandHandler
 {
 
+    protected $users;
+
+    function __construct(UserRepositoryInterface $users)
+    {
+        $this->users = $users;
+    }
+
     /**
      * Handle the command.
      *
      * @param CreateUserCommand       $command
-     * @param UserRepositoryInterface $users
      * @return mixed
      */
-    public function handle(CreateUserCommand $command, UserRepositoryInterface $users)
+    public function handle(CreateUserCommand $command)
     {
-        return $users->create($command->getCredentials());
+        return $this->users->create($command->getCredentials());
     }
 }
  

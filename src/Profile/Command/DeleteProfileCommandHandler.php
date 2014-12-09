@@ -13,15 +13,21 @@ use Anomaly\Streams\Addon\Module\Users\Profile\Contract\ProfileRepositoryInterfa
 class DeleteProfileCommandHandler
 {
 
+    protected $profiles;
+
+    function __construct(ProfileRepositoryInterface $profiles)
+    {
+        $this->profiles = $profiles;
+    }
+
     /**
      * Handle the command.
      *
-     * @param DeleteProfileCommand       $command
-     * @param ProfileRepositoryInterface $profiles
+     * @param DeleteProfileCommand $command
      */
-    public function handle(DeleteProfileCommand $command, ProfileRepositoryInterface $profiles)
+    public function handle(DeleteProfileCommand $command)
     {
-        $profiles->delete($command->getUserId());
+        $this->profiles->delete($command->getUserId());
     }
 }
  

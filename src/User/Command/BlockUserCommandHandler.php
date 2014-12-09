@@ -13,16 +13,22 @@ use Anomaly\Streams\Addon\Module\Users\Block\Contract\BlockRepositoryInterface;
 class BlockUserCommandHandler
 {
 
+    protected $blocks;
+
+    function __construct(BlockRepositoryInterface $blocks)
+    {
+        $this->blocks = $blocks;
+    }
+
     /**
      * Handle the command.
      *
      * @param BlockUserCommand         $command
-     * @param BlockRepositoryInterface $blocks
      * @return mixed
      */
-    public function handle(BlockUserCommand $command, BlockRepositoryInterface $blocks)
+    public function handle(BlockUserCommand $command)
     {
-        return $blocks->block($command->getUser());
+        return $this->blocks->block($command->getUser());
     }
 }
  

@@ -13,16 +13,22 @@ use Anomaly\Streams\Addon\Module\Users\Role\Contract\RoleRepositoryInterface;
 class CreateRoleCommandHandler
 {
 
+    protected $roles;
+
+    function __construct(RoleRepositoryInterface $roles)
+    {
+        $this->roles = $roles;
+    }
+
     /**
      * Handle the command.
      *
-     * @param CreateRoleCommand       $command
-     * @param RoleRepositoryInterface $roles
+     * @param CreateRoleCommand $command
      * @return mixed
      */
-    public function handle(CreateRoleCommand $command, RoleRepositoryInterface $roles)
+    public function handle(CreateRoleCommand $command)
     {
-        return $roles->create($command->getName(), $command->getSlug(), $command->getPermissions());
+        return $this->roles->create($command->getName(), $command->getSlug(), $command->getPermissions());
     }
 }
  

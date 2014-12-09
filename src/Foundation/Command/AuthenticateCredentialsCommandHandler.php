@@ -2,7 +2,6 @@
 
 use Anomaly\Streams\Addon\Module\Users\Extension\AuthenticatorExtension;
 use Anomaly\Streams\Addon\Module\Users\User\Contract\UserInterface;
-use Anomaly\Streams\Addon\Module\Users\User\Contract\UserRepositoryInterface;
 
 /**
  * Class AuthenticateCredentialsCommandHandler
@@ -19,10 +18,9 @@ class AuthenticateCredentialsCommandHandler
      * Handle the command.
      *
      * @param AuthenticateCredentialsCommand $command
-     * @param UserRepositoryInterface        $repository
      * @return bool|mixed
      */
-    public function handle(AuthenticateCredentialsCommand $command, UserRepositoryInterface $repository)
+    public function handle(AuthenticateCredentialsCommand $command)
     {
         $credentials = $command->getCredentials();
 

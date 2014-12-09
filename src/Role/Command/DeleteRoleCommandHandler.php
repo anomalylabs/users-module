@@ -13,16 +13,22 @@ use Anomaly\Streams\Addon\Module\Users\Role\Contract\RoleRepositoryInterface;
 class DeleteRoleCommandHandler
 {
 
+    protected $roles;
+
+    function __construct(RoleRepositoryInterface $roles)
+    {
+        $this->roles = $roles;
+    }
+
     /**
      * Handle the command.
      *
-     * @param DeleteRoleCommand       $command
-     * @param RoleRepositoryInterface $roles
+     * @param DeleteRoleCommand $command
      * @return mixed
      */
-    public function handle(DeleteRoleCommand $command, RoleRepositoryInterface $roles)
+    public function handle(DeleteRoleCommand $command)
     {
-        return $roles->delete($command->getSlug());
+        return $this->roles->delete($command->getSlug());
     }
 }
  

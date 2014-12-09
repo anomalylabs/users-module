@@ -13,16 +13,22 @@ use Anomaly\Streams\Addon\Module\Users\User\Contract\UserRepositoryInterface;
 class GetUserCommandHandler
 {
 
+    protected $users;
+
+    function __construct(UserRepositoryInterface $users)
+    {
+        $this->users = $users;
+    }
+
     /**
      * Handle the command.
      *
-     * @param GetUserCommand          $command
-     * @param UserRepositoryInterface $repository
+     * @param GetUserCommand $command
      * @return mixed
      */
-    public function handle(GetUserCommand $command, UserRepositoryInterface $repository)
+    public function handle(GetUserCommand $command)
     {
-        return $repository->find($command->getUserId());
+        return $this->users->find($command->getUserId());
     }
 }
  
