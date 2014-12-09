@@ -34,7 +34,6 @@ class UserTable extends TableBuilder
 
     protected $buttons = [
         'edit' => [
-            'text'       => 'Edit',
             'attributes' => [
                 'href' => '/admin/users/edit/{{ entry.id }}',
             ]

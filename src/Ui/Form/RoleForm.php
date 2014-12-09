@@ -15,6 +15,16 @@ use Anomaly\Streams\Platform\Ui\Form\FormBuilder;
 class RoleForm extends FormBuilder
 {
 
+    protected $sections = [
+        [
+            'fields' => [
+                'name',
+                'slug',
+                'permissions',
+            ],
+        ],
+    ];
+
     /**
      * Create new RoleForm instance.
      *
@@ -24,7 +34,6 @@ class RoleForm extends FormBuilder
     {
         $this->setUpModel();
         $this->setUpButtons();
-        $this->setUpSections();
         $this->setUpActions();
 
         parent::__construct($form);
@@ -59,24 +68,6 @@ class RoleForm extends FormBuilder
             [
                 'cancel',
                 'delete',
-            ]
-        );
-    }
-
-    /**
-     * Set up the form sections.
-     */
-    protected function setUpSections()
-    {
-        $this->setSections(
-            [
-                [
-                    'fields' => [
-                        'name',
-                        'slug',
-                        'permissions',
-                    ],
-                ],
             ]
         );
     }
