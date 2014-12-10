@@ -18,14 +18,8 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
      */
     public function register()
     {
-        $this->registerEntrust();
         $this->bindUserInterfaces();
-    }
-
-    protected function registerEntrust()
-    {
-        $this->app->alias('Entrust', 'Zizaco\Entrust\EntrustFacade');
-        $this->app->register('Zizaco\Entrust\EntrustServiceProvider');
+        $this->registerVendorServiceProviders();
     }
 
     protected function bindUserInterfaces()
@@ -38,6 +32,12 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
             'Anomaly\Streams\Addon\Module\Users\User\Contract\UserRepositoryInterface',
             config('module.users::config.users.repository')
         );
+    }
+
+    protected function registerVendorServiceProviders()
+    {
+        $this->app->register('Zizaco\Entrust\EntrustServiceProvider');
+        $this->app->register('GrahamCampbell\Throttle\ThrottleServiceProvider');
     }
 }
  
