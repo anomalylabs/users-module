@@ -70,7 +70,7 @@ class RouteServiceProvider extends \Illuminate\Foundation\Support\Providers\Rout
             'admin/logout',
             function () {
 
-                app('streams.auth')->logout();
+                app('auth')->logout();
 
                 return redirect('admin/login');
             }
