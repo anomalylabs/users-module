@@ -18,15 +18,8 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
      */
     public function register()
     {
-        $this->registerConfide();
         $this->registerEntrust();
         $this->bindUserInterfaces();
-    }
-
-    protected function registerConfide()
-    {
-        $this->app->alias('Confide', 'Zizaco\Confide\Facade');
-        $this->app->register('Zizaco\Confide\ServiceProvider');
     }
 
     protected function registerEntrust()
@@ -39,7 +32,7 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
     {
         $this->app->bind(
             'Anomaly\Streams\Addon\Module\Users\User\UserModel',
-            config('module.users::config.users.model')
+            config('auth.model')
         );
         $this->app->bind(
             'Anomaly\Streams\Addon\Module\Users\User\Contract\UserRepositoryInterface',
