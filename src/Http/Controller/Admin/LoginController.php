@@ -1,6 +1,6 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\Http\Controller\Admin;
 
-use Anomaly\Streams\Platform\Http\Controller\AdminController;
+use Anomaly\Streams\Platform\Http\Controller\PublicController;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
 
@@ -12,7 +12,7 @@ use Illuminate\Routing\Redirector;
  * @author        Ryan Thompson <ryan@anomaly.is>
  * @package       Anomaly\Streams\Addon\Module\Users\Http\Controller\Admin
  */
-class LoginController extends AdminController
+class LoginController extends PublicController
 {
 
     /**
@@ -22,7 +22,6 @@ class LoginController extends AdminController
      */
     public function login()
     {
-
         /**
          * If the user is already logged in
          * then send them to their home page.
@@ -32,7 +31,7 @@ class LoginController extends AdminController
             return redirect(preference('module.users::home_page', 'admin/dashboard'));
         } else {
 
-            return view('module.users::admin/login');
+            return view('module.users::auth/login');
         }
     }
 
@@ -54,7 +53,7 @@ class LoginController extends AdminController
             return $redirect->intended(preference('module.users::home_page', 'admin/dashboard'));
         }
 
-        return $redirect->to('admin/login');
+        return $redirect->to('auth/login');
     }
 }
  

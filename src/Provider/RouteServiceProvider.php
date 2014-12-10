@@ -25,7 +25,6 @@ class RouteServiceProvider extends \Illuminate\Foundation\Support\Providers\Rout
     {
         $this->registerAdminRoutes();
         $this->registerLoginRoutes();
-        $this->registerLogoutRoutes();
 
         $this->registerUserRoutes();
         $this->registerRoleRoutes();
@@ -52,28 +51,12 @@ class RouteServiceProvider extends \Illuminate\Foundation\Support\Providers\Rout
     protected function registerLoginRoutes()
     {
         app('router')->get(
-            'admin/login',
+            'auth/login',
             $this->prefix . 'Admin\LoginController@login'
         );
         app('router')->post(
-            'admin/login',
+            'auth/login',
             $this->prefix . 'Admin\LoginController@attempt'
-        );
-    }
-
-    /**
-     * Register the logout route.
-     */
-    protected function registerLogoutRoutes()
-    {
-        app('router')->get(
-            'admin/logout',
-            function () {
-
-                app('auth')->logout();
-
-                return redirect('admin/login');
-            }
         );
     }
 
