@@ -35,6 +35,8 @@ class UsersFieldInstaller extends FieldInstaller
         'first_name'        => 'text',
         'last_name'         => 'text',
         'website'           => 'url',
+        'name'              => 'text',
+        'slug'              => 'slug',
         'roles'             => [
             'type'   => 'multiple',
             'config' => [
