@@ -9,7 +9,7 @@ class CreateRoleCommand
 
     protected $permissions;
 
-    function __construct($name, $slug, array $permissions)
+    function __construct($name, $slug, array $permissions = [])
     {
         $this->name        = $name;
         $this->slug        = $slug;
