@@ -19,18 +19,31 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
     public function register()
     {
         $this->bindUserInterfaces();
+        $this->bindRoleInterfaces();
         $this->registerVendorServiceProviders();
     }
 
     protected function bindUserInterfaces()
     {
         $this->app->bind(
-            'Anomaly\Streams\Addon\Module\Users\User\UserModel',
-            config('auth.model')
+            'Anomaly\Streams\Addon\Module\Users\User\UserModel', // Also set in auth.php
+            config('module.users::config.model.repository')
         );
         $this->app->bind(
             'Anomaly\Streams\Addon\Module\Users\User\Contract\UserRepositoryInterface',
             config('module.users::config.users.repository')
+        );
+    }
+
+    protected function bindRoleInterfaces()
+    {
+        $this->app->bind(
+            'Anomaly\Streams\Addon\Module\Users\Role\RoleModel',
+            config('module.users::config.roles.model')
+        );
+        $this->app->bind(
+            'Anomaly\Streams\Addon\Module\Users\Role\Contract\RoleRepositoryInterface',
+            config('module.users::config.roles.repository')
         );
     }
 
