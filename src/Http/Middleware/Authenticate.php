@@ -25,8 +25,6 @@ class Authenticate implements Middleware
      */
     public function handle($request, Closure $next)
     {
-        return $next($request);
-
         // Skip if we're in the installer.
         if (starts_with($request->path(), 'installer')) {
 
@@ -40,9 +38,7 @@ class Authenticate implements Middleware
         }
 
         // If we're good, proceed.
-        if ($user = app('streams.auth')->check() and $user instanceof UserInterface) {
-
-            $this->users->touch($user);
+        if (app('auth')->check()) {
 
             app('session')->remove('url.intended');
 
