@@ -19,11 +19,6 @@ class ListenerServiceProvider extends \Illuminate\Support\ServiceProvider
     public function register()
     {
         app('events')->listen(
-            'Anomaly.Streams.Addon.Module.Users.Foundation.Event.*',
-            'Anomaly\Streams\Addon\Module\Users\Foundation\AuthListener'
-        );
-
-        app('events')->listen(
             'Anomaly.Streams.Addon.Module.Users.User.Event.*',
             'Anomaly\Streams\Addon\Module\Users\User\UserListener'
         );
