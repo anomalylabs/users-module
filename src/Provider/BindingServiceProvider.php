@@ -1,14 +1,14 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\Provider;
 
 /**
- * Class ServiceProvider
+ * Class BindingServiceProvider
  *
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
  * @package       Anomaly\Streams\Addon\Module\Users\Provider
  */
-class ServiceProvider extends \Illuminate\Support\ServiceProvider
+class BindingServiceProvider extends \Illuminate\Support\ServiceProvider
 {
 
     /**
@@ -20,7 +20,6 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
     {
         $this->bindUserInterfaces();
         $this->bindRoleInterfaces();
-        $this->registerVendorServiceProviders();
     }
 
     protected function bindUserInterfaces()
@@ -45,12 +44,6 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
             'Anomaly\Streams\Addon\Module\Users\Role\Contract\RoleRepositoryInterface',
             config('module.users::config.roles.repository')
         );
-    }
-
-    protected function registerVendorServiceProviders()
-    {
-        $this->app->register('Zizaco\Entrust\EntrustServiceProvider');
-        $this->app->register('GrahamCampbell\Throttle\ThrottleServiceProvider');
     }
 }
  
