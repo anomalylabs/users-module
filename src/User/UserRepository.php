@@ -1,13 +1,28 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\User;
 
-class UserRepository
+use Anomaly\Streams\Addon\Module\Users\User\Contract\UserRepositoryInterface;
+
+class UserRepository implements UserRepositoryInterface
 {
 
-    protected $users;
+    protected $model;
 
-    function __construct(UserModel $users)
+    function __construct(UserModel $model)
     {
-        $this->users = $users;
+        $this->model = $model;
+    }
+
+    public function create($username, $email, $password)
+    {
+        $user = $this->model->newInstance();
+
+        $user->email    = $email;
+        $user->username = $username;
+        $user->password = app('hash')->make($password);
+
+        $user->save();
+
+        return $user;
     }
 }
  

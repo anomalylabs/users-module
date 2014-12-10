@@ -1,12 +1,13 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\User;
 
+use Anomaly\Streams\Addon\Module\Users\User\Contract\UserInterface;
 use Anomaly\Streams\Platform\Model\Users\UsersUsersEntryModel;
-use Zizaco\Confide\ConfideUser;
-use Zizaco\Confide\ConfideUserInterface;
+use Illuminate\Auth\Authenticatable;
+use Laracasts\Commander\Events\EventGenerator;
 
-class UserModel extends UsersUsersEntryModel implements ConfideUserInterface
+class UserModel extends UsersUsersEntryModel implements UserInterface, \Illuminate\Contracts\Auth\Authenticatable
 {
 
-    use ConfideUser;
+    use Authenticatable;
 }
  

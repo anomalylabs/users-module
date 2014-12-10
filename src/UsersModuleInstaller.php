@@ -22,12 +22,7 @@ class UsersModuleInstaller extends ModuleInstaller
         'UsersFieldInstaller',
         'UsersStreamInstaller',
         'RolesStreamInstaller',
-        'BlocksStreamInstaller',
-        'ResetsStreamInstaller',
         'ProfilesStreamInstaller',
-        'ThrottlesStreamInstaller',
-        'ActivationsStreamInstaller',
-        'PersistencesStreamInstaller',
     ];
 }
  
