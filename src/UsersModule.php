@@ -42,24 +42,4 @@ class UsersModule extends Module
             'url' => 'admin/users/permissions',
         ]
     ];
-
-    /**
-     * The module menu.
-     *
-     * @var array
-     */
-    protected $menu = [
-        'settings'    => [
-            'title' => 'Settings',
-            'path'  => 'admin/users/settings',
-        ],
-        'preferences' => [
-            'title' => 'Preferences',
-            'path'  => 'admin/users/preferences',
-        ],
-        'permissions' => [
-            'title' => 'Permissions',
-            'path'  => 'admin/users/permissions',
-        ]
-    ];
 }
