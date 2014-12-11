@@ -38,11 +38,10 @@ class LoginController extends PublicController
     /**
      * Attempt to login a user.
      *
-     * @param Request    $request
-     * @param Redirector $redirect
+     * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function attempt(Request $request, Redirector $redirect)
+    public function attempt(Request $request)
     {
         $email    = $request->get('email');
         $password = $request->get('password');
@@ -50,10 +49,10 @@ class LoginController extends PublicController
 
         if (app('auth')->attempt(compact('email', 'password'), $remember) or app('auth')->user()) {
 
-            return $redirect->intended(preference('module.users::home_page', 'admin/dashboard'));
+            return redirect()->intended(preference('module.users::home_page', 'admin/dashboard'));
         }
 
-        return $redirect->to('admin/login');
+        return redirect('admin/login');
     }
 }
  
