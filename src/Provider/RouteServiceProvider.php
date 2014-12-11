@@ -23,19 +23,10 @@ class RouteServiceProvider extends \Illuminate\Foundation\Support\Providers\Rout
      */
     public function map()
     {
-        $this->registerAdminRoutes();
-        $this->registerLoginRoutes();
-
-        $this->registerUserRoutes();
-        $this->registerRoleRoutes();
-        $this->registerPermissionsRoutes();
-    }
-
-    /**
-     * Register admin routes.
-     */
-    protected function registerAdminRoutes()
-    {
+        /**
+         * The default admin route leads to
+         * the preferred landing page.
+         */
         app('router')->get(
             'admin',
             function () {
@@ -43,28 +34,30 @@ class RouteServiceProvider extends \Illuminate\Foundation\Support\Providers\Rout
                 return redirect(preference('module.users::home_page', 'admin/dashboard'));
             }
         );
-    }
 
-    /**
-     * Register login routes.
-     */
-    protected function registerLoginRoutes()
-    {
+        /**
+         * Since laravel points to these by default
+         * let's just piggy back on the auth URI. Coexist.
+         */
+        app('router')->get('auth/login', $this->prefix . 'Admin\LoginController@login');
+        app('router')->post('auth/login', $this->prefix . 'Admin\LoginController@attempt');
+
+        /**
+         * Handle logging out.
+         */
         app('router')->get(
-            'auth/login',
-            $this->prefix . 'Admin\LoginController@login'
-        );
-        app('router')->post(
-            'auth/login',
-            $this->prefix . 'Admin\LoginController@attempt'
-        );
-    }
+            'auth/logout',
+            function () {
 
-    /**
-     * Register user routes.
-     */
-    private function registerUserRoutes()
-    {
+                app('auth')->logout();
+
+                return redirect('auth/login');
+            }
+        );
+
+        /**
+         * Route the UsersController routes.
+         */
         app('router')->any('admin/users', $this->prefix . 'Admin\UsersController@index');
         app('router')->any('admin/users/create', $this->prefix . 'Admin\UsersController@create');
         app('router')->any('admin/users/edit/{id}', $this->prefix . 'Admin\UsersController@edit');
@@ -73,23 +66,12 @@ class RouteServiceProvider extends \Illuminate\Foundation\Support\Providers\Rout
         app('router')->any('admin/users/block/{id}', $this->prefix . 'Admin\UsersController@block');
         app('router')->any('admin/users/unblock/{id}', $this->prefix . 'Admin\UsersController@unblock');
         app('router')->any('admin/users/logout/{id}', $this->prefix . 'Admin\UsersController@logout');
-    }
 
-    /**
-     * Register role routes.
-     */
-    protected function registerRoleRoutes()
-    {
+        /**
+         * Route the RolesController routes.
+         */
         app('router')->any('admin/users/roles', $this->prefix . 'Admin\RolesController@index');
         app('router')->any('admin/users/roles/create', $this->prefix . 'Admin\RolesController@create');
         app('router')->any('admin/users/roles/edit/{id}', $this->prefix . 'Admin\RolesController@edit');
-    }
-
-    /**
-     * Register permission routes.
-     */
-    protected function registerPermissionsRoutes()
-    {
-        app('router')->any('admin/users/permissions', $this->prefix . 'Admin\PermissionsController@index');
     }
 }
