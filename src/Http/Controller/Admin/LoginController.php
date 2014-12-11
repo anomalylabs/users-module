@@ -31,7 +31,7 @@ class LoginController extends PublicController
             return redirect(preference('module.users::home_page', 'admin/dashboard'));
         } else {
 
-            return view('module.users::auth/login');
+            return view('module.users::admin/login');
         }
     }
 
@@ -53,7 +53,7 @@ class LoginController extends PublicController
             return $redirect->intended(preference('module.users::home_page', 'admin/dashboard'));
         }
 
-        return $redirect->to('auth/login');
+        return $redirect->to('admin/login');
     }
 }
  
