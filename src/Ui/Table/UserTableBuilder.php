@@ -42,7 +42,8 @@ class UserTableBuilder extends TableBuilder
 
     protected $actions = [
         'test' => [
-            'text' => 'Action'
+            'text' => 'Action',
+            'type' => 'success',
         ]
     ];
 }

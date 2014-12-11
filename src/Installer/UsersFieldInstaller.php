@@ -40,7 +40,8 @@ class UsersFieldInstaller extends FieldInstaller
         'roles'             => [
             'type'   => 'multiple',
             'config' => [
-                'related' => 'Anomaly\Streams\Addon\Module\Users\Role\RoleModel',
+                'pivot_table' => 'users_assigned_roles',
+                'related'     => 'Anomaly\Streams\Addon\Module\Users\Role\RoleModel',
             ],
         ],
         'user'              => [
