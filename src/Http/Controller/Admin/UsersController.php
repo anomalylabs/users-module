@@ -69,7 +69,7 @@ class UsersController extends AdminController
     {
         $this->execute(new ActivateUserCommand($users->find($id)));
 
-        return redirect(referer('admin/users'));
+        return redirect()->back();
     }
 
     /**
@@ -83,7 +83,7 @@ class UsersController extends AdminController
     {
         $this->execute(new DeactivateUserCommand($users->find($id)));
 
-        return redirect(referer('admin/users'));
+        return redirect()->back();
     }
 
     /**
