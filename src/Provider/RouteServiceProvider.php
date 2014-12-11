@@ -37,16 +37,27 @@ class RouteServiceProvider extends \Illuminate\Foundation\Support\Providers\Rout
 
         /**
          * Since laravel points to these by default
-         * let's just piggy back on the auth URI. Coexist.
+         * let's just ping back to what we expect (admin).
          */
-        app('router')->get('auth/login', $this->prefix . 'Admin\LoginController@login');
-        app('router')->post('auth/login', $this->prefix . 'Admin\LoginController@attempt');
+        app('router')->get(
+            'auth/login',
+            function () {
+
+                return redirect('admin/login');
+            }
+        );
+
+        /**
+         * Handle logging into the admin.
+         */
+        app('router')->get('admin/login', $this->prefix . 'Admin\LoginController@login');
+        app('router')->post('admin/login', $this->prefix . 'Admin\LoginController@attempt');
 
         /**
          * Handle logging out.
          */
         app('router')->get(
-            'auth/logout',
+            'admin/logout',
             function () {
 
                 app('auth')->logout();
