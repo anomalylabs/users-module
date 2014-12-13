@@ -18,7 +18,7 @@ class UsersModule extends Module
      *
      * @var string
      */
-    protected $navigation = 'navigation.system';
+    protected $navigation = 'streams::navigation.system';
 
     /**
      * The module sections.
