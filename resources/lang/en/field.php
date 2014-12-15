@@ -10,4 +10,13 @@ return [
     'password' => [
         'name' => 'Password',
     ],
+    'name' => [
+        'name' => 'Name',
+    ],
+    'slug' => [
+        'name' => 'Slug',
+    ],
+    'permissions' => [
+        'name' => 'Permission Name',
+    ],
 ];
