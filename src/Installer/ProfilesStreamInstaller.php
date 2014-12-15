@@ -14,6 +14,13 @@ class ProfilesStreamInstaller extends StreamInstaller
 {
 
     /**
+     * The stream configuration.
+     *
+     * @var array
+     */
+    protected $stream = 'profiles';
+
+    /**
      * The stream assignments.
      *
      * @var array

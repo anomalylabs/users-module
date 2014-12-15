@@ -14,6 +14,13 @@ class UsersStreamInstaller extends StreamInstaller
 {
 
     /**
+     * The stream configuration.
+     *
+     * @var string
+     */
+    protected $stream = 'users';
+
+    /**
      * The stream assignments.
      *
      * @var array

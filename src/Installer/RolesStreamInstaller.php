@@ -19,8 +19,9 @@ class RolesStreamInstaller extends StreamInstaller
      * @var array
      */
     protected $stream = [
-        'is_hidden'       => true,
-        'is_translatable' => true
+        'slug'         => 'roles',
+        'hidden'       => true,
+        'translatable' => true
     ];
 
     /**

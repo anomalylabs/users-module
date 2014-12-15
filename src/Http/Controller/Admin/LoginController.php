@@ -43,7 +43,6 @@ class LoginController extends PublicController
      */
     public function attempt(Request $request)
     {
-        $email    = $request->get('email');
         $password = $request->get('password');
         $remember = ($request->get('remember'));
 

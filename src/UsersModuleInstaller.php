@@ -19,10 +19,10 @@ class UsersModuleInstaller extends ModuleInstaller
      * @var array
      */
     protected $installers = [
-        'UsersFieldInstaller',
-        'UsersStreamInstaller',
-        'RolesStreamInstaller',
-        'ProfilesStreamInstaller',
+        'Anomaly\Streams\Addon\Module\Users\Installer\UsersFieldInstaller',
+        'Anomaly\Streams\Addon\Module\Users\Installer\UsersStreamInstaller',
+        'Anomaly\Streams\Addon\Module\Users\Installer\RolesStreamInstaller',
+        'Anomaly\Streams\Addon\Module\Users\Installer\ProfilesStreamInstaller',
     ];
 }
  
