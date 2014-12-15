@@ -9,7 +9,7 @@ class UserManager
 
     public function create(array $credentials, $activate = false)
     {
-        $user = $this->execute('\Anomaly\Streams\Addon\Module\Users\User\Command\CreateUserCommand', $credentials);
+        $user = $this->execute('Anomaly\Streams\Addon\Module\Users\User\Command\CreateUserCommand', $credentials);
 
         return $user;
     }

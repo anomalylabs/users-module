@@ -10,7 +10,7 @@ class RoleManager
 
     public function create($role)
     {
-        return $this->execute('\Anomaly\Streams\Addon\Module\Users\Role\Command\CreateRoleCommand', $role);
+        return $this->execute('Anomaly\Streams\Addon\Module\Users\Role\Command\CreateRoleCommand', $role);
     }
 }
  
