@@ -1,9 +1,6 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\Provider;
 
 use Anomaly\Streams\Addon\Module\Users\User\Contract\UserInterface;
-use Anomaly\Streams\Addon\Module\Users\User\Event\UserWasLoggedIn;
-use Anomaly\Streams\Addon\Module\Users\User\Event\UserWasLoggedOut;
-use Laracasts\Commander\Events\DispatchableTrait;
 
 /**
  * Class AuthServiceProvider
@@ -15,8 +12,6 @@ use Laracasts\Commander\Events\DispatchableTrait;
  */
 class AuthServiceProvider extends \Illuminate\Support\ServiceProvider
 {
-
-    use DispatchableTrait;
 
     /**
      * Register the service provider.
@@ -34,11 +29,9 @@ class AuthServiceProvider extends \Illuminate\Support\ServiceProvider
      */
     protected function registerEvents()
     {
-        app('events')->listen(
+        /*app('events')->listen(
             'auth.login',
             function (UserInterface $user) {
-
-                $user->raise(new UserWasLoggedIn($user));
 
                 $this->dispatchEventsFor($user);
             }
@@ -50,12 +43,10 @@ class AuthServiceProvider extends \Illuminate\Support\ServiceProvider
 
                 if ($user) {
 
-                    $user->raise(new UserWasLoggedOut($user));
-
                     $this->dispatchEventsFor($user);
                 }
             }
-        );
+        );*/
     }
 
     /**
