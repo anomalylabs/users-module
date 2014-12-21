@@ -19,4 +19,7 @@ return [
     'permissions' => [
         'name' => 'Permission Name',
     ],
+    'roles' => [
+        'name' => 'Roles',
+    ],
 ];
