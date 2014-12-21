@@ -28,7 +28,7 @@ class LoginController extends PublicController
          */
         if (app('auth')->check()) {
 
-            return redirect(preference('module.users::home_page', 'admin/dashboard'));
+            return redirect(app('streams.preferences')->get('module.users::home_page', 'admin/dashboard'));
         } else {
 
             return view('module.users::admin/login');
@@ -48,7 +48,7 @@ class LoginController extends PublicController
 
         if (app('auth')->attempt(compact('email', 'password'), $remember) or app('auth')->user()) {
 
-            return redirect()->intended(preference('module.users::home_page', 'admin/dashboard'));
+            return redirect()->intended(app('streams.preferences')->get('module.users::home_page', 'admin/dashboard'));
         }
 
         return redirect('admin/login');
