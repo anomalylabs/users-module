@@ -1,12 +1,7 @@
 <?php namespace Anomaly\Streams\Addon\Module\Users\Http\Controller\Admin;
 
-use Anomaly\Streams\Addon\Module\Users\Foundation\Command\LogoutUserCommand;
 use Anomaly\Streams\Addon\Module\Users\Ui\Form\UserFormBuilder;
 use Anomaly\Streams\Addon\Module\Users\Ui\Table\UserTableBuilder;
-use Anomaly\Streams\Addon\Module\Users\User\Command\ActivateUserCommand;
-use Anomaly\Streams\Addon\Module\Users\User\Command\BlockUserCommand;
-use Anomaly\Streams\Addon\Module\Users\User\Command\DeactivateUserCommand;
-use Anomaly\Streams\Addon\Module\Users\User\Command\UnblockUserCommand;
 use Anomaly\Streams\Addon\Module\Users\User\Contract\UserRepositoryInterface;
 use Anomaly\Streams\Platform\Http\Controller\AdminController;
 
@@ -49,8 +44,8 @@ class UsersController extends AdminController
     /**
      * Return the form UI for an existing user.
      *
-     * @param UserFormBuilder   $form
-     * @param            $id
+     * @param UserFormBuilder $form
+     * @param                 $id
      * @return mixed
      */
     public function edit(UserFormBuilder $form, $id)

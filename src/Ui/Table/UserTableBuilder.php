@@ -33,13 +33,27 @@ class UserTableBuilder extends TableBuilder
     ];
 
     protected $buttons = [
-        'edit',
+        [
+            'button'   => 'edit',
+            'dropdown' => [
+                [
+                    'url'  => '/admin/users/test',
+                    'text' => 'Test Extra',
+                ]
+            ]
+        ],
     ];
 
     protected $actions = [
         'test' => [
-            'text' => 'Action',
-            'type' => 'success',
+            'text'     => 'Action',
+            'type'     => 'success',
+            'dropdown' => [
+                [
+                    'value' => 'test',
+                    'text'  => 'Test Extra',
+                ]
+            ]
         ]
     ];
 }
