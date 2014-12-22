@@ -31,7 +31,7 @@ class RouteServiceProvider extends \Illuminate\Foundation\Support\Providers\Rout
             'admin',
             function () {
 
-                return redirect(preference('module.users::home_page', 'admin/dashboard'));
+                return redirect('admin/dashboard');
             }
         );
 
