@@ -1,19 +1,20 @@
 <?php
 
 return [
-    'username' => [
-        'name' => 'Username',
+    'username'    => [
+        'name'        => 'Username',
+        'placeholder' => 'Test',
     ],
-    'email'    => [
+    'email'       => [
         'name' => 'Email',
     ],
-    'password' => [
+    'password'    => [
         'name' => 'Password',
     ],
-    'name' => [
+    'name'        => [
         'name' => 'Name',
     ],
-    'slug' => [
+    'slug'        => [
         'name' => 'Slug',
     ],
     'permissions' => [

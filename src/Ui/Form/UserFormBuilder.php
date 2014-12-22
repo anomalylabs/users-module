@@ -31,7 +31,8 @@ class UserFormBuilder extends FormBuilder
     ];
 
     protected $buttons = [
-        'edit' => 'Testing',
+        'cancel',
+        'delete'
     ];
 }
  
