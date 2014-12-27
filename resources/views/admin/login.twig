@@ -1,0 +1,43 @@
+{% extends "theme::layouts/login" %}
+
+{% block content %}
+
+    <section class="animated fadeInUp">
+
+        {{ form_open({'method': 'post'}) }}
+
+        <h1>
+            {{ html_image(image_path("theme::img/logo.png")) }} Streams
+        </h1>
+
+        <div class="form-group">
+            {{ form_email("email", null, {'class': 'form-control', 'placeholder': 'Email'}) }}
+        </div>
+
+        <div class="form-group">
+            {{ form_password('password', {'class': 'form-control', 'placeholder': 'Password'}) }}
+        </div>
+
+        <div class="form-group">
+            <label for="remember">
+                {{ form_checkbox("remember", null, true, {'id': 'remember'}) }} Remember me
+            </label>
+        </div>
+
+        <div class="form-group">
+            <button type="submit" value="Login" class="btn btn-block btn-primary">Login</button>
+        </div>
+
+        {{ form_close() }}
+
+    </section>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('form').on('submit', function () {
+                $(this).closest('section').removeClass('fadeInUp').addClass('fadeOutUp');
+            });
+        });
+    </script>
+
+{% endblock %}
