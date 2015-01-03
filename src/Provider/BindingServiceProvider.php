@@ -26,11 +26,11 @@ class BindingServiceProvider extends \Illuminate\Support\ServiceProvider
     {
         $this->app->bind(
             'Anomaly\UsersModule\User\UserModel', // Also set in auth.php
-            config('module.users::config.model.repository')
+            config('anomaly.module.users::config.model.repository')
         );
         $this->app->bind(
             'Anomaly\UsersModule\User\Contract\UserRepositoryInterface',
-            config('module.users::config.users.repository')
+            config('anomaly.module.users::config.users.repository')
         );
     }
 
@@ -38,11 +38,11 @@ class BindingServiceProvider extends \Illuminate\Support\ServiceProvider
     {
         $this->app->bind(
             'Anomaly\UsersModule\Role\RoleModel',
-            config('module.users::config.roles.model')
+            config('anomaly.module.users::config.roles.model')
         );
         $this->app->bind(
             'Anomaly\UsersModule\Role\Contract\RoleRepositoryInterface',
-            config('module.users::config.roles.repository')
+            config('anomaly.module.users::config.roles.repository')
         );
     }
 }
