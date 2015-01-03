@@ -1,4 +1,4 @@
-<?php namespace Anomaly\Streams\Addon\Module\Users\Role\Contract;
+<?php namespace Anomaly\UsersModule\Role\Contract;
 
 interface RoleInterface
 {

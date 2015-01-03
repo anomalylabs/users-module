@@ -1,5 +1,8 @@
-<?php namespace Anomaly\Streams\Addon\Module\Users\Ui\Table;
+<?php namespace Anomaly\UsersModule\Ui\Table;
 
+use Anomaly\UsersModule\User\UserManager;
+use Anomaly\Streams\Platform\Entry\Contract\EntryInterface;
+use Anomaly\Streams\Platform\Ui\Table\Table;
 use Anomaly\Streams\Platform\Ui\Table\TableBuilder;
 
 /**
@@ -8,12 +11,12 @@ use Anomaly\Streams\Platform\Ui\Table\TableBuilder;
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
- * @package       Anomaly\Streams\Addon\Module\Users\Ui
+ * @package       Anomaly\UsersModule\Ui
  */
 class UserTableBuilder extends TableBuilder
 {
 
-    protected $model = 'Anomaly\Streams\Addon\Module\Users\User\UserModel';
+    protected $model = 'Anomaly\UsersModule\User\UserModel';
 
     protected $views = [
         'view_all' => [
@@ -25,23 +28,6 @@ class UserTableBuilder extends TableBuilder
     protected $filters = [
         'username',
         'email',
-    ];
-
-    protected $columns = [
-        'username',
-        'email',
-    ];
-
-    protected $buttons = [
-        [
-            'button'   => 'edit',
-            'dropdown' => [
-                [
-                    'url'  => '/admin/users/test',
-                    'text' => 'Test Extra',
-                ]
-            ]
-        ],
     ];
 
     protected $actions = [
@@ -56,5 +42,33 @@ class UserTableBuilder extends TableBuilder
             ]
         ]
     ];
+
+    public function __construct(Table $table)
+    {
+        $this->setButtons(
+            [
+                [
+                    'button' => 'edit',
+                    'text'   => function (EntryInterface $entry) {
+                            return md5($entry);
+                        },
+                ],
+            ]
+        );
+
+        $this->setColumns(
+            [
+                'username',
+                [
+                    'heading' => 'Test',
+                    'value'   => function (EntryInterface $entry) {
+                            return $entry->email . 'Test';
+                        }
+                ]
+            ]
+        );
+
+        parent::__construct($table);
+    }
 }
  

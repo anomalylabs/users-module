@@ -1,4 +1,4 @@
-<?php namespace Anomaly\Streams\Addon\Module\Users\Role\Command;
+<?php namespace Anomaly\UsersModule\Role\Command;
 
 class CreateRoleCommand
 {

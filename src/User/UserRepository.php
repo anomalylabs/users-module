@@ -1,6 +1,6 @@
-<?php namespace Anomaly\Streams\Addon\Module\Users\User;
+<?php namespace Anomaly\UsersModule\User;
 
-use Anomaly\Streams\Addon\Module\Users\User\Contract\UserRepositoryInterface;
+use Anomaly\UsersModule\User\Contract\UserRepositoryInterface;
 
 class UserRepository implements UserRepositoryInterface
 {

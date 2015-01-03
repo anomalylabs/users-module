@@ -1,6 +1,6 @@
-<?php namespace Anomaly\Streams\Addon\Module\Users\Role;
+<?php namespace Anomaly\UsersModule\Role;
 
-use Anomaly\Streams\Addon\Module\Users\Role\Contract\RoleRepositoryInterface;
+use Anomaly\UsersModule\Role\Contract\RoleRepositoryInterface;
 
 class RoleRepository implements RoleRepositoryInterface
 {

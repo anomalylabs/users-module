@@ -1,4 +1,4 @@
-<?php namespace Anomaly\Streams\Addon\Module\Users\Provider;
+<?php namespace Anomaly\UsersModule\Provider;
 
 /**
  * Class BindingServiceProvider
@@ -6,7 +6,7 @@
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
- * @package       Anomaly\Streams\Addon\Module\Users\Provider
+ * @package       Anomaly\UsersModule\Provider
  */
 class BindingServiceProvider extends \Illuminate\Support\ServiceProvider
 {
@@ -25,11 +25,11 @@ class BindingServiceProvider extends \Illuminate\Support\ServiceProvider
     protected function bindUserInterfaces()
     {
         $this->app->bind(
-            'Anomaly\Streams\Addon\Module\Users\User\UserModel', // Also set in auth.php
+            'Anomaly\UsersModule\User\UserModel', // Also set in auth.php
             config('module.users::config.model.repository')
         );
         $this->app->bind(
-            'Anomaly\Streams\Addon\Module\Users\User\Contract\UserRepositoryInterface',
+            'Anomaly\UsersModule\User\Contract\UserRepositoryInterface',
             config('module.users::config.users.repository')
         );
     }
@@ -37,11 +37,11 @@ class BindingServiceProvider extends \Illuminate\Support\ServiceProvider
     protected function bindRoleInterfaces()
     {
         $this->app->bind(
-            'Anomaly\Streams\Addon\Module\Users\Role\RoleModel',
+            'Anomaly\UsersModule\Role\RoleModel',
             config('module.users::config.roles.model')
         );
         $this->app->bind(
-            'Anomaly\Streams\Addon\Module\Users\Role\Contract\RoleRepositoryInterface',
+            'Anomaly\UsersModule\Role\Contract\RoleRepositoryInterface',
             config('module.users::config.roles.repository')
         );
     }

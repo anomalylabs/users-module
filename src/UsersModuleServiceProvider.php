@@ -1,4 +1,4 @@
-<?php namespace Anomaly\Streams\Addon\Module\Users;
+<?php namespace Anomaly\UsersModule;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -8,7 +8,7 @@ use Illuminate\Support\ServiceProvider;
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
- * @package       Anomaly\Streams\Addon\Module\Users
+ * @package       Anomaly\UsersModule
  */
 class UsersModuleServiceProvider extends ServiceProvider
 {
@@ -20,9 +20,9 @@ class UsersModuleServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->register('Anomaly\Streams\Addon\Module\Users\Provider\AuthServiceProvider');
-        $this->app->register('Anomaly\Streams\Addon\Module\Users\Provider\RouteServiceProvider');
-        $this->app->register('Anomaly\Streams\Addon\Module\Users\Provider\BindingServiceProvider');
-        $this->app->register('Anomaly\Streams\Addon\Module\Users\Provider\ListenerServiceProvider');
+        $this->app->register('Anomaly\UsersModule\Provider\AuthServiceProvider');
+        $this->app->register('Anomaly\UsersModule\Provider\RouteServiceProvider');
+        $this->app->register('Anomaly\UsersModule\Provider\BindingServiceProvider');
+        $this->app->register('Anomaly\UsersModule\Provider\ListenerServiceProvider');
     }
 }

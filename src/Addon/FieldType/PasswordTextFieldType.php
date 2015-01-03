@@ -1,4 +1,4 @@
-<?php namespace Anomaly\Streams\Addon\Module\Users\Addon\FieldType;
+<?php namespace Anomaly\UsersModule\Addon\FieldType;
 
 use Anomaly\Streams\Addon\FieldType\Text\TextFieldType;
 
@@ -8,7 +8,7 @@ use Anomaly\Streams\Addon\FieldType\Text\TextFieldType;
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
- * @package       Anomaly\Streams\Addon\Module\Users\Addon\FieldType
+ * @package       Anomaly\UsersModule\Addon\FieldType
  */
 class PasswordTextFieldType extends TextFieldType
 {

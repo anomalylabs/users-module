@@ -1,4 +1,4 @@
-<?php namespace Anomaly\Streams\Addon\Module\Users\User;
+<?php namespace Anomaly\UsersModule\User;
 
 use Laracasts\Commander\Events\EventListener;
 

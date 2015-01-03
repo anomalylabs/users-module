@@ -8,6 +8,11 @@
             "email": "hello@anomaly.is"
         }
     ],
+    "autoload": {
+        "psr-4": {
+            "Anomaly\\UsersModule\\": "src/"
+        }
+    },
     "extra": {
         "branch-alias": {
             "dev-master": "1.0.x-dev"

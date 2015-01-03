@@ -1,6 +1,6 @@
-<?php namespace Anomaly\Streams\Addon\Module\Users\User\Event;
+<?php namespace Anomaly\UsersModule\User\Event;
 
-use Anomaly\Streams\Addon\Module\Users\User\Contract\UserInterface;
+use Anomaly\UsersModule\User\Contract\UserInterface;
 
 class UserWasLoggedOut
 {

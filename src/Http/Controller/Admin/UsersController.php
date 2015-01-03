@@ -1,8 +1,8 @@
-<?php namespace Anomaly\Streams\Addon\Module\Users\Http\Controller\Admin;
+<?php namespace Anomaly\UsersModule\Http\Controller\Admin;
 
-use Anomaly\Streams\Addon\Module\Users\Ui\Form\UserFormBuilder;
-use Anomaly\Streams\Addon\Module\Users\Ui\Table\UserTableBuilder;
-use Anomaly\Streams\Addon\Module\Users\User\Contract\UserRepositoryInterface;
+use Anomaly\UsersModule\Ui\Form\UserFormBuilder;
+use Anomaly\UsersModule\Ui\Table\UserTableBuilder;
+use Anomaly\UsersModule\User\Contract\UserRepositoryInterface;
 use Anomaly\Streams\Platform\Http\Controller\AdminController;
 
 /**
@@ -14,7 +14,7 @@ use Anomaly\Streams\Platform\Http\Controller\AdminController;
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
- * @package       Anomaly\Streams\Addon\Module\Users\Http\Controller\Admin
+ * @package       Anomaly\UsersModule\Http\Controller\Admin
  */
 class UsersController extends AdminController
 {

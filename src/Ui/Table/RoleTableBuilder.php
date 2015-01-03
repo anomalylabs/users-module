@@ -1,6 +1,6 @@
-<?php namespace Anomaly\Streams\Addon\Module\Users\Ui\Table;
+<?php namespace Anomaly\UsersModule\Ui\Table;
 
-use Anomaly\Streams\Addon\Module\Users\Role\RoleModel;
+use Anomaly\UsersModule\Role\RoleModel;
 use Anomaly\Streams\Platform\Ui\Table\Table;
 use Anomaly\Streams\Platform\Ui\Table\TableBuilder;
 

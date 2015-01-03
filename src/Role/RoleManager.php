@@ -1,4 +1,4 @@
-<?php namespace Anomaly\Streams\Addon\Module\Users\Role;
+<?php namespace Anomaly\UsersModule\Role;
 
 use Laracasts\Commander\CommanderTrait;
 use Laracasts\Commander\Events\DispatchableTrait;
@@ -10,7 +10,7 @@ class RoleManager
 
     public function create($role)
     {
-        return $this->execute('Anomaly\Streams\Addon\Module\Users\Role\Command\CreateRoleCommand', $role);
+        return $this->execute('Anomaly\UsersModule\Role\Command\CreateRoleCommand', $role);
     }
 }
  

@@ -1,6 +1,6 @@
-<?php namespace Anomaly\Streams\Addon\Module\Users\Extension;
+<?php namespace Anomaly\UsersModule\Extension;
 
-use Anomaly\Streams\Addon\Module\Users\User\Contract\UserInterface;
+use Anomaly\UsersModule\User\Contract\UserInterface;
 use Anomaly\Streams\Platform\Addon\Extension\Extension;
 
 /**
@@ -9,7 +9,7 @@ use Anomaly\Streams\Platform\Addon\Extension\Extension;
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
- * @package       Anomaly\Streams\Addon\Module\Users\Extension
+ * @package       Anomaly\UsersModule\Extension
  */
 abstract class CheckExtension extends Extension
 {

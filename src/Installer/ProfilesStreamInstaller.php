@@ -1,4 +1,4 @@
-<?php namespace Anomaly\Streams\Addon\Module\Users\Installer;
+<?php namespace Anomaly\UsersModule\Installer;
 
 use Anomaly\Streams\Platform\Stream\StreamInstaller;
 
@@ -8,7 +8,7 @@ use Anomaly\Streams\Platform\Stream\StreamInstaller;
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
- * @package       Anomaly\Streams\Addon\Module\Users\Installer
+ * @package       Anomaly\UsersModule\Installer
  */
 class ProfilesStreamInstaller extends StreamInstaller
 {

@@ -1,4 +1,4 @@
-<?php namespace Anomaly\Streams\Addon\Module\Users\User\Contract;
+<?php namespace Anomaly\UsersModule\User\Contract;
 
 interface UserInterface
 {

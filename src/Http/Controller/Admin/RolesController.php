@@ -1,7 +1,7 @@
-<?php namespace Anomaly\Streams\Addon\Module\Users\Http\Controller\Admin;
+<?php namespace Anomaly\UsersModule\Http\Controller\Admin;
 
-use Anomaly\Streams\Addon\Module\Users\Ui\Form\RoleFormBuilder;
-use Anomaly\Streams\Addon\Module\Users\Ui\Table\RoleTableBuilder;
+use Anomaly\UsersModule\Ui\Form\RoleFormBuilder;
+use Anomaly\UsersModule\Ui\Table\RoleTableBuilder;
 use Anomaly\Streams\Platform\Http\Controller\AdminController;
 
 /**
@@ -10,7 +10,7 @@ use Anomaly\Streams\Platform\Http\Controller\AdminController;
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
- * @package       Anomaly\Streams\Addon\Module\Users\Http\Controller\Admin
+ * @package       Anomaly\UsersModule\Http\Controller\Admin
  */
 class RolesController extends AdminController
 {
@@ -18,35 +18,35 @@ class RolesController extends AdminController
     /**
      * Return the table for existing roles.
      *
-     * @param RoleTableBuilder $ui
+     * @param RoleTableBuilder $form
      * @return mixed|null
      */
-    public function index(RoleTableBuilder $ui)
+    public function index(RoleTableBuilder $form)
     {
-        return $ui->render();
+        return $form->render();
     }
 
     /**
      * Return the form for a new role.
      *
-     * @param RoleFormBuilder $ui
+     * @param RoleFormBuilder $form
      * @return mixed|null
      */
-    public function create(RoleFormBuilder $ui)
+    public function create(RoleFormBuilder $form)
     {
-        return $ui->render();
+        return $form->render();
     }
 
     /**
      * Return the form for an existing role.
      *
-     * @param RoleFormBuilder $ui
+     * @param RoleFormBuilder $form
      * @param           $id
      * @return mixed|null
      */
-    public function edit(RoleFormBuilder $ui, $id)
+    public function edit(RoleFormBuilder $form, $id)
     {
-        return $ui->render($id);
+        return $form->render($id);
     }
 }
  

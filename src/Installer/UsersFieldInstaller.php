@@ -1,4 +1,4 @@
-<?php namespace Anomaly\Streams\Addon\Module\Users\Installer;
+<?php namespace Anomaly\UsersModule\Installer;
 
 use Anomaly\Streams\Platform\Field\FieldInstaller;
 
@@ -8,7 +8,7 @@ use Anomaly\Streams\Platform\Field\FieldInstaller;
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
- * @package       Anomaly\Streams\Addon\Module\Users\Installer
+ * @package       Anomaly\UsersModule\Installer
  */
 class UsersFieldInstaller extends FieldInstaller
 {
@@ -21,7 +21,7 @@ class UsersFieldInstaller extends FieldInstaller
     protected $fields = [
         'email'             => 'email',
         'username'          => 'text',
-        'password'          => 'Anomaly\Streams\Addon\Module\Users\Addon\FieldType\PasswordTextFieldType',
+        'password'          => 'Anomaly\UsersModule\Addon\FieldType\PasswordTextFieldType',
         'confirmation_code' => 'text',
         'remember_token'    => 'text',
         'ip_address'        => 'text',
@@ -41,13 +41,13 @@ class UsersFieldInstaller extends FieldInstaller
             'type'   => 'multiple',
             'config' => [
                 'pivot_table' => 'users_assigned_roles',
-                'related'     => 'Anomaly\Streams\Addon\Module\Users\Role\RoleModel',
+                'related'     => 'Anomaly\UsersModule\Role\RoleModel',
             ],
         ],
         'user'              => [
             'type'   => 'relationship',
             'config' => [
-                'related' => 'Anomaly\Streams\Addon\Module\Users\User\UserModel',
+                'related' => 'Anomaly\UsersModule\User\UserModel',
             ],
         ],
     ];

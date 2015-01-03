@@ -1,4 +1,4 @@
-<?php namespace Anomaly\Streams\Addon\Module\Users\Provider;
+<?php namespace Anomaly\UsersModule\Provider;
 
 /**
  * Class RouteServiceProvider
@@ -6,7 +6,7 @@
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
- * @package       Anomaly\Streams\Addon\Module\Users\Provider
+ * @package       Anomaly\UsersModule\Provider
  */
 class RouteServiceProvider extends \Illuminate\Foundation\Support\Providers\RouteServiceProvider
 {
@@ -16,7 +16,7 @@ class RouteServiceProvider extends \Illuminate\Foundation\Support\Providers\Rout
      *
      * @var string
      */
-    protected $prefix = 'Anomaly\Streams\Addon\Module\Users\Http\Controller\\';
+    protected $prefix = 'Anomaly\UsersModule\Http\Controller\\';
 
     /**
      * Define the routes for the application.

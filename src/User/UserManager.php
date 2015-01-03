@@ -1,4 +1,4 @@
-<?php namespace Anomaly\Streams\Addon\Module\Users\User;
+<?php namespace Anomaly\UsersModule\User;
 
 use Laracasts\Commander\CommanderTrait;
 
@@ -9,7 +9,7 @@ class UserManager
 
     public function create(array $credentials, $activate = false)
     {
-        $user = $this->execute('Anomaly\Streams\Addon\Module\Users\User\Command\CreateUserCommand', $credentials);
+        $user = $this->execute('Anomaly\UsersModule\User\Command\CreateUserCommand', $credentials);
 
         return $user;
     }

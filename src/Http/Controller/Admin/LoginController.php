@@ -1,4 +1,4 @@
-<?php namespace Anomaly\Streams\Addon\Module\Users\Http\Controller\Admin;
+<?php namespace Anomaly\UsersModule\Http\Controller\Admin;
 
 use Anomaly\Streams\Platform\Http\Controller\PublicController;
 use Illuminate\Http\Request;
@@ -10,7 +10,7 @@ use Illuminate\Routing\Redirector;
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
- * @package       Anomaly\Streams\Addon\Module\Users\Http\Controller\Admin
+ * @package       Anomaly\UsersModule\Http\Controller\Admin
  */
 class LoginController extends PublicController
 {

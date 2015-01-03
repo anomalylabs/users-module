@@ -1,6 +1,6 @@
-<?php namespace Anomaly\Streams\Addon\Module\Users\Role\Command;
+<?php namespace Anomaly\UsersModule\Role\Command;
 
-use Anomaly\Streams\Addon\Module\Users\Role\Contract\RoleRepositoryInterface;
+use Anomaly\UsersModule\Role\Contract\RoleRepositoryInterface;
 
 class CreateRoleCommandHandler
 {

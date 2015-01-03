@@ -1,4 +1,4 @@
-<?php namespace Anomaly\Streams\Addon\Module\Users;
+<?php namespace Anomaly\UsersModule;
 
 use Anomaly\Streams\Platform\Addon\Module\ModuleInstaller;
 
@@ -8,7 +8,7 @@ use Anomaly\Streams\Platform\Addon\Module\ModuleInstaller;
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
- * @package       Anomaly\Streams\Addon\Module\Users
+ * @package       Anomaly\UsersModule
  */
 class UsersModuleInstaller extends ModuleInstaller
 {
@@ -19,10 +19,10 @@ class UsersModuleInstaller extends ModuleInstaller
      * @var array
      */
     protected $installers = [
-        'Anomaly\Streams\Addon\Module\Users\Installer\UsersFieldInstaller',
-        'Anomaly\Streams\Addon\Module\Users\Installer\UsersStreamInstaller',
-        'Anomaly\Streams\Addon\Module\Users\Installer\RolesStreamInstaller',
-        'Anomaly\Streams\Addon\Module\Users\Installer\ProfilesStreamInstaller',
+        'Anomaly\UsersModule\Installer\UsersFieldInstaller',
+        'Anomaly\UsersModule\Installer\UsersStreamInstaller',
+        'Anomaly\UsersModule\Installer\RolesStreamInstaller',
+        'Anomaly\UsersModule\Installer\ProfilesStreamInstaller',
     ];
 }
  

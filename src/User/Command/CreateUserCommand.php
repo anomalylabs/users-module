@@ -1,4 +1,4 @@
-<?php namespace Anomaly\Streams\Addon\Module\Users\User\Command;
+<?php namespace Anomaly\UsersModule\User\Command;
 
 class CreateUserCommand
 {

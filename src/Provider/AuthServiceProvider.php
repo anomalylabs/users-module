@@ -1,6 +1,6 @@
-<?php namespace Anomaly\Streams\Addon\Module\Users\Provider;
+<?php namespace Anomaly\UsersModule\Provider;
 
-use Anomaly\Streams\Addon\Module\Users\User\Contract\UserInterface;
+use Anomaly\UsersModule\User\Contract\UserInterface;
 
 /**
  * Class AuthServiceProvider
@@ -8,7 +8,7 @@ use Anomaly\Streams\Addon\Module\Users\User\Contract\UserInterface;
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
- * @package       Anomaly\Streams\Addon\Module\Users\Provider
+ * @package       Anomaly\UsersModule\Provider
  */
 class AuthServiceProvider extends \Illuminate\Support\ServiceProvider
 {
@@ -54,7 +54,7 @@ class AuthServiceProvider extends \Illuminate\Support\ServiceProvider
      */
     protected function registerAuthMiddleware()
     {
-        $this->app->bind('Authenticate', 'Anomaly\Streams\Addon\Module\Users\Http\Middleware\Authenticate');
+        $this->app->bind('Authenticate', 'Anomaly\UsersModule\Http\Middleware\Authenticate');
     }
 }
  
