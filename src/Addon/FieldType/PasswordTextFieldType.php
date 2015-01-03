@@ -1,6 +1,6 @@
 <?php namespace Anomaly\UsersModule\Addon\FieldType;
 
-use Anomaly\Streams\Addon\FieldType\Text\TextFieldType;
+use Anomaly\TextFieldType\TextFieldType;
 
 /**
  * Class PasswordTextFieldType
