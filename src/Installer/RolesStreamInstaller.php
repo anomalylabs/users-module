@@ -30,8 +30,8 @@ class RolesStreamInstaller extends StreamInstaller
      * @var array
      */
     protected $assignments = [
-        'name'        => ['is_required' => true, 'is_unique' => true, 'is_translatable' => true],
-        'slug'        => ['is_required' => true, 'is_unique' => true],
+        'name'        => ['required' => true, 'unique' => true, 'translatable' => true],
+        'slug'        => ['required' => true, 'unique' => true],
         'permissions' => [],
     ];
 }

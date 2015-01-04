@@ -25,6 +25,13 @@ class UserFormBuilder extends FormBuilder
     protected $model = 'Anomaly\UsersModule\User\UserModel';
 
     /**
+     * The form fields.
+     *
+     * @var string
+     */
+    protected $fields = 'Anomaly\UsersModule\Ui\Form\User\Handle\FieldHandler@handle';
+
+    /**
      * The form actions.
      *
      * @var string
@@ -47,7 +54,9 @@ class UserFormBuilder extends FormBuilder
     {
         $options = $form->getOptions();
 
-        $this->execute('Anomaly\UsersModule\Ui\Form\User\Command\LoadSectionsOptionCommand', compact('options'));
+        $options->title = 'Test Title';
+
+        //$this->execute('Anomaly\UsersModule\Ui\Form\User\Command\LoadSectionsOptionCommand', compact('options'));
 
         parent::__construct($form);
     }
