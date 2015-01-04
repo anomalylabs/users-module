@@ -19,10 +19,8 @@ class ViewHandler
     public function handle()
     {
         return [
-            'view_all' => [
-                'test' => 'foo',
-                'view' => 'all',
-            ],
+            'all',
+            'recently_created'
         ];
     }
 }
