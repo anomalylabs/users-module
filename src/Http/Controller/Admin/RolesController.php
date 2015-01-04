@@ -49,4 +49,3 @@ class RolesController extends AdminController
         return $form->render($id);
     }
 }
- 

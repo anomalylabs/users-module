@@ -33,4 +33,3 @@ class ProfilesStreamInstaller extends StreamInstaller
         'website'      => [],
     ];
 }
- 

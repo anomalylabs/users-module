@@ -39,4 +39,3 @@ class UsersStreamInstaller extends StreamInstaller
         'roles'             => [],
     ];
 }
- 

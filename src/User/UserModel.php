@@ -10,4 +10,3 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, \Illumina
 
     use Authenticatable;
 }
- 

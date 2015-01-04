@@ -48,4 +48,3 @@ class UserTableBuilder extends TableBuilder
      */
     protected $buttons = 'Anomaly\UsersModule\Ui\Table\User\Handler\ButtonHandler@handle';
 }
- 

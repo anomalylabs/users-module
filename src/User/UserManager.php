@@ -14,4 +14,3 @@ class UserManager
         return $user;
     }
 }
- 

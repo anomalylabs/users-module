@@ -17,4 +17,3 @@ class CreateUserCommandHandler
         $this->users->create($command->getUsername(), $command->getEmail(), $command->getPassword());
     }
 }
- 

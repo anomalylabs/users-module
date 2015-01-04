@@ -31,4 +31,3 @@ class CreateUserCommand
         return $this->username;
     }
 }
- 

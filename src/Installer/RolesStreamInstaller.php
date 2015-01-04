@@ -35,4 +35,3 @@ class RolesStreamInstaller extends StreamInstaller
         'permissions' => [],
     ];
 }
- 

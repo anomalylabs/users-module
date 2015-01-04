@@ -55,4 +55,3 @@ class LoginController extends PublicController
         return redirect('admin/login');
     }
 }
- 

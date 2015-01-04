@@ -123,4 +123,3 @@ class UsersController extends AdminController
         return redirect(referer('admin/users'));
     }
 }
- 

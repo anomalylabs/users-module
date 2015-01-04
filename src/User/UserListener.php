@@ -6,4 +6,3 @@ class UserListener extends EventListener
 {
 
 }
- 

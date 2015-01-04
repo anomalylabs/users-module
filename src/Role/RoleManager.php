@@ -13,4 +13,3 @@ class RoleManager
         return $this->execute('Anomaly\UsersModule\Role\Command\CreateRoleCommand', $role);
     }
 }
- 

@@ -46,4 +46,3 @@ class BindingServiceProvider extends \Illuminate\Support\ServiceProvider
         );
     }
 }
- 

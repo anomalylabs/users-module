@@ -17,4 +17,3 @@ class UserWasLoggedIn
         return $this->user;
     }
 }
- 

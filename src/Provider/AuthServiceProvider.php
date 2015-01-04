@@ -57,4 +57,3 @@ class AuthServiceProvider extends \Illuminate\Support\ServiceProvider
         $this->app->bind('Authenticate', 'Anomaly\UsersModule\Http\Middleware\Authenticate');
     }
 }
- 

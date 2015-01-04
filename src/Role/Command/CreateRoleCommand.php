@@ -31,4 +31,3 @@ class CreateRoleCommand
         return $this->slug;
     }
 }
- 

@@ -17,4 +17,3 @@ class CreateRoleCommandHandler
         return $this->roles->create($command->getName(), $command->getSlug(), $command->getPermissions());
     }
 }
- 

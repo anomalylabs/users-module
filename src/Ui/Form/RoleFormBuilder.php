@@ -35,4 +35,3 @@ class RoleFormBuilder extends FormBuilder
         'delete'
     ];
 }
- 

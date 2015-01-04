@@ -24,4 +24,3 @@ class ListenerServiceProvider extends \Illuminate\Support\ServiceProvider
         );
     }
 }
- 

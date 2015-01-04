@@ -7,4 +7,3 @@ class RoleModel extends UsersRolesEntryModel implements RoleInterface
 {
 
 }
- 

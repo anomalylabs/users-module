@@ -64,4 +64,3 @@ class RoleTableBuilder extends TableBuilder
         );
     }
 }
- 

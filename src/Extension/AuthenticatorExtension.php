@@ -20,4 +20,3 @@ abstract class AuthenticatorExtension extends Extension
      */
     abstract public function authenticate(array $credentials);
 }
- 

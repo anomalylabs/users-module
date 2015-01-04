@@ -28,4 +28,3 @@ class PasswordTextFieldType extends TextFieldType
         return $data;
     }
 }
- 

@@ -25,4 +25,3 @@ class UsersModuleInstaller extends ModuleInstaller
         'Anomaly\UsersModule\Installer\ProfilesStreamInstaller',
     ];
 }
- 

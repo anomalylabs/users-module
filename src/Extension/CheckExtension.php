@@ -38,4 +38,3 @@ abstract class CheckExtension extends Extension
      */
     abstract public function fail(UserInterface $user = null);
 }
- 

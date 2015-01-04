@@ -5,4 +5,3 @@ interface RoleRepositoryInterface
 
     public function create($name, $slug, $permissions);
 }
- 
