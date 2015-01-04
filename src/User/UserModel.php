@@ -8,4 +8,9 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, \Illumina
 {
 
     use Authenticatable;
+
+    public function setPasswordAttribute($password)
+    {
+        $this->attributes['password'] = app('hash')->make($password);
+    }
 }
