@@ -7,7 +7,7 @@ class UserManager
 
     use CommanderTrait;
 
-    public function create(array $credentials, $activate = false)
+    public function create(array $credentials)
     {
         $user = $this->execute('Anomaly\UsersModule\User\Command\CreateUserCommand', $credentials);
 
