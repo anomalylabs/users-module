@@ -41,14 +41,14 @@ class RoleTableBuilder extends TableBuilder
                 [
                     'header' => 'permissions',
                     'value'  => function ($entry) {
-                            /*if ($entry->permissions) {
+                            if ($entry->permissions) {
 
                                 return implode('.', $entry->permissions);
                             }
 
                             if (!$entry->permissions) {
                                 return 'No permissions';
-                            }*/
+                            }
                         },
                 ],
             ]
