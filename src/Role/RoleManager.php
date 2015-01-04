@@ -1,7 +1,6 @@
 <?php namespace Anomaly\UsersModule\Role;
 
 use Laracasts\Commander\CommanderTrait;
-use Laracasts\Commander\Events\DispatchableTrait;
 
 class RoleManager
 {
