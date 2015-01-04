@@ -1,4 +1,3 @@
-users-module
-============
+#Users Module
 
-Users and authentication management.
+Users and permissions management.
