@@ -29,15 +29,20 @@ class UserFormBuilder extends FormBuilder
      *
      * @var string
      */
-    //protected $actions = 'Anomaly\UsersModule\Ui\Form\User\Handle\ActionHandler@handle';
+    protected $actions = 'Anomaly\UsersModule\Ui\Form\User\Handle\ActionHandler@handle';
 
     /**
      * The form buttons.
      *
      * @var string
      */
-    //protected $buttons = 'Anomaly\UsersModule\Ui\Form\User\Handle\ButtonHandler@handle';
+    protected $buttons = 'Anomaly\UsersModule\Ui\Form\User\Handle\ButtonHandler@handle';
 
+    /**
+     * Create a new UserFormBuilder instance.
+     *
+     * @param Form $form
+     */
     public function __construct(Form $form)
     {
         $options = $form->getOptions();
