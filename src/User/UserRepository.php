@@ -18,7 +18,7 @@ class UserRepository implements UserRepositoryInterface
 
         $user->email    = $email;
         $user->username = $username;
-        $user->password = app('hash')->make($password);
+        $user->password = $password;
 
         $user->save();
 
