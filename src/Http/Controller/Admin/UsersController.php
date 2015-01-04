@@ -62,8 +62,6 @@ class UsersController extends AdminController
      */
     public function activate(UserRepositoryInterface $users, $id)
     {
-        $this->execute(new ActivateUserCommand($users->find($id)));
-
         return redirect()->back();
     }
 
@@ -76,8 +74,6 @@ class UsersController extends AdminController
      */
     public function deactivate(UserRepositoryInterface $users, $id)
     {
-        $this->execute(new DeactivateUserCommand($users->find($id)));
-
         return redirect()->back();
     }
 
@@ -90,8 +86,6 @@ class UsersController extends AdminController
      */
     public function block(UserRepositoryInterface $users, $id)
     {
-        $this->execute(new BlockUserCommand($users->find($id)));
-
         return redirect(referer('admin/users'));
     }
 
@@ -104,8 +98,6 @@ class UsersController extends AdminController
      */
     public function unblock(UserRepositoryInterface $users, $id)
     {
-        $this->execute(new UnblockUserCommand($users->find($id)));
-
         return redirect(referer('admin/users'));
     }
 
@@ -118,8 +110,6 @@ class UsersController extends AdminController
      */
     public function logout(UserRepositoryInterface $users, $id)
     {
-        $this->execute(new LogoutUserCommand($users->find($id)));
-
         return redirect(referer('admin/users'));
     }
 }
