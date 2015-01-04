@@ -23,10 +23,5 @@ class UserFormBuilder extends FormBuilder
         'cancel',
         'delete'
     ];
-
-    protected $fields = [
-        'username',
-        'roles'
-    ];
 }
  
