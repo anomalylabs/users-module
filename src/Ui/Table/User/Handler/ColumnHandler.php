@@ -1,7 +1,5 @@
 <?php namespace Anomaly\UsersModule\Ui\Table\User\Handler;
 
-use Anomaly\UsersModule\User\Contract\UserInterface;
-
 /**
  * Class ColumnHandler
  *
@@ -21,12 +19,7 @@ class ColumnHandler
     public function handle()
     {
         return [
-            [
-                'heading' => 'username',
-                'value'   => function (UserInterface $entry) {
-                        return view('module::ui/table/users/username', compact('entry'));
-                    },
-            ],
+            'username',
             'email',
         ];
     }
