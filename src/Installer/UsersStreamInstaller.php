@@ -18,7 +18,10 @@ class UsersStreamInstaller extends StreamInstaller
      *
      * @var string
      */
-    protected $stream = 'users';
+    protected $stream = [
+        'slug'         => 'users',
+        'title_column' => 'username',
+    ];
 
     /**
      * The stream assignments.

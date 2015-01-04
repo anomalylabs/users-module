@@ -22,6 +22,7 @@ class FieldHandler
             'username',
             'email',
             'password',
+            'roles',
         ];
     }
 }

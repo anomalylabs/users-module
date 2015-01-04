@@ -3,7 +3,6 @@
 return [
     'username'    => [
         'name'        => 'Username',
-        'placeholder' => 'Test',
     ],
     'email'       => [
         'name' => 'Email',
@@ -17,7 +16,10 @@ return [
     'slug'        => [
         'name' => 'Slug',
     ],
+    'roles'       => [
+        'name' => 'Roles',
+    ],
     'permissions' => [
-        'name' => 'Permission Name',
+        'name' => 'Permissions',
     ],
 ];
