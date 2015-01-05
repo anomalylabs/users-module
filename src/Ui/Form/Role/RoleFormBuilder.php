@@ -1,4 +1,4 @@
-<?php namespace Anomaly\UsersModule\Ui\Form;
+<?php namespace Anomaly\UsersModule\Ui\Form\Role;
 
 use Anomaly\Streams\Platform\Ui\Form\FormBuilder;
 
@@ -21,17 +21,23 @@ class RoleFormBuilder extends FormBuilder
     protected $model = 'Anomaly\UsersModule\Role\RoleModel';
 
     /**
+     * The form fields.
+     *
      * @var array
      */
-    protected $actions = [
-        'save',
-    ];
+    protected $fields = 'Anomaly\UsersModule\Ui\Form\Role\Handler\FieldHandler@handle';
 
     /**
+     * The form actions.
+     *
      * @var array
      */
-    protected $buttons = [
-        'cancel',
-        'delete'
-    ];
+    protected $actions = 'Anomaly\UsersModule\Ui\Form\Role\Handler\ActionHandler@handle';
+
+    /**
+     * The form buttons.
+     *
+     * @var array
+     */
+    protected $buttons = 'Anomaly\UsersModule\Ui\Form\Role\Handler\ButtonHandler@handle';
 }

@@ -1,7 +1,7 @@
 <?php namespace Anomaly\UsersModule\Http\Controller\Admin;
 
 use Anomaly\Streams\Platform\Http\Controller\AdminController;
-use Anomaly\UsersModule\Ui\Form\RoleFormBuilder;
+use Anomaly\UsersModule\Ui\Form\Role\RoleFormBuilder;
 use Anomaly\UsersModule\Ui\Table\Role\RoleTableBuilder;
 
 /**
@@ -40,7 +40,7 @@ class RolesController extends AdminController
     /**
      * Return the form for an existing role.
      *
-     * @param RoleFormBuilder $form
+     * @param \Anomaly\UsersModule\Ui\Form\Role\RoleFormBuilder $form
      * @param                 $id
      * @return mixed|null
      */
