@@ -1,5 +1,7 @@
 <?php namespace Anomaly\UsersModule\Provider;
 
+use Illuminate\Routing\Router;
+
 /**
  * Class RouteServiceProvider
  *
@@ -19,27 +21,52 @@ class RouteServiceProvider extends \Illuminate\Foundation\Support\Providers\Rout
     protected $prefix = 'Anomaly\UsersModule\Http\Controller\\';
 
     /**
-     * Define the routes for the application.
+     * Define the routes for the Users module.
+     *
+     * @param Router $router
      */
-    public function map()
+    public function map(Router $router)
+    {
+        $this->mapLoginRoute($router);
+        $this->mapLogoutRoute($router);
+        $this->mapUsersRoutes($router);
+        $this->mapRolesRoutes($router);
+        $this->mapDefaultRoute($router);
+        $this->mapPermissionsRoutes($router);
+    }
+
+    /**
+     * Register the default admin route.
+     *
+     * @param Router $router
+     */
+    protected function mapDefaultRoute(Router $router)
     {
         /**
          * The default admin route leads to
          * the preferred landing page.
          */
-        app('router')->get(
+        $router->get(
             'admin',
             function () {
 
                 return redirect('admin/dashboard');
             }
         );
+    }
 
+    /**
+     * Register the login routes.
+     *
+     * @param Router $router
+     */
+    protected function mapLoginRoute(Router $router)
+    {
         /**
          * Since laravel points to these by default
          * let's just ping back to what we expect (admin).
          */
-        app('router')->get(
+        $router->get(
             'auth/login',
             function () {
 
@@ -48,15 +75,23 @@ class RouteServiceProvider extends \Illuminate\Foundation\Support\Providers\Rout
         );
 
         /**
-         * Handle logging into the admin.
+         * Handle the login page and login attempt.
          */
-        app('router')->get('admin/login', $this->prefix . 'Admin\LoginController@login');
-        app('router')->post('admin/login', $this->prefix . 'Admin\LoginController@attempt');
+        $router->get('admin/login', $this->prefix . 'Admin\LoginController@login');
+        $router->post('admin/login', $this->prefix . 'Admin\LoginController@attempt');
+    }
 
+    /**
+     * Register the logout route.
+     *
+     * @param Router $router
+     */
+    protected function mapLogoutRoute(Router $router)
+    {
         /**
          * Handle logging out.
          */
-        app('router')->get(
+        $router->get(
             'admin/logout',
             function () {
 
@@ -65,24 +100,45 @@ class RouteServiceProvider extends \Illuminate\Foundation\Support\Providers\Rout
                 return redirect('auth/login');
             }
         );
+    }
 
-        /**
-         * Route the UsersController routes.
-         */
-        app('router')->any('admin/users', $this->prefix . 'Admin\UsersController@index');
-        app('router')->any('admin/users/create', $this->prefix . 'Admin\UsersController@create');
-        app('router')->any('admin/users/edit/{id}', $this->prefix . 'Admin\UsersController@edit');
-        app('router')->any('admin/users/activate/{id}', $this->prefix . 'Admin\UsersController@activate');
-        app('router')->any('admin/users/deactivate/{id}', $this->prefix . 'Admin\UsersController@deactivate');
-        app('router')->any('admin/users/block/{id}', $this->prefix . 'Admin\UsersController@block');
-        app('router')->any('admin/users/unblock/{id}', $this->prefix . 'Admin\UsersController@unblock');
-        app('router')->any('admin/users/logout/{id}', $this->prefix . 'Admin\UsersController@logout');
+    /**
+     * Register Users routes.
+     *
+     * @param Router $router
+     */
+    protected function mapUsersRoutes(Router $router)
+    {
+        $router->any('admin/users', $this->prefix . 'Admin\UsersController@index');
+        $router->any('admin/users/create', $this->prefix . 'Admin\UsersController@create');
+        $router->any('admin/users/edit/{id}', $this->prefix . 'Admin\UsersController@edit');
+        $router->any('admin/users/activate/{id}', $this->prefix . 'Admin\UsersController@activate');
+        $router->any('admin/users/deactivate/{id}', $this->prefix . 'Admin\UsersController@deactivate');
+        $router->any('admin/users/block/{id}', $this->prefix . 'Admin\UsersController@block');
+        $router->any('admin/users/unblock/{id}', $this->prefix . 'Admin\UsersController@unblock');
+        $router->any('admin/users/logout/{id}', $this->prefix . 'Admin\UsersController@logout');
+    }
 
-        /**
-         * Route the RolesController routes.
-         */
-        app('router')->any('admin/users/roles', $this->prefix . 'Admin\RolesController@index');
-        app('router')->any('admin/users/roles/create', $this->prefix . 'Admin\RolesController@create');
-        app('router')->any('admin/users/roles/edit/{id}', $this->prefix . 'Admin\RolesController@edit');
+    /**
+     * Register the Roles routes.
+     *
+     * @param Router $router
+     */
+    protected function mapRolesRoutes(Router $router)
+    {
+        $router->any('admin/users/roles', $this->prefix . 'Admin\RolesController@index');
+        $router->any('admin/users/roles/create', $this->prefix . 'Admin\RolesController@create');
+        $router->any('admin/users/roles/edit/{id}', $this->prefix . 'Admin\RolesController@edit');
+    }
+
+    /**
+     * Register the permissions routes.
+     *
+     * @param Router $router
+     */
+    protected function mapPermissionsRoutes(Router $router)
+    {
+        $router->any('admin/users/permissions', $this->prefix . 'Admin\PermissionsController@index');
+        $router->any('admin/users/permissions/{addon}', $this->prefix . 'Admin\PermissionsController@index');
     }
 }

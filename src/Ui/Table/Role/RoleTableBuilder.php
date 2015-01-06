@@ -33,4 +33,11 @@ class RoleTableBuilder extends TableBuilder
      * @var array
      */
     protected $columns = 'Anomaly\UsersModule\Ui\Table\Role\Handler\ColumnHandler@handle';
+
+    /**
+     * The table buttons.
+     *
+     * @var array
+     */
+    protected $buttons = 'Anomaly\UsersModule\Ui\Table\Role\Handler\ButtonHandler@handle';
 }
