@@ -1,0 +1,10 @@
+{% extends "streams::wrappers/blank" %}
+
+{% block content %}
+
+    {% include "module::admin/permissions/partials/addons" %}
+    {% include "module::admin/permissions/partials/roles" %}
+
+    {{ content|raw }}
+
+{% endblock %}

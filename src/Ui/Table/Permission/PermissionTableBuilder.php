@@ -53,7 +53,7 @@ class PermissionTableBuilder extends TableBuilder
      */
     public function __construct(Table $table)
     {
-        $table->getOptions()->put('wrapper', 'module::admin/wrapper');
+        $table->getOptions()->put('wrapper', 'module::admin/permissions/wrapper');
 
         parent::__construct($table);
     }
