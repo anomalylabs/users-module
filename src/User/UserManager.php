@@ -1,15 +1,15 @@
 <?php namespace Anomaly\UsersModule\User;
 
-use Laracasts\Commander\CommanderTrait;
+use Illuminate\Foundation\Bus\DispatchesCommands;
 
 class UserManager
 {
 
-    use CommanderTrait;
+    use DispatchesCommands;
 
     public function create(array $credentials)
     {
-        $user = $this->execute('Anomaly\UsersModule\User\Command\CreateUserCommand', $credentials);
+        $user = $this->dispatchFromArray('Anomaly\UsersModule\User\Command\CreateUserCommand', $credentials);
 
         return $user;
     }

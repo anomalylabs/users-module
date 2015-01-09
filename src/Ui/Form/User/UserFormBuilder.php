@@ -2,7 +2,6 @@
 
 use Anomaly\Streams\Platform\Ui\Form\Form;
 use Anomaly\Streams\Platform\Ui\Form\FormBuilder;
-use Laracasts\Commander\CommanderTrait;
 
 /**
  * Class UserFormBuilder
@@ -15,7 +14,7 @@ use Laracasts\Commander\CommanderTrait;
 class UserFormBuilder extends FormBuilder
 {
 
-    use CommanderTrait;
+    use DispatchesCommands;
 
     /**
      * The form model.
@@ -55,8 +54,6 @@ class UserFormBuilder extends FormBuilder
         $options = $form->getOptions();
 
         $options->title = 'Test Title';
-
-        //$this->execute('Anomaly\UsersModule\Ui\Form\User\Command\LoadSectionsOptionCommand', compact('options'));
 
         parent::__construct($form);
     }

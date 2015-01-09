@@ -1,14 +1,14 @@
 <?php namespace Anomaly\UsersModule\Role;
 
-use Laracasts\Commander\CommanderTrait;
+use Illuminate\Foundation\Bus\DispatchesCommands;
 
 class RoleManager
 {
 
-    use CommanderTrait;
+    use DispatchesCommands;
 
     public function create($role)
     {
-        return $this->execute('Anomaly\UsersModule\Role\Command\CreateRoleCommand', $role);
+        return $this->dispatchFromArray('Anomaly\UsersModule\Role\Command\CreateRoleCommand', $role);
     }
 }
