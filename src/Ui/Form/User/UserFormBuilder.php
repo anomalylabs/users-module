@@ -2,6 +2,7 @@
 
 use Anomaly\Streams\Platform\Ui\Form\Form;
 use Anomaly\Streams\Platform\Ui\Form\FormBuilder;
+use Illuminate\Foundation\Bus\DispatchesCommands;
 
 /**
  * Class UserFormBuilder
