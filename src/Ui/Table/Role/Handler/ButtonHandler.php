@@ -18,6 +18,8 @@ class ButtonHandler
      */
     public function handle()
     {
-        return ['delete'];
+        return [
+            'delete'
+        ];
     }
 }
