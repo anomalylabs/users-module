@@ -1,5 +1,7 @@
 <?php namespace Anomaly\UsersModule\Provider;
 
+use Anomaly\Streams\Platform\Support\Configuration;
+
 /**
  * Class BindingServiceProvider
  *
@@ -18,6 +20,12 @@ class BindingServiceProvider extends \Illuminate\Support\ServiceProvider
      */
     public function register()
     {
+        $config = app('Anomaly\Streams\Platform\Support\Configuration');
+
+        if ($config instanceof Configuration) {
+            $config->load('anomaly.module.users', __DIR__.'/../../resources/config');
+        }
+
         $this->bindUserInterfaces();
         $this->bindRoleInterfaces();
     }

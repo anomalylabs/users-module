@@ -1,5 +1,6 @@
-<?php namespace Anomaly\UsersModule\User\Command;
+<?php namespace Anomaly\UsersModule\User\Command\Handler;
 
+use Anomaly\UsersModule\User\Command\CreateUserCommand;
 use Anomaly\UsersModule\User\Contract\UserRepositoryInterface;
 
 class CreateUserCommandHandler

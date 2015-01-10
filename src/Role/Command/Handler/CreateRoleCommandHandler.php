@@ -1,5 +1,6 @@
-<?php namespace Anomaly\UsersModule\Role\Command;
+<?php namespace Anomaly\UsersModule\Role\Command\Handler;
 
+use Anomaly\UsersModule\Role\Command\CreateRoleCommand;
 use Anomaly\UsersModule\Role\Contract\RoleRepositoryInterface;
 
 class CreateRoleCommandHandler
