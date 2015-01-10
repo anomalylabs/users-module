@@ -2,7 +2,7 @@
 
 return [
     'username'    => [
-        'name'        => 'Username',
+        'name' => 'Username',
     ],
     'email'       => [
         'name' => 'Email',
