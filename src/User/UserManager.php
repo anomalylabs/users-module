@@ -9,7 +9,7 @@ class UserManager
 
     public function create(array $credentials)
     {
-        $user = $this->dispatchFromArray('Anomaly\UsersModule\User\Command\CreateUserCommand', $credentials);
+        $user = $this->dispatchFromArray('Anomaly\UsersModule\User\Command\CreateUser', $credentials);
 
         return $user;
     }

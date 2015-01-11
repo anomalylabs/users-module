@@ -9,6 +9,6 @@ class RoleManager
 
     public function create($role)
     {
-        return $this->dispatchFromArray('Anomaly\UsersModule\Role\Command\CreateRoleCommand', $role);
+        return $this->dispatchFromArray('Anomaly\UsersModule\Role\Command\CreateRole', $role);
     }
 }
