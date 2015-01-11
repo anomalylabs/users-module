@@ -20,9 +20,12 @@ class UsersModuleServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->register('Anomaly\UsersModule\Provider\AuthServiceProvider');
-        $this->app->register('Anomaly\UsersModule\Provider\RouteServiceProvider');
-        $this->app->register('Anomaly\UsersModule\Provider\BindingServiceProvider');
-        $this->app->register('Anomaly\UsersModule\Provider\ListenerServiceProvider');
+        $this->app->register('Anomaly\UsersModule\UsersModuleRouteProvider');
+
+        $this->app->register('Anomaly\UsersModule\User\UserRouteProvider');
+        $this->app->register('Anomaly\UsersModule\User\UserServiceProvider');
+
+        $this->app->register('Anomaly\UsersModule\Role\RoleRouteProvider');
+        $this->app->register('Anomaly\UsersModule\Role\RoleServiceProvider');
     }
 }
