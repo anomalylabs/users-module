@@ -1,6 +1,6 @@
 <?php namespace Anomaly\UsersModule\Role\Command;
 
-class CreateRoleCommand
+class CreateRole
 {
 
     protected $name;

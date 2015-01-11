@@ -1,9 +1,9 @@
 <?php namespace Anomaly\UsersModule\Role\Command\Handler;
 
-use Anomaly\UsersModule\Role\Command\CreateRoleCommand;
+use Anomaly\UsersModule\Role\Command\CreateRole;
 use Anomaly\UsersModule\Role\Contract\RoleRepositoryInterface;
 
-class CreateRoleCommandHandler
+class CreateRoleHandler
 {
 
     protected $roles;
@@ -13,7 +13,7 @@ class CreateRoleCommandHandler
         $this->roles = $roles;
     }
 
-    public function handle(CreateRoleCommand $command)
+    public function handle(CreateRole $command)
     {
         return $this->roles->create($command->getName(), $command->getSlug(), $command->getPermissions());
     }

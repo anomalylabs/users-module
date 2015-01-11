@@ -1,6 +1,6 @@
 <?php namespace Anomaly\UsersModule\User\Command;
 
-class CreateUserCommand
+class CreateUser
 {
 
     protected $email;

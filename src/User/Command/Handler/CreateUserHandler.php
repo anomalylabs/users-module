@@ -1,9 +1,9 @@
 <?php namespace Anomaly\UsersModule\User\Command\Handler;
 
-use Anomaly\UsersModule\User\Command\CreateUserCommand;
+use Anomaly\UsersModule\User\Command\CreateUser;
 use Anomaly\UsersModule\User\Contract\UserRepositoryInterface;
 
-class CreateUserCommandHandler
+class CreateUserHandler
 {
 
     protected $users;
@@ -13,7 +13,7 @@ class CreateUserCommandHandler
         $this->users = $users;
     }
 
-    public function handle(CreateUserCommand $command)
+    public function handle(CreateUser $command)
     {
         $this->users->create($command->getUsername(), $command->getEmail(), $command->getPassword());
     }

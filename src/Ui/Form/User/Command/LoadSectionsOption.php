@@ -3,14 +3,14 @@
 use Illuminate\Support\Collection;
 
 /**
- * Class LoadSectionsOptionCommand
+ * Class LoadSectionsOption
  *
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
  * @package       Anomaly\UsersModule\Ui\Form\User\Command
  */
-class LoadSectionsOptionCommand
+class LoadSectionsOption
 {
 
     /**
@@ -21,7 +21,7 @@ class LoadSectionsOptionCommand
     protected $options;
 
     /**
-     * Create a new LoadSectionsOptionCommand instance.
+     * Create a new LoadSectionsOption instance.
      *
      * @param Collection $options
      */
