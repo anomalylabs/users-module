@@ -1,9 +1,9 @@
 <?php namespace Anomaly\UsersModule\Http\Controller\Admin;
 
 use Anomaly\Streams\Platform\Http\Controller\AdminController;
-use Anomaly\UsersModule\Ui\Form\User\UserFormBuilder;
-use Anomaly\UsersModule\Ui\Table\User\UserTableBuilder;
 use Anomaly\UsersModule\User\Contract\UserRepositoryInterface;
+use Anomaly\UsersModule\User\Form\UserFormBuilder;
+use Anomaly\UsersModule\User\Table\UserTableBuilder;
 
 /**
  * Class UsersController

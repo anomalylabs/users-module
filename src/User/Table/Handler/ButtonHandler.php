@@ -1,23 +1,25 @@
-<?php namespace Anomaly\UsersModule\Ui\Table\Permission\Handle;
+<?php namespace Anomaly\UsersModule\User\Table\Handler;
 
 /**
- * Class ActionsHandler
+ * Class ButtonHandler
  *
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
- * @package       Anomaly\UsersModule\Ui\Table\Permission\Handle
+ * @package       Anomaly\UsersModule\Ui\Table\User\Handler
  */
-class ActionsHandler
+class ButtonHandler
 {
 
     /**
-     * Return the table actions.
+     * Return the table buttons.
      *
      * @return array
      */
     public function handle()
     {
-        return ['save'];
+        return [
+            'edit',
+        ];
     }
 }

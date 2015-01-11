@@ -1,4 +1,4 @@
-<?php namespace Anomaly\UsersModule\Ui\Form\User;
+<?php namespace Anomaly\UsersModule\User\Form;
 
 use Anomaly\Streams\Platform\Ui\Form\Form;
 use Anomaly\Streams\Platform\Ui\Form\FormBuilder;
@@ -29,21 +29,21 @@ class UserFormBuilder extends FormBuilder
      *
      * @var string
      */
-    protected $fields = 'Anomaly\UsersModule\Ui\Form\User\Handle\FieldHandler@handle';
+    protected $fields = 'Anomaly\UsersModule\User\Form\Handle\FieldHandler@handle';
 
     /**
      * The form actions.
      *
      * @var string
      */
-    protected $actions = 'Anomaly\UsersModule\Ui\Form\User\Handle\ActionHandler@handle';
+    protected $actions = 'Anomaly\UsersModule\User\Form\Handle\ActionHandler@handle';
 
     /**
      * The form buttons.
      *
      * @var string
      */
-    protected $buttons = 'Anomaly\UsersModule\Ui\Form\User\Handle\ButtonHandler@handle';
+    protected $buttons = 'Anomaly\UsersModule\User\Form\Handle\ButtonHandler@handle';
 
     /**
      * Create a new UserFormBuilder instance.

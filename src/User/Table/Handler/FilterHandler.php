@@ -1,25 +1,26 @@
-<?php namespace Anomaly\UsersModule\Ui\Table\User\Handler;
+<?php namespace Anomaly\UsersModule\User\Table\Handler;
 
 /**
- * Class ButtonHandler
+ * Class FilterHandler
  *
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
  * @package       Anomaly\UsersModule\Ui\Table\User\Handler
  */
-class ButtonHandler
+class FilterHandler
 {
 
     /**
-     * Return the table buttons.
+     * Return the table filters.
      *
      * @return array
      */
     public function handle()
     {
         return [
-            'edit',
+            'username',
+            'email',
         ];
     }
 }

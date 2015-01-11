@@ -1,26 +1,28 @@
-<?php namespace Anomaly\UsersModule\Ui\Table\Role\Handler;
+<?php namespace Anomaly\UsersModule\User\Form\Handle;
 
 /**
- * Class FilterHandler
+ * Class FieldHandler
  *
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
- * @package       Anomaly\UsersModule\Ui\Table\Role\Handler
+ * @package       Anomaly\UsersModule\User\Form\Handle
  */
-class FilterHandler
+class FieldHandler
 {
 
     /**
-     * Return the table filters.
+     * Return the form fields.
      *
      * @return array
      */
     public function handle()
     {
         return [
-            'name',
-            'slug',
+            'username',
+            'email',
+            'password',
+            'roles',
         ];
     }
 }

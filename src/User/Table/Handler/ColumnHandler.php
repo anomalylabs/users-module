@@ -1,25 +1,26 @@
-<?php namespace Anomaly\UsersModule\Ui\Form\Role\Handler;
+<?php namespace Anomaly\UsersModule\User\Table\Handler;
 
 /**
- * Class ActionHandler
+ * Class ColumnHandler
  *
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
- * @package       Anomaly\UsersModule\Ui\Form\Role\Handler
+ * @package       Anomaly\UsersModule\Ui\Table\User\Handler
  */
-class ActionHandler
+class ColumnHandler
 {
 
     /**
-     * Return the form actions.
+     * Return the table columns.
      *
      * @return array
      */
     public function handle()
     {
         return [
-            'save',
+            'username',
+            'email',
         ];
     }
 }
