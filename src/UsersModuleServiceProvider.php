@@ -14,6 +14,14 @@ class UsersModuleServiceProvider extends ServiceProvider
 {
 
     /**
+     * Boot the service provider.
+     */
+    public function boot()
+    {
+        $this->app->make('twig')->addExtension($this->app->make('Anomaly\UsersModule\UsersModulePlugin'));
+    }
+
+    /**
      * Register the service provider.
      *
      * @return void

@@ -2,9 +2,16 @@
 
 {% block content %}
 
-    {% include "module::admin/permissions/partials/addons" %}
-    {% include "module::admin/permissions/partials/roles" %}
+    <div class="row">
 
-    {{ content|raw }}
+        <div class="col-lg-4">
+            {% include "module::admin/permissions/partials/roles" %}
+        </div>
+
+        <div class="col-lg-20">
+            {{ content|raw }}
+        </div>
+
+    </div>
 
 {% endblock %}

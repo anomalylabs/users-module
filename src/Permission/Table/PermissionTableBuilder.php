@@ -47,6 +47,7 @@ class PermissionTableBuilder extends TableBuilder
         $options = $table->getOptions();
 
         $options->put('role_id', $request->segment(4));
+        $options->put('wrapper', 'anomaly.module.users::admin/permissions/wrapper');
 
         parent::__construct($table);
     }
