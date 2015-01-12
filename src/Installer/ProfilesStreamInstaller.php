@@ -32,4 +32,5 @@ class ProfilesStreamInstaller extends StreamInstaller
         'last_name'    => [],
         'website'      => [],
     ];
+
 }

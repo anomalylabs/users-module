@@ -1,8 +1,8 @@
 <?php namespace Anomaly\UsersModule\Http\Controller\Admin;
 
 use Anomaly\Streams\Platform\Http\Controller\AdminController;
-use Anomaly\UsersModule\Ui\Form\Role\RoleFormBuilder;
-use Anomaly\UsersModule\Ui\Table\Role\RoleTableBuilder;
+use Anomaly\UsersModule\Role\Form\RoleFormBuilder;
+use Anomaly\UsersModule\Role\Table\RoleTableBuilder;
 
 /**
  * Class RolesController
@@ -16,10 +16,10 @@ class RolesController extends AdminController
 {
 
     /**
-     * Return the table for existing roles.
+     * Return an index of existing roles.
      *
-     * @param \Anomaly\UsersModule\Ui\Table\Role\RoleTableBuilder $form
-     * @return mixed|null
+     * @param RoleTableBuilder $form
+     * @return \Illuminate\View\View|\Symfony\Component\HttpFoundation\Response
      */
     public function index(RoleTableBuilder $form)
     {
@@ -27,10 +27,10 @@ class RolesController extends AdminController
     }
 
     /**
-     * Return the form for a new role.
+     * Return a form for a new role.
      *
      * @param RoleFormBuilder $form
-     * @return mixed|null
+     * @return \Illuminate\View\View|\Symfony\Component\HttpFoundation\Response
      */
     public function create(RoleFormBuilder $form)
     {
@@ -38,11 +38,11 @@ class RolesController extends AdminController
     }
 
     /**
-     * Return the form for an existing role.
+     * Return a form for an existing role.
      *
-     * @param \Anomaly\UsersModule\Ui\Form\Role\RoleFormBuilder $form
+     * @param RoleFormBuilder $form
      * @param                 $id
-     * @return mixed|null
+     * @return \Illuminate\View\View|\Symfony\Component\HttpFoundation\Response
      */
     public function edit(RoleFormBuilder $form, $id)
     {

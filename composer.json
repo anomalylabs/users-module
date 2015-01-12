@@ -2,7 +2,12 @@
     "name": "anomaly/users-module",
     "type": "streams-addon",
     "description": "Users and permissions management.",
-    "keywords": ["streams-addon", "users", "pyrocms", "laravel"],
+    "keywords": [
+        "streams-addon",
+        "users",
+        "pyrocms",
+        "laravel"
+    ],
     "homepage": "http://anomaly.is/",
     "license": "MIT",
     "authors": [

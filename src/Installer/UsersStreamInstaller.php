@@ -43,4 +43,5 @@ class UsersStreamInstaller extends StreamInstaller
         'ip_address'       => [],
         'roles'            => [],
     ];
+
 }

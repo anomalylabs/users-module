@@ -35,4 +35,5 @@ class RolesStreamInstaller extends StreamInstaller
         'slug'        => ['required' => true, 'unique' => true],
         'permissions' => [],
     ];
+
 }

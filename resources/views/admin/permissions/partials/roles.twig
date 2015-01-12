@@ -7,10 +7,22 @@
     </div>
 
     {% for role in users_roles() %}
-        <a href="{{ url('admin/users/permissions/' ~ role.id) }}"
-           class="list-group-item {{ role.id == request_segment(4) ? 'active' }}">
-            {{ role.name }}
-        </a>
+
+        {% if role.slug == 'admin' %}
+
+            <span class="list-group-item disabled">
+                {{ role.name }}
+            </span>
+
+        {% else %}
+
+            <a href="{{ url('admin/users/permissions/' ~ role.id) }}"
+               class="list-group-item {{ role.id == request_segment(4) ? 'active' }}">
+                {{ role.name }}
+            </a>
+
+        {% endif %}
+
     {% endfor %}
 
 </div>
