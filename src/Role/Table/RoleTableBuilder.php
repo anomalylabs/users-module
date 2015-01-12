@@ -34,4 +34,11 @@ class RoleTableBuilder extends TableBuilder
      */
     protected $buttons = 'Anomaly\UsersModule\Role\Table\Handler\ButtonsHandler@handle';
 
+    /**
+     * The table actions.
+     *
+     * @var string
+     */
+    protected $actions = 'Anomaly\UsersModule\Role\Table\Handler\ActionsHandler@handle';
+
 }

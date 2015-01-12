@@ -21,15 +21,15 @@ class ButtonsHandler
     public function handle()
     {
         return [
-            'edit',
             [
-                'icon'    => 'unlock-alt',
+                'text'    => 'module::button.permissions',
                 'type'    => 'default',
                 'url'     => '/admin/users/permissions/{{ entry.id }}',
                 'enabled' => function (RoleInterface $entry) {
                     return ($entry->getSlug() !== 'admin');
                 },
-            ]
+            ],
+            'edit'
         ];
     }
 }
