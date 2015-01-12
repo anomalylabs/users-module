@@ -2,7 +2,7 @@
 
 use Anomaly\Streams\Platform\Ui\Table\Table;
 use Anomaly\UsersModule\Role\Contract\RoleRepositoryInterface;
-use Illuminate\Http\Request;
+use Illuminate\Session\SessionManager;
 
 /**
  * Class SaveActionHandler
@@ -17,13 +17,18 @@ class SaveActionHandler
 
     /**
      * Handle the action.
+     *
+     * @param Table                   $table
+     * @param RoleRepositoryInterface $roles
      */
-    public function handle(Table $table, Request $request, RoleRepositoryInterface $roles)
+    public function handle(Table $table, RoleRepositoryInterface $roles, SessionManager $session)
     {
         $options = $table->getOptions();
 
-        $permissions = array_keys(array_except($request->all(), ['action']));
+        $permissions = array_get($_POST, 'permission', []);
 
         $roles->updatePermissions($options->get('role_id'), $permissions);
+
+        $table->setResponse(redirect('admin/users/permissions/' . $options->get(('role_id'))));
     }
 }

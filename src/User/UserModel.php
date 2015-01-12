@@ -1,6 +1,8 @@
 <?php namespace Anomaly\UsersModule\User;
 
+use Anomaly\Streams\Platform\Entry\EntryCollection;
 use Anomaly\Streams\Platform\Model\Users\UsersUsersEntryModel;
+use Anomaly\UsersModule\Role\Contract\RoleInterface;
 use Anomaly\UsersModule\User\Contract\UserInterface;
 use Illuminate\Auth\Authenticatable;
 
@@ -18,7 +20,7 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, \Illumina
     use Authenticatable;
 
     /**
-     * Has the password whenever setting it.
+     * Hash the password whenever setting it.
      *
      * @param $password
      */
@@ -28,24 +30,57 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, \Illumina
     }
 
     /**
-     * Return whether a user is in a role(s).
+     * Get related roles.
+     *
+     * @return EntryCollection
+     */
+    public function getRoles()
+    {
+        return $this->roles()->get();
+    }
+
+    /**
+     * Return whether a user is in a role.
      *
      * @param string|array $role
      * @return bool
      */
     public function hasRole($role)
     {
-        return true;
+        return (in_array($role, $this->roles()->lists('slug')));
     }
 
     /**
-     * Return whether a user has permission(s).
+     * Return whether a user has permission.
      *
      * @param string|array $permission
      * @return bool
      */
-    public function hasAccess($permission)
+    public function hasPermission($permission)
     {
-        return true;
+        foreach ($this->getRoles() as $role) {
+            if ($role instanceof RoleInterface && $role->hasPermission($permission) || $role->getSlug() === 'admin') {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * Return whether a user has any of provided permission.
+     *
+     * @param $permissions
+     * @return bool
+     */
+    public function hasAnyPermission(array $permissions)
+    {
+        foreach ($permissions as $permission) {
+            if ($this->hasPermission($permission)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

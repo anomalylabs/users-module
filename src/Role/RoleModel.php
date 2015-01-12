@@ -52,10 +52,6 @@ class RoleModel extends UsersRolesEntryModel implements RoleInterface
      */
     public function hasPermission($permission)
     {
-        if ($this->slug == 'admin') {
-            return true;
-        }
-        
         return in_array($permission, $this->permissions);
     }
 }
