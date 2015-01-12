@@ -24,7 +24,7 @@ class ButtonsHandler
             [
                 'text'    => 'module::button.permissions',
                 'type'    => 'default',
-                'url'     => '/admin/users/permissions/{{ entry.id }}',
+                'href'    => '/admin/users/permissions/{{ entry.id }}',
                 'enabled' => function (RoleInterface $entry) {
                     return ($entry->getSlug() !== 'admin');
                 },
