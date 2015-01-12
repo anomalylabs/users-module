@@ -45,19 +45,39 @@ class PermissionTableBuilder extends TableBuilder
      */
     public function __construct(Table $table, Request $request, Asset $asset)
     {
+        $this->appendAssets($asset);
+        $this->setTableOptions($table, $request);
+
+        parent::__construct($table);
+    }
+
+    /**
+     *
+     * @param Asset $asset
+     */
+    protected function appendAssets(Asset $asset)
+    {
         $asset->add('streams.js', 'module::js/permissions.js', ['live']);
+    }
 
+    /**
+     * Set table options.
+     *
+     * @param Table   $table
+     * @param Request $request
+     * @throws \Exception
+     */
+    protected function setTableOptions(Table $table, Request $request)
+    {
+        $role    = $request->segment(4);
         $options = $table->getOptions();
-
-        $role = $request->segment(4);
 
         if ($role == 1) {
             throw new \Exception("Administrator permissions can not be modified.");
         }
 
+        $options->put('class', 'table');
         $options->put('role_id', $role);
         $options->put('wrapper', 'anomaly.module.users::admin/permissions/wrapper');
-
-        parent::__construct($table);
     }
 }
