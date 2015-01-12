@@ -62,6 +62,10 @@ class RoleModel extends UsersRolesEntryModel implements RoleInterface
      */
     public function hasPermission($permission)
     {
+        if (!$permission) {
+            return true;
+        }
+        
         if (!$this->permissions) {
             return false;
         }

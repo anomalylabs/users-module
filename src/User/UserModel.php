@@ -58,6 +58,10 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, \Illumina
      */
     public function hasPermission($permission)
     {
+        if (!$permission) {
+            return true;
+        }
+        
         foreach ($this->getRoles() as $role) {
             if ($role instanceof RoleInterface && $role->hasPermission($permission) || $role->getSlug() === 'admin') {
                 return true;
