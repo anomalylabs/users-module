@@ -1,5 +1,14 @@
 <?php
 
 return [
-    'user'
+    'user' => [
+        'create',
+        'edit',
+        'delete'
+    ],
+    'role' => [
+        'create',
+        'edit',
+        'delete'
+    ]
 ];

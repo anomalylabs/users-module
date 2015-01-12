@@ -1,0 +1,36 @@
+{% for group, permission in config_get(entry.getNamespace('permissions')) %}
+
+    {% if permission is iterable %}
+
+        <label class="control-label">
+            <strong>
+                {{ trans(entry.getNamespace('permission.' ~ group ~ '.name')) }}
+            </strong>
+
+            <small class="text-muted" style="font-weight: lighter">
+                {{ trans(entry.getNamespace('permission.' ~ group ~ '.description')) }}
+            </small>
+        </label>
+
+        <ul class="list-inline">
+            {% for inner in permission %}
+                <li>
+                    <label class="control-label" style="font-weight: normal;">
+                        <input type="checkbox" name="{{ entry.getNamespace(group ~ '.' ~ inner) }}">
+                        {{ trans(entry.getNamespace('permission.' ~ group ~ '.' ~ inner ~ '.name')) }}
+                    </label>
+                </li>
+            {% endfor %}
+        </ul>
+
+    {% else %}
+
+        <label class="control-label" style="font-weight: normal;">
+            <input type="checkbox" name="{{ entry.getNamespace(permission)|raw }}">
+            {{ trans(entry.getNamespace('permission.' ~ permission ~ '.name')) }}
+            {{ icon('question-circle') }}
+        </label>
+
+    {% endif %}
+
+{% endfor %}

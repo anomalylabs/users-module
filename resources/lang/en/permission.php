@@ -2,21 +2,29 @@
 
 return [
     'user' => [
-        'view'   => [
-            'name'        => 'View Users',
-            'description' => 'Can view index of users.',
+        'name'        => 'User',
+        'description' => 'User management.',
+        'create'      => [
+            'name' => 'Create'
         ],
-        'create' => [
-            'name'        => 'Create User',
-            'description' => 'Can create new users.',
+        'edit'        => [
+            'name' => 'Edit'
         ],
-        'edit'   => [
-            'name'        => 'Edit User',
-            'description' => 'Can edit existing users.',
+        'delete'      => [
+            'name' => 'Delete'
+        ]
+    ],
+    'role' => [
+        'name'        => 'Role',
+        'description' => 'Role management.',
+        'create'      => [
+            'name' => 'Create'
         ],
-        'delete' => [
-            'name'        => 'Delete User',
-            'description' => 'Can delete existing users.',
+        'edit'        => [
+            'name' => 'Edit'
         ],
+        'delete'      => [
+            'name' => 'Delete'
+        ]
     ]
 ];

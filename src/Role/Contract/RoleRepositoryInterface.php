@@ -1,5 +1,7 @@
 <?php namespace Anomaly\UsersModule\Role\Contract;
 
+use Illuminate\Support\Collection;
+
 /**
  * Interface RoleRepositoryInterface
  *
@@ -14,17 +16,33 @@ interface RoleRepositoryInterface
     /**
      * Return all roles.
      *
-     * @return mixed
+     * @return Collection
      */
     public function all();
 
     /**
      * Create a new Role.
      *
-     * @param $name
-     * @param $slug
-     * @param $permissions
-     * @return mixed
+     * @param       $name
+     * @param       $slug
+     * @return RoleInterface
      */
-    public function create($name, $slug, $permissions);
+    public function create($name, $slug);
+
+    /**
+     * Find a role by it's ID.
+     *
+     * @param $id
+     * @return \Illuminate\Support\Collection|null|RoleInterface
+     */
+    public function find($id);
+
+    /**
+     * Update permissions for a role.
+     *
+     * @param       $id
+     * @param array $permissions
+     * @return RoleInterface|Collection|null
+     */
+    public function updatePermissions($id, array $permissions);
 }

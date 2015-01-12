@@ -1,6 +1,8 @@
 <?php namespace Anomaly\UsersModule\Role;
 
+use Anomaly\UsersModule\Role\Contract\RoleInterface;
 use Anomaly\UsersModule\Role\Contract\RoleRepositoryInterface;
+use Illuminate\Support\Collection;
 
 /**
  * Class RoleRepository
@@ -33,7 +35,7 @@ class RoleRepository implements RoleRepositoryInterface
     /**
      * Return all roles.
      *
-     * @return mixed
+     * @return Collection
      */
     public function all()
     {
@@ -45,15 +47,42 @@ class RoleRepository implements RoleRepositoryInterface
      *
      * @param $name
      * @param $slug
-     * @param $permissions
-     * @return mixed
+     * @return RoleInterface
      */
-    public function create($name, $slug, $permissions)
+    public function create($name, $slug)
     {
         $role = $this->model->newInstance();
 
-        $role->name        = $name;
-        $role->slug        = $slug;
+        $role->name = $name;
+        $role->slug = $slug;
+
+        $role->save();
+
+        return $role;
+    }
+
+    /**
+     * Find a role by it's ID.
+     *
+     * @param $id
+     * @return \Illuminate\Support\Collection|null|RoleInterface
+     */
+    public function find($id)
+    {
+        return $this->model->find($id);
+    }
+
+    /**
+     * Update permissions for a role.
+     *
+     * @param       $id
+     * @param array $permissions
+     * @return RoleInterface|Collection|null
+     */
+    public function updatePermissions($id, array $permissions)
+    {
+        $role = $this->find($id);
+
         $role->permissions = $permissions;
 
         $role->save();
