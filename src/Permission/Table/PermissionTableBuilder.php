@@ -1,5 +1,6 @@
 <?php namespace Anomaly\UsersModule\Permission\Table;
 
+use Anomaly\Streams\Platform\Asset\Asset;
 use Anomaly\Streams\Platform\Ui\Table\Table;
 use Anomaly\Streams\Platform\Ui\Table\TableBuilder;
 use Illuminate\Http\Request;
@@ -42,11 +43,19 @@ class PermissionTableBuilder extends TableBuilder
      * @param Table   $table
      * @param Request $request
      */
-    public function __construct(Table $table, Request $request)
+    public function __construct(Table $table, Request $request, Asset $asset)
     {
+        $asset->add('streams.js', 'module::js/permissions.js', ['live']);
+
         $options = $table->getOptions();
 
-        $options->put('role_id', $request->segment(4));
+        $role = $request->segment(4);
+
+        if ($role == 1) {
+            throw new \Exception("Administrator permissions can not be modified.");
+        }
+
+        $options->put('role_id', $role);
         $options->put('wrapper', 'anomaly.module.users::admin/permissions/wrapper');
 
         parent::__construct($table);
