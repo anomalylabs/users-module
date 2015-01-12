@@ -20,4 +20,12 @@ class RoleFormBuilder extends FormBuilder
      */
     protected $model = 'Anomaly\UsersModule\Role\RoleModel';
 
+
+    /**
+     * The skipped fields.
+     *
+     * @var array
+     */
+    protected $skips = ['permissions'];
+
 }
