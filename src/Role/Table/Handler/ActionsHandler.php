@@ -19,7 +19,9 @@ class ActionsHandler
     public function handle()
     {
         return [
-            'delete',
+            'delete' => [
+                'permission' => 'anomaly.module.users::permission.delete_user',
+            ],
         ];
     }
 }
