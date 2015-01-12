@@ -15,6 +15,16 @@ class RoleModel extends UsersRolesEntryModel implements RoleInterface
 {
 
     /**
+     * Get the role's ID.
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->getKey();
+    }
+
+    /**
      * Get the role slug.
      *
      * @return string
@@ -52,6 +62,10 @@ class RoleModel extends UsersRolesEntryModel implements RoleInterface
      */
     public function hasPermission($permission)
     {
+        if (!$this->permissions) {
+            return false;
+        }
+
         return in_array($permission, $this->permissions);
     }
 }

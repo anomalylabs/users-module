@@ -12,6 +12,13 @@ interface RoleInterface
 {
 
     /**
+     * Get the role's ID.
+     *
+     * @return int
+     */
+    public function getId();
+
+    /**
      * Get the role's slug.
      *
      * @return string
