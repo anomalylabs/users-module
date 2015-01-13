@@ -29,21 +29,21 @@ class UserFormBuilder extends FormBuilder
      *
      * @var string
      */
-    protected $fields = 'Anomaly\UsersModule\User\Form\Handle\FieldHandler@handle';
+    protected $fields = 'Anomaly\UsersModule\User\Form\Handle\FieldsHandler@handle';
 
     /**
      * The form actions.
      *
      * @var string
      */
-    protected $actions = 'Anomaly\UsersModule\User\Form\Handle\ActionHandler@handle';
+    protected $actions = 'Anomaly\UsersModule\User\Form\Handle\ActionsHandler@handle';
 
     /**
      * The form buttons.
      *
      * @var string
      */
-    protected $buttons = 'Anomaly\UsersModule\User\Form\Handle\ButtonHandler@handle';
+    protected $buttons = 'Anomaly\UsersModule\User\Form\Handle\ButtonsHandler@handle';
 
     /**
      * Create a new UserFormBuilder instance.

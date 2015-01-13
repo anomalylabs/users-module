@@ -1,7 +1,7 @@
 <?php namespace Anomaly\UsersModule\User\Table\Handler;
 
 /**
- * Class ButtonHandler
+ * Class ButtonsHandler
  *
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
