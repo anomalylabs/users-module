@@ -22,7 +22,7 @@ class ButtonsHandler
     {
         return [
             [
-                'text'    => 'module::button.permissions',
+                'icon'    => 'sliders',
                 'type'    => 'default',
                 'href'    => '/admin/users/permissions/{{ entry.id }}',
                 'enabled' => function (RoleInterface $entry) {
