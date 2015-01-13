@@ -78,6 +78,6 @@ class PermissionTableBuilder extends TableBuilder
 
         $options->put('class', 'table');
         $options->put('role_id', $role);
-        $options->put('wrapper', 'anomaly.module.users::admin/permissions/wrapper');
+        $options->put('wrapper_view', 'anomaly.module.users::admin/permissions/wrapper');
     }
 }
