@@ -20,12 +20,15 @@
 
         <div class="form-group">
             <label for="remember">
-                {{ form_checkbox("remember", null, true, {'id': 'remember'}) }} Remember me
+                {{ form_checkbox("remember", null, true, {'id': 'remember'}) }}
+                {{ trans('anomaly.module.users::login.remember_me') }}
             </label>
         </div>
 
         <div class="form-group">
-            <button type="submit" value="Login" class="btn btn-block btn-primary">Login</button>
+            <button type="submit" value="Login" class="btn btn-block btn-primary">
+                {{ trans('anomaly.module.users::button.login') }}
+            </button>
         </div>
 
         {{ form_close() }}
