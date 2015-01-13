@@ -76,6 +76,10 @@ class PermissionTableBuilder extends TableBuilder
             throw new \Exception("Administrator permissions can not be modified.");
         }
 
+        if (!$role) {
+            throw new \Exception("The role could not be found with ID [{$role}].");
+        }
+
         $options->put('class', 'table');
         $options->put('role_id', $role);
         $options->put('wrapper_view', 'anomaly.module.users::admin/permissions/wrapper');

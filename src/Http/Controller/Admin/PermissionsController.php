@@ -2,6 +2,7 @@
 
 use Anomaly\Streams\Platform\Http\Controller\AdminController;
 use Anomaly\UsersModule\Permission\Table\PermissionTableBuilder;
+use Anomaly\UsersModule\Role\Contract\RoleRepositoryInterface;
 
 /**
  * Class PermissionsController
@@ -20,8 +21,12 @@ class PermissionsController extends AdminController
      * @param PermissionTableBuilder $table
      * @return \Illuminate\View\View|\Symfony\Component\HttpFoundation\Response
      */
-    public function index(PermissionTableBuilder $table)
+    public function index(PermissionTableBuilder $table, RoleRepositoryInterface $roles, $id = null)
     {
+        if (!$id && $role = $roles->all()->get(1)) {
+            return redirect('admin/users/permissions/' . $role->getId());
+        }
+
         return $table->render();
     }
 }

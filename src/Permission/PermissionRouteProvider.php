@@ -22,7 +22,7 @@ class PermissionRouteProvider extends RouteServiceProvider
     public function map(Router $router)
     {
         $router->any(
-            'admin/users/permissions/{id}',
+            'admin/users/permissions/{id?}',
             'Anomaly\UsersModule\Http\Controller\Admin\PermissionsController@index'
         );
     }
