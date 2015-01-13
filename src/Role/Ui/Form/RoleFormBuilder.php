@@ -1,4 +1,4 @@
-<?php namespace Anomaly\UsersModule\Role\Form;
+<?php namespace Anomaly\UsersModule\Role\Ui\Form;
 
 use Anomaly\Streams\Platform\Ui\Form\FormBuilder;
 
@@ -8,7 +8,7 @@ use Anomaly\Streams\Platform\Ui\Form\FormBuilder;
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
- * @package       Anomaly\UsersModule\Role\Form
+ * @package       Anomaly\UsersModule\Role\Ui\Form
  */
 class RoleFormBuilder extends FormBuilder
 {
@@ -25,7 +25,7 @@ class RoleFormBuilder extends FormBuilder
      *
      * @var string
      */
-    protected $buttons = 'Anomaly\UsersModule\Role\Form\Handler\ButtonsHandler@handle';
+    protected $buttons = 'Anomaly\UsersModule\Role\Ui\Form\Handler\ButtonsHandler@handle';
 
     /**
      * The skipped fields.

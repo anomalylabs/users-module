@@ -1,26 +1,26 @@
-<?php namespace Anomaly\UsersModule\User\Table\Handler;
+<?php namespace Anomaly\UsersModule\User\Ui\Table\Handler;
 
 /**
- * Class ViewHandler
+ * Class ColumnHandler
  *
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
  * @package       Anomaly\UsersModule\Ui\Table\User\Handler
  */
-class ViewHandler
+class ColumnHandler
 {
 
     /**
-     * Return the table views.
+     * Return the table columns.
      *
      * @return array
      */
     public function handle()
     {
         return [
-            'all',
-            'recently_created'
+            'username',
+            'email',
         ];
     }
 }

@@ -1,14 +1,13 @@
-<?php namespace Anomaly\UsersModule\User\Table\Handler;
+<?php namespace Anomaly\UsersModule\Role\Ui\Table\Handler;
 
 /**
- * Class ColumnHandler
+ * Class ColumnsHandler
  *
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
- * @package       Anomaly\UsersModule\Ui\Table\User\Handler
  */
-class ColumnHandler
+class ColumnsHandler
 {
 
     /**
@@ -19,8 +18,8 @@ class ColumnHandler
     public function handle()
     {
         return [
-            'username',
-            'email',
+            'name',
+            'slug',
         ];
     }
 }

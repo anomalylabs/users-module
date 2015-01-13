@@ -1,4 +1,4 @@
-<?php namespace Anomaly\UsersModule\Role\Table\Handler;
+<?php namespace Anomaly\UsersModule\Role\Ui\Table\Handler;
 
 use Anomaly\UsersModule\Role\Contract\RoleInterface;
 
@@ -8,7 +8,7 @@ use Anomaly\UsersModule\Role\Contract\RoleInterface;
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
- * @package       Anomaly\UsersModule\Role\Table\Handler
+ * @package       Anomaly\UsersModule\Role\Ui\Table\Handler
  */
 class ButtonsHandler
 {

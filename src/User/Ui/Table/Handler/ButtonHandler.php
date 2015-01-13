@@ -1,4 +1,4 @@
-<?php namespace Anomaly\UsersModule\Role\Form\Handler;
+<?php namespace Anomaly\UsersModule\User\Ui\Table\Handler;
 
 /**
  * Class ButtonsHandler
@@ -6,9 +6,9 @@
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
- * @package       Anomaly\UsersModule\Role\Form\Handler
+ * @package       Anomaly\UsersModule\Ui\Table\User\Handler
  */
-class ButtonsHandler
+class ButtonHandler
 {
 
     /**
@@ -19,8 +19,7 @@ class ButtonsHandler
     public function handle()
     {
         return [
-            'cancel',
-            'delete',
+            'edit',
         ];
     }
 }

@@ -1,4 +1,4 @@
-<?php namespace Anomaly\UsersModule\User\Table;
+<?php namespace Anomaly\UsersModule\User\Ui\Table;
 
 use Anomaly\Streams\Platform\Ui\Table\TableBuilder;
 
@@ -25,27 +25,27 @@ class UserTableBuilder extends TableBuilder
      *
      * @var string
      */
-    protected $views = 'Anomaly\UsersModule\User\Table\Handler\ViewHandler@handle';
+    protected $views = 'Anomaly\UsersModule\User\Ui\Table\Handler\ViewHandler@handle';
 
     /**
      * The table filters.
      *
      * @var string
      */
-    protected $filters = 'Anomaly\UsersModule\User\Table\Handler\FilterHandler@handle';
+    protected $filters = 'Anomaly\UsersModule\User\Ui\Table\Handler\FilterHandler@handle';
 
     /**
      * The table columns.
      *
      * @var string
      */
-    protected $columns = 'Anomaly\UsersModule\User\Table\Handler\ColumnHandler@handle';
+    protected $columns = 'Anomaly\UsersModule\User\Ui\Table\Handler\ColumnHandler@handle';
 
     /**
      * The table buttons.
      *
      * @var string
      */
-    protected $buttons = 'Anomaly\UsersModule\User\Table\Handler\ButtonHandler@handle';
+    protected $buttons = 'Anomaly\UsersModule\User\Ui\Table\Handler\ButtonHandler@handle';
 
 }
