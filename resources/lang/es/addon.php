@@ -2,7 +2,7 @@
 
 return [
     'name'        => 'Usuarios',
-    'description' => 'Users and permissions management.',
+    'description' => 'Usuarios y gesti&oacute;n de permisos.',
     'section'     => [
         'users'       => 'Usuarios',
         'roles'       => 'Roles',
