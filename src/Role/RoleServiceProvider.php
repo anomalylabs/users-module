@@ -22,11 +22,11 @@ class RoleServiceProvider extends ServiceProvider
     {
         $this->app->bind(
             'Anomaly\UsersModule\Role\RoleModel',
-            config('anomaly.module.users::config.roles.model')
+            config('anomaly.module.users::config.roles.model', 'Anomaly\UsersModule\Role\RoleModel')
         );
         $this->app->bind(
             'Anomaly\UsersModule\Role\Contract\RoleRepositoryInterface',
-            config('anomaly.module.users::config.roles.repository')
+            config('anomaly.module.users::config.roles.repository', 'Anomaly\UsersModule\Role\RoleRepository')
         );
     }
 }

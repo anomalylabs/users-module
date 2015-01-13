@@ -22,11 +22,11 @@ class UserServiceProvider extends ServiceProvider
     {
         $this->app->bind(
             'Anomaly\UsersModule\User\UserModel', // Also set in auth.php
-            config('anomaly.module.users::config.model.repository')
+            config('anomaly.module.users::config.model.repository', 'Anomaly\UsersModule\User\UserModel')
         );
         $this->app->bind(
             'Anomaly\UsersModule\User\Contract\UserRepositoryInterface',
-            config('anomaly.module.users::config.users.repository')
+            config('anomaly.module.users::config.users.repository', 'Anomaly\UsersModule\User\UserRepository')
         );
     }
 }

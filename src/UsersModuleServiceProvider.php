@@ -18,13 +18,7 @@ class UsersModuleServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        /**
-         * Only load this if installed because
-         * it uses configurable interfaces.
-         */
-        if (INSTALLED) {
-            $this->app->make('twig')->addExtension($this->app->make('Anomaly\UsersModule\UsersModulePlugin'));
-        }
+        $this->app->make('twig')->addExtension($this->app->make('Anomaly\UsersModule\UsersModulePlugin'));
     }
 
     /**
