@@ -29,9 +29,9 @@ class UsersStreamInstaller extends StreamInstaller
      * @var array
      */
     protected $assignments = [
-        'email'            => ['is_required' => true, 'is_unique' => true],
-        'username'         => ['is_required' => true, 'is_unique' => true],
-        'password'         => ['is_required' => true],
+        'email'            => ['required' => true, 'unique' => true],
+        'username'         => ['required' => true, 'unique' => true],
+        'password'         => ['required' => true],
         'activated'        => [],
         'activated_at'     => [],
         'activation_code'  => [],
