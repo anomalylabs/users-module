@@ -1,5 +1,7 @@
 <?php namespace Anomaly\UsersModule\User\Ui\Table\Handler;
 
+use Anomaly\UsersModule\User\Contract\UserInterface;
+
 /**
  * Class ButtonsHandler
  *
@@ -20,6 +22,12 @@ class ButtonHandler
     {
         return [
             'edit',
+            [
+                'button'  => 'delete',
+                'enabled' => function (UserInterface $entry) {
+                    return ($entry->getId() !== 1);
+                }
+            ]
         ];
     }
 }

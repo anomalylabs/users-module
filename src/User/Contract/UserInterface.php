@@ -22,6 +22,13 @@ interface UserInterface
     public function roles();
 
     /**
+     * Get the user's ID.
+     *
+     * @return int
+     */
+    public function getId();
+
+    /**
      * Get related roles.
      *
      * @return EntryCollection

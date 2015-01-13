@@ -20,16 +20,6 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, \Illumina
     use Authenticatable;
 
     /**
-     * Hash the password whenever setting it.
-     *
-     * @param $password
-     */
-    public function setPasswordAttribute($password)
-    {
-        $this->attributes['password'] = app('hash')->make($password);
-    }
-
-    /**
      * Get related roles.
      *
      * @return EntryCollection
@@ -61,7 +51,7 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, \Illumina
         if (!$permission) {
             return true;
         }
-        
+
         foreach ($this->getRoles() as $role) {
             if ($role instanceof RoleInterface && $role->hasPermission($permission) || $role->getSlug() === 'admin') {
                 return true;
@@ -69,6 +59,16 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, \Illumina
         }
 
         return false;
+    }
+
+    /**
+     * Hash the password whenever setting it.
+     *
+     * @param $password
+     */
+    public function setPasswordAttribute($password)
+    {
+        $this->attributes['password'] = app('hash')->make($password);
     }
 
     /**
