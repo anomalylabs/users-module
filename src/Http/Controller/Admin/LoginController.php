@@ -48,7 +48,7 @@ class LoginController extends PublicController
         $remember = ($request->get('remember'));
 
         if (app('auth')->attempt(compact('email', 'password'), $remember) || app('auth')->user()) {
-            return redirect()->intended(app('streams.preferences')->get('module.users::home_page', 'admin/dashboard'));
+            return redirect()->intended('admin/dashboard');
         }
 
         return redirect('admin/login');
