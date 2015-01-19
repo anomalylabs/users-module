@@ -28,7 +28,7 @@ class LoginController extends PublicController
          */
         if (app('auth')->check()) {
 
-            return redirect(app('streams.preferences')->get('anomaly.module.users::home_page', 'admin/dashboard'));
+            return redirect('admin/dashboard');
         } else {
 
             return view('anomaly.module.users::admin/login');
