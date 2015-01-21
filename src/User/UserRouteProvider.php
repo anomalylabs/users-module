@@ -34,6 +34,10 @@ class UserRouteProvider extends RouteServiceProvider
             'Anomaly\UsersModule\Http\Controller\Admin\UsersController@edit'
         );
         $router->any(
+            'admin/users/delete/{id}',
+            'Anomaly\UsersModule\Http\Controller\Admin\UsersController@delete'
+        );
+        $router->any(
             'admin/users/activate/{id}',
             'Anomaly\UsersModule\Http\Controller\Admin\UsersController@activate'
         );

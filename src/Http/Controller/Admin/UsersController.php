@@ -54,6 +54,20 @@ class UsersController extends AdminController
     }
 
     /**
+     * Delete a user and redirect back.
+     *
+     * @param UserRepositoryInterface $users
+     * @param                         $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function delete(UserRepositoryInterface $users, $id)
+    {
+        $users->delete($id);
+
+        return redirect()->back();
+    }
+
+    /**
      * Activate a user.
      *
      * @param UserRepositoryInterface $users

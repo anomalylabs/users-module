@@ -20,4 +20,12 @@ interface UserRepositoryInterface
      * @return mixed
      */
     public function create($username, $email, $password);
+
+    /**
+     * Delete an existing user.
+     *
+     * @param $id
+     * @return mixed
+     */
+    public function delete($id);
 }
