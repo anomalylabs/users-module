@@ -9,7 +9,7 @@ class CreateRole
 
     protected $permissions;
 
-    function __construct($name, $slug, array $permissions = [])
+    function __construct($name, $slug, $permissions = null)
     {
         $this->name        = $name;
         $this->slug        = $slug;
@@ -23,7 +23,7 @@ class CreateRole
 
     public function getPermissions()
     {
-        return $this->permissions;
+        return $this->permissions ?: [];
     }
 
     public function getSlug()
