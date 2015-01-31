@@ -1,6 +1,7 @@
 <?php namespace Anomaly\UsersModule\Http\Controller\Admin;
 
 use Anomaly\Streams\Platform\Http\Controller\PublicController;
+use Anomaly\UsersModule\User\UserSecurityCheck;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
 
@@ -20,17 +21,15 @@ class LoginController extends PublicController
      *
      * @return \Illuminate\Http\RedirectResponse|Redirector|\Illuminate\View\View
      */
-    public function login()
+    public function login(UserSecurityCheck $security)
     {
         /**
          * If the user is already logged in
          * then send them to their home page.
          */
-        if (app('auth')->check()) {
-
+        if ($security->check()) {
             return redirect('admin/dashboard');
         } else {
-
             return view('anomaly.module.users::admin/login');
         }
     }
