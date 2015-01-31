@@ -1,10 +1,10 @@
 <?php namespace Anomaly\UsersModule\Http\Middleware;
 
-use Anomaly\Streams\Platform\Addon\Extension\ExtensionCollection;
-use Anomaly\UsersModule\User\UserCheck;
+use Anomaly\UsersModule\Security\Security;
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class Authenticate
 {
@@ -17,22 +17,22 @@ class Authenticate
     protected $auth;
 
     /**
-     * The extension collection.
+     * The security utility.
      *
-     * @var ExtensionCollection
+     * @var Security
      */
-    protected $extensions;
+    protected $security;
 
     /**
      * Create a new filter instance.
      *
-     * @param Guard               $auth
-     * @param ExtensionCollection $extension
+     * @param Guard    $auth
+     * @param Security $security
      */
-    public function __construct(Guard $auth, ExtensionCollection $extension)
+    public function __construct(Guard $auth, Security $security)
     {
-        $this->auth       = $auth;
-        $this->extensions = $extension;
+        $this->auth     = $auth;
+        $this->security = $security;
     }
 
     /**
@@ -44,15 +44,13 @@ class Authenticate
      */
     public function handle(Request $request, Closure $next)
     {
-        /*$user = $this->auth->user();
+        $user = $this->auth->user();
 
-        $checks = $this->extensions->search('anomaly.module.users::check.*');
+        $response = $this->security->check($request, $user);
 
-        foreach ($checks as $check) {
-            if ($check instanceof UserCheck) {
-                $check->check($user, $request);
-            }
-        }*/
+        if ($response instanceof Response) {
+            return $response;
+        }
 
         if ($this->auth->guest()) {
             if ($request->ajax()) {

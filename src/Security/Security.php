@@ -2,6 +2,8 @@
 
 use Anomaly\Streams\Platform\Addon\Extension\ExtensionCollection;
 use Anomaly\UsersModule\User\Contract\UserInterface;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 /**
  * Class Security
@@ -34,14 +36,20 @@ class Security
     /**
      * Check authorization.
      *
+     * @param Request       $request
      * @param UserInterface $user
+     * @return Response|void
      */
-    public function check(UserInterface $user = null)
+    public function check(Request $request, UserInterface $user = null)
     {
         $checks = $this->extensions->search('anomaly.module.users::security_check.*');
 
         foreach ($checks as $check) {
-            $this->runSecurityCheck($check, $user);
+            $response = $this->runSecurityCheck($check, $request, $user);
+
+            if ($response instanceof Response) {
+                return $response;
+            }
         }
     }
 
@@ -49,10 +57,12 @@ class Security
      * Run a security check.
      *
      * @param SecurityCheckExtension $check
+     * @param Request                $request
      * @param UserInterface          $user
+     * @return \Illuminate\Http\Response|void
      */
-    protected function runSecurityCheck(SecurityCheckExtension $check, UserInterface $user)
+    protected function runSecurityCheck(SecurityCheckExtension $check, Request $request, UserInterface $user = null)
     {
-        $check->check($user);
+        return $check->check($request, $user);
     }
 }
