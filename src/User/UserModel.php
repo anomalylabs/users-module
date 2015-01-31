@@ -21,6 +21,26 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, \Illumina
     use Authenticatable;
 
     /**
+     * Get the activated flag.
+     *
+     * @return bool
+     */
+    public function isActivated()
+    {
+        return $this->activated;
+    }
+
+    /**
+     * Get the blocked flag.
+     *
+     * @return bool
+     */
+    public function isBlocked()
+    {
+        return $this->blocked;
+    }
+
+    /**
      * Get related roles.
      *
      * @return EntryCollection

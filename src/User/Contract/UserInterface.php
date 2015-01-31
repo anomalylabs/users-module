@@ -29,6 +29,20 @@ interface UserInterface
     public function getId();
 
     /**
+     * Get the activated flag.
+     *
+     * @return bool
+     */
+    public function isActivated();
+
+    /**
+     * Get the blocked flag.
+     *
+     * @return bool
+     */
+    public function isBlocked();
+
+    /**
      * Get related roles.
      *
      * @return EntryCollection
