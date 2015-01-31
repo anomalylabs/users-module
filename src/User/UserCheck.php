@@ -2,6 +2,7 @@
 
 use Anomaly\Streams\Platform\Addon\Extension\Extension;
 use Anomaly\UsersModule\User\Contract\UserInterface;
+use Illuminate\Http\Request;
 
 /**
  * Class UserCheck
@@ -19,12 +20,5 @@ abstract class UserCheck extends Extension
      *
      * @param UserInterface $user
      */
-    abstract public function check(UserInterface $user = null);
-
-    /**
-     * Check authorization of the current user during login.
-     *
-     * @param UserInterface $user
-     */
-    abstract public function checkLogin(UserInterface $user = null);
+    abstract public function check(UserInterface $user = null, Request $request);
 }

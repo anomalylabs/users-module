@@ -1,7 +1,10 @@
 <?php namespace Anomaly\UsersModule\Http\Middleware;
 
+use Anomaly\Streams\Platform\Addon\Extension\ExtensionCollection;
+use Anomaly\UsersModule\User\UserCheck;
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
+use Illuminate\Http\Request;
 
 class Authenticate
 {
@@ -14,14 +17,22 @@ class Authenticate
     protected $auth;
 
     /**
+     * The extension collection.
+     *
+     * @var ExtensionCollection
+     */
+    protected $extensions;
+
+    /**
      * Create a new filter instance.
      *
-     * @param  Guard $auth
-     * @return void
+     * @param Guard               $auth
+     * @param ExtensionCollection $extension
      */
-    public function __construct(Guard $auth)
+    public function __construct(Guard $auth, ExtensionCollection $extension)
     {
-        $this->auth = $auth;
+        $this->auth       = $auth;
+        $this->extensions = $extension;
     }
 
     /**
@@ -31,8 +42,18 @@ class Authenticate
      * @param  \Closure                 $next
      * @return mixed
      */
-    public function handle($request, Closure $next)
+    public function handle(Request $request, Closure $next)
     {
+        $user = $this->auth->user();
+
+        $checks = $this->extensions->search('anomaly.module.users::check.*');
+
+        foreach ($checks as $check) {
+            if ($check instanceof UserCheck) {
+                $check->check($user, $request);
+            }
+        }
+
         if ($this->auth->guest()) {
             if ($request->ajax()) {
                 return response('Unauthorized.', 401);
