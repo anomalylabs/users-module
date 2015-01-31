@@ -1,24 +1,24 @@
-<?php namespace Anomaly\UsersModule\User;
+<?php namespace Anomaly\UsersModule\Security;
 
 use Anomaly\Streams\Platform\Addon\Extension\Extension;
 use Anomaly\UsersModule\User\Contract\UserInterface;
-use Illuminate\Http\Request;
 
 /**
- * Class UserCheck
+ * Class SecurityCheckExtension
  *
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
- * @package       Anomaly\UsersModule\User
+ * @package       Anomaly\UsersModule\Security
  */
-abstract class UserCheck extends Extension
+abstract class SecurityCheckExtension extends Extension
 {
 
     /**
-     * Check authorization of the current user.
+     * Run the security check.
      *
      * @param UserInterface $user
+     * @return bool
      */
-    abstract public function check(UserInterface $user = null, Request $request);
+    abstract public function check(UserInterface $user = null);
 }
