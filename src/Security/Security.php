@@ -3,7 +3,7 @@
 use Anomaly\Streams\Platform\Addon\Extension\ExtensionCollection;
 use Anomaly\UsersModule\User\Contract\UserInterface;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Class Security

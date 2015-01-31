@@ -4,8 +4,16 @@ use Anomaly\UsersModule\Security\Security;
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
+use Symfony\Component\HttpFoundation\Response;
 
+/**
+ * Class Authenticate
+ *
+ * @link          http://anomaly.is/streams-platform
+ * @author        AnomalyLabs, Inc. <hello@anomaly.is>
+ * @author        Ryan Thompson <ryan@anomaly.is>
+ * @package       Anomaly\UsersModule\Http\Middleware
+ */
 class Authenticate
 {
 
