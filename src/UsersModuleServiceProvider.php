@@ -39,5 +39,7 @@ class UsersModuleServiceProvider extends ServiceProvider
         $this->app->register('Anomaly\UsersModule\User\UserServiceProvider');
         $this->app->register('Anomaly\UsersModule\Role\RoleServiceProvider');
         $this->app->register('Anomaly\UsersModule\Permission\PermissionServiceProvider');
+
+        $this->app->bind('App\Http\Middleware\Authenticate', 'Anomaly\UsersModule\Http\Middleware\Authenticate');
     }
 }
