@@ -1,6 +1,8 @@
 <?php namespace Anomaly\UsersModule\Http\Controller\Admin;
 
 use Anomaly\Streams\Platform\Http\Controller\PublicController;
+use Anomaly\UsersModule\Authenticator\Authenticator;
+use Anomaly\UsersModule\User\UserAuthenticator;
 use Anomaly\UsersModule\User\UserSecurityCheck;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
@@ -23,11 +25,7 @@ class LoginController extends PublicController
      */
     public function login(UserSecurityCheck $security)
     {
-        /**
-         * If the user is already logged in
-         * then send them to their home page.
-         */
-        if ($security->check()) {
+        if (app('auth')->check()) {
             return redirect('admin/dashboard');
         } else {
             return view('anomaly.module.users::admin/login');
@@ -37,16 +35,17 @@ class LoginController extends PublicController
     /**
      * Attempt to login a user.
      *
-     * @param Request $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @param Request       $request
+     * @param Authenticator $authenticator
+     * @return \Illuminate\Http\RedirectResponse|Redirector
      */
-    public function attempt(Request $request)
+    public function attempt(Request $request, Authenticator $authenticator)
     {
         $email    = $request->get('email');
         $password = $request->get('password');
         $remember = ($request->get('remember'));
 
-        if (app('auth')->attempt(compact('email', 'password'), $remember) || app('auth')->user()) {
+        if ($authenticator->attempt(compact('email', 'password', 'remember'))) {
             return redirect()->intended('admin/dashboard');
         }
 

@@ -1,17 +1,17 @@
-<?php namespace Anomaly\UsersModule\User;
+<?php namespace Anomaly\UsersModule\Authenticator;
 
 use Anomaly\Streams\Platform\Addon\Extension\Extension;
 use Anomaly\UsersModule\User\Contract\UserInterface;
 
 /**
- * Class UserAuthenticator
+ * Class AuthenticatorExtension
  *
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
- * @package       Anomaly\UsersModule\User
+ * @package       Anomaly\UsersModule\Authenticator
  */
-abstract class UserAuthenticator extends Extension
+abstract class AuthenticatorExtension extends Extension
 {
 
     /**

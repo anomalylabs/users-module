@@ -44,7 +44,7 @@ class Authenticate
      */
     public function handle(Request $request, Closure $next)
     {
-        $user = $this->auth->user();
+        /*$user = $this->auth->user();
 
         $checks = $this->extensions->search('anomaly.module.users::check.*');
 
@@ -52,7 +52,7 @@ class Authenticate
             if ($check instanceof UserCheck) {
                 $check->check($user, $request);
             }
-        }
+        }*/
 
         if ($this->auth->guest()) {
             if ($request->ajax()) {
