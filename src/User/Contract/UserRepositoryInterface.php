@@ -17,7 +17,7 @@ interface UserRepositoryInterface
      * @param $username
      * @param $email
      * @param $password
-     * @return mixed
+     * @return UserInterface
      */
     public function create($username, $email, $password);
 
@@ -25,7 +25,15 @@ interface UserRepositoryInterface
      * Delete an existing user.
      *
      * @param $id
-     * @return mixed
+     * @return UserInterface
      */
     public function delete($id);
+
+    /**
+     * Find a user by their credentials.
+     *
+     * @param array $credentials
+     * @return null|UserInterface
+     */
+    public function findByCredentials(array $credentials);
 }

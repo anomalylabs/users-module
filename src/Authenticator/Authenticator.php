@@ -44,6 +44,9 @@ class Authenticator
             $user = $this->attemptAuthentication($authenticator, $credentials);
 
             if ($user instanceof UserInterface) {
+
+                app('auth')->login($user); // Gotta do this for some reason..
+
                 return $user;
             }
         }

@@ -1,6 +1,7 @@
 <?php namespace Anomaly\UsersModule\User;
 
 use Anomaly\Streams\Platform\Entry\EntryCollection;
+use Anomaly\Streams\Platform\Model\EloquentCollection;
 use Anomaly\Streams\Platform\Model\Users\UsersUsersEntryModel;
 use Anomaly\UsersModule\Role\Contract\RoleInterface;
 use Anomaly\UsersModule\User\Contract\UserInterface;
@@ -26,7 +27,7 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, \Illumina
      */
     public function getRoles()
     {
-        return $this->roles()->get();
+        return $this->roles();
     }
 
     /**
@@ -37,7 +38,13 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, \Illumina
      */
     public function hasRole($role)
     {
-        return (in_array($role, $this->roles()->lists('slug')));
+        $roles = $this->roles();
+
+        if ($roles instanceof EloquentCollection) {
+            $roles = $roles->lists('slug');
+        }
+
+        return (in_array($role, $roles));
     }
 
     /**
@@ -62,16 +69,6 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, \Illumina
     }
 
     /**
-     * Hash the password whenever setting it.
-     *
-     * @param $password
-     */
-    public function setPasswordAttribute($password)
-    {
-        $this->attributes['password'] = app('hash')->make($password);
-    }
-
-    /**
      * Return whether a user has any of provided permission.
      *
      * @param $permissions
@@ -86,5 +83,15 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, \Illumina
         }
 
         return false;
+    }
+
+    /**
+     * Hash the password whenever setting it.
+     *
+     * @param $password
+     */
+    public function setPasswordAttribute($password)
+    {
+        $this->attributes['password'] = app('hash')->make($password);
     }
 }
