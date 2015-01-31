@@ -36,12 +36,8 @@ class UsersModuleServiceProvider extends ServiceProvider
     {
         $this->app->register('Anomaly\UsersModule\UsersModuleRouteProvider');
 
-        $this->app->register('Anomaly\UsersModule\User\UserRouteProvider');
         $this->app->register('Anomaly\UsersModule\User\UserServiceProvider');
-
-        $this->app->register('Anomaly\UsersModule\Role\RoleRouteProvider');
         $this->app->register('Anomaly\UsersModule\Role\RoleServiceProvider');
-
-        $this->app->register('Anomaly\UsersModule\Permission\PermissionRouteProvider');
+        $this->app->register('Anomaly\UsersModule\Permission\PermissionServiceProvider');
     }
 }

@@ -28,5 +28,7 @@ class UserServiceProvider extends ServiceProvider
             'Anomaly\UsersModule\User\Contract\UserRepositoryInterface',
             config('anomaly.module.users::config.users.repository', 'Anomaly\UsersModule\User\UserRepository')
         );
+
+        $this->app->register('Anomaly\UsersModule\User\UserRouteProvider');
     }
 }

@@ -28,5 +28,7 @@ class RoleServiceProvider extends ServiceProvider
             'Anomaly\UsersModule\Role\Contract\RoleRepositoryInterface',
             config('anomaly.module.users::config.roles.repository', 'Anomaly\UsersModule\Role\RoleRepository')
         );
+
+        $this->app->register('Anomaly\UsersModule\Role\RoleRouteProvider');
     }
 }
