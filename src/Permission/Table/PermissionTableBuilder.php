@@ -64,7 +64,7 @@ class PermissionTableBuilder extends TableBuilder
      */
     protected function appendAssets(Asset $asset)
     {
-        $asset->add('scripts.js', 'module::js/permissions.js', ['live']);
+        $asset->add('scripts.js', 'module::js/permissions.js');
     }
 
     /**
