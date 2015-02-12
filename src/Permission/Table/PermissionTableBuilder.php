@@ -76,15 +76,14 @@ class PermissionTableBuilder extends TableBuilder
      */
     protected function setTableOptions(Table $table, Request $request)
     {
-        $role    = $request->segment(4);
-        $options = $table->getOptions();
+        $role = $request->segment(4);
 
         if ($role == 1) {
             throw new \Exception("Administrator permissions can not be modified.");
         }
 
-        $options->put('class', 'table');
-        $options->put('role_id', $role);
-        $options->put('wrapper_view', 'anomaly.module.users::admin/permissions/wrapper');
+        $table->setOption('class', 'table');
+        $table->setOption('role_id', $role);
+        $table->setOption('wrapper_view', 'anomaly.module.users::admin/permissions/wrapper');
     }
 }
