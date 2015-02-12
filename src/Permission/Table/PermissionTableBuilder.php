@@ -17,25 +17,32 @@ class PermissionTableBuilder extends TableBuilder
 {
 
     /**
-     * The entries handler.
-     *
-     * @var string
-     */
-    protected $entries = 'Anomaly\UsersModule\Permission\Table\Handler\EntriesHandler@handle';
-
-    /**
      * The columns handler.
      *
-     * @var string
+     * @var array
      */
-    protected $columns = 'Anomaly\UsersModule\Permission\Table\Handler\ColumnsHandler@handle';
+    protected $columns = [
+        [
+            'heading' => 'streams::addon.addon',
+            'value'   => 'anomaly.module.users::admin/user/table/addon'
+        ],
+        [
+            'heading' => 'anomaly.module.users::field.permissions.name',
+            'value'   => 'anomaly.module.users::admin/user/table/permissions'
+        ]
+    ];
 
     /**
      * The actions handler.
      *
-     * @var string
+     * @var array
      */
-    protected $actions = 'Anomaly\UsersModule\Permission\Table\Handler\ActionsHandler@handle';
+    protected $actions = [
+        'save' => [
+            'button'  => 'save',
+            'handler' => 'Anomaly\UsersModule\Permission\Table\Action\SavePermissions@handle'
+        ]
+    ];
 
     /**
      * Create a new PermissionTableBuilder instance.

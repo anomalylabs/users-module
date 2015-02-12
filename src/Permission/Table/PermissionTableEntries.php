@@ -1,4 +1,4 @@
-<?php namespace Anomaly\UsersModule\Permission\Table\Handler;
+<?php namespace Anomaly\UsersModule\Permission\Table;
 
 use Anomaly\Streams\Platform\Addon\Addon;
 use Anomaly\Streams\Platform\Addon\Module\ModuleCollection;
@@ -6,14 +6,14 @@ use Anomaly\Streams\Platform\Ui\Table\Table;
 use Illuminate\Support\Collection;
 
 /**
- * Class EntriesHandler
+ * Class PermissionTableEntries
  *
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
- * @package       Anomaly\UsersModule\Permission\Table\Handler
+ * @package       Anomaly\UsersModule\Permission\Table
  */
-class EntriesHandler
+class PermissionTableEntries
 {
 
     /**
@@ -24,7 +24,7 @@ class EntriesHandler
     protected $modules;
 
     /**
-     * Create a new EntriesHandler instance.
+     * Create a new PermissionTableEntries instance.
      *
      * @param ModuleCollection $modules
      */
@@ -37,7 +37,6 @@ class EntriesHandler
      * Return the table entries.
      *
      * @param Table $table
-     * @return Collection
      */
     public function handle(Table $table)
     {
@@ -45,7 +44,7 @@ class EntriesHandler
 
         $this->loadPermissions($entries, 'modules');
 
-        return $entries;
+        $table->setEntries($entries);
     }
 
     /**

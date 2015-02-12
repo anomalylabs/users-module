@@ -1,18 +1,18 @@
-<?php namespace Anomaly\UsersModule\Permission\Table\Action\Handler;
+<?php namespace Anomaly\UsersModule\Permission\Table\Action;
 
 use Anomaly\Streams\Platform\Ui\Table\Table;
 use Anomaly\UsersModule\Role\Contract\RoleRepositoryInterface;
 use Illuminate\Session\SessionManager;
 
 /**
- * Class SaveActionHandler
+ * Class SavePermissions
  *
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
- * @package       Anomaly\UsersModule\Permission\Table\Action\Handler
+ * @package       Anomaly\UsersModule\Permission\Table\Action
  */
-class SaveActionHandler
+class SavePermissions
 {
 
     /**
@@ -21,7 +21,7 @@ class SaveActionHandler
      * @param Table                   $table
      * @param RoleRepositoryInterface $roles
      */
-    public function handle(Table $table, RoleRepositoryInterface $roles, SessionManager $session)
+    public function handle(Table $table, RoleRepositoryInterface $roles)
     {
         $options = $table->getOptions();
 
