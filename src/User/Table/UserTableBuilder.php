@@ -1,4 +1,4 @@
-<?php namespace Anomaly\UsersModule\User\Ui\Table;
+<?php namespace Anomaly\UsersModule\User\Table;
 
 use Anomaly\Streams\Platform\Ui\Table\TableBuilder;
 
@@ -21,31 +21,33 @@ class UserTableBuilder extends TableBuilder
     protected $model = 'Anomaly\UsersModule\User\UserModel';
 
     /**
-     * The table views.
+     * The table's views.
      *
-     * @var string
+     * @var array
      */
-    protected $views = 'Anomaly\UsersModule\User\Ui\Table\Handler\ViewHandler@handle';
+    protected $views = [
+        'all',
+        'recently_created'
+    ];
 
     /**
      * The table filters.
      *
-     * @var string
+     * @var array
      */
-    protected $filters = 'Anomaly\UsersModule\User\Ui\Table\Handler\FilterHandler@handle';
+    protected $filters = [
+        'username',
+        'email',
+    ];
 
     /**
      * The table columns.
      *
-     * @var string
+     * @var array
      */
-    protected $columns = 'Anomaly\UsersModule\User\Ui\Table\Handler\ColumnHandler@handle';
-
-    /**
-     * The table buttons.
-     *
-     * @var string
-     */
-    protected $buttons = 'Anomaly\UsersModule\User\Ui\Table\Handler\ButtonHandler@handle';
+    protected $columns = [
+        'username',
+        'email',
+    ];
 
 }

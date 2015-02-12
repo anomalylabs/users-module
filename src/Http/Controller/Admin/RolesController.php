@@ -1,8 +1,8 @@
 <?php namespace Anomaly\UsersModule\Http\Controller\Admin;
 
 use Anomaly\Streams\Platform\Http\Controller\AdminController;
-use Anomaly\UsersModule\Role\Ui\Form\RoleFormBuilder;
-use Anomaly\UsersModule\Role\Ui\Table\RoleTableBuilder;
+use Anomaly\UsersModule\Role\Form\RoleFormBuilder;
+use Anomaly\UsersModule\Role\Table\RoleTableBuilder;
 
 /**
  * Class RolesController

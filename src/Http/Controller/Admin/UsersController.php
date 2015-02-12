@@ -2,8 +2,8 @@
 
 use Anomaly\Streams\Platform\Http\Controller\AdminController;
 use Anomaly\UsersModule\User\Contract\UserRepositoryInterface;
-use Anomaly\UsersModule\User\Ui\Form\UserFormBuilder;
-use Anomaly\UsersModule\User\Ui\Table\UserTableBuilder;
+use Anomaly\UsersModule\User\Form\UserFormBuilder;
+use Anomaly\UsersModule\User\Table\UserTableBuilder;
 
 /**
  * Class UsersController
