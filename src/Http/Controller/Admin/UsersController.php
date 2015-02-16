@@ -4,6 +4,7 @@ use Anomaly\Streams\Platform\Http\Controller\AdminController;
 use Anomaly\UsersModule\User\Contract\UserRepositoryInterface;
 use Anomaly\UsersModule\User\Form\UserFormBuilder;
 use Anomaly\UsersModule\User\Table\UserTableBuilder;
+use Anomaly\UsersModule\User\UserModel;
 
 /**
  * Class UsersController
@@ -27,6 +28,13 @@ class UsersController extends AdminController
      */
     public function index(UserTableBuilder $table)
     {
+
+        $user = (new UserModel())->find(3);
+
+        dd($user->hasPermission('anomaly.module.users::create_user'));
+
+        die;
+
         return $table->render();
     }
 

@@ -32,7 +32,6 @@ class UserFormBuilder extends FormBuilder
     protected $fields = [
         'username',
         'email',
-        'password',
         'roles',
     ];
 

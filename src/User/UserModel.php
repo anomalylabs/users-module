@@ -47,7 +47,7 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, \Illumina
      */
     public function getRoles()
     {
-        return $this->roles();
+        return $this->roles()->get();
     }
 
     /**
