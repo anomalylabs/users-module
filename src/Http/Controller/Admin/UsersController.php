@@ -29,12 +29,6 @@ class UsersController extends AdminController
     public function index(UserTableBuilder $table)
     {
 
-        $user = (new UserModel())->find(3);
-
-        dd($user->hasPermission('anomaly.module.users::create_user'));
-
-        die;
-
         return $table->render();
     }
 
