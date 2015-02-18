@@ -49,10 +49,6 @@ class DeleteUserHandler
      */
     public function handle(DeleteUser $command)
     {
-        $user = $command->getUser();
-
-        $this->users->delete($user);
-
-        $this->events->fire(new UserWasDeleted($user));
+        $this->events->fire(new UserWasDeleted($this->users->delete($command->getUser())));
     }
 }

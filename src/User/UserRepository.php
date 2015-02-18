@@ -54,73 +54,73 @@ class UserRepository implements \Anomaly\UsersModule\User\Contract\UserRepositor
      * Delete a user.
      *
      * @param User $user
-     * @return bool
+     * @return User
      */
     public function delete(User $user)
     {
-        $user = $this->find($user->getId());
+        $user->delete();
 
-        return $user->delete();
+        return $user;
     }
 
     /**
      * Activate a user.
      *
-     * @param $id
-     * @return mixed
+     * @param User $user
+     * @return User $user
      */
-    public function activate($id)
+    public function activate(User $user)
     {
-        $user = $this->find($id);
-
         $user->activated = true;
 
-        return $user->save();
+        $user->save();
+
+        return $user;
     }
 
     /**
      * Deactivate a user.
      *
-     * @param $id
-     * @return mixed
+     * @param User $user
+     * @return User
      */
-    public function deactivate($id)
+    public function deactivate(User $user)
     {
-        $user = $this->find($id);
-
         $user->activated = false;
 
-        return $user->save();
+        $user->save();
+
+        return $user;
     }
 
     /**
      * Block a user.
      *
-     * @param $id
-     * @return mixed
+     * @param User $user
+     * @return User
      */
-    public function block($id)
+    public function block(User $user)
     {
-        $user = $this->find($id);
-
         $user->blocked = true;
 
-        return $user->save();
+        $user->save();
+
+        return $user;
     }
 
     /**
      * Unblock a user.
      *
-     * @param $id
-     * @return mixed
+     * @param User $user
+     * @return User
      */
-    public function unblock($id)
+    public function unblock(User $user)
     {
-        $user = $this->find($id);
-
         $user->blocked = false;
 
-        return $user->save();
+        $user->save();
+
+        return $user;
     }
 
     /**
@@ -149,6 +149,17 @@ class UserRepository implements \Anomaly\UsersModule\User\Contract\UserRepositor
         }
 
         return null;
+    }
+
+    /**
+     * Find a user by their username.
+     *
+     * @param $username
+     * @return null|User
+     */
+    public function findUserByUsername($username)
+    {
+        return $this->model->where('username', $username)->first();
     }
 
     /**

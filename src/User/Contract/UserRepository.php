@@ -25,7 +25,7 @@ interface UserRepository
      * Delete a user.
      *
      * @param User $user
-     * @return bool
+     * @return User
      */
     public function delete(User $user);
 
@@ -68,6 +68,14 @@ interface UserRepository
      * @return null|User
      */
     public function find($id);
+
+    /**
+     * Find a user by their username.
+     *
+     * @param $username
+     * @return null|User
+     */
+    public function findUserByUsername($username);
 
     /**
      * Find a user by their credentials.

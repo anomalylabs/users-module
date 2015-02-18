@@ -1,19 +1,20 @@
 <?php namespace Anomaly\UsersModule\User\Command\Handler;
 
-use Anomaly\UsersModule\User\Command\ActivateUserByForce;
+use Anomaly\UsersModule\User\Command\DeactivateUser;
 use Anomaly\UsersModule\User\Contract\UserRepository;
-use Anomaly\UsersModule\User\Event\UserWasActivated;
+use Anomaly\UsersModule\User\Event\UserWasDeactivated;
+use Anomaly\UsersModule\User\Event\UserWasUnblocked;
 use Illuminate\Events\Dispatcher;
 
 /**
- * Class ActivateUserByForce
+ * Class DeactivateUserHandler
  *
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
  * @package       Anomaly\UsersModule\User\Command\Handler
  */
-class ActivateUserByForceHandler
+class DeactivateUserHandler
 {
 
     /**
@@ -21,7 +22,7 @@ class ActivateUserByForceHandler
      *
      * @var UserRepository
      */
-    protected $user;
+    protected $users;
 
     /**
      * The event dispatcher.
@@ -31,7 +32,7 @@ class ActivateUserByForceHandler
     protected $events;
 
     /**
-     * Create a new ActivateUserByForce instance.
+     * Create a new DeactivateUserHandler instance.
      *
      * @param UserRepository $users
      * @param Dispatcher     $events
@@ -45,10 +46,10 @@ class ActivateUserByForceHandler
     /**
      * Handle the command.
      *
-     * @param ActivateUserByForce $command
+     * @param DeactivateUser $command
      */
-    public function handle(ActivateUserByForce $command)
+    public function handle(DeactivateUser $command)
     {
-        $this->events->fire(new UserWasActivated($this->users->activate($command->getUser())));
+        $this->events->fire(new UserWasDeactivated($this->users->deactivate($command->getUser())));
     }
 }
