@@ -59,7 +59,7 @@ class PermissionTableBuilder extends TableBuilder
 
         $role = $roles->find($request->segment(4));
 
-        if ($role->getSlug() == 'admin') {
+        if ($role && $role->getSlug() == 'admin') {
             throw new \Exception("Administrator permissions can not be modified.");
         }
 
