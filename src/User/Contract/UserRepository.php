@@ -38,6 +38,14 @@ interface UserRepository
     public function activate($id);
 
     /**
+     * Block a user.
+     *
+     * @param $id
+     * @return mixed
+     */
+    public function block($id);
+
+    /**
      * Find a user.
      *
      * @param $id
