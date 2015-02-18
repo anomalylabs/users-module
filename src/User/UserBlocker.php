@@ -1,5 +1,7 @@
 <?php namespace Anomaly\UsersModule\User;
 
+use Anomaly\UsersModule\User\Command\BlockUser;
+use Anomaly\UsersModule\User\Contract\User;
 use Illuminate\Foundation\Bus\DispatchesCommands;
 
 /**
@@ -14,4 +16,14 @@ class UserBlocker
 {
 
     use DispatchesCommands;
+
+    /**
+     * Block a user.
+     *
+     * @param User $user
+     */
+    public function block(User $user)
+    {
+        $this->dispatch(new BlockUser($user));
+    }
 }
