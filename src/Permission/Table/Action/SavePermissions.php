@@ -27,8 +27,8 @@ class SavePermissions
 
         $permissions = array_get($_POST, 'permission', []);
 
-        $roles->updatePermissions($options->get('role_id'), $permissions);
+        $roles->updatePermissions($options->get('role')->getId(), $permissions);
 
-        $table->setResponse(redirect('admin/users/permissions/' . $options->get(('role_id'))));
+        $table->setResponse(redirect('admin/users/permissions/' . $options->get('role')->getId()));
     }
 }

@@ -63,9 +63,11 @@ class PermissionTableBuilder extends TableBuilder
             throw new \Exception("Administrator permissions can not be modified.");
         }
 
+        $table->addData('role', $role);
         $table->addData('roles', $roles->all());
 
         $table->setOption('role', $role);
+        $table->setOption('class', 'table');
         $table->setOption('wrapper_view', 'module::admin/permissions/wrapper');
 
         parent::__construct($table);
