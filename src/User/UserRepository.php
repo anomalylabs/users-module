@@ -74,8 +74,22 @@ class UserRepository implements \Anomaly\UsersModule\User\Contract\UserRepositor
     {
         $user = $this->find($id);
 
-        $user->activated    = true;
-        $user->activated_at = time();
+        $user->activated = true;
+
+        return $user->save();
+    }
+
+    /**
+     * Block a user.
+     *
+     * @param $id
+     * @return mixed
+     */
+    public function block($id)
+    {
+        $user = $this->find($id);
+
+        $user->blocked = true;
 
         return $user->save();
     }

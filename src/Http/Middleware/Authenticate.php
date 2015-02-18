@@ -1,6 +1,6 @@
 <?php namespace Anomaly\UsersModule\Http\Middleware;
 
-use Anomaly\UsersModule\Security\Security;
+use Anomaly\UsersModule\Security\SecurityChecker;
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
@@ -29,7 +29,7 @@ class Authenticate
     /**
      * The security utility.
      *
-     * @var Security
+     * @var SecurityChecker
      */
     protected $security;
 
@@ -37,9 +37,9 @@ class Authenticate
      * Create a new filter instance.
      *
      * @param Guard    $auth
-     * @param Security $security
+     * @param SecurityChecker $security
      */
-    public function __construct(Guard $auth, Security $security)
+    public function __construct(Guard $auth, SecurityChecker $security)
     {
         $this->auth     = $auth;
         $this->security = $security;

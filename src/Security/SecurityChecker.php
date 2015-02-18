@@ -6,14 +6,14 @@ use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * Class Security
+ * Class SecurityChecker
  *
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
- * @package       Anomaly\UsersModule\Security
+ * @package       Anomaly\UsersModule\SecurityChecker
  */
-class Security
+class SecurityChecker
 {
 
     /**
@@ -24,7 +24,7 @@ class Security
     protected $extensions;
 
     /**
-     * Create a new Security instance.
+     * Create a new SecurityChecker instance.
      *
      * @param ExtensionCollection $extensions
      */
