@@ -1,6 +1,6 @@
 <?php namespace Anomaly\UsersModule\User;
 
-use Anomaly\UsersModule\User\Command\ForceActivation;
+use Anomaly\UsersModule\User\Command\ActivateUserByForce;
 use Anomaly\UsersModule\User\Contract\User;
 use Illuminate\Foundation\Bus\DispatchesCommands;
 
@@ -25,6 +25,6 @@ class UserActivator
      */
     public function force(User $user)
     {
-        return $this->dispatch(new ForceActivation($user));
+        return $this->dispatch(new ActivateUserByForce($user));
     }
 }

@@ -1,5 +1,6 @@
 <?php namespace Anomaly\UsersModule\User;
 
+use Anomaly\UsersModule\User\Command\AddUserToGroups;
 use Anomaly\UsersModule\User\Contract\User;
 use Illuminate\Foundation\Bus\DispatchesCommands;
 
@@ -48,5 +49,16 @@ class UserManager
         }
 
         return $user;
+    }
+
+    /**
+     * Add a user to groups.
+     *
+     * @param User  $user
+     * @param array $roles
+     */
+    public function addUserToGroups(User $user, array $roles)
+    {
+        $this->dispatch(new AddUserToGroups($user, $roles));
     }
 }

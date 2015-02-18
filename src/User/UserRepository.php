@@ -118,4 +118,17 @@ class UserRepository implements \Anomaly\UsersModule\User\Contract\UserRepositor
     {
         return $this->model->where('activation_code', $code)->first();
     }
+
+    /**
+     * Add a user to a role.
+     *
+     * @param $id
+     * @param $roleId
+     */
+    public function addUserToRole($id, $roleId)
+    {
+        $user = $this->find($id);
+
+        $user->roles()->attach($roleId);
+    }
 }

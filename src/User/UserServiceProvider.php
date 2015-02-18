@@ -21,13 +21,13 @@ class UserServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind(
-            'Anomaly\UsersModule\User\UserModel', // Also set in auth.php
-            config('anomaly.module.users::config.model.repository', 'Anomaly\UsersModule\User\UserModel')
+            'Anomaly\UsersModule\User\UserModel', // Also set in config/auth.php
+            'Anomaly\UsersModule\User\UserModel'
         );
-        
+
         $this->app->bind(
             'Anomaly\UsersModule\User\Contract\UserRepository',
-            config('anomaly.module.users::config.users.repository', 'Anomaly\UsersModule\User\UserRepository')
+            'Anomaly\UsersModule\User\UserRepository'
         );
 
         $this->app->register('Anomaly\UsersModule\User\UserRouteProvider');

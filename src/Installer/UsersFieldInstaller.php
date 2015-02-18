@@ -21,7 +21,7 @@ class UsersFieldInstaller extends FieldInstaller
     protected $fields = [
         'email'            => 'anomaly.field_type.email',
         'username'         => 'anomaly.field_type.text',
-        'password'         => 'Anomaly\UsersModule\Addon\FieldType\PasswordTextFieldType',
+        'password'         => 'Anomaly\UsersModule\FieldType\PasswordTextFieldType',
         'ip_address'       => 'anomaly.field_type.text',
         'remember_token'   => 'anomaly.field_type.text',
         'last_login_at'    => 'anomaly.field_type.datetime',

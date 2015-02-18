@@ -3,14 +3,14 @@
 use Anomaly\UsersModule\User\Contract\User;
 
 /**
- * Class ForceActivation
+ * Class ActivateUserByForce
  *
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
  * @package       Anomaly\UsersModule\User\Command
  */
-class ForceActivation
+class ActivateUserByForce
 {
 
     /**
@@ -21,7 +21,7 @@ class ForceActivation
     protected $user;
 
     /**
-     * Create a new ForceActivation instance.
+     * Create a new ActivateUserByForce instance.
      *
      * @param User $user
      */
