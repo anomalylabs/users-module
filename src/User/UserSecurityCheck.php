@@ -1,7 +1,7 @@
 <?php namespace Anomaly\UsersModule\User;
 
 use Anomaly\Streams\Platform\Addon\Extension\ExtensionCollection;
-use Anomaly\UsersModule\User\Contract\UserInterface;
+use Anomaly\UsersModule\User\Contract\User;
 use Illuminate\Auth\Guard;
 
 /**
@@ -44,7 +44,7 @@ class UserSecurityCheck
     /**
      * Check authentication of the current user.
      *
-     * @return null|UserInterface
+     * @return null|User
      */
     public function check()
     {

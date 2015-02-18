@@ -73,6 +73,17 @@ class RoleRepository implements RoleRepositoryInterface
     }
 
     /**
+     * Find a role by it's slug.
+     *
+     * @param $slug
+     * @return \Illuminate\Support\Collection|null|RoleInterface
+     */
+    public function findBySlug($slug)
+    {
+        return $this->model->where('slug', $slug)->first();
+    }
+
+    /**
      * Update permissions for a role.
      *
      * @param       $id

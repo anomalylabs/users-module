@@ -22,4 +22,13 @@ return [
     'permissions' => [
         'name' => 'Permissions',
     ],
+    'activated'   => [
+        'name'          => 'Activated',
+        'activated'     => 'Activated',
+        'not_activated' => 'Not Activated'
+    ],
+    'blocked'     => [
+        'name'    => 'Blocked',
+        'blocked' => 'Blocked'
+    ]
 ];

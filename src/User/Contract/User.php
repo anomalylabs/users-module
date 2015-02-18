@@ -4,14 +4,14 @@ use Anomaly\Streams\Platform\Entry\EntryCollection;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
- * Interface UserInterface
+ * Interface User
  *
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
  * @package       Anomaly\UsersModule\User\Contract
  */
-interface UserInterface
+interface User
 {
 
     /**

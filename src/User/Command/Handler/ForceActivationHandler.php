@@ -1,17 +1,17 @@
 <?php namespace Anomaly\UsersModule\User\Command\Handler;
 
-use Anomaly\UsersModule\User\Command\CreateUser;
+use Anomaly\UsersModule\User\Command\ForceActivation;
 use Anomaly\UsersModule\User\Contract\UserRepository;
 
 /**
- * Class CreateUserHandler
+ * Class ForceActivationHandler
  *
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
  * @package       Anomaly\UsersModule\User\Command\Handler
  */
-class CreateUserHandler
+class ForceActivationHandler
 {
 
     /**
@@ -22,11 +22,11 @@ class CreateUserHandler
     protected $users;
 
     /**
-     * Create a new CreateUserHandler instance.
+     * Create a new ForceActivationHandler instance.
      *
      * @param UserRepository $users
      */
-    function __construct(UserRepository $users)
+    public function __construct(UserRepository $users)
     {
         $this->users = $users;
     }
@@ -34,10 +34,15 @@ class CreateUserHandler
     /**
      * Handle the command.
      *
-     * @param CreateUser $command
+     * @param ForceActivation $command
+     * @return \Anomaly\UsersModule\User\Contract\User
      */
-    public function handle(CreateUser $command)
+    public function handle(ForceActivation $command)
     {
-        return $this->users->create($command->getUsername(), $command->getEmail(), $command->getPassword());
+        $user = $command->getUser();
+
+        $this->users->activate($user->getId());
+
+        return $user;
     }
 }

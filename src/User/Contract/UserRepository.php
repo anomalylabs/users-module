@@ -1,14 +1,14 @@
 <?php namespace Anomaly\UsersModule\User\Contract;
 
 /**
- * Interface UserRepositoryInterface
+ * Interface UserRepository
  *
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
  * @package       Anomaly\UsersModule\User\Contract
  */
-interface UserRepositoryInterface
+interface UserRepository
 {
 
     /**
@@ -17,23 +17,39 @@ interface UserRepositoryInterface
      * @param $username
      * @param $email
      * @param $password
-     * @return UserInterface
+     * @return User
      */
     public function create($username, $email, $password);
 
     /**
-     * Delete an existing user.
+     * Delete a user.
      *
-     * @param $id
-     * @return UserInterface
+     * @param User $user
+     * @return bool
      */
     public function delete($id);
+
+    /**
+     * Activate a user.
+     *
+     * @param $id
+     * @return mixed
+     */
+    public function activate($id);
+
+    /**
+     * Find a user.
+     *
+     * @param $id
+     * @return null|User
+     */
+    public function find($id);
 
     /**
      * Find a user by their credentials.
      *
      * @param array $credentials
-     * @return null|UserInterface
+     * @return null|User
      */
     public function findByCredentials(array $credentials);
 }

@@ -38,6 +38,14 @@ interface RoleRepositoryInterface
     public function find($id);
 
     /**
+     * Find a role by it's slug.
+     *
+     * @param $slug
+     * @return \Illuminate\Support\Collection|null|RoleInterface
+     */
+    public function findBySlug($slug);
+
+    /**
      * Update permissions for a role.
      *
      * @param       $id

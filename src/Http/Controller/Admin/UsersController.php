@@ -1,10 +1,9 @@
 <?php namespace Anomaly\UsersModule\Http\Controller\Admin;
 
 use Anomaly\Streams\Platform\Http\Controller\AdminController;
-use Anomaly\UsersModule\User\Contract\UserRepositoryInterface;
+use Anomaly\UsersModule\User\Contract\UserRepository;
 use Anomaly\UsersModule\User\Form\UserFormBuilder;
 use Anomaly\UsersModule\User\Table\UserTableBuilder;
-use Anomaly\UsersModule\User\UserModel;
 
 /**
  * Class UsersController
@@ -21,22 +20,21 @@ class UsersController extends AdminController
 {
 
     /**
-     * Return the table UI for users.
+     * Return an index of existing users.
      *
      * @param UserTableBuilder $table
-     * @return string
+     * @return \Illuminate\View\View|\Symfony\Component\HttpFoundation\Response
      */
     public function index(UserTableBuilder $table)
     {
-
         return $table->render();
     }
 
     /**
-     * Return the form UI for creating a new user.
+     * Return a form for a new user.
      *
      * @param UserFormBuilder $form
-     * @return mixed
+     * @return \Illuminate\View\View|\Symfony\Component\HttpFoundation\Response
      */
     public function create(UserFormBuilder $form)
     {
@@ -44,11 +42,11 @@ class UsersController extends AdminController
     }
 
     /**
-     * Return the form UI for an existing user.
+     * Return a form for an existing user.
      *
      * @param UserFormBuilder $form
      * @param                 $id
-     * @return mixed
+     * @return \Illuminate\View\View|\Symfony\Component\HttpFoundation\Response
      */
     public function edit(UserFormBuilder $form, $id)
     {
@@ -56,15 +54,17 @@ class UsersController extends AdminController
     }
 
     /**
-     * Delete a user and redirect back.
+     * Delete a user.
      *
-     * @param UserRepositoryInterface $users
+     * @param UserRepository          $users
      * @param                         $id
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function delete(UserRepositoryInterface $users, $id)
+    public function delete(UserRepository $users, $id)
     {
-        $users->delete($id);
+        $user = $users->find($id);
+
+        $users->delete($user);
 
         return redirect()->back();
     }
@@ -72,23 +72,27 @@ class UsersController extends AdminController
     /**
      * Activate a user.
      *
-     * @param UserRepositoryInterface $users
+     * @param UserRepository          $users
      * @param                         $id
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function activate(UserRepositoryInterface $users, $id)
+    public function activate(UserRepository $users, $id)
     {
+        $user = $users->find($id);
+
+        $users->activate($user);
+
         return redirect()->back();
     }
 
     /**
      * Deactivate a user.
      *
-     * @param UserRepositoryInterface $users
+     * @param UserRepository          $users
      * @param                         $id
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function deactivate(UserRepositoryInterface $users, $id)
+    public function deactivate(UserRepository $users, $id)
     {
         return redirect()->back();
     }
@@ -96,36 +100,36 @@ class UsersController extends AdminController
     /**
      * Block a user.
      *
-     * @param UserRepositoryInterface $users
+     * @param UserRepository          $users
      * @param                         $id
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function block(UserRepositoryInterface $users, $id)
+    public function block(UserRepository $users, $id)
     {
-        return redirect(referer('admin/users'));
+        return redirect()->back();
     }
 
     /**
      * Unblock a user.
      *
-     * @param UserRepositoryInterface $users
+     * @param UserRepository          $users
      * @param                         $id
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function unblock(UserRepositoryInterface $users, $id)
+    public function unblock(UserRepository $users, $id)
     {
-        return redirect(referer('admin/users'));
+        return redirect()->back();
     }
 
     /**
      * Log a user out.
      *
-     * @param UserRepositoryInterface $users
+     * @param UserRepository          $users
      * @param                         $id
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function logout(UserRepositoryInterface $users, $id)
+    public function logout(UserRepository $users, $id)
     {
-        return redirect(referer('admin/users'));
+        return redirect()->back();
     }
 }

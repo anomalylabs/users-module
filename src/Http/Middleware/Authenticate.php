@@ -9,6 +9,8 @@ use Symfony\Component\HttpFoundation\Response;
 /**
  * Class Authenticate
  *
+ * This class replaces the Laravel version in app/
+ *
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>

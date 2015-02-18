@@ -1,8 +1,6 @@
 <?php namespace Anomaly\UsersModule\User\Form;
 
-use Anomaly\Streams\Platform\Ui\Form\Form;
 use Anomaly\Streams\Platform\Ui\Form\FormBuilder;
-use Illuminate\Foundation\Bus\DispatchesCommands;
 
 /**
  * Class UserFormBuilder
@@ -10,12 +8,10 @@ use Illuminate\Foundation\Bus\DispatchesCommands;
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
- * @package       Anomaly\UsersModule\Ui
+ * @package       Anomaly\UsersModule\User\Form
  */
 class UserFormBuilder extends FormBuilder
 {
-
-    use DispatchesCommands;
 
     /**
      * The form model.
@@ -32,7 +28,8 @@ class UserFormBuilder extends FormBuilder
     protected $fields = [
         'username',
         'email',
-        'roles',
+        'password',
+        'roles'
     ];
 
     /**
@@ -41,7 +38,7 @@ class UserFormBuilder extends FormBuilder
      * @var array
      */
     protected $actions = [
-        'save',
+        'save'
     ];
 
     /**
@@ -54,15 +51,4 @@ class UserFormBuilder extends FormBuilder
         'delete'
     ];
 
-    /**
-     * Create a new UserFormBuilder instance.
-     *
-     * @param Form $form
-     */
-    public function __construct(Form $form)
-    {
-        $form->setOption('title', 'Test Title');
-
-        parent::__construct($form);
-    }
 }

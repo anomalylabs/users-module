@@ -2,8 +2,7 @@
 
 use Anomaly\Streams\Platform\Http\Controller\PublicController;
 use Anomaly\UsersModule\Authenticator\Authenticator;
-use Anomaly\UsersModule\User\UserAuthenticator;
-use Anomaly\UsersModule\User\UserSecurityCheck;
+use Illuminate\Auth\Guard;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
 
@@ -21,11 +20,12 @@ class LoginController extends PublicController
     /**
      * Show the login screen.
      *
+     * @param Guard $auth
      * @return \Illuminate\Http\RedirectResponse|Redirector|\Illuminate\View\View
      */
-    public function login(UserSecurityCheck $security)
+    public function login(Guard $auth)
     {
-        if (app('auth')->check()) {
+        if ($auth->check()) {
             return redirect('admin/dashboard');
         } else {
             return view('anomaly.module.users::admin/login');

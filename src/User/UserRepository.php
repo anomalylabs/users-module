@@ -1,6 +1,6 @@
 <?php namespace Anomaly\UsersModule\User;
 
-use Anomaly\UsersModule\User\Contract\UserRepositoryInterface;
+use Anomaly\UsersModule\User\Contract\User;
 
 /**
  * Class UserRepository
@@ -10,7 +10,7 @@ use Anomaly\UsersModule\User\Contract\UserRepositoryInterface;
  * @author        Ryan Thompson <ryan@anomaly.is>
  * @package       Anomaly\UsersModule\User
  */
-class UserRepository implements UserRepositoryInterface
+class UserRepository implements \Anomaly\UsersModule\User\Contract\UserRepository
 {
 
     /**
@@ -52,25 +52,50 @@ class UserRepository implements UserRepositoryInterface
     }
 
     /**
-     * Delete an existing user.
+     * Delete a user.
      *
-     * @param $id
-     * @return \Illuminate\Support\Collection|null|static
+     * @param User $user
+     * @return bool
      */
     public function delete($id)
     {
-        $user = $this->model->find($id);
+        $user = $this->find($id);
 
-        $user->delete();
+        return $user->delete();
+    }
 
-        return $user;
+    /**
+     * Activate a user.
+     *
+     * @param $id
+     * @return mixed
+     */
+    public function activate($id)
+    {
+        $user = $this->find($id);
+
+        $user->activated    = true;
+        $user->activated_at = time();
+
+        return $user->save();
+    }
+
+    /**
+     * Find a user.
+     *
+     * @param $id
+     * @return null|User
+     */
+    public function find($id)
+    {
+        return $this->model->find($id);
     }
 
     /**
      * Find a user by their credentials.
      *
      * @param array $credentials
-     * @return null
+     * @return null|User
      */
     public function findByCredentials(array $credentials)
     {
@@ -81,5 +106,16 @@ class UserRepository implements UserRepositoryInterface
         }
 
         return null;
+    }
+
+    /**
+     * Find a user by their activation code.
+     *
+     * @param $code
+     * @return null|User
+     */
+    public function findByActivationCode($code)
+    {
+        return $this->model->where('activation_code', $code)->first();
     }
 }

@@ -1,15 +1,51 @@
 <?php namespace Anomaly\UsersModule\User;
 
+use Anomaly\UsersModule\User\Contract\User;
 use Illuminate\Foundation\Bus\DispatchesCommands;
 
+/**
+ * Class UserManager
+ *
+ * @link          http://anomaly.is/streams-platform
+ * @author        AnomalyLabs, Inc. <hello@anomaly.is>
+ * @author        Ryan Thompson <ryan@anomaly.is>
+ * @package       Anomaly\UsersModule\User
+ */
 class UserManager
 {
 
     use DispatchesCommands;
 
-    public function create(array $credentials)
+    /**
+     * The user activator.
+     *
+     * @var UserActivator
+     */
+    protected $activator;
+
+    /**
+     * Create a new UserManager instance.
+     *
+     * @param UserActivator $activator
+     */
+    public function __construct(UserActivator $activator)
+    {
+        $this->activator = $activator;
+    }
+
+    /**
+     * Create a new user.
+     *
+     * @param array $credentials
+     * @return User
+     */
+    public function create(array $credentials, $activate = false)
     {
         $user = $this->dispatchFromArray('Anomaly\UsersModule\User\Command\CreateUser', $credentials);
+
+        if ($activate) {
+            $this->activator->force($user);
+        }
 
         return $user;
     }

@@ -1,7 +1,7 @@
 <?php namespace Anomaly\UsersModule\Authenticator;
 
 use Anomaly\Streams\Platform\Addon\Extension\ExtensionCollection;
-use Anomaly\UsersModule\User\Contract\UserInterface;
+use Anomaly\UsersModule\User\Contract\User;
 
 /**
  * Class Authenticator
@@ -41,9 +41,10 @@ class Authenticator
         $authenticators = $this->extensions->search('anomaly.module.users::authenticator.*');
 
         foreach ($authenticators as $authenticator) {
+
             $user = $this->attemptAuthentication($authenticator, $credentials);
 
-            if ($user instanceof UserInterface) {
+            if ($user instanceof User) {
 
                 app('auth')->login($user); // Gotta do this for some reason..
 
@@ -59,7 +60,7 @@ class Authenticator
      *
      * @param AuthenticatorExtension $authenticator
      * @param array                  $credentials
-     * @return \Anomaly\UsersModule\User\Contract\UserInterface|null
+     * @return \Anomaly\UsersModule\User\Contract\User|null
      */
     protected function attemptAuthentication(AuthenticatorExtension $authenticator, array $credentials)
     {

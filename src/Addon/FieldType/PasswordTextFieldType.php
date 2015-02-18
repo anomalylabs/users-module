@@ -13,4 +13,13 @@ use Anomaly\TextFieldType\TextFieldType;
 class PasswordTextFieldType extends TextFieldType
 {
 
+    /**
+     * Get the value.
+     *
+     * @return string
+     */
+    public function getValue()
+    {
+        return '';
+    }
 }
