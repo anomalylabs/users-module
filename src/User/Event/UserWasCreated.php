@@ -3,14 +3,14 @@
 use Anomaly\UsersModule\User\Contract\User;
 
 /**
- * Class UserWasLoggedIn
+ * Class UserWasCreated
  *
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
  * @package       Anomaly\UsersModule\User\Event
  */
-class UserWasLoggedIn
+class UserWasCreated
 {
 
     /**
@@ -21,11 +21,11 @@ class UserWasLoggedIn
     protected $user;
 
     /**
-     * Create a new UserWasLoggedIn instance.
+     * Create a new UserWasCreated instance.
      *
      * @param User $user
      */
-    function __construct(User $user)
+    public function __construct(User $user)
     {
         $this->user = $user;
     }

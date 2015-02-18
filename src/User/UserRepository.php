@@ -1,5 +1,6 @@
 <?php namespace Anomaly\UsersModule\User;
 
+use Anomaly\UsersModule\Role\Contract\Role;
 use Anomaly\UsersModule\User\Contract\User;
 
 /**
@@ -33,18 +34,16 @@ class UserRepository implements \Anomaly\UsersModule\User\Contract\UserRepositor
     /**
      * Create a new user.
      *
-     * @param $username
-     * @param $email
-     * @param $password
-     * @return static
+     * @param array $credentials
+     * @return User
      */
-    public function create($username, $email, $password)
+    public function create(array $credentials)
     {
         $user = $this->model->newInstance();
 
-        $user->email    = $email;
-        $user->username = $username;
-        $user->password = $password;
+        $user->email    = $credentials['email'];
+        $user->username = $credentials['username'];
+        $user->password = $credentials['password'];
 
         $user->save();
 
@@ -57,9 +56,9 @@ class UserRepository implements \Anomaly\UsersModule\User\Contract\UserRepositor
      * @param User $user
      * @return bool
      */
-    public function delete($id)
+    public function delete(User $user)
     {
-        $user = $this->find($id);
+        $user = $this->find($user->getId());
 
         return $user->delete();
     }
@@ -80,6 +79,21 @@ class UserRepository implements \Anomaly\UsersModule\User\Contract\UserRepositor
     }
 
     /**
+     * Deactivate a user.
+     *
+     * @param $id
+     * @return mixed
+     */
+    public function deactivate($id)
+    {
+        $user = $this->find($id);
+
+        $user->activated = false;
+
+        return $user->save();
+    }
+
+    /**
      * Block a user.
      *
      * @param $id
@@ -90,6 +104,21 @@ class UserRepository implements \Anomaly\UsersModule\User\Contract\UserRepositor
         $user = $this->find($id);
 
         $user->blocked = true;
+
+        return $user->save();
+    }
+
+    /**
+     * Unblock a user.
+     *
+     * @param $id
+     * @return mixed
+     */
+    public function unblock($id)
+    {
+        $user = $this->find($id);
+
+        $user->blocked = false;
 
         return $user->save();
     }
@@ -134,15 +163,16 @@ class UserRepository implements \Anomaly\UsersModule\User\Contract\UserRepositor
     }
 
     /**
-     * Add a user to a role.
+     * Attach a role to a user.
      *
-     * @param $id
-     * @param $roleId
+     * @param User $user
+     * @param Role $role
+     * @return User
      */
-    public function addUserToRole($id, $roleId)
+    public function attachRole(User $user, Role $role)
     {
-        $user = $this->find($id);
+        $user->roles()->attach($role);
 
-        $user->roles()->attach($roleId);
+        return $user;
     }
 }

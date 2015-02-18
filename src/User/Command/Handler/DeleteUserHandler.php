@@ -1,19 +1,19 @@
 <?php namespace Anomaly\UsersModule\User\Command\Handler;
 
-use Anomaly\UsersModule\User\Command\CreateUser;
+use Anomaly\UsersModule\User\Command\DeleteUser;
 use Anomaly\UsersModule\User\Contract\UserRepository;
-use Anomaly\UsersModule\User\Event\UserWasCreated;
+use Anomaly\UsersModule\User\Event\UserWasDeleted;
 use Illuminate\Events\Dispatcher;
 
 /**
- * Class CreateUserHandler
+ * Class DeleteUserHandler
  *
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
  * @package       Anomaly\UsersModule\User\Command\Handler
  */
-class CreateUserHandler
+class DeleteUserHandler
 {
 
     /**
@@ -31,12 +31,12 @@ class CreateUserHandler
     protected $events;
 
     /**
-     * Create a new CreateUserHandler instance.
+     * Create a new DeleteUserHandler instance.
      *
      * @param UserRepository $users
      * @param Dispatcher     $events
      */
-    function __construct(UserRepository $users, Dispatcher $events)
+    public function __construct(UserRepository $users, Dispatcher $events)
     {
         $this->users  = $users;
         $this->events = $events;
@@ -45,14 +45,14 @@ class CreateUserHandler
     /**
      * Handle the command.
      *
-     * @param CreateUser $command
+     * @param DeleteUser $command
      */
-    public function handle(CreateUser $command)
+    public function handle(DeleteUser $command)
     {
-        $user = $this->users->create($command->getCredentials());
+        $user = $command->getUser();
 
-        $this->events->fire(new UserWasCreated($user));
+        $this->users->delete($user);
 
-        return $user;
+        $this->events->fire(new UserWasDeleted($user));
     }
 }

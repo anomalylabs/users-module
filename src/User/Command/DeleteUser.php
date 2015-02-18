@@ -1,16 +1,16 @@
-<?php namespace Anomaly\UsersModule\User\Event;
+<?php namespace Anomaly\UsersModule\User\Command;
 
 use Anomaly\UsersModule\User\Contract\User;
 
 /**
- * Class UserWasLoggedIn
+ * Class DeleteUser
  *
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
- * @package       Anomaly\UsersModule\User\Event
+ * @package       Anomaly\UsersModule\User\Command
  */
-class UserWasLoggedIn
+class DeleteUser
 {
 
     /**
@@ -21,7 +21,7 @@ class UserWasLoggedIn
     protected $user;
 
     /**
-     * Create a new UserWasLoggedIn instance.
+     * Create a new DeleteUser instance.
      *
      * @param User $user
      */

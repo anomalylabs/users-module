@@ -1,6 +1,7 @@
 <?php namespace Anomaly\UsersModule\Http\Controller\Admin;
 
 use Anomaly\Streams\Platform\Http\Controller\AdminController;
+use Anomaly\UsersModule\Authenticator\Authenticator;
 use Illuminate\Auth\Guard;
 
 /**
@@ -20,10 +21,10 @@ class LogoutController extends AdminController
      * @param Guard $auth
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function logout(Guard $auth)
+    public function logout(Authenticator $authenticator)
     {
-        $auth->logout();
+        $authenticator->logout();
 
-        return redirect('auth/login');
+        return redirect('admin/login');
     }
 }

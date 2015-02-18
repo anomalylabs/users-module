@@ -3,14 +3,14 @@
 use Anomaly\UsersModule\User\Contract\User;
 
 /**
- * Class AddUserToGroups
+ * Class UnblockUser
  *
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
  * @package       Anomaly\UsersModule\User\Command
  */
-class AddUserToGroups
+class UnblockUser
 {
 
     /**
@@ -21,32 +21,13 @@ class AddUserToGroups
     protected $user;
 
     /**
-     * The roles to join.
+     * Create a new UnblockUser instance.
      *
-     * @var array
+     * @param User $user
      */
-    protected $roles;
-
-    /**
-     * Create a new AddUserToGroups instance.
-     *
-     * @param User  $user
-     * @param array $roles
-     */
-    function __construct(User $user, array $roles)
+    function __construct(User $user)
     {
-        $this->user  = $user;
-        $this->roles = $roles;
-    }
-
-    /**
-     * Get the roles.
-     *
-     * @return array
-     */
-    public function getRoles()
-    {
-        return $this->roles;
+        $this->user = $user;
     }
 
     /**

@@ -1,6 +1,8 @@
 <?php namespace Anomaly\UsersModule\User;
 
-use Anomaly\UsersModule\User\Command\AddUserToGroups;
+use Anomaly\UsersModule\Role\Contract\Role;
+use Anomaly\UsersModule\User\Command\AttachRole;
+use Anomaly\UsersModule\User\Command\DeleteUser;
 use Anomaly\UsersModule\User\Contract\User;
 use Illuminate\Foundation\Bus\DispatchesCommands;
 
@@ -42,7 +44,7 @@ class UserManager
      */
     public function create(array $credentials, $activate = false)
     {
-        $user = $this->dispatchFromArray('Anomaly\UsersModule\User\Command\CreateUser', $credentials);
+        $user = $this->dispatchFromArray('Anomaly\UsersModule\User\Command\CreateUser', compact('credentials'));
 
         if ($activate) {
             $this->activator->force($user);
@@ -52,13 +54,23 @@ class UserManager
     }
 
     /**
+     * Delete a user.
+     *
+     * @param User $user
+     */
+    public function delete(User $user)
+    {
+        $this->dispatch(new DeleteUser($user));
+    }
+
+    /**
      * Add a user to groups.
      *
-     * @param User  $user
-     * @param array $roles
+     * @param User $user
+     * @param Role $role
      */
-    public function addUserToGroups(User $user, array $roles)
+    public function attachRole(User $user, Role $role)
     {
-        $this->dispatch(new AddUserToGroups($user, $roles));
+        $this->dispatch(new AttachRole($user, $role));
     }
 }

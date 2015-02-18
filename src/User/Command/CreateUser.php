@@ -1,33 +1,40 @@
 <?php namespace Anomaly\UsersModule\User\Command;
 
+/**
+ * Class CreateUser
+ *
+ * @link          http://anomaly.is/streams-platform
+ * @author        AnomalyLabs, Inc. <hello@anomaly.is>
+ * @author        Ryan Thompson <ryan@anomaly.is>
+ * @package       Anomaly\UsersModule\User\Command
+ */
 class CreateUser
 {
 
-    protected $email;
+    /**
+     * The user credentials.
+     *
+     * @var array
+     */
+    protected $credentials;
 
-    protected $username;
-
-    protected $password;
-
-    function __construct($email, $password, $username)
+    /**
+     * Create a new CreateUser instance.
+     *
+     * @param array $credentials
+     */
+    function __construct(array $credentials)
     {
-        $this->email    = $email;
-        $this->password = $password;
-        $this->username = $username;
+        $this->credentials = $credentials;
     }
 
-    public function getEmail()
+    /**
+     * Get the credentials.
+     *
+     * @return array
+     */
+    public function getCredentials()
     {
-        return $this->email;
-    }
-
-    public function getPassword()
-    {
-        return $this->password;
-    }
-
-    public function getUsername()
-    {
-        return $this->username;
+        return $this->credentials;
     }
 }

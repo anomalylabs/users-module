@@ -1,5 +1,7 @@
 <?php namespace Anomaly\UsersModule\User\Contract;
 
+use Anomaly\UsersModule\Role\Contract\Role;
+
 /**
  * Interface UserRepository
  *
@@ -14,12 +16,10 @@ interface UserRepository
     /**
      * Create a new user.
      *
-     * @param $username
-     * @param $email
-     * @param $password
+     * @param array $credentials
      * @return User
      */
-    public function create($username, $email, $password);
+    public function create(array $credentials);
 
     /**
      * Delete a user.
@@ -27,23 +27,39 @@ interface UserRepository
      * @param User $user
      * @return bool
      */
-    public function delete($id);
+    public function delete(User $user);
 
     /**
      * Activate a user.
      *
-     * @param $id
-     * @return mixed
+     * @param User $user
+     * @return User
      */
-    public function activate($id);
+    public function activate(User $user);
+
+    /**
+     * Deactivate a user.
+     *
+     * @param User $user
+     * @return User
+     */
+    public function deactivate(User $user);
 
     /**
      * Block a user.
      *
-     * @param $id
-     * @return mixed
+     * @param User $user
+     * @return User
      */
-    public function block($id);
+    public function block(User $user);
+
+    /**
+     * Unblock a user.
+     *
+     * @param User $user
+     * @return User
+     */
+    public function unblock(User $user);
 
     /**
      * Find a user.
@@ -60,4 +76,13 @@ interface UserRepository
      * @return null|User
      */
     public function findByCredentials(array $credentials);
+
+    /**
+     * Attach a role to a user.
+     *
+     * @param User $user
+     * @param Role $role
+     * @return User
+     */
+    public function attachRole(User $user, Role $role);
 }
