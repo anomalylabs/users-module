@@ -24,6 +24,7 @@ class RoleServiceProvider extends ServiceProvider
             'Anomaly\UsersModule\Role\RoleModel',
             'Anomaly\UsersModule\Role\RoleModel'
         );
+
         $this->app->bind(
             'Anomaly\UsersModule\Role\Contract\RoleRepository',
             'Anomaly\UsersModule\Role\RoleRepository'
