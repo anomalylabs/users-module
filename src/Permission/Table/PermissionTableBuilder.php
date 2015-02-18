@@ -18,7 +18,19 @@ class PermissionTableBuilder extends TableBuilder
 {
 
     /**
-     * The columns handler.
+     * The table actions.
+     *
+     * @var array
+     */
+    protected $actions = [
+        'save' => [
+            'button'  => 'save',
+            'handler' => 'Anomaly\UsersModule\Permission\Table\Action\SavePermissions@handle'
+        ]
+    ];
+
+    /**
+     * The table columns.
      *
      * @var array
      */
@@ -30,18 +42,6 @@ class PermissionTableBuilder extends TableBuilder
         [
             'heading' => 'anomaly.module.users::field.permissions.name',
             'value'   => 'anomaly.module.users::admin/user/table/permissions'
-        ]
-    ];
-
-    /**
-     * The actions handler.
-     *
-     * @var array
-     */
-    protected $actions = [
-        'save' => [
-            'button'  => 'save',
-            'handler' => 'Anomaly\UsersModule\Permission\Table\Action\SavePermissions@handle'
         ]
     ];
 
@@ -63,12 +63,11 @@ class PermissionTableBuilder extends TableBuilder
             throw new \Exception("Administrator permissions can not be modified.");
         }
 
-        $table->addData('role', $role);
-        $table->addData('roles', $roles->all());
-
         $table->setOption('role', $role);
         $table->setOption('class', 'table');
         $table->setOption('wrapper_view', 'module::admin/permissions/wrapper');
+
+        $table->addData('roles', $roles->all());
 
         parent::__construct($table);
     }

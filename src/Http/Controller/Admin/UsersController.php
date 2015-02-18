@@ -1,9 +1,14 @@
 <?php namespace Anomaly\UsersModule\Http\Controller\Admin;
 
 use Anomaly\Streams\Platform\Http\Controller\AdminController;
+use Anomaly\Streams\Platform\Message\MessageBag;
+use Anomaly\UsersModule\Authenticator\Authenticator;
 use Anomaly\UsersModule\User\Contract\UserRepository;
 use Anomaly\UsersModule\User\Form\UserFormBuilder;
 use Anomaly\UsersModule\User\Table\UserTableBuilder;
+use Anomaly\UsersModule\User\UserActivator;
+use Anomaly\UsersModule\User\UserBlocker;
+use Anomaly\UsersModule\User\UserManager;
 
 /**
  * Class UsersController
@@ -18,6 +23,30 @@ use Anomaly\UsersModule\User\Table\UserTableBuilder;
  */
 class UsersController extends AdminController
 {
+
+    /**
+     * The user repository.
+     *
+     * @var UserRepository
+     */
+    protected $users;
+
+    /**
+     * The message bag.
+     *
+     * @var MessageBag
+     */
+    protected $messages;
+
+    /**
+     * Create a new UsersController instance.
+     *
+     * @param UserRepository $users
+     */
+    public function __construct(UserRepository $users)
+    {
+        $this->users = $users;
+    }
 
     /**
      * Return an index of existing users.
@@ -56,69 +85,71 @@ class UsersController extends AdminController
     /**
      * Delete a user.
      *
-     * @param UserRepository          $users
-     * @param                         $id
-     * @return \Illuminate\Http\RedirectResponse
+     * @param UserManager $manager
+     * @param             $id
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function delete(UserRepository $users, $id)
+    public function delete(UserManager $manager, $id)
     {
-        $user = $users->find($id);
+        $manager->delete($this->users->find($id));
 
-        $users->delete($user);
-
-        return redirect()->back();
+        return redirect('admin/users');
     }
 
     /**
      * Activate a user.
      *
-     * @param UserRepository          $users
-     * @param                         $id
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @param UserActivator $activator
+     * @param               $id
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function activate(UserRepository $users, $id)
+    public function activate(UserActivator $activator, $id)
     {
-        $user = $users->find($id);
+        $activator->force($this->users->find($id));
 
-        $users->activate($user);
-
-        return redirect()->back();
+        return redirect('admin/users');
     }
 
     /**
      * Deactivate a user.
      *
-     * @param UserRepository          $users
-     * @param                         $id
+     * @param UserActivator $activator
+     * @param               $id
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function deactivate(UserRepository $users, $id)
+    public function deactivate(UserActivator $activator, $id)
     {
-        return redirect()->back();
+        $activator->deactivate($this->users->find($id));
+
+        return redirect('admin/users');
     }
 
     /**
      * Block a user.
      *
-     * @param UserRepository          $users
-     * @param                         $id
+     * @param UserBlocker $blocker
+     * @param             $id
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function block(UserRepository $users, $id)
+    public function block(UserBlocker $blocker, $id)
     {
-        return redirect()->back();
+        $blocker->block($this->users->find($id));
+
+        return redirect('admin/users/logout/' . $id);
     }
 
     /**
      * Unblock a user.
      *
-     * @param UserRepository          $users
-     * @param                         $id
+     * @param UserBlocker $blocker
+     * @param             $id
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function unblock(UserRepository $users, $id)
+    public function unblock(UserBlocker $blocker, $id)
     {
-        return redirect()->back();
+        $blocker->unblock($this->users->find($id));
+
+        return redirect('admin/users');
     }
 
     /**
@@ -128,8 +159,10 @@ class UsersController extends AdminController
      * @param                         $id
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function logout(UserRepository $users, $id)
+    public function logout(Authenticator $authenticator, $id)
     {
-        return redirect()->back();
+        $authenticator->logout($this->users->find($id));
+
+        return redirect('admin/users');
     }
 }

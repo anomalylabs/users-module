@@ -1,5 +1,9 @@
 <?php
 
 return [
-    'login' => 'Login'
+    'login'      => 'Login',
+    'block'      => 'Block',
+    'unblock'    => 'Unblock',
+    'activate'   => 'Activate',
+    'deactivate' => 'Deactivate'
 ];

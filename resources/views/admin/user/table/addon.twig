@@ -1,7 +1,9 @@
-<strong>{{ trans(entry.getName()) }}</strong>
+<strong>
+    {{ trans(entry.getName()) }} {{ trans('streams::addon.' ~ entry.getType()) }}
+</strong>
 
 <br>
 
-<span class="hidden-xs text-muted">
+<span class="hidden-xs">
     {{ trans(entry.getDescription()) }}
 </span>

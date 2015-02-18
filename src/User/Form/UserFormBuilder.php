@@ -41,14 +41,4 @@ class UserFormBuilder extends FormBuilder
         'save'
     ];
 
-    /**
-     * The form buttons.
-     *
-     * @var string
-     */
-    protected $buttons = [
-        'cancel',
-        'delete'
-    ];
-
 }

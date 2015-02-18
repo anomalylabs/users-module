@@ -38,11 +38,11 @@ class UserTableColumns
                     'wrap'    => function (User $entry) {
 
                         if ($entry->isBlocked()) {
-                            return '<span class="label label-danger">:value</span>';
+                            return '<span class="label label-danger">{value}</span>';
                         } elseif ($entry->isActivated()) {
-                            return '<span class="label label-success">:value</span>';
+                            return '<span class="label label-success">{value}</span>';
                         } elseif (!$entry->isActivated()) {
-                            return '<span class="label label-default">:value</span>';
+                            return '<span class="label label-default">{value}</span>';
                         }
                     },
                     'value'   => function (User $entry) {

@@ -1,20 +1,19 @@
 <?php namespace Anomaly\UsersModule\Role\Command\Handler;
 
-use Anomaly\UsersModule\Role\Command\CreateRole;
-use Anomaly\UsersModule\Role\Contract\Role;
+use Anomaly\UsersModule\Role\Command\DeleteRole;
 use Anomaly\UsersModule\Role\Contract\RoleRepository;
-use Anomaly\UsersModule\Role\Event\RoleWasCreated;
+use Anomaly\UsersModule\Role\Event\RoleWasDeleted;
 use Illuminate\Events\Dispatcher;
 
 /**
- * Class CreateRoleHandler
+ * Class DeleteRoleHandler
  *
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
  * @package       Anomaly\UsersModule\Role\Command\Handler
  */
-class CreateRoleHandler
+class DeleteRoleHandler
 {
 
     /**
@@ -46,15 +45,10 @@ class CreateRoleHandler
     /**
      * Handle the command.
      *
-     * @param CreateRole $command
-     * @return Role
+     * @param DeleteRole $command
      */
-    public function handle(CreateRole $command)
+    public function handle(DeleteRole $command)
     {
-        $role = $this->roles->create($command->getName(), $command->getSlug(), $command->getPermissions());
-
-        $this->events->fire(new RoleWasCreated($role));
-
-        return $role;
+        $this->events->fire(new RoleWasDeleted($this->roles->delete($command->getRole())));
     }
 }

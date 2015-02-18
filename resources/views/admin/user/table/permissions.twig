@@ -5,7 +5,7 @@
                 type="checkbox"
                 name="permission[]"
                 value="{{ entry.getNamespace(permission) }}"
-                {{ role.hasPermission(permission) ? 'checked="checked"' }}
+                {{ table.options.role.hasPermission(entry.getNamespace(permission)) ? 'checked="checked"' }}
                 >
 
         {{ trans(entry.getNamespace('permission.' ~ permission)) }}

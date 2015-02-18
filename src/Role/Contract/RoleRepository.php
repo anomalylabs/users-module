@@ -21,7 +21,7 @@ interface RoleRepository
     public function all();
 
     /**
-     * Create a new Role.
+     * Create a new role.
      *
      * @param       $name
      * @param       $slug
@@ -30,10 +30,18 @@ interface RoleRepository
     public function create($name, $slug);
 
     /**
-     * Find a role by it's ID.
+     * Delete a role.
+     *
+     * @param Role $role
+     * @return Role
+     */
+    public function delete(Role $role);
+
+    /**
+     * Find a role.
      *
      * @param $id
-     * @return \Illuminate\Support\Collection|null|Role
+     * @return null|Role
      */
     public function find($id);
 
@@ -41,16 +49,16 @@ interface RoleRepository
      * Find a role by it's slug.
      *
      * @param $slug
-     * @return \Illuminate\Support\Collection|null|Role
+     * @return null|Role
      */
     public function findBySlug($slug);
 
     /**
      * Update permissions for a role.
      *
-     * @param       $id
+     * @param Role  $role
      * @param array $permissions
-     * @return Role|Collection|null
+     * @return null|Role
      */
-    public function updatePermissions($id, array $permissions);
+    public function updatePermissions(Role $role, array $permissions);
 }

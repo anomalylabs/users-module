@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'admin_access',
     'create_user',
     'edit_user',
     'delete_user',

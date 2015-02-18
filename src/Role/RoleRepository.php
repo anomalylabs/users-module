@@ -42,7 +42,7 @@ class RoleRepository implements \Anomaly\UsersModule\Role\Contract\RoleRepositor
     }
 
     /**
-     * Create a new Role.
+     * Create a new role.
      *
      * @param $name
      * @param $slug
@@ -61,10 +61,23 @@ class RoleRepository implements \Anomaly\UsersModule\Role\Contract\RoleRepositor
     }
 
     /**
-     * Find a role by it's ID.
+     * Delete a role.
+     *
+     * @param Role $role
+     * @return Role
+     */
+    public function delete(Role $role)
+    {
+        $role->delete();
+
+        return $role;
+    }
+
+    /**
+     * Find a role.
      *
      * @param $id
-     * @return \Illuminate\Support\Collection|null|Role
+     * @return null|Role
      */
     public function find($id)
     {
@@ -75,7 +88,7 @@ class RoleRepository implements \Anomaly\UsersModule\Role\Contract\RoleRepositor
      * Find a role by it's slug.
      *
      * @param $slug
-     * @return \Illuminate\Support\Collection|null|Role
+     * @return null|Role
      */
     public function findBySlug($slug)
     {
@@ -85,14 +98,12 @@ class RoleRepository implements \Anomaly\UsersModule\Role\Contract\RoleRepositor
     /**
      * Update permissions for a role.
      *
-     * @param       $id
+     * @param Role  $role
      * @param array $permissions
-     * @return Role|Collection|null
+     * @return null|Role
      */
-    public function updatePermissions($id, array $permissions)
+    public function updatePermissions(Role $role, array $permissions)
     {
-        $role = $this->find($id);
-
         $role->permissions = $permissions;
 
         $role->save();
