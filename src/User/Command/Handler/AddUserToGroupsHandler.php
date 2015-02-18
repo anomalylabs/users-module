@@ -1,6 +1,6 @@
 <?php namespace Anomaly\UsersModule\User\Command\Handler;
 
-use Anomaly\UsersModule\Role\Contract\RoleRepositoryInterface;
+use Anomaly\UsersModule\Role\Contract\RoleRepository;
 use Anomaly\UsersModule\User\Command\AddUserToGroups;
 use Anomaly\UsersModule\User\Contract\UserRepository;
 
@@ -25,7 +25,7 @@ class AddUserToGroupsHandler
     /**
      * The role repository.
      *
-     * @var RoleRepositoryInterface
+     * @var RoleRepository
      */
     protected $roles;
 
@@ -33,9 +33,9 @@ class AddUserToGroupsHandler
      * Create a new AddUserToGroupsHandler instance.
      *
      * @param UserRepository                         $users
-     * @param                RoleRepositoryInterface $roles
+     * @param                RoleRepository $roles
      */
-    public function __construct(UserRepository $users, RoleRepositoryInterface $roles)
+    public function __construct(UserRepository $users, RoleRepository $roles)
     {
         $this->users = $users;
         $this->roles = $roles;

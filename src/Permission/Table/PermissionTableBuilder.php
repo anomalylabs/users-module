@@ -3,6 +3,7 @@
 use Anomaly\Streams\Platform\Asset\Asset;
 use Anomaly\Streams\Platform\Ui\Table\Table;
 use Anomaly\Streams\Platform\Ui\Table\TableBuilder;
+use Anomaly\UsersModule\Role\Contract\RoleRepository;
 use Illuminate\Http\Request;
 
 /**
@@ -49,41 +50,24 @@ class PermissionTableBuilder extends TableBuilder
      *
      * @param Table   $table
      * @param Request $request
-     */
-    public function __construct(Table $table, Request $request, Asset $asset)
-    {
-        $this->appendAssets($asset);
-        $this->setTableOptions($table, $request);
-
-        parent::__construct($table);
-    }
-
-    /**
-     *
-     * @param Asset $asset
-     */
-    protected function appendAssets(Asset $asset)
-    {
-        $asset->add('scripts.js', 'module::js/permissions.js');
-    }
-
-    /**
-     * Set table options.
-     *
-     * @param Table   $table
-     * @param Request $request
+     * @param Asset   $asset
      * @throws \Exception
      */
-    protected function setTableOptions(Table $table, Request $request)
+    public function __construct(Table $table, Request $request, Asset $asset, RoleRepository $roles)
     {
-        $role = $request->segment(4);
+        $asset->add('scripts.js', 'module::js/permissions.js');
 
-        if ($role == 1) {
+        $role = $roles->find($request->segment(4));
+
+        if ($role->getSlug() == 'admin') {
             throw new \Exception("Administrator permissions can not be modified.");
         }
 
-        $table->setOption('class', 'table');
-        $table->setOption('role_id', $role);
-        $table->setOption('wrapper_view', 'anomaly.module.users::admin/permissions/wrapper');
+        $table->addData('roles', $roles->all());
+
+        $table->setOption('role', $role);
+        $table->setOption('wrapper_view', 'module::admin/permissions/wrapper');
+
+        parent::__construct($table);
     }
 }

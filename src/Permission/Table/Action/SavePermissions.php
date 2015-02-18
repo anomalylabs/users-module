@@ -1,7 +1,7 @@
 <?php namespace Anomaly\UsersModule\Permission\Table\Action;
 
 use Anomaly\Streams\Platform\Ui\Table\Table;
-use Anomaly\UsersModule\Role\Contract\RoleRepositoryInterface;
+use Anomaly\UsersModule\Role\Contract\RoleRepository;
 use Illuminate\Session\SessionManager;
 
 /**
@@ -19,9 +19,9 @@ class SavePermissions
      * Handle the action.
      *
      * @param Table                   $table
-     * @param RoleRepositoryInterface $roles
+     * @param RoleRepository $roles
      */
-    public function handle(Table $table, RoleRepositoryInterface $roles)
+    public function handle(Table $table, RoleRepository $roles)
     {
         $options = $table->getOptions();
 

@@ -1,14 +1,14 @@
 <?php namespace Anomaly\UsersModule\Role\Contract;
 
 /**
- * Interface RoleInterface
+ * Interface Role
  *
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
  * @package       Anomaly\UsersModule\Role\Contract
  */
-interface RoleInterface
+interface Role
 {
 
     /**

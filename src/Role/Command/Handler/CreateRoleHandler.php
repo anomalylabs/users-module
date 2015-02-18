@@ -1,14 +1,14 @@
 <?php namespace Anomaly\UsersModule\Role\Command\Handler;
 
 use Anomaly\UsersModule\Role\Command\CreateRole;
-use Anomaly\UsersModule\Role\Contract\RoleRepositoryInterface;
+use Anomaly\UsersModule\Role\Contract\RoleRepository;
 
 class CreateRoleHandler
 {
 
     protected $roles;
 
-    function __construct(RoleRepositoryInterface $roles)
+    function __construct(RoleRepository $roles)
     {
         $this->roles = $roles;
     }

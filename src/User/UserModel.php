@@ -3,7 +3,7 @@
 use Anomaly\Streams\Platform\Entry\EntryCollection;
 use Anomaly\Streams\Platform\Model\EloquentCollection;
 use Anomaly\Streams\Platform\Model\Users\UsersUsersEntryModel;
-use Anomaly\UsersModule\Role\Contract\RoleInterface;
+use Anomaly\UsersModule\Role\Contract\Role;
 use Anomaly\UsersModule\User\Contract\User;
 use Illuminate\Auth\Authenticatable;
 
@@ -80,7 +80,7 @@ class UserModel extends UsersUsersEntryModel implements User, \Illuminate\Contra
         }
 
         foreach ($this->getRoles() as $role) {
-            if ($role instanceof RoleInterface && $role->hasPermission($permission) || $role->getSlug() === 'admin') {
+            if ($role instanceof Role && $role->hasPermission($permission) || $role->getSlug() === 'admin') {
                 return true;
             }
         }

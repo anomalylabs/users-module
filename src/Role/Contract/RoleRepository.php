@@ -3,14 +3,14 @@
 use Illuminate\Support\Collection;
 
 /**
- * Interface RoleRepositoryInterface
+ * Interface RoleRepository
  *
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
  * @package       Anomaly\UsersModule\Role\Contract
  */
-interface RoleRepositoryInterface
+interface RoleRepository
 {
 
     /**
@@ -25,7 +25,7 @@ interface RoleRepositoryInterface
      *
      * @param       $name
      * @param       $slug
-     * @return RoleInterface
+     * @return Role
      */
     public function create($name, $slug);
 
@@ -33,7 +33,7 @@ interface RoleRepositoryInterface
      * Find a role by it's ID.
      *
      * @param $id
-     * @return \Illuminate\Support\Collection|null|RoleInterface
+     * @return \Illuminate\Support\Collection|null|Role
      */
     public function find($id);
 
@@ -41,7 +41,7 @@ interface RoleRepositoryInterface
      * Find a role by it's slug.
      *
      * @param $slug
-     * @return \Illuminate\Support\Collection|null|RoleInterface
+     * @return \Illuminate\Support\Collection|null|Role
      */
     public function findBySlug($slug);
 
@@ -50,7 +50,7 @@ interface RoleRepositoryInterface
      *
      * @param       $id
      * @param array $permissions
-     * @return RoleInterface|Collection|null
+     * @return Role|Collection|null
      */
     public function updatePermissions($id, array $permissions);
 }

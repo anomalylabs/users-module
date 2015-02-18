@@ -1,7 +1,6 @@
 <?php namespace Anomaly\UsersModule\Role;
 
-use Anomaly\UsersModule\Role\Contract\RoleInterface;
-use Anomaly\UsersModule\Role\Contract\RoleRepositoryInterface;
+use Anomaly\UsersModule\Role\Contract\Role;
 use Illuminate\Support\Collection;
 
 /**
@@ -12,7 +11,7 @@ use Illuminate\Support\Collection;
  * @author        Ryan Thompson <ryan@anomaly.is>
  * @package       Anomaly\UsersModule\Role
  */
-class RoleRepository implements RoleRepositoryInterface
+class RoleRepository implements \Anomaly\UsersModule\Role\Contract\RoleRepository
 {
 
     /**
@@ -47,7 +46,7 @@ class RoleRepository implements RoleRepositoryInterface
      *
      * @param $name
      * @param $slug
-     * @return RoleInterface
+     * @return Role
      */
     public function create($name, $slug)
     {
@@ -65,7 +64,7 @@ class RoleRepository implements RoleRepositoryInterface
      * Find a role by it's ID.
      *
      * @param $id
-     * @return \Illuminate\Support\Collection|null|RoleInterface
+     * @return \Illuminate\Support\Collection|null|Role
      */
     public function find($id)
     {
@@ -76,7 +75,7 @@ class RoleRepository implements RoleRepositoryInterface
      * Find a role by it's slug.
      *
      * @param $slug
-     * @return \Illuminate\Support\Collection|null|RoleInterface
+     * @return \Illuminate\Support\Collection|null|Role
      */
     public function findBySlug($slug)
     {
@@ -88,7 +87,7 @@ class RoleRepository implements RoleRepositoryInterface
      *
      * @param       $id
      * @param array $permissions
-     * @return RoleInterface|Collection|null
+     * @return Role|Collection|null
      */
     public function updatePermissions($id, array $permissions)
     {

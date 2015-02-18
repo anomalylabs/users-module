@@ -1,7 +1,7 @@
 <?php namespace Anomaly\UsersModule;
 
 use Anomaly\Streams\Platform\Entry\EntryCollection;
-use Anomaly\UsersModule\Role\Contract\RoleRepositoryInterface;
+use Anomaly\UsersModule\Role\Contract\RoleRepository;
 
 /**
  * Class UsersModulePluginFunctions
@@ -17,16 +17,16 @@ class UsersModulePluginFunctions
     /**
      * The role repository.
      *
-     * @var RoleRepositoryInterface
+     * @var RoleRepository
      */
     protected $roles;
 
     /**
      * Create a new UsersModulePluginFunctions instance.
      *
-     * @param RoleRepositoryInterface $roles
+     * @param RoleRepository $roles
      */
-    public function __construct(RoleRepositoryInterface $roles)
+    public function __construct(RoleRepository $roles)
     {
         $this->roles = $roles;
     }

@@ -1,6 +1,6 @@
 <?php namespace Anomaly\UsersModule\Role\Table;
 
-use Anomaly\UsersModule\Role\Contract\RoleInterface;
+use Anomaly\UsersModule\Role\Contract\Role;
 
 /**
  * Class RoleTableButtons
@@ -26,7 +26,7 @@ class RoleTableButtons
                     'icon'    => 'sliders',
                     'type'    => 'default',
                     'href'    => '/admin/users/permissions/{{ entry.id }}',
-                    'enabled' => function (RoleInterface $entry) {
+                    'enabled' => function (Role $entry) {
                         return ($entry->getSlug() !== 'admin');
                     },
                 ],

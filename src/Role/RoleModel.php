@@ -1,7 +1,7 @@
 <?php namespace Anomaly\UsersModule\Role;
 
 use Anomaly\Streams\Platform\Model\Users\UsersRolesEntryModel;
-use Anomaly\UsersModule\Role\Contract\RoleInterface;
+use Anomaly\UsersModule\Role\Contract\Role;
 
 /**
  * Class RoleModel
@@ -11,7 +11,7 @@ use Anomaly\UsersModule\Role\Contract\RoleInterface;
  * @author        Ryan Thompson <ryan@anomaly.is>
  * @package       Anomaly\UsersModule\Role
  */
-class RoleModel extends UsersRolesEntryModel implements RoleInterface
+class RoleModel extends UsersRolesEntryModel implements Role
 {
 
     /**
