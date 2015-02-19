@@ -2,7 +2,6 @@
 
 use Anomaly\UsersModule\Role\Contract\RoleRepositoryInterface;
 use Anomaly\UsersModule\User\Command\AttachRole;
-use Anomaly\UsersModule\User\Contract\UserInterface;
 use Anomaly\UsersModule\User\Contract\UserRepositoryInterface;
 use Anomaly\UsersModule\User\Event\RoleWasAttached;
 use Illuminate\Events\Dispatcher;
