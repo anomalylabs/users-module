@@ -1,6 +1,6 @@
 <?php namespace Anomaly\UsersModule\User;
 
-use Anomaly\UsersModule\Role\Contract\Role;
+use Anomaly\UsersModule\Role\Contract\RoleInterface;
 use Anomaly\UsersModule\User\Contract\UserInterface;
 
 /**
@@ -177,10 +177,10 @@ class UserRepository implements \Anomaly\UsersModule\User\Contract\UserRepositor
      * Attach a role to a user.
      *
      * @param UserInterface $user
-     * @param Role $role
+     * @param RoleInterface $role
      * @return UserInterface
      */
-    public function attachRole(UserInterface $user, Role $role)
+    public function attachRole(UserInterface $user, RoleInterface $role)
     {
         $user->roles()->attach($role);
 

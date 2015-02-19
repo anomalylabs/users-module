@@ -8,7 +8,7 @@ use Anomaly\Streams\Platform\Ui\Form\FormBuilder;
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
- * @package       Anomaly\UsersModule\Role\Form
+ * @package       Anomaly\UsersModule\RoleInterface\Form
  */
 class RoleFormBuilder extends FormBuilder
 {

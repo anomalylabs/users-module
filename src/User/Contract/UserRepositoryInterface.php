@@ -1,9 +1,9 @@
 <?php namespace Anomaly\UsersModule\User\Contract;
 
-use Anomaly\UsersModule\Role\Contract\Role;
+use Anomaly\UsersModule\Role\Contract\RoleInterface;
 
 /**
- * Interface UserRepository
+ * Interface UserRepositoryInterface
  *
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
@@ -89,8 +89,8 @@ interface UserRepositoryInterface
      * Attach a role to a user.
      *
      * @param UserInterface $user
-     * @param Role          $role
+     * @param RoleInterface $role
      * @return UserInterface
      */
-    public function attachRole(UserInterface $user, Role $role);
+    public function attachRole(UserInterface $user, RoleInterface $role);
 }

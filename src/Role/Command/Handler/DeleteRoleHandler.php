@@ -1,7 +1,7 @@
 <?php namespace Anomaly\UsersModule\Role\Command\Handler;
 
 use Anomaly\UsersModule\Role\Command\DeleteRole;
-use Anomaly\UsersModule\Role\Contract\RoleRepository;
+use Anomaly\UsersModule\Role\Contract\RoleRepositoryInterface;
 use Anomaly\UsersModule\Role\Event\RoleWasDeleted;
 use Illuminate\Events\Dispatcher;
 
@@ -11,7 +11,7 @@ use Illuminate\Events\Dispatcher;
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
- * @package       Anomaly\UsersModule\Role\Command\Handler
+ * @package       Anomaly\UsersModule\RoleInterface\Command\Handler
  */
 class DeleteRoleHandler
 {
@@ -19,7 +19,7 @@ class DeleteRoleHandler
     /**
      * The role repository.
      *
-     * @var RoleRepository
+     * @var RoleRepositoryInterface
      */
     protected $roles;
 
@@ -33,10 +33,10 @@ class DeleteRoleHandler
     /**
      * Create a new DeleteRoleHandler instance.
      *
-     * @param RoleRepository $roles
+     * @param RoleRepositoryInterface $roles
      * @param Dispatcher     $events
      */
-    function __construct(RoleRepository $roles, Dispatcher $events)
+    function __construct(RoleRepositoryInterface $roles, Dispatcher $events)
     {
         $this->roles  = $roles;
         $this->events = $events;

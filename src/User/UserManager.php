@@ -1,6 +1,6 @@
 <?php namespace Anomaly\UsersModule\User;
 
-use Anomaly\UsersModule\Role\Contract\Role;
+use Anomaly\UsersModule\Role\Contract\RoleInterface;
 use Anomaly\UsersModule\User\Command\AttachRole;
 use Anomaly\UsersModule\User\Command\CreateUser;
 use Anomaly\UsersModule\User\Command\DeleteUser;
@@ -68,9 +68,9 @@ class UserManager
      * Add a user to groups.
      *
      * @param UserInterface $user
-     * @param Role $role
+     * @param RoleInterface $role
      */
-    public function attachRole(UserInterface $user, Role $role)
+    public function attachRole(UserInterface $user, RoleInterface $role)
     {
         $this->dispatch(new AttachRole($user, $role));
     }

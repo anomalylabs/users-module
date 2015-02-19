@@ -3,14 +3,14 @@
 use Illuminate\Support\Collection;
 
 /**
- * Interface RoleRepository
+ * Interface RoleRepositoryInterface
  *
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
- * @package       Anomaly\UsersModule\Role\Contract
+ * @package       Anomaly\UsersModule\RoleInterface\Contract
  */
-interface RoleRepository
+interface RoleRepositoryInterface
 {
 
     /**
@@ -24,23 +24,23 @@ interface RoleRepository
      * Create a new role.
      *
      * @param array $attributes
-     * @return Role
+     * @return RoleInterface
      */
     public function create(array $attributes);
 
     /**
      * Delete a role.
      *
-     * @param Role $role
-     * @return Role
+     * @param RoleInterface $role
+     * @return RoleInterface
      */
-    public function delete(Role $role);
+    public function delete(RoleInterface $role);
 
     /**
      * Find a role.
      *
      * @param $id
-     * @return null|Role
+     * @return null|RoleInterface
      */
     public function find($id);
 
@@ -48,16 +48,16 @@ interface RoleRepository
      * Find a role by it's slug.
      *
      * @param $slug
-     * @return null|Role
+     * @return null|RoleInterface
      */
     public function findBySlug($slug);
 
     /**
      * Update permissions for a role.
      *
-     * @param Role  $role
-     * @param array $permissions
-     * @return Role
+     * @param RoleInterface $role
+     * @param array         $permissions
+     * @return RoleInterface
      */
-    public function updatePermissions(Role $role, array $permissions);
+    public function updatePermissions(RoleInterface $role, array $permissions);
 }

@@ -1,6 +1,6 @@
 <?php namespace Anomaly\UsersModule\User\Command;
 
-use Anomaly\UsersModule\Role\Contract\Role;
+use Anomaly\UsersModule\Role\Contract\RoleInterface;
 use Anomaly\UsersModule\User\Contract\UserInterface;
 
 /**
@@ -24,7 +24,7 @@ class AttachRole
     /**
      * The role object.
      *
-     * @var Role
+     * @var RoleInterface
      */
     protected $role;
 
@@ -32,9 +32,9 @@ class AttachRole
      * Create a new AttachRole instance.
      *
      * @param UserInterface $user
-     * @param Role $role
+     * @param RoleInterface $role
      */
-    function __construct(UserInterface $user, Role $role)
+    function __construct(UserInterface $user, RoleInterface $role)
     {
         $this->user = $user;
         $this->role = $role;
@@ -43,7 +43,7 @@ class AttachRole
     /**
      * Get the role.
      *
-     * @return Role
+     * @return RoleInterface
      */
     public function getRole()
     {

@@ -1,6 +1,6 @@
 <?php namespace Anomaly\UsersModule\User\Event;
 
-use Anomaly\UsersModule\Role\Contract\Role;
+use Anomaly\UsersModule\Role\Contract\RoleInterface;
 use Anomaly\UsersModule\User\Contract\UserInterface;
 
 /**
@@ -24,7 +24,7 @@ class RoleWasAttached
     /**
      * The role object.
      *
-     * @var Role
+     * @var RoleInterface
      */
     protected $role;
 
@@ -32,9 +32,9 @@ class RoleWasAttached
      * Create a new RoleWasAttached instance.
      *
      * @param UserInterface $user
-     * @param Role $role
+     * @param RoleInterface $role
      */
-    public function __construct(UserInterface $user, Role $role)
+    public function __construct(UserInterface $user, RoleInterface $role)
     {
         $this->user = $user;
         $this->role = $role;
@@ -53,7 +53,7 @@ class RoleWasAttached
     /**
      * Get the role.
      *
-     * @return Role
+     * @return RoleInterface
      */
     public function getRole()
     {

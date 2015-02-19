@@ -2,7 +2,7 @@
 
 use Anomaly\UsersModule\Role\Command\CreateRole;
 use Anomaly\UsersModule\Role\Command\DeleteRole;
-use Anomaly\UsersModule\Role\Contract\Role;
+use Anomaly\UsersModule\Role\Contract\RoleInterface;
 use Illuminate\Foundation\Bus\DispatchesCommands;
 
 /**
@@ -11,7 +11,7 @@ use Illuminate\Foundation\Bus\DispatchesCommands;
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
- * @package       Anomaly\UsersModule\Role
+ * @package       Anomaly\UsersModule\RoleInterface
  */
 class RoleManager
 {
@@ -19,10 +19,10 @@ class RoleManager
     use DispatchesCommands;
 
     /**
-     * Create a new Role.
+     * Create a new RoleInterface.
      *
      * @param array $attributes
-     * @return Role
+     * @return RoleInterface
      */
     public function create(array $attributes)
     {
@@ -32,9 +32,9 @@ class RoleManager
     /**
      * Delete a role.
      *
-     * @param Role $role
+     * @param RoleInterface $role
      */
-    public function delete(Role $role)
+    public function delete(RoleInterface $role)
     {
         $this->dispatch(new DeleteRole($role));
     }

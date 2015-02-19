@@ -1,7 +1,7 @@
 <?php namespace Anomaly\UsersModule\Permission\Table\Action;
 
 use Anomaly\Streams\Platform\Ui\Table\Table;
-use Anomaly\UsersModule\Role\Contract\RoleRepository;
+use Anomaly\UsersModule\Role\Contract\RoleRepositoryInterface;
 use Illuminate\Http\Request;
 
 /**
@@ -19,10 +19,10 @@ class SavePermissions
      * Handle the action.
      *
      * @param Table          $table
-     * @param RoleRepository $roles
+     * @param RoleRepositoryInterface $roles
      * @param Request        $request
      */
-    public function handle(Table $table, RoleRepository $roles, Request $request)
+    public function handle(Table $table, RoleRepositoryInterface $roles, Request $request)
     {
         $roles->updatePermissions($table->getOption('role'), array_get($_POST, 'permission', []));
 

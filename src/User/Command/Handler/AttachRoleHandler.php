@@ -1,6 +1,6 @@
 <?php namespace Anomaly\UsersModule\User\Command\Handler;
 
-use Anomaly\UsersModule\Role\Contract\RoleRepository;
+use Anomaly\UsersModule\Role\Contract\RoleRepositoryInterface;
 use Anomaly\UsersModule\User\Command\AttachRole;
 use Anomaly\UsersModule\User\Contract\UserInterface;
 use Anomaly\UsersModule\User\Contract\UserRepositoryInterface;
@@ -28,7 +28,7 @@ class AttachRoleHandler
     /**
      * The role repository.
      *
-     * @var RoleRepository
+     * @var RoleRepositoryInterface
      */
     protected $roles;
 
@@ -43,10 +43,10 @@ class AttachRoleHandler
      * Create a new AttachRoleHandler instance.
      *
      * @param UserRepositoryInterface $users
-     * @param RoleRepository $roles
+     * @param RoleRepositoryInterface $roles
      * @param Dispatcher     $events
      */
-    public function __construct(UserRepositoryInterface $users, RoleRepository $roles, Dispatcher $events)
+    public function __construct(UserRepositoryInterface $users, RoleRepositoryInterface $roles, Dispatcher $events)
     {
         $this->users  = $users;
         $this->roles  = $roles;

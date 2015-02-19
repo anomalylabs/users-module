@@ -1,17 +1,18 @@
 <?php namespace Anomaly\UsersModule\Role;
 
-use Anomaly\UsersModule\Role\Contract\Role;
+use Anomaly\UsersModule\Role\Contract\RoleInterface;
+use Anomaly\UsersModule\Role\Contract\RoleRepositoryInterface;
 use Illuminate\Support\Collection;
 
 /**
- * Class RoleRepository
+ * Class RoleRepositoryInterface
  *
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
- * @package       Anomaly\UsersModule\Role
+ * @package       Anomaly\UsersModule\RoleInterface
  */
-class RoleRepository implements \Anomaly\UsersModule\Role\Contract\RoleRepository
+class RoleRepository implements RoleRepositoryInterface
 {
 
     /**
@@ -22,7 +23,7 @@ class RoleRepository implements \Anomaly\UsersModule\Role\Contract\RoleRepositor
     protected $model;
 
     /**
-     * Create a new RoleRepository instance.
+     * Create a new RoleRepositoryInterface instance.
      *
      * @param RoleModel $model
      */
@@ -45,7 +46,7 @@ class RoleRepository implements \Anomaly\UsersModule\Role\Contract\RoleRepositor
      * Create a new role.
      *
      * @param array $attributes
-     * @return Role
+     * @return RoleInterface
      */
     public function create(array $attributes)
     {
@@ -64,10 +65,10 @@ class RoleRepository implements \Anomaly\UsersModule\Role\Contract\RoleRepositor
     /**
      * Delete a role.
      *
-     * @param Role $role
-     * @return Role
+     * @param RoleInterface $role
+     * @return RoleInterface
      */
-    public function delete(Role $role)
+    public function delete(RoleInterface $role)
     {
         $role->delete();
 
@@ -78,7 +79,7 @@ class RoleRepository implements \Anomaly\UsersModule\Role\Contract\RoleRepositor
      * Find a role.
      *
      * @param $id
-     * @return null|Role
+     * @return null|RoleInterface
      */
     public function find($id)
     {
@@ -89,7 +90,7 @@ class RoleRepository implements \Anomaly\UsersModule\Role\Contract\RoleRepositor
      * Find a role by it's slug.
      *
      * @param $slug
-     * @return null|Role
+     * @return null|RoleInterface
      */
     public function findBySlug($slug)
     {
@@ -99,11 +100,11 @@ class RoleRepository implements \Anomaly\UsersModule\Role\Contract\RoleRepositor
     /**
      * Update permissions for a role.
      *
-     * @param Role  $role
-     * @param array $permissions
-     * @return Role
+     * @param RoleInterface $role
+     * @param array         $permissions
+     * @return RoleInterface
      */
-    public function updatePermissions(Role $role, array $permissions)
+    public function updatePermissions(RoleInterface $role, array $permissions)
     {
         $role->permissions = $permissions;
 

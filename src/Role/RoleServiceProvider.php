@@ -8,7 +8,7 @@ use Illuminate\Support\ServiceProvider;
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
- * @package       Anomaly\UsersModule\Role
+ * @package       Anomaly\UsersModule\RoleInterface
  */
 class RoleServiceProvider extends ServiceProvider
 {
@@ -26,7 +26,7 @@ class RoleServiceProvider extends ServiceProvider
         );
 
         $this->app->bind(
-            'Anomaly\UsersModule\Role\Contract\RoleRepository',
+            'Anomaly\UsersModule\Role\Contract\RoleRepositoryInterface',
             'Anomaly\UsersModule\Role\RoleRepository'
         );
 

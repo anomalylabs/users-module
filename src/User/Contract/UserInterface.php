@@ -4,7 +4,7 @@ use Anomaly\Streams\Platform\Entry\EntryCollection;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
- * Interface User
+ * Interface UserInterface
  *
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>

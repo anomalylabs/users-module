@@ -3,7 +3,7 @@
 use Anomaly\Streams\Platform\Asset\Asset;
 use Anomaly\Streams\Platform\Ui\Table\Table;
 use Anomaly\Streams\Platform\Ui\Table\TableBuilder;
-use Anomaly\UsersModule\Role\Contract\RoleRepository;
+use Anomaly\UsersModule\Role\Contract\RoleRepositoryInterface;
 use Illuminate\Http\Request;
 
 /**
@@ -53,7 +53,7 @@ class PermissionTableBuilder extends TableBuilder
      * @param Asset   $asset
      * @throws \Exception
      */
-    public function __construct(Table $table, Request $request, Asset $asset, RoleRepository $roles)
+    public function __construct(Table $table, Request $request, Asset $asset, RoleRepositoryInterface $roles)
     {
         $asset->add('scripts.js', 'module::js/permissions.js');
 

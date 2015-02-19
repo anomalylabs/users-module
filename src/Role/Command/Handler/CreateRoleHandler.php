@@ -1,8 +1,8 @@
 <?php namespace Anomaly\UsersModule\Role\Command\Handler;
 
 use Anomaly\UsersModule\Role\Command\CreateRole;
-use Anomaly\UsersModule\Role\Contract\Role;
-use Anomaly\UsersModule\Role\Contract\RoleRepository;
+use Anomaly\UsersModule\Role\Contract\RoleInterface;
+use Anomaly\UsersModule\Role\Contract\RoleRepositoryInterface;
 use Anomaly\UsersModule\Role\Event\RoleWasCreated;
 use Illuminate\Events\Dispatcher;
 
@@ -12,7 +12,7 @@ use Illuminate\Events\Dispatcher;
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
- * @package       Anomaly\UsersModule\Role\Command\Handler
+ * @package       Anomaly\UsersModule\RoleInterface\Command\Handler
  */
 class CreateRoleHandler
 {
@@ -20,7 +20,7 @@ class CreateRoleHandler
     /**
      * The role repository.
      *
-     * @var RoleRepository
+     * @var RoleRepositoryInterface
      */
     protected $roles;
 
@@ -34,10 +34,10 @@ class CreateRoleHandler
     /**
      * Create a new DeleteRoleHandler instance.
      *
-     * @param RoleRepository $roles
+     * @param RoleRepositoryInterface $roles
      * @param Dispatcher     $events
      */
-    function __construct(RoleRepository $roles, Dispatcher $events)
+    function __construct(RoleRepositoryInterface $roles, Dispatcher $events)
     {
         $this->roles  = $roles;
         $this->events = $events;
@@ -47,7 +47,7 @@ class CreateRoleHandler
      * Handle the command.
      *
      * @param CreateRole $command
-     * @return Role
+     * @return RoleInterface
      */
     public function handle(CreateRole $command)
     {

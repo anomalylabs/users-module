@@ -1,6 +1,6 @@
 <?php namespace Anomaly\UsersModule\Role\Event;
 
-use Anomaly\UsersModule\Role\Contract\Role;
+use Anomaly\UsersModule\Role\Contract\RoleInterface;
 
 /**
  * Class RoleWasDeleted
@@ -8,7 +8,7 @@ use Anomaly\UsersModule\Role\Contract\Role;
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
- * @package       Anomaly\UsersModule\Role\Event
+ * @package       Anomaly\UsersModule\RoleInterface\Event
  */
 class RoleWasDeleted
 {
@@ -16,16 +16,16 @@ class RoleWasDeleted
     /**
      * The role object.
      *
-     * @var Role
+     * @var RoleInterface
      */
     protected $role;
 
     /**
      * Create a new RoleWasDeleted instance.
      *
-     * @param Role $role
+     * @param RoleInterface $role
      */
-    public function __construct(Role $role)
+    public function __construct(RoleInterface $role)
     {
         $this->role = $role;
     }
@@ -33,7 +33,7 @@ class RoleWasDeleted
     /**
      * Get the role.
      *
-     * @return Role
+     * @return RoleInterface
      */
     public function getRole()
     {
