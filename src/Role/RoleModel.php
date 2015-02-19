@@ -62,7 +62,7 @@ class RoleModel extends UsersRolesEntryModel implements Role
      */
     public function hasPermission($permission)
     {
-        if (!$permission) {
+        if ($this->getSlug() == 'admin') {
             return true;
         }
 

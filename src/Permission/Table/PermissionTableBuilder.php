@@ -37,11 +37,11 @@ class PermissionTableBuilder extends TableBuilder
     protected $columns = [
         [
             'heading' => 'streams::addon.addon',
-            'value'   => 'anomaly.module.users::admin/user/table/addon'
+            'view'    => 'anomaly.module.users::admin/user/table/addon'
         ],
         [
             'heading' => 'anomaly.module.users::field.permissions.name',
-            'value'   => 'anomaly.module.users::admin/user/table/permissions'
+            'view'    => 'anomaly.module.users::admin/user/table/permissions'
         ]
     ];
 

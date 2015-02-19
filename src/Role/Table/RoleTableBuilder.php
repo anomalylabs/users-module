@@ -23,7 +23,7 @@ class RoleTableBuilder extends TableBuilder
     /**
      * The table columns.
      *
-     * @var string
+     * @var array
      */
     protected $columns = [
         'name',
@@ -31,14 +31,12 @@ class RoleTableBuilder extends TableBuilder
     ];
 
     /**
-     * The table actions.
+     * The table buttons.
      *
-     * @var string
+     * @var array
      */
-    protected $actions = [
-        'delete' => [
-            'permission' => 'anomaly.module.users::permission.delete_user',
-        ]
+    protected $buttons = [
+        'edit'
     ];
 
 }
