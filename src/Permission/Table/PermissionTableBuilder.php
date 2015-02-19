@@ -37,11 +37,11 @@ class PermissionTableBuilder extends TableBuilder
     protected $columns = [
         [
             'heading' => 'streams::addon.addon',
-            'view'    => 'anomaly.module.users::admin/user/table/addon'
+            'view'    => 'anomaly.module.users::admin/permissions/table/fragments/addon'
         ],
         [
             'heading' => 'anomaly.module.users::field.permissions.name',
-            'view'    => 'anomaly.module.users::admin/user/table/permissions'
+            'view'    => 'anomaly.module.users::admin/permissions/table/fragments/permissions'
         ]
     ];
 
@@ -65,7 +65,7 @@ class PermissionTableBuilder extends TableBuilder
 
         $table->setOption('role', $role);
         $table->setOption('class', 'table');
-        $table->setOption('wrapper_view', 'module::admin/permissions/wrapper');
+        $table->setOption('wrapper_view', 'module::admin/permissions/table/wrapper');
 
         $table->addData('roles', $roles->all());
 

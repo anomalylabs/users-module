@@ -45,6 +45,8 @@ class UsersController extends AdminController
      */
     public function __construct(UserRepository $users)
     {
+        parent::__construct();
+
         $this->users = $users;
     }
 

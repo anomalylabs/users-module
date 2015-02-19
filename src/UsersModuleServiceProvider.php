@@ -23,7 +23,7 @@ class UsersModuleServiceProvider extends ServiceProvider
          * it uses configurable interfaces.
          */
         if (INSTALLED) {
-            //$this->app->make('twig')->addExtension($this->app->make('Anomaly\UsersModule\UsersModulePlugin'));
+            $this->app->make('twig')->addExtension($this->app->make('Anomaly\UsersModule\UsersModulePlugin'));
         }
     }
 
