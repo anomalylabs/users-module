@@ -28,7 +28,7 @@ class UserFormButtons
                     'type'    => 'danger',
                     'text'    => 'module::button.block',
                     'href'    => '/admin/users/block/{entry.id}',
-                    'enabled' => function (User $entry) {
+                    'enabled' => function (UserInterface $entry) {
                         return !$entry->isBlocked();
                     }
                 ],
@@ -36,7 +36,7 @@ class UserFormButtons
                     'type'    => 'danger',
                     'text'    => 'module::button.unblock',
                     'href'    => '/admin/users/unblock/{entry.id}',
-                    'enabled' => function (User $entry) {
+                    'enabled' => function (UserInterface $entry) {
                         return $entry->isBlocked();
                     }
                 ],
@@ -44,7 +44,7 @@ class UserFormButtons
                     'type'    => 'success',
                     'text'    => 'module::button.activate',
                     'href'    => '/admin/users/activate/{entry.id}',
-                    'enabled' => function (User $entry) {
+                    'enabled' => function (UserInterface $entry) {
                         return !$entry->isActivated();
                     }
                 ]

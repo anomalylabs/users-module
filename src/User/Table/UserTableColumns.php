@@ -26,7 +26,7 @@ class UserTableColumns
                 'email',
                 [
                     'heading' => 'roles',
-                    'value'   => function (User $entry) {
+                    'value'   => function (UserInterface $entry) {
 
                         $roles = $entry->getRoles();
 
@@ -35,7 +35,7 @@ class UserTableColumns
                 ],
                 [
                     'heading' => 'module::admin.status',
-                    'wrap'    => function (User $entry) {
+                    'wrap'    => function (UserInterface $entry) {
 
                         if ($entry->isBlocked()) {
                             return '<span class="label label-danger">{value}</span>';
@@ -45,7 +45,7 @@ class UserTableColumns
                             return '<span class="label label-default">{value}</span>';
                         }
                     },
-                    'value'   => function (User $entry) {
+                    'value'   => function (UserInterface $entry) {
 
                         if ($entry->isBlocked()) {
                             return trans('module::field.blocked.blocked');
