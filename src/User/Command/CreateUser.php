@@ -12,29 +12,29 @@ class CreateUser
 {
 
     /**
-     * The user credentials.
+     * The user attributes.
      *
      * @var array
      */
-    protected $credentials;
+    protected $attributes;
 
     /**
      * Create a new CreateUser instance.
      *
-     * @param array $credentials
+     * @param array $attributes
      */
-    function __construct(array $credentials)
+    function __construct(array $attributes)
     {
-        $this->credentials = $credentials;
+        $this->attributes = $attributes;
     }
 
     /**
-     * Get the credentials.
+     * Get the attributes.
      *
      * @return array
      */
-    public function getCredentials()
+    public function getAttributes()
     {
-        return $this->credentials;
+        return $this->attributes;
     }
 }

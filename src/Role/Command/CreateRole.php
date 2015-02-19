@@ -1,33 +1,40 @@
 <?php namespace Anomaly\UsersModule\Role\Command;
 
+/**
+ * Class CreateRole
+ *
+ * @link          http://anomaly.is/streams-platform
+ * @author        AnomalyLabs, Inc. <hello@anomaly.is>
+ * @author        Ryan Thompson <ryan@anomaly.is>
+ * @package       Anomaly\UsersModule\Role\Command
+ */
 class CreateRole
 {
 
-    protected $name;
+    /**
+     * The attributes parameters.
+     *
+     * @var array
+     */
+    protected $attributes;
 
-    protected $slug;
-
-    protected $permissions;
-
-    function __construct($name, $slug, $permissions = null)
+    /**
+     * Create a new CreateRole instance.
+     *
+     * @param array $attributes
+     */
+    function __construct(array $attributes)
     {
-        $this->name        = $name;
-        $this->slug        = $slug;
-        $this->permissions = $permissions;
+        $this->attributes = $attributes;
     }
 
-    public function getName()
+    /**
+     * Get the attributes.
+     *
+     * @return array
+     */
+    public function getAttributes()
     {
-        return $this->name;
-    }
-
-    public function getPermissions()
-    {
-        return $this->permissions ?: [];
-    }
-
-    public function getSlug()
-    {
-        return $this->slug;
+        return $this->attributes;
     }
 }

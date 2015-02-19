@@ -51,7 +51,7 @@ class CreateRoleHandler
      */
     public function handle(CreateRole $command)
     {
-        $role = $this->roles->create($command->getName(), $command->getSlug(), $command->getPermissions());
+        $role = $this->roles->create($command->getAttributes());
 
         $this->events->fire(new RoleWasCreated($role));
 

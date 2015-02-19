@@ -23,11 +23,10 @@ interface RoleRepository
     /**
      * Create a new role.
      *
-     * @param       $name
-     * @param       $slug
+     * @param array $attributes
      * @return Role
      */
-    public function create($name, $slug);
+    public function create(array $attributes);
 
     /**
      * Delete a role.
@@ -58,7 +57,7 @@ interface RoleRepository
      *
      * @param Role  $role
      * @param array $permissions
-     * @return null|Role
+     * @return Role
      */
     public function updatePermissions(Role $role, array $permissions);
 }

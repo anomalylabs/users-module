@@ -44,16 +44,17 @@ class RoleRepository implements \Anomaly\UsersModule\Role\Contract\RoleRepositor
     /**
      * Create a new role.
      *
-     * @param $name
-     * @param $slug
+     * @param array $attributes
      * @return Role
      */
-    public function create($name, $slug)
+    public function create(array $attributes)
     {
         $role = $this->model->newInstance();
 
-        $role->name = $name;
-        $role->slug = $slug;
+        $role->name = $attributes['name'];
+        $role->slug = $attributes['slug'];
+
+        $role->permissions = array_get($attributes, 'permissions');
 
         $role->save();
 
@@ -100,7 +101,7 @@ class RoleRepository implements \Anomaly\UsersModule\Role\Contract\RoleRepositor
      *
      * @param Role  $role
      * @param array $permissions
-     * @return null|Role
+     * @return Role
      */
     public function updatePermissions(Role $role, array $permissions)
     {

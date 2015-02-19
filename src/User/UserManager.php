@@ -2,6 +2,7 @@
 
 use Anomaly\UsersModule\Role\Contract\Role;
 use Anomaly\UsersModule\User\Command\AttachRole;
+use Anomaly\UsersModule\User\Command\CreateUser;
 use Anomaly\UsersModule\User\Command\DeleteUser;
 use Anomaly\UsersModule\User\Contract\User;
 use Illuminate\Foundation\Bus\DispatchesCommands;
@@ -39,12 +40,12 @@ class UserManager
     /**
      * Create a new user.
      *
-     * @param array $credentials
+     * @param array $attributes
      * @return User
      */
-    public function create(array $credentials, $activate = false)
+    public function create(array $attributes, $activate = false)
     {
-        $user = $this->dispatchFromArray('Anomaly\UsersModule\User\Command\CreateUser', compact('credentials'));
+        $user = $this->dispatch(new CreateUser($attributes));
 
         if ($activate) {
             $this->activator->force($user);

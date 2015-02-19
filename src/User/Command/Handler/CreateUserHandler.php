@@ -49,7 +49,7 @@ class CreateUserHandler
      */
     public function handle(CreateUser $command)
     {
-        $user = $this->users->create($command->getCredentials());
+        $user = $this->users->create($command->getAttributes());
 
         $this->events->fire(new UserWasCreated($user));
 
