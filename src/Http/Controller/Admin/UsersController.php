@@ -3,7 +3,7 @@
 use Anomaly\Streams\Platform\Http\Controller\AdminController;
 use Anomaly\Streams\Platform\Message\MessageBag;
 use Anomaly\UsersModule\Authenticator\Authenticator;
-use Anomaly\UsersModule\User\Contract\UserRepository;
+use Anomaly\UsersModule\User\Contract\UserRepositoryInterface;
 use Anomaly\UsersModule\User\Form\UserFormBuilder;
 use Anomaly\UsersModule\User\Table\UserTableBuilder;
 use Anomaly\UsersModule\User\UserActivator;
@@ -27,7 +27,7 @@ class UsersController extends AdminController
     /**
      * The user repository.
      *
-     * @var UserRepository
+     * @var UserRepositoryInterface
      */
     protected $users;
 
@@ -41,9 +41,9 @@ class UsersController extends AdminController
     /**
      * Create a new UsersController instance.
      *
-     * @param UserRepository $users
+     * @param UserRepositoryInterface $users
      */
-    public function __construct(UserRepository $users)
+    public function __construct(UserRepositoryInterface $users)
     {
         parent::__construct();
 

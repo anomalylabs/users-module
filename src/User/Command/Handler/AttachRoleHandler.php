@@ -2,8 +2,8 @@
 
 use Anomaly\UsersModule\Role\Contract\RoleRepository;
 use Anomaly\UsersModule\User\Command\AttachRole;
-use Anomaly\UsersModule\User\Contract\User;
-use Anomaly\UsersModule\User\Contract\UserRepository;
+use Anomaly\UsersModule\User\Contract\UserInterface;
+use Anomaly\UsersModule\User\Contract\UserRepositoryInterface;
 use Anomaly\UsersModule\User\Event\RoleWasAttached;
 use Illuminate\Events\Dispatcher;
 
@@ -21,7 +21,7 @@ class AttachRoleHandler
     /**
      * The user repository.
      *
-     * @var UserRepository
+     * @var UserRepositoryInterface
      */
     protected $users;
 
@@ -42,11 +42,11 @@ class AttachRoleHandler
     /**
      * Create a new AttachRoleHandler instance.
      *
-     * @param UserRepository $users
+     * @param UserRepositoryInterface $users
      * @param RoleRepository $roles
      * @param Dispatcher     $events
      */
-    public function __construct(UserRepository $users, RoleRepository $roles, Dispatcher $events)
+    public function __construct(UserRepositoryInterface $users, RoleRepository $roles, Dispatcher $events)
     {
         $this->users  = $users;
         $this->roles  = $roles;

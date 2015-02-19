@@ -2,7 +2,7 @@
 
 use Anomaly\UsersModule\User\Command\BlockUser;
 use Anomaly\UsersModule\User\Command\UnblockUser;
-use Anomaly\UsersModule\User\Contract\User;
+use Anomaly\UsersModule\User\Contract\UserInterface;
 use Illuminate\Foundation\Bus\DispatchesCommands;
 
 /**
@@ -21,9 +21,9 @@ class UserBlocker
     /**
      * Block a user.
      *
-     * @param User $user
+     * @param UserInterface $user
      */
-    public function block(User $user)
+    public function block(UserInterface $user)
     {
         $this->dispatch(new BlockUser($user));
     }
@@ -31,9 +31,9 @@ class UserBlocker
     /**
      * Unblock a user.
      *
-     * @param User $user
+     * @param UserInterface $user
      */
-    public function unblock(User $user)
+    public function unblock(UserInterface $user)
     {
         $this->dispatch(new UnblockUser($user));
     }

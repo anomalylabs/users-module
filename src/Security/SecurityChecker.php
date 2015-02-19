@@ -1,7 +1,7 @@
 <?php namespace Anomaly\UsersModule\Security;
 
 use Anomaly\Streams\Platform\Addon\Extension\ExtensionCollection;
-use Anomaly\UsersModule\User\Contract\User;
+use Anomaly\UsersModule\User\Contract\UserInterface;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -37,10 +37,10 @@ class SecurityChecker
      * Check authorization.
      *
      * @param Request       $request
-     * @param User $user
+     * @param UserInterface $user
      * @return Response|void
      */
-    public function check(Request $request, User $user = null)
+    public function check(Request $request, UserInterface $user = null)
     {
         $checks = $this->extensions->search('anomaly.module.users::security_check.*');
 
@@ -61,7 +61,7 @@ class SecurityChecker
      * @param User          $user
      * @return \Illuminate\Http\Response|void
      */
-    protected function runSecurityCheck(SecurityCheckExtension $check, Request $request, User $user = null)
+    protected function runSecurityCheck(SecurityCheckExtension $check, Request $request, UserInterface $user = null)
     {
         return $check->check($request, $user);
     }

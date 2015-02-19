@@ -26,7 +26,7 @@ class UserServiceProvider extends ServiceProvider
         );
 
         $this->app->bind(
-            'Anomaly\UsersModule\User\Contract\UserRepository',
+            'Anomaly\UsersModule\User\Contract\UserRepositoryInterface',
             'Anomaly\UsersModule\User\UserRepository'
         );
 

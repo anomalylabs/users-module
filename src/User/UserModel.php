@@ -4,7 +4,7 @@ use Anomaly\Streams\Platform\Entry\EntryCollection;
 use Anomaly\Streams\Platform\Model\EloquentCollection;
 use Anomaly\Streams\Platform\Model\Users\UsersUsersEntryModel;
 use Anomaly\UsersModule\Role\Contract\Role;
-use Anomaly\UsersModule\User\Contract\User;
+use Anomaly\UsersModule\User\Contract\UserInterface;
 use Illuminate\Auth\Authenticatable;
 
 /**
@@ -15,7 +15,7 @@ use Illuminate\Auth\Authenticatable;
  * @author        Ryan Thompson <ryan@anomaly.is>
  * @package       Anomaly\UsersModule\User
  */
-class UserModel extends UsersUsersEntryModel implements User, \Illuminate\Contracts\Auth\Authenticatable
+class UserModel extends UsersUsersEntryModel implements UserInterface, \Illuminate\Contracts\Auth\Authenticatable
 {
 
     use Authenticatable;

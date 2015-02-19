@@ -1,7 +1,7 @@
 <?php namespace Anomaly\UsersModule\User\Command\Handler;
 
 use Anomaly\UsersModule\User\Command\CreateUser;
-use Anomaly\UsersModule\User\Contract\UserRepository;
+use Anomaly\UsersModule\User\Contract\UserRepositoryInterface;
 use Anomaly\UsersModule\User\Event\UserWasCreated;
 use Illuminate\Events\Dispatcher;
 
@@ -19,7 +19,7 @@ class CreateUserHandler
     /**
      * The user repository.
      *
-     * @var UserRepository
+     * @var UserRepositoryInterface
      */
     protected $users;
 
@@ -33,10 +33,10 @@ class CreateUserHandler
     /**
      * Create a new CreateUserHandler instance.
      *
-     * @param UserRepository $users
+     * @param UserRepositoryInterface $users
      * @param Dispatcher     $events
      */
-    function __construct(UserRepository $users, Dispatcher $events)
+    function __construct(UserRepositoryInterface $users, Dispatcher $events)
     {
         $this->users  = $users;
         $this->events = $events;

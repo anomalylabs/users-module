@@ -4,7 +4,7 @@ use Anomaly\UsersModule\Role\Contract\Role;
 use Anomaly\UsersModule\User\Command\AttachRole;
 use Anomaly\UsersModule\User\Command\CreateUser;
 use Anomaly\UsersModule\User\Command\DeleteUser;
-use Anomaly\UsersModule\User\Contract\User;
+use Anomaly\UsersModule\User\Contract\UserInterface;
 use Illuminate\Foundation\Bus\DispatchesCommands;
 
 /**
@@ -23,7 +23,7 @@ class UserManager
     /**
      * The user activator.
      *
-     * @var UserActivator
+     * @var UserInterfaceActivator
      */
     protected $activator;
 
@@ -41,7 +41,7 @@ class UserManager
      * Create a new user.
      *
      * @param array $attributes
-     * @return User
+     * @return UserInterface
      */
     public function create(array $attributes, $activate = false)
     {
@@ -57,9 +57,9 @@ class UserManager
     /**
      * Delete a user.
      *
-     * @param User $user
+     * @param UserInterface $user
      */
-    public function delete(User $user)
+    public function delete(UserInterface $user)
     {
         $this->dispatch(new DeleteUser($user));
     }
@@ -67,10 +67,10 @@ class UserManager
     /**
      * Add a user to groups.
      *
-     * @param User $user
+     * @param UserInterface $user
      * @param Role $role
      */
-    public function attachRole(User $user, Role $role)
+    public function attachRole(UserInterface $user, Role $role)
     {
         $this->dispatch(new AttachRole($user, $role));
     }

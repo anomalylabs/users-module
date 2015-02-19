@@ -1,7 +1,7 @@
 <?php namespace Anomaly\UsersModule\User;
 
 use Anomaly\UsersModule\Role\Contract\Role;
-use Anomaly\UsersModule\User\Contract\User;
+use Anomaly\UsersModule\User\Contract\UserInterface;
 
 /**
  * Class UserRepository
@@ -11,13 +11,13 @@ use Anomaly\UsersModule\User\Contract\User;
  * @author        Ryan Thompson <ryan@anomaly.is>
  * @package       Anomaly\UsersModule\User
  */
-class UserRepository implements \Anomaly\UsersModule\User\Contract\UserRepository
+class UserRepository implements \Anomaly\UsersModule\User\Contract\UserRepositoryInterface
 {
 
     /**
      * The user model.
      *
-     * @var UserModel
+     * @var UserInterfaceModel
      */
     protected $model;
 
@@ -35,7 +35,7 @@ class UserRepository implements \Anomaly\UsersModule\User\Contract\UserRepositor
      * Create a new user.
      *
      * @param array $credentials
-     * @return User
+     * @return UserInterface
      */
     public function create(array $credentials)
     {
@@ -53,10 +53,10 @@ class UserRepository implements \Anomaly\UsersModule\User\Contract\UserRepositor
     /**
      * Delete a user.
      *
-     * @param User $user
-     * @return User
+     * @param UserInterface $user
+     * @return UserInterface
      */
-    public function delete(User $user)
+    public function delete(UserInterface $user)
     {
         $user->delete();
 
@@ -66,10 +66,10 @@ class UserRepository implements \Anomaly\UsersModule\User\Contract\UserRepositor
     /**
      * Activate a user.
      *
-     * @param User $user
-     * @return User $user
+     * @param UserInterface $user
+     * @return UserInterface $user
      */
-    public function activate(User $user)
+    public function activate(UserInterface $user)
     {
         $user->activated = true;
 
@@ -81,10 +81,10 @@ class UserRepository implements \Anomaly\UsersModule\User\Contract\UserRepositor
     /**
      * Deactivate a user.
      *
-     * @param User $user
-     * @return User
+     * @param UserInterface $user
+     * @return UserInterface
      */
-    public function deactivate(User $user)
+    public function deactivate(UserInterface $user)
     {
         $user->activated = false;
 
@@ -96,10 +96,10 @@ class UserRepository implements \Anomaly\UsersModule\User\Contract\UserRepositor
     /**
      * Block a user.
      *
-     * @param User $user
-     * @return User
+     * @param UserInterface $user
+     * @return UserInterface
      */
-    public function block(User $user)
+    public function block(UserInterface $user)
     {
         $user->blocked = true;
 
@@ -111,10 +111,10 @@ class UserRepository implements \Anomaly\UsersModule\User\Contract\UserRepositor
     /**
      * Unblock a user.
      *
-     * @param User $user
-     * @return User
+     * @param UserInterface $user
+     * @return UserInterface
      */
-    public function unblock(User $user)
+    public function unblock(UserInterface $user)
     {
         $user->blocked = false;
 
@@ -127,7 +127,7 @@ class UserRepository implements \Anomaly\UsersModule\User\Contract\UserRepositor
      * Find a user.
      *
      * @param $id
-     * @return null|User
+     * @return null|UserInterface
      */
     public function find($id)
     {
@@ -138,7 +138,7 @@ class UserRepository implements \Anomaly\UsersModule\User\Contract\UserRepositor
      * Find a user by their credentials.
      *
      * @param array $credentials
-     * @return null|User
+     * @return null|UserInterface
      */
     public function findByCredentials(array $credentials)
     {
@@ -155,7 +155,7 @@ class UserRepository implements \Anomaly\UsersModule\User\Contract\UserRepositor
      * Find a user by their username.
      *
      * @param $username
-     * @return null|User
+     * @return null|UserInterface
      */
     public function findUserByUsername($username)
     {
@@ -166,7 +166,7 @@ class UserRepository implements \Anomaly\UsersModule\User\Contract\UserRepositor
      * Find a user by their activation code.
      *
      * @param $code
-     * @return null|User
+     * @return null|UserInterface
      */
     public function findByActivationCode($code)
     {
@@ -176,11 +176,11 @@ class UserRepository implements \Anomaly\UsersModule\User\Contract\UserRepositor
     /**
      * Attach a role to a user.
      *
-     * @param User $user
+     * @param UserInterface $user
      * @param Role $role
-     * @return User
+     * @return UserInterface
      */
-    public function attachRole(User $user, Role $role)
+    public function attachRole(UserInterface $user, Role $role)
     {
         $user->roles()->attach($role);
 

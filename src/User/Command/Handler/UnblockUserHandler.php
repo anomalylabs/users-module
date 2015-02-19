@@ -1,7 +1,7 @@
 <?php namespace Anomaly\UsersModule\User\Command\Handler;
 
 use Anomaly\UsersModule\User\Command\UnblockUser;
-use Anomaly\UsersModule\User\Contract\UserRepository;
+use Anomaly\UsersModule\User\Contract\UserRepositoryInterface;
 use Anomaly\UsersModule\User\Event\UserWasUnblocked;
 use Illuminate\Events\Dispatcher;
 
@@ -19,7 +19,7 @@ class UnblockUserHandler
     /**
      * The user repository.
      *
-     * @var UserRepository
+     * @var UserRepositoryInterface
      */
     protected $users;
 
@@ -33,10 +33,10 @@ class UnblockUserHandler
     /**
      * Create a new UnblockUserHandler instance.
      *
-     * @param UserRepository $users
+     * @param UserRepositoryInterface $users
      * @param Dispatcher     $events
      */
-    public function __construct(UserRepository $users, Dispatcher $events)
+    public function __construct(UserRepositoryInterface $users, Dispatcher $events)
     {
         $this->users  = $users;
         $this->events = $events;

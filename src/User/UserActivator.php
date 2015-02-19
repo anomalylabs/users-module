@@ -2,7 +2,7 @@
 
 use Anomaly\UsersModule\User\Command\ActivateUserByForce;
 use Anomaly\UsersModule\User\Command\DeactivateUser;
-use Anomaly\UsersModule\User\Contract\User;
+use Anomaly\UsersModule\User\Contract\UserInterface;
 use Illuminate\Foundation\Bus\DispatchesCommands;
 
 /**
@@ -21,9 +21,9 @@ class UserActivator
     /**
      * Activate a user without a code.
      *
-     * @param User $user
+     * @param UserInterface $user
      */
-    public function force(User $user)
+    public function force(UserInterface $user)
     {
         $this->dispatch(new ActivateUserByForce($user));
     }
@@ -31,9 +31,9 @@ class UserActivator
     /**
      * Deactivate a user.
      *
-     * @param User $user
+     * @param UserInterface $user
      */
-    public function deactivate(User $user)
+    public function deactivate(UserInterface $user)
     {
         $this->dispatch(new DeactivateUser($user));
     }

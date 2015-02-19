@@ -1,6 +1,6 @@
 <?php namespace Anomaly\UsersModule\User\Command;
 
-use Anomaly\UsersModule\User\Contract\User;
+use Anomaly\UsersModule\User\Contract\UserInterface;
 
 /**
  * Class ActivateUserByForce
@@ -16,16 +16,16 @@ class ActivateUserByForce
     /**
      * The user object.
      *
-     * @var User
+     * @var UserInterface
      */
     protected $user;
 
     /**
      * Create a new ActivateUserByForce instance.
      *
-     * @param User $user
+     * @param UserInterface $user
      */
-    function __construct(User $user)
+    function __construct(UserInterface $user)
     {
         $this->user = $user;
     }
@@ -33,7 +33,7 @@ class ActivateUserByForce
     /**
      * Get the user.
      *
-     * @return User
+     * @return UserInterface
      */
     public function getUser()
     {

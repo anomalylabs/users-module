@@ -16,7 +16,7 @@ class UsersModulePlugin extends Plugin
     /**
      * The plugin functions.
      *
-     * @var UsersModulePluginFunctions
+     * @var UserInterfacesModulePluginFunctions
      */
     protected $functions;
 

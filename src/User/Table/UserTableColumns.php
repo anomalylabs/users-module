@@ -1,6 +1,6 @@
 <?php namespace Anomaly\UsersModule\User\Table;
 
-use Anomaly\UsersModule\User\Contract\User;
+use Anomaly\UsersModule\User\Contract\UserInterface;
 
 /**
  * Class ButtonsHandler

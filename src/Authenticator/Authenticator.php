@@ -1,7 +1,7 @@
 <?php namespace Anomaly\UsersModule\Authenticator;
 
 use Anomaly\Streams\Platform\Addon\Extension\ExtensionCollection;
-use Anomaly\UsersModule\User\Contract\User;
+use Anomaly\UsersModule\User\Contract\UserInterface;
 use Anomaly\UsersModule\User\Event\UserWasLoggedIn;
 use Anomaly\UsersModule\User\Event\UserWasLoggedOut;
 use Illuminate\Auth\Guard;
@@ -66,7 +66,7 @@ class Authenticator
 
             $user = $authenticator->authenticate($credentials);
 
-            if ($user instanceof User) {
+            if ($user instanceof UserInterface) {
 
                 $this->events->fire(new UserWasLoggedIn($user));
 
@@ -82,9 +82,9 @@ class Authenticator
     /**
      * Login a user.
      *
-     * @param User $user
+     * @param UserInterface $user
      */
-    public function login(User $user)
+    public function login(UserInterface $user)
     {
         $this->guard->login($user);
 
@@ -94,9 +94,9 @@ class Authenticator
     /**
      * Logout a user.
      *
-     * @param User $user
+     * @param UserInterface $user
      */
-    public function logout(User $user = null)
+    public function logout(UserInterface $user = null)
     {
         if (!$user) {
             $user = $this->guard->user();

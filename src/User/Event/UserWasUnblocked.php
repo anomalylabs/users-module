@@ -1,6 +1,6 @@
 <?php namespace Anomaly\UsersModule\User\Event;
 
-use Anomaly\UsersModule\User\Contract\User;
+use Anomaly\UsersModule\User\Contract\UserInterface;
 
 /**
  * Class UserWasUnblocked
@@ -16,16 +16,16 @@ class UserWasUnblocked
     /**
      * The user object.
      *
-     * @var User
+     * @var UserInterface
      */
     protected $user;
 
     /**
      * Create a new UserWasUnblocked instance.
      *
-     * @param User $user
+     * @param UserInterface $user
      */
-    public function __construct(User $user)
+    public function __construct(UserInterface $user)
     {
         $this->user = $user;
     }
@@ -33,7 +33,7 @@ class UserWasUnblocked
     /**
      * Get the user.
      *
-     * @return User
+     * @return UserInterface
      */
     public function getUser()
     {

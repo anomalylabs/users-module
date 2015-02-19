@@ -1,7 +1,7 @@
 <?php namespace Anomaly\UsersModule\Security;
 
 use Anomaly\Streams\Platform\Addon\Extension\Extension;
-use Anomaly\UsersModule\User\Contract\User;
+use Anomaly\UsersModule\User\Contract\UserInterface;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -20,8 +20,8 @@ abstract class SecurityCheckExtension extends Extension
      * Run the security check.
      *
      * @param Request       $request
-     * @param User $user
+     * @param UserInterface $user
      * @return void|Response
      */
-    abstract public function check(Request $request, User $user = null);
+    abstract public function check(Request $request, UserInterface $user = null);
 }

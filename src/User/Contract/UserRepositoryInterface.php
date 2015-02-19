@@ -10,62 +10,62 @@ use Anomaly\UsersModule\Role\Contract\Role;
  * @author        Ryan Thompson <ryan@anomaly.is>
  * @package       Anomaly\UsersModule\User\Contract
  */
-interface UserRepository
+interface UserRepositoryInterface
 {
 
     /**
      * Create a new user.
      *
      * @param array $credentials
-     * @return User
+     * @return UserInterface
      */
     public function create(array $credentials);
 
     /**
      * Delete a user.
      *
-     * @param User $user
-     * @return User
+     * @param UserInterface $user
+     * @return UserInterface
      */
-    public function delete(User $user);
+    public function delete(UserInterface $user);
 
     /**
      * Activate a user.
      *
-     * @param User $user
-     * @return User
+     * @param UserInterface $user
+     * @return UserInterface
      */
-    public function activate(User $user);
+    public function activate(UserInterface $user);
 
     /**
      * Deactivate a user.
      *
-     * @param User $user
-     * @return User
+     * @param UserInterface $user
+     * @return UserInterface
      */
-    public function deactivate(User $user);
+    public function deactivate(UserInterface $user);
 
     /**
      * Block a user.
      *
-     * @param User $user
-     * @return User
+     * @param UserInterface $user
+     * @return UserInterface
      */
-    public function block(User $user);
+    public function block(UserInterface $user);
 
     /**
      * Unblock a user.
      *
-     * @param User $user
-     * @return User
+     * @param UserInterface $user
+     * @return UserInterface
      */
-    public function unblock(User $user);
+    public function unblock(UserInterface $user);
 
     /**
      * Find a user.
      *
      * @param $id
-     * @return null|User
+     * @return null|UserInterface
      */
     public function find($id);
 
@@ -73,7 +73,7 @@ interface UserRepository
      * Find a user by their username.
      *
      * @param $username
-     * @return null|User
+     * @return null|UserInterface
      */
     public function findUserByUsername($username);
 
@@ -81,16 +81,16 @@ interface UserRepository
      * Find a user by their credentials.
      *
      * @param array $credentials
-     * @return null|User
+     * @return null|UserInterface
      */
     public function findByCredentials(array $credentials);
 
     /**
      * Attach a role to a user.
      *
-     * @param User $user
-     * @param Role $role
-     * @return User
+     * @param UserInterface $user
+     * @param Role          $role
+     * @return UserInterface
      */
-    public function attachRole(User $user, Role $role);
+    public function attachRole(UserInterface $user, Role $role);
 }
