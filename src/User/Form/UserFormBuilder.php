@@ -26,6 +26,9 @@ class UserFormBuilder extends FormBuilder
      * @var array
      */
     protected $fields = [
+        'first_name',
+        'last_name',
+        'display_name',
         'username',
         'email',
         'password',

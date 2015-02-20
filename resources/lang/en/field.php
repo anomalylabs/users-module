@@ -1,33 +1,39 @@
 <?php
 
 return [
-    'username'    => [
+    'first_name'   => [
+        'name' => 'First Name',
+    ],
+    'last_name'    => [
+        'name' => 'Last Name',
+    ],
+    'display_name' => [
+        'name' => 'Display Name',
+    ],
+    'username'     => [
         'name' => 'Username',
     ],
-    'email'       => [
+    'email'        => [
         'name' => 'Email',
     ],
-    'password'    => [
+    'password'     => [
         'name' => 'Password',
     ],
-    'name'        => [
-        'name' => 'Name',
-    ],
-    'slug'        => [
+    'slug'         => [
         'name' => 'Slug',
     ],
-    'roles'       => [
+    'roles'        => [
         'name' => 'Roles',
     ],
-    'permissions' => [
+    'permissions'  => [
         'name' => 'Permissions',
     ],
-    'activated'   => [
+    'activated'    => [
         'name'          => 'Activated',
         'activated'     => 'Activated',
         'not_activated' => 'Not Activated'
     ],
-    'blocked'     => [
+    'blocked'      => [
         'name'    => 'Blocked',
         'blocked' => 'Blocked'
     ]
