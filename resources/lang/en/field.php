@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'name'         => [
+        'name' => 'Name',
+    ],
     'first_name'   => [
         'name' => 'First Name',
     ],
