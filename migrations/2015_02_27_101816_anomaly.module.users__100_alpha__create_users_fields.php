@@ -1,16 +1,15 @@
-<?php namespace Anomaly\UsersModule\Installer;
+<?php
 
-use Anomaly\Streams\Platform\Field\FieldInstaller;
+use Anomaly\Streams\Platform\Database\Migration\Migration;
 
 /**
- * Class UsersFieldInstaller
+ * Class AnomalyModuleUsers_100_alpha_CreateUsersFields
  *
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
- * @package       Anomaly\UsersModule\Installer
  */
-class UsersFieldInstaller extends FieldInstaller
+class AnomalyModuleUsers_100_alpha_CreateUsersFields extends Migration
 {
 
     /**

@@ -2,6 +2,7 @@
     "name": "anomaly/users-module",
     "type": "streams-addon",
     "description": "Users and permissions management.",
+    "version": "1.0.0-alpha",
     "keywords": [
         "streams-addon",
         "users",

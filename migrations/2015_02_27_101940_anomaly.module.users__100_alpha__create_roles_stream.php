@@ -1,16 +1,15 @@
-<?php namespace Anomaly\UsersModule\Installer;
+<?php
 
-use Anomaly\Streams\Platform\Stream\StreamInstaller;
+use Anomaly\Streams\Platform\Database\Migration\Migration;
 
 /**
- * Class RolesStreamInstaller
+ * Class AnomalyModuleUsers_100_alpha_CreateRolesStream
  *
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
- * @package       Anomaly\UsersModule\Installer
  */
-class RolesStreamInstaller extends StreamInstaller
+class AnomalyModuleUsers_100_alpha_CreateRolesStream extends Migration
 {
 
     /**
