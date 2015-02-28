@@ -50,16 +50,7 @@ class RoleRepository implements RoleRepositoryInterface
      */
     public function create(array $attributes)
     {
-        $role = $this->model->newInstance();
-
-        $role->name = $attributes['name'];
-        $role->slug = $attributes['slug'];
-
-        $role->permissions = array_get($attributes, 'permissions');
-
-        $role->save();
-
-        return $role;
+        return $this->model->create($attributes);
     }
 
     /**
