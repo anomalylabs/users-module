@@ -17,19 +17,19 @@ class AnomalyModuleUsers_100_alpha_CreateProfilesStream extends Migration
      *
      * @var array
      */
-    protected $stream = 'profiles';
+    //protected $stream = 'profiles';
 
     /**
      * The stream assignments.
      *
      * @var array
      */
-    protected $assignments = [
+    /*protected $assignments = [
         'user'         => [],
         'display_name' => [],
         'first_name'   => [],
         'last_name'    => [],
         'website'      => [],
-    ];
+    ];*/
 
 }
