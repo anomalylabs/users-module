@@ -30,7 +30,7 @@ class UserTableColumns
 
                         $roles = $entry->getRoles();
 
-                        return implode(', ', $roles->lists('name'));
+                        return implode(', ', $roles->lists('slug'));
                     }
                 ],
                 [
