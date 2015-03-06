@@ -28,7 +28,6 @@ class UsersModuleRouteProvider extends RouteServiceProvider
         $router->get(
             'admin',
             function () {
-
                 return redirect('admin/dashboard');
             }
         );
@@ -40,7 +39,6 @@ class UsersModuleRouteProvider extends RouteServiceProvider
         $router->get(
             'auth/login',
             function () {
-
                 return redirect('admin/login');
             }
         );
