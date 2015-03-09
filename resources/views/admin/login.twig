@@ -2,38 +2,50 @@
 
 {% block content %}
 
-    <section class="animated fadeInUp">
+    <div class="ui active inverted dimmer">
+        <div class="ui text loader">Loading</div>
+    </div>
 
-        {{ form_open({'method': 'post'}) }}
+    <div class="ui one column stackable center aligned grid">
+        <div class="column five wide">
 
-        <h1>
-            {{ image("theme::img/logo.png") }} {{ trans(distribution().getName()) }}
-        </h1>
+            <div class="ui segment basic">
+                {{ form_open({'method': 'post', 'class': 'ui form'}) }}
 
-        <div class="form-group">
-            {{ form_email("email", null, {'class': 'form-control', 'placeholder': 'Email'}) }}
+                <h1 class="ui header">
+                    {{ image("theme::img/icon-dark.png").width(64)|raw }}
+                    <br>
+                    {{ trans(distribution().getName()) }}
+                </h1>
+
+                <br>
+
+                <div class="field">
+                    {{ form_email("email", null, {'class': 'form-control', 'placeholder': 'Email'}) }}
+                </div>
+
+                <div class="field">
+                    {{ form_password('password', {'class': 'form-control', 'placeholder': 'Password'}) }}
+                </div>
+
+                <div class="field remember">
+                    <div class="ui toggle checkbox">
+                        {{ form_checkbox("remember", null, false, {'id': 'remember'}) }}
+                        <label>{{ trans('anomaly.module.users::admin.remember_me') }}</label>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <button type="submit" value="Login" class="ui button fluid black" onclick="$('.ui.dimmer').addClass('active');">
+                        {{ trans('anomaly.module.users::button.login') }}
+                    </button>
+                </div>
+
+                {{ form_close() }}
+            </div>
+
         </div>
-
-        <div class="form-group">
-            {{ form_password('password', {'class': 'form-control', 'placeholder': 'Password'}) }}
-        </div>
-
-        <div class="form-group">
-            <label for="remember">
-                {{ form_checkbox("remember", null, true, {'id': 'remember'}) }}
-                {{ trans('anomaly.module.users::admin.remember_me') }}
-            </label>
-        </div>
-
-        <div class="form-group">
-            <button type="submit" value="Login" class="btn btn-block btn-primary">
-                {{ trans('anomaly.module.users::button.login') }}
-            </button>
-        </div>
-
-        {{ form_close() }}
-
-    </section>
+    </div>
 
     <script type="text/javascript">
         $(document).ready(function () {

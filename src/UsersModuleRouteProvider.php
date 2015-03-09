@@ -50,10 +50,12 @@ class UsersModuleRouteProvider extends RouteServiceProvider
             'admin/login',
             'Anomaly\UsersModule\Http\Controller\Admin\LoginController@login'
         );
+
         $router->post(
             'admin/login',
             'Anomaly\UsersModule\Http\Controller\Admin\LoginController@attempt'
         );
+
         $router->get(
             'admin/logout',
             'Anomaly\UsersModule\Http\Controller\Admin\LogoutController@logout'

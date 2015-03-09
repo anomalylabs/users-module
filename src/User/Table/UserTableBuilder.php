@@ -31,6 +31,11 @@ class UserTableBuilder extends TableBuilder
         'email',
     ];
 
+    protected $views = [
+        'all',
+        'recently_created'
+    ];
+
     /**
      * The table buttons.
      *
