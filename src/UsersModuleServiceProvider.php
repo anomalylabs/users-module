@@ -34,12 +34,40 @@ class UsersModuleServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        /**
+         * Register user services.
+         */
+        $this->app->bind(
+            'Anomaly\UsersModule\User\UserModel', // Also set in config/auth.php
+            'Anomaly\UsersModule\User\UserModel'
+        );
+
+        $this->app->bind(
+            'Anomaly\UsersModule\User\Contract\UserRepositoryInterface',
+            'Anomaly\UsersModule\User\UserRepository'
+        );
+
+        /**
+         * Register roles services.
+         */
+        $this->app->bind(
+            'Anomaly\UsersModule\Role\RoleModel',
+            'Anomaly\UsersModule\Role\RoleModel'
+        );
+
+        $this->app->bind(
+            'Anomaly\UsersModule\Role\Contract\RoleRepositoryInterface',
+            'Anomaly\UsersModule\Role\RoleRepository'
+        );
+
+        /**
+         * Bind the Authenticate middleware with our own.
+         */
+        $this->app->bind(
+            'App\Http\Middleware\Authenticate',
+            'Anomaly\UsersModule\Http\Middleware\Authenticate'
+        );
+
         $this->app->register('Anomaly\UsersModule\UsersModuleRouteProvider');
-
-        $this->app->register('Anomaly\UsersModule\User\UserServiceProvider');
-        $this->app->register('Anomaly\UsersModule\Role\RoleServiceProvider');
-        $this->app->register('Anomaly\UsersModule\Permission\PermissionServiceProvider');
-
-        $this->app->bind('App\Http\Middleware\Authenticate', 'Anomaly\UsersModule\Http\Middleware\Authenticate');
     }
 }

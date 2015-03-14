@@ -60,5 +60,79 @@ class UsersModuleRouteProvider extends RouteServiceProvider
             'admin/logout',
             'Anomaly\UsersModule\Http\Controller\Admin\LogoutController@logout'
         );
+
+        /**
+         * Users routes.
+         */
+        $router->any(
+            'admin/users',
+            'Anomaly\UsersModule\Http\Controller\Admin\UsersController@index'
+        );
+
+        $router->any(
+            'admin/users/create',
+            'Anomaly\UsersModule\Http\Controller\Admin\UsersController@create'
+        );
+
+        $router->any(
+            'admin/users/edit/{id}',
+            'Anomaly\UsersModule\Http\Controller\Admin\UsersController@edit'
+        );
+
+        $router->any(
+            'admin/users/delete/{id}',
+            'Anomaly\UsersModule\Http\Controller\Admin\UsersController@delete'
+        );
+
+        $router->any(
+            'admin/users/activate/{id}',
+            'Anomaly\UsersModule\Http\Controller\Admin\UsersController@activate'
+        );
+
+        $router->any(
+            'admin/users/deactivate/{id}',
+            'Anomaly\UsersModule\Http\Controller\Admin\UsersController@deactivate'
+        );
+
+        $router->any(
+            'admin/users/block/{id}',
+            'Anomaly\UsersModule\Http\Controller\Admin\UsersController@block'
+        );
+
+        $router->any(
+            'admin/users/unblock/{id}',
+            'Anomaly\UsersModule\Http\Controller\Admin\UsersController@unblock'
+        );
+
+        $router->any(
+            'admin/users/logout/{id}',
+            'Anomaly\UsersModule\Http\Controller\Admin\UsersController@logout'
+        );
+
+        /**
+         * Role routes.
+         */
+        $router->any(
+            'admin/users/roles',
+            'Anomaly\UsersModule\Http\Controller\Admin\RolesController@index'
+        );
+
+        $router->any(
+            'admin/users/roles/create',
+            'Anomaly\UsersModule\Http\Controller\Admin\RolesController@create'
+        );
+
+        $router->any(
+            'admin/users/roles/edit/{id}',
+            'Anomaly\UsersModule\Http\Controller\Admin\RolesController@edit'
+        );
+
+        /**
+         * Permission routes.
+         */
+        $router->any(
+            'admin/users/permissions/{id?}',
+            'Anomaly\UsersModule\Http\Controller\Admin\PermissionsController@index'
+        );
     }
 }
