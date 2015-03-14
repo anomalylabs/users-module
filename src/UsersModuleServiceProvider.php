@@ -1,6 +1,6 @@
 <?php namespace Anomaly\UsersModule;
 
-use Illuminate\Support\ServiceProvider;
+use Anomaly\Streams\Platform\Addon\AddonServiceProvider;
 
 /**
  * Class UsersModuleServiceProvider
@@ -10,7 +10,7 @@ use Illuminate\Support\ServiceProvider;
  * @author        Ryan Thompson <ryan@anomaly.is>
  * @package       Anomaly\UsersModule
  */
-class UsersModuleServiceProvider extends ServiceProvider
+class UsersModuleServiceProvider extends AddonServiceProvider
 {
 
     /**
