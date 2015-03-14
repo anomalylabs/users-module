@@ -9,6 +9,7 @@ use Anomaly\UsersModule\User\Table\UserTableBuilder;
 use Anomaly\UsersModule\User\UserActivator;
 use Anomaly\UsersModule\User\UserBlocker;
 use Anomaly\UsersModule\User\UserManager;
+use Illuminate\Routing\Redirector;
 
 /**
  * Class UsersController
@@ -48,6 +49,17 @@ class UsersController extends AdminController
         parent::__construct();
 
         $this->users = $users;
+    }
+
+    /**
+     * Redirect to the users home page.
+     *
+     * @param Redirector $redirector
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function home(Redirector $redirector)
+    {
+        return $redirector->to('admin/dashboard');
     }
 
     /**

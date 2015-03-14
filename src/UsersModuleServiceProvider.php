@@ -14,60 +14,59 @@ class UsersModuleServiceProvider extends ServiceProvider
 {
 
     /**
-     * Boot the service provider.
+     * The addon plugins.
+     *
+     * @var array
      */
-    public function boot()
-    {
-        /**
-         * Only load this if installed because
-         * it uses configurable interfaces.
-         */
-        if (app('Anomaly\Streams\Platform\Application\Application')->isInstalled()) {
-            $this->app->make('twig')->addExtension($this->app->make('Anomaly\UsersModule\UsersModulePlugin'));
-        }
-    }
+    protected $plugins = [
+        'Anomaly\UsersModule\UsersModulePlugin'
+    ];
 
     /**
-     * Register the service provider.
+     * The class bindings.
      *
-     * @return void
+     * @var array
      */
-    public function register()
-    {
-        /**
-         * Register user services.
-         */
-        $this->app->bind(
-            'Anomaly\UsersModule\User\UserModel', // Also set in config/auth.php
-            'Anomaly\UsersModule\User\UserModel'
-        );
+    protected $bindings = [
+        'Anomaly\UsersModule\User\UserModel' => 'Anomaly\UsersModule\User\UserModel',
+        'Anomaly\UsersModule\Role\RoleModel' => 'Anomaly\UsersModule\Role\RoleModel',
+        'App\Http\Middleware\Authenticate'   => 'Anomaly\UsersModule\Http\Middleware\Authenticate'
+    ];
 
-        $this->app->bind(
-            'Anomaly\UsersModule\User\Contract\UserRepositoryInterface',
-            'Anomaly\UsersModule\User\UserRepository'
-        );
+    /**
+     * The singleton bindings.
+     *
+     * @var array
+     */
+    protected $singletons = [
+        'Anomaly\UsersModule\User\Contract\UserRepositoryInterface' => 'Anomaly\UsersModule\User\UserRepository',
+        'Anomaly\UsersModule\Role\Contract\RoleRepositoryInterface' => 'Anomaly\UsersModule\Role\RoleRepository'
+    ];
 
-        /**
-         * Register roles services.
-         */
-        $this->app->bind(
-            'Anomaly\UsersModule\Role\RoleModel',
-            'Anomaly\UsersModule\Role\RoleModel'
-        );
+    /**
+     * The addon routes.
+     *
+     * @var array
+     */
+    protected $routes = [
+        'admin'                         => 'Anomaly\UsersModule\Http\Controller\Admin\UsersController@home',
+        'auth/login'                    => 'Anomaly\UsersModule\Http\Controller\Admin\LogoutController@logout',
+        'auth/logout'                   => 'Anomaly\UsersModule\Http\Controller\Admin\LogoutController@logout',
+        'admin/login'                   => 'Anomaly\UsersModule\Http\Controller\Admin\LoginController@login',
+        'admin/logout'                  => 'Anomaly\UsersModule\Http\Controller\Admin\LogoutController@logout',
+        'admin/users'                   => 'Anomaly\UsersModule\Http\Controller\Admin\UsersController@index',
+        'admin/users/create'            => 'Anomaly\UsersModule\Http\Controller\Admin\UsersController@create',
+        'admin/users/edit/{id}'         => 'Anomaly\UsersModule\Http\Controller\Admin\UsersController@edit',
+        'admin/users/delete/{id}'       => 'Anomaly\UsersModule\Http\Controller\Admin\UsersController@delete',
+        'admin/users/activate/{id}'     => 'Anomaly\UsersModule\Http\Controller\Admin\UsersController@activate',
+        'admin/users/deactivate/{id}'   => 'Anomaly\UsersModule\Http\Controller\Admin\UsersController@deactivate',
+        'admin/users/block/{id}'        => 'Anomaly\UsersModule\Http\Controller\Admin\UsersController@block',
+        'admin/users/unblock/{id}'      => 'Anomaly\UsersModule\Http\Controller\Admin\UsersController@unblock',
+        'admin/users/logout/{id}'       => 'Anomaly\UsersModule\Http\Controller\Admin\UsersController@logout',
+        'admin/users/roles'             => 'Anomaly\UsersModule\Http\Controller\Admin\RolesController@index',
+        'admin/users/roles/create'      => 'Anomaly\UsersModule\Http\Controller\Admin\RolesController@create',
+        'admin/users/roles/edit/{id}'   => 'Anomaly\UsersModule\Http\Controller\Admin\RolesController@edit',
+        'admin/users/permissions/{id?}' => 'Anomaly\UsersModule\Http\Controller\Admin\PermissionsController@index'
+    ];
 
-        $this->app->bind(
-            'Anomaly\UsersModule\Role\Contract\RoleRepositoryInterface',
-            'Anomaly\UsersModule\Role\RoleRepository'
-        );
-
-        /**
-         * Bind the Authenticate middleware with our own.
-         */
-        $this->app->bind(
-            'App\Http\Middleware\Authenticate',
-            'Anomaly\UsersModule\Http\Middleware\Authenticate'
-        );
-
-        $this->app->register('Anomaly\UsersModule\UsersModuleRouteProvider');
-    }
 }
