@@ -23,8 +23,12 @@ class LoginController extends PublicController
      * @param Guard $auth
      * @return \Illuminate\Http\RedirectResponse|Redirector|\Illuminate\View\View
      */
-    public function login(Guard $auth)
+    public function login(Guard $auth, Request $request, Authenticator $authenticator)
     {
+        if ($request->method('post')) {
+            return $this->attempt($request, $authenticator);
+        }
+
         if ($auth->check()) {
             return redirect('admin/dashboard');
         } else {
@@ -39,7 +43,7 @@ class LoginController extends PublicController
      * @param Authenticator $authenticator
      * @return \Illuminate\Http\RedirectResponse|Redirector
      */
-    public function attempt(Request $request, Authenticator $authenticator)
+    protected function attempt(Request $request, Authenticator $authenticator)
     {
         $email    = $request->get('email');
         $password = $request->get('password');
