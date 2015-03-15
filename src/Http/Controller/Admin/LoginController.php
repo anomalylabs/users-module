@@ -25,7 +25,7 @@ class LoginController extends PublicController
      */
     public function login(Guard $auth, Request $request, Authenticator $authenticator)
     {
-        if ($request->method('post')) {
+        if ($request->method() === 'POST') {
             return $this->attempt($request, $authenticator);
         }
 
