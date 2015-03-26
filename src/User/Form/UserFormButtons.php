@@ -25,7 +25,8 @@ class UserFormButtons
                 'cancel',
                 'delete',
                 [
-                    'type'    => 'danger',
+                    'button'  => 'red',
+                    'icon'    => 'icon remove user',
                     'text'    => 'module::button.block',
                     'href'    => '/admin/users/block/{entry.id}',
                     'enabled' => function (UserInterface $entry) {
@@ -33,7 +34,8 @@ class UserFormButtons
                     }
                 ],
                 [
-                    'type'    => 'danger',
+                    'button'  => 'green',
+                    'icon'    => 'icon user',
                     'text'    => 'module::button.unblock',
                     'href'    => '/admin/users/unblock/{entry.id}',
                     'enabled' => function (UserInterface $entry) {
@@ -41,7 +43,8 @@ class UserFormButtons
                     }
                 ],
                 [
-                    'type'    => 'success',
+                    'button'  => 'green',
+                    'icon'    => 'icon checkmark',
                     'text'    => 'module::button.activate',
                     'href'    => '/admin/users/activate/{entry.id}',
                     'enabled' => function (UserInterface $entry) {

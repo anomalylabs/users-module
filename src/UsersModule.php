@@ -28,12 +28,12 @@ class UsersModule extends Module
     protected $sections = [
         'users' => [
             'buttons' => [
-                'create'
+                'new_user'
             ]
         ],
         'roles' => [
             'buttons' => [
-                'create'
+                'new_role'
             ]
         ],
         'permissions'

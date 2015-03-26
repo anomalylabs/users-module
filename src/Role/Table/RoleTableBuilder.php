@@ -14,13 +14,6 @@ class RoleTableBuilder extends TableBuilder
 {
 
     /**
-     * The table model.
-     *
-     * @var string
-     */
-    protected $model = 'Anomaly\UsersModule\Role\RoleModel';
-
-    /**
      * The table columns.
      *
      * @var array
@@ -36,7 +29,22 @@ class RoleTableBuilder extends TableBuilder
      * @var array
      */
     protected $buttons = [
-        'edit'
+        'edit',
+        [
+            'href'   => 'admin/users/permissions/{entry.slug}',
+            'text'   => 'Permissions',
+            'icon'   => 'icon lock',
+            'button' => 'blue'
+        ]
+    ];
+
+    /**
+     * The table actions.
+     *
+     * @var array
+     */
+    protected $actions = [
+        'delete'
     ];
 
 }

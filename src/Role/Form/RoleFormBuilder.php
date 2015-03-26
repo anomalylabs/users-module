@@ -14,13 +14,6 @@ class RoleFormBuilder extends FormBuilder
 {
 
     /**
-     * The form model.
-     *
-     * @var string
-     */
-    protected $model = 'Anomaly\UsersModule\Role\RoleModel';
-
-    /**
      * The form fields.
      *
      * @var array

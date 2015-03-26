@@ -5,5 +5,7 @@ return [
     'block'      => 'Block',
     'unblock'    => 'Unblock',
     'activate'   => 'Activate',
-    'deactivate' => 'Deactivate'
+    'deactivate' => 'Deactivate',
+    'new_user'   => 'New User',
+    'new_role'   => 'New Role'
 ];

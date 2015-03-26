@@ -24,25 +24,17 @@ class UserTableColumns
             [
                 'username',
                 'email',
-                [
-                    'heading' => 'roles',
-                    'value'   => function (UserInterface $entry) {
-
-                        $roles = $entry->getRoles();
-
-                        return implode(', ', $roles->lists('slug'));
-                    }
-                ],
+                'entry.roles.lists',
                 [
                     'heading' => 'module::admin.status',
                     'wrap'    => function (UserInterface $entry) {
 
                         if ($entry->isBlocked()) {
-                            return '<span class="label label-danger">{value}</span>';
+                            return '<span class="ui label red">{value}</span>';
                         } elseif ($entry->isActivated()) {
-                            return '<span class="label label-success">{value}</span>';
+                            return '<span class="ui label green">{value}</span>';
                         } elseif (!$entry->isActivated()) {
-                            return '<span class="label label-default">{value}</span>';
+                            return '<span class="ui label">{value}</span>';
                         }
                     },
                     'value'   => function (UserInterface $entry) {

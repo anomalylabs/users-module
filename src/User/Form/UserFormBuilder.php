@@ -14,13 +14,6 @@ class UserFormBuilder extends FormBuilder
 {
 
     /**
-     * The form model.
-     *
-     * @var string
-     */
-    protected $model = 'Anomaly\UsersModule\User\UserModel';
-
-    /**
      * The form fields.
      *
      * @var array

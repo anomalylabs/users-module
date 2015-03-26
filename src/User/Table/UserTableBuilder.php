@@ -1,6 +1,5 @@
 <?php namespace Anomaly\UsersModule\User\Table;
 
-use Anomaly\Streams\Platform\Ui\Table\Table;
 use Anomaly\Streams\Platform\Ui\Table\TableBuilder;
 
 /**
@@ -15,13 +14,6 @@ class UserTableBuilder extends TableBuilder
 {
 
     /**
-     * The table model.
-     *
-     * @var string
-     */
-    protected $model = 'Anomaly\UsersModule\User\UserModel';
-
-    /**
      * The table filters.
      *
      * @var array
@@ -31,9 +23,20 @@ class UserTableBuilder extends TableBuilder
         'email',
     ];
 
+    /**
+     * The table views.
+     *
+     * @var array
+     */
     protected $views = [
         'all',
-        'recently_created'
+        'recently_created',
+        'blocked'       => [
+            'text' => 'Blocked'
+        ],
+        'not_activated' => [
+            'text' => 'Not Activated'
+        ]
     ];
 
     /**
@@ -46,14 +49,12 @@ class UserTableBuilder extends TableBuilder
     ];
 
     /**
-     * Create a new UserTableBuilder instance.
+     * The table actions.
      *
-     * @param Table $table
+     * @var array
      */
-    public function __construct(Table $table)
-    {
-        $table->setOption('eager', ['roles']);
+    protected $actions = [
+        'delete'
+    ];
 
-        parent::__construct($table);
-    }
 }
