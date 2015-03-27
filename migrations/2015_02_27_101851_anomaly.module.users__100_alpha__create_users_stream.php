@@ -30,7 +30,8 @@ class AnomalyModuleUsers_100_alpha_CreateUsersStream extends Migration
     protected $assignments = [
         'email'            => ['required' => true, 'unique' => true],
         'username'         => ['required' => true, 'unique' => true],
-        'password'         => [],
+        'password'         => ['required' => true],
+        'roles'            => ['required' => true],
         'activated'        => [],
         'activation_code'  => [],
         'blocked'          => [],
@@ -41,7 +42,6 @@ class AnomalyModuleUsers_100_alpha_CreateUsersStream extends Migration
         'last_activity_at' => [],
         'remember_token'   => [],
         'ip_address'       => [],
-        'roles'            => [],
         'permissions'      => [],
     ];
 

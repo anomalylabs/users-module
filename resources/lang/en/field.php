@@ -2,31 +2,47 @@
 
 return [
     'name'         => [
-        'name' => 'Name',
+        'name'         => 'Name',
+        'instructions' => 'What is the name of the role?',
+        'placeholder'  => 'Editor'
     ],
     'first_name'   => [
-        'name' => 'First Name',
+        'name'         => 'First Name',
+        'instructions' => 'What is the user\'s real first name?',
+        'placeholder'  => 'John'
     ],
     'last_name'    => [
-        'name' => 'Last Name',
+        'name'         => 'Last Name',
+        'instructions' => 'What is the user\'s real last name?',
+        'placeholder'  => 'Doe'
     ],
     'display_name' => [
-        'name' => 'Display Name'
+        'name'         => 'Display Name',
+        'instructions' => 'What is the publicly displayed name of the user? If left empty, the first and last name will be used.',
+        'placeholder'  => 'Mr. John Doe'
     ],
     'username'     => [
-        'name' => 'Username'
+        'name'         => 'Username',
+        'instructions' => 'What is the user\'s username? This must be unique across all users.',
+        'placeholder'  => 'johndoe1'
     ],
     'email'        => [
-        'name' => 'Email'
+        'name'         => 'Email',
+        'instructions' => 'What is the user\'s login email? This must be unique across all users.',
+        'placeholder'  => 'example@domain.com'
     ],
     'password'     => [
-        'name' => 'Password'
+        'name'         => 'Password',
+        'instructions' => 'Enter a secure login password for the user.'
     ],
     'slug'         => [
-        'name' => 'Slug'
+        'name'         => 'Slug',
+        'instructions' => 'Enter the role\'s slug. This is primarily used behind the scenes and must be unique across all roles.',
+        'placeholder'  => 'editor'
     ],
     'roles'        => [
-        'name' => 'Roles'
+        'name'         => 'Roles',
+        'instructions' => 'Choose the roles to attach to this user.'
     ],
     'permissions'  => [
         'name'  => 'Permissions',
