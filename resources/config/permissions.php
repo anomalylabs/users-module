@@ -2,7 +2,7 @@
 
 return [
     'users' => [
-        'create',
+        //'create',
         'edit'
     ],
     'create_role',
