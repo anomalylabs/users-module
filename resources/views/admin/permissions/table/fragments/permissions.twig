@@ -1,14 +1,38 @@
 {% for group, permission in config_get(entry.getNamespace('permissions')) %}
+    {% if permission is iterable %}
+        <div class="ui header small">
+            {{ trans(entry.getNamespace('permission.' ~ group ~ '.label')) }}
+        </div>
 
-    <div class="ui checkbox" style="margin-right: 10px;">
-        <input
-                type="checkbox"
-                name="permission[]"
-                value="{{ entry.getNamespace(permission) }}"
-                {{ table.options.role.hasPermission(entry.getNamespace(permission)) ? 'checked="checked"' }}
-                >
+        {% for perm in permission %}
+            <div class="ui checkbox" style="margin-right: 10px;">
+                <input
+                        type="checkbox"
+                        name="permission[]"
+                        value="{{ entry.getNamespace(perm) }}"
+                        {{ table.options.role.hasPermission(entry.getNamespace(perm)) ? 'checked="checked"' }}
+                        >
 
-        <label>{{ trans(entry.getNamespace('permission.' ~ permission)) }}</label>
-    </div>
+                <label>{{ trans(entry.getNamespace('permission.' ~ group ~ '.' ~ perm)) }}</label>
+            </div>
 
+            <br>
+        {% endfor %}
+
+        <br>
+
+    {% else %}
+        <div class="ui checkbox" style="margin-right: 10px;">
+            <input
+                    type="checkbox"
+                    name="permission[]"
+                    value="{{ entry.getNamespace(permission) }}"
+                    {{ table.options.role.hasPermission(entry.getNamespace(permission)) ? 'checked="checked"' }}
+                    >
+
+            <label>{{ trans(entry.getNamespace('permission.' ~ permission)) }}</label>
+        </div>
+
+        <br>
+    {% endif %}
 {% endfor %}

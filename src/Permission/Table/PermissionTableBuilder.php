@@ -64,6 +64,7 @@ class PermissionTableBuilder extends TableBuilder
         }
 
         $table->setOption('role', $role);
+        $table->setOption('class', 'ui stackable top aligned table');
 
         $table->addData('roles', $roles->all());
 
