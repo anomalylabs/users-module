@@ -26,16 +26,22 @@ class UsersModule extends Module
      * @var array
      */
     protected $sections = [
-        'users' => [
+        'users'  => [
             'buttons' => [
                 'new_user'
             ]
         ],
-        'roles' => [
+        'roles'  => [
             'buttons' => [
                 'new_role'
             ]
-        ]
+        ],
+        'fields' => [
+            'buttons' => [
+                'new_field'
+            ]
+        ],
+        'settings'
     ];
 
 }
