@@ -51,9 +51,8 @@ class UserFormBuilder extends FormBuilder
         $form->on(
             'posting',
             function (Form $form, Request $request) {
-                if (!$request->get('password')) {
+                if (!$request->get('password') && $form->getMode() == 'edit') {
                     $form->getField('password')->setDisabled(true);
-                    //$form->getField('confirm_password')->setDisabled(true);
                 };
             }
         );
