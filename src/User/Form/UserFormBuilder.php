@@ -1,5 +1,6 @@
 <?php namespace Anomaly\UsersModule\User\Form;
 
+use Anomaly\Streams\Platform\Ui\Form\Form;
 use Anomaly\Streams\Platform\Ui\Form\FormBuilder;
 
 /**
@@ -24,7 +25,9 @@ class UserFormBuilder extends FormBuilder
         'display_name',
         'username',
         'email',
-        'password',
+        'password' => [
+            'value' => ''
+        ],
         'roles'
     ];
 
@@ -37,4 +40,22 @@ class UserFormBuilder extends FormBuilder
         'save'
     ];
 
+    /**
+     * Create a new UserFormBuilder instance.
+     *
+     * @param Form $form
+     */
+    public function __construct(Form $form)
+    {
+        $form->on(
+            'validating',
+            function (Form $form) {
+                if ($form->getValue('password') === '') {
+                    $form->getFields()->forget('password');
+                };
+            }
+        );
+
+        parent::__construct($form);
+    }
 }
