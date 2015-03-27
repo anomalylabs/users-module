@@ -2,6 +2,7 @@
 
 use Anomaly\Streams\Platform\Ui\Form\Form;
 use Anomaly\Streams\Platform\Ui\Form\FormBuilder;
+use Illuminate\Http\Request;
 
 /**
  * Class UserFormBuilder
@@ -48,10 +49,11 @@ class UserFormBuilder extends FormBuilder
     public function __construct(Form $form)
     {
         $form->on(
-            'validating',
-            function (Form $form) {
-                if ($form->getValue('password') === '') {
-                    $form->getFields()->forget('password');
+            'posting',
+            function (Form $form, Request $request) {
+                if (!$request->get('password')) {
+                    $form->getField('password')->setDisabled(true);
+                    //$form->getField('confirm_password')->setDisabled(true);
                 };
             }
         );
