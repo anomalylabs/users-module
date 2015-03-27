@@ -2,11 +2,16 @@
 
 return [
     'users' => [
-        //'create',
-        'edit'
+        'read',
+        'create',
+        'edit',
+        'delete'
     ],
-    'create_role',
-    'edit_role',
-    'test',
-    'foo'
+    'roles' => [
+        'read',
+        'create',
+        'edit',
+        'delete',
+        'permissions'
+    ]
 ];

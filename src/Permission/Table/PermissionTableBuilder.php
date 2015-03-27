@@ -25,6 +25,7 @@ class PermissionTableBuilder extends TableBuilder
     protected $actions = [
         'save' => [
             'button'  => 'save',
+            'toggle'  => false,
             'handler' => 'Anomaly\UsersModule\Permission\Table\Action\SavePermissions@handle'
         ]
     ];
@@ -65,6 +66,7 @@ class PermissionTableBuilder extends TableBuilder
 
         $table->setOption('role', $role);
         $table->setOption('class', 'ui stackable top aligned table');
+        $table->setOption('permission', 'anomaly.module.users::roles.permissions');
 
         $table->addData('roles', $roles->all());
 

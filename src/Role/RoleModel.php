@@ -70,6 +70,16 @@ class RoleModel extends UsersRolesEntryModel implements RoleInterface
             return false;
         }
 
-        return in_array($permission, $this->permissions);
+        if (in_array($permission, $this->permissions)) {
+            return true;
+        }
+
+        foreach ($this->permissions as $perm) {
+            if (str_is($permission, $perm)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
