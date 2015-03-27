@@ -1,6 +1,7 @@
 <?php namespace Anomaly\UsersModule\Http\Controller\Admin;
 
 use Anomaly\Streams\Platform\Http\Controller\AdminController;
+use Anomaly\UsersModule\Permission\Table\PermissionTableBuilder;
 use Anomaly\UsersModule\Role\Form\RoleFormBuilder;
 use Anomaly\UsersModule\Role\Table\RoleTableBuilder;
 
@@ -47,5 +48,19 @@ class RolesController extends AdminController
     public function edit(RoleFormBuilder $form, $id)
     {
         return $form->render($id);
+    }
+
+    /**
+     * Manage permissions for a role.
+     *
+     * @param PermissionTableBuilder $table
+     * @param                        $id
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|\Illuminate\View\View|\Symfony\Component\HttpFoundation\Response
+     */
+    public function permissions(PermissionTableBuilder $table, $id)
+    {
+        $table->setTableOption('role_id', $id);
+        
+        return $table->render();
     }
 }

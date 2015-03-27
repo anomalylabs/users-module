@@ -35,8 +35,7 @@ class UsersModule extends Module
             'buttons' => [
                 'new_role'
             ]
-        ],
-        'permissions'
+        ]
     ];
 
 }

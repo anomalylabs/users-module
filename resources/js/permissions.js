@@ -26,5 +26,9 @@ $(document).ready(function () {
         if ($(this).is(':checked')) {
             $(this).closest('tr').find('td:first-child input[type="checkbox"]').prop('checked', true);
         }
+
+        if (!$(this).closest('tr').find('td:not(:first-child) input[type="checkbox"]:checked').length) {
+            $(this).closest('tr').find('td:first-child input[type="checkbox"]').prop('checked', false);
+        }
     });
 });

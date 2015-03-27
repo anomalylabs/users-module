@@ -7,5 +7,5 @@ return [
     'delete_user'  => 'Delete User',
     'create_role'  => 'Create Role',
     'edit_role'    => 'Edit Role',
-    'delete_role'  => 'Delete Role',
+    'delete_role'  => 'Delete Role'
 ];

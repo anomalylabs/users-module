@@ -57,15 +57,13 @@ class PermissionTableBuilder extends TableBuilder
     {
         $asset->add('scripts.js', 'module::js/permissions.js');
 
-        $role = $roles->find($request->segment(4));
+        $role = $roles->find($request->segment(5));
 
         if ($role && $role->getSlug() == 'admin') {
-            throw new \Exception("Administrator permissions can not be modified.");
+            abort(403, trans('module::message.edit_admin_error'));
         }
 
         $table->setOption('role', $role);
-        $table->setOption('class', 'table');
-        $table->setOption('wrapper_view', 'module::admin/permissions/table/wrapper');
 
         $table->addData('roles', $roles->all());
 
