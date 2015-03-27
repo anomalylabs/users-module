@@ -40,15 +40,6 @@ class UserTableBuilder extends TableBuilder
     ];
 
     /**
-     * The table buttons.
-     *
-     * @var array
-     */
-    protected $buttons = [
-        'edit'
-    ];
-
-    /**
      * The table actions.
      *
      * @var array

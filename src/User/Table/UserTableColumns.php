@@ -24,7 +24,6 @@ class UserTableColumns
             [
                 'username',
                 'email',
-                'entry.roles.lists',
                 [
                     'heading' => 'module::admin.status',
                     'wrap'    => function (UserInterface $entry) {
@@ -45,6 +44,16 @@ class UserTableColumns
                             return trans('module::field.activated.activated');
                         } elseif (!$entry->isActivated()) {
                             return trans('module::field.activated.not_activated');
+                        }
+                    }
+                ],
+                'entry.roles.lists',
+                [
+                    'heading' => 'permissions',
+                    'value'   => function (UserInterface $entry) {
+
+                        if ($permissions = $entry->getPermissions()) {
+                            return trans('module::field.permissions.count', ['count' => count($permissions)]);
                         }
                     }
                 ]

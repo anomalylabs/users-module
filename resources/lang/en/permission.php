@@ -1,15 +1,19 @@
 <?php
 
 return [
-    'create' => 'Create',
-    'read'   => 'Read',
-    'edit'   => 'Edit',
-    'delete' => 'Delete',
-    'users'  => [
-        'label' => 'User Management'
+    'create'        => 'Create',
+    'read'          => 'Read',
+    'edit'          => 'Edit',
+    'delete'        => 'Delete',
+    'control_panel' => 'Access control panel',
+    'users'         => [
+        'label'       => 'User Management',
+        'permissions' => 'Permissions',
+        'activate'    => 'Activate',
+        'block'       => 'Block'
     ],
-    'roles'  => [
+    'roles'         => [
         'label'       => 'Role Management',
-        'permissions' => 'Manage Permissions'
+        'permissions' => 'Permissions'
     ]
 ];

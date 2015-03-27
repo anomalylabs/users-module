@@ -1,11 +1,15 @@
 <?php
 
 return [
+    'control_panel',
     'users' => [
         'read',
         'create',
         'edit',
-        'delete'
+        'delete',
+        'permissions',
+        'activate',
+        'block'
     ],
     'roles' => [
         'read',

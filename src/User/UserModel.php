@@ -21,6 +21,26 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, \Illumina
     use Authenticatable;
 
     /**
+     * Get the email.
+     *
+     * @return string
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * Get the username.
+     *
+     * @return string
+     */
+    public function getUsername()
+    {
+        return $this->username;
+    }
+
+    /**
      * Get the activated flag.
      *
      * @return bool
@@ -47,7 +67,7 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, \Illumina
      */
     public function getRoles()
     {
-        return $this->roles()->get();
+        return $this->roles;
     }
 
     /**
@@ -58,7 +78,7 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, \Illumina
      */
     public function hasRole($role)
     {
-        $roles = $this->roles();
+        $roles = $this->getRoles();
 
         if ($roles instanceof EloquentCollection) {
             $roles = $roles->lists('slug');
@@ -68,20 +88,39 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, \Illumina
     }
 
     /**
-     * Return whether a user has permission.
+     * Get the permissions.
      *
-     * @param string|array $permission
-     * @return bool
+     * @return array
      */
-    public function hasPermission($permission)
+    public function getPermissions()
+    {
+        return $this->permissions;
+    }
+
+    /**
+     * Return whether a user or it's roles has a permission.
+     *
+     * @param      $permission
+     * @param bool $checkRoles
+     * @return mixed
+     */
+    public function hasPermission($permission, $checkRoles = true)
     {
         if (!$permission) {
             return true;
         }
 
-        foreach ($this->getRoles() as $role) {
-            if ($role instanceof RoleInterface && $role->hasPermission($permission) || $role->getSlug() === 'admin') {
-                return true;
+        if (in_array($permission, $this->getPermissions())) {
+            return true;
+        }
+
+        if ($checkRoles) {
+
+            /* @var RoleInterface $role */
+            foreach ($this->getRoles() as $role) {
+                if ($role->hasPermission($permission) || $role->getSlug() === 'admin') {
+                    return true;
+                }
             }
         }
 

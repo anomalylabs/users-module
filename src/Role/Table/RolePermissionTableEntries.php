@@ -1,4 +1,4 @@
-<?php namespace Anomaly\UsersModule\Permission\Table;
+<?php namespace Anomaly\UsersModule\Role\Table;
 
 use Anomaly\Streams\Platform\Addon\Addon;
 use Anomaly\Streams\Platform\Addon\Module\ModuleCollection;
@@ -6,14 +6,14 @@ use Anomaly\Streams\Platform\Ui\Table\Table;
 use Illuminate\Support\Collection;
 
 /**
- * Class PermissionTableEntries
+ * Class RolePermissionTableEntries
  *
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
  * @package       Anomaly\UsersModule\Permission\Table
  */
-class PermissionTableEntries
+class RolePermissionTableEntries
 {
 
     /**
@@ -24,7 +24,7 @@ class PermissionTableEntries
     protected $modules;
 
     /**
-     * Create a new PermissionTableEntries instance.
+     * Create a new RolePermissionTableEntries instance.
      *
      * @param ModuleCollection $modules
      */

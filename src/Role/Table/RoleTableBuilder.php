@@ -12,17 +12,7 @@ use Anomaly\Streams\Platform\Ui\Table\TableBuilder;
  */
 class RoleTableBuilder extends TableBuilder
 {
-
-    /**
-     * The table columns.
-     *
-     * @var array
-     */
-    protected $columns = [
-        'name',
-        'slug',
-    ];
-
+    
     /**
      * The table actions.
      *

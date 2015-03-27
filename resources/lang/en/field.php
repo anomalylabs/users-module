@@ -11,25 +11,26 @@ return [
         'name' => 'Last Name',
     ],
     'display_name' => [
-        'name' => 'Display Name',
+        'name' => 'Display Name'
     ],
     'username'     => [
-        'name' => 'Username',
+        'name' => 'Username'
     ],
     'email'        => [
-        'name' => 'Email',
+        'name' => 'Email'
     ],
     'password'     => [
-        'name' => 'Password',
+        'name' => 'Password'
     ],
     'slug'         => [
-        'name' => 'Slug',
+        'name' => 'Slug'
     ],
     'roles'        => [
-        'name' => 'Roles',
+        'name' => 'Roles'
     ],
     'permissions'  => [
-        'name' => 'Permissions',
+        'name'  => 'Permissions',
+        'count' => ':count permission(s)'
     ],
     'activated'    => [
         'name'          => 'Activated',

@@ -186,4 +186,20 @@ class UserRepository implements \Anomaly\UsersModule\User\Contract\UserRepositor
 
         return $user;
     }
+
+    /**
+     * Update permissions for a user.
+     *
+     * @param UserInterface $user
+     * @param array         $permissions
+     * @return UserInterface
+     */
+    public function updatePermissions(UserInterface $user, array $permissions)
+    {
+        $user->permissions = $permissions;
+
+        $user->save();
+
+        return $user;
+    }
 }

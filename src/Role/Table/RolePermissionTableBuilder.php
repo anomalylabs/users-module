@@ -1,4 +1,4 @@
-<?php namespace Anomaly\UsersModule\Permission\Table;
+<?php namespace Anomaly\UsersModule\Role\Table;
 
 use Anomaly\Streams\Platform\Asset\Asset;
 use Anomaly\Streams\Platform\Ui\Table\Table;
@@ -7,14 +7,14 @@ use Anomaly\UsersModule\Role\Contract\RoleRepositoryInterface;
 use Illuminate\Http\Request;
 
 /**
- * Class PermissionTableBuilder
+ * Class RolePermissionTableBuilder
  *
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
  * @package       Anomaly\UsersModule\Permission\Table
  */
-class PermissionTableBuilder extends TableBuilder
+class RolePermissionTableBuilder extends TableBuilder
 {
 
     /**
@@ -26,7 +26,7 @@ class PermissionTableBuilder extends TableBuilder
         'save' => [
             'button'  => 'save',
             'toggle'  => false,
-            'handler' => 'Anomaly\UsersModule\Permission\Table\Action\SavePermissions@handle'
+            'handler' => 'Anomaly\UsersModule\Role\Table\Action\SavePermissions@handle'
         ]
     ];
 
@@ -38,16 +38,16 @@ class PermissionTableBuilder extends TableBuilder
     protected $columns = [
         [
             'heading' => 'streams::addon.addon',
-            'view'    => 'module::admin/permissions/table/fragments/addon'
+            'view'    => 'module::admin/permissions/addon'
         ],
         [
             'heading' => 'module::field.permissions.name',
-            'view'    => 'module::admin/permissions/table/fragments/permissions'
+            'view'    => 'module::admin/permissions/role'
         ]
     ];
 
     /**
-     * Create a new PermissionTableBuilder instance.
+     * Create a new RolePermissionTableBuilder instance.
      *
      * @param Table   $table
      * @param Request $request
@@ -57,6 +57,7 @@ class PermissionTableBuilder extends TableBuilder
     public function __construct(Table $table, Request $request, Asset $asset, RoleRepositoryInterface $roles)
     {
         $asset->add('scripts.js', 'module::js/permissions.js');
+        $asset->add('styles.css', 'module::less/permissions.less');
 
         $role = $roles->find($request->segment(5));
 
@@ -65,10 +66,25 @@ class PermissionTableBuilder extends TableBuilder
         }
 
         $table->setOption('role', $role);
+        $table->setOption('attributes', ['id' => 'permissions']);
         $table->setOption('class', 'ui stackable top aligned table');
+        $table->setOption('wrapper_view', 'module::admin/permissions/wrapper');
         $table->setOption('permission', 'anomaly.module.users::roles.permissions');
 
-        $table->addData('roles', $roles->all());
+        $table->setOption(
+            'title',
+            trans(
+                'module::admin.edit_role_permissions',
+                ['slug' => $role->getSlug()]
+            )
+        );
+        $table->setOption(
+            'information',
+            trans(
+                'module::admin.edit_role_permissions_information',
+                ['slug' => $role->getSlug()]
+            )
+        );
 
         parent::__construct($table);
     }

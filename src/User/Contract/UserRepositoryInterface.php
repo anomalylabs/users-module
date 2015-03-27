@@ -93,4 +93,13 @@ interface UserRepositoryInterface
      * @return UserInterface
      */
     public function attachRole(UserInterface $user, RoleInterface $role);
+
+    /**
+     * Update permissions for a user.
+     *
+     * @param UserInterface $user
+     * @param array         $permissions
+     * @return UserInterface
+     */
+    public function updatePermissions(UserInterface $user, array $permissions);
 }

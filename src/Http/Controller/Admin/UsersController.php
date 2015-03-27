@@ -5,6 +5,7 @@ use Anomaly\Streams\Platform\Message\MessageBag;
 use Anomaly\UsersModule\Authenticator\Authenticator;
 use Anomaly\UsersModule\User\Contract\UserRepositoryInterface;
 use Anomaly\UsersModule\User\Form\UserFormBuilder;
+use Anomaly\UsersModule\User\Table\UserPermissionTableBuilder;
 use Anomaly\UsersModule\User\Table\UserTableBuilder;
 use Anomaly\UsersModule\User\UserActivator;
 use Anomaly\UsersModule\User\UserBlocker;
@@ -108,6 +109,20 @@ class UsersController extends AdminController
         $manager->delete($this->users->find($id));
 
         return redirect('admin/users');
+    }
+
+    /**
+     * Manage permissions for a role.
+     *
+     * @param UserPermissionTableBuilder $table
+     * @param                            $id
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|\Illuminate\View\View|\Symfony\Component\HttpFoundation\Response
+     */
+    public function permissions(UserPermissionTableBuilder $table, $id)
+    {
+        $table->setTableOption('user_id', $id);
+
+        return $table->render();
     }
 
     /**

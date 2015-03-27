@@ -1,4 +1,4 @@
-<?php namespace Anomaly\UsersModule\Permission\Table\Action;
+<?php namespace Anomaly\UsersModule\Role\Table\Action;
 
 use Anomaly\Streams\Platform\Ui\Table\Table;
 use Anomaly\UsersModule\Role\Contract\RoleRepositoryInterface;

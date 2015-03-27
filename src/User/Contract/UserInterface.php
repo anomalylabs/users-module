@@ -29,6 +29,20 @@ interface UserInterface
     public function getId();
 
     /**
+     * Get the email.
+     *
+     * @return string
+     */
+    public function getEmail();
+
+    /**
+     * Get the username.
+     *
+     * @return string
+     */
+    public function getUsername();
+
+    /**
      * Get the activated flag.
      *
      * @return bool
@@ -58,12 +72,20 @@ interface UserInterface
     public function hasRole($role);
 
     /**
-     * Return whether a user has a permission.
+     * Get the permissions.
      *
-     * @param string|array $permission
-     * @return bool
+     * @return array
      */
-    public function hasPermission($permission);
+    public function getPermissions();
+
+    /**
+     * Return whether a user or it's roles has a permission.
+     *
+     * @param      $permission
+     * @param bool $checkRoles
+     * @return mixed
+     */
+    public function hasPermission($permission, $checkRoles = true);
 
     /**
      * Return whether a user has any of provided permission.

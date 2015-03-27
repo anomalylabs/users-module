@@ -1,0 +1,50 @@
+{% for group, permission in config_get(entry.getNamespace('permissions')) %}
+
+    {% if not loop.first %}
+        <br>
+    {% endif %}
+
+    {% if permission is iterable %}
+
+        <div class="group">
+            <div class="ui header small">
+                {{ trans(entry.getNamespace('permission.' ~ group ~ '.label')) }}
+            </div>
+
+            {% for perm in permission %}
+                <div class="ui checkbox">
+                    <input
+                            type="checkbox"
+                            name="permission[]"
+                            value="{{ entry.getNamespace(group ~ '.' ~ perm) }}"
+                            {{ table.options.user.hasPermission(entry.getNamespace(group ~ '.' ~ perm), false) ? 'checked="checked"' }}
+                            >
+
+                    <label>
+                        {% if perm in ['create', 'read', 'edit', 'delete'] %}
+                            {{ trans('anomaly.module.users::permission.' ~ perm) }}
+                        {% else %}
+                            {{ trans(entry.getNamespace('permission.' ~ group ~ '.' ~ perm)) }}
+                        {% endif %}
+                    </label>
+                </div>
+            {% endfor %}
+        </div>
+
+    {% else %}
+
+        <div>
+            <div class="ui checkbox">
+                <input
+                        type="checkbox"
+                        name="permission[]"
+                        value="{{ entry.getNamespace(permission) }}"
+                        {{ table.options.user.hasPermission(entry.getNamespace(permission), false) ? 'checked="checked"' }}
+                        >
+
+                <label>{{ trans(entry.getNamespace('permission.' ~ permission)) }}</label>
+            </div>
+        </div>
+
+    {% endif %}
+{% endfor %}
