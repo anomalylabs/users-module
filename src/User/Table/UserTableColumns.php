@@ -51,7 +51,8 @@ class UserTableColumns
                     'heading' => 'roles',
                     'value'   => function (UserInterface $entry) {
                         if ($roles = $entry->getRoles()) {
-                            return '<div class="ui label">
+                            return '<div class="ui label tooltip"
+                            data-content="' . implode(', ', $roles->lists('name')) . '">
                             <i class="users icon"></i> ' . trans(
                                 'module::field.roles.count',
                                 ['count' => count($roles)]
