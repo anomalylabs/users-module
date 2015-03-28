@@ -47,7 +47,7 @@ class UserTableActions
                     'text'    => 'module::button.activate',
                     'handler' => 'Anomaly\UsersModule\User\Table\Action\ActivateUsers@handle',
                     'enabled' => function (Request $request) {
-                        return $request->get('view') === 'not_activated';
+                        return $request->get('view') === 'pending_activation';
                     }
                 ]
             ]

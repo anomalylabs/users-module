@@ -31,11 +31,13 @@ class UserTableBuilder extends TableBuilder
     protected $views = [
         'all',
         'recently_created',
-        'blocked'       => [
-            'text' => 'Blocked'
+        'blocked'            => [
+            'text'    => 'module::table.blocked',
+            'handler' => 'Anomaly\UsersModule\User\Table\View\BlockedUsers@handle'
         ],
-        'not_activated' => [
-            'text' => 'Not Activated'
+        'pending_activation' => [
+            'text'    => 'module::table.pending_activation',
+            'handler' => 'Anomaly\UsersModule\User\Table\View\PendingActivation@handle'
         ]
     ];
 

@@ -12,6 +12,7 @@ return [
         'label'       => 'User Management',
         'permissions' => 'Permissions',
         'activate'    => 'Activate',
+        'unblock'     => 'Unblock',
         'block'       => 'Block'
     ],
     'roles'          => [

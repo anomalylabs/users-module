@@ -11,6 +11,7 @@ return [
         'delete',
         'permissions',
         'activate',
+        'unblock',
         'block'
     ],
     'roles' => [
