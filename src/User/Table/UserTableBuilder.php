@@ -39,13 +39,4 @@ class UserTableBuilder extends TableBuilder
         ]
     ];
 
-    /**
-     * The table actions.
-     *
-     * @var array
-     */
-    protected $actions = [
-        'delete'
-    ];
-
 }

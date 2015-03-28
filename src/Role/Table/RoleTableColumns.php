@@ -27,9 +27,13 @@ class RoleTableColumns
                 [
                     'heading' => 'permissions',
                     'value'   => function (RoleInterface $entry) {
-
                         if ($permissions = $entry->getPermissions()) {
-                            return trans('module::field.permissions.count', ['count' => count($permissions)]);
+                            return '<div class="ui label">
+                            <i class="lock icon"></i> ' . trans(
+                                'module::field.permissions.count',
+                                ['count' => count($permissions)]
+                            ) . '
+                            </div>';
                         }
                     }
                 ]

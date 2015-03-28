@@ -1,10 +1,10 @@
 {% for group, permission in config_get(entry.getNamespace('permissions')) %}
 
-    {% if not loop.first %}
-        <br>
-    {% endif %}
-
     {% if permission is iterable %}
+
+        {% if not loop.first %}
+            <br>
+        {% endif %}
 
         <div class="group">
             <div class="ui header small">

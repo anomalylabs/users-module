@@ -1,6 +1,8 @@
 <?php namespace Anomaly\UsersModule\User\Table\Action;
 
+use Anomaly\Streams\Platform\Ui\Table\Component\Action\ActionHandler;
 use Anomaly\Streams\Platform\Ui\Table\Table;
+use Anomaly\UsersModule\User\Contract\UserInterface;
 use Anomaly\UsersModule\User\Contract\UserRepositoryInterface;
 use Illuminate\Http\Request;
 
@@ -12,7 +14,7 @@ use Illuminate\Http\Request;
  * @author        Ryan Thompson <ryan@anomaly.is>
  * @package       Anomaly\UsersModule\Permission\Table\Action
  */
-class SavePermissions
+class SavePermissions extends ActionHandler
 {
 
     /**
@@ -24,8 +26,15 @@ class SavePermissions
      */
     public function handle(Table $table, UserRepositoryInterface $users, Request $request)
     {
-        $users->updatePermissions($table->getOption('user'), array_get($_POST, 'permission', []));
+        /* @var UserInterface $user */
+        $user = $table->getOption('user');
+
+        $users->updatePermissions($user, array_get($_POST, 'permission', []));
 
         $table->setResponse(redirect($request->fullUrl()));
+
+        $this->messages->success(
+            trans('module::message.save_user_permissions_success', ['username' => $user->getUsername()])
+        );
     }
 }

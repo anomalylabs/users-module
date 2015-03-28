@@ -42,6 +42,7 @@ return [
     ],
     'roles'        => [
         'name'         => 'Roles',
+        'count'        => ':count role(s)',
         'instructions' => 'Choose the roles to attach to this user.'
     ],
     'permissions'  => [

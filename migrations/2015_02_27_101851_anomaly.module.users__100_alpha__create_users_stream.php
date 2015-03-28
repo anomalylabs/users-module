@@ -43,6 +43,7 @@ class AnomalyModuleUsers_100_alpha_CreateUsersStream extends Migration
         'remember_token'   => [],
         'ip_address'       => [],
         'permissions'      => [],
+        'website'          => [],
     ];
 
 }

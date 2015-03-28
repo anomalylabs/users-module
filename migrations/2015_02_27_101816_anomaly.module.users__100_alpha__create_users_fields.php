@@ -34,7 +34,12 @@ class AnomalyModuleUsers_100_alpha_CreateUsersFields extends Migration
         'last_name'        => 'anomaly.field_type.text',
         'website'          => 'anomaly.field_type.url',
         'name'             => 'anomaly.field_type.text',
-        'slug'             => 'anomaly.field_type.slug',
+        'slug'             => [
+            'type'   => 'anomaly.field_type.slug',
+            'config' => [
+                'watch' => 'name'
+            ]
+        ],
         'roles'            => [
             'type'   => 'anomaly.field_type.multiple',
             'config' => [

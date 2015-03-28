@@ -47,13 +47,29 @@ class UserTableColumns
                         }
                     }
                 ],
-                'entry.roles.lists',
+                [
+                    'heading' => 'roles',
+                    'value'   => function (UserInterface $entry) {
+                        if ($roles = $entry->getRoles()) {
+                            return '<div class="ui label">
+                            <i class="users icon"></i> ' . trans(
+                                'module::field.roles.count',
+                                ['count' => count($roles)]
+                            ) . '
+                            </div>';
+                        }
+                    }
+                ],
                 [
                     'heading' => 'permissions',
                     'value'   => function (UserInterface $entry) {
-
                         if ($permissions = $entry->getPermissions()) {
-                            return trans('module::field.permissions.count', ['count' => count($permissions)]);
+                            return '<div class="ui label">
+                            <i class="lock icon"></i> ' . trans(
+                                'module::field.permissions.count',
+                                ['count' => count($permissions)]
+                            ) . '
+                            </div>';
                         }
                     }
                 ]
