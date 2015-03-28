@@ -73,6 +73,10 @@ class UserTableColumns
                             </div>';
                         }
                     }
+                ],
+                [
+                    'heading' => 'created_at',
+                    'value'   => 'entry.created_at_datetime'
                 ]
             ]
         );
