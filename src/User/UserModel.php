@@ -153,4 +153,14 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, \Illumina
     {
         $this->attributes['password'] = app('hash')->make($password);
     }
+
+    /**
+     * Return whether the model is deletable or not.
+     *
+     * @return bool
+     */
+    public function isDeletable()
+    {
+        return !$this->hasRole('admin');
+    }
 }
