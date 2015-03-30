@@ -57,5 +57,8 @@ return [
     'blocked'      => [
         'name'    => 'Blocked',
         'blocked' => 'Blocked'
+    ],
+    'website'      => [
+        'name' => 'Website'
     ]
 ];

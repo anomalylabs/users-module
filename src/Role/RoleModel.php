@@ -15,6 +15,13 @@ class RoleModel extends UsersRolesEntryModel implements RoleInterface
 {
 
     /**
+     * The cache minutes.
+     *
+     * @var int
+     */
+    protected $cacheMinutes = 99999;
+
+    /**
      * Get the role's ID.
      *
      * @return int
