@@ -30,9 +30,9 @@ class AnomalyModuleUsers_100_alpha_CreateRolesStream extends Migration
      * @var array
      */
     protected $assignments = [
-        'name'        => ['required' => true, 'translatable' => true],
-        'slug'        => ['required' => true, 'unique' => true],
-        'permissions' => [],
+        'name' => ['required' => true, 'translatable' => true],
+        'slug' => ['required' => true, 'unique' => true],
+        'permissions'
     ];
 
 }

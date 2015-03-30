@@ -28,9 +28,11 @@ class UsersModuleServiceProvider extends AddonServiceProvider
      * @var array
      */
     protected $bindings = [
-        'Anomaly\UsersModule\User\UserModel' => 'Anomaly\UsersModule\User\UserModel',
-        'Anomaly\UsersModule\Role\RoleModel' => 'Anomaly\UsersModule\Role\RoleModel',
-        'App\Http\Middleware\Authenticate'   => 'Anomaly\UsersModule\Http\Middleware\Authenticate'
+        'Anomaly\UsersModule\User\UserModel'                        => 'Anomaly\UsersModule\User\UserModel',
+        'Anomaly\UsersModule\Role\RoleModel'                        => 'Anomaly\UsersModule\Role\RoleModel',
+        'Anomaly\Streams\Platform\Model\Users\UsersUsersEntryModel' => 'Anomaly\UsersModule\User\UserModel',
+        'Anomaly\Streams\Platform\Model\Users\UsersRolesEntryModel' => 'Anomaly\UsersModule\Role\RoleModel',
+        'App\Http\Middleware\Authenticate'                          => 'Anomaly\UsersModule\Http\Middleware\Authenticate'
     ];
 
     /**
