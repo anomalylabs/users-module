@@ -18,7 +18,7 @@ return [
     ],
     'display_name' => [
         'name'         => 'Display Name',
-        'instructions' => 'What is the publicly displayed name of the user? If left empty, the first and last name will be used.',
+        'instructions' => 'What is the publicly displayed name of the user? If left empty, the username will be used.',
         'placeholder'  => 'Mr. John Doe'
     ],
     'username'     => [

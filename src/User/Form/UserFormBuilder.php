@@ -16,23 +16,6 @@ class UserFormBuilder extends FormBuilder
 {
 
     /**
-     * The form fields.
-     *
-     * @var array
-     */
-    protected $fields = [
-        'first_name',
-        'last_name',
-        'display_name',
-        'username',
-        'email',
-        'password' => [
-            'value' => ''
-        ],
-        'roles'
-    ];
-
-    /**
      * The form actions.
      *
      * @var array

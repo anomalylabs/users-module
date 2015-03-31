@@ -64,6 +64,8 @@ class FieldsController extends AdminController
             $stream->getAssignments()->withoutFields(config('anomaly.module.users::config.protected_fields'))
         );
 
+        $table->setOption('sortable', true);
+
         return $builder->render();
     }
 
