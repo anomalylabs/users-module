@@ -12,7 +12,7 @@ use Anomaly\Streams\Platform\Ui\Table\TableBuilder;
  */
 class RoleTableBuilder extends TableBuilder
 {
-    
+
     /**
      * The table actions.
      *
@@ -20,6 +20,15 @@ class RoleTableBuilder extends TableBuilder
      */
     protected $actions = [
         'delete'
+    ];
+
+    /**
+     * The table filters.
+     *
+     * @var array
+     */
+    protected $filters = [
+        'slug'
     ];
 
 }
