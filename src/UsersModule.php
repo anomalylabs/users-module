@@ -14,11 +14,11 @@ class UsersModule extends Module
 {
 
     /**
-     * The module navigation role.
+     * The module icon.
      *
      * @var string
      */
-    protected $navigation = 'streams::navigation.system';
+    protected $icon = 'users';
 
     /**
      * The module sections.

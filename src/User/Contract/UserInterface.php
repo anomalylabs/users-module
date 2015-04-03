@@ -43,6 +43,13 @@ interface UserInterface
     public function getUsername();
 
     /**
+     * Get the display name.
+     *
+     * @return string
+     */
+    public function getDisplayName();
+
+    /**
      * Get the activated flag.
      *
      * @return bool

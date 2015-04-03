@@ -29,11 +29,11 @@ class UserTableColumns
                     'wrap'    => function (UserInterface $entry) {
 
                         if ($entry->isBlocked()) {
-                            return '<span class="ui label red">{value}</span>';
+                            return '<span class="label label-danger">{value}</span>';
                         } elseif ($entry->isActivated()) {
-                            return '<span class="ui label green">{value}</span>';
+                            return '<span class="label label-success">{value}</span>';
                         } elseif (!$entry->isActivated()) {
-                            return '<span class="ui label">{value}</span>';
+                            return '<span class="label label-danger">{value}</span>';
                         }
                     },
                     'value'   => function (UserInterface $entry) {
@@ -51,9 +51,9 @@ class UserTableColumns
                     'heading' => 'roles',
                     'value'   => function (UserInterface $entry) {
                         if ($roles = $entry->getRoles()) {
-                            return '<div class="ui label tooltip"
+                            return '<div class="label label-default"
                             data-content="' . implode(', ', $roles->lists('name')) . '">
-                            <i class="users icon"></i> ' . trans(
+                            <i class="fa fa-users"></i> ' . trans(
                                 'module::field.roles.count',
                                 ['count' => count($roles)]
                             ) . '
@@ -65,8 +65,8 @@ class UserTableColumns
                     'heading' => 'permissions',
                     'value'   => function (UserInterface $entry) {
                         if ($permissions = $entry->getPermissions()) {
-                            return '<div class="ui label">
-                            <i class="lock icon"></i> ' . trans(
+                            return '<div class="label label-default">
+                            <i class="fa fa-lock"></i> ' . trans(
                                 'module::field.permissions.count',
                                 ['count' => count($permissions)]
                             ) . '

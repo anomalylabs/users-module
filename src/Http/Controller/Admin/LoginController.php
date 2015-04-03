@@ -32,7 +32,7 @@ class LoginController extends PublicController
         if ($auth->check()) {
             return redirect('admin/dashboard');
         } else {
-            return view('anomaly.module.users::admin/login');
+            return view('theme::login');
         }
     }
 
