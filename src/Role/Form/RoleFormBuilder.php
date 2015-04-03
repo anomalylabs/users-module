@@ -26,8 +26,7 @@ class RoleFormBuilder extends FormBuilder
      * @var array
      */
     protected $buttons = [
-        'cancel',
-        'delete',
+        'cancel'
     ];
 
     /**

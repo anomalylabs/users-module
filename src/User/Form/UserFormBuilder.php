@@ -25,6 +25,15 @@ class UserFormBuilder extends FormBuilder
     ];
 
     /**
+     * The form buttons.
+     *
+     * @var array
+     */
+    protected $builders = [
+        'cancel'
+    ];
+
+    /**
      * Create a new UserFormBuilder instance.
      *
      * @param Form $form
