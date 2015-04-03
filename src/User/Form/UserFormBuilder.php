@@ -29,7 +29,7 @@ class UserFormBuilder extends FormBuilder
      *
      * @var array
      */
-    protected $builders = [
+    protected $buttons = [
         'cancel'
     ];
 
