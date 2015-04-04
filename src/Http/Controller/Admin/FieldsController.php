@@ -56,7 +56,7 @@ class FieldsController extends AdminController
         );
 
         $builder->setButtons(['edit']);
-        $builder->setActions(['delete']);
+        $builder->setActions(['reorder', 'delete']);
 
         $table = $builder->getTable();
 
@@ -64,7 +64,7 @@ class FieldsController extends AdminController
             $stream->getAssignments()->withoutFields(config('anomaly.module.users::config.protected_fields'))
         );
 
-        $table->setOption('sortable', true);
+        $builder->setOption('sortable', true);
 
         return $builder->render();
     }
