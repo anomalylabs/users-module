@@ -2,6 +2,7 @@
 
 return [
     'login'      => 'Login',
+    'logout'     => 'Logout',
     'block'      => 'Block',
     'unblock'    => 'Unblock',
     'activate'   => 'Activate',
