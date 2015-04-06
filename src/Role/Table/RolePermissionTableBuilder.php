@@ -67,7 +67,7 @@ class RolePermissionTableBuilder extends TableBuilder
 
         $table->setOption('role', $role);
         $table->setOption('attributes', ['id' => 'permissions']);
-        $table->setOption('class', 'ui stackable top aligned table');
+        $table->setOption('class', 'table striped align-top');
         $table->setOption('wrapper_view', 'module::admin/permissions/wrapper');
         $table->setOption('permission', 'anomaly.module.users::roles.permissions');
 

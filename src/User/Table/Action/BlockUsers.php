@@ -43,6 +43,8 @@ class BlockUsers extends ActionHandler
             $count++;
         }
 
-        $this->messages->success(trans('module::message.block_users_success', compact('count')));
+        $type = $count ? 'success' : 'error';
+
+        $this->messages->{$type}(trans('module::message.block_users_success', compact('count')));
     }
 }

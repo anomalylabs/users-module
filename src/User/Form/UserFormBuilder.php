@@ -40,15 +40,19 @@ class UserFormBuilder extends FormBuilder
      */
     public function __construct(Form $form)
     {
-        $form->on(
+        parent::__construct($form);
+
+        /**
+         * On post, if the password is not set
+         * then skip it entirely.
+         */
+        $this->on(
             'posting',
-            function (Form $form, Request $request) {
-                if (!$request->get('password') && $form->getMode() == 'edit') {
-                    $form->getField('password')->setDisabled(true);
+            function (Request $request) {
+                if (!$request->get('password') && $this->form->getMode() == 'edit') {
+                    $this->form->skipField('password');
                 };
             }
         );
-
-        parent::__construct($form);
     }
 }
