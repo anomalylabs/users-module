@@ -42,7 +42,7 @@ class RolePermissionTableBuilder extends TableBuilder
         ],
         [
             'heading' => 'module::field.permissions.name',
-            'view'    => 'module::admin/permissions/role'
+            'view'    => 'module::admin/permissions/permissions'
         ]
     ];
 
@@ -65,10 +65,9 @@ class RolePermissionTableBuilder extends TableBuilder
             abort(403, trans('module::message.edit_admin_error'));
         }
 
-        $table->setOption('role', $role);
+        $table->setOption('subject', $role);
         $table->setOption('attributes', ['id' => 'permissions']);
         $table->setOption('class', 'table striped align-top');
-        $table->setOption('wrapper_view', 'module::admin/permissions/wrapper');
         $table->setOption('permission', 'anomaly.module.users::roles.permissions');
 
         $table->setOption(
@@ -79,7 +78,7 @@ class RolePermissionTableBuilder extends TableBuilder
             )
         );
         $table->setOption(
-            'information',
+            'description',
             trans(
                 'module::admin.edit_role_permissions_information',
                 ['slug' => $role->getSlug()]

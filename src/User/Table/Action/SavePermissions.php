@@ -27,7 +27,7 @@ class SavePermissions extends ActionHandler
     public function handle(Table $table, UserRepositoryInterface $users, Request $request)
     {
         /* @var UserInterface $user */
-        $user = $table->getOption('user');
+        $user = $table->getOption('subject');
 
         $users->updatePermissions($user, array_get($_POST, 'permission', []));
 

@@ -42,7 +42,7 @@ class UserPermissionTableBuilder extends TableBuilder
         ],
         [
             'heading' => 'module::field.permissions.name',
-            'view'    => 'module::admin/permissions/user'
+            'view'    => 'module::admin/permissions/permissions'
         ]
     ];
 
@@ -65,10 +65,9 @@ class UserPermissionTableBuilder extends TableBuilder
             abort(403, trans('module::message.edit_admin_error'));
         }
 
-        $table->setOption('user', $user);
+        $table->setOption('subject', $user);
+        $table->setOption('class', 'table striped align-top');
         $table->setOption('attributes', ['id' => 'permissions']);
-        $table->setOption('class', 'ui stackable top aligned table');
-        $table->setOption('wrapper_view', 'module::admin/permissions/wrapper');
         $table->setOption('permission', 'anomaly.module.users::users.permissions');
 
         $table->setOption(
