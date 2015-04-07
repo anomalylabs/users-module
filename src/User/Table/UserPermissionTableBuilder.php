@@ -73,14 +73,14 @@ class UserPermissionTableBuilder extends TableBuilder
         $table->setOption(
             'title',
             trans(
-                'module::admin.edit_user_permissions',
+                'module::meta.edit_user_permissions',
                 ['username' => $user->getUsername(), 'email' => $user->getEmail()]
             )
         );
         $table->setOption(
             'information',
             trans(
-                'module::admin.edit_user_permissions_information',
+                'module::meta.edit_user_permissions_information',
                 ['username' => $user->getUsername(), 'roles' => implode(', ', $user->getRoles()->lists('slug'))]
             )
         );

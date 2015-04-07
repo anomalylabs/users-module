@@ -25,8 +25,8 @@ class UserTableColumns
                 'username',
                 'email',
                 [
-                    'heading' => 'module::admin.status',
-                    'wrapper'    => function (UserInterface $entry) {
+                    'heading' => 'module::table.status',
+                    'wrapper' => function (UserInterface $entry) {
 
                         if ($entry->isBlocked()) {
                             return '<span class="label label-danger">{value}</span>';

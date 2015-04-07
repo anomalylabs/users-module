@@ -73,14 +73,14 @@ class RolePermissionTableBuilder extends TableBuilder
         $table->setOption(
             'title',
             trans(
-                'module::admin.edit_role_permissions',
+                'module::meta.edit_role_permissions',
                 ['slug' => $role->getSlug()]
             )
         );
         $table->setOption(
             'description',
             trans(
-                'module::admin.edit_role_permissions_information',
+                'module::meta.edit_role_permissions_information',
                 ['slug' => $role->getSlug()]
             )
         );
