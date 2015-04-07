@@ -33,12 +33,13 @@ class FieldsController extends AdminController
     /**
      * Return a form for a new field.
      *
-     * @param FieldFormBuilder $builder
-     * @return \Illuminate\View\View|\Symfony\Component\HttpFoundation\Response
+     * @param FieldFormBuilder $form
+     * @param                  $type
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function create(FieldFormBuilder $form)
+    public function create(FieldFormBuilder $form, $type)
     {
-        return $form->render();
+        return $form->setOption('field_type', $type)->render();
     }
 
     /**
