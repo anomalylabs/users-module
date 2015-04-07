@@ -1,16 +1,8 @@
 <?php namespace Anomaly\UsersModule\Http\Controller\Admin;
 
-use Anomaly\Streams\Platform\Addon\FieldType\FieldType;
-use Anomaly\Streams\Platform\Addon\FieldType\FieldTypeCollection;
-use Anomaly\Streams\Platform\Assignment\AssignmentModel;
-use Anomaly\Streams\Platform\Assignment\Contract\AssignmentInterface;
-use Anomaly\Streams\Platform\Field\FieldModel;
+use Anomaly\Streams\Platform\Assignment\Table\AssignmentTableBuilder;
+use Anomaly\Streams\Platform\Field\Form\FieldFormBuilder;
 use Anomaly\Streams\Platform\Http\Controller\AdminController;
-use Anomaly\Streams\Platform\Stream\StreamRepository;
-use Anomaly\Streams\Platform\Ui\Form\Form;
-use Anomaly\Streams\Platform\Ui\Form\FormBuilder;
-use Anomaly\Streams\Platform\Ui\Table\TableBuilder;
-use Anomaly\UsersModule\User\UserModel;
 
 /**
  * Class FieldsController
@@ -24,174 +16,40 @@ class FieldsController extends AdminController
 {
 
     /**
-     * Return an index of existing fields.
+     * Return an index of existing assignments.
      *
-     * @param TableBuilder $builder
-     * @param UserModel    $users
-     * @return \Illuminate\View\View|\Symfony\Component\HttpFoundation\Response
+     * @param AssignmentTableBuilder $table
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function index(TableBuilder $builder, UserModel $users)
+    public function index(AssignmentTableBuilder $table)
     {
-        $stream = $users->getStream();
-
-        $builder->setModel(new AssignmentModel());
-
-        $builder->setColumns(
-            [
-                [
-                    'heading' => 'Field',
-                    'value'   => function (AssignmentInterface $entry) {
-                        return trans($entry->getFieldName());
-                    }
-                ],
-                [
-                    'heading' => 'Slug',
-                    'value'   => 'entry.field.slug'
-                ],
-                [
-                    'heading' => 'Type',
-                    'value'   => 'entry.field.type'
-                ]
-            ]
-        );
-
-        $builder->setButtons(['edit']);
-        $builder->setActions(['reorder', 'delete']);
-
-        $table = $builder->getTable();
-
-        $table->setEntries(
-            $stream->getAssignments()->withoutFields(config('anomaly.module.users::config.protected_fields'))
-        );
-
-        $builder->setOption('sortable', true);
-
-        return $builder->render();
+        return $table
+            ->setOption('stream', 'users')
+            ->setOption('namespace', 'users')
+            ->setOption('skip', config('anomaly.module.users::config.protected_fields'))
+            ->render();
     }
 
     /**
-     * Return a field for a new field.
+     * Return a form for a new field.
      *
-     * @param FormBuilder $builder
+     * @param FieldFormBuilder $builder
      * @return \Illuminate\View\View|\Symfony\Component\HttpFoundation\Response
      */
-    public function create(FormBuilder $builder)
+    public function create(FieldFormBuilder $form)
     {
-        $builder->setModel(new FieldModel());
-
-        $builder->addAction(
-            'save_and_configure',
-            [
-                'button'   => 'green',
-                'icon'     => 'fa fa-cogs',
-                'text'     => 'Save & Configure',
-                'redirect' => 'admin/users/fields/configure/{entry.id}'
-            ]
-        );
-
-        $builder->setFields(
-            [
-                'type'         => [
-                    'label'  => 'Field Type',
-                    'type'   => 'anomaly.field_type.select',
-                    'config' => [
-                        'options' => function (FieldTypeCollection $fieldTypes) {
-
-                            $options = [];
-
-                            /* @var FieldType $fieldType */
-                            foreach ($fieldTypes as $fieldType) {
-                                $options[$fieldType->getNamespace()] = trans($fieldType->getName());
-                            }
-
-                            return $options;
-                        }
-                    ]
-                ],
-                'name'         => [
-                    'label' => 'Name',
-                    'type'  => 'anomaly.field_type.text'
-                ],
-                'slug'         => [
-                    'label'  => 'Slug',
-                    'type'   => 'anomaly.field_type.slug',
-                    'config' => [
-                        'separator' => '_',
-                        'watch'     => 'name'
-                    ]
-                ],
-                'required'     => [
-                    'label'  => 'Required',
-                    'type'   => 'anomaly.field_type.boolean',
-                    'config' => [
-                        'text' => 'Yes, this field is required.'
-                    ]
-                ],
-                'unique'       => [
-                    'label'  => 'Unique',
-                    'type'   => 'anomaly.field_type.boolean',
-                    'config' => [
-                        'text' => 'Yes, this field is unique.'
-                    ]
-                ],
-                'instructions' => [
-                    'label' => 'Instructions',
-                    'type'  => 'anomaly.field_type.textarea'
-                ]
-            ]
-        )
-            ->setButtons(['cancel']);
-
-        $builder->on(
-            'saving',
-            function (FormBuilder $builder) {
-
-                $form = $builder->getForm();
-
-                $entry = $form->getEntry();
-
-                $form->getFields()->forget('instructions');
-                $form->getFields()->forget('required');
-                $form->getFields()->forget('unique');
-
-                $entry->namespace = 'users';
-            }
-        );
-
-        $builder->on(
-            'saved',
-            function (FormBuilder $builder, StreamRepository $streams, AssignmentModel $assignments) {
-
-                $form = $builder->getForm();
-
-                /* @var FieldModel $entry */
-                $entry = $form->getEntry();
-
-                $assignment = $entry->getAssignments()->first();
-
-                if (!$assignment) {
-                    $assignment = $assignments->newInstance();
-                }
-
-                $assignment->stream_id = $streams->findBySlugAndNamespace('users', 'users')->getId();
-                $assignment->field_id  = $entry->getId();
-
-                $assignment->save();
-            }
-        );
-
-        return $builder->render();
+        return $form->render();
     }
 
     /**
      * Return a form for an existing field.
      *
-     * @param FormBuilder $builder
-     * @param             $id
+     * @param FieldFormBuilder $form
+     * @param                  $id
      * @return \Illuminate\View\View|\Symfony\Component\HttpFoundation\Response
      */
-    public function edit(FormBuilder $builder, $id)
+    public function edit(FieldFormBuilder $form, $id)
     {
-        return $builder->render($id);
+        return $form->render($id);
     }
 }
