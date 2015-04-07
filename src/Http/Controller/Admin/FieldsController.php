@@ -79,6 +79,16 @@ class FieldsController extends AdminController
     {
         $builder->setModel(new FieldModel());
 
+        $builder->addAction(
+            'save_and_configure',
+            [
+                'button'   => 'green',
+                'icon'     => 'fa fa-cogs',
+                'text'     => 'Save & Configure',
+                'redirect' => 'admin/users/fields/configure/{entry.id}'
+            ]
+        );
+
         $builder->setFields(
             [
                 'type'         => [
@@ -132,9 +142,11 @@ class FieldsController extends AdminController
         )
             ->setButtons(['cancel']);
 
-        $builder->getForm()->on(
+        $builder->on(
             'saving',
-            function (Form $form) {
+            function (FormBuilder $builder) {
+
+                $form = $builder->getForm();
 
                 $entry = $form->getEntry();
 
@@ -146,9 +158,11 @@ class FieldsController extends AdminController
             }
         );
 
-        $builder->getForm()->on(
+        $builder->on(
             'saved',
-            function (Form $form, StreamRepository $streams, AssignmentModel $assignments) {
+            function (FormBuilder $builder, StreamRepository $streams, AssignmentModel $assignments) {
+
+                $form = $builder->getForm();
 
                 /* @var FieldModel $entry */
                 $entry = $form->getEntry();
