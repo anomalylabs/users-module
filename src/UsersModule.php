@@ -28,12 +28,20 @@ class UsersModule extends Module
     protected $sections = [
         'users'  => [
             'buttons' => [
-                'new_user'
+                'new_user' => [
+                    'attributes' => [
+                        'href'  => 'admin/users/create'
+                    ]
+                ]
             ]
         ],
         'roles'  => [
             'buttons' => [
-                'new_role'
+                'new_role' => [
+                    'attributes' => [
+                        'href'  => 'admin/users/roles/create'
+                    ]
+                ]
             ]
         ],
         'fields' => [
