@@ -10,9 +10,9 @@ return [
         'label'        => 'Activation Mode',
         'instructions' => 'How should users be activated after they register?',
         'option'       => [
-            'manual'    => 'MANUAL: Require an administrator to manually activate the user',
-            'email'     => 'EMAIL: Send an activation confirmation email to the user',
-            'automatic' => 'AUTOMATIC: Automatically activate the user after they register'
+            'manual'    => 'Require an administrator to manually activate the user',
+            'email'     => 'Send an activation confirmation email to the user',
+            'automatic' => 'Automatically activate the user after they register'
         ]
     ],
     'profile_visibility' => [
