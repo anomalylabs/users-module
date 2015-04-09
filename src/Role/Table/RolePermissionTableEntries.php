@@ -2,7 +2,6 @@
 
 use Anomaly\Streams\Platform\Addon\Addon;
 use Anomaly\Streams\Platform\Addon\Module\ModuleCollection;
-use Anomaly\Streams\Platform\Ui\Table\Table;
 use Illuminate\Support\Collection;
 
 /**
@@ -36,15 +35,15 @@ class RolePermissionTableEntries
     /**
      * Return the table entries.
      *
-     * @param Table $table
+     * @param RolePermissionTableBuilder $builder
      */
-    public function handle(Table $table)
+    public function handle(RolePermissionTableBuilder $builder)
     {
         $entries = new Collection();
 
         $this->loadPermissions($entries, 'modules');
 
-        $table->setEntries($entries);
+        $builder->setTableEntries($entries);
     }
 
     /**

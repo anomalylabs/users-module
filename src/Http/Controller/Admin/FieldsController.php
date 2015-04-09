@@ -1,7 +1,7 @@
 <?php namespace Anomaly\UsersModule\Http\Controller\Admin;
 
-use Anomaly\Streams\Platform\Assignment\Table\AssignmentTableBuilder;
-use Anomaly\Streams\Platform\Field\Form\FieldFormBuilder;
+use Anomaly\Streams\Platform\Field\Form\FieldAssignmentFormBuilder;
+use Anomaly\Streams\Platform\Field\Table\FieldAssignmentTableBuilder;
 use Anomaly\Streams\Platform\Http\Controller\AdminController;
 
 /**
@@ -18,10 +18,10 @@ class FieldsController extends AdminController
     /**
      * Return an index of existing assignments.
      *
-     * @param AssignmentTableBuilder $table
+     * @param FieldAssignmentTableBuilder $table
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function index(AssignmentTableBuilder $table)
+    public function index(FieldAssignmentTableBuilder $table)
     {
         return $table
             ->setOption('stream', 'users')
@@ -33,11 +33,11 @@ class FieldsController extends AdminController
     /**
      * Return a form for a new field.
      *
-     * @param FieldFormBuilder $form
-     * @param                  $type
+     * @param FieldAssignmentFormBuilder $form
+     * @param                            $type
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function create(FieldFormBuilder $form, $type)
+    public function create(FieldAssignmentFormBuilder $form, $type)
     {
         return $form->setOption('field_type', $type)->render();
     }
@@ -45,11 +45,11 @@ class FieldsController extends AdminController
     /**
      * Return a form for an existing field.
      *
-     * @param FieldFormBuilder $form
-     * @param                  $id
+     * @param FieldAssignmentFormBuilder $form
+     * @param                            $id
      * @return \Illuminate\View\View|\Symfony\Component\HttpFoundation\Response
      */
-    public function edit(FieldFormBuilder $form, $id)
+    public function edit(FieldAssignmentFormBuilder $form, $id)
     {
         return $form->render($id);
     }
