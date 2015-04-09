@@ -53,7 +53,11 @@ class FieldsController extends AdminController
             return $redirect->to('admin/users/fields/create/' . $type->getNamespace());
         }
 
-        return $form->setOption('field_type', $type)->render();
+        return $form
+            ->setOption('stream', 'users')
+            ->setOption('namespace', 'users')
+            ->setOption('field_type', $type)
+            ->render();
     }
 
     /**
