@@ -1,8 +1,8 @@
 <?php namespace Anomaly\UsersModule\Http\Controller\Admin;
 
 use Anomaly\Streams\Platform\Addon\FieldType\FieldTypeCollection;
+use Anomaly\Streams\Platform\Assignment\Table\AssignmentTableBuilder;
 use Anomaly\Streams\Platform\Field\Form\FieldAssignmentFormBuilder;
-use Anomaly\Streams\Platform\Field\Table\FieldAssignmentTableBuilder;
 use Anomaly\Streams\Platform\Http\Controller\AdminController;
 use Illuminate\Routing\Redirector;
 
@@ -20,10 +20,10 @@ class FieldsController extends AdminController
     /**
      * Return an index of existing assignments.
      *
-     * @param FieldAssignmentTableBuilder $table
+     * @param AssignmentTableBuilder $table
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function index(FieldAssignmentTableBuilder $table)
+    public function index(AssignmentTableBuilder $table)
     {
         return $table
             ->setOption('stream', 'users')
