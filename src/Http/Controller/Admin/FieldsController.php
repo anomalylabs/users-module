@@ -1,10 +1,12 @@
 <?php namespace Anomaly\UsersModule\Http\Controller\Admin;
 
-use Anomaly\Streams\Platform\Addon\FieldType\FieldTypeCollection;
+use Anomaly\Streams\Platform\Assignment\Contract\AssignmentRepositoryInterface;
+use Anomaly\Streams\Platform\Assignment\Form\AssignmentFormBuilder;
 use Anomaly\Streams\Platform\Assignment\Table\AssignmentTableBuilder;
 use Anomaly\Streams\Platform\Field\Form\FieldAssignmentFormBuilder;
+use Anomaly\Streams\Platform\Field\Form\FieldFormBuilder;
 use Anomaly\Streams\Platform\Http\Controller\AdminController;
-use Illuminate\Routing\Redirector;
+use Anomaly\UsersModule\User\UserModel;
 
 /**
  * Class FieldsController
@@ -23,52 +25,67 @@ class FieldsController extends AdminController
      * @param AssignmentTableBuilder $table
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function index(AssignmentTableBuilder $table)
+    public function index(AssignmentTableBuilder $table, UserModel $users)
     {
         return $table
-            ->setOption('stream', 'users')
-            ->setOption('namespace', 'users')
+            ->setOption('stream', $users)
             ->setOption('skip', config('anomaly.module.users::config.protected_fields'))
             ->render();
     }
 
     /**
-     * Return a form for a new field.
+     * Return a form for a new field assignment.
      *
      * @param FieldAssignmentFormBuilder $form
-     * @param FieldTypeCollection        $fieldTypes
-     * @param Redirector                 $redirect
+     * @param FieldFormBuilder           $fieldForm
+     * @param AssignmentFormBuilder      $assignmentForm
+     * @param UserModel                  $users
      * @param null                       $type
-     * @return \Illuminate\Http\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function create(
         FieldAssignmentFormBuilder $form,
-        FieldTypeCollection $fieldTypes,
-        Redirector $redirect,
+        FieldFormBuilder $fieldForm,
+        AssignmentFormBuilder $assignmentForm,
+        UserModel $users,
         $type = null
     ) {
-
-        // If no type is passed, use the text field type.
-        if (!$type && $type = $fieldTypes->findBySlug('text')) {
-            return $redirect->to('admin/users/fields/create/' . $type->getNamespace());
-        }
+        $fieldForm->setOption('field_type', $type);
 
         return $form
-            ->setOption('stream', 'users')
-            ->setOption('namespace', 'users')
+            ->setOption('stream', $users)
             ->setOption('field_type', $type)
+            ->addForm('field', $fieldForm)
+            ->addForm('assignment', $assignmentForm)
             ->render();
     }
 
     /**
      * Return a form for an existing field.
      *
-     * @param FieldAssignmentFormBuilder $form
-     * @param                            $id
-     * @return \Illuminate\View\View|\Symfony\Component\HttpFoundation\Response
+     * @param FieldAssignmentFormBuilder    $form
+     * @param FieldFormBuilder              $fieldForm
+     * @param AssignmentFormBuilder         $assignmentForm
+     * @param AssignmentRepositoryInterface $assignments
+     * @param                               $id
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function edit(FieldAssignmentFormBuilder $form, $id)
-    {
-        return $form->render($id);
+    public function edit(
+        FieldAssignmentFormBuilder $form,
+        FieldFormBuilder $fieldForm,
+        AssignmentFormBuilder $assignmentForm,
+        AssignmentRepositoryInterface $assignments,
+        $id
+    ) {
+        $assignment = $assignments->find($id);
+        $field      = $assignment->getField();
+
+
+        return $form
+            ->setOption('stream', 'users')
+            ->setOption('namespace', 'users')
+            ->addForm('field', $fieldForm->setEntry($field->getId()))
+            ->addForm('assignment', $assignmentForm->setEntry($assignment->getId()))
+            ->render();
     }
 }
