@@ -53,7 +53,7 @@ class FieldsController extends AdminController
         $fieldForm->setOption('field_type', $type);
 
         return $form
-            ->setOption('stream', $users)
+            ->setOption('stream', $users->getStream())
             ->setOption('field_type', $type)
             ->addForm('field', $fieldForm)
             ->addForm('assignment', $assignmentForm)
@@ -75,6 +75,7 @@ class FieldsController extends AdminController
         FieldFormBuilder $fieldForm,
         AssignmentFormBuilder $assignmentForm,
         AssignmentRepositoryInterface $assignments,
+        UserModel $users,
         $id
     ) {
         $assignment = $assignments->find($id);
@@ -82,7 +83,7 @@ class FieldsController extends AdminController
 
 
         return $form
-            ->setOption('stream', 'users')
+            ->setOption('stream', $users->getStream())
             ->setOption('namespace', 'users')
             ->addForm('field', $fieldForm->setEntry($field->getId()))
             ->addForm('assignment', $assignmentForm->setEntry($assignment->getId()))
