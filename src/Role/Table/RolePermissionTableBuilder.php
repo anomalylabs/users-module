@@ -47,6 +47,25 @@ class RolePermissionTableBuilder extends TableBuilder
     ];
 
     /**
+     * The table assets.
+     *
+     * @var array
+     */
+    protected $assets = [
+        'scripts.js' => 'module::js/permissions.js',
+        'styles.css' => 'module::less/permissions.less'
+    ];
+
+    /**
+     * The options array.
+     *
+     * @var array
+     */
+    protected $options = [
+        'breadcrumb' => 'Permissions'
+    ];
+
+    /**
      * Create a new RolePermissionTableBuilder instance.
      *
      * @param Table   $table
@@ -56,28 +75,25 @@ class RolePermissionTableBuilder extends TableBuilder
      */
     public function __construct(Table $table, Request $request, Asset $asset, RoleRepositoryInterface $roles)
     {
-        $asset->add('scripts.js', 'module::js/permissions.js');
-        $asset->add('styles.css', 'module::less/permissions.less');
-
         $role = $roles->find($request->segment(5));
 
         if ($role && $role->getSlug() == 'admin') {
             abort(403, trans('module::message.edit_admin_error'));
         }
 
-        $table->setOption('subject', $role);
-        $table->setOption('attributes', ['id' => 'permissions']);
-        $table->setOption('class', 'table striped align-top');
-        $table->setOption('permission', 'anomaly.module.users::roles.permissions');
+        $this->setOption('subject', $role);
+        $this->setOption('attributes', ['id' => 'permissions']);
+        $this->setOption('class', 'table striped align-top');
+        $this->setOption('permission', 'anomaly.module.users::roles.permissions');
 
-        $table->setOption(
+        $this->setOption(
             'title',
             trans(
                 'module::meta.edit_role_permissions',
                 ['slug' => $role->getSlug()]
             )
         );
-        $table->setOption(
+        $this->setOption(
             'description',
             trans(
                 'module::meta.edit_role_permissions_information',
