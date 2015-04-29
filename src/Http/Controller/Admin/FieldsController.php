@@ -1,7 +1,5 @@
 <?php namespace Anomaly\UsersModule\Http\Controller\Admin;
 
-use Anomaly\Streams\Platform\Assignment\Contract\AssignmentRepositoryInterface;
-use Anomaly\Streams\Platform\Assignment\Form\AssignmentFormBuilder;
 use Anomaly\Streams\Platform\Assignment\Table\AssignmentTableBuilder;
 use Anomaly\Streams\Platform\Field\Form\FieldAssignmentFormBuilder;
 use Anomaly\Streams\Platform\Field\Form\FieldFormBuilder;
@@ -25,68 +23,41 @@ class FieldsController extends AdminController
      * @param AssignmentTableBuilder $table
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function index(AssignmentTableBuilder $table, UserModel $users)
+    public function index(AssignmentTableBuilder $table, UserModel $model)
     {
         return $table
-            ->setOption('stream', $users)
+            ->setStream($model->getStream())
             ->setOption('skip', config('anomaly.module.users::config.protected_fields'))
             ->render();
     }
 
     /**
-     * Return a form for a new field assignment.
+     * Return a form to create a new field.
      *
-     * @param FieldAssignmentFormBuilder $form
-     * @param FieldFormBuilder           $fieldForm
-     * @param AssignmentFormBuilder      $assignmentForm
-     * @param UserModel                  $users
-     * @param null                       $type
+     * @param FieldFormBuilder $form
+     * @param UserModel        $model
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function create(
-        FieldAssignmentFormBuilder $form,
-        FieldFormBuilder $fieldForm,
-        AssignmentFormBuilder $assignmentForm,
-        UserModel $users,
-        $type = null
-    ) {
-        $fieldForm->setOption('field_type', $type);
-
+    public function create(FieldFormBuilder $form, UserModel $model)
+    {
         return $form
-            ->setOption('stream', $users->getStream())
-            ->setOption('field_type', $type)
-            ->addForm('field', $fieldForm)
-            ->addForm('assignment', $assignmentForm)
+            ->setStream($model->getStream())
+            ->setOption('assign_field', true)
             ->render();
     }
 
     /**
-     * Return a form for an existing field.
+     * Return a form to edit the field.
      *
-     * @param FieldAssignmentFormBuilder    $form
-     * @param FieldFormBuilder              $fieldForm
-     * @param AssignmentFormBuilder         $assignmentForm
-     * @param AssignmentRepositoryInterface $assignments
-     * @param                               $id
+     * @param FieldFormBuilder $form
+     * @param UserModel        $model
+     * @param                  $id
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function edit(
-        FieldAssignmentFormBuilder $form,
-        FieldFormBuilder $fieldForm,
-        AssignmentFormBuilder $assignmentForm,
-        AssignmentRepositoryInterface $assignments,
-        UserModel $users,
-        $id
-    ) {
-        $assignment = $assignments->find($id);
-        $field      = $assignment->getField();
-
-
+    public function edit(FieldFormBuilder $form, UserModel $model, $id)
+    {
         return $form
-            ->setOption('stream', $users->getStream())
-            ->setOption('namespace', 'users')
-            ->addForm('field', $fieldForm->setEntry($field->getId()))
-            ->addForm('assignment', $assignmentForm->setEntry($assignment->getId()))
-            ->render();
+            ->setStream($model->getStream())
+            ->render($id);
     }
 }
