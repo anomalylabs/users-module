@@ -27,6 +27,14 @@ class FieldsController extends AdminController
     {
         return $table
             ->setStream($model->getStream())
+            ->setButtons(
+                [
+                    [
+                        'button' => 'edit',
+                        'href'   => 'admin/users/fields/edit/{entry.field_id}'
+                    ]
+                ]
+            )
             ->setOption('skip', config('anomaly.module.users::config.protected_fields'))
             ->render();
     }
