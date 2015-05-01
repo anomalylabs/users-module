@@ -50,7 +50,7 @@ class FieldsController extends AdminController
     {
         return $form
             ->setStream($model->getStream())
-            ->setOption('assign_field', true)
+            ->setOption('auto_assign', true)
             ->render();
     }
 

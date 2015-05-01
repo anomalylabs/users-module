@@ -184,9 +184,9 @@ class UsersController extends AdminController
     /**
      * Log a user out.
      *
-     * @param UserRepository          $users
-     * @param                         $id
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @param Authenticator $authenticator
+     * @param               $id
+     * @return \Illuminate\Http\RedirectResponse|Redirector
      */
     public function logout(Authenticator $authenticator, $id)
     {
