@@ -112,15 +112,22 @@ class UsersController extends AdminController
     }
 
     /**
-     * Manage permissions for a role.
+     * Manage permissions for a user.
      *
      * @param UserPermissionTableBuilder $table
+     * @param UserRepositoryInterface    $users
      * @param                            $id
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|\Illuminate\View\View|\Symfony\Component\HttpFoundation\Response
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function permissions(UserPermissionTableBuilder $table, $id)
+    public function permissions(UserPermissionTableBuilder $table, UserRepositoryInterface $users, $id)
     {
-        $table->setTableOption('user_id', $id);
+        $user = $users->find($id);
+
+        if ($user && $user->hasRole('admin')) {
+            abort(403, trans('module::message.edit_admin_error'));
+        }
+
+        $table->setUser($user);
 
         return $table->render();
     }

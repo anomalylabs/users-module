@@ -1,10 +1,7 @@
 <?php namespace Anomaly\UsersModule\User\Table;
 
-use Anomaly\Streams\Platform\Asset\Asset;
-use Anomaly\Streams\Platform\Ui\Table\Table;
 use Anomaly\Streams\Platform\Ui\Table\TableBuilder;
-use Anomaly\UsersModule\User\Contract\UserRepositoryInterface;
-use Illuminate\Http\Request;
+use Anomaly\UsersModule\User\Contract\UserInterface;
 
 /**
  * Class UserPermissionTableBuilder
@@ -16,6 +13,13 @@ use Illuminate\Http\Request;
  */
 class UserPermissionTableBuilder extends TableBuilder
 {
+
+    /**
+     * The user instance.
+     *
+     * @var null|UserInterface
+     */
+    protected $user = null;
 
     /**
      * The table actions.
@@ -47,44 +51,47 @@ class UserPermissionTableBuilder extends TableBuilder
     ];
 
     /**
-     * Create a new UserPermissionTableBuilder instance.
+     * The table assets.
      *
-     * @param Table   $table
-     * @param Request $request
-     * @param Asset   $asset
-     * @throws \Exception
+     * @var array
      */
-    public function __construct(Table $table, Request $request, Asset $asset, UserRepositoryInterface $users)
+    protected $assets = [
+        'scripts.js' => 'module::js/permissions.js'
+    ];
+
+    /**
+     * The options array.
+     *
+     * @var array
+     */
+    protected $options = [
+        'breadcrumb' => 'Permissions',
+        'class'      => 'table striped align-top',
+        'permission' => 'anomaly.module.users::roles.permissions'
+    ];
+
+    /**
+     * Get the user.
+     *
+     * @return UserInterface|null
+     */
+    public function getUser()
     {
-        $asset->add('scripts.js', 'module::js/permissions.js');
-        $asset->add('styles.css', 'module::less/permissions.less');
+        return $this->user;
+    }
 
-        $user = $users->find($request->segment(4));
+    /**
+     * Set the user.
+     *
+     * @param UserInterface $user
+     * @return $this
+     */
+    public function setUser(UserInterface $user)
+    {
+        $this->user = $user;
 
-        if ($user && $user->hasRole('admin')) {
-            abort(403, trans('module::message.edit_admin_error'));
-        }
+        $this->setOption('subject', $user);
 
-        $table->setOption('subject', $user);
-        $table->setOption('class', 'table striped align-top');
-        $table->setOption('attributes', ['id' => 'permissions']);
-        $table->setOption('permission', 'anomaly.module.users::users.permissions');
-
-        $table->setOption(
-            'title',
-            trans(
-                'module::meta.edit_user_permissions',
-                ['username' => $user->getUsername(), 'email' => $user->getEmail()]
-            )
-        );
-        $table->setOption(
-            'information',
-            trans(
-                'module::meta.edit_user_permissions_information',
-                ['username' => $user->getUsername(), 'roles' => implode(', ', $user->getRoles()->lists('slug'))]
-            )
-        );
-
-        parent::__construct($table);
+        return $this;
     }
 }

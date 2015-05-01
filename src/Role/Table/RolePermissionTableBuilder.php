@@ -1,10 +1,7 @@
 <?php namespace Anomaly\UsersModule\Role\Table;
 
-use Anomaly\Streams\Platform\Asset\Asset;
-use Anomaly\Streams\Platform\Ui\Table\Table;
 use Anomaly\Streams\Platform\Ui\Table\TableBuilder;
-use Anomaly\UsersModule\Role\Contract\RoleRepositoryInterface;
-use Illuminate\Http\Request;
+use Anomaly\UsersModule\Role\Contract\RoleInterface;
 
 /**
  * Class RolePermissionTableBuilder
@@ -16,6 +13,13 @@ use Illuminate\Http\Request;
  */
 class RolePermissionTableBuilder extends TableBuilder
 {
+
+    /**
+     * The role instance.
+     *
+     * @var null|RoleInterface
+     */
+    protected $role = null;
 
     /**
      * The table actions.
@@ -52,8 +56,7 @@ class RolePermissionTableBuilder extends TableBuilder
      * @var array
      */
     protected $assets = [
-        'scripts.js' => 'module::js/permissions.js',
-        'styles.css' => 'module::less/permissions.less'
+        'scripts.js' => 'module::js/permissions.js'
     ];
 
     /**
@@ -62,45 +65,33 @@ class RolePermissionTableBuilder extends TableBuilder
      * @var array
      */
     protected $options = [
-        'breadcrumb' => 'Permissions'
+        'breadcrumb' => 'Permissions',
+        'class'      => 'table striped align-top',
+        'permission' => 'anomaly.module.users::roles.permissions'
     ];
 
     /**
-     * Create a new RolePermissionTableBuilder instance.
+     * Get the role.
      *
-     * @param Table   $table
-     * @param Request $request
-     * @param Asset   $asset
-     * @throws \Exception
+     * @return RoleInterface|null
      */
-    public function __construct(Table $table, Request $request, Asset $asset, RoleRepositoryInterface $roles)
+    public function getRole()
     {
-        $role = $roles->find($request->segment(5));
+        return $this->role;
+    }
 
-        if ($role && $role->getSlug() == 'admin') {
-            abort(403, trans('module::message.edit_admin_error'));
-        }
+    /**
+     * Set the role.
+     *
+     * @param RoleInterface $role
+     * @return $this
+     */
+    public function setRole(RoleInterface $role)
+    {
+        $this->role = $role;
 
         $this->setOption('subject', $role);
-        $this->setOption('attributes', ['id' => 'permissions']);
-        $this->setOption('class', 'table striped align-top');
-        $this->setOption('permission', 'anomaly.module.users::roles.permissions');
 
-        $this->setOption(
-            'title',
-            trans(
-                'module::meta.edit_role_permissions',
-                ['slug' => $role->getSlug()]
-            )
-        );
-        $this->setOption(
-            'description',
-            trans(
-                'module::meta.edit_role_permissions_information',
-                ['slug' => $role->getSlug()]
-            )
-        );
-
-        parent::__construct($table);
+        return $this;
     }
 }

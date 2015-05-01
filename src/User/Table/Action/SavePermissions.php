@@ -1,10 +1,10 @@
 <?php namespace Anomaly\UsersModule\User\Table\Action;
 
 use Anomaly\Streams\Platform\Ui\Table\Component\Action\ActionHandler;
-use Anomaly\Streams\Platform\Ui\Table\Table;
-use Anomaly\UsersModule\User\Contract\UserInterface;
 use Anomaly\UsersModule\User\Contract\UserRepositoryInterface;
+use Anomaly\UsersModule\User\Table\UserPermissionTableBuilder;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Redirector;
 
 /**
  * Class SavePermissions
@@ -20,18 +20,22 @@ class SavePermissions extends ActionHandler
     /**
      * Handle the action.
      *
-     * @param Table                   $table
-     * @param UserRepositoryInterface $users
-     * @param Request                 $request
+     * @param UserPermissionTableBuilder $builder
+     * @param UserRepositoryInterface    $users
+     * @param Redirector                 $redirector
+     * @param Request                    $request
      */
-    public function handle(Table $table, UserRepositoryInterface $users, Request $request)
-    {
-        /* @var UserInterface $user */
-        $user = $table->getOption('subject');
+    public function handle(
+        UserPermissionTableBuilder $builder,
+        UserRepositoryInterface $users,
+        Redirector $redirector,
+        Request $request
+    ) {
+        $user = $builder->getUser();
 
         $users->updatePermissions($user, array_get($_POST, 'permission', []));
 
-        $table->setResponse(redirect($request->fullUrl()));
+        $builder->setTableResponse($redirector->to($request->fullUrl()));
 
         $this->messages->success(
             trans('module::message.save_user_permissions_success', ['username' => $user->getUsername()])
