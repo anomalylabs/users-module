@@ -1,8 +1,6 @@
 <?php
 
 return [
-    'control_panel',
-    'profile_fields',
     'settings',
     'users' => [
         'read',
