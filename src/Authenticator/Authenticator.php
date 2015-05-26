@@ -68,9 +68,9 @@ class Authenticator
 
             if ($user instanceof UserInterface) {
 
-                $this->events->fire(new UserWasLoggedIn($user));
-
                 $this->guard->login($user); // Gotta do this for some reason..
+
+                $this->events->fire(new UserWasLoggedIn($user));
 
                 return $user;
             }

@@ -102,4 +102,18 @@ interface UserRepositoryInterface
      * @return UserInterface
      */
     public function updatePermissions(UserInterface $user, array $permissions);
+
+    /**
+     * Touch a user's last activity and IP.
+     *
+     * @param UserInterface $user
+     */
+    public function touchLastActivity(UserInterface $user);
+
+    /**
+     * Touch a user's last login.
+     *
+     * @param UserInterface $user
+     */
+    public function touchLastLogin(UserInterface $user);
 }

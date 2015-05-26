@@ -23,6 +23,20 @@ class UsersModuleServiceProvider extends AddonServiceProvider
     ];
 
     /**
+     * The addon event listeners.
+     *
+     * @var array
+     */
+    protected $listeners = [
+        'Anomaly\UsersModule\User\Event\UserWasLoggedIn'                  => [
+            'Anomaly\UsersModule\User\Listener\TouchLastLogin'
+        ],
+        'Anomaly\Streams\Platform\Application\Event\ApplicationHasLoaded' => [
+            'Anomaly\UsersModule\User\Listener\TouchLastActivity'
+        ]
+    ];
+
+    /**
      * The class bindings.
      *
      * @var array

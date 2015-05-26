@@ -2,6 +2,8 @@
 
 use Anomaly\UsersModule\Role\Contract\RoleInterface;
 use Anomaly\UsersModule\User\Contract\UserInterface;
+use Anomaly\UsersModule\User\Contract\UserRepositoryInterface;
+use Carbon\Carbon;
 
 /**
  * Class UserRepository
@@ -11,13 +13,13 @@ use Anomaly\UsersModule\User\Contract\UserInterface;
  * @author        Ryan Thompson <ryan@anomaly.is>
  * @package       Anomaly\UsersModule\User
  */
-class UserRepository implements \Anomaly\UsersModule\User\Contract\UserRepositoryInterface
+class UserRepository implements UserRepositoryInterface
 {
 
     /**
      * The user model.
      *
-     * @var UserInterfaceModel
+     * @var UserModel
      */
     protected $model;
 
@@ -201,5 +203,30 @@ class UserRepository implements \Anomaly\UsersModule\User\Contract\UserRepositor
         $user->save();
 
         return $user;
+    }
+
+    /**
+     * Touch a user's last activity and IP.
+     *
+     * @param UserInterface $user
+     */
+    public function touchLastActivity(UserInterface $user)
+    {
+        $user->last_activity_at = (new Carbon())->now()->toDateTimeString();
+        $user->ip_address       = $_SERVER['REMOTE_ADDR'];
+
+        $user->save();
+    }
+
+    /**
+     * Touch a user's last login.
+     *
+     * @param UserInterface $user
+     */
+    public function touchLastLogin(UserInterface $user)
+    {
+        $user->last_login_at = (new Carbon())->now()->toDateTimeString();
+
+        $user->save();
     }
 }
