@@ -212,7 +212,7 @@ class UserRepository implements UserRepositoryInterface
      */
     public function touchLastActivity(UserInterface $user)
     {
-        $user->last_activity_at = (new Carbon())->now()->toDateTimeString();
+        $user->last_activity_at = time();
         $user->ip_address       = $_SERVER['REMOTE_ADDR'];
 
         $user->save();
@@ -225,7 +225,7 @@ class UserRepository implements UserRepositoryInterface
      */
     public function touchLastLogin(UserInterface $user)
     {
-        $user->last_login_at = (new Carbon())->now()->toDateTimeString();
+        $user->last_login_at = time();
 
         $user->save();
     }
