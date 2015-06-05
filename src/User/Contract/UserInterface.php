@@ -50,6 +50,27 @@ interface UserInterface
     public function getDisplayName();
 
     /**
+     * Get the first name.
+     *
+     * @return string
+     */
+    public function getFirstName();
+
+    /**
+     * Get the last name.
+     *
+     * @return string
+     */
+    public function getLastName();
+
+    /**
+     * Get the name.
+     *
+     * @return string
+     */
+    public function name();
+
+    /**
      * Get the activated flag.
      *
      * @return bool

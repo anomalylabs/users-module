@@ -51,6 +51,36 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, \Illumina
     }
 
     /**
+     * Get the first name.
+     *
+     * @return string
+     */
+    public function getFirstName()
+    {
+        return $this->first_name;
+    }
+
+    /**
+     * Get the last name.
+     *
+     * @return string
+     */
+    public function getLastName()
+    {
+        return $this->last_name;
+    }
+
+    /**
+     * Get the name.
+     *
+     * @return string
+     */
+    public function name()
+    {
+        return implode(' ', array_filter([$this->getFirstName(), $this->getLastName()]));
+    }
+
+    /**
      * Get the activated flag.
      *
      * @return bool
