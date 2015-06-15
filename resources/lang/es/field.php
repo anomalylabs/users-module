@@ -32,31 +32,31 @@ return [
         'placeholder'  => 'example@domain.com'
     ],
     'password'     => [
-        'name'         => 'Password',
-        'instructions' => 'Enter a secure login password for the user.'
+        'name'         => 'Contraseña',
+        'instructions' => 'Ingrese una contraseña para el usuario.'
     ],
     'slug'         => [
         'name'         => 'Slug',
-        'instructions' => 'Enter the role\'s slug. This is primarily used behind the scenes and must be unique across all roles.',
+        'instructions' => 'Ingrese el Slug del role, internamente se utiliza y debe ser único entre todos los roles.',
         'placeholder'  => 'editor'
     ],
     'roles'        => [
         'name'         => 'Roles',
-        'count'        => ':count role(s)',
-        'instructions' => 'Choose the roles to attach to this user.'
+        'count'        => ':count rol(s)',
+        'instructions' => 'Escoja los roles para asignarle al usuario.'
     ],
     'permissions'  => [
-        'name'  => 'Permissions',
-        'count' => ':count permission(s)'
+        'name'  => 'Permisos',
+        'count' => ':count permiso(s)'
     ],
     'activated'    => [
-        'name'          => 'Activated',
-        'activated'     => 'Activated',
-        'not_activated' => 'Not Activated'
+        'name'          => 'Activado',
+        'activated'     => 'Activado',
+        'not_activated' => 'No activado'
     ],
     'blocked'      => [
-        'name'    => 'Blocked',
-        'blocked' => 'Blocked'
+        'name'    => 'Bloqueado',
+        'blocked' => 'Bloqueado'
     ],
     'website'      => [
         'name' => 'Website'

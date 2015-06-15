@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'remember_me' => 'Remember me'
+    'remember_me' => 'Recordarme'
 ];

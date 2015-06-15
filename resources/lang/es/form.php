@@ -3,6 +3,6 @@
 return [
     'tab' => [
         'general'        => 'General',
-        'profile_fields' => 'Profile Fields'
+        'profile_fields' => 'Campos del perfil'
     ]
 ];
