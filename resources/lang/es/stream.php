@@ -2,7 +2,7 @@
 
 return [
     'users' => [
-        'name' => 'Users'
+        'name' => 'Usuarios'
     ],
     'roles' => [
         'name' => 'Roles'

@@ -1,20 +1,20 @@
 <?php
 
 return [
-    'create'   => 'Create',
-    'read'     => 'Read',
-    'edit'     => 'Edit',
-    'delete'   => 'Delete',
-    'settings' => 'Module settings',
+    'create'   => 'Crear',
+    'read'     => 'Leer',
+    'edit'     => 'Editar',
+    'delete'   => 'Eliminar',
+    'settings' => 'Configuración del módulo',
     'users'    => [
-        'label'       => 'User Management',
-        'permissions' => 'Permissions',
-        'activate'    => 'Activate',
-        'unblock'     => 'Unblock',
-        'block'       => 'Block'
+        'label'       => 'Administración de usuarios',
+        'permissions' => 'Permisos',
+        'activate'    => 'Activar',
+        'unblock'     => 'Desbloquear',
+        'block'       => 'Bloquear'
     ],
     'roles'    => [
-        'label'       => 'Role Management',
-        'permissions' => 'Permissions'
+        'label'       => 'Administración de roles',
+        'permissions' => 'Permisos'
     ]
 ];

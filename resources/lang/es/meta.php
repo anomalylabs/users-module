@@ -1,8 +1,8 @@
 <?php
 
 return [
-    'edit_user_permissions'             => 'Edit user permissions for ":username" <<a href="mailto::email">:email</a>>.',
-    'edit_user_permissions_description' => 'Permissions granted on this screen will <em>only append</em> permissions granted to the user by the roles attatched to the user. The user <strong>:username</strong> has the following roles: <strong>:roles</strong>',
-    'edit_role_permissions'             => 'Edit permissions for the ":slug" role.',
-    'edit_role_permissions_description' => 'Permissions granted on this screen will apply to all users with the ":slug" role. User specific permissions may append permissions granted on this screen.',
+    'edit_user_permissions'             => 'Editar los permisos para ":username" <<a href="mailto::email">:email</a>>.',
+    'edit_user_permissions_description' => 'Los permisos agragados en esta ventana solo <em>solo se agregan</em> a los permisos agregador al usuario por los roles a los que pertenece. El usuario <strong>:username</strong> tiene los siguientes roles: <strong>:roles</strong>',
+    'edit_role_permissions'             => 'Editar permisos para el role ":slug".',
+    'edit_role_permissions_description' => 'Los permisos agragados en esta ventana solo se asignarán al role ":slug". Los permisos especificos de usuarios se pueden agregar a los presentes en esta ventana.',
 ];

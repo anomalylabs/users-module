@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'status'             => 'Status',
-    'blocked'            => 'Blocked',
-    'pending_activation' => 'Pending Activation'
+    'status'             => 'Estado',
+    'blocked'            => 'Bloqueado',
+    'pending_activation' => 'Pendiente de activación'
 ];
