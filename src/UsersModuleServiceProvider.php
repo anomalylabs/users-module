@@ -32,6 +32,7 @@ class UsersModuleServiceProvider extends AddonServiceProvider
             'Anomaly\UsersModule\User\Listener\TouchLastLogin'
         ],
         'Anomaly\Streams\Platform\Application\Event\ApplicationHasLoaded' => [
+            'Anomaly\UsersModule\Security\Listener\AuthorizeRoute',
             'Anomaly\UsersModule\User\Listener\TouchLastActivity'
         ]
     ];
