@@ -19,7 +19,7 @@ class AnomalyModuleUsers_100_alpha_CreateRolesStream extends Migration
      */
     protected $stream = [
         'slug'         => 'roles',
-        'title_column' => 'name',
+        'title_column' => 'slug',
         'locked'       => true,
         'translatable' => true
     ];
