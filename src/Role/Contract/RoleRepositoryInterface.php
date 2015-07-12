@@ -53,6 +53,14 @@ interface RoleRepositoryInterface
     public function findBySlug($slug);
 
     /**
+     * Find a role by a permission key.
+     *
+     * @param $permission
+     * @return null|RoleInterface
+     */
+    public function findByPermission($permission);
+
+    /**
      * Update permissions for a role.
      *
      * @param RoleInterface $role

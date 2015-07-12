@@ -89,6 +89,23 @@ class RoleRepository implements RoleRepositoryInterface
     }
 
     /**
+     * Find a role by a permission key.
+     *
+     * @param $permission
+     * @return null|RoleInterface
+     */
+    public function findByPermission($permission)
+    {
+        $query = $this->model->newQuery();
+
+        foreach ((array)$permission as $key) {
+            $query->where('permissions', 'LIKE', '%"' . str_replace('*', '%', $key) . '"%');
+        }
+
+        return $query->get();
+    }
+
+    /**
      * Update permissions for a role.
      *
      * @param RoleInterface $role
