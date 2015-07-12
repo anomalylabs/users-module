@@ -1,5 +1,6 @@
 <?php namespace Anomaly\UsersModule\Role\Contract;
 
+use Anomaly\Streams\Platform\Entry\EntryCollection;
 use Illuminate\Support\Collection;
 
 /**
@@ -56,7 +57,7 @@ interface RoleRepositoryInterface
      * Find a role by a permission key.
      *
      * @param $permission
-     * @return null|RoleInterface
+     * @return null|EntryCollection
      */
     public function findByPermission($permission);
 
