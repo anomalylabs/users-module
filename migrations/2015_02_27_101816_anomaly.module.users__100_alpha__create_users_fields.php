@@ -19,7 +19,12 @@ class AnomalyModuleUsers_100_alpha_CreateUsersFields extends Migration
      */
     protected $fields = [
         'email'            => 'anomaly.field_type.email',
-        'username'         => 'anomaly.field_type.text',
+        'username'         => [
+            'type'   => 'anomaly.field_type.slug',
+            'config' => [
+                'type' => '_'
+            ]
+        ],
         'password'         => [
             'type'   => 'anomaly.field_type.text',
             'config' => [
