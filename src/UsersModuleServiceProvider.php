@@ -91,4 +91,13 @@ class UsersModuleServiceProvider extends AddonServiceProvider
         'admin/users/settings'               => 'Anomaly\UsersModule\Http\Controller\Admin\SettingsController@edit'
     ];
 
+    /**
+     * The module middleware.
+     *
+     * @var array
+     */
+    protected $middleware = [
+        'Anomaly\UsersModule\Http\Middleware\AuthorizeModuleAccess'
+    ];
+
 }
