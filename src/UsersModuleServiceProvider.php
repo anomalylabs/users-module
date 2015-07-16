@@ -97,7 +97,8 @@ class UsersModuleServiceProvider extends AddonServiceProvider
      * @var array
      */
     protected $middleware = [
-        'Anomaly\UsersModule\Http\Middleware\AuthorizeModuleAccess'
+        'Anomaly\UsersModule\Http\Middleware\AuthorizeModuleAccess',
+        'Anomaly\UsersModule\Http\Middleware\AuthorizeRoutePermission'
     ];
 
 }
