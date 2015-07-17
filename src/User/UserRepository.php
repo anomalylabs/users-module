@@ -3,7 +3,6 @@
 use Anomaly\UsersModule\Role\Contract\RoleInterface;
 use Anomaly\UsersModule\User\Contract\UserInterface;
 use Anomaly\UsersModule\User\Contract\UserRepositoryInterface;
-use Carbon\Carbon;
 
 /**
  * Class UserRepository
@@ -151,6 +150,17 @@ class UserRepository implements UserRepositoryInterface
         }
 
         return null;
+    }
+
+    /**
+     * Find a user by their email.
+     *
+     * @param $email
+     * @return null|UserInterface
+     */
+    public function findUserByEmail($email)
+    {
+        return $this->model->where('email', $email)->first();
     }
 
     /**

@@ -1,8 +1,10 @@
 <?php namespace Anomaly\UsersModule\Http\Middleware;
 
+use Anomaly\Streams\Platform\Message\MessageBag;
 use Anomaly\Streams\Platform\Support\Authorizer;
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Redirector;
 use Illuminate\Routing\Route;
 
 /**
@@ -24,6 +26,20 @@ class AuthorizeRoutePermission
     protected $route;
 
     /**
+     * The redirect utility.
+     *
+     * @var Redirector
+     */
+    protected $redirect;
+
+    /**
+     * The message bag.
+     *
+     * @var MessageBag
+     */
+    protected $messages;
+
+    /**
      * The authorizer utility.
      *
      * @var Authorizer
@@ -34,11 +50,15 @@ class AuthorizeRoutePermission
      * Create a new AuthorizeModuleAccess instance.
      *
      * @param Route      $route
+     * @param Redirector $redirect
+     * @param MessageBag $messages
      * @param Authorizer $authorizer
      */
-    public function __construct(Route $route, Authorizer $authorizer)
+    public function __construct(Route $route, Redirector $redirect, MessageBag $messages, Authorizer $authorizer)
     {
         $this->route      = $route;
+        $this->redirect   = $redirect;
+        $this->messages   = $messages;
         $this->authorizer = $authorizer;
     }
 
@@ -47,11 +67,20 @@ class AuthorizeRoutePermission
      *
      * @param  Request  $request
      * @param  \Closure $next
-     * @return mixed
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function handle(Request $request, Closure $next)
     {
         if (!$this->authorizer->authorize(array_get($this->route->getAction(), 'anomaly.module.users::permission'))) {
+
+            if ($message = array_get($this->route->getAction(), 'anomaly.module.users::message')) {
+                $this->messages->error($message);
+            }
+
+            if ($redirect = array_get($this->route->getAction(), 'anomaly.module.users::redirect')) {
+                return $this->redirect->to($redirect);
+            }
+
             abort(403);
         }
 

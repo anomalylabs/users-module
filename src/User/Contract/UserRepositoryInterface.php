@@ -70,6 +70,14 @@ interface UserRepositoryInterface
     public function find($id);
 
     /**
+     * Find a user by their email.
+     *
+     * @param $email
+     * @return null|UserInterface
+     */
+    public function findUserByEmail($email);
+
+    /**
      * Find a user by their username.
      *
      * @param $username

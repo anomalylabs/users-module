@@ -88,7 +88,9 @@ class UsersModuleServiceProvider extends AddonServiceProvider
         'admin/users/fields'                 => 'Anomaly\UsersModule\Http\Controller\Admin\FieldsController@index',
         'admin/users/fields/create/{type?}'  => 'Anomaly\UsersModule\Http\Controller\Admin\FieldsController@create',
         'admin/users/fields/edit/{id}'       => 'Anomaly\UsersModule\Http\Controller\Admin\FieldsController@edit',
-        'admin/users/settings'               => 'Anomaly\UsersModule\Http\Controller\Admin\SettingsController@edit'
+        'admin/users/settings'               => 'Anomaly\UsersModule\Http\Controller\Admin\SettingsController@edit',
+        'login'                              => 'Anomaly\UsersModule\Http\Controller\LoginController@login',
+        'logout'                             => 'Anomaly\UsersModule\Http\Controller\LoginController@logout'
     ];
 
     /**
