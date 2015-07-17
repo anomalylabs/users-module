@@ -124,7 +124,7 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, \Illumina
             $roles = $roles->lists('slug');
         }
 
-        return (in_array($role, $roles));
+        return (in_array($role, $roles->all()));
     }
 
     /**

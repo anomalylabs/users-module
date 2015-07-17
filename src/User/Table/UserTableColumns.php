@@ -52,7 +52,7 @@ class UserTableColumns
                     'value'   => function (UserInterface $entry) {
                         if ($roles = $entry->getRoles()) {
                             return '<div class="label label-default"
-                            data-content="' . implode(', ', $roles->lists('name')) . '">
+                            data-content="' . implode(', ', $roles->lists('name')->all()) . '">
                             <i class="fa fa-users"></i> ' . trans(
                                 'module::field.roles.count',
                                 ['count' => count($roles)]
