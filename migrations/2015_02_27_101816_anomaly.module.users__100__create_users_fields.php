@@ -31,6 +31,13 @@ class AnomalyModuleUsers_100_CreateUsersFields extends Migration
                 'type' => 'password'
             ]
         ],
+        'avatar'           => [
+            'type'   => 'anomaly.field_type.file',
+            'config' => [
+                'disk'   => 'public',
+                'folder' => 'Users Module/Avatars'
+            ]
+        ],
         'ip_address'       => 'anomaly.field_type.text',
         'remember_token'   => 'anomaly.field_type.text',
         'last_login_at'    => 'anomaly.field_type.datetime',
