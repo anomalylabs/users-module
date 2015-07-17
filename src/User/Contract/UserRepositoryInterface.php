@@ -1,5 +1,6 @@
 <?php namespace Anomaly\UsersModule\User\Contract;
 
+use Anomaly\Streams\Platform\Entry\Contract\EntryRepositoryInterface;
 use Anomaly\UsersModule\Role\Contract\RoleInterface;
 
 /**
@@ -10,24 +11,8 @@ use Anomaly\UsersModule\Role\Contract\RoleInterface;
  * @author        Ryan Thompson <ryan@anomaly.is>
  * @package       Anomaly\UsersModule\User\Contract
  */
-interface UserRepositoryInterface
+interface UserRepositoryInterface extends EntryRepositoryInterface
 {
-
-    /**
-     * Create a new user.
-     *
-     * @param array $credentials
-     * @return UserInterface
-     */
-    public function create(array $credentials);
-
-    /**
-     * Delete a user.
-     *
-     * @param UserInterface $user
-     * @return UserInterface
-     */
-    public function delete(UserInterface $user);
 
     /**
      * Activate a user.
@@ -62,20 +47,12 @@ interface UserRepositoryInterface
     public function unblock(UserInterface $user);
 
     /**
-     * Find a user.
-     *
-     * @param $id
-     * @return null|UserInterface
-     */
-    public function find($id);
-
-    /**
      * Find a user by their email.
      *
      * @param $email
      * @return null|UserInterface
      */
-    public function findUserByEmail($email);
+    public function findByEmail($email);
 
     /**
      * Find a user by their username.
@@ -83,7 +60,7 @@ interface UserRepositoryInterface
      * @param $username
      * @return null|UserInterface
      */
-    public function findUserByUsername($username);
+    public function findByUsername($username);
 
     /**
      * Find a user by their credentials.

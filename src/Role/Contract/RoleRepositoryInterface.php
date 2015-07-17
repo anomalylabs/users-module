@@ -1,7 +1,7 @@
 <?php namespace Anomaly\UsersModule\Role\Contract;
 
+use Anomaly\Streams\Platform\Entry\Contract\EntryRepositoryInterface;
 use Anomaly\Streams\Platform\Entry\EntryCollection;
-use Illuminate\Support\Collection;
 
 /**
  * Interface RoleRepositoryInterface
@@ -11,39 +11,8 @@ use Illuminate\Support\Collection;
  * @author        Ryan Thompson <ryan@anomaly.is>
  * @package       Anomaly\UsersModule\RoleInterface\Contract
  */
-interface RoleRepositoryInterface
+interface RoleRepositoryInterface extends EntryRepositoryInterface
 {
-
-    /**
-     * Return all roles.
-     *
-     * @return Collection
-     */
-    public function all();
-
-    /**
-     * Create a new role.
-     *
-     * @param array $attributes
-     * @return RoleInterface
-     */
-    public function create(array $attributes);
-
-    /**
-     * Delete a role.
-     *
-     * @param RoleInterface $role
-     * @return RoleInterface
-     */
-    public function delete(RoleInterface $role);
-
-    /**
-     * Find a role.
-     *
-     * @param $id
-     * @return null|RoleInterface
-     */
-    public function find($id);
 
     /**
      * Find a role by it's slug.

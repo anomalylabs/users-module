@@ -1,5 +1,6 @@
 <?php namespace Anomaly\UsersModule\User;
 
+use Anomaly\Streams\Platform\Entry\EntryRepository;
 use Anomaly\UsersModule\Role\Contract\RoleInterface;
 use Anomaly\UsersModule\User\Contract\UserInterface;
 use Anomaly\UsersModule\User\Contract\UserRepositoryInterface;
@@ -12,7 +13,7 @@ use Anomaly\UsersModule\User\Contract\UserRepositoryInterface;
  * @author        Ryan Thompson <ryan@anomaly.is>
  * @package       Anomaly\UsersModule\User
  */
-class UserRepository implements UserRepositoryInterface
+class UserRepository extends EntryRepository implements UserRepositoryInterface
 {
 
     /**
@@ -30,38 +31,6 @@ class UserRepository implements UserRepositoryInterface
     function __construct(UserModel $model)
     {
         $this->model = $model;
-    }
-
-    /**
-     * Create a new user.
-     *
-     * @param array $credentials
-     * @return UserInterface
-     */
-    public function create(array $credentials)
-    {
-        $user = $this->model->newInstance();
-
-        $user->email    = $credentials['email'];
-        $user->username = $credentials['username'];
-        $user->password = $credentials['password'];
-
-        $user->save();
-
-        return $user;
-    }
-
-    /**
-     * Delete a user.
-     *
-     * @param UserInterface $user
-     * @return UserInterface
-     */
-    public function delete(UserInterface $user)
-    {
-        $user->delete();
-
-        return $user;
     }
 
     /**
@@ -125,17 +94,6 @@ class UserRepository implements UserRepositoryInterface
     }
 
     /**
-     * Find a user.
-     *
-     * @param $id
-     * @return null|UserInterface
-     */
-    public function find($id)
-    {
-        return $this->model->find($id);
-    }
-
-    /**
      * Find a user by their credentials.
      *
      * @param array $credentials
@@ -158,7 +116,7 @@ class UserRepository implements UserRepositoryInterface
      * @param $email
      * @return null|UserInterface
      */
-    public function findUserByEmail($email)
+    public function findByEmail($email)
     {
         return $this->model->where('email', $email)->first();
     }
@@ -169,7 +127,7 @@ class UserRepository implements UserRepositoryInterface
      * @param $username
      * @return null|UserInterface
      */
-    public function findUserByUsername($username)
+    public function findByUsername($username)
     {
         return $this->model->where('username', $username)->first();
     }

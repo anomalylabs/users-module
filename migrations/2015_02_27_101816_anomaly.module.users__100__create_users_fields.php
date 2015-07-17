@@ -3,17 +3,17 @@
 use Anomaly\Streams\Platform\Database\Migration\Migration;
 
 /**
- * Class AnomalyModuleUsers_100_alpha_CreateUsersFields
+ * Class AnomalyModuleUsers_100_CreateUsersFields
  *
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
  */
-class AnomalyModuleUsers_100_alpha_CreateUsersFields extends Migration
+class AnomalyModuleUsers_100_CreateUsersFields extends Migration
 {
 
     /**
-     * Stream fields to install.
+     * The addon fields.
      *
      * @var array
      */
@@ -42,7 +42,6 @@ class AnomalyModuleUsers_100_alpha_CreateUsersFields extends Migration
         'display_name'     => 'anomaly.field_type.text',
         'first_name'       => 'anomaly.field_type.text',
         'last_name'        => 'anomaly.field_type.text',
-        'website'          => 'anomaly.field_type.url',
         'name'             => 'anomaly.field_type.text',
         'slug'             => [
             'type'   => 'anomaly.field_type.slug',
@@ -53,16 +52,15 @@ class AnomalyModuleUsers_100_alpha_CreateUsersFields extends Migration
         'roles'            => [
             'type'   => 'anomaly.field_type.multiple',
             'config' => [
-                'pivot_table' => 'users_assigned_roles',
-                'related'     => 'Anomaly\UsersModule\Role\RoleModel',
+                'related' => 'Anomaly\UsersModule\Role\RoleModel'
             ],
         ],
         'user'             => [
             'type'   => 'anomaly.field_type.relationship',
             'config' => [
-                'related' => 'Anomaly\UsersModule\User\UserModel',
+                'related' => 'Anomaly\UsersModule\User\UserModel'
             ],
-        ],
+        ]
     ];
 
 }
