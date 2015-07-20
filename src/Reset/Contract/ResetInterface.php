@@ -1,6 +1,7 @@
 <?php namespace Anomaly\UsersModule\Reset\Contract;
 
 use Anomaly\Streams\Platform\Entry\Contract\EntryInterface;
+use Anomaly\UsersModule\User\Contract\UserInterface;
 
 /**
  * Interface ResetInterface
@@ -13,4 +14,25 @@ use Anomaly\Streams\Platform\Entry\Contract\EntryInterface;
 interface ResetInterface extends EntryInterface
 {
 
+    /**
+     * Get the code.
+     *
+     * @return null|string
+     */
+    public function getCode();
+
+    /**
+     * Get the user.
+     *
+     * @return null|UserInterface
+     */
+    public function getUser();
+
+    /**
+     * Set the user.
+     *
+     * @param UserInterface $user
+     * @return $this
+     */
+    public function setUser(UserInterface $user);
 }

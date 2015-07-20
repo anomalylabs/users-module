@@ -71,6 +71,10 @@ class AuthorizeRoutePermission
      */
     public function handle(Request $request, Closure $next)
     {
+        if (in_array($request->path(), ['admin/login', 'admin/logout'])) {
+            return $next($request);
+        }
+
         if (!$this->authorizer->authorize('anomaly.module.users::general.control_panel')) {
             abort(403);
         }

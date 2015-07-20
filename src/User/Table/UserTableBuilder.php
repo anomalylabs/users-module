@@ -36,10 +36,14 @@ class UserTableBuilder extends TableBuilder
             ],
             'actions' => [
                 'delete',
-                'suspend' => [
+                'suspend'        => [
                     'icon'         => 'ban',
                     'button'       => 'confirm',
                     'data-message' => 'anomaly.module.users::message.suspend_users_confirm'
+                ],
+                'reset_password' => [
+                    'button' => 'info',
+                    'icon'   => 'refresh'
                 ]
             ]
         ],

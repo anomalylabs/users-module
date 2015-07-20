@@ -13,4 +13,19 @@ use Anomaly\Streams\Platform\Entry\Contract\EntryRepositoryInterface;
 interface ResetRepositoryInterface extends EntryRepositoryInterface
 {
 
+    /**
+     * Find a reset by it's code.
+     *
+     * @param $code
+     * @return null|ResetInterface
+     */
+    public function findByCode($code);
+
+    /**
+     * Find a reset by user ID.
+     *
+     * @param $id
+     * @return null|ResetInterface
+     */
+    public function findByUserId($id);
 }

@@ -27,12 +27,14 @@ class ActivationFormBuilder extends FormBuilder
      */
     protected $fields = [
         'email' => [
-            'type'       => 'anomaly.field_type.email',
-            'required'   => true,
-            'rules'      => [
+            'type'         => 'anomaly.field_type.email',
+            'label'        => 'anomaly.module.users::field.email.name',
+            'instructions' => 'anomaly.module.users::field.email.instructions_alt',
+            'required'     => true,
+            'rules'        => [
                 'valid_email'
             ],
-            'validators' => [
+            'validators'   => [
                 'valid_email' => [
                     'handler' => 'Anomaly\UsersModule\User\Validation\ValidateEmail@handle',
                     'message' => 'anomaly.module.users::error.invalid_login'
@@ -40,8 +42,10 @@ class ActivationFormBuilder extends FormBuilder
             ]
         ],
         'code'  => [
-            'type'     => 'anomaly.field_type.text',
-            'required' => true
+            'type'         => 'anomaly.field_type.text',
+            'label'        => 'anomaly.module.users::field.activation_code.name',
+            'instructions' => 'anomaly.module.users::field.activation_code.instructions',
+            'required'     => true
         ]
     ];
 

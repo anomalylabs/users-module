@@ -77,7 +77,8 @@ class UsersModuleServiceProvider extends AddonServiceProvider
         'admin/users/fields/edit/{id}'       => 'Anomaly\UsersModule\Http\Controller\Admin\FieldsController@edit',
         'admin/users/settings'               => 'Anomaly\UsersModule\Http\Controller\Admin\SettingsController@edit',
         'users/activate'                     => 'Anomaly\UsersModule\Http\Controller\ActivationsController@form',
-        'users/activate/{username}/{code}'   => 'Anomaly\UsersModule\Http\Controller\ActivationsController@activate',
+        'users/activate/{id}/{code}'         => 'Anomaly\UsersModule\Http\Controller\ActivationsController@activate',
+        'users/reset/{code?}'                => 'Anomaly\UsersModule\Http\Controller\ResetsController@form',
         'login'                              => 'Anomaly\UsersModule\Http\Controller\LoginController@login',
         'logout'                             => 'Anomaly\UsersModule\Http\Controller\LoginController@logout'
     ];

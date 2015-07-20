@@ -72,6 +72,6 @@ class ActivationFormHandler
 
         $messages->success(trans('anomaly.module.users::message.activate_user_success'));
 
-        $builder->setFormResponse($redirect->home());
+        $builder->setFormResponse($redirect->to('/'));
     }
 }
