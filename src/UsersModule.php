@@ -41,7 +41,7 @@ class UsersModule extends Module
                 'add_field' => [
                     'data-toggle' => 'modal',
                     'data-target' => '#modal',
-                    'href'        => 'admin/users/ajax/choose_field/{route.parameters.id}'
+                    'href'        => 'admin/users/fields/type'
                 ]
             ]
         ],

@@ -14,21 +14,40 @@ class RoleTableBuilder extends TableBuilder
 {
 
     /**
-     * The table actions.
-     *
-     * @var array
-     */
-    protected $actions = [
-        'delete'
-    ];
-
-    /**
      * The table filters.
      *
      * @var array
      */
     protected $filters = [
         'slug'
+    ];
+
+    /**
+     * The table columns.
+     *
+     * @var array
+     */
+    protected $columns = [
+        'name',
+        'slug'
+    ];
+
+    /**
+     * The table buttons.
+     *
+     * @var array
+     */
+    protected $buttons = [
+        'edit'
+    ];
+
+    /**
+     * The table actions.
+     *
+     * @var array
+     */
+    protected $actions = [
+        'delete'
     ];
 
 }

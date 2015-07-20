@@ -34,6 +34,6 @@ class UserFormFields
 
         $assignments = $users->getAssignments();
 
-        $builder->setFields($fields + $assignments->notLocked()->fieldSlugs());
+        $builder->setFields(array_merge($fields, $assignments->notLocked()->fieldSlugs()));
     }
 }
