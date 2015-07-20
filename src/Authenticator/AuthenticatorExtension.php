@@ -1,7 +1,6 @@
 <?php namespace Anomaly\UsersModule\Authenticator;
 
 use Anomaly\Streams\Platform\Addon\Extension\Extension;
-use Anomaly\UsersModule\User\Contract\UserInterface;
 
 /**
  * Class AuthenticatorExtension
@@ -14,11 +13,4 @@ use Anomaly\UsersModule\User\Contract\UserInterface;
 abstract class AuthenticatorExtension extends Extension
 {
 
-    /**
-     * Authenticate credentials.
-     *
-     * @param array $credentials
-     * @return null|UserInterface
-     */
-    abstract public function authenticate(array $credentials);
 }

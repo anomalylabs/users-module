@@ -2,8 +2,8 @@
 
 use Anomaly\Streams\Platform\Http\Controller\PublicController;
 use Anomaly\UsersModule\Authenticator\Authenticator;
+use Anomaly\UsersModule\User\Login\LoginFormBuilder;
 use Illuminate\Auth\Guard;
-use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
 
 /**
@@ -18,39 +18,43 @@ class LoginController extends PublicController
 {
 
     /**
-     * Show the login screen.
+     * Return the admin login form.
      *
-     * @param Guard $auth
-     * @return \Illuminate\Http\RedirectResponse|Redirector|\Illuminate\View\View
+     * @param LoginFormBuilder $form
+     * @param Redirector       $redirect
+     * @param Guard            $auth
+     * @return \Illuminate\Http\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
-    public function login(Guard $auth, Request $request, Authenticator $authenticator)
+    public function login(LoginFormBuilder $form, Redirector $redirect, Guard $auth)
     {
-        if ($request->method() === 'POST') {
-            return $this->attempt($request, $authenticator);
+        /**
+         * If we're already logged in
+         * proceed to the dashboard.
+         *
+         * Replace this later with a
+         * configurable landing page.
+         */
+        if ($auth->check()) {
+            return $redirect->to('admin/dashboard');
         }
 
-        if ($auth->check()) {
-            return redirect('admin/dashboard');
-        } else {
-            return view('theme::login');
-        }
+        return $form
+            ->setOption('redirect', 'admin/dashboard')
+            ->setOption('wrapper_view', 'theme::login')
+            ->render();
     }
 
     /**
-     * Attempt to login a user.
+     * Log the user out.
      *
-     * @param Request       $request
      * @param Authenticator $authenticator
+     * @param Guard         $auth
      * @return \Illuminate\Http\RedirectResponse|Redirector
      */
-    protected function attempt(Request $request, Authenticator $authenticator)
+    public function logout(Authenticator $authenticator, Guard $auth)
     {
-        $email    = $request->get('email');
-        $password = $request->get('password');
-        $remember = ($request->get('remember'));
-
-        if ($authenticator->attempt(compact('email', 'password', 'remember'))) {
-            return redirect()->intended('admin/dashboard');
+        if (!$auth->guest()) {
+            $authenticator->logout();
         }
 
         return redirect('admin/login');

@@ -1,6 +1,9 @@
 <?php namespace Anomaly\UsersModule\User\Contract;
 
+use Anomaly\Streams\Platform\Entry\Contract\EntryInterface;
 use Anomaly\Streams\Platform\Entry\EntryCollection;
+use Anomaly\UsersModule\Activation\Contract\ActivationInterface;
+use Anomaly\UsersModule\Suspension\Contract\SuspensionInterface;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
@@ -11,22 +14,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  * @author        Ryan Thompson <ryan@anomaly.is>
  * @package       Anomaly\UsersModule\User\Contract
  */
-interface UserInterface
+interface UserInterface extends EntryInterface
 {
-
-    /**
-     * Return the roles relationship.
-     *
-     * @return BelongsToMany
-     */
-    public function roles();
-
-    /**
-     * Get the user's ID.
-     *
-     * @return int
-     */
-    public function getId();
 
     /**
      * Get the email.
@@ -64,27 +53,6 @@ interface UserInterface
     public function getLastName();
 
     /**
-     * Get the name.
-     *
-     * @return string
-     */
-    public function name();
-
-    /**
-     * Get the activated flag.
-     *
-     * @return bool
-     */
-    public function isActivated();
-
-    /**
-     * Get the blocked flag.
-     *
-     * @return bool
-     */
-    public function isBlocked();
-
-    /**
      * Get related roles.
      *
      * @return EntryCollection
@@ -98,6 +66,13 @@ interface UserInterface
      * @return bool
      */
     public function hasRole($role);
+
+    /**
+     * Return the roles relationship.
+     *
+     * @return BelongsToMany
+     */
+    public function roles();
 
     /**
      * Get the permissions.
@@ -118,8 +93,52 @@ interface UserInterface
     /**
      * Return whether a user has any of provided permission.
      *
-     * @param $string
+     * @param $permissions
      * @return bool
      */
-    public function hasAnyPermission(array $string);
+    public function hasAnyPermission(array $permissions);
+
+    /**
+     * Get the related activation.
+     *
+     * @return null|ActivationInterface
+     */
+    public function getActivation();
+
+    /**
+     * Return whether the user has a
+     * completed activation or not.
+     *
+     * @return bool
+     */
+    public function isActivated();
+
+    /**
+     * Return the activation relation.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function activation();
+
+    /**
+     * Get the related suspension.
+     *
+     * @return null|SuspensionInterface
+     */
+    public function getSuspension();
+
+    /**
+     * Return whether the user is
+     * suspended or not.
+     *
+     * @return bool
+     */
+    public function isSuspended();
+
+    /**
+     * Return the suspension relation.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function suspension();
 }

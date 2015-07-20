@@ -14,7 +14,7 @@ class UserFormFields
 {
 
     /**
-     * Handle the fom fields.
+     * Handle the form fields.
      *
      * @param UserFormBuilder $builder
      */
@@ -34,14 +34,6 @@ class UserFormFields
 
         $assignments = $users->getAssignments();
 
-        $builder->setFields(
-            array_merge(
-                $fields,
-                array_diff(
-                    $assignments->fieldSlugs(),
-                    config('anomaly.module.users::config.protected_fields')
-                )
-            )
-        );
+        $builder->setFields($fields + $assignments->notLocked()->fieldSlugs());
     }
 }

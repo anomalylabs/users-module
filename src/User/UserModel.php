@@ -3,7 +3,9 @@
 use Anomaly\Streams\Platform\Entry\EntryCollection;
 use Anomaly\Streams\Platform\Model\EloquentCollection;
 use Anomaly\Streams\Platform\Model\Users\UsersUsersEntryModel;
+use Anomaly\UsersModule\Activation\Contract\ActivationInterface;
 use Anomaly\UsersModule\Role\Contract\RoleInterface;
+use Anomaly\UsersModule\Suspension\Contract\SuspensionInterface;
 use Anomaly\UsersModule\User\Contract\UserInterface;
 use Illuminate\Auth\Authenticatable;
 
@@ -19,6 +21,35 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, \Illumina
 {
 
     use Authenticatable;
+
+    /**
+     * The eager loaded relationships.
+     *
+     * @var array
+     */
+    protected $with = [
+        'activation',
+        'suspension'
+    ];
+
+    /**
+     * The hidden attributes.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'password'
+    ];
+
+    /**
+     * Boot the model.
+     */
+    protected static function boot()
+    {
+        self::observe(app(substr(__CLASS__, 0, -5) . 'Observer'));
+
+        parent::boot();
+    }
 
     /**
      * Get the email.
@@ -68,36 +99,6 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, \Illumina
     public function getLastName()
     {
         return $this->last_name;
-    }
-
-    /**
-     * Get the name.
-     *
-     * @return string
-     */
-    public function name()
-    {
-        return implode(' ', array_filter([$this->getFirstName(), $this->getLastName()]));
-    }
-
-    /**
-     * Get the activated flag.
-     *
-     * @return bool
-     */
-    public function isActivated()
-    {
-        return $this->activated;
-    }
-
-    /**
-     * Get the blocked flag.
-     *
-     * @return bool
-     */
-    public function isBlocked()
-    {
-        return $this->blocked;
     }
 
     /**
@@ -202,5 +203,71 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, \Illumina
     public function isDeletable()
     {
         return !$this->hasRole('admin');
+    }
+
+    /**
+     * Get the related activation.
+     *
+     * @return null|ActivationInterface
+     */
+    public function getActivation()
+    {
+        return $this->activation;
+    }
+
+    /**
+     * Return whether the user has a
+     * completed activation or not.
+     *
+     * @return bool
+     */
+    public function isActivated()
+    {
+        $activation = $this->getActivation();
+
+        return $activation ? $activation->isCompleted() : false;
+    }
+
+    /**
+     * Return the activation relation.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function activation()
+    {
+        return $this->hasOne('Anomaly\UsersModule\Activation\ActivationModel', 'user_id');
+    }
+
+    /**
+     * Get the related suspension.
+     *
+     * @return null|SuspensionInterface
+     */
+    public function getSuspension()
+    {
+        return $this->suspension;
+    }
+
+    /**
+     * Return whether the user is
+     * suspended or not.
+     *
+     * @return bool
+     */
+    public function isSuspended()
+    {
+        $suspension = $this->getSuspension();
+
+        return !is_null($suspension);
+    }
+
+    /**
+     * Return the suspension relation.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function suspension()
+    {
+        return $this->hasOne('Anomaly\UsersModule\Suspension\SuspensionModel', 'user_id');
     }
 }

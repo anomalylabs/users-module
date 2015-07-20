@@ -18,7 +18,7 @@ return [
     ],
     'display_name' => [
         'name'         => 'Display Name',
-        'instructions' => 'What is the publicly displayed name of the user? If left empty, the username will be used.',
+        'instructions' => 'What is the publicly displayed name of the user?',
         'placeholder'  => 'Mr. John Doe'
     ],
     'username'     => [
@@ -48,17 +48,5 @@ return [
     'permissions'  => [
         'name'  => 'Permissions',
         'count' => ':count permission(s)'
-    ],
-    'activated'    => [
-        'name'          => 'Activated',
-        'activated'     => 'Activated',
-        'not_activated' => 'Not Activated'
-    ],
-    'blocked'      => [
-        'name'    => 'Blocked',
-        'blocked' => 'Blocked'
-    ],
-    'website'      => [
-        'name' => 'Website'
     ]
 ];

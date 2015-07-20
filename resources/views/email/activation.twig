@@ -1,0 +1,27 @@
+<p>Hello {{ user.display_name }},</p>
+
+<p>
+    Thank you for registering at {{ settings_get('streams::site_name', 'our website') }}. Before we can activate your
+    account, please complete the registration process by clicking on the following link:
+</p>
+
+<p>
+    <a href="{{ url_to('users/activate/' ~ user.id ~ '/' ~ activation.code) }}">
+        {{ url_to('users/activate/' ~ user.id ~ '/' ~ activation.code) }}
+    </a>
+</p>
+
+<p>&nbsp;</p>
+
+<p>
+    In case your email program does not recognize the above link as, please direct your browser to the following URL and
+    enter the activation code:
+</p>
+
+<p>
+    <a href="{{ url_to('users/activate') }}">
+        {{ url_to('users/activate') }}
+    </a>
+</p>
+
+<p><strong>Activation Code:</strong> {{ activation.code }}</p>

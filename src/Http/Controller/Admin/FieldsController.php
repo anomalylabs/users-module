@@ -35,7 +35,7 @@ class FieldsController extends AdminController
                     ]
                 ]
             )
-            ->setOption('skip', config('anomaly.module.users::config.protected_fields'))
+            ->setOption('skip', $model->getAssignments()->locked()->fieldSlugs())
             ->render();
     }
 

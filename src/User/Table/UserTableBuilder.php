@@ -14,6 +14,16 @@ class UserTableBuilder extends TableBuilder
 {
 
     /**
+     * The table views.
+     *
+     * @var array
+     */
+    protected $views = [
+        'all',
+        'online'
+    ];
+
+    /**
      * The table filters.
      *
      * @var array
@@ -21,24 +31,36 @@ class UserTableBuilder extends TableBuilder
     protected $filters = [
         'username',
         'email',
+        'roles'
     ];
 
     /**
-     * The table views.
+     * The table columns.
      *
      * @var array
      */
-    protected $views = [
-        'all',
-        'recently_created',
-        'blocked'            => [
-            'text'    => 'module::table.blocked',
-            'handler' => 'Anomaly\UsersModule\User\Table\View\BlockedUsers@handle'
-        ],
-        'pending_activation' => [
-            'text'    => 'module::table.pending_activation',
-            'handler' => 'Anomaly\UsersModule\User\Table\View\PendingActivation@handle'
-        ]
+    protected $columns = [
+        'display_name',
+        'username',
+        'email'
+    ];
+
+    /**
+     * The table buttons.
+     *
+     * @var array
+     */
+    protected $buttons = [
+        'edit'
+    ];
+
+    /**
+     * The table actions.
+     *
+     * @var array
+     */
+    public $actions = [
+        'delete'
     ];
 
 }

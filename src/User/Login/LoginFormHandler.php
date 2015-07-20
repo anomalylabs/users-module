@@ -1,6 +1,6 @@
 <?php namespace Anomaly\UsersModule\User\Login;
 
-use Illuminate\Auth\Guard;
+use Anomaly\UsersModule\Authenticator\Authenticator;
 use Illuminate\Routing\Redirector;
 
 /**
@@ -18,12 +18,17 @@ class LoginFormHandler
      * Handle the form.
      *
      * @param LoginFormBuilder $builder
-     * @param Guard            $guard
+     * @param Redirector       $redirect
+     * @param Authenticator    $authenticator
      */
-    public function handle(LoginFormBuilder $builder, Redirector $redirect, Guard $guard)
+    public function handle(LoginFormBuilder $builder, Redirector $redirect, Authenticator $authenticator)
     {
-        $guard->login($builder->getUser());
+        if (!$user = $builder->getUser()) {
+            return;
+        }
 
-        $builder->setFormResponse($redirect->to('/'));
+        $authenticator->login($user, $builder->getFormValue('remember_me'));
+
+        $builder->setFormResponse($redirect->intended($builder->getFormOption('redirect', 'admin/dashboard')));
     }
 }

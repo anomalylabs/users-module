@@ -14,12 +14,13 @@ class UsersModuleServiceProvider extends AddonServiceProvider
 {
 
     /**
-     * The addon plugins.
+     * The module middleware.
      *
      * @var array
      */
-    protected $plugins = [
-        'Anomaly\UsersModule\UsersModulePlugin'
+    protected $middleware = [
+        'Anomaly\UsersModule\Http\Middleware\AuthorizeModuleAccess',
+        'Anomaly\UsersModule\Http\Middleware\AuthorizeRoutePermission'
     ];
 
     /**
@@ -32,7 +33,6 @@ class UsersModuleServiceProvider extends AddonServiceProvider
             'Anomaly\UsersModule\User\Listener\TouchLastLogin'
         ],
         'Anomaly\Streams\Platform\Application\Event\ApplicationHasLoaded' => [
-            'Anomaly\UsersModule\Security\Listener\AuthorizeRoute',
             'Anomaly\UsersModule\User\Listener\TouchLastActivity'
         ]
     ];
@@ -43,21 +43,7 @@ class UsersModuleServiceProvider extends AddonServiceProvider
      * @var array
      */
     protected $bindings = [
-        'Anomaly\UsersModule\User\UserModel'                        => 'Anomaly\UsersModule\User\UserModel',
-        'Anomaly\UsersModule\Role\RoleModel'                        => 'Anomaly\UsersModule\Role\RoleModel',
-        'Anomaly\Streams\Platform\Model\Users\UsersUsersEntryModel' => 'Anomaly\UsersModule\User\UserModel',
-        'Anomaly\Streams\Platform\Model\Users\UsersRolesEntryModel' => 'Anomaly\UsersModule\Role\RoleModel',
-        'App\Http\Middleware\Authenticate'                          => 'Anomaly\UsersModule\Http\Middleware\Authenticate'
-    ];
-
-    /**
-     * The singleton bindings.
-     *
-     * @var array
-     */
-    protected $singletons = [
-        'Anomaly\UsersModule\User\Contract\UserRepositoryInterface' => 'Anomaly\UsersModule\User\UserRepository',
-        'Anomaly\UsersModule\Role\Contract\RoleRepositoryInterface' => 'Anomaly\UsersModule\Role\RoleRepository'
+        'App\Http\Middleware\Authenticate' => 'Anomaly\UsersModule\Http\Middleware\AuthenticateRequest'
     ];
 
     /**
@@ -66,11 +52,11 @@ class UsersModuleServiceProvider extends AddonServiceProvider
      * @var array
      */
     protected $routes = [
-        'admin'                              => 'Anomaly\UsersModule\Http\Controller\Admin\UsersController@home',
-        'auth/login'                         => 'Anomaly\UsersModule\Http\Controller\Admin\LogoutController@logout',
+        'admin'                              => 'Anomaly\UsersModule\Http\Controller\Admin\HomeController@index',
+        'auth/login'                         => 'Anomaly\UsersModule\Http\Controller\Admin\LoginController@logout',
         'auth/logout'                        => 'Anomaly\UsersModule\Http\Controller\Admin\LogoutController@logout',
         'admin/login'                        => 'Anomaly\UsersModule\Http\Controller\Admin\LoginController@login',
-        'admin/logout'                       => 'Anomaly\UsersModule\Http\Controller\Admin\LogoutController@logout',
+        'admin/logout'                       => 'Anomaly\UsersModule\Http\Controller\Admin\LoginController@logout',
         'admin/users'                        => 'Anomaly\UsersModule\Http\Controller\Admin\UsersController@index',
         'admin/users/create'                 => 'Anomaly\UsersModule\Http\Controller\Admin\UsersController@create',
         'admin/users/edit/{id}'              => 'Anomaly\UsersModule\Http\Controller\Admin\UsersController@edit',
@@ -89,18 +75,24 @@ class UsersModuleServiceProvider extends AddonServiceProvider
         'admin/users/fields/create/{type?}'  => 'Anomaly\UsersModule\Http\Controller\Admin\FieldsController@create',
         'admin/users/fields/edit/{id}'       => 'Anomaly\UsersModule\Http\Controller\Admin\FieldsController@edit',
         'admin/users/settings'               => 'Anomaly\UsersModule\Http\Controller\Admin\SettingsController@edit',
+        'users/activate'                     => 'Anomaly\UsersModule\Http\Controller\ActivationsController@form',
+        'users/activate/{username}/{code}'   => 'Anomaly\UsersModule\Http\Controller\ActivationsController@activate',
         'login'                              => 'Anomaly\UsersModule\Http\Controller\LoginController@login',
         'logout'                             => 'Anomaly\UsersModule\Http\Controller\LoginController@logout'
     ];
 
     /**
-     * The module middleware.
+     * The singleton bindings.
      *
      * @var array
      */
-    protected $middleware = [
-        'Anomaly\UsersModule\Http\Middleware\AuthorizeModuleAccess',
-        'Anomaly\UsersModule\Http\Middleware\AuthorizeRoutePermission'
+    protected $singletons = [
+        'Anomaly\UsersModule\User\Contract\UserRepositoryInterface'               => 'Anomaly\UsersModule\User\UserRepository',
+        'Anomaly\UsersModule\Role\Contract\RoleRepositoryInterface'               => 'Anomaly\UsersModule\Role\RoleRepository',
+        'Anomaly\UsersModule\Reset\Contract\ResetRepositoryInterface'             => 'Anomaly\UsersModule\Reset\ResetRepository',
+        'Anomaly\UsersModule\Activation\Contract\ActivationRepositoryInterface'   => 'Anomaly\UsersModule\Activation\ActivationRepository',
+        'Anomaly\UsersModule\Suspension\Contract\SuspensionRepositoryInterface'   => 'Anomaly\UsersModule\Suspension\SuspensionRepository',
+        'Anomaly\UsersModule\Persistence\Contract\PersistenceRepositoryInterface' => 'Anomaly\UsersModule\Persistence\PersistenceRepository'
     ];
 
 }

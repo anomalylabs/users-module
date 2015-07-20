@@ -1,10 +1,12 @@
 <?php namespace Anomaly\UsersModule\Authenticator;
 
 use Anomaly\Streams\Platform\Addon\Extension\ExtensionCollection;
+use Anomaly\UsersModule\Authenticator\Event\UserWasKickedOut;
+use Anomaly\UsersModule\Authenticator\Event\UserWasLoggedIn;
+use Anomaly\UsersModule\Authenticator\Event\UserWasLoggedOut;
 use Anomaly\UsersModule\User\Contract\UserInterface;
-use Anomaly\UsersModule\User\Event\UserWasLoggedIn;
-use Anomaly\UsersModule\User\Event\UserWasLoggedOut;
 use Illuminate\Auth\Guard;
+use Illuminate\Container\Container;
 use Illuminate\Events\Dispatcher;
 
 /**
@@ -33,6 +35,13 @@ class Authenticator
     protected $events;
 
     /**
+     * The service container.
+     *
+     * @var Container
+     */
+    protected $container;
+
+    /**
      * The extension collection.
      *
      * @var ExtensionCollection
@@ -44,34 +53,54 @@ class Authenticator
      *
      * @param Guard               $guard
      * @param Dispatcher          $events
+     * @param Container           $container
      * @param ExtensionCollection $extensions
      */
-    public function __construct(Guard $guard, Dispatcher $events, ExtensionCollection $extensions)
+    public function __construct(Guard $guard, Dispatcher $events, Container $container, ExtensionCollection $extensions)
     {
         $this->guard      = $guard;
         $this->events     = $events;
+        $this->container  = $container;
         $this->extensions = $extensions;
     }
 
     /**
-     * Attempt authentication.
+     * Attempt to login a user.
      *
      * @param array $credentials
+     * @param bool  $remember
+     * @return bool|UserInterface
      */
-    public function attempt(array $credentials)
+    public function attempt(array $credentials, $remember = false)
+    {
+        if ($user = $this->check($credentials)) {
+
+            $this->login($user, $remember);
+
+            return $user;
+        }
+
+        return false;
+    }
+
+    /**
+     * Check authentication only.
+     *
+     * @param array $credentials
+     * @return bool|UserInterface
+     */
+    public function check(array $credentials)
     {
         $authenticators = $this->extensions->search('anomaly.module.users::authenticator.*');
 
         foreach ($authenticators as $authenticator) {
 
-            $user = $authenticator->authenticate($credentials);
+            $user = $this->container->call(
+                substr(get_class($authenticator), 0, -9) . 'Handler@handle',
+                compact('credentials')
+            );
 
             if ($user instanceof UserInterface) {
-
-                $this->guard->login($user); // Gotta do this for some reason..
-
-                $this->events->fire(new UserWasLoggedIn($user));
-
                 return $user;
             }
         }
@@ -80,13 +109,14 @@ class Authenticator
     }
 
     /**
-     * Login a user.
+     * Force login a user.
      *
      * @param UserInterface $user
+     * @param bool          $remember
      */
-    public function login(UserInterface $user)
+    public function login(UserInterface $user, $remember = false)
     {
-        $this->guard->login($user);
+        $this->guard->login($user, $remember);
 
         $this->events->fire(new UserWasLoggedIn($user));
     }
@@ -102,8 +132,20 @@ class Authenticator
             $user = $this->guard->user();
         }
 
-        $this->events->fire(new UserWasLoggedOut($user));
-
         $this->guard->logout($user);
+
+        $this->events->fire(new UserWasLoggedOut($user));
+    }
+
+    /**
+     * Kick out a user.
+     *
+     * @param UserInterface $user
+     */
+    public function kickOut(UserInterface $user, $reason)
+    {
+        $this->guard->logout($user);
+
+        $this->events->fire(new UserWasKickedOut($user, $reason));
     }
 }

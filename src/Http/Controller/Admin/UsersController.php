@@ -1,16 +1,12 @@
 <?php namespace Anomaly\UsersModule\Http\Controller\Admin;
 
 use Anomaly\Streams\Platform\Http\Controller\AdminController;
-use Anomaly\Streams\Platform\Message\MessageBag;
-use Anomaly\UsersModule\Authenticator\Authenticator;
-use Anomaly\UsersModule\User\Contract\UserRepositoryInterface;
 use Anomaly\UsersModule\User\Form\UserFormBuilder;
 use Anomaly\UsersModule\User\Table\UserPermissionTableBuilder;
 use Anomaly\UsersModule\User\Table\UserTableBuilder;
 use Anomaly\UsersModule\User\UserActivator;
 use Anomaly\UsersModule\User\UserBlocker;
 use Anomaly\UsersModule\User\UserManager;
-use Illuminate\Routing\Redirector;
 
 /**
  * Class UsersController
@@ -27,47 +23,10 @@ class UsersController extends AdminController
 {
 
     /**
-     * The user repository.
-     *
-     * @var UserRepositoryInterface
-     */
-    protected $users;
-
-    /**
-     * The message bag.
-     *
-     * @var MessageBag
-     */
-    protected $messages;
-
-    /**
-     * Create a new UsersController instance.
-     *
-     * @param UserRepositoryInterface $users
-     */
-    public function __construct(UserRepositoryInterface $users)
-    {
-        parent::__construct();
-
-        $this->users = $users;
-    }
-
-    /**
-     * Redirect to the users home page.
-     *
-     * @param Redirector $redirector
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function home(Redirector $redirector)
-    {
-        return $redirector->to('admin/dashboard');
-    }
-
-    /**
      * Return an index of existing users.
      *
      * @param UserTableBuilder $table
-     * @return \Illuminate\View\View|\Symfony\Component\HttpFoundation\Response
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function index(UserTableBuilder $table)
     {
@@ -75,10 +34,10 @@ class UsersController extends AdminController
     }
 
     /**
-     * Return a form for a new user.
+     * Return the form for creating a new user.
      *
      * @param UserFormBuilder $form
-     * @return \Illuminate\View\View|\Symfony\Component\HttpFoundation\Response
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function create(UserFormBuilder $form)
     {
@@ -86,119 +45,14 @@ class UsersController extends AdminController
     }
 
     /**
-     * Return a form for an existing user.
+     * Return the form for editing an existing user.
      *
      * @param UserFormBuilder $form
      * @param                 $id
-     * @return \Illuminate\View\View|\Symfony\Component\HttpFoundation\Response
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function edit(UserFormBuilder $form, $id)
     {
         return $form->render($id);
-    }
-
-    /**
-     * Delete a user.
-     *
-     * @param UserManager $manager
-     * @param             $id
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-     */
-    public function delete(UserManager $manager, $id)
-    {
-        $manager->delete($this->users->find($id));
-
-        return redirect('admin/users');
-    }
-
-    /**
-     * Manage permissions for a user.
-     *
-     * @param UserPermissionTableBuilder $table
-     * @param UserRepositoryInterface    $users
-     * @param                            $id
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
-    public function permissions(UserPermissionTableBuilder $table, UserRepositoryInterface $users, $id)
-    {
-        $user = $users->find($id);
-
-        if ($user && $user->hasRole('admin')) {
-            abort(403, trans('module::message.edit_admin_error'));
-        }
-
-        $table->setUser($user);
-
-        return $table->render();
-    }
-
-    /**
-     * Activate a user.
-     *
-     * @param UserActivator $activator
-     * @param               $id
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function activate(UserActivator $activator, $id)
-    {
-        $activator->force($this->users->find($id));
-
-        return redirect('admin/users');
-    }
-
-    /**
-     * Deactivate a user.
-     *
-     * @param UserActivator $activator
-     * @param               $id
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-     */
-    public function deactivate(UserActivator $activator, $id)
-    {
-        $activator->deactivate($this->users->find($id));
-
-        return redirect('admin/users');
-    }
-
-    /**
-     * Block a user.
-     *
-     * @param UserBlocker $blocker
-     * @param             $id
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-     */
-    public function block(UserBlocker $blocker, $id)
-    {
-        $blocker->block($this->users->find($id));
-
-        return redirect('admin/users/logout/' . $id);
-    }
-
-    /**
-     * Unblock a user.
-     *
-     * @param UserBlocker $blocker
-     * @param             $id
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-     */
-    public function unblock(UserBlocker $blocker, $id)
-    {
-        $blocker->unblock($this->users->find($id));
-
-        return redirect('admin/users');
-    }
-
-    /**
-     * Log a user out.
-     *
-     * @param Authenticator $authenticator
-     * @param               $id
-     * @return \Illuminate\Http\RedirectResponse|Redirector
-     */
-    public function logout(Authenticator $authenticator, $id)
-    {
-        $authenticator->logout($this->users->find($id));
-
-        return redirect('admin/users');
     }
 }

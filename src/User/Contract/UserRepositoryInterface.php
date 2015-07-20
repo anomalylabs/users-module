@@ -1,7 +1,6 @@
 <?php namespace Anomaly\UsersModule\User\Contract;
 
 use Anomaly\Streams\Platform\Entry\Contract\EntryRepositoryInterface;
-use Anomaly\UsersModule\Role\Contract\RoleInterface;
 
 /**
  * Interface UserRepositoryInterface
@@ -13,38 +12,6 @@ use Anomaly\UsersModule\Role\Contract\RoleInterface;
  */
 interface UserRepositoryInterface extends EntryRepositoryInterface
 {
-
-    /**
-     * Activate a user.
-     *
-     * @param UserInterface $user
-     * @return UserInterface
-     */
-    public function activate(UserInterface $user);
-
-    /**
-     * Deactivate a user.
-     *
-     * @param UserInterface $user
-     * @return UserInterface
-     */
-    public function deactivate(UserInterface $user);
-
-    /**
-     * Block a user.
-     *
-     * @param UserInterface $user
-     * @return UserInterface
-     */
-    public function block(UserInterface $user);
-
-    /**
-     * Unblock a user.
-     *
-     * @param UserInterface $user
-     * @return UserInterface
-     */
-    public function unblock(UserInterface $user);
 
     /**
      * Find a user by their email.
@@ -69,24 +36,6 @@ interface UserRepositoryInterface extends EntryRepositoryInterface
      * @return null|UserInterface
      */
     public function findByCredentials(array $credentials);
-
-    /**
-     * Attach a role to a user.
-     *
-     * @param UserInterface $user
-     * @param RoleInterface $role
-     * @return UserInterface
-     */
-    public function attachRole(UserInterface $user, RoleInterface $role);
-
-    /**
-     * Update permissions for a user.
-     *
-     * @param UserInterface $user
-     * @param array         $permissions
-     * @return UserInterface
-     */
-    public function updatePermissions(UserInterface $user, array $permissions);
 
     /**
      * Touch a user's last activity and IP.

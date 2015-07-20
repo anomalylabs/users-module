@@ -1,8 +1,11 @@
 <?php namespace Anomaly\UsersModule\Security;
 
 use Anomaly\Streams\Platform\Addon\Extension\ExtensionCollection;
+use Anomaly\UsersModule\Security\Event\SecurityCheckHasFailed;
 use Anomaly\UsersModule\User\Contract\UserInterface;
-use Illuminate\Http\Request;
+use Illuminate\Container\Container;
+use Illuminate\Events\Dispatcher;
+use Illuminate\Routing\Redirector;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
@@ -17,6 +20,27 @@ class SecurityChecker
 {
 
     /**
+     * The event dispatcher.
+     *
+     * @var Dispatcher
+     */
+    protected $events;
+
+    /**
+     * The redirect service.
+     *
+     * @var Redirector
+     */
+    protected $redirect;
+
+    /**
+     * The service container.
+     *
+     * @var Container
+     */
+    protected $container;
+
+    /**
      * The extension collection.
      *
      * @var ExtensionCollection
@@ -26,43 +50,69 @@ class SecurityChecker
     /**
      * Create a new SecurityChecker instance.
      *
+     * @param Dispatcher          $events
+     * @param Redirector          $redirect
+     * @param Container           $container
      * @param ExtensionCollection $extensions
      */
-    public function __construct(ExtensionCollection $extensions)
-    {
+    public function __construct(
+        Dispatcher $events,
+        Redirector $redirect,
+        Container $container,
+        ExtensionCollection $extensions
+    ) {
+        $this->events     = $events;
+        $this->redirect   = $redirect;
+        $this->container  = $container;
         $this->extensions = $extensions;
     }
 
     /**
      * Check authorization.
      *
-     * @param Request       $request
      * @param UserInterface $user
-     * @return Response|void
+     * @return Response|bool
      */
-    public function check(Request $request, UserInterface $user = null)
+    public function check(UserInterface $user = null)
     {
-        $checks = $this->extensions->search('anomaly.module.users::security_check.*');
+        $extensions = $this->extensions->search('anomaly.module.users::security_check.*');
 
-        foreach ($checks as $check) {
-            $response = $this->runSecurityCheck($check, $request, $user);
+        foreach ($extensions as $extension) {
 
-            if ($response instanceof Response) {
-                return $response;
+            /**
+             * If the security check does not return
+             * false then we can assume it passed.
+             */
+            if ($this->container->call(
+                    substr(get_class($extension), 0, -9) . 'Handler@handle',
+                    compact('user', 'extension')
+                ) !== false
+            ) {
+                continue;
             }
-        }
-    }
 
-    /**
-     * Run a security check.
-     *
-     * @param SecurityCheckExtension $check
-     * @param Request                $request
-     * @param User          $user
-     * @return \Illuminate\Http\Response|void
-     */
-    protected function runSecurityCheck(SecurityCheckExtension $check, Request $request, UserInterface $user = null)
-    {
-        return $check->check($request, $user);
+            /**
+             * Upon a failed security check we
+             * need to change alter response.
+             *
+             * Typically this means redirecting
+             * but any response will do. Check the
+             * extension for a response handler or
+             * default to the login page.
+             */
+            $response = substr(get_class($extension), 0, -9) . 'Response';
+
+            if (class_exists($response)) {
+                $response = $this->container->call($response . '@make', compact('user', 'extension'));
+            } else {
+                $response = $this->redirect->to('admin/login');
+            }
+
+            $this->events->fire(new SecurityCheckHasFailed($extension));
+
+            return $response;
+        }
+
+        return true;
     }
 }
