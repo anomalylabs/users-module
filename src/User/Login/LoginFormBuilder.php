@@ -47,7 +47,7 @@ class LoginFormBuilder extends FormBuilder
             'validators' => [
                 'valid_email' => [
                     'handler' => 'Anomaly\UsersModule\User\Validation\ValidateEmail@handle',
-                    'message' => 'anomaly.module.users::error.invalid_login'
+                    'message' => 'anomaly.module.users::message.invalid_login'
                 ]
             ]
         ],
@@ -63,7 +63,7 @@ class LoginFormBuilder extends FormBuilder
             'validators' => [
                 'valid_credentials' => [
                     'handler' => 'Anomaly\UsersModule\User\Validation\ValidateCredentials@handle',
-                    'message' => 'anomaly.module.users::error.invalid_login'
+                    'message' => 'anomaly.module.users::message.invalid_login'
                 ]
             ]
         ],

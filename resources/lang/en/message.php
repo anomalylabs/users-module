@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'invalid_login'                 => 'Incorrect username or password.',
     'choose_field_type'             => 'What field type would you like to use?',
     'user_already_activated'        => 'Your account is already activated.',
     'modify_admin_user_warning'     => 'Admin users can not be modified.',
