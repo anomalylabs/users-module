@@ -41,8 +41,8 @@ class PermissionFormFields
             foreach ($config->get($addon->getNamespace('permissions'), []) as $group => $permissions) {
                 foreach ($permissions as $permission) {
 
-                    if ($translator->has($addon->getNamespace('permission.default.' . $permission))) {
-                        $label = $addon->getNamespace('permission.default.' . $permission);
+                    if ($translator->has('anomaly.module.users::permission.default.' . $permission)) {
+                        $label = 'anomaly.module.users::permission.default.' . $permission;
                     } else {
                         $label = $addon->getNamespace('permission.section.' . $group . '.' . $permission);
                     }
@@ -61,11 +61,11 @@ class PermissionFormFields
                     }
 
                     $fields[$addon->getNamespace($group . '.' . $permission)] = [
-                        'label' => $label,
+                        'label'        => $label,
                         'instructions' => $instructions,
-                        'type' => 'anomaly.field_type.boolean',
-                        'value' => $user->hasPermission($addon->getNamespace($group . '.' . $permission), true),
-                        'config' => [
+                        'type'         => 'anomaly.field_type.boolean',
+                        'value'        => $user->hasPermission($addon->getNamespace($group . '.' . $permission), true),
+                        'config'       => [
                             'off_color' => 'danger'
                         ]
                     ];
