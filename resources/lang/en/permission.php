@@ -4,7 +4,8 @@ return [
     'default' => [
         'read'   => 'Can read entries?',
         'write'  => 'Can create and edit entries?',
-        'delete' => 'Can delete entries?'
+        'delete' => 'Can delete entries?',
+        'fields' => 'Can manage custom fields?'
     ],
     'section' => [
         'general' => [

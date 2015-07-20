@@ -7,7 +7,8 @@ return [
     'users'   => [
         'read',
         'write',
-        'delete'
+        'delete',
+        'fields'
     ],
     'roles'   => [
         'read',
