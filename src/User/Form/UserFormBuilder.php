@@ -1,6 +1,5 @@
 <?php namespace Anomaly\UsersModule\User\Form;
 
-use Anomaly\Streams\Platform\Ui\Form\Form;
 use Anomaly\Streams\Platform\Ui\Form\FormBuilder;
 use Illuminate\Http\Request;
 
@@ -34,25 +33,14 @@ class UserFormBuilder extends FormBuilder
     ];
 
     /**
-     * Create a new UserFormBuilder instance.
+     * Fired just before posting.
      *
-     * @param Form $form
+     * @param Request $request
      */
-    public function __construct(Form $form)
+    public function onPosting(Request $request)
     {
-        parent::__construct($form);
-
-        /**
-         * On post, if the password is not set
-         * then skip it entirely.
-         */
-        $this->on(
-            'posting',
-            function (Request $request) {
-                if (!$request->get('password') && $this->form->getMode() == 'edit') {
-                    $this->form->skipField('password');
-                };
-            }
-        );
+        if (!$request->get('password') && $this->form->getMode() == 'edit') {
+            $this->skipField('password');
+        };
     }
 }
