@@ -37,15 +37,11 @@ class PermissionFormSections
                 $sections[$addon->getNamespace()]['tabs'][str_slug(
                     $addon->getNamespace($group)
                 )]['title'] = $addon->getNamespace(
-                    'permission.section.' . $group . '.title'
+                    'permission.' . $group . '.title'
                 );
 
                 $sections[$addon->getNamespace()]['title']       = $addon->getName();
                 $sections[$addon->getNamespace()]['description'] = $addon->getDescription();
-
-                /*$sections[$addon->getNamespace($group)]['description'] = $addon->getNamespace(
-                    'permission.section.' . $group . '.description'
-                );*/
 
                 foreach ($permissions as $permission) {
 

@@ -44,7 +44,7 @@ class PermissionFormFields
                     if ($translator->has('anomaly.module.users::permission.default.' . $permission)) {
                         $label = 'anomaly.module.users::permission.default.' . $permission;
                     } else {
-                        $label = $addon->getNamespace('permission.section.' . $group . '.' . $permission);
+                        $label = $addon->getNamespace('permission.' . $group . '.' . $permission);
                     }
 
                     $instructions = null;
@@ -52,11 +52,11 @@ class PermissionFormFields
                     if ($translator->has($addon->getNamespace('permission.default.' . $permission . '_instructions'))) {
                         $instructions = $addon->getNamespace('permission.default.' . $permission . '_instructions');
                     } elseif ($translator->has(
-                        $addon->getNamespace('permission.section.' . $group . '.' . $permission . '_instructions')
+                        $addon->getNamespace('permission.' . $group . '.' . $permission . '_instructions')
                     )
                     ) {
                         $instructions = $addon->getNamespace(
-                            'permission.section.' . $group . '.' . $permission . '_instructions'
+                            'permission.' . $group . '.' . $permission . '_instructions'
                         );
                     }
 

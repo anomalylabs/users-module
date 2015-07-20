@@ -7,17 +7,15 @@ return [
         'delete' => 'Can delete entries?',
         'fields' => 'Can manage custom fields?'
     ],
-    'section' => [
-        'general' => [
-            'title'                      => 'General',
-            'control_panel'              => 'Can access control panel?',
-            'control_panel_instructions' => 'This is required in order to access any part of the control panel.'
-        ],
-        'users'   => [
-            'title' => 'User'
-        ],
-        'roles'   => [
-            'title' => 'Roles'
-        ]
+    'general' => [
+        'title'                      => 'General',
+        'control_panel'              => 'Can access control panel?',
+        'control_panel_instructions' => 'This is required in order to access any part of the control panel.'
+    ],
+    'users'   => [
+        'title' => 'User'
+    ],
+    'roles'   => [
+        'title' => 'Roles'
     ]
 ];
