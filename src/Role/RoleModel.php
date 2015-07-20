@@ -83,4 +83,17 @@ class RoleModel extends UsersRolesEntryModel implements RoleInterface
 
         return false;
     }
+
+    /**
+     * Merge provided permissions onto existing ones.
+     *
+     * @param array $permissions
+     * @return $this
+     */
+    public function mergePermissions(array $permissions)
+    {
+        $this->permissions = array_merge($this->getPermissions(), $permissions);
+
+        return $this;
+    }
 }

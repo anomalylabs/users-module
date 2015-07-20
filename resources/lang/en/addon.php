@@ -1,7 +1,8 @@
 <?php
 
 return [
-    'name'        => 'Users',
+    'title'       => 'Users',
+    'name'        => 'Users Module',
     'description' => 'Manage users, roles, and permissions.',
     'section'     => [
         'users'    => 'Users',

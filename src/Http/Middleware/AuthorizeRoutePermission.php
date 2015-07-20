@@ -71,6 +71,10 @@ class AuthorizeRoutePermission
      */
     public function handle(Request $request, Closure $next)
     {
+        if (!$this->authorizer->authorize('anomaly.module.users::general.control_panel')) {
+            abort(403);
+        }
+
         if (!$this->authorizer->authorize(array_get($this->route->getAction(), 'anomaly.module.users::permission'))) {
 
             if ($message = array_get($this->route->getAction(), 'anomaly.module.users::message')) {

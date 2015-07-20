@@ -38,6 +38,11 @@ class RoleTableBuilder extends TableBuilder
      * @var array
      */
     protected $buttons = [
+        'permissions' => [
+            'button' => 'info',
+            'icon'   => 'unlock',
+            'href'   => 'admin/users/roles/permissions/{entry.id}'
+        ],
         'edit'
     ];
 

@@ -46,4 +46,12 @@ interface RoleInterface
      * @return bool
      */
     public function hasPermission($permission);
+
+    /**
+     * Merge provided permissions onto existing ones.
+     *
+     * @param array $permissions
+     * @return $this
+     */
+    public function mergePermissions(array $permissions);
 }
