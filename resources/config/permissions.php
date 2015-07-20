@@ -7,13 +7,11 @@ return [
     'users'   => [
         'read',
         'write',
-        'delete',
-        'permissions'
+        'delete'
     ],
     'roles'   => [
         'read',
         'write',
-        'delete',
-        'permissions'
+        'delete'
     ]
 ];

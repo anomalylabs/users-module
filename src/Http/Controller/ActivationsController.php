@@ -55,7 +55,7 @@ class ActivationsController extends PublicController
          */
         if (!$user = $users->find($user)) {
 
-            $messages->error(trans('anomaly.module.users::alert.activate_user_error'));
+            $messages->error(trans('anomaly.module.users::message.activate_user_error'));
 
             return $redirect->to('users/activate');
         }
@@ -66,12 +66,12 @@ class ActivationsController extends PublicController
          */
         if (!$activator->activate($user, $code)) {
 
-            $messages->error(trans('anomaly.module.users::alert.activate_user_error'));
+            $messages->error(trans('anomaly.module.users::message.activate_user_error'));
 
             return $redirect->to('users/activate');
         }
 
-        $messages->success(trans('anomaly.module.users::alert.activate_user_success'));
+        $messages->success(trans('anomaly.module.users::message.activate_user_success'));
 
         return $redirect->to('/');
     }

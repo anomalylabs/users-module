@@ -37,7 +37,7 @@ class ActivationFormHandler
          */
         if (!$user) {
 
-            $messages->error(trans('anomaly.module.users::alert.activate_user_error'));
+            $messages->error(trans('anomaly.module.users::message.activate_user_error'));
 
             $builder->setFormResponse($redirect->to('users/activate'));
 
@@ -50,7 +50,7 @@ class ActivationFormHandler
          */
         if ($user->isActivated()) {
 
-            $messages->success(trans('anomaly.module.users::alert.user_already_activated'));
+            $messages->success(trans('anomaly.module.users::message.user_already_activated'));
 
             $builder->setFormResponse($redirect->to('/'));
 
@@ -63,14 +63,14 @@ class ActivationFormHandler
          */
         if (!$activator->activate($user, $builder->getFormValue('code'))) {
 
-            $messages->error(trans('anomaly.module.users::alert.activate_user_error'));
+            $messages->error(trans('anomaly.module.users::message.activate_user_error'));
 
             $builder->setFormResponse($redirect->to('users/activate'));
 
             return;
         }
 
-        $messages->success(trans('anomaly.module.users::alert.activate_user_success'));
+        $messages->success(trans('anomaly.module.users::message.activate_user_success'));
 
         $builder->setFormResponse($redirect->home());
     }
