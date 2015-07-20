@@ -64,7 +64,7 @@ class RolesController extends AdminController
         $role = $roles->find($id);
 
         if ($role->getSlug() == 'admin') {
-            abort(403, trans('module::message.edit_admin_error'));
+            abort(403, trans('anomaly.module.users::message.edit_admin_error'));
         }
 
         $table->setRole($role);

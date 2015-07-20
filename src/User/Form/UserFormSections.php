@@ -39,11 +39,11 @@ class UserFormSections
                 [
                     'tabs' => [
                         'general' => [
-                            'title'  => 'module::tab.general',
+                            'title'  => 'anomaly.module.users::tab.general',
                             'fields' => $fields
                         ],
                         'profile' => [
-                            'title'  => 'module::tab.profile',
+                            'title'  => 'anomaly.module.users::tab.profile',
                             'fields' => $profileFields
                         ]
                     ]

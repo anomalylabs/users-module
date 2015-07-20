@@ -19,8 +19,56 @@ class UserTableBuilder extends TableBuilder
      * @var array
      */
     protected $views = [
-        'all',
-        'online'
+        'all'       => [
+            'columns' => [
+                'display_name',
+                'username',
+                'email',
+                'anomaly.module.users::field.status.name' => 'Anomaly\UsersModule\User\Table\Column\StatusColumn'
+            ],
+            'buttons' => [
+                'permissions' => [
+                    'button' => 'info',
+                    'icon'   => 'unlock',
+                    'href'   => 'admin/users/permissions/{entry.id}'
+                ],
+                'edit'
+            ],
+            'actions' => [
+                'delete',
+                'suspend' => [
+                    'icon'         => 'ban',
+                    'button'       => 'confirm',
+                    'data-message' => 'anomaly.module.users::message.suspend_users_confirm'
+                ]
+            ]
+        ],
+        'online'    => [
+            'columns' => [
+                'display_name',
+                'username',
+                'email',
+                'entry.last_activity_at.time_ago'
+            ]
+        ],
+        'inactive'  => [
+            'actions' => [
+                'delete',
+                'activate' => [
+                    'button' => 'success'
+                ]
+            ]
+        ],
+        'suspended' => [
+            'actions' => [
+                'delete',
+                'reinstate' => [
+                    'button'       => 'confirm',
+                    'type'         => 'success',
+                    'data-message' => 'anomaly.module.users::message.reinstate_users_confirm'
+                ]
+            ]
+        ]
     ];
 
     /**

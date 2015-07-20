@@ -5,6 +5,8 @@ use Anomaly\Streams\Platform\Entry\Contract\EntryRepositoryInterface;
 /**
  * Interface UserRepositoryInterface
  *
+ * @method null|UserInterface find($id)
+ *
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>

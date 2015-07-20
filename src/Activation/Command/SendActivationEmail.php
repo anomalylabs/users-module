@@ -62,7 +62,7 @@ class SendActivationEmail implements SelfHandling
         }
 
         return $mailer->send(
-            'module::email/activation',
+            'anomaly.module.users::email/activation',
             ['user' => $this->user, 'activation' => $activation],
             function (Message $message) use ($settings) {
 
