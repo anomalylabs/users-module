@@ -2,6 +2,7 @@
 
 use Anomaly\UsersModule\Role\Contract\RoleInterface;
 use Anomaly\UsersModule\Role\Contract\RoleRepositoryInterface;
+use Illuminate\Routing\Redirector;
 
 /**
  * Class PermissionFormHandler
@@ -15,14 +16,19 @@ class PermissionFormHandler
 {
 
     /**
+     * Handle the form.
+     *
      * @param PermissionFormBuilder   $builder
      * @param RoleRepositoryInterface $roles
+     * @param Redirector              $redirect
      */
-    public function handle(PermissionFormBuilder $builder, RoleRepositoryInterface $roles)
+    public function handle(PermissionFormBuilder $builder, RoleRepositoryInterface $roles, Redirector $redirect)
     {
         /* @var RoleInterface $role */
         $role = $builder->getEntry();
 
         $roles->save($role->mergePermissions($builder->getFormInput()));
+
+        $builder->setFormResponse($redirect->refresh());
     }
 }
