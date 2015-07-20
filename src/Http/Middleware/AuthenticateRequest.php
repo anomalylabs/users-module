@@ -84,7 +84,10 @@ class AuthenticateRequest
             return $response;
         }
 
-        if ($this->auth->guest()) {
+        if ($this->auth->guest() || !$this->auth->user()->hasPermission(
+                'anomaly.module.users::general.control_panel'
+            )
+        ) {
             if ($request->ajax()) {
                 return $this->response->make('Unauthorized.', 401);
             } else {

@@ -99,6 +99,14 @@ interface UserInterface extends EntryInterface
     public function hasAnyPermission(array $permissions);
 
     /**
+     * Merge provided permissions onto existing ones.
+     *
+     * @param array $permissions
+     * @return $this
+     */
+    public function mergePermissions(array $permissions);
+
+    /**
      * Get the related activation.
      *
      * @return null|ActivationInterface

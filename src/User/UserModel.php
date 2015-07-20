@@ -28,6 +28,7 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, \Illumina
      * @var array
      */
     protected $with = [
+        'roles',
         'activation',
         'suspension'
     ];
@@ -151,7 +152,7 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, \Illumina
             return true;
         }
 
-        if (in_array($permission, $this->getPermissions())) {
+        if (array_get($this->getPermissions(), $permission) === true) {
             return true;
         }
 
@@ -183,6 +184,19 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, \Illumina
         }
 
         return false;
+    }
+
+    /**
+     * Merge provided permissions onto existing ones.
+     *
+     * @param array $permissions
+     * @return $this
+     */
+    public function mergePermissions(array $permissions)
+    {
+        $this->permissions = array_merge($this->getPermissions(), $permissions);
+
+        return $this;
     }
 
     /**

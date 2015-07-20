@@ -27,7 +27,11 @@ class UserFormFields
             'username',
             'email',
             'password' => [
-                'value' => ''
+                'value'    => '',
+                'required' => false,
+                'rules'    => [
+                    'required_if:password,*'
+                ]
             ],
             'roles'
         ];
