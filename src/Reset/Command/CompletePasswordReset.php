@@ -3,6 +3,7 @@
 use Anomaly\UsersModule\Reset\Contract\ResetRepositoryInterface;
 use Anomaly\UsersModule\Reset\Event\UserPasswordWasReset;
 use Anomaly\UsersModule\User\Contract\UserInterface;
+use Anomaly\UsersModule\User\Contract\UserRepositoryInterface;
 use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Events\Dispatcher;
 
@@ -57,9 +58,10 @@ class CompletePasswordReset implements SelfHandling
      *
      * @param Dispatcher               $events
      * @param ResetRepositoryInterface $resets
+     * @param UserRepositoryInterface  $users
      * @return bool
      */
-    public function handle(Dispatcher $events, ResetRepositoryInterface $resets)
+    public function handle(Dispatcher $events, ResetRepositoryInterface $resets, UserRepositoryInterface $users)
     {
         $reset = $resets->findByCode($this->code);
 
@@ -76,6 +78,8 @@ class CompletePasswordReset implements SelfHandling
         }
 
         $resets->delete($reset);
+
+        $users->save($this->user->setPassword($this->password));
 
         $events->fire(new UserPasswordWasReset($this->user));
 

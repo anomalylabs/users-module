@@ -72,5 +72,8 @@ return [
     'activation_code'       => [
         'name'         => 'Activation Code',
         'instructions' => 'Enter the activation code that was sent to you.'
+    ],
+    'remember_me'           => [
+        'name' => 'Remember Me'
     ]
 ];

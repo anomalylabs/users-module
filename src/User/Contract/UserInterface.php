@@ -53,6 +53,14 @@ interface UserInterface extends EntryInterface
     public function getLastName();
 
     /**
+     * Set the password.
+     *
+     * @param $password
+     * @return $this
+     */
+    public function setPassword($password);
+
+    /**
      * Get related roles.
      *
      * @return EntryCollection

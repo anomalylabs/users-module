@@ -51,6 +51,10 @@ class AuthorizeModuleAccess
      */
     public function handle(Request $request, Closure $next)
     {
+        if ($request->segment(1) !== 'admin') {
+            return $next($request);
+        }
+
         $module = $this->modules->active();
 
         if ($module && !$this->authorizer->authorize($module->getNamespace('*'))) {
