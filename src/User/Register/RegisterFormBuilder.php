@@ -29,6 +29,7 @@ class RegisterFormBuilder extends FormBuilder
     protected $skips = [
         'roles',
         'ip_address',
+        'permissions',
         'last_login_at',
         'remember_token',
         'last_activity_at'
