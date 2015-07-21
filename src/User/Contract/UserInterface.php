@@ -70,10 +70,19 @@ interface UserInterface extends EntryInterface
     /**
      * Return whether a user is in a role.
      *
-     * @param string|array $role
+     * @param string $role
      * @return bool
      */
     public function hasRole($role);
+
+    /**
+     * Return whether a user is in
+     * any of the provided roles.
+     *
+     * @param array $role
+     * @return bool
+     */
+    public function hasAnyRole(array $roles);
 
     /**
      * Return the roles relationship.

@@ -128,7 +128,7 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, \Illumina
     /**
      * Return whether a user is in a role.
      *
-     * @param string|array $role
+     * @param string $role
      * @return bool
      */
     public function hasRole($role)
@@ -140,6 +140,24 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, \Illumina
         }
 
         return (in_array($role, $roles->all()));
+    }
+
+    /**
+     * Return whether a user is in
+     * any of the provided roles.
+     *
+     * @param array $role
+     * @return bool
+     */
+    public function hasAnyRole(array $roles)
+    {
+        foreach ($roles as $role) {
+            if ($this->hasRole($role)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /**
