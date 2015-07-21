@@ -19,17 +19,17 @@ class ReinstateHandler extends ActionHandler
      * Handle the action.
      *
      * @param UserRepositoryInterface $users
-     * @param SuspensionManager       $reinstater
+     * @param SuspensionManager       $manager
      * @param                         $selected
      */
-    public function handle(UserRepositoryInterface $users, SuspensionManager $reinstater, $selected)
+    public function handle(UserRepositoryInterface $users, SuspensionManager $manager, $selected)
     {
         foreach ($selected as $id) {
-            $reinstater->reinstate($users->find($id));
+            $manager->reinstate($users->find($id));
         }
 
         $this->messages->success(
-            trans('anomaly.module.users::message.reinstate_users_success', ['count' => count($selected)])
+            trans('anomaly.module.users::success.reinstate_users', ['count' => count($selected)])
         );
     }
 }

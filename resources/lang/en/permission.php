@@ -3,9 +3,9 @@
 return [
     'default' => [
         'read'   => 'Can read entries?',
-        'write'  => 'Can create and edit entries?',
         'delete' => 'Can delete entries?',
-        'fields' => 'Can manage custom fields?'
+        'fields' => 'Can manage custom fields?',
+        'write'  => 'Can create and edit entries?'
     ],
     'general' => [
         'title'                      => 'General',

@@ -37,7 +37,7 @@ class ResetFormHandler
          */
         if (!$user) {
 
-            $messages->error(trans('anomaly.module.users::message.reset_password_error'));
+            $messages->error(trans('anomaly.module.users::error.reset_password'));
 
             $builder->setFormResponse($redirect->to('users/reset'));
 
@@ -50,14 +50,14 @@ class ResetFormHandler
          */
         if (!$manager->complete($user, $builder->getFormValue('code'), $builder->getFormValue('password'))) {
 
-            $messages->error(trans('anomaly.module.users::message.reset_password_error'));
+            $messages->error(trans('anomaly.module.users::error.reset_password'));
 
             $builder->setFormResponse($redirect->to('users/reset'));
 
             return;
         }
 
-        $messages->success(trans('anomaly.module.users::message.reset_password_success'));
+        $messages->success(trans('anomaly.module.users::success.reset_password'));
 
         $builder->setFormResponse($redirect->to('/'));
     }

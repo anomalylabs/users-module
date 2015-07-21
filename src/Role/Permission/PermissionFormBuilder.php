@@ -80,7 +80,7 @@ class PermissionFormBuilder extends FormBuilder
 
         if ($role->getSlug() === 'admin') {
 
-            $messages->warning('anomaly.module.users::message.modify_admin_role_warning');
+            $messages->warning('anomaly.module.users::warning.modify_admin_role');
 
             $this->setFormResponse($redirect->to('admin/users/roles'));
 

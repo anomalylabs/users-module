@@ -28,6 +28,6 @@ class ActivateHandler extends ActionHandler
             $activator->force($users->find($id));
         }
 
-        $this->messages->success(trans('anomaly.module.users::message.activate_users_success', ['count' => count($selected)]));
+        $this->messages->success(trans('anomaly.module.users::success.activate_users', ['count' => count($selected)]));
     }
 }

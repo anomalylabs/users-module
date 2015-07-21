@@ -40,13 +40,13 @@ class ResetPasswordHandler extends ActionHandler
 
         if ($success) {
             $this->messages->success(
-                trans('anomaly.module.users::message.reset_passwords_success', ['count' => $success])
+                trans('anomaly.module.users::success.reset_passwords', ['count' => $success])
             );
         }
 
         if ($error) {
             $this->messages->error(
-                trans('anomaly.module.users::message.reset_passwords_error', ['count' => $error])
+                trans('anomaly.module.users::error.reset_passwords', ['count' => $error])
             );
         }
     }

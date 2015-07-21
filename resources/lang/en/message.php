@@ -1,24 +1,7 @@
 <?php
 
 return [
-    'invalid_login'                 => 'Incorrect username or password.',
-    'choose_field_type'             => 'What field type would you like to use?',
-    'user_already_activated'        => 'Your account is already activated.',
-    'modify_admin_user_warning'     => 'Admin users can not be modified.',
-    'modify_admin_role_warning'     => 'The admin role can not be modified.',
-    'activate_user_success'         => 'Your account has been activated.',
-    'activate_user_error'           => 'Your account could not be activated.',
-    'reset_password_success'        => 'Your password has been reset.',
-    'reset_password_error'          => 'Your password could not be reset.',
-    'save_user_permissions_success' => 'User permissions for ":username" have been saved successfully.',
-    'save_role_permissions_success' => 'Role permissions for ":slug" have been saved successfully.',
-    'activate_users_error'          => ':count user(s) could not be activated.',
-    'activate_users_success'        => ':count user(s) were activated successfully.',
-    'reset_passwords_error'         => ':count password reset(s) could not sent.',
-    'reset_passwords_success'       => ':count password reset(s) were sent successfully.',
-    'suspend_users_error'           => ':count user(s) could not be suspended.',
-    'suspend_users_success'         => ':count user(s) were suspended successfully.',
-    'suspend_users_confirm'         => 'Are you sure you want to suspend the selected user(s)?',
-    'reinstate_users_success'       => ':count user(s) were reinstated successfully.',
-    'reinstate_users_confirm'       => 'Are you sure you want to reinstate the selected user(s)?',
+    'invalid_login'          => 'Incorrect username or password.',
+    'user_already_activated' => 'Your account is already activated.',
+    'choose_field_type'      => 'What field type would you like to use?'
 ];

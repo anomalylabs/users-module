@@ -78,6 +78,6 @@ return [
         'instructions' => 'Enter the activation code that was sent to you.'
     ],
     'remember_me'           => [
-        'name' => 'Remember Me'
+        'name' => 'Remember me'
     ]
 ];

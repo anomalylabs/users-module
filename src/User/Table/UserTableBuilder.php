@@ -39,7 +39,7 @@ class UserTableBuilder extends TableBuilder
                 'suspend'        => [
                     'icon'         => 'ban',
                     'button'       => 'confirm',
-                    'data-message' => 'anomaly.module.users::message.suspend_users_confirm'
+                    'data-message' => 'anomaly.module.users::confirm.suspend_users'
                 ],
                 'reset_password' => [
                     'button' => 'info',
@@ -69,7 +69,7 @@ class UserTableBuilder extends TableBuilder
                 'reinstate' => [
                     'button'       => 'confirm',
                     'type'         => 'success',
-                    'data-message' => 'anomaly.module.users::message.reinstate_users_confirm'
+                    'data-message' => 'anomaly.module.users::confirm.reinstate_users'
                 ]
             ]
         ]

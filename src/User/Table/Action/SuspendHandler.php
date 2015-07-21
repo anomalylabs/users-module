@@ -43,13 +43,13 @@ class SuspendHandler extends ActionHandler
 
         if ($success) {
             $this->messages->success(
-                trans('anomaly.module.users::message.suspend_users_success', ['count' => $success])
+                trans('anomaly.module.users::success.suspend_users', ['count' => $success])
             );
         }
 
         if ($error) {
             $this->messages->error(
-                trans('anomaly.module.users::message.suspend_users_error', ['count' => $error])
+                trans('anomaly.module.users::error.suspend_users', ['count' => $error])
             );
         }
     }
