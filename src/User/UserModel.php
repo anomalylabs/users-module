@@ -155,6 +155,10 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, \Illumina
      */
     public function hasAnyRole(array $roles)
     {
+        if (!$roles) {
+            return $roles;
+        }
+
         foreach ($roles as $role) {
             if ($this->hasRole($role)) {
                 return true;
