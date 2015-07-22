@@ -133,6 +133,10 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, \Illumina
      */
     public function hasRole($role)
     {
+        if (!$role) {
+            return true;
+        }
+
         $roles = $this->getRoles();
 
         if ($roles instanceof EloquentCollection) {
@@ -156,7 +160,7 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, \Illumina
     public function hasAnyRole(array $roles)
     {
         if (!$roles) {
-            return $roles;
+            return true;
         }
 
         foreach ($roles as $role) {
