@@ -16,6 +16,13 @@ class ActivationModel extends UsersActivationsEntryModel implements ActivationIn
 {
 
     /**
+     * Cache model queries.
+     *
+     * @var int
+     */
+    protected $cacheMinutes = 9999;
+
+    /**
      * Get the code.
      *
      * @return null|string

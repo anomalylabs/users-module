@@ -14,4 +14,11 @@ use Anomaly\UsersModule\Suspension\Contract\SuspensionInterface;
 class SuspensionModel extends UsersSuspensionsEntryModel implements SuspensionInterface
 {
 
+    /**
+     * Cache model queries.
+     *
+     * @var int
+     */
+    protected $cacheMinutes = 9999;
+
 }
