@@ -75,11 +75,10 @@ class AuthorizeRoutePermission
             return $next($request);
         }
 
-        if ($request->segment(1) !== 'admin') {
-            return $next($request);
-        }
-
-        if (!$this->authorizer->authorize('anomaly.module.users::general.control_panel')) {
+        if ($request->segment(1) == 'admin' && !$this->authorizer->authorize(
+                'anomaly.module.users::general.control_panel'
+            )
+        ) {
             abort(403);
         }
 
