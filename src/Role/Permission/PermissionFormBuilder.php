@@ -47,7 +47,7 @@ class PermissionFormBuilder extends FormBuilder
      */
     protected $actions = [
         'save' => [
-            'href' => 'admin/users/permissions/{route.parameters.id}'
+            'href' => 'admin/users/permissions/{request.route.parameters.id}'
         ]
     ];
 
