@@ -3,13 +3,13 @@
 use Anomaly\Streams\Platform\Database\Migration\Migration;
 
 /**
- * Class AnomalyModuleUsers_1_0_0_CreateRolesStream
+ * Class AnomalyModuleUsersCreateResetsStream
  *
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
  */
-class AnomalyModuleUsers_1_0_0_CreateRolesStream extends Migration
+class AnomalyModuleUsersCreateResetsStream extends Migration
 {
 
     /**
@@ -18,9 +18,8 @@ class AnomalyModuleUsers_1_0_0_CreateRolesStream extends Migration
      * @var array
      */
     protected $stream = [
-        'slug'         => 'roles',
-        'title_column' => 'name',
-        'translatable' => true
+        'slug'         => 'resets',
+        'title_column' => 'user'
     ];
 
     /**
@@ -29,15 +28,14 @@ class AnomalyModuleUsers_1_0_0_CreateRolesStream extends Migration
      * @var array
      */
     protected $assignments = [
-        'name' => [
-            'required'     => true,
-            'translatable' => true
-        ],
-        'slug' => [
+        'user' => [
             'required' => true,
             'unique'   => true
         ],
-        'permissions'
+        'code' => [
+            'required' => true,
+            'unique'   => true
+        ]
     ];
 
 }
