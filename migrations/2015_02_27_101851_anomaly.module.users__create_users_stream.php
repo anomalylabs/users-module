@@ -45,9 +45,7 @@ class AnomalyModuleUsersCreateUsersStream extends Migration
         'display_name' => [
             'required' => true
         ],
-        'first_name'   => [
-            'required' => true
-        ],
+        'first_name',
         'last_name',
         'avatar',
         'permissions',
