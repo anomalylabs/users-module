@@ -40,7 +40,7 @@ class UserFormBuilder extends FormBuilder
     public function onPosting(Request $request)
     {
         if (!$request->get('password') && $this->form->getMode() == 'edit') {
-            $this->skipField('password');
+            $this->disableFormField('password');
         };
     }
 }
