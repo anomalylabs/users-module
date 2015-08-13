@@ -259,7 +259,17 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, \Illumina
      */
     public function isDeletable()
     {
-        return !$this->hasRole('admin');
+        // You can't delete yourself.
+        if ($this->getId() == app('auth')->id()) {
+            return false;
+        }
+
+        // You can't delete admins.
+        if ($this->hasRole('admin')) {
+            return false;
+        }
+
+        return true;
     }
 
     /**
