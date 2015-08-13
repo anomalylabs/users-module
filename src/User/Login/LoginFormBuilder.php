@@ -78,7 +78,7 @@ class LoginFormBuilder extends FormBuilder
      * @var array
      */
     protected $options = [
-        'redirector'   => '/',
+        'redirect'     => '/',
         'wrapper_view' => 'anomaly.module.users::login'
     ];
 
