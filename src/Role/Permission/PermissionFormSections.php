@@ -29,7 +29,7 @@ class PermissionFormSections
         $sections = [];
 
         /* @var Addon $addon */
-        foreach ($addons->merged()->withConfig('permissions') as $addon) {
+        foreach ($addons->withConfig('permissions') as $addon) {
             foreach ($config->get($addon->getNamespace('permissions'), []) as $group => $permissions) {
 
                 $sections[$addon->getNamespace()]['tabs'][str_slug($addon->getNamespace($group))]['fields'] = [];

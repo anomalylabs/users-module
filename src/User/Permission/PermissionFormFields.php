@@ -37,7 +37,7 @@ class PermissionFormFields
         $fields = [];
 
         /* @var Addon $addon */
-        foreach ($addons->merged()->withConfig('permissions') as $addon) {
+        foreach ($addons->withConfig('permissions') as $addon) {
             foreach ($config->get($addon->getNamespace('permissions'), []) as $group => $permissions) {
                 foreach ($permissions as $permission) {
 
