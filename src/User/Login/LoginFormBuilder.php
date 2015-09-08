@@ -72,6 +72,13 @@ class LoginFormBuilder extends FormBuilder
         ]
     ];
 
+    protected $actions = [
+        'login' => [
+            'button' => 'blue',
+            'text'   => 'Login'
+        ]
+    ];
+
     /**
      * The form options.
      *
