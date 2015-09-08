@@ -2,7 +2,9 @@
 
 use Anomaly\Streams\Platform\Entry\Contract\EntryInterface;
 use Anomaly\Streams\Platform\Entry\EntryCollection;
+use Anomaly\Streams\Platform\Model\EloquentCollection;
 use Anomaly\UsersModule\Activation\Contract\ActivationInterface;
+use Anomaly\UsersModule\Role\Contract\RoleInterface;
 use Anomaly\UsersModule\Suspension\Contract\SuspensionInterface;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
@@ -70,19 +72,27 @@ interface UserInterface extends EntryInterface
     /**
      * Return whether a user is in a role.
      *
-     * @param string $role
+     * @param RoleInterface $role
      * @return bool
      */
-    public function hasRole($role);
+    public function hasRole(RoleInterface $role);
 
     /**
      * Return whether a user is in
      * any of the provided roles.
      *
-     * @param array $role
+     * @param EloquentCollection $roles
      * @return bool
      */
-    public function hasAnyRole(array $roles);
+    public function hasAnyRole(EloquentCollection $roles);
+
+    /**
+     * Return whether the user
+     * is an admin or not.
+     *
+     * @return bool
+     */
+    public function isAdmin();
 
     /**
      * Return the roles relationship.

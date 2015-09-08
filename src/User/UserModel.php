@@ -128,36 +128,37 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, \Illumina
     /**
      * Return whether a user is in a role.
      *
-     * @param string $role
+     * @param RoleInterface $role
      * @return bool
      */
-    public function hasRole($role)
+    public function hasRole(RoleInterface $role)
     {
         if (!$role) {
             return true;
         }
 
-        $roles = $this->getRoles();
-
-        if ($roles instanceof EloquentCollection) {
-            $roles = $roles->lists('slug');
-        }
-
-        if (in_array('admin', $roles->all())) {
+        if ($this->isAdmin()) {
             return true;
         }
 
-        return in_array($role, $roles->all());
+        /* @var RoleInterface $role */
+        foreach ($roles = $this->getRoles() as $userRole) {
+            if ($userRole->getId() === $role->getId()) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /**
      * Return whether a user is in
      * any of the provided roles.
      *
-     * @param array $role
+     * @param EloquentCollection $roles
      * @return bool
      */
-    public function hasAnyRole(array $roles)
+    public function hasAnyRole(EloquentCollection $roles)
     {
         if (!$roles) {
             return true;
@@ -165,6 +166,24 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, \Illumina
 
         foreach ($roles as $role) {
             if ($this->hasRole($role)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * Return whether the user
+     * is an admin or not.
+     *
+     * @return bool
+     */
+    public function isAdmin()
+    {
+        /* @var RoleInterface $role */
+        foreach ($roles = $this->getRoles() as $role) {
+            if ($role->getSlug() === 'admin') {
                 return true;
             }
         }
