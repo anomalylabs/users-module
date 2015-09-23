@@ -4,6 +4,7 @@ use Anomaly\Streams\Platform\Addon\Addon;
 use Anomaly\Streams\Platform\Message\MessageBag;
 use Anomaly\Streams\Platform\Ui\Breadcrumb\BreadcrumbCollection;
 use Anomaly\Streams\Platform\Ui\Form\FormBuilder;
+use Anomaly\UsersModule\Role\Contract\RoleRepositoryInterface;
 use Anomaly\UsersModule\User\Contract\UserRepositoryInterface;
 use Illuminate\Routing\Redirector;
 
@@ -72,13 +73,14 @@ class PermissionFormBuilder extends FormBuilder
      */
     public function onReady(
         UserRepositoryInterface $users,
+        RoleRepositoryInterface $roles,
         BreadcrumbCollection $breadcrumbs,
         MessageBag $messages,
         Redirector $redirect
     ) {
         $this->setEntry($user = $users->find($this->getEntry()));
 
-        if ($user->hasRole('admin')) {
+        if ($user->hasRole($roles->findBySlug('admin'))) {
 
             $messages->warning('anomaly.module.users::warning.modify_admin_user');
 
