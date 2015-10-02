@@ -1,6 +1,8 @@
 <?php namespace Anomaly\UsersModule\Http\Controller\Admin;
 
 use Anomaly\Streams\Platform\Addon\FieldType\FieldTypeCollection;
+use Anomaly\Streams\Platform\Assignment\Contract\AssignmentInterface;
+use Anomaly\Streams\Platform\Assignment\Contract\AssignmentRepositoryInterface;
 use Anomaly\Streams\Platform\Assignment\Table\AssignmentTableBuilder;
 use Anomaly\Streams\Platform\Field\Form\FieldAssignmentFormBuilder;
 use Anomaly\Streams\Platform\Field\Form\FieldFormBuilder;
@@ -64,15 +66,19 @@ class FieldsController extends AdminController
     /**
      * Return a form to edit the field.
      *
-     * @param FieldFormBuilder $form
-     * @param UserModel        $model
-     * @param                  $id
+     * @param AssignmentRepositoryInterface $assignments
+     * @param FieldFormBuilder              $form
+     * @param UserModel                     $model
+     * @param                               $id
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function edit(FieldFormBuilder $form, UserModel $model, $id)
+    public function edit(AssignmentRepositoryInterface $assignments, FieldFormBuilder $form, UserModel $model, $id)
     {
+        /* @var AssignmentInterface $assignment */
+        $assignment = $assignments->find($id);
+
         return $form
             ->setStream($model->getStream())
-            ->render($id);
+            ->render($assignment->getFieldId());
     }
 }
