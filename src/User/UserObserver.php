@@ -2,6 +2,7 @@
 
 use Anomaly\Streams\Platform\Entry\Contract\EntryInterface;
 use Anomaly\Streams\Platform\Entry\EntryObserver;
+use Anomaly\UsersModule\Activation\Command\ActivateUserByForce;
 use Anomaly\UsersModule\User\Event\UserWasCreated;
 use Anomaly\UsersModule\User\Event\UserWasDeleted;
 
@@ -24,6 +25,8 @@ class UserObserver extends EntryObserver
     public function created(EntryInterface $entry)
     {
         $this->events->fire(new UserWasCreated($entry));
+
+        $this->dispatch(new ActivateUserByForce($entry));
 
         parent::created($entry);
     }
