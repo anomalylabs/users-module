@@ -39,6 +39,12 @@ class UsersModulePlugin extends Plugin
                 },
                 ['is_safe' => ['html']]
             ),
+            new \Twig_SimpleFunction(
+                'logged_in',
+                function () {
+                    return app('auth')->check();
+                }
+            ),
         ];
     }
 }
