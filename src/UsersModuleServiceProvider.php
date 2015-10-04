@@ -14,6 +14,15 @@ class UsersModuleServiceProvider extends AddonServiceProvider
 {
 
     /**
+     * The addon plugins.
+     *
+     * @var array
+     */
+    protected $plugins = [
+        'Anomaly\UsersModule\UsersModulePlugin'
+    ];
+
+    /**
      * The module middleware.
      *
      * @var array
@@ -79,7 +88,7 @@ class UsersModuleServiceProvider extends AddonServiceProvider
         'users/activate'                     => 'Anomaly\UsersModule\Http\Controller\ActivationsController@form',
         'users/activate/{id}/{code}'         => 'Anomaly\UsersModule\Http\Controller\ActivationsController@activate',
         'users/reset/{code?}'                => 'Anomaly\UsersModule\Http\Controller\ResetsController@form',
-        'logout'                             => 'Anomaly\UsersModule\Http\Controller\LoginController@logout'
+        'logout'                             => 'Anomaly\UsersModule\Http\Controller\UsersController@logout'
     ];
 
     /**

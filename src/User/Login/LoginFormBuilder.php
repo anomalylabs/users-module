@@ -39,6 +39,7 @@ class LoginFormBuilder extends FormBuilder
      */
     protected $fields = [
         'email'       => [
+            'label'      => 'anomaly.module.users::field.email.name',
             'type'       => 'anomaly.field_type.email',
             'required'   => true,
             'rules'      => [
@@ -52,6 +53,7 @@ class LoginFormBuilder extends FormBuilder
             ]
         ],
         'password'    => [
+            'label'      => 'anomaly.module.users::field.password.name',
             'type'       => 'anomaly.field_type.text',
             'required'   => true,
             'config'     => [
@@ -68,10 +70,20 @@ class LoginFormBuilder extends FormBuilder
             ]
         ],
         'remember_me' => [
-            'type' => 'anomaly.field_type.boolean'
+            'label'  => false,
+            'type'   => 'anomaly.field_type.boolean',
+            'config' => [
+                'mode'           => 'checkbox',
+                'checkbox_label' => 'anomaly.module.users::field.remember_me.name'
+            ]
         ]
     ];
 
+    /**
+     * The form actions.
+     *
+     * @var array
+     */
     protected $actions = [
         'login' => [
             'button' => 'blue',
