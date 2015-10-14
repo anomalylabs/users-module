@@ -63,7 +63,7 @@ class UsersModuleServiceProvider extends AddonServiceProvider
     protected $routes = [
         'admin'                              => 'Anomaly\UsersModule\Http\Controller\Admin\HomeController@index',
         'auth/login'                         => 'Anomaly\UsersModule\Http\Controller\Admin\LoginController@logout',
-        'auth/logout'                        => 'Anomaly\UsersModule\Http\Controller\Admin\LogoutController@logout',
+        'auth/logout'                        => 'Anomaly\UsersModule\Http\Controller\Admin\LoginController@logout',
         'admin/login'                        => 'Anomaly\UsersModule\Http\Controller\Admin\LoginController@login',
         'admin/logout'                       => 'Anomaly\UsersModule\Http\Controller\Admin\LoginController@logout',
         'admin/users'                        => 'Anomaly\UsersModule\Http\Controller\Admin\UsersController@index',
