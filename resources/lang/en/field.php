@@ -41,7 +41,7 @@ return [
         'instructions'     => 'Enter a secure login password for the user.',
         'instructions_alt' => 'Enter a new secure login password.'
     ],
-    'password_confirmation' => [
+    'confirm_password' => [
         'name'             => 'Confirm Password',
         'instructions'     => 'Confirm your new password.',
         'instructions_alt' => 'Confirm your new password.'

@@ -28,6 +28,15 @@ class ResetFormBuilder extends FormBuilder
     protected $model = false;
 
     /**
+     * The form actions.
+     *
+     * @var array
+     */
+    protected $actions = [
+        'submit'
+    ];
+
+    /**
      * Get the code.
      *
      * @return null|string

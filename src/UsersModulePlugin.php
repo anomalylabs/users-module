@@ -2,6 +2,7 @@
 
 use Anomaly\Streams\Platform\Addon\Plugin\Plugin;
 use Anomaly\UsersModule\User\Command\BuildLoginForm;
+use Anomaly\UsersModule\User\Command\BuildResetForm;
 
 /**
  * Class UsersModulePlugin
@@ -29,6 +30,16 @@ class UsersModulePlugin extends Plugin
                     array_set($parameters, 'options.redirect', $redirect);
 
                     return $this->dispatch(new BuildLoginForm($parameters));
+                },
+                ['is_safe' => ['html']]
+            ),
+            new \Twig_SimpleFunction(
+                'password_reset_form',
+                function ($redirect = '/', array $parameters = []) {
+
+                    //array_set($parameters, 'options.redirect', $redirect);
+
+                    return $this->dispatch(new BuildResetForm($parameters));
                 },
                 ['is_safe' => ['html']]
             ),
