@@ -64,10 +64,12 @@ class SendResetEmail implements SelfHandling
             ['user' => $this->user, 'reset' => $reset],
             function (Message $message) use ($settings) {
 
+                $setting = $settings->get('streams::server_email');
+
                 $message
                     ->subject('Confirmation')
                     ->to($this->user->getEmail(), $this->user->getDisplayName())
-                    ->from($settings->get('streams::server_email', 'noreply@pyrocms.com'));
+                    ->from($setting ? $setting->getValue() : 'noreply@pyrocms.com');
             }
         );
     }
