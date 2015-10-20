@@ -26,8 +26,6 @@ class UserObserver extends EntryObserver
     {
         $this->events->fire(new UserWasCreated($entry));
 
-        $this->dispatch(new ActivateUserByForce($entry));
-
         parent::created($entry);
     }
 
