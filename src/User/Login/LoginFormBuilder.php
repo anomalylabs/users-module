@@ -1,8 +1,8 @@
 <?php namespace Anomaly\UsersModule\User\Login;
 
 use Anomaly\Streams\Platform\Ui\Form\FormBuilder;
-use Anomaly\UsersModule\Security\SecurityChecker;
 use Anomaly\UsersModule\User\Contract\UserInterface;
+use Anomaly\UsersModule\User\UserSecurity;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
@@ -104,9 +104,9 @@ class LoginFormBuilder extends FormBuilder
     /**
      * Fired when the form is posting.
      *
-     * @param SecurityChecker $security
+     * @param UserSecurity $security
      */
-    public function onPosting(SecurityChecker $security)
+    public function onPosting(UserSecurity $security)
     {
         $response = $security->check();
 

@@ -1,6 +1,6 @@
 <?php namespace Anomaly\UsersModule\User\Login;
 
-use Anomaly\UsersModule\Authenticator\Authenticator;
+use Anomaly\UsersModule\User\UserAuthenticator;
 use Illuminate\Routing\Redirector;
 
 /**
@@ -17,11 +17,11 @@ class LoginFormHandler
     /**
      * Handle the form.
      *
-     * @param LoginFormBuilder $builder
-     * @param Redirector       $redirect
-     * @param Authenticator    $authenticator
+     * @param LoginFormBuilder  $builder
+     * @param Redirector        $redirect
+     * @param UserAuthenticator $authenticator
      */
-    public function handle(LoginFormBuilder $builder, Redirector $redirect, Authenticator $authenticator)
+    public function handle(LoginFormBuilder $builder, Redirector $redirect, UserAuthenticator $authenticator)
     {
         if (!$user = $builder->getUser()) {
             return;

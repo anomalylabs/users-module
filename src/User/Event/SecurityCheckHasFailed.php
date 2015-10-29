@@ -1,6 +1,6 @@
-<?php namespace Anomaly\UsersModule\Security\Event;
+<?php namespace Anomaly\UsersModule\User\Event;
 
-use Anomaly\UsersModule\Security\SecurityCheckExtension;
+use Anomaly\Streams\Platform\Addon\Extension\Extension;
 
 /**
  * Class SecurityCheckHasFailed
@@ -16,16 +16,16 @@ class SecurityCheckHasFailed
     /**
      * The security check.
      *
-     * @var SecurityCheckExtension
+     * @var Extension
      */
     protected $check;
 
     /**
      * Create a new SecurityCheckHasFailed instance.
      *
-     * @param SecurityCheckExtension $check
+     * @param Extension $check
      */
-    public function __construct(SecurityCheckExtension $check)
+    public function __construct(Extension $check)
     {
         $this->check = $check;
     }
@@ -33,7 +33,7 @@ class SecurityCheckHasFailed
     /**
      * Get the security check.
      *
-     * @return SecurityCheckExtension
+     * @return Extension
      */
     public function getCheck()
     {

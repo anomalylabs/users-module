@@ -1,6 +1,7 @@
 <?php namespace Anomaly\UsersModule\Role\Contract;
 
 use Anomaly\Streams\Platform\Entry\Contract\EntryInterface;
+use Anomaly\UsersModule\User\UserCollection;
 
 /**
  * Interface RoleInterface
@@ -49,4 +50,18 @@ interface RoleInterface extends EntryInterface
      * @return $this
      */
     public function mergePermissions(array $permissions);
+
+    /**
+     * Get the related users.
+     *
+     * @return UserCollection
+     */
+    public function getUsers();
+
+    /**
+     * Return the users relation.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function users();
 }

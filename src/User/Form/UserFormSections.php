@@ -27,6 +27,8 @@ class UserFormSections
             'display_name',
             'username',
             'email',
+            'activated',
+            'suspended',
             'password',
             'roles'
         ];

@@ -1,16 +1,16 @@
-<?php namespace Anomaly\UsersModule\Authenticator\Event;
+<?php namespace Anomaly\UsersModule\User\Event;
 
 use Anomaly\UsersModule\User\Contract\UserInterface;
 
 /**
- * Class UserWasLoggedOut
+ * Class UserWasLoggedIn
  *
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
- * @package       Anomaly\UsersModule\Authenticator\Event
+ * @package       Anomaly\UsersModule\User\Event
  */
-class UserWasLoggedOut
+class UserWasLoggedIn
 {
 
     /**
@@ -21,7 +21,7 @@ class UserWasLoggedOut
     protected $user;
 
     /**
-     * Create a new UserWasLoggedOut instance.
+     * Create a new UserWasLoggedIn instance.
      *
      * @param UserInterface $user
      */

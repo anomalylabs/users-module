@@ -2,6 +2,7 @@
 
 use Anomaly\Streams\Platform\Model\Users\UsersRolesEntryModel;
 use Anomaly\UsersModule\Role\Contract\RoleInterface;
+use Anomaly\UsersModule\User\UserCollection;
 
 /**
  * Class RoleModel
@@ -85,5 +86,30 @@ class RoleModel extends UsersRolesEntryModel implements RoleInterface
         $this->permissions = array_merge($this->getPermissions(), $permissions);
 
         return $this;
+    }
+
+    /**
+     * Get the related users.
+     *
+     * @return UserCollection
+     */
+    public function getUsers()
+    {
+        return $this->users;
+    }
+
+    /**
+     * Return the users relation.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function users()
+    {
+        return $this->belongsToMany(
+            'Anomaly\UsersModule\User\UserModel',
+            'users_users_roles',
+            'related_id',
+            'entry_id'
+        );
     }
 }

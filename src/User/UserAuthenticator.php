@@ -1,23 +1,15 @@
-<?php namespace Anomaly\UsersModule\Authenticator;
+<?php namespace Anomaly\UsersModule\User;
 
 use Anomaly\Streams\Platform\Addon\Extension\ExtensionCollection;
-use Anomaly\UsersModule\Authenticator\Event\UserWasKickedOut;
-use Anomaly\UsersModule\Authenticator\Event\UserWasLoggedIn;
-use Anomaly\UsersModule\Authenticator\Event\UserWasLoggedOut;
 use Anomaly\UsersModule\User\Contract\UserInterface;
-use Illuminate\Auth\Guard;
-use Illuminate\Container\Container;
-use Illuminate\Events\Dispatcher;
+use Anomaly\UsersModule\User\Event\UserWasKickedOut;
+use Anomaly\UsersModule\User\Event\UserWasLoggedIn;
+use Anomaly\UsersModule\User\Event\UserWasLoggedOut;
+use Illuminate\Contracts\Auth\Guard;
+use Illuminate\Contracts\Container\Container;
+use Illuminate\Contracts\Events\Dispatcher;
 
-/**
- * Class Authenticator
- *
- * @link          http://anomaly.is/streams-platform
- * @author        AnomalyLabs, Inc. <hello@anomaly.is>
- * @author        Ryan Thompson <ryan@anomaly.is>
- * @package       Anomaly\UsersModule\Authenticator
- */
-class Authenticator
+class UserAuthenticator
 {
 
     /**

@@ -1,22 +1,21 @@
-<?php namespace Anomaly\UsersModule\Security;
+<?php namespace Anomaly\UsersModule\User;
 
 use Anomaly\Streams\Platform\Addon\Extension\ExtensionCollection;
-use Anomaly\UsersModule\Security\Event\SecurityCheckHasFailed;
 use Anomaly\UsersModule\User\Contract\UserInterface;
-use Illuminate\Container\Container;
-use Illuminate\Events\Dispatcher;
+use Anomaly\UsersModule\User\Event\SecurityCheckHasFailed;
+use Illuminate\Contracts\Container\Container;
+use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Routing\Redirector;
-use Symfony\Component\HttpFoundation\Response;
 
 /**
- * Class SecurityChecker
+ * Class UserSecurity
  *
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
- * @package       Anomaly\UsersModule\SecurityChecker
+ * @package       Anomaly\UsersModule\User
  */
-class SecurityChecker
+class UserSecurity
 {
 
     /**
@@ -71,7 +70,7 @@ class SecurityChecker
      * Check authorization.
      *
      * @param UserInterface $user
-     * @return Response|bool
+     * @return bool|\Illuminate\Http\RedirectResponse|mixed|string
      */
     public function check(UserInterface $user = null)
     {

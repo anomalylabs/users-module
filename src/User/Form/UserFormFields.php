@@ -34,6 +34,8 @@ class UserFormFields
                     'required_if:password,*'
                 ]
             ],
+            'activated',
+            'suspended',
             'roles'
         ];
 

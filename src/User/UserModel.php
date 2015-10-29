@@ -306,4 +306,14 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, \Illumina
     {
         return $this->suspended;
     }
+
+    /**
+     * Return the full name.
+     *
+     * @return string
+     */
+    public function name()
+    {
+        return $this->getFirstName() . ' ' . $this->getLastName();
+    }
 }

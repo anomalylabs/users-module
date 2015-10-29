@@ -144,4 +144,11 @@ interface UserInterface extends EntryInterface
      * @return bool
      */
     public function isSuspended();
+
+    /**
+     * Return the full name.
+     *
+     * @return string
+     */
+    public function name();
 }

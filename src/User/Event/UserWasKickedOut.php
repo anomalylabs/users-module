@@ -1,4 +1,4 @@
-<?php namespace Anomaly\UsersModule\Authenticator\Event;
+<?php namespace Anomaly\UsersModule\User\Event;
 
 use Anomaly\UsersModule\User\Contract\UserInterface;
 
@@ -8,7 +8,7 @@ use Anomaly\UsersModule\User\Contract\UserInterface;
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
- * @package       Anomaly\UsersModule\Authenticator\Event
+ * @package       Anomaly\UsersModule\User\Event
  */
 class UserWasKickedOut
 {

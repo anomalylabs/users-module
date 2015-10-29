@@ -37,7 +37,7 @@ class UsersModulePlugin extends Plugin
                 'password_reset_form',
                 function ($redirect = '/', array $parameters = []) {
 
-                    //array_set($parameters, 'options.redirect', $redirect);
+                    array_set($parameters, 'options.redirect', $redirect);
 
                     return $this->dispatch(new BuildResetForm($parameters));
                 },

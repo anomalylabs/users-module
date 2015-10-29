@@ -1,6 +1,6 @@
 <?php namespace Anomaly\UsersModule\Http\Middleware;
 
-use Anomaly\UsersModule\Security\SecurityChecker;
+use Anomaly\UsersModule\User\UserSecurity;
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
@@ -31,7 +31,7 @@ class AuthenticateRequest
     /**
      * The security utility.
      *
-     * @var SecurityChecker
+     * @var UserSecurity
      */
     protected $security;
 
@@ -55,13 +55,13 @@ class AuthenticateRequest
      * @param Guard           $auth
      * @param Redirector      $redirect
      * @param ResponseFactory $response
-     * @param SecurityChecker $security
+     * @param UserSecurity    $security
      */
     public function __construct(
         Guard $auth,
         Redirector $redirect,
         ResponseFactory $response,
-        SecurityChecker $security
+        UserSecurity $security
     ) {
         $this->auth     = $auth;
         $this->redirect = $redirect;
