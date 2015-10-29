@@ -22,16 +22,6 @@ class RoleModel extends UsersRolesEntryModel implements RoleInterface
     protected $cacheMinutes = 99999;
 
     /**
-     * Get the role's ID.
-     *
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->getKey();
-    }
-
-    /**
      * Get the role slug.
      *
      * @return string

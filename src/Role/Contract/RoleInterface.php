@@ -1,5 +1,7 @@
 <?php namespace Anomaly\UsersModule\Role\Contract;
 
+use Anomaly\Streams\Platform\Entry\Contract\EntryInterface;
+
 /**
  * Interface RoleInterface
  *
@@ -8,15 +10,8 @@
  * @author        Ryan Thompson <ryan@anomaly.is>
  * @package       Anomaly\UsersModule\RoleInterface\Contract
  */
-interface RoleInterface
+interface RoleInterface extends EntryInterface
 {
-
-    /**
-     * Get the role's ID.
-     *
-     * @return int
-     */
-    public function getId();
 
     /**
      * Get the role's slug.
