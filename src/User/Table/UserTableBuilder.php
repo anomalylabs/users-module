@@ -24,7 +24,8 @@ class UserTableBuilder extends TableBuilder
                 'display_name',
                 'username',
                 'email',
-                'anomaly.module.users::field.status.name' => 'Anomaly\UsersModule\User\Table\Column\StatusColumn'
+                'activated' => 'entry.activated.label',
+                'suspended' => 'entry.suspended.label'
             ],
             'buttons' => [
                 'permissions' => [

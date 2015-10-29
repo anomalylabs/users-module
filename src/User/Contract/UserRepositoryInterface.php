@@ -40,6 +40,22 @@ interface UserRepositoryInterface extends EntryRepositoryInterface
     public function findByCredentials(array $credentials);
 
     /**
+     * Find a user by their reset code.
+     *
+     * @param $code
+     * @return null|UserInterface
+     */
+    public function findByResetCode($code);
+
+    /**
+     * Find a user by their activation code.
+     *
+     * @param $code
+     * @return null|UserInterface
+     */
+    public function findByActivationCode($code);
+
+    /**
      * Touch a user's last activity and IP.
      *
      * @param UserInterface $user

@@ -1,0 +1,43 @@
+<?php namespace Anomaly\UsersModule\User;
+
+use Anomaly\UsersModule\User\Command\ActivateUserByCode;
+use Anomaly\UsersModule\User\Command\ActivateUserByForce;
+use Anomaly\UsersModule\User\Contract\UserInterface;
+use Illuminate\Foundation\Bus\DispatchesJobs;
+
+/**
+ * Class UserActivator
+ *
+ * @link          http://anomaly.is/streams-platform
+ * @author        AnomalyLabs, Inc. <hello@anomaly.is>
+ * @author        Ryan Thompson <ryan@anomaly.is>
+ * @package       Anomaly\UsersModule\User
+ */
+class UserActivator
+{
+
+    use DispatchesJobs;
+
+    /**
+     * Activate a user by code.
+     *
+     * @param UserInterface $user
+     * @param               $code
+     * @return bool
+     */
+    public function activate(UserInterface $user, $code)
+    {
+        return $this->dispatch(new ActivateUserByCode($user, $code));
+    }
+
+    /**
+     * Activate a user by force.
+     *
+     * @param UserInterface $user
+     * @return bool
+     */
+    public function force(UserInterface $user)
+    {
+        return $this->dispatch(new ActivateUserByForce($user));
+    }
+}

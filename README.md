@@ -1,4 +1,4 @@
-#Users Module
+# Users Module
 
 [![License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://packagist.org/packages/anomaly/users-module) 
 [![Build Status](https://scrutinizer-ci.com/g/anomalylabs/users-module/badges/build.png?b=master)](https://scrutinizer-ci.com/g/anomalylabs/users-module/build-status/master)

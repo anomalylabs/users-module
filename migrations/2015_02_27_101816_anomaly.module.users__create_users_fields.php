@@ -47,8 +47,15 @@ class AnomalyModuleUsersCreateUsersFields extends Migration
         'first_name'       => 'anomaly.field_type.text',
         'last_name'        => 'anomaly.field_type.text',
         'name'             => 'anomaly.field_type.text',
-        'code'             => 'anomaly.field_type.text',
-        'completed'        => [
+        'reset_code'       => 'anomaly.field_type.text',
+        'activation_code'  => 'anomaly.field_type.text',
+        'activated'        => [
+            'type'   => 'anomaly.field_type.boolean',
+            'config' => [
+                'default_value' => false
+            ]
+        ],
+        'suspended'        => [
             'type'   => 'anomaly.field_type.boolean',
             'config' => [
                 'default_value' => false
@@ -64,13 +71,7 @@ class AnomalyModuleUsersCreateUsersFields extends Migration
             'type'   => 'anomaly.field_type.multiple',
             'config' => [
                 'related' => 'Anomaly\UsersModule\Role\RoleModel'
-            ],
-        ],
-        'user'             => [
-            'type'   => 'anomaly.field_type.relationship',
-            'config' => [
-                'related' => 'Anomaly\UsersModule\User\UserModel'
-            ],
+            ]
         ]
     ];
 

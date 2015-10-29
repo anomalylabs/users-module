@@ -3,9 +3,7 @@
 use Anomaly\Streams\Platform\Entry\Contract\EntryInterface;
 use Anomaly\Streams\Platform\Entry\EntryCollection;
 use Anomaly\Streams\Platform\Model\EloquentCollection;
-use Anomaly\UsersModule\Activation\Contract\ActivationInterface;
 use Anomaly\UsersModule\Role\Contract\RoleInterface;
-use Anomaly\UsersModule\Suspension\Contract\SuspensionInterface;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
@@ -134,46 +132,16 @@ interface UserInterface extends EntryInterface
     public function mergePermissions(array $permissions);
 
     /**
-     * Get the related activation.
-     *
-     * @return null|ActivationInterface
-     */
-    public function getActivation();
-
-    /**
-     * Return whether the user has a
-     * completed activation or not.
+     * Return the activated flag.
      *
      * @return bool
      */
     public function isActivated();
 
     /**
-     * Return the activation relation.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     */
-    public function activation();
-
-    /**
-     * Get the related suspension.
-     *
-     * @return null|SuspensionInterface
-     */
-    public function getSuspension();
-
-    /**
-     * Return whether the user is
-     * suspended or not.
+     * Return the suspended flag.
      *
      * @return bool
      */
     public function isSuspended();
-
-    /**
-     * Return the suspension relation.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     */
-    public function suspension();
 }

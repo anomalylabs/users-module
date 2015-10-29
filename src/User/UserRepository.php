@@ -42,8 +42,8 @@ class UserRepository extends EntryRepository implements UserRepositoryInterface
     {
         $user = $this->model->where('email', $credentials['email'])->first();
 
-        if ($user) {
-            return app('hash')->check($credentials['password'], $user->password) ? $user : null;
+        if ($user && app('hash')->check($credentials['password'], $user->password)) {
+            return $user;
         }
 
         return null;
@@ -69,6 +69,28 @@ class UserRepository extends EntryRepository implements UserRepositoryInterface
     public function findByUsername($username)
     {
         return $this->model->where('username', $username)->first();
+    }
+
+    /**
+     * Find a user by their reset code.
+     *
+     * @param $code
+     * @return null|UserInterface
+     */
+    public function findByResetCode($code)
+    {
+        return $this->model->where('reset_code', $code)->first();
+    }
+
+    /**
+     * Find a user by their activation code.
+     *
+     * @param $code
+     * @return null|UserInterface
+     */
+    public function findByActivationCode($code)
+    {
+        return $this->model->where('activation_code', $code)->first();
     }
 
     /**

@@ -1,8 +1,7 @@
-<?php namespace Anomaly\UsersModule\Activation\Command;
+<?php namespace Anomaly\UsersModule\User\Command;
 
 use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
 use Anomaly\UsersModule\Activation\Contract\ActivationRepositoryInterface;
-use Anomaly\UsersModule\Activation\Exception\UserIsAlreadyActivated;
 use Anomaly\UsersModule\User\Contract\UserInterface;
 use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Mail\Mailer;
@@ -14,7 +13,7 @@ use Illuminate\Mail\Message;
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
- * @package       Anomaly\UsersModule\Activation\Command
+ * @package       Anomaly\UsersModule\User\Command
  */
 class SendActivationEmail implements SelfHandling
 {

@@ -47,12 +47,16 @@ class AnomalyModuleUsersCreateUsersStream extends Migration
         ],
         'first_name',
         'last_name',
+        'activated',
+        'suspended',
         'avatar',
         'permissions',
-        'remember_token',
         'last_login_at',
+        'remember_token',
+        'activation_code',
+        'reset_code',
         'last_activity_at',
-        'ip_address',
+        'ip_address'
     ];
 
 }
