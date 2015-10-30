@@ -93,13 +93,6 @@ interface UserInterface extends EntryInterface
     public function isAdmin();
 
     /**
-     * Return the roles relationship.
-     *
-     * @return BelongsToMany
-     */
-    public function roles();
-
-    /**
      * Get the permissions.
      *
      * @return array
@@ -144,6 +137,28 @@ interface UserInterface extends EntryInterface
      * @return bool
      */
     public function isEnabled();
+
+    /**
+     * Get the reset code.
+     *
+     * @return string
+     */
+    public function getResetCode();
+
+    /**
+     * Set the reset code.
+     *
+     * @param $code
+     * @return $this
+     */
+    public function setResetCode($code);
+
+    /**
+     * Return the roles relationship.
+     *
+     * @return BelongsToMany
+     */
+    public function roles();
 
     /**
      * Return the full name.

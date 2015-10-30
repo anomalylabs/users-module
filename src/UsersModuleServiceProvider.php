@@ -1,6 +1,8 @@
 <?php namespace Anomaly\UsersModule;
 
+use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
 use Anomaly\Streams\Platform\Addon\AddonServiceProvider;
+use Illuminate\Routing\Router;
 
 /**
  * Class UsersModuleServiceProvider
@@ -54,7 +56,7 @@ class UsersModuleServiceProvider extends AddonServiceProvider
      * @var array
      */
     protected $bindings = [
-        'App\Http\Middleware\Authenticate' => 'Anomaly\UsersModule\Http\Middleware\AuthenticateRequest'
+        'App\Http\Middleware\Authenticate' => 'Anomaly\UsersModule\Http\Middleware\Authenticate'
     ];
 
     /**
@@ -86,11 +88,7 @@ class UsersModuleServiceProvider extends AddonServiceProvider
         'admin/users/fields/choose'          => 'Anomaly\UsersModule\Http\Controller\Admin\FieldsController@choose',
         'admin/users/fields/create'          => 'Anomaly\UsersModule\Http\Controller\Admin\FieldsController@create',
         'admin/users/fields/edit/{id}'       => 'Anomaly\UsersModule\Http\Controller\Admin\FieldsController@edit',
-        'admin/users/settings'               => 'Anomaly\UsersModule\Http\Controller\Admin\SettingsController@edit',
-        'users/activate'                     => 'Anomaly\UsersModule\Http\Controller\ActivationsController@form',
-        'users/activate/{id}/{code}'         => 'Anomaly\UsersModule\Http\Controller\ActivationsController@activate',
-        'users/reset/{code?}'                => 'Anomaly\UsersModule\Http\Controller\ResetsController@form',
-        'logout'                             => 'Anomaly\UsersModule\Http\Controller\UsersController@logout'
+        'admin/users/settings'               => 'Anomaly\UsersModule\Http\Controller\Admin\SettingsController@edit'
     ];
 
     /**
@@ -107,5 +105,51 @@ class UsersModuleServiceProvider extends AddonServiceProvider
         'Anomaly\UsersModule\Suspension\Contract\SuspensionRepositoryInterface'   => 'Anomaly\UsersModule\Suspension\SuspensionRepository',
         'Anomaly\UsersModule\Persistence\Contract\PersistenceRepositoryInterface' => 'Anomaly\UsersModule\Persistence\PersistenceRepository'
     ];
+
+    /**
+     * Map additional routes.
+     *
+     * @param SettingRepositoryInterface $settings
+     * @param Router                     $router
+     */
+    public function map(SettingRepositoryInterface $settings, Router $router)
+    {
+        // Route login related actions.
+        if ($settings->value('anomaly.module.users::login_enabled', false)) {
+
+            $router->get(
+                $settings->value('anomaly.module.users::login_path', 'login'),
+                'Anomaly\UsersModule\Http\Controller\LoginController@login'
+            );
+
+            $router->get(
+                $settings->value('anomaly.module.users::logout_path', 'logout'),
+                'Anomaly\UsersModule\Http\Controller\LoginController@logout'
+            );
+        }
+
+        // Route register related actions.
+        if ($settings->value('anomaly.module.users::allow_registration', false)) {
+
+            $router->get(
+                $settings->value('anomaly.module.users::register_path', 'login'),
+                'Anomaly\UsersModule\Http\Controller\RegisterController@register'
+            );
+        }
+
+        // Route password reset related actions.
+        if ($settings->value('anomaly.module.users::password_resets_enabled', false)) {
+
+            $router->get(
+                $settings->value('anomaly.module.users::forgot_password_path', 'reset'),
+                'Anomaly\UsersModule\Http\Controller\ResetController@reset'
+            );
+
+            $router->get(
+                $settings->value('anomaly.module.users::reset_password_path', 'reset/complete'),
+                'Anomaly\UsersModule\Http\Controller\ResetController@complete'
+            );
+        }
+    }
 
 }

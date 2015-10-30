@@ -1,8 +1,8 @@
 <?php namespace Anomaly\UsersModule\User\Register;
 
 use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
-use Anomaly\UsersModule\Activation\ActivationMailer;
-use Anomaly\UsersModule\Activation\ActivationManager;
+use Anomaly\UsersModule\User\UserActivator;
+use Illuminate\Routing\Redirector;
 
 /**
  * Class RegisterFormHandler
@@ -18,13 +18,16 @@ class RegisterFormHandler
     /**
      * Handle the form.
      *
-     * @param RegisterFormBuilder $builder
+     * @param SettingRepositoryInterface $settings
+     * @param RegisterFormBuilder        $builder
+     * @param UserActivator              $activator
+     * @param Redirector                 $redirect
      */
     public function handle(
         SettingRepositoryInterface $settings,
         RegisterFormBuilder $builder,
-        ActivationMailer $mailer,
-        ActivationManager $manager
+        UserActivator $activator,
+        Redirector $redirect
     ) {
         if (!$builder->canSave()) {
             return;
@@ -32,15 +35,16 @@ class RegisterFormHandler
 
         $builder->saveForm();
 
-        if ($settings->get('anomaly.module.users::activation_mode') == 'automatic') {
+        $activator->force($builder->getFormEntry());
+        /*if ($settings->get('anomaly.module.users::activation_mode') == 'automatic') {
             $manager->force($builder->getFormEntry());
         }
 
         if ($settings->get('anomaly.module.users::activation_mode') == 'email') {
             $mailer->send($builder->getFormEntry());
-        }
+        }*/
 
         // Otherwise it's manual.
-        $builder->setFormResponse(redirect('/'));
+        $builder->setFormResponse($redirect->to($builder->getFormOption('redirect', '/')));
     }
 }

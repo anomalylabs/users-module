@@ -2,6 +2,7 @@
 
 use Anomaly\Streams\Platform\Ui\Form\FormBuilder;
 use Anomaly\UsersModule\User\Contract\UserInterface;
+use Anomaly\UsersModule\User\Login\Command\SetOptions;
 use Anomaly\UsersModule\User\UserSecurity;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -97,9 +98,16 @@ class LoginFormBuilder extends FormBuilder
      * @var array
      */
     protected $options = [
-        'redirect'     => '/',
         'wrapper_view' => 'anomaly.module.users::login'
     ];
+
+    /**
+     * Fired when the form is ready to build.
+     */
+    public function onReady()
+    {
+        $this->dispatch(new SetOptions($this));
+    }
 
     /**
      * Fired when the form is posting.

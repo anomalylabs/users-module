@@ -4,6 +4,7 @@ use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
 use Anomaly\UsersModule\Reset\Contract\ResetRepositoryInterface;
 use Anomaly\UsersModule\Reset\Exception\UserIsAlreadyActivated;
 use Anomaly\UsersModule\User\Contract\UserInterface;
+use Anomaly\UsersModule\User\Contract\UserRepositoryInterface;
 use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Mail\Mailer;
 use Illuminate\Mail\Message;
@@ -41,26 +42,18 @@ class SendResetEmail implements SelfHandling
      *
      * @param Mailer                     $mailer
      * @param SettingRepositoryInterface $settings
-     * @param ResetRepositoryInterface   $resets
      * @return bool
      */
     public function handle(
         Mailer $mailer,
         SettingRepositoryInterface $settings,
-        ResetRepositoryInterface $resets
+        UserRepositoryInterface $users
     ) {
-        $reset = $resets->findByUserId($this->user->getId());
 
-        if ($reset) {
-            return false;
-        }
-
-        if (!$reset) {
-            $reset = $resets->create(['user' => $this->user]);
-        }
+        die('Send reset mail');
 
         return $mailer->send(
-            'anomaly.module.users::email/reset',
+            'anomaly.module.users::emails/reset',
             ['user' => $this->user, 'reset' => $reset],
             function (Message $message) use ($settings) {
 

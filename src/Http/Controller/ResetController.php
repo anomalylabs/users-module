@@ -3,23 +3,23 @@
 use Anomaly\Streams\Platform\Http\Controller\PublicController;
 
 /**
- * Class RegisterController
+ * Class ResetController
  *
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
  * @package       Anomaly\UsersModule\Http\Controller
  */
-class RegisterController extends PublicController
+class ResetController extends PublicController
 {
 
     /**
-     * Return the register view.
+     * Return the forgot password view.
      *
      * @return \Illuminate\Contracts\View\View|mixed
      */
-    public function register()
+    public function reset()
     {
-        return $this->view->make('anomaly.module.users::register');
+        return $this->view->make('anomaly.module.users::reset');
     }
 }

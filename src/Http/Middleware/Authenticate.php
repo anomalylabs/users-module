@@ -18,7 +18,7 @@ use Symfony\Component\HttpFoundation\Response;
  * @author        Ryan Thompson <ryan@anomaly.is>
  * @package       Anomaly\UsersModule\Http\Middleware
  */
-class AuthenticateRequest
+class Authenticate
 {
 
     /**
@@ -26,7 +26,7 @@ class AuthenticateRequest
      *
      * @var Guard
      */
-    protected $auth;
+    protected $guard;
 
     /**
      * The security utility.
@@ -52,18 +52,18 @@ class AuthenticateRequest
     /**
      * Create a new AuthenticateRequest instance.
      *
-     * @param Guard           $auth
+     * @param Guard           $guard
      * @param Redirector      $redirect
      * @param ResponseFactory $response
      * @param UserSecurity    $security
      */
     public function __construct(
-        Guard $auth,
+        Guard $guard,
         Redirector $redirect,
         ResponseFactory $response,
         UserSecurity $security
     ) {
-        $this->auth     = $auth;
+        $this->guard    = $guard;
         $this->redirect = $redirect;
         $this->response = $response;
         $this->security = $security;
@@ -78,13 +78,13 @@ class AuthenticateRequest
      */
     public function handle(Request $request, Closure $next)
     {
-        $response = $this->security->check($this->auth->user());
+        $response = $this->security->check($this->guard->user());
 
         if ($response instanceof Response) {
             return $response;
         }
 
-        if ($this->auth->guest()) {
+        if ($this->guard->guest()) {
             if ($request->ajax()) {
                 return $this->response->make('Unauthorized.', 401);
             } else {

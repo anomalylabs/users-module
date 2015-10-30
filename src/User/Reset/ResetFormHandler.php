@@ -1,8 +1,9 @@
-<?php namespace Anomaly\UsersModule\Reset\Form;
+<?php namespace Anomaly\UsersModule\User\Reset;
 
+use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
 use Anomaly\Streams\Platform\Message\MessageBag;
-use Anomaly\UsersModule\Reset\ResetManager;
 use Anomaly\UsersModule\User\Contract\UserRepositoryInterface;
+use Anomaly\UsersModule\User\UserReset;
 use Illuminate\Routing\Redirector;
 
 /**
@@ -11,7 +12,7 @@ use Illuminate\Routing\Redirector;
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
- * @package       Anomaly\UsersModule\Reset\Form
+ * @package       Anomaly\UsersModule\User\Reset
  */
 class ResetFormHandler
 {
@@ -19,17 +20,22 @@ class ResetFormHandler
     /**
      * Handle the form.
      *
-     * @param ResetFormBuilder $builder
-     * @param Redirector       $redirect
+     * @param SettingRepositoryInterface $settings
+     * @param UserRepositoryInterface    $users
+     * @param ResetFormBuilder           $builder
+     * @param MessageBag                 $messages
+     * @param Redirector                 $redirect
+     * @param UserReset                  $reset
      */
     public function handle(
+        SettingRepositoryInterface $settings,
         UserRepositoryInterface $users,
         ResetFormBuilder $builder,
         MessageBag $messages,
-        ResetManager $manager,
-        Redirector $redirect
+        Redirector $redirect,
+        UserReset $reset
     ) {
-        $user = $users->findByEmail($builder->getFormValue('email'));
+        $user = $users->findByEmail($builder->getEmail());
 
         /**
          * If we can't find the user by the email
@@ -39,7 +45,7 @@ class ResetFormHandler
 
             $messages->error(trans('anomaly.module.users::error.reset_password'));
 
-            $builder->setFormResponse($redirect->to('users/reset'));
+            $builder->setFormResponse($settings->value('anomaly.module.users::password_reset_path', 'reset/complete'));
 
             return;
         }
@@ -48,7 +54,7 @@ class ResetFormHandler
          * If we can't successfully reset the
          * provided user then back back to the form.
          */
-        if (!$manager->complete($user, $builder->getFormValue('code'), $builder->getFormValue('password'))) {
+        if (!$reset->complete($user, $builder->getFormValue('code'), $builder->getFormValue('password'))) {
 
             $messages->error(trans('anomaly.module.users::error.reset_password'));
 
@@ -59,6 +65,6 @@ class ResetFormHandler
 
         $messages->success(trans('anomaly.module.users::success.reset_password'));
 
-        $builder->setFormResponse($redirect->to('/'));
+        $builder->setFormResponse($settings->value('anomaly.module.users::password_reset_redirect', '/'));
     }
 }

@@ -97,6 +97,7 @@ class UserRepository extends EntryRepository implements UserRepositoryInterface
      * Touch a user's last activity and IP.
      *
      * @param UserInterface $user
+     * @return bool
      */
     public function touchLastActivity(UserInterface $user)
     {
@@ -110,6 +111,7 @@ class UserRepository extends EntryRepository implements UserRepositoryInterface
      * Touch a user's last login.
      *
      * @param UserInterface $user
+     * @return bool
      */
     public function touchLastLogin(UserInterface $user)
     {

@@ -279,8 +279,8 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, \Illumina
             return false;
         }
 
-        // You can't delete admins.
-        if ($this->hasRole('admin')) {
+        // Only admins can delete admins
+        if (!app('auth')->user()->isAdmin() && $this->isAdmin()) {
             return false;
         }
 
@@ -305,6 +305,29 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, \Illumina
     public function isEnabled()
     {
         return $this->enabled;
+    }
+
+    /**
+     * Get the reset code.
+     *
+     * @return string
+     */
+    public function getResetCode()
+    {
+        return $this->reset_code;
+    }
+
+    /**
+     * Set the reset code.
+     *
+     * @param $code
+     * @return $this
+     */
+    public function setResetCode($code)
+    {
+        $this->reset_code = $code;
+
+        return $this;
     }
 
     /**

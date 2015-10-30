@@ -1,7 +1,7 @@
 <?php namespace Anomaly\UsersModule\User\Register;
 
-use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
 use Anomaly\Streams\Platform\Ui\Form\FormBuilder;
+use Anomaly\UsersModule\User\Register\Command\SetOptions;
 
 /**
  * Class RegisterFormBuilder
@@ -21,18 +21,32 @@ class RegisterFormBuilder extends FormBuilder
      */
     protected $model = 'Anomaly\UsersModule\User\UserModel';
 
+    protected $fields = [
+        'first_name',
+        'last_name',
+        'display_name',
+        'username',
+        'email',
+        'password'
+    ];
+
     /**
      * The form skips.
      *
      * @var array
      */
     protected $skips = [
-        'roles',
+        /*'roles',
+        'avatar',
+        'enabled',
+        'activated',
+        'reset_code',
         'ip_address',
         'permissions',
         'last_login_at',
         'remember_token',
-        'last_activity_at'
+        'activation_code',
+        'last_activity_at'*/
     ];
 
     /**
@@ -46,13 +60,9 @@ class RegisterFormBuilder extends FormBuilder
 
     /**
      * Fired when the builder is ready.
-     *
-     * @param SettingRepositoryInterface $settings
      */
-    public function onReady(SettingRepositoryInterface $settings)
+    public function onReady()
     {
-        if ($settings->get('anomaly.module.users::allow_registration') === false) {
-            abort(404);
-        }
+        $this->dispatch(new SetOptions($this));
     }
 }

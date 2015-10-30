@@ -1,4 +1,4 @@
-<?php namespace Anomaly\UsersModule\Reset\Form;
+<?php namespace Anomaly\UsersModule\User\Reset;
 
 /**
  * Class ResetFormFields
@@ -6,7 +6,7 @@
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
- * @package       Anomaly\UsersModule\Reset\Form
+ * @package       Anomaly\UsersModule\User\Reset
  */
 class ResetFormFields
 {

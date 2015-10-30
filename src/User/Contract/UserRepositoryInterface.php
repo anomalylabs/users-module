@@ -58,14 +58,14 @@ interface UserRepositoryInterface extends EntryRepositoryInterface
     /**
      * Touch a user's last activity and IP.
      *
-     * @param UserInterface $user
+     * @return bool
      */
     public function touchLastActivity(UserInterface $user);
 
     /**
      * Touch a user's last login.
      *
-     * @param UserInterface $user
+     * @return bool
      */
     public function touchLastLogin(UserInterface $user);
 }
