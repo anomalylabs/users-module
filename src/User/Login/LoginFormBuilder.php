@@ -108,7 +108,7 @@ class LoginFormBuilder extends FormBuilder
      */
     public function onPosting(UserSecurity $security)
     {
-        $response = $security->check();
+        $response = $security->attempt();
 
         if ($response instanceof Response) {
 

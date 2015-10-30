@@ -3,6 +3,7 @@
 use Anomaly\Streams\Platform\Addon\Extension\ExtensionCollection;
 use Anomaly\UsersModule\User\Contract\UserInterface;
 use Anomaly\UsersModule\User\Event\SecurityCheckHasFailed;
+use Anomaly\UsersModule\User\Security\Contract\SecurityCheckInterface;
 use Illuminate\Contracts\Container\Container;
 use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Routing\Redirector;
@@ -67,6 +68,37 @@ class UserSecurity
     }
 
     /**
+     * Check a login attempt.
+     *
+     * @return bool|\Illuminate\Http\RedirectResponse|mixed|string
+     */
+    public function attempt()
+    {
+        $extensions = $this->extensions->search('anomaly.module.users::security_check.*');
+
+        /* @var SecurityCheckInterface $extension */
+        foreach ($extensions as $extension) {
+
+            /**
+             * If the security check does not return
+             * false then we can assume it passed.
+             */
+
+            $response = $extension->attempt();
+
+            if ($response === true) {
+                continue;
+            }
+
+            $this->events->fire(new SecurityCheckHasFailed($extension));
+
+            return $response;
+        }
+
+        return true;
+    }
+
+    /**
      * Check authorization.
      *
      * @param UserInterface $user
@@ -76,35 +108,18 @@ class UserSecurity
     {
         $extensions = $this->extensions->search('anomaly.module.users::security_check.*');
 
+        /* @var SecurityCheckInterface $extension */
         foreach ($extensions as $extension) {
 
             /**
              * If the security check does not return
              * false then we can assume it passed.
              */
-            if ($this->container->call(
-                    substr(get_class($extension), 0, -9) . 'Handler@handle',
-                    compact('user', 'extension')
-                ) !== false
-            ) {
+
+            $response = $extension->check($user);
+
+            if ($response === true) {
                 continue;
-            }
-
-            /**
-             * Upon a failed security check we
-             * need to change alter response.
-             *
-             * Typically this means redirecting
-             * but any response will do. Check the
-             * extension for a response handler or
-             * default to the login page.
-             */
-            $response = substr(get_class($extension), 0, -9) . 'Response';
-
-            if (class_exists($response)) {
-                $response = $this->container->call($response . '@make', compact('user', 'extension'));
-            } else {
-                $response = $this->redirect->to('admin/login');
             }
 
             $this->events->fire(new SecurityCheckHasFailed($extension));

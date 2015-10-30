@@ -1,8 +1,8 @@
 <?php namespace Anomaly\UsersModule\Http\Controller\Admin;
 
 use Anomaly\Streams\Platform\Http\Controller\PublicController;
-use Anomaly\UsersModule\Authenticator\Authenticator;
 use Anomaly\UsersModule\User\Login\LoginFormBuilder;
+use Anomaly\UsersModule\User\UserAuthenticator;
 use Illuminate\Auth\Guard;
 use Illuminate\Routing\Redirector;
 
@@ -47,11 +47,11 @@ class LoginController extends PublicController
     /**
      * Log the user out.
      *
-     * @param Authenticator $authenticator
-     * @param Guard         $auth
+     * @param UserAuthenticator $authenticator
+     * @param Guard             $auth
      * @return \Illuminate\Http\RedirectResponse|Redirector
      */
-    public function logout(Authenticator $authenticator, Guard $auth)
+    public function logout(UserAuthenticator $authenticator, Guard $auth)
     {
         if (!$auth->guest()) {
             $authenticator->logout();

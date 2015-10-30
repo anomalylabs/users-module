@@ -124,6 +124,10 @@ class UserAuthenticator
             $user = $this->guard->user();
         }
 
+        if (!$user) {
+            return;
+        }
+
         $this->guard->logout($user);
 
         $this->events->fire(new UserWasLoggedOut($user));
