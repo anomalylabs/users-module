@@ -24,8 +24,8 @@ interface SecurityCheckInterface
     /**
      * Check an HTTP request.
      *
-     * @param UserInterface|null $user
+     * @param UserInterface $user
      * @return bool|Response
      */
-    public function check(UserInterface $user = null);
+    public function check(UserInterface $user);
 }
