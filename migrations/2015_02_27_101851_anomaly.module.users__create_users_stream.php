@@ -48,7 +48,7 @@ class AnomalyModuleUsersCreateUsersStream extends Migration
         'first_name',
         'last_name',
         'activated',
-        'suspended',
+        'enabled',
         'avatar',
         'permissions',
         'last_login_at',

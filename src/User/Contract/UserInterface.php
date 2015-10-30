@@ -139,11 +139,11 @@ interface UserInterface extends EntryInterface
     public function isActivated();
 
     /**
-     * Return the suspended flag.
+     * Return the enabled flag.
      *
      * @return bool
      */
-    public function isSuspended();
+    public function isEnabled();
 
     /**
      * Return the full name.

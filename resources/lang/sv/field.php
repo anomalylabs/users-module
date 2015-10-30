@@ -64,10 +64,10 @@ return [
         'name' => 'Senaste Aktivitet'
     ],
     'status'                => [
-        'name'      => 'Status',
-        'active'    => 'Aktiv',
-        'inactive'  => 'Inaktiv',
-        'suspended' => 'Avstängd'
+        'name'     => 'Status',
+        'active'   => 'Aktiv',
+        'inactive' => 'Inaktiv',
+        'enabled'  => 'Avstängd'
     ],
     'reset_code'            => [
         'name'         => 'Återställningskod',

@@ -298,13 +298,13 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, \Illumina
     }
 
     /**
-     * Return the suspended flag.
+     * Return the enabled flag.
      *
      * @return bool
      */
-    public function isSuspended()
+    public function isEnabled()
     {
-        return $this->suspended;
+        return $this->enabled;
     }
 
     /**

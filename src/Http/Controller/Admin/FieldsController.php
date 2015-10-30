@@ -40,7 +40,7 @@ class FieldsController extends AdminController
      * @param FieldTypeCollection $fieldTypes
      * @return \Illuminate\View\View
      */
-    public function type(FieldTypeCollection $fieldTypes)
+    public function choose(FieldTypeCollection $fieldTypes)
     {
         return view('anomaly.module.users::ajax/choose_field_type', ['field_types' => $fieldTypes]);
     }

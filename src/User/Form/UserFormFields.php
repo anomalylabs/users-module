@@ -35,7 +35,7 @@ class UserFormFields
                 ]
             ],
             'activated',
-            'suspended',
+            'enabled',
             'roles'
         ];
 

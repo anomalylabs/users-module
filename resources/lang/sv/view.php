@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'online'    => 'Inloggade',
-    'inactive'  => 'Inaktiva',
-    'suspended' => 'Avstängda'
+    'online'   => 'Inloggade',
+    'inactive' => 'Inaktiva',
+    'enabled'  => 'Avstängda'
 ];

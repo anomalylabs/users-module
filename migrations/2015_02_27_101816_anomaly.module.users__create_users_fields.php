@@ -55,10 +55,10 @@ class AnomalyModuleUsersCreateUsersFields extends Migration
                 'default_value' => false
             ]
         ],
-        'suspended'        => [
+        'enabled'          => [
             'type'   => 'anomaly.field_type.boolean',
             'config' => [
-                'default_value' => false
+                'default_value' => true
             ]
         ],
         'slug'             => [

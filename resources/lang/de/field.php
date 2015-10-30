@@ -64,10 +64,10 @@ return [
         'name' => 'Letzte Aktivität'
     ],
     'status'                => [
-        'name'      => 'Status',
-        'active'    => 'Aktiv',
-        'inactive'  => 'Inaktiv',
-        'suspended' => 'Suspendiert'
+        'name'     => 'Status',
+        'active'   => 'Aktiv',
+        'inactive' => 'Inaktiv',
+        'enabled'  => 'Suspendiert'
     ],
     'reset_code'            => [
         'name'         => 'Code für die Zurücksetzung',

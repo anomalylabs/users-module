@@ -66,8 +66,8 @@ return [
     'activated'        => [
         'name' => 'Activated'
     ],
-    'suspended'        => [
-        'name' => 'Suspended'
+    'enabled'          => [
+        'name' => 'Enabled'
     ],
     'activation_code'  => [
         'name'         => 'Activation Code',

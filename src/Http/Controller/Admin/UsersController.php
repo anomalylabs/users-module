@@ -5,7 +5,6 @@ use Anomaly\UsersModule\User\Form\UserFormBuilder;
 use Anomaly\UsersModule\User\Permission\PermissionFormBuilder;
 use Anomaly\UsersModule\User\Table\UserPermissionTableBuilder;
 use Anomaly\UsersModule\User\Table\UserTableBuilder;
-use Anomaly\UsersModule\User\UserActivator;
 use Anomaly\UsersModule\User\UserBlocker;
 use Anomaly\UsersModule\User\UserManager;
 

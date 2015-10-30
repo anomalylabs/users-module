@@ -14,66 +14,12 @@ class UserTableBuilder extends TableBuilder
 {
 
     /**
-     * The table views.
+     * The table actions.
      *
      * @var array
      */
-    protected $views = [
-        'all'       => [
-            'columns' => [
-                'display_name',
-                'username',
-                'email',
-                'activated' => 'entry.activated.label',
-                'suspended' => 'entry.suspended.label'
-            ],
-            'buttons' => [
-                'permissions' => [
-                    'button' => 'info',
-                    'icon'   => 'unlock',
-                    'href'   => 'admin/users/permissions/{entry.id}'
-                ],
-                'edit'
-            ],
-            'actions' => [
-                'delete',
-                'suspend'        => [
-                    'icon'         => 'ban',
-                    'button'       => 'confirm',
-                    'data-message' => 'anomaly.module.users::confirm.suspend_users'
-                ],
-                'reset_password' => [
-                    'button' => 'info',
-                    'icon'   => 'refresh'
-                ]
-            ]
-        ],
-        'online'    => [
-            'columns' => [
-                'display_name',
-                'username',
-                'email',
-                'entry.last_activity_at.time_ago'
-            ]
-        ],
-        'inactive'  => [
-            'actions' => [
-                'delete',
-                'activate' => [
-                    'button' => 'success'
-                ]
-            ]
-        ],
-        'suspended' => [
-            'actions' => [
-                'delete',
-                'reinstate' => [
-                    'button'       => 'confirm',
-                    'type'         => 'success',
-                    'data-message' => 'anomaly.module.users::confirm.reinstate_users'
-                ]
-            ]
-        ]
+    public $actions = [
+        'delete'
     ];
 
     /**
@@ -93,9 +39,13 @@ class UserTableBuilder extends TableBuilder
      * @var array
      */
     protected $columns = [
-        'display_name',
+        'entry.edit_link' => [
+            'sort_column' => 'display_name'
+        ],
         'username',
-        'email'
+        'email',
+        'activated'       => 'entry.activated.label',
+        'enabled'         => 'entry.enabled.label'
     ];
 
     /**
@@ -104,16 +54,11 @@ class UserTableBuilder extends TableBuilder
      * @var array
      */
     protected $buttons = [
-        'edit'
-    ];
-
-    /**
-     * The table actions.
-     *
-     * @var array
-     */
-    public $actions = [
-        'delete'
+        'permissions' => [
+            'button' => 'info',
+            'icon'   => 'lock',
+            'href'   => 'admin/users/permissions/{entry.id}'
+        ]
     ];
 
 }

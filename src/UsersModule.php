@@ -41,7 +41,7 @@ class UsersModule extends Module
                 'add_field' => [
                     'data-toggle' => 'modal',
                     'data-target' => '#modal',
-                    'href'        => 'admin/users/fields/type'
+                    'href'        => 'admin/users/fields/choose'
                 ]
             ]
         ],
