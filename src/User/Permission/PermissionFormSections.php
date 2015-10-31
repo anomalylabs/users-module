@@ -31,10 +31,6 @@ class PermissionFormSections
         /* @var Addon $addon */
         foreach ($addons->withConfig('permissions') as $addon) {
 
-            if ($addon->getSlug() !== 'users') {
-                continue;
-            }
-
             $sections[$addon->getNamespace()]['title']       = $addon->getName();
             $sections[$addon->getNamespace()]['description'] = $addon->getDescription();
 

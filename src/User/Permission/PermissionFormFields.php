@@ -38,11 +38,6 @@ class PermissionFormFields
 
         /* @var Addon $addon */
         foreach ($addons->withConfig('permissions') as $addon) {
-
-            if ($addon->getSlug() !== 'users') {
-                continue;
-            }
-
             foreach ($config->get($addon->getNamespace('permissions'), []) as $group => $permissions) {
 
                 $label = $addon->getNamespace('permission.' . $group . '.name');

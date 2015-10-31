@@ -1,15 +1,17 @@
 <?php
 
 return [
-    'users'   => [
-        'read',
-        'write',
-        'delete',
-        'fields'
-    ],
-    'roles'   => [
+    'users'  => [
         'read',
         'write',
         'delete'
+    ],
+    'roles'  => [
+        'read',
+        'write',
+        'delete'
+    ],
+    'fields' => [
+        'manage'
     ]
 ];

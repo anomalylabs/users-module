@@ -1,10 +1,26 @@
 <?php
 
 return [
-    'users' => [
+    'users'  => [
         'name'   => 'Users',
         'option' => [
-            'read' => 'Can access users section.'
+            'read'   => 'Can access users section.',
+            'write'  => 'Can create and edit users.',
+            'delete' => 'Can delete users.'
+        ]
+    ],
+    'roles'  => [
+        'name'   => 'Roles',
+        'option' => [
+            'read'   => 'Can access roles section.',
+            'write'  => 'Can create and edit roles.',
+            'delete' => 'Can delete roles.'
+        ]
+    ],
+    'fields' => [
+        'name'   => 'Fields',
+        'option' => [
+            'manage' => 'Can manage custom fields.'
         ]
     ]
 ];

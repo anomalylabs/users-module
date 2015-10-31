@@ -5,9 +5,8 @@ return [
     'name'        => 'Users Module',
     'description' => 'Manage users, roles, and permissions.',
     'section'     => [
-        'users'    => 'Users',
-        'roles'    => 'Roles',
-        'fields'   => 'Fields',
-        'settings' => 'Settings'
+        'users'  => 'Users',
+        'roles'  => 'Roles',
+        'fields' => 'Fields'
     ]
 ];
