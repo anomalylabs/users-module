@@ -154,6 +154,21 @@ interface UserInterface extends EntryInterface
     public function setResetCode($code);
 
     /**
+     * Get the activation code.
+     *
+     * @return string
+     */
+    public function getActivationCode();
+
+    /**
+     * Set the activation code.
+     *
+     * @param $code
+     * @return $this
+     */
+    public function setActivationCode($code);
+
+    /**
      * Return the roles relationship.
      *
      * @return BelongsToMany
@@ -166,4 +181,11 @@ interface UserInterface extends EntryInterface
      * @return string
      */
     public function name();
+
+    /**
+     * Attach a role to the user.
+     *
+     * @param RoleInterface $role
+     */
+    public function attachRole(RoleInterface $role);
 }

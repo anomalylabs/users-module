@@ -1,29 +1,31 @@
 <?php namespace Anomaly\UsersModule\User\Register\Command;
 
 use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
+use Anomaly\Streams\Platform\Message\MessageBag;
 use Anomaly\UsersModule\User\Register\RegisterFormBuilder;
 use Illuminate\Contracts\Bus\SelfHandling;
+use Illuminate\Routing\Redirector;
 
 /**
- * Class SetDefaultOptions
+ * Class HandleManualRegistration
  *
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
  * @package       Anomaly\UsersModule\User\Register\Command
  */
-class SetOptions implements SelfHandling
+class HandleManualRegistration implements SelfHandling
 {
 
     /**
-     * The register form builder.
+     * The form builder.
      *
      * @var RegisterFormBuilder
      */
     protected $builder;
 
     /**
-     * Create a new SetDefaultOptions instance.
+     * Create a new HandleManualRegistration instance.
      *
      * @param RegisterFormBuilder $builder
      */
@@ -36,20 +38,16 @@ class SetOptions implements SelfHandling
      * Handle the command.
      *
      * @param SettingRepositoryInterface $settings
+     * @param MessageBag                 $messages
+     * @param Redirector                 $redirect
      */
-    public function handle(SettingRepositoryInterface $settings)
+    public function handle(SettingRepositoryInterface $settings, MessageBag $messages, Redirector $redirect)
     {
-        if (!$this->builder->getOption('redirect')) {
-            $this->builder->setOption('redirect', $settings->value('anomaly.module.users::register_redirect', '/'));
-        }
+        $messages->info('anomaly.module.users::message.pending_admin_activation');
 
-        if (!$this->builder->getOption('success_message')) {
-            $this->builder->setOption('success_message', 'anomaly.module.users::success.user_registered');
-        }
-
-        if (!$this->builder->getOption('container_class')) {
-            $this->builder->setOption('container_class', 'form-wrapper');
-        }
+        $this->builder->setFormResponse(
+            $redirect->to($settings->value('anomaly.module.users::register_redirect', '/'))
+        );
     }
 
 }

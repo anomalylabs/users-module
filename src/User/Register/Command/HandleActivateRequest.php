@@ -7,14 +7,14 @@ use Illuminate\Contracts\Encryption\Encrypter;
 use Illuminate\Http\Request;
 
 /**
- * Class ActivateUser
+ * Class HandleActivateRequest
  *
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
  * @package       Anomaly\UsersModule\User\Register\Command
  */
-class ActivateUser implements SelfHandling
+class HandleActivateRequest implements SelfHandling
 {
 
     /**

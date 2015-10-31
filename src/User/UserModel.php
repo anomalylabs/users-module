@@ -331,6 +331,29 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, \Illumina
     }
 
     /**
+     * Get the activation code.
+     *
+     * @return string
+     */
+    public function getActivationCode()
+    {
+        return $this->activation_code;
+    }
+
+    /**
+     * Set the activation code.
+     *
+     * @param $code
+     * @return $this
+     */
+    public function setActivationCode($code)
+    {
+        $this->activation_code = $code;
+
+        return $this;
+    }
+
+    /**
      * Return the full name.
      *
      * @return string
@@ -338,5 +361,15 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, \Illumina
     public function name()
     {
         return $this->getFirstName() . ' ' . $this->getLastName();
+    }
+
+    /**
+     * Attach a role to the user.
+     *
+     * @param RoleInterface $role
+     */
+    public function attachRole(RoleInterface $role)
+    {
+        $this->roles()->attach($role);
     }
 }

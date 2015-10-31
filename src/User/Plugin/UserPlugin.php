@@ -6,6 +6,7 @@ use Anomaly\UsersModule\User\Plugin\Command\BuildCompleteResetForm;
 use Anomaly\UsersModule\User\Plugin\Command\BuildLoginForm;
 use Anomaly\UsersModule\User\Plugin\Command\BuildRegisterForm;
 use Anomaly\UsersModule\User\Plugin\Command\BuildResetForm;
+use Anomaly\UsersModule\User\Plugin\Command\GetActivatePath;
 use Anomaly\UsersModule\User\Plugin\Command\GetCompleteResetPath;
 use Anomaly\UsersModule\User\Plugin\Command\GetLoginPath;
 use Anomaly\UsersModule\User\Plugin\Command\GetLogoutPath;
@@ -74,6 +75,12 @@ class UserPlugin extends Plugin
                 'logout_path',
                 function ($redirect = null) {
                     return $this->dispatch(new GetLogoutPath($redirect));
+                }
+            ),
+            new \Twig_SimpleFunction(
+                'activate_path',
+                function (UserInterface $user) {
+                    return $this->dispatch(new GetActivatePath($user));
                 }
             ),
             new \Twig_SimpleFunction(

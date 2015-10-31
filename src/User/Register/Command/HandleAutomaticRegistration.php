@@ -2,28 +2,30 @@
 
 use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
 use Anomaly\UsersModule\User\Register\RegisterFormBuilder;
+use Anomaly\UsersModule\User\UserActivator;
 use Illuminate\Contracts\Bus\SelfHandling;
+use Illuminate\Routing\Redirector;
 
 /**
- * Class SetDefaultOptions
+ * Class HandleAutomaticRegistration
  *
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
  * @package       Anomaly\UsersModule\User\Register\Command
  */
-class SetOptions implements SelfHandling
+class HandleAutomaticRegistration implements SelfHandling
 {
 
     /**
-     * The register form builder.
+     * The form builder.
      *
      * @var RegisterFormBuilder
      */
     protected $builder;
 
     /**
-     * Create a new SetDefaultOptions instance.
+     * Create a new HandleAutomaticRegistration instance.
      *
      * @param RegisterFormBuilder $builder
      */
@@ -36,20 +38,19 @@ class SetOptions implements SelfHandling
      * Handle the command.
      *
      * @param SettingRepositoryInterface $settings
+     * @param UserActivator              $activator
+     * @param Redirector                 $redirect
      */
-    public function handle(SettingRepositoryInterface $settings)
-    {
-        if (!$this->builder->getOption('redirect')) {
-            $this->builder->setOption('redirect', $settings->value('anomaly.module.users::register_redirect', '/'));
-        }
+    public function handle(
+        SettingRepositoryInterface $settings,
+        UserActivator $activator,
+        Redirector $redirect
+    ) {
+        $activator->force($this->builder->getFormEntry());
 
-        if (!$this->builder->getOption('success_message')) {
-            $this->builder->setOption('success_message', 'anomaly.module.users::success.user_registered');
-        }
-
-        if (!$this->builder->getOption('container_class')) {
-            $this->builder->setOption('container_class', 'form-wrapper');
-        }
+        $this->builder->setFormResponse(
+            $redirect->to($settings->value('anomaly.module.users::activated_redirect', '/'))
+        );
     }
 
 }

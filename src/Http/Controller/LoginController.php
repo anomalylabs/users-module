@@ -41,14 +41,7 @@ class LoginController extends PublicController
             $authenticator->logout();
         }
 
-        if (filter_var(
-            $message = $settings->value(
-                'anomaly.module.users::logout_message',
-                'anomaly.module.users::message.logged_out'
-            )
-        )) {
-            $this->messages->success($message);
-        }
+        $this->messages->success('anomaly.module.users::message.logged_out');
 
         return $this->response->redirectTo(
             $this->request->get('redirect', $settings->value('anomaly.module.users::logout_redirect', '/'))

@@ -35,6 +35,16 @@ class RoleRepository extends EntryRepository implements RoleRepositoryInterface
     }
 
     /**
+     * Return all but the admin role.
+     *
+     * @return RoleCollection
+     */
+    public function allButAdmin()
+    {
+        return $this->model->where('slug', '!=', 'admin')->get();
+    }
+
+    /**
      * Find a role by it's slug.
      *
      * @param $slug

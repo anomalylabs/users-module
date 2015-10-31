@@ -27,9 +27,13 @@ return [
         'instructions' => 'How should users be activated after they register?',
         'option'       => [
             'manual'    => 'Require an administrator to manually activate the user.',
-            'email'     => 'Send an activation confirmation email to the user.',
+            'email'     => 'Send an activation email to the user.',
             'automatic' => 'Automatically activate the user after they register.'
         ]
+    ],
+    'activation_roles'        => [
+        'label'        => 'Activation Roles',
+        'instructions' => 'Which roles should registered users be assigned to?'
     ],
     'login_enabled'           => [
         'label'        => 'Enable login?',

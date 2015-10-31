@@ -44,10 +44,7 @@ class SetOptions implements SelfHandling
         }
 
         if (!$this->builder->getOption('success_message')) {
-            $this->builder->setOption(
-                'success_message',
-                $settings->value('anomaly.module.users::login_message', 'You are now logged in.')
-            );
+            $this->builder->setOption('success_message', 'anomaly.module.users::message.logged_in');
         }
 
         if (!$this->builder->getOption('container_class')) {

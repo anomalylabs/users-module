@@ -8,6 +8,7 @@ return [
                 'fields' => [
                     'register_enabled',
                     'activation_mode',
+                    'activation_roles',
                     'register_path',
                     'activate_path',
                     'register_redirect',

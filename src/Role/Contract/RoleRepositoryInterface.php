@@ -2,6 +2,7 @@
 
 use Anomaly\Streams\Platform\Entry\Contract\EntryRepositoryInterface;
 use Anomaly\Streams\Platform\Entry\EntryCollection;
+use Anomaly\UsersModule\Role\RoleCollection;
 
 /**
  * Interface RoleRepositoryInterface
@@ -13,6 +14,13 @@ use Anomaly\Streams\Platform\Entry\EntryCollection;
  */
 interface RoleRepositoryInterface extends EntryRepositoryInterface
 {
+
+    /**
+     * Return all but the admin role.
+     *
+     * @return RoleCollection
+     */
+    public function allButAdmin();
 
     /**
      * Find a role by it's slug.

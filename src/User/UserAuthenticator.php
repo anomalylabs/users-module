@@ -1,7 +1,7 @@
 <?php namespace Anomaly\UsersModule\User;
 
 use Anomaly\Streams\Platform\Addon\Extension\ExtensionCollection;
-use Anomaly\UsersModule\User\Authenticator\AuthenticatorExtensionInterface;
+use Anomaly\UsersModule\User\Authenticator\Contract\AuthenticatorExtensionInterface;
 use Anomaly\UsersModule\User\Contract\UserInterface;
 use Anomaly\UsersModule\User\Event\UserWasKickedOut;
 use Anomaly\UsersModule\User\Event\UserWasLoggedIn;

@@ -38,37 +38,20 @@ class SendActivationEmail implements SelfHandling
     /**
      * Handle the command.
      *
-     * @param Mailer                        $mailer
-     * @param SettingRepositoryInterface    $settings
-     * @param ActivationRepositoryInterface $activations
+     * @param Mailer                     $mailer
+     * @param SettingRepositoryInterface $settings
      * @return bool
      */
-    public function handle(
-        Mailer $mailer,
-        SettingRepositoryInterface $settings,
-        ActivationRepositoryInterface $activations
-    ) {
-        $activation = $activations->findByUserId($this->user->getId());
-
-        if ($activation && $activation->isCompleted()) {
-            return false;
-        }
-
-        if (!$activation) {
-            $activation = $activations->create(['user' => $this->user]);
-        } else {
-            $activations->save($activation->randomizeCode());
-        }
-
+    public function handle(Mailer $mailer, SettingRepositoryInterface $settings)
+    {
         return $mailer->send(
-            'anomaly.module.users::email/activation',
-            ['user' => $this->user, 'activation' => $activation],
+            'anomaly.module.users::emails/activate',
+            ['user' => $this->user],
             function (Message $message) use ($settings) {
-
                 $message
-                    ->subject('Confirmation')
+                    ->subject('Activate Your Account')
                     ->to($this->user->getEmail(), $this->user->getDisplayName())
-                    ->from($settings->get('streams::server_email', 'noreply@pyrocms.com'));
+                    ->from($settings->value('streams::server_email', 'noreply@localhost.com'));
             }
         );
     }

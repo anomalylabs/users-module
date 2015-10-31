@@ -2,7 +2,7 @@
 
 use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
 use Anomaly\Streams\Platform\Http\Controller\PublicController;
-use Anomaly\UsersModule\User\Register\Command\ActivateUser;
+use Anomaly\UsersModule\User\Register\Command\HandleActivateRequest;
 use Illuminate\Contracts\Encryption\Encrypter;
 use Illuminate\Http\Request;
 
@@ -27,24 +27,23 @@ class RegisterController extends PublicController
         return $this->view->make('anomaly.module.users::register');
     }
 
+    /**
+     * Activate a registered user.
+     *
+     * @param SettingRepositoryInterface $settings
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function activate(SettingRepositoryInterface $settings)
     {
-        if ($this->dispatch(new ActivateUser())) {
+        if (!$this->dispatch(new HandleActivateRequest())) {
 
-            $message = $settings->value(
-                'anomaly.module.users::activated_message',
-                'anomaly.module.users::success.activate_user'
-            );
-
-            if (filter_var($message)) {
-                $this->messages->success($message);
-            }
+            $this->messages->success('anomaly.module.users::error.activate_user');
 
             return $this->redirect->to($settings->value('anomaly.module.users::activated_redirect', '/'));
         }
 
-        $this->messages->success('anomaly.module.users::error.activate_user');
+        $this->messages->success('anomaly.module.users::success.activate_user');
 
-        return $this->redirect->to('/');
+        return $this->redirect->to($settings->value('anomaly.module.users::activated_redirect', '/'));
     }
 }

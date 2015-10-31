@@ -1,8 +1,12 @@
 <?php namespace Anomaly\UsersModule\User\Register;
 
 use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
+use Anomaly\UsersModule\User\Register\Command\AssociateActivationRoles;
+use Anomaly\UsersModule\User\Register\Command\HandleAutomaticRegistration;
+use Anomaly\UsersModule\User\Register\Command\HandleEmailRegistration;
+use Anomaly\UsersModule\User\Register\Command\HandleManualRegistration;
 use Anomaly\UsersModule\User\UserActivator;
-use Illuminate\Routing\Redirector;
+use Illuminate\Foundation\Bus\DispatchesJobs;
 
 /**
  * Class RegisterFormHandler
@@ -15,36 +19,38 @@ use Illuminate\Routing\Redirector;
 class RegisterFormHandler
 {
 
+    use DispatchesJobs;
+
     /**
      * Handle the form.
      *
      * @param SettingRepositoryInterface $settings
      * @param RegisterFormBuilder        $builder
      * @param UserActivator              $activator
-     * @param Redirector                 $redirect
+     * @throws \Exception
      */
-    public function handle(
-        SettingRepositoryInterface $settings,
-        RegisterFormBuilder $builder,
-        UserActivator $activator,
-        Redirector $redirect
-    ) {
+    public function handle(SettingRepositoryInterface $settings, RegisterFormBuilder $builder, UserActivator $activator)
+    {
         if (!$builder->canSave()) {
             return;
         }
 
-        $builder->saveForm();
+        $builder->saveForm(); // Save the new user.
 
-        $activator->force($builder->getFormEntry());
-        /*if ($settings->get('anomaly.module.users::activation_mode') == 'automatic') {
-            $manager->force($builder->getFormEntry());
+        $this->dispatch(new AssociateActivationRoles($builder->getFormEntry()));
+
+        $activator->start($builder->getFormEntry());
+
+        $mode = $settings->value('anomaly.module.users::activation_mode', 'manual');
+
+        if ($mode == 'automatic') {
+            $this->dispatch(new HandleAutomaticRegistration($builder));
+        } elseif ($mode == 'email') {
+            $this->dispatch(new HandleEmailRegistration($builder));
+        } elseif ($mode == 'manual') {
+            $this->dispatch(new HandleManualRegistration($builder));
+        } else {
+            throw new \Exception("Activation mode [{$mode}] is not supported.");
         }
-
-        if ($settings->get('anomaly.module.users::activation_mode') == 'email') {
-            $mailer->send($builder->getFormEntry());
-        }*/
-
-        // Otherwise it's manual.
-        $builder->setFormResponse($redirect->to($builder->getFormOption('redirect', '/')));
     }
 }

@@ -16,6 +16,31 @@ return [
             ]
         ]
     ],
+    'activation_roles'        => [
+        'required' => true,
+        'type'     => 'anomaly.field_type.checkboxes',
+        'config'   => [
+            'options' => function (\Anomaly\UsersModule\Role\Contract\RoleRepositoryInterface $roles) {
+
+                $roles = $roles->allButAdmin();
+
+                return array_combine(
+                    array_map(
+                        function (\Anomaly\UsersModule\Role\Contract\RoleInterface $role) {
+                            return $role->getId();
+                        },
+                        $roles->all()
+                    ),
+                    array_map(
+                        function (\Anomaly\UsersModule\Role\Contract\RoleInterface $role) {
+                            return $role->getName();
+                        },
+                        $roles->all()
+                    )
+                );
+            }
+        ]
+    ],
     'register_path'           => [
         'required' => true,
         'type'     => 'anomaly.field_type.text',

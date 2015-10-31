@@ -57,6 +57,8 @@ class LoginController extends PublicController
             $authenticator->logout();
         }
 
+        $this->messages->success('anomaly.module.users::message.logged_out');
+
         return redirect('admin/login');
     }
 }
