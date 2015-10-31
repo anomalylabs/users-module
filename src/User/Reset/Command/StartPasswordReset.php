@@ -1,4 +1,4 @@
-<?php namespace Anomaly\UsersModule\User\Command;
+<?php namespace Anomaly\UsersModule\User\Reset\Command;
 
 use Anomaly\UsersModule\User\Contract\UserInterface;
 use Anomaly\UsersModule\User\Contract\UserRepositoryInterface;
@@ -10,7 +10,7 @@ use Illuminate\Contracts\Bus\SelfHandling;
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
- * @package       Anomaly\UsersModule\User\Command
+ * @package       Anomaly\UsersModule\User\Reset\Command
  */
 class StartPasswordReset implements SelfHandling
 {

@@ -1,19 +1,19 @@
-<?php namespace Anomaly\UsersModule\User\Command;
+<?php namespace Anomaly\UsersModule\User\Plugin\Command;
 
 use Anomaly\Streams\Platform\Addon\Plugin\PluginForm;
 use Anomaly\Streams\Platform\Support\Decorator;
-use Anomaly\UsersModule\User\Login\LoginFormBuilder;
+use Anomaly\UsersModule\User\Reset\ResetFormBuilder;
 use Illuminate\Contracts\Bus\SelfHandling;
 
 /**
- * Class BuildLoginForm
+ * Class BuildResetForm
  *
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
- * @package       Anomaly\UsersModule\User\Command
+ * @package       Anomaly\UsersModule\User\Plugin\Command
  */
-class BuildLoginForm implements SelfHandling
+class BuildResetForm implements SelfHandling
 {
 
     /**
@@ -24,7 +24,7 @@ class BuildLoginForm implements SelfHandling
     protected $parameters;
 
     /**
-     * Create a new BuildLoginForm instance.
+     * Create a new BuildResetForm instance.
      *
      * @param array $parameters
      */
@@ -42,7 +42,7 @@ class BuildLoginForm implements SelfHandling
      */
     public function handle(PluginForm $form, Decorator $decorator)
     {
-        $parameters = array_merge_recursive($this->parameters, ['builder' => LoginFormBuilder::class]);
+        $parameters = array_merge_recursive($this->parameters, ['builder' => ResetFormBuilder::class]);
 
         return $decorator->decorate($form->make($parameters)->getForm());
     }

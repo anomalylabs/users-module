@@ -102,21 +102,28 @@ return [
             'default_value' => false
         ]
     ],
-    'forgot_password_path'    => [
+    'reset_path'              => [
         'required' => true,
         'type'     => 'anomaly.field_type.text',
         'config'   => [
             'default_value' => 'reset'
         ]
     ],
-    'password_reset_path'     => [
+    'complete_reset_path'     => [
         'required' => true,
         'type'     => 'anomaly.field_type.text',
         'config'   => [
             'default_value' => 'reset/complete'
         ]
     ],
-    'password_reset_redirect' => [
+    'reset_redirect'          => [
+        'required' => true,
+        'type'     => 'anomaly.field_type.text',
+        'config'   => [
+            'default_value' => '/'
+        ]
+    ],
+    'complete_reset_redirect' => [
         'required' => true,
         'type'     => 'anomaly.field_type.text',
         'config'   => [

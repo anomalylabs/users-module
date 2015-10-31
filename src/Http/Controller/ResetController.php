@@ -14,12 +14,22 @@ class ResetController extends PublicController
 {
 
     /**
-     * Return the forgot password view.
+     * Return the reset view.
      *
      * @return \Illuminate\Contracts\View\View|mixed
      */
     public function reset()
     {
         return $this->view->make('anomaly.module.users::reset');
+    }
+
+    /**
+     * Return the complete reset view.
+     *
+     * @return \Illuminate\Contracts\View\View|mixed
+     */
+    public function complete()
+    {
+        return $this->view->make('anomaly.module.users::complete');
     }
 }

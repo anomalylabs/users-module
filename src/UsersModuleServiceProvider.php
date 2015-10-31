@@ -21,7 +21,6 @@ class UsersModuleServiceProvider extends AddonServiceProvider
      * @var array
      */
     protected $plugins = [
-        'Anomaly\UsersModule\UsersModulePlugin',
         'Anomaly\UsersModule\User\Plugin\UserPlugin',
         'Anomaly\UsersModule\Role\Plugin\RolePlugin'
     ];
@@ -141,12 +140,12 @@ class UsersModuleServiceProvider extends AddonServiceProvider
         if ($settings->value('anomaly.module.users::password_resets_enabled', false)) {
 
             $router->get(
-                $settings->value('anomaly.module.users::forgot_password_path', 'reset'),
+                $settings->value('anomaly.module.users::reset_path', 'reset'),
                 'Anomaly\UsersModule\Http\Controller\ResetController@reset'
             );
 
             $router->get(
-                $settings->value('anomaly.module.users::reset_password_path', 'reset/complete'),
+                $settings->value('anomaly.module.users::complete_reset_path', 'reset/complete'),
                 'Anomaly\UsersModule\Http\Controller\ResetController@complete'
             );
         }

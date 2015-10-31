@@ -71,15 +71,19 @@ return [
         'instructions' => 'Allow users to reset their password through the website?',
         'warning'      => 'This does not affect the control panel or plugin functionality.'
     ],
-    'forgot_password_path'    => [
+    'reset_path'              => [
         'label'        => 'Forgot Password Path',
         'instructions' => 'Specify the URL path for initiating a password reset.'
     ],
-    'password_reset_path'     => [
+    'reset_redirect'          => [
+        'label'        => 'Password Reset Redirect',
+        'instructions' => 'Specify the URL or URL path to redirect users after successfully resetting their password.'
+    ],
+    'complete_reset_path'     => [
         'label'        => 'Password Reset Path',
         'instructions' => 'Specify the URL path to use for resetting passwords.'
     ],
-    'password_reset_redirect' => [
+    'complete_reset_redirect' => [
         'label'        => 'Password Reset Redirect',
         'instructions' => 'Specify the URL or URL path to redirect users after successfully resetting their password.'
     ]

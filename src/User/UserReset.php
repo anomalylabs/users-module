@@ -1,7 +1,9 @@
 <?php namespace Anomaly\UsersModule\User;
 
-use Anomaly\UsersModule\User\Command\StartPasswordReset;
+use Anomaly\UsersModule\User\Reset\Command\CompleteReset;
 use Anomaly\UsersModule\User\Contract\UserInterface;
+use Anomaly\UsersModule\User\Reset\Command\SendResetEmail;
+use Anomaly\UsersModule\User\Reset\Command\StartPasswordReset;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 
 /**
@@ -38,7 +40,7 @@ class UserReset
      */
     public function complete(UserInterface $user, $code, $password)
     {
-        return true;
+        return $this->dispatch(new CompleteReset($user, $code, $password));
     }
 
     /**
@@ -47,6 +49,6 @@ class UserReset
      */
     public function send(UserInterface $user)
     {
-        return true;
+        return $this->dispatch(new SendResetEmail($user));
     }
 }

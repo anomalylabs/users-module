@@ -1,19 +1,19 @@
-<?php namespace Anomaly\UsersModule\User\Command;
+<?php namespace Anomaly\UsersModule\User\Plugin\Command;
 
 use Anomaly\Streams\Platform\Addon\Plugin\PluginForm;
 use Anomaly\Streams\Platform\Support\Decorator;
-use Anomaly\UsersModule\User\Register\RegisterFormBuilder;
+use Anomaly\UsersModule\User\Login\LoginFormBuilder;
 use Illuminate\Contracts\Bus\SelfHandling;
 
 /**
- * Class BuildRegisterForm
+ * Class BuildLoginForm
  *
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
- * @package       Anomaly\UsersModule\User\Command
+ * @package       Anomaly\UsersModule\User\Plugin\Command
  */
-class BuildRegisterForm implements SelfHandling
+class BuildLoginForm implements SelfHandling
 {
 
     /**
@@ -24,7 +24,7 @@ class BuildRegisterForm implements SelfHandling
     protected $parameters;
 
     /**
-     * Create a new BuildRegisterForm instance.
+     * Create a new BuildLoginForm instance.
      *
      * @param array $parameters
      */
@@ -42,7 +42,7 @@ class BuildRegisterForm implements SelfHandling
      */
     public function handle(PluginForm $form, Decorator $decorator)
     {
-        $parameters = array_merge_recursive($this->parameters, ['builder' => RegisterFormBuilder::class]);
+        $parameters = array_merge_recursive($this->parameters, ['builder' => LoginFormBuilder::class]);
 
         return $decorator->decorate($form->make($parameters)->getForm());
     }

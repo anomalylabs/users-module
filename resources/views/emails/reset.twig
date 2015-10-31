@@ -1,13 +1,11 @@
 <p>
-    Hello {{ user.first_name }},
+    Hello {{ user.display_name }},
 </p>
 
 <p>
     It seems you have requested a password reset. Please click this link to complete the reset:
 
-    <a href="{{ url }}">
-        {{ url }}
-    </a>
+    <a href="{{ url(complete_reset_path(user.object)) }}">Reset Password</a>
 </p>
 
 <p>

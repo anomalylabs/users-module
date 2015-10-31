@@ -1,10 +1,7 @@
-<?php namespace Anomaly\UsersModule\Reset\Command;
+<?php namespace Anomaly\UsersModule\User\Reset\Command;
 
 use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
-use Anomaly\UsersModule\Reset\Contract\ResetRepositoryInterface;
-use Anomaly\UsersModule\Reset\Exception\UserIsAlreadyActivated;
 use Anomaly\UsersModule\User\Contract\UserInterface;
-use Anomaly\UsersModule\User\Contract\UserRepositoryInterface;
 use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Mail\Mailer;
 use Illuminate\Mail\Message;
@@ -15,7 +12,7 @@ use Illuminate\Mail\Message;
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
- * @package       Anomaly\UsersModule\Reset\Command
+ * @package       Anomaly\UsersModule\User\Reset\Command
  */
 class SendResetEmail implements SelfHandling
 {
@@ -42,27 +39,18 @@ class SendResetEmail implements SelfHandling
      *
      * @param Mailer                     $mailer
      * @param SettingRepositoryInterface $settings
-     * @return bool
+     * @return mixed
      */
-    public function handle(
-        Mailer $mailer,
-        SettingRepositoryInterface $settings,
-        UserRepositoryInterface $users
-    ) {
-
-        die('Send reset mail');
-
+    public function handle(Mailer $mailer, SettingRepositoryInterface $settings)
+    {
         return $mailer->send(
             'anomaly.module.users::emails/reset',
-            ['user' => $this->user, 'reset' => $reset],
+            ['user' => $this->user],
             function (Message $message) use ($settings) {
-
-                $setting = $settings->get('streams::server_email');
-
                 $message
-                    ->subject('Confirmation')
+                    ->subject('Reset your password')
                     ->to($this->user->getEmail(), $this->user->getDisplayName())
-                    ->from($setting ? $setting->getValue() : 'noreply@pyrocms.com');
+                    ->from($settings->value('streams::server_email', 'noreply@localhost'));
             }
         );
     }

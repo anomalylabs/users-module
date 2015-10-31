@@ -1,19 +1,19 @@
-<?php namespace Anomaly\UsersModule\User\Command;
+<?php namespace Anomaly\UsersModule\User\Plugin\Command;
 
 use Anomaly\Streams\Platform\Addon\Plugin\PluginForm;
 use Anomaly\Streams\Platform\Support\Decorator;
-use Anomaly\UsersModule\User\Reset\ForgotPasswordFormBuilder;
+use Anomaly\UsersModule\User\Register\RegisterFormBuilder;
 use Illuminate\Contracts\Bus\SelfHandling;
 
 /**
- * Class BuildForgotPasswordForm
+ * Class BuildRegisterForm
  *
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
- * @package       Anomaly\UsersModule\User\Command
+ * @package       Anomaly\UsersModule\User\Plugin\Command
  */
-class BuildForgotPasswordForm implements SelfHandling
+class BuildRegisterForm implements SelfHandling
 {
 
     /**
@@ -24,7 +24,7 @@ class BuildForgotPasswordForm implements SelfHandling
     protected $parameters;
 
     /**
-     * Create a new BuildForgotPasswordForm instance.
+     * Create a new BuildRegisterForm instance.
      *
      * @param array $parameters
      */
@@ -42,7 +42,7 @@ class BuildForgotPasswordForm implements SelfHandling
      */
     public function handle(PluginForm $form, Decorator $decorator)
     {
-        $parameters = array_merge_recursive($this->parameters, ['builder' => ForgotPasswordFormBuilder::class]);
+        $parameters = array_merge_recursive($this->parameters, ['builder' => RegisterFormBuilder::class]);
 
         return $decorator->decorate($form->make($parameters)->getForm());
     }

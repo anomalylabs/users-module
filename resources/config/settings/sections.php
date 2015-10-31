@@ -30,9 +30,10 @@ return [
                 'title'  => 'Password Resets',
                 'fields' => [
                     'password_resets_enabled',
-                    'forgot_password_path',
-                    'password_reset_path',
-                    'password_reset_redirect'
+                    'reset_path',
+                    'complete_reset_path',
+                    'reset_redirect',
+                    'complete_reset_redirect'
                 ]
             ]
         ]

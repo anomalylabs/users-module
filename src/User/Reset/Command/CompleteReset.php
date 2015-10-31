@@ -1,21 +1,18 @@
-<?php namespace Anomaly\UsersModule\Reset\Command;
+<?php namespace Anomaly\UsersModule\User\Reset\Command;
 
-use Anomaly\UsersModule\Reset\Contract\ResetRepositoryInterface;
-use Anomaly\UsersModule\Reset\Event\UserPasswordWasReset;
 use Anomaly\UsersModule\User\Contract\UserInterface;
 use Anomaly\UsersModule\User\Contract\UserRepositoryInterface;
 use Illuminate\Contracts\Bus\SelfHandling;
-use Illuminate\Events\Dispatcher;
 
 /**
- * Class CompletePasswordReset
+ * Class CompleteReset
  *
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
- * @package       Anomaly\UsersModule\Reset\Command
+ * @package       Anomaly\UsersModule\User\Reset\Command
  */
-class CompletePasswordReset implements SelfHandling
+class CompleteReset implements SelfHandling
 {
 
     /**
@@ -40,7 +37,7 @@ class CompletePasswordReset implements SelfHandling
     protected $password;
 
     /**
-     * Create a new CompletePasswordReset instance.
+     * Create a new CompleteResetReset instance.
      *
      * @param UserInterface $user
      * @param               $code
@@ -56,20 +53,14 @@ class CompletePasswordReset implements SelfHandling
     /**
      * Handle the command.
      *
-     * @param Dispatcher               $events
-     * @param ResetRepositoryInterface $resets
-     * @param UserRepositoryInterface  $users
+     * @param UserRepositoryInterface $users
      * @return bool
      */
-    public function handle(Dispatcher $events, ResetRepositoryInterface $resets, UserRepositoryInterface $users)
+    public function handle(UserRepositoryInterface $users)
     {
-        $reset = $resets->findByCode($this->code);
+        $user = $users->findByResetCode($this->code);
 
-        if (!$reset) {
-            return false;
-        }
-
-        if (!$user = $reset->getUser()) {
+        if (!$user) {
             return false;
         }
 
@@ -77,11 +68,10 @@ class CompletePasswordReset implements SelfHandling
             return false;
         }
 
-        $resets->delete($reset);
+        $this->user->setResetCode(null);
+        $this->user->setPassword($this->password);
 
-        $users->save($this->user->setPassword($this->password));
-
-        $events->fire(new UserPasswordWasReset($this->user));
+        $users->save($this->user);
 
         return true;
     }
