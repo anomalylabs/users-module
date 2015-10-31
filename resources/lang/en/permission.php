@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'users'  => [
+    'users'    => [
         'name'   => 'Users',
         'option' => [
             'read'   => 'Can access users section.',
@@ -9,7 +9,7 @@ return [
             'delete' => 'Can delete users.'
         ]
     ],
-    'roles'  => [
+    'roles'    => [
         'name'   => 'Roles',
         'option' => [
             'read'   => 'Can access roles section.',
@@ -17,10 +17,16 @@ return [
             'delete' => 'Can delete roles.'
         ]
     ],
-    'fields' => [
+    'fields'   => [
         'name'   => 'Fields',
         'option' => [
             'manage' => 'Can manage custom fields.'
+        ]
+    ],
+    'settings' => [
+        'name'   => 'Settings',
+        'option' => [
+            'manage' => 'Can manage addon settings.'
         ]
     ]
 ];
