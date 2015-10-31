@@ -1,6 +1,7 @@
 <?php namespace Anomaly\UsersModule\User;
 
 use Anomaly\Streams\Platform\Addon\Extension\ExtensionCollection;
+use Anomaly\UsersModule\User\Authenticator\AuthenticatorExtensionInterface;
 use Anomaly\UsersModule\User\Contract\UserInterface;
 use Anomaly\UsersModule\User\Event\UserWasKickedOut;
 use Anomaly\UsersModule\User\Event\UserWasLoggedIn;
@@ -65,7 +66,7 @@ class UserAuthenticator
      */
     public function attempt(array $credentials, $remember = false)
     {
-        if ($user = $this->check($credentials)) {
+        if ($user = $this->authenticate($credentials)) {
 
             $this->login($user, $remember);
 
@@ -76,23 +77,18 @@ class UserAuthenticator
     }
 
     /**
-     * Check authentication only.
+     * Attempt to authenticate the credentials.
      *
      * @param array $credentials
      * @return bool|UserInterface
      */
-    public function check(array $credentials)
+    public function authenticate(array $credentials)
     {
         $authenticators = $this->extensions->search('anomaly.module.users::authenticator.*');
 
+        /* @var AuthenticatorExtensionInterface $authenticator */
         foreach ($authenticators as $authenticator) {
-
-            $user = $this->container->call(
-                substr(get_class($authenticator), 0, -9) . 'Handler@handle',
-                compact('credentials')
-            );
-
-            if ($user instanceof UserInterface) {
+            if ($user = $authenticator->authenticate($credentials) instanceof UserInterface) {
                 return $user;
             }
         }
@@ -134,7 +130,7 @@ class UserAuthenticator
     }
 
     /**
-     * Kick out a user.
+     * Kick out a user. They've been bad.
      *
      * @param UserInterface $user
      */
