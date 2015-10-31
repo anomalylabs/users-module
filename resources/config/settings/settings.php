@@ -4,34 +4,6 @@ return [
     'register_enabled'        => [
         'type' => 'anomaly.field_type.boolean'
     ],
-    'register_path'           => [
-        'required' => true,
-        'type'     => 'anomaly.field_type.text',
-        'config'   => [
-            'default_value' => 'register'
-        ]
-    ],
-    'register_redirect'       => [
-        'required' => true,
-        'type'     => 'anomaly.field_type.text',
-        'config'   => [
-            'default_value' => '/'
-        ]
-    ],
-    'activate_path'           => [
-        'required' => true,
-        'type'     => 'anomaly.field_type.text',
-        'config'   => [
-            'default_value' => 'register/activate'
-        ]
-    ],
-    'activated_redirect'      => [
-        'required' => true,
-        'type'     => 'anomaly.field_type.text',
-        'config'   => [
-            'default_value' => '/'
-        ]
-    ],
     'activation_mode'         => [
         'required' => true,
         'type'     => 'anomaly.field_type.select',
@@ -42,6 +14,34 @@ return [
                 'email'     => 'anomaly.module.users::setting.activation_mode.option.email',
                 'automatic' => 'anomaly.module.users::setting.activation_mode.option.automatic'
             ]
+        ]
+    ],
+    'register_path'           => [
+        'required' => true,
+        'type'     => 'anomaly.field_type.text',
+        'config'   => [
+            'default_value' => 'register'
+        ]
+    ],
+    'activate_path'           => [
+        'required' => true,
+        'type'     => 'anomaly.field_type.text',
+        'config'   => [
+            'default_value' => 'register/activate'
+        ]
+    ],
+    'register_redirect'       => [
+        'required' => true,
+        'type'     => 'anomaly.field_type.text',
+        'config'   => [
+            'default_value' => '/'
+        ]
+    ],
+    'activated_redirect'      => [
+        'required' => true,
+        'type'     => 'anomaly.field_type.text',
+        'config'   => [
+            'default_value' => '/'
         ]
     ],
     'login_enabled'           => [
@@ -57,12 +57,6 @@ return [
             'default_value' => 'login'
         ]
     ],
-    'login_message'           => [
-        'type'   => 'anomaly.field_type.text',
-        'config' => [
-            'default_value' => 'anomaly.module.users::message.logged_in'
-        ]
-    ],
     'login_redirect'          => [
         'required' => true,
         'type'     => 'anomaly.field_type.text',
@@ -75,12 +69,6 @@ return [
         'type'     => 'anomaly.field_type.text',
         'config'   => [
             'default_value' => 'logout'
-        ]
-    ],
-    'logout_message'          => [
-        'type'   => 'anomaly.field_type.text',
-        'config' => [
-            'default_value' => 'anomaly.module.users::message.logged_out'
         ]
     ],
     'logout_redirect'         => [

@@ -10,10 +10,6 @@ return [
         'label'        => 'Register Path',
         'instructions' => 'Specify the URL path to register.'
     ],
-    'register_message'        => [
-        'label'        => 'Register Message',
-        'instructions' => 'Specify the message to display after a user is registered.'
-    ],
     'register_redirect'       => [
         'label'        => 'Register Redirect',
         'instructions' => 'Specify the URL or URL path to redirect users after successfully registering.'
@@ -21,10 +17,6 @@ return [
     'activate_path'           => [
         'label'        => 'Activate Path',
         'instructions' => 'Specify the URL path to activate registered users.'
-    ],
-    'activated_message'       => [
-        'label'        => 'Activated Message',
-        'instructions' => 'Specify the message to display after a user completes registration.'
     ],
     'activated_redirect'      => [
         'label'        => 'Activated Redirect',
@@ -48,10 +40,6 @@ return [
         'label'        => 'Login Path',
         'instructions' => 'Specify the URL path to login.'
     ],
-    'login_message'           => [
-        'label'        => 'Login Message',
-        'instructions' => 'Specify the message to display to users after logging in.'
-    ],
     'login_redirect'          => [
         'label'        => 'Login Redirect',
         'instructions' => 'Specify the URL or URL path to redirect users after logging in.'
@@ -59,10 +47,6 @@ return [
     'logout_path'             => [
         'label'        => 'Logout Path',
         'instructions' => 'Specify the URL path to logout.'
-    ],
-    'logout_message'          => [
-        'label'        => 'Logout Message',
-        'instructions' => 'Specify the message to display to users after logging out.'
     ],
     'logout_redirect'         => [
         'label'        => 'Logout Redirect',
@@ -77,10 +61,6 @@ return [
         'label'        => 'Reset Password Path',
         'instructions' => 'Specify the URL path for initiating a password reset.'
     ],
-    'reset_message'           => [
-        'label'        => 'Reset Password Message',
-        'instructions' => 'Specify the message to display after a user initiates a password reset.'
-    ],
     'reset_redirect'          => [
         'label'        => 'Reset Password Redirect',
         'instructions' => 'Specify the URL or URL path to redirect users after successfully resetting their password.'
@@ -88,10 +68,6 @@ return [
     'complete_reset_path'     => [
         'label'        => 'Complete Reset Path',
         'instructions' => 'Specify the URL path to use for completing password resets.'
-    ],
-    'complete_reset_message'  => [
-        'label'        => 'Password Reset Message',
-        'instructions' => 'Specify the message to display after a user successfully resets their password.'
     ],
     'complete_reset_redirect' => [
         'label'        => 'Password Reset Redirect',

@@ -7,12 +7,10 @@ return [
                 'title'  => 'Registration',
                 'fields' => [
                     'register_enabled',
-                    'register_path',
-                    'register_message',
-                    'register_redirect',
                     'activation_mode',
+                    'register_path',
                     'activate_path',
-                    'activated_message',
+                    'register_redirect',
                     'activated_redirect'
                 ]
             ],
@@ -21,10 +19,8 @@ return [
                 'fields' => [
                     'login_enabled',
                     'login_path',
-                    'login_message',
                     'login_redirect',
                     'logout_path',
-                    'logout_message',
                     'logout_redirect'
                 ]
             ],
@@ -33,10 +29,8 @@ return [
                 'fields' => [
                     'resets_enabled',
                     'reset_path',
-                    'reset_message',
                     'reset_redirect',
                     'complete_reset_path',
-                    'complete_reset_message',
                     'complete_reset_redirect'
                 ]
             ]
