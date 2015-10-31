@@ -44,8 +44,7 @@ class UsersModule extends Module
                     'href'        => 'admin/users/fields/choose'
                 ]
             ]
-        ],
-        'settings'
+        ]
     ];
 
 }
