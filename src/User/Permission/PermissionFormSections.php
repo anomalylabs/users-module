@@ -30,27 +30,17 @@ class PermissionFormSections
 
         /* @var Addon $addon */
         foreach ($addons->withConfig('permissions') as $addon) {
+
+            if ($addon->getSlug() !== 'users') {
+                continue;
+            }
+
+            $sections[$addon->getNamespace()]['title']       = $addon->getName();
+            $sections[$addon->getNamespace()]['description'] = $addon->getDescription();
+
             foreach ($config->get($addon->getNamespace('permissions'), []) as $group => $permissions) {
 
-                $sections[$addon->getNamespace()]['tabs'][str_slug($addon->getNamespace($group))]['fields'] = [];
-
-                $sections[$addon->getNamespace()]['tabs'][str_slug(
-                    $addon->getNamespace($group)
-                )]['title'] = $addon->getNamespace(
-                    'permission.' . $group . '.title'
-                );
-
-                $sections[$addon->getNamespace()]['title']       = $addon->getName();
-                $sections[$addon->getNamespace()]['description'] = $addon->getDescription();
-
-                foreach ($permissions as $permission) {
-
-                    $sections[$addon->getNamespace()]['tabs'][str_slug(
-                        $addon->getNamespace($group)
-                    )]['fields'][] = $addon->getNamespace(
-                        $group . '.' . $permission
-                    );
-                }
+                $sections[$addon->getNamespace()]['fields'][] = $addon->getNamespace($group);
             }
         }
 

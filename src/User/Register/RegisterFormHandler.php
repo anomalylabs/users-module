@@ -1,7 +1,6 @@
 <?php namespace Anomaly\UsersModule\User\Register;
 
 use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
-use Anomaly\UsersModule\User\Register\Command\AssociateActivationRoles;
 use Anomaly\UsersModule\User\Register\Command\HandleAutomaticRegistration;
 use Anomaly\UsersModule\User\Register\Command\HandleEmailRegistration;
 use Anomaly\UsersModule\User\Register\Command\HandleManualRegistration;
@@ -36,8 +35,6 @@ class RegisterFormHandler
         }
 
         $builder->saveForm(); // Save the new user.
-
-        $this->dispatch(new AssociateActivationRoles($builder->getFormEntry()));
 
         $activator->start($builder->getFormEntry());
 

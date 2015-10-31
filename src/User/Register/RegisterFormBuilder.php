@@ -1,6 +1,7 @@
 <?php namespace Anomaly\UsersModule\User\Register;
 
 use Anomaly\Streams\Platform\Ui\Form\FormBuilder;
+use Anomaly\UsersModule\User\Register\Command\AssociateActivationRoles;
 use Anomaly\UsersModule\User\Register\Command\SetOptions;
 
 /**
@@ -21,6 +22,11 @@ class RegisterFormBuilder extends FormBuilder
      */
     protected $model = 'Anomaly\UsersModule\User\UserModel';
 
+    /**
+     * The form fields.
+     *
+     * @var array
+     */
     protected $fields = [
         'first_name',
         'last_name',
@@ -64,5 +70,13 @@ class RegisterFormBuilder extends FormBuilder
     public function onReady()
     {
         $this->dispatch(new SetOptions($this));
+    }
+
+    /**
+     * Fired after the form is saved.
+     */
+    public function onSaved()
+    {
+        $this->dispatch(new AssociateActivationRoles($this->getFormEntry()));
     }
 }

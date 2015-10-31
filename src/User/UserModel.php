@@ -198,6 +198,19 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, \Illumina
     }
 
     /**
+     * Set the permissions.
+     *
+     * @param array $permissions
+     * @return $this
+     */
+    public function setPermissions(array $permissions)
+    {
+        $this->permissions = $permissions;
+
+        return $this;
+    }
+
+    /**
      * Return whether a user or it's roles has a permission.
      *
      * @param      $permission
@@ -210,7 +223,7 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, \Illumina
             return true;
         }
 
-        if (array_get($this->getPermissions(), $permission) === true) {
+        if (in_array($permission, $this->getPermissions())) {
             return true;
         }
 
@@ -242,19 +255,6 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, \Illumina
         }
 
         return false;
-    }
-
-    /**
-     * Merge provided permissions onto existing ones.
-     *
-     * @param array $permissions
-     * @return $this
-     */
-    public function mergePermissions(array $permissions)
-    {
-        $this->permissions = array_merge($this->getPermissions(), $permissions);
-
-        return $this;
     }
 
     /**

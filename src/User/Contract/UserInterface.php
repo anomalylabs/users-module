@@ -100,6 +100,14 @@ interface UserInterface extends EntryInterface
     public function getPermissions();
 
     /**
+     * Set the permissions.
+     *
+     * @param array $permissions
+     * @return $this
+     */
+    public function setPermissions(array $permissions);
+
+    /**
      * Return whether a user or it's roles has a permission.
      *
      * @param      $permission
@@ -115,14 +123,6 @@ interface UserInterface extends EntryInterface
      * @return bool
      */
     public function hasAnyPermission(array $permissions);
-
-    /**
-     * Merge provided permissions onto existing ones.
-     *
-     * @param array $permissions
-     * @return $this
-     */
-    public function mergePermissions(array $permissions);
 
     /**
      * Return the activated flag.

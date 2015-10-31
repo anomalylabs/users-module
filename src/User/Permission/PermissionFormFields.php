@@ -38,38 +38,50 @@ class PermissionFormFields
 
         /* @var Addon $addon */
         foreach ($addons->withConfig('permissions') as $addon) {
+
+            if ($addon->getSlug() !== 'users') {
+                continue;
+            }
+
             foreach ($config->get($addon->getNamespace('permissions'), []) as $group => $permissions) {
-                foreach ($permissions as $permission) {
 
-                    if ($translator->has('anomaly.module.users::permission.default.' . $permission)) {
-                        $label = 'anomaly.module.users::permission.default.' . $permission;
-                    } else {
-                        $label = $addon->getNamespace('permission.' . $group . '.' . $permission);
-                    }
+                $label = $addon->getNamespace('permission.' . $group . '.name');
 
-                    $instructions = null;
-
-                    if ($translator->has($addon->getNamespace('permission.default.' . $permission . '_instructions'))) {
-                        $instructions = $addon->getNamespace('permission.default.' . $permission . '_instructions');
-                    } elseif ($translator->has(
-                        $addon->getNamespace('permission.' . $group . '.' . $permission . '_instructions')
-                    )
-                    ) {
-                        $instructions = $addon->getNamespace(
-                            'permission.' . $group . '.' . $permission . '_instructions'
-                        );
-                    }
-
-                    $fields[$addon->getNamespace($group . '.' . $permission)] = [
-                        'label'        => $label,
-                        'instructions' => $instructions,
-                        'type'         => 'anomaly.field_type.boolean',
-                        'value'        => $user->hasPermission($addon->getNamespace($group . '.' . $permission), true),
-                        'config'       => [
-                            'off_color' => 'danger'
-                        ]
-                    ];
+                if (!$translator->has($warning = $addon->getNamespace('permission.' . $group . '.warning'))) {
+                    $warning = null;
                 }
+
+                if (!$translator->has($instructions = $addon->getNamespace('permission.' . $group . '.instructions'))) {
+                    $instructions = null;
+                }
+
+                $fields[$addon->getNamespace($group)] = [
+                    'label'        => $label,
+                    'warning'      => $warning,
+                    'instructions' => $instructions,
+                    'type'         => 'anomaly.field_type.checkboxes',
+                    'value'        => function () use ($user, $addon, $group) {
+                        return array_map(
+                            function ($permission) use ($user, $addon, $group) {
+                                return str_replace($addon->getNamespace($group) . '.', '', $permission);
+                            },
+                            $user->getPermissions()
+                        );
+                    },
+                    'config'       => [
+                        'options' => function () use ($group, $permissions, $addon) {
+                            return array_combine(
+                                $permissions,
+                                array_map(
+                                    function ($permission) use ($addon, $group) {
+                                        return $addon->getNamespace('permission.' . $group . '.option.' . $permission);
+                                    },
+                                    $permissions
+                                )
+                            );
+                        }
+                    ]
+                ];
             }
         }
 
