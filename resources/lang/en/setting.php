@@ -1,8 +1,8 @@
 <?php
 
 return [
-    'allow_registration'      => [
-        'label'        => 'Allow Registration',
+    'register_enabled'        => [
+        'label'        => 'Registration Enabled',
         'instructions' => 'Allow users to register themselves through the website?',
         'warning'      => 'This does not affect the control panel or plugin functionality.'
     ],
@@ -10,9 +10,21 @@ return [
         'label'        => 'Register Path',
         'instructions' => 'Specify the URL path to register.'
     ],
+    'register_message'        => [
+        'label'        => 'Register Message',
+        'instructions' => 'Specify the message to display after a user is registered.'
+    ],
     'register_redirect'       => [
         'label'        => 'Register Redirect',
         'instructions' => 'Specify the URL or URL path to redirect users after successfully registering.'
+    ],
+    'activate_path'           => [
+        'label'        => 'Activate Path',
+        'instructions' => 'Specify the URL path to activate registered users.'
+    ],
+    'activated_message'       => [
+        'label'        => 'Activated Message',
+        'instructions' => 'Specify the message to display after a user completes registration.'
     ],
     'activated_redirect'      => [
         'label'        => 'Activated Redirect',
@@ -25,16 +37,6 @@ return [
             'manual'    => 'Require an administrator to manually activate the user.',
             'email'     => 'Send an activation confirmation email to the user.',
             'automatic' => 'Automatically activate the user after they register.'
-        ]
-    ],
-    'profile_visibility'      => [
-        'label'        => 'Profile Visibility',
-        'instructions' => 'Specify who can view user profiles on the public site.',
-        'option'       => [
-            'everyone' => 'Anyone can view public profiles.',
-            'owner'    => 'Only the profile owner can view their profile.',
-            'disabled' => 'Disable this feature.',
-            'users'    => 'Any logged in user can view another user\'s public profile.'
         ]
     ],
     'login_enabled'           => [
@@ -66,22 +68,30 @@ return [
         'label'        => 'Logout Redirect',
         'instructions' => 'Specify the URL or URL path to redirect users after logging out.'
     ],
-    'password_resets_enabled' => [
+    'resets_enabled'          => [
         'label'        => 'Enable password resets?',
         'instructions' => 'Allow users to reset their password through the website?',
         'warning'      => 'This does not affect the control panel or plugin functionality.'
     ],
     'reset_path'              => [
-        'label'        => 'Forgot Password Path',
+        'label'        => 'Reset Password Path',
         'instructions' => 'Specify the URL path for initiating a password reset.'
     ],
+    'reset_message'           => [
+        'label'        => 'Reset Password Message',
+        'instructions' => 'Specify the message to display after a user initiates a password reset.'
+    ],
     'reset_redirect'          => [
-        'label'        => 'Password Reset Redirect',
+        'label'        => 'Reset Password Redirect',
         'instructions' => 'Specify the URL or URL path to redirect users after successfully resetting their password.'
     ],
     'complete_reset_path'     => [
-        'label'        => 'Password Reset Path',
-        'instructions' => 'Specify the URL path to use for resetting passwords.'
+        'label'        => 'Complete Reset Path',
+        'instructions' => 'Specify the URL path to use for completing password resets.'
+    ],
+    'complete_reset_message'  => [
+        'label'        => 'Password Reset Message',
+        'instructions' => 'Specify the message to display after a user successfully resets their password.'
     ],
     'complete_reset_redirect' => [
         'label'        => 'Password Reset Redirect',

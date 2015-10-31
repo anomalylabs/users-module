@@ -128,16 +128,21 @@ class UsersModuleServiceProvider extends AddonServiceProvider
         }
 
         // Route register related actions.
-        if ($settings->value('anomaly.module.users::allow_registration', false)) {
+        if ($settings->value('anomaly.module.users::register_enabled', false)) {
 
             $router->get(
-                $settings->value('anomaly.module.users::register_path', 'login'),
+                $settings->value('anomaly.module.users::register_path', 'register'),
                 'Anomaly\UsersModule\Http\Controller\RegisterController@register'
+            );
+
+            $router->get(
+                $settings->value('anomaly.module.users::activate_path', 'register/activate'),
+                'Anomaly\UsersModule\Http\Controller\RegisterController@activate'
             );
         }
 
         // Route password reset related actions.
-        if ($settings->value('anomaly.module.users::password_resets_enabled', false)) {
+        if ($settings->value('anomaly.module.users::resets_enabled', false)) {
 
             $router->get(
                 $settings->value('anomaly.module.users::reset_path', 'reset'),

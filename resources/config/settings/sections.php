@@ -6,12 +6,14 @@ return [
             'registration'   => [
                 'title'  => 'Registration',
                 'fields' => [
-                    'allow_registration',
-                    'activation_mode',
+                    'register_enabled',
                     'register_path',
+                    'register_message',
                     'register_redirect',
-                    'activated_redirect',
-                    'profile_visibility'
+                    'activation_mode',
+                    'activate_path',
+                    'activated_message',
+                    'activated_redirect'
                 ]
             ],
             'login'          => [
@@ -29,10 +31,12 @@ return [
             'password_reset' => [
                 'title'  => 'Password Resets',
                 'fields' => [
-                    'password_resets_enabled',
+                    'resets_enabled',
                     'reset_path',
-                    'complete_reset_path',
+                    'reset_message',
                     'reset_redirect',
+                    'complete_reset_path',
+                    'complete_reset_message',
                     'complete_reset_redirect'
                 ]
             ]

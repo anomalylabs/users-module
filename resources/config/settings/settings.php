@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'allow_registration'      => [
+    'register_enabled'        => [
         'type' => 'anomaly.field_type.boolean'
     ],
     'register_path'           => [
@@ -16,6 +16,13 @@ return [
         'type'     => 'anomaly.field_type.text',
         'config'   => [
             'default_value' => '/'
+        ]
+    ],
+    'activate_path'           => [
+        'required' => true,
+        'type'     => 'anomaly.field_type.text',
+        'config'   => [
+            'default_value' => 'register/activate'
         ]
     ],
     'activated_redirect'      => [
@@ -34,19 +41,6 @@ return [
                 'manual'    => 'anomaly.module.users::setting.activation_mode.option.manual',
                 'email'     => 'anomaly.module.users::setting.activation_mode.option.email',
                 'automatic' => 'anomaly.module.users::setting.activation_mode.option.automatic'
-            ]
-        ]
-    ],
-    'profile_visibility'      => [
-        'required' => true,
-        'type'     => 'anomaly.field_type.select',
-        'config'   => [
-            'default_value' => 'owner',
-            'options'       => [
-                'everyone' => 'anomaly.module.users::setting.profile_visibility.option.everyone',
-                'disabled' => 'anomaly.module.users::setting.profile_visibility.option.disabled',
-                'owner'    => 'anomaly.module.users::setting.profile_visibility.option.owner',
-                'users'    => 'anomaly.module.users::setting.profile_visibility.option.users'
             ]
         ]
     ],
@@ -96,7 +90,7 @@ return [
             'default_value' => '/'
         ]
     ],
-    'password_resets_enabled' => [
+    'resets_enabled'          => [
         'type'   => 'anomaly.field_type.boolean',
         'config' => [
             'default_value' => false
