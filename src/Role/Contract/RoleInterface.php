@@ -36,20 +36,20 @@ interface RoleInterface extends EntryInterface
     public function getPermissions();
 
     /**
+     * Set the permissions.
+     *
+     * @param array $permissions
+     * @return $this
+     */
+    public function setPermissions(array $permissions);
+
+    /**
      * Return if a role as access to a the permission.
      *
      * @param string $permission
      * @return bool
      */
     public function hasPermission($permission);
-
-    /**
-     * Merge provided permissions onto existing ones.
-     *
-     * @param array $permissions
-     * @return $this
-     */
-    public function mergePermissions(array $permissions);
 
     /**
      * Get the related users.

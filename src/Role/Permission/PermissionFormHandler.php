@@ -27,7 +27,20 @@ class PermissionFormHandler
         /* @var RoleInterface $role */
         $role = $builder->getEntry();
 
-        $roles->save($role->mergePermissions($builder->getFormInput()));
+        $roles->save(
+            $role->setPermissions(
+                array_keys(
+                    array_dot(
+                        array_map(
+                            function ($values) {
+                                return array_combine(array_values($values), array_pad([], count($values), true));
+                            },
+                            array_filter($builder->getFormInput())
+                        )
+                    )
+                )
+            )
+        );
 
         $builder->setFormResponse($redirect->refresh());
     }
