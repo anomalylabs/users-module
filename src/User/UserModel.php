@@ -1,7 +1,6 @@
 <?php namespace Anomaly\UsersModule\User;
 
 use Anomaly\Streams\Platform\Entry\EntryCollection;
-use Anomaly\Streams\Platform\Model\EloquentCollection;
 use Anomaly\Streams\Platform\Model\Users\UsersUsersEntryModel;
 use Anomaly\UsersModule\Role\Contract\RoleInterface;
 use Anomaly\UsersModule\User\Contract\UserInterface;
@@ -156,7 +155,7 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, \Illumina
      */
     public function hasAnyRole(EntryCollection $roles)
     {
-        if (!$roles) {
+        if ($roles->isEmpty()) {
             return true;
         }
 
