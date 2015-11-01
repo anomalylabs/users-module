@@ -81,7 +81,7 @@ class RoleModel extends UsersRolesEntryModel implements RoleInterface
             return false;
         }
 
-        if (array_get($this->getPermissions(), $permission) === true) {
+        if (in_array($permission, $this->getPermissions())) {
             return true;
         }
 
