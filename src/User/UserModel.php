@@ -151,10 +151,10 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, \Illumina
      * Return whether a user is in
      * any of the provided roles.
      *
-     * @param EloquentCollection $roles
+     * @param EntryCollection $roles
      * @return bool
      */
-    public function hasAnyRole(EloquentCollection $roles)
+    public function hasAnyRole(EntryCollection $roles)
     {
         if (!$roles) {
             return true;
