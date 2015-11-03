@@ -2,6 +2,7 @@
 
 return [
     'login'          => 'Login',
+    'register'       => 'Register',
     'logout'         => 'Logout',
     'activate'       => 'Activate',
     'new_user'       => 'New User',
