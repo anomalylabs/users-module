@@ -54,6 +54,18 @@ class RegisterFormBuilder extends FormBuilder
         'activation_code',
         'last_activity_at'*/
     ];
+    
+    /**
+     * The form actions.
+     *
+     * @var array
+     */
+    protected $actions = [
+        'register' => [
+            'button' => 'blue',
+            'text'   => 'Register'
+        ]
+    ];
 
     /**
      * The form options.
