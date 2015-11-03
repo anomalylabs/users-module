@@ -88,7 +88,7 @@ class LoginFormBuilder extends FormBuilder
     protected $actions = [
         'login' => [
             'button' => 'blue',
-            'text'   => 'Login'
+            'text'   => 'anomaly.module.users::button.login'
         ]
     ];
 
