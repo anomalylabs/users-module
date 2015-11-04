@@ -54,6 +54,17 @@ class RegisterFormBuilder extends FormBuilder
         'activation_code',
         'last_activity_at'*/
     ];
+    
+    /**
+     * The form actions.
+     *
+     * @var array
+     */
+    protected $actions = [
+        'blue' => [
+            'text'   => 'anomaly.module.users::button.register'
+        ]
+    ];
 
     /**
      * The form options.
