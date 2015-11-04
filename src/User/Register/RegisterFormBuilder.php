@@ -61,8 +61,7 @@ class RegisterFormBuilder extends FormBuilder
      * @var array
      */
     protected $actions = [
-        'register' => [
-            'button' => 'blue',
+        'blue' => [
             'text'   => 'anomaly.module.users::button.register'
         ]
     ];
