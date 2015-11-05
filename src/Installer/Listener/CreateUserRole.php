@@ -63,7 +63,9 @@ class CreateUserRole
                         $role = $this->roles->create(['en' => ['name' => 'User'], 'slug' => 'user']);
                     }
 
-                    $user->roles()->attach($role);
+                    if (!$user->hasRole($role)) {
+                        $user->roles()->attach($role);
+                    }
                 }
             )
         );

@@ -65,7 +65,9 @@ class CreateAdminRole
                         $role = $this->roles->create(['en' => ['name' => 'Admin'], 'slug' => 'admin']);
                     }
 
-                    $user->roles()->attach($role);
+                    if (!$user->hasRole($role)) {
+                        $user->roles()->attach($role);
+                    }
                 }
             )
         );
