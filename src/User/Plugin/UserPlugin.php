@@ -6,6 +6,8 @@ use Anomaly\UsersModule\User\Plugin\Command\BuildCompleteResetForm;
 use Anomaly\UsersModule\User\Plugin\Command\BuildLoginForm;
 use Anomaly\UsersModule\User\Plugin\Command\BuildRegisterForm;
 use Anomaly\UsersModule\User\Plugin\Command\BuildResetForm;
+use Anomaly\UsersModule\User\Plugin\Command\CheckUserPermission;
+use Anomaly\UsersModule\User\Plugin\Command\CheckUserRole;
 use Anomaly\UsersModule\User\Plugin\Command\GetActivatePath;
 use Anomaly\UsersModule\User\Plugin\Command\GetCompleteResetPath;
 use Anomaly\UsersModule\User\Plugin\Command\GetLoginPath;
@@ -35,6 +37,18 @@ class UserPlugin extends Plugin
                 'user',
                 function ($identifier = null) {
                     return $this->dispatch(new GetUser($identifier));
+                }
+            ),
+            new \Twig_SimpleFunction(
+                'user_has_role',
+                function ($identifier) {
+                    return $this->dispatch(new CheckUserRole($identifier));
+                }
+            ),
+            new \Twig_SimpleFunction(
+                'user_has_permission',
+                function ($permission) {
+                    return $this->dispatch(new CheckUserPermission($permission));
                 }
             ),
             new \Twig_SimpleFunction(
