@@ -6,10 +6,6 @@ return [
         'instructions' => 'Was ist der Name dieser Rolle?',
         'placeholder'  => 'Editor'
     ],
-    'avatar'                => [
-        'name'         => 'Avatar',
-        'instructions' => 'Wählen Sie ein Avatar-Bild.'
-    ],
     'first_name'            => [
         'name'         => 'Vorname',
         'instructions' => 'Wie lautet der Vorname des Benutzers?',

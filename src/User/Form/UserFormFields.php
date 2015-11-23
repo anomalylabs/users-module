@@ -21,7 +21,6 @@ class UserFormFields
     public function handle(UserFormBuilder $builder, UserModel $users)
     {
         $fields = [
-            'avatar',
             'first_name',
             'last_name',
             'display_name',

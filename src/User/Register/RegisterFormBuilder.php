@@ -43,7 +43,6 @@ class RegisterFormBuilder extends FormBuilder
      */
     protected $skips = [
         /*'roles',
-        'avatar',
         'enabled',
         'activated',
         'reset_code',

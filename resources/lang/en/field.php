@@ -6,10 +6,6 @@ return [
         'instructions' => 'What is the name of the role?',
         'placeholder'  => 'Editor'
     ],
-    'avatar'           => [
-        'name'         => 'Avatar',
-        'instructions' => 'Choose an avatar image.'
-    ],
     'first_name'       => [
         'name'         => 'First Name',
         'instructions' => 'What is the user\'s real first name?',
