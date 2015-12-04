@@ -36,40 +36,46 @@ class PermissionFormFields
 
         $fields = [];
 
+        $namespaces = ['streams'];
+
         /* @var Addon $addon */
         foreach ($addons->withConfig('permissions') as $addon) {
-            foreach ($config->get($addon->getNamespace('permissions'), []) as $group => $permissions) {
+            $namespaces[] = $addon->getNamespace();
+        }
 
-                $label = $addon->getNamespace('permission.' . $group . '.name');
+        foreach ($namespaces as $namespace) {
+            foreach ($config->get($namespace . '::permissions', []) as $group => $permissions) {
 
-                if (!$translator->has($warning = $addon->getNamespace('permission.' . $group . '.warning'))) {
+                $label = $namespace . '::permission.' . $group . '.name';
+
+                if (!$translator->has($warning = $namespace . '::permission.' . $group . '.warning')) {
                     $warning = null;
                 }
 
-                if (!$translator->has($instructions = $addon->getNamespace('permission.' . $group . '.instructions'))) {
+                if (!$translator->has($instructions = $namespace . '::permission.' . $group . '.instructions')) {
                     $instructions = null;
                 }
 
-                $fields[$addon->getNamespace($group)] = [
+                $fields[$namespace . '::' . $group] = [
                     'label'        => $label,
                     'warning'      => $warning,
                     'instructions' => $instructions,
                     'type'         => 'anomaly.field_type.checkboxes',
-                    'value'        => function () use ($role, $addon, $group) {
+                    'value'        => function () use ($role, $namespace, $group) {
                         return array_map(
-                            function ($permission) use ($role, $addon, $group) {
-                                return str_replace($addon->getNamespace($group) . '.', '', $permission);
+                            function ($permission) use ($role, $namespace, $group) {
+                                return str_replace($namespace . '::' . $group . '.', '', $permission);
                             },
                             $role->getPermissions()
                         );
                     },
                     'config'       => [
-                        'options' => function () use ($group, $permissions, $addon) {
+                        'options' => function () use ($group, $permissions, $namespace) {
                             return array_combine(
                                 $permissions,
                                 array_map(
-                                    function ($permission) use ($addon, $group) {
-                                        return $addon->getNamespace('permission.' . $group . '.option.' . $permission);
+                                    function ($permission) use ($namespace, $group) {
+                                        return $namespace . '::permission.' . $group . '.option.' . $permission;
                                     },
                                     $permissions
                                 )

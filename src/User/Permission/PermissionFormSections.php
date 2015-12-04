@@ -28,6 +28,12 @@ class PermissionFormSections
     {
         $sections = [];
 
+        $sections['streams']['title']       = 'streams::message.system';
+
+        foreach ($config->get('streams::permissions', []) as $group => $permissions) {
+            $sections['streams']['fields'][] = 'streams::' . $group;
+        }
+
         /* @var Addon $addon */
         foreach ($addons->withConfig('permissions') as $addon) {
 
