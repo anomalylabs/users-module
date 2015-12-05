@@ -1,4 +1,4 @@
-<?php namespace Anomaly\UsersModule\User\Plugin\Command;
+<?php namespace Anomaly\UsersModule\User\Command;
 
 use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
 use Illuminate\Contracts\Bus\SelfHandling;
@@ -9,7 +9,7 @@ use Illuminate\Contracts\Bus\SelfHandling;
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
- * @package       Anomaly\UsersModule\User\Plugin\Command
+ * @package       Anomaly\UsersModule\User\Command
  */
 class GetLoginPath implements SelfHandling
 {

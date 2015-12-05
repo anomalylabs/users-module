@@ -21,7 +21,7 @@ class UsersModuleServiceProvider extends AddonServiceProvider
      * @var array
      */
     protected $plugins = [
-        'Anomaly\UsersModule\User\Plugin\UserPlugin'
+        'Anomaly\UsersModule\UsersModulePlugin'
     ];
 
     /**

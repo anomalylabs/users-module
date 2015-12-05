@@ -1,4 +1,4 @@
-<?php namespace Anomaly\UsersModule\User\Plugin\Command;
+<?php namespace Anomaly\UsersModule\User\Command;
 
 use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
 use Anomaly\UsersModule\User\Contract\UserInterface;
@@ -6,14 +6,14 @@ use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Contracts\Encryption\Encrypter;
 
 /**
- * Class GetActivatePath
+ * Class GetCompleteResetPath
  *
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
- * @package       Anomaly\UsersModule\User\Plugin\Command
+ * @package       Anomaly\UsersModule\User\Command
  */
-class GetActivatePath implements SelfHandling
+class GetCompleteResetPath implements SelfHandling
 {
 
     /**
@@ -24,7 +24,7 @@ class GetActivatePath implements SelfHandling
     protected $user;
 
     /**
-     * Create a new GetActivatePath instance.
+     * Create a new GetCompleteResetPath instance.
      *
      * @param UserInterface $user
      */
@@ -42,10 +42,10 @@ class GetActivatePath implements SelfHandling
     public function handle(SettingRepositoryInterface $settings, Encrypter $encrypter)
     {
         $email = $encrypter->encrypt($this->user->getEmail());
-        $code  = $encrypter->encrypt($this->user->getActivationCode());
+        $code  = $encrypter->encrypt($this->user->getResetCode());
 
         $query = "?email={$email}&code={$code}";
 
-        return $settings->value('anomaly.module.users::activate_path', 'register/activate') . $query;
+        return $settings->value('anomaly.module.users::complete_reset_path', 'reset/complete') . $query;
     }
 }

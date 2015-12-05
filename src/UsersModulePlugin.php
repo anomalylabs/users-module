@@ -1,28 +1,26 @@
-<?php namespace Anomaly\UsersModule\User\Plugin;
+<?php namespace Anomaly\UsersModule;
 
 use Anomaly\Streams\Platform\Addon\Plugin\Plugin;
-use Anomaly\UsersModule\User\Contract\UserInterface;
-use Anomaly\UsersModule\User\Plugin\Command\BuildCompleteResetForm;
-use Anomaly\UsersModule\User\Plugin\Command\BuildLoginForm;
-use Anomaly\UsersModule\User\Plugin\Command\BuildRegisterForm;
-use Anomaly\UsersModule\User\Plugin\Command\BuildResetForm;
-use Anomaly\UsersModule\User\Plugin\Command\CheckUserPermission;
-use Anomaly\UsersModule\User\Plugin\Command\CheckUserRole;
-use Anomaly\UsersModule\User\Plugin\Command\GetActivatePath;
-use Anomaly\UsersModule\User\Plugin\Command\GetCompleteResetPath;
-use Anomaly\UsersModule\User\Plugin\Command\GetLoginPath;
-use Anomaly\UsersModule\User\Plugin\Command\GetLogoutPath;
-use Anomaly\UsersModule\User\Plugin\Command\GetUser;
+use Anomaly\UsersModule\User\Command\BuildCompleteResetForm;
+use Anomaly\UsersModule\User\Command\BuildLoginForm;
+use Anomaly\UsersModule\User\Command\BuildRegisterForm;
+use Anomaly\UsersModule\User\Command\BuildResetForm;
+use Anomaly\UsersModule\User\Command\CheckUserPermission;
+use Anomaly\UsersModule\User\Command\CheckUserRole;
+use Anomaly\UsersModule\User\Command\GetActivatePath;
+use Anomaly\UsersModule\User\Command\GetCompleteResetPath;
+use Anomaly\UsersModule\User\Command\GetLoginPath;
+use Anomaly\UsersModule\User\Command\GetLogoutPath;
 
 /**
- * Class UserPlugin
+ * Class UsersModulePlugin
  *
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
- * @package       Anomaly\UsersModule\User\Plugin
+ * @package       Anomaly\UsersModule
  */
-class UserPlugin extends Plugin
+class UsersModulePlugin extends Plugin
 {
 
     /**

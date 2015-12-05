@@ -1,4 +1,4 @@
-<?php namespace Anomaly\UsersModule\User\Plugin\Command;
+<?php namespace Anomaly\UsersModule\User\Command;
 
 use Anomaly\Streams\Platform\Addon\Plugin\PluginForm;
 use Anomaly\Streams\Platform\Support\Decorator;
@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
- * @package       Anomaly\UsersModule\User\Plugin\Command
+ * @package       Anomaly\UsersModule\User\Command
  */
 class BuildCompleteResetForm implements SelfHandling
 {
