@@ -21,8 +21,7 @@ class UsersModuleServiceProvider extends AddonServiceProvider
      * @var array
      */
     protected $plugins = [
-        'Anomaly\UsersModule\User\Plugin\UserPlugin',
-        'Anomaly\UsersModule\Role\Plugin\RolePlugin'
+        'Anomaly\UsersModule\User\Plugin\UserPlugin'
     ];
 
     /**
@@ -55,15 +54,6 @@ class UsersModuleServiceProvider extends AddonServiceProvider
     ];
 
     /**
-     * The class bindings.
-     *
-     * @var array
-     */
-    protected $bindings = [
-        'App\Http\Middleware\Authenticate' => 'Anomaly\UsersModule\Http\Middleware\Authenticate'
-    ];
-
-    /**
      * The addon routes.
      *
      * @var array
@@ -92,6 +82,17 @@ class UsersModuleServiceProvider extends AddonServiceProvider
         'admin/users/fields/choose'          => 'Anomaly\UsersModule\Http\Controller\Admin\FieldsController@choose',
         'admin/users/fields/create'          => 'Anomaly\UsersModule\Http\Controller\Admin\FieldsController@create',
         'admin/users/fields/edit/{id}'       => 'Anomaly\UsersModule\Http\Controller\Admin\FieldsController@edit'
+    ];
+
+    /**
+     * The class bindings.
+     *
+     * @var array
+     */
+    protected $bindings = [
+        'Anomaly\Streams\Platform\Model\Users\UsersUsersEntryModel' => 'Anomaly\UsersModule\User\UserModel',
+        'Anomaly\Streams\Platform\Model\Users\UsersRolesEntryModel' => 'Anomaly\UsersModule\Role\RoleModel',
+        'App\Http\Middleware\Authenticate'                          => 'Anomaly\UsersModule\Http\Middleware\Authenticate'
     ];
 
     /**

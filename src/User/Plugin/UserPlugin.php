@@ -34,12 +34,6 @@ class UserPlugin extends Plugin
     {
         return [
             new \Twig_SimpleFunction(
-                'user',
-                function ($identifier = null) {
-                    return $this->dispatch(new GetUser($identifier));
-                }
-            ),
-            new \Twig_SimpleFunction(
                 'user_has_role',
                 function ($identifier) {
                     return $this->dispatch(new CheckUserRole($identifier));
