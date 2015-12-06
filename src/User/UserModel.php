@@ -2,6 +2,8 @@
 
 use Anomaly\Streams\Platform\Entry\EntryCollection;
 use Anomaly\Streams\Platform\Model\Users\UsersUsersEntryModel;
+use Anomaly\Streams\Platform\Support\Collection;
+use Anomaly\UsersModule\Role\Command\GetRole;
 use Anomaly\UsersModule\Role\Contract\RoleInterface;
 use Anomaly\UsersModule\User\Contract\UserInterface;
 use Illuminate\Auth\Authenticatable;
@@ -113,22 +115,22 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, \Illumina
     /**
      * Return whether a user is in a role.
      *
-     * @param RoleInterface $role
+     * @param $role
      * @return bool
      */
-    public function hasRole(RoleInterface $role)
+    public function hasRole($role)
     {
+        if (!is_object($role)) {
+            $role = $this->dispatch(new GetRole($role));
+        }
+
         if (!$role) {
             return true;
         }
 
-        if ($this->isAdmin()) {
-            return true;
-        }
-
         /* @var RoleInterface $role */
-        foreach ($roles = $this->getRoles() as $userRole) {
-            if ($userRole->getId() === $role->getId()) {
+        foreach ($roles = $this->getRoles() as $attached) {
+            if ($attached->getId() === $role->getId()) {
                 return true;
             }
         }
@@ -140,12 +142,16 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, \Illumina
      * Return whether a user is in
      * any of the provided roles.
      *
-     * @param EntryCollection $roles
+     * @param $roles
      * @return bool
      */
-    public function hasAnyRole(EntryCollection $roles)
+    public function hasAnyRole($roles)
     {
-        if ($roles->isEmpty()) {
+        if ($roles instanceof Collection) {
+            $roles = $roles->all();
+        }
+
+        if ($roles) {
             return true;
         }
 

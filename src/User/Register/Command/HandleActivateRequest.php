@@ -32,8 +32,15 @@ class HandleActivateRequest implements SelfHandling
         Encrypter $encrypter,
         Request $request
     ) {
-        $code  = $encrypter->decrypt($request->get('code'));
-        $email = $encrypter->decrypt($request->get('email'));
+        $code  = $request->get('code');
+        $email = $request->get('email');
+
+        if (!$code || !$email) {
+            return false;
+        }
+
+        $code  = $encrypter->decrypt($code);
+        $email = $encrypter->decrypt($email);
 
         if (!$user = $users->findByEmail($email)) {
             return false;

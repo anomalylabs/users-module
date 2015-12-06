@@ -1,7 +1,6 @@
 <?php namespace Anomaly\UsersModule\User\Command;
 
 use Anomaly\Streams\Platform\Addon\Plugin\PluginForm;
-use Anomaly\Streams\Platform\Support\Decorator;
 use Anomaly\UsersModule\User\Reset\ResetFormBuilder;
 use Illuminate\Contracts\Bus\SelfHandling;
 
@@ -37,13 +36,12 @@ class BuildResetForm implements SelfHandling
      * Handle the command.
      *
      * @param PluginForm $form
-     * @param Decorator  $decorator
      * @return \Anomaly\Streams\Platform\Ui\Form\FormBuilder
      */
-    public function handle(PluginForm $form, Decorator $decorator)
+    public function handle(PluginForm $form)
     {
         $parameters = array_merge_recursive($this->parameters, ['builder' => ResetFormBuilder::class]);
 
-        return $decorator->decorate($form->make($parameters)->getForm());
+        return $form->make($parameters)->getForm();
     }
 }

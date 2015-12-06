@@ -1,7 +1,6 @@
 <?php namespace Anomaly\UsersModule\User\Command;
 
 use Anomaly\Streams\Platform\Addon\Plugin\PluginForm;
-use Anomaly\Streams\Platform\Support\Decorator;
 use Anomaly\UsersModule\User\Reset\CompleteResetFormBuilder;
 use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Contracts\Encryption\Encrypter;
@@ -41,10 +40,9 @@ class BuildCompleteResetForm implements SelfHandling
      * @param PluginForm $form
      * @param Request    $request
      * @param Encrypter  $encrypter
-     * @param Decorator  $decorator
      * @return \Anomaly\Streams\Platform\Ui\Form\FormBuilder
      */
-    public function handle(PluginForm $form, Request $request, Encrypter $encrypter, Decorator $decorator)
+    public function handle(PluginForm $form, Request $request, Encrypter $encrypter)
     {
         $code  = $encrypter->decrypt($request->get('code'));
         $email = $encrypter->decrypt($request->get('email'));
@@ -58,6 +56,6 @@ class BuildCompleteResetForm implements SelfHandling
             ]
         );
 
-        return $decorator->decorate($form->make($parameters)->getForm());
+        return $form->make($parameters)->getForm();
     }
 }

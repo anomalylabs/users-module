@@ -4,7 +4,6 @@ use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
 use Anomaly\Streams\Platform\Http\Controller\PublicController;
 use Anomaly\UsersModule\User\Register\Command\HandleActivateRequest;
 use Illuminate\Contracts\Encryption\Encrypter;
-use Illuminate\Http\Request;
 
 /**
  * Class RegisterController
@@ -44,6 +43,6 @@ class RegisterController extends PublicController
 
         $this->messages->success('anomaly.module.users::success.activate_user');
 
-        return $this->redirect->to($settings->value('anomaly.module.users::activated_redirect', '/'));
+        return $this->redirect->to($this->request->get('redirect', '/'));
     }
 }

@@ -1,7 +1,7 @@
 <?php namespace Anomaly\UsersModule;
 
-use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
 use Anomaly\Streams\Platform\Addon\AddonServiceProvider;
+use Illuminate\Contracts\Config\Repository;
 use Illuminate\Routing\Router;
 
 /**
@@ -113,51 +113,39 @@ class UsersModuleServiceProvider extends AddonServiceProvider
     /**
      * Map additional routes.
      *
-     * @param SettingRepositoryInterface $settings
-     * @param Router                     $router
+     * @param Repository $config
+     * @param Router     $router
      */
-    public function map(SettingRepositoryInterface $settings, Router $router)
+    public function map(Repository $config, Router $router)
     {
-        // Route login related actions.
-        if ($settings->value('anomaly.module.users::login_enabled', false)) {
+        $router->get(
+            $config->get('anomaly.module.users::paths.login'),
+            'Anomaly\UsersModule\Http\Controller\LoginController@login'
+        );
 
-            $router->get(
-                $settings->value('anomaly.module.users::login_path', 'login'),
-                'Anomaly\UsersModule\Http\Controller\LoginController@login'
-            );
+        $router->get(
+            $config->get('anomaly.module.users::paths.logout'),
+            'Anomaly\UsersModule\Http\Controller\LoginController@logout'
+        );
 
-            $router->get(
-                $settings->value('anomaly.module.users::logout_path', 'logout'),
-                'Anomaly\UsersModule\Http\Controller\LoginController@logout'
-            );
-        }
+        $router->get(
+            $config->get('anomaly.module.users::paths.reset'),
+            'Anomaly\UsersModule\Http\Controller\ResetController@reset'
+        );
 
-        // Route register related actions.
-        if ($settings->value('anomaly.module.users::register_enabled', false)) {
+        $router->get(
+            $config->get('anomaly.module.users::paths.complete'),
+            'Anomaly\UsersModule\Http\Controller\ResetController@complete'
+        );
 
-            $router->get(
-                $settings->value('anomaly.module.users::register_path', 'register'),
-                'Anomaly\UsersModule\Http\Controller\RegisterController@register'
-            );
+        $router->get(
+            $config->get('anomaly.module.users::paths.register'),
+            'Anomaly\UsersModule\Http\Controller\RegisterController@register'
+        );
 
-            $router->get(
-                $settings->value('anomaly.module.users::activate_path', 'register/activate'),
-                'Anomaly\UsersModule\Http\Controller\RegisterController@activate'
-            );
-        }
-
-        // Route password reset related actions.
-        if ($settings->value('anomaly.module.users::resets_enabled', false)) {
-
-            $router->get(
-                $settings->value('anomaly.module.users::reset_path', 'reset'),
-                'Anomaly\UsersModule\Http\Controller\ResetController@reset'
-            );
-
-            $router->get(
-                $settings->value('anomaly.module.users::complete_reset_path', 'reset/complete'),
-                'Anomaly\UsersModule\Http\Controller\ResetController@complete'
-            );
-        }
+        $router->get(
+            $config->get('anomaly.module.users::paths.activate'),
+            'Anomaly\UsersModule\Http\Controller\RegisterController@activate'
+        );
     }
 }
