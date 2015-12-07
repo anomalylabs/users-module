@@ -24,13 +24,22 @@ class GetResetPasswordPath implements SelfHandling
     protected $user;
 
     /**
+     * The redirect path.
+     *
+     * @var string
+     */
+    protected $redirect;
+
+    /**
      * Create a new GetResetPasswordPath instance.
      *
-     * @param $user
+     * @param UserInterface $user
+     * @param string        $redirect
      */
-    public function __construct(UserInterface $user)
+    public function __construct(UserInterface $user, $redirect = '/')
     {
-        $this->user = $user;
+        $this->user     = $user;
+        $this->redirect = $redirect;
     }
 
     /**
@@ -45,8 +54,8 @@ class GetResetPasswordPath implements SelfHandling
         $email = $encrypter->encrypt($this->user->getEmail());
         $code  = $encrypter->encrypt($this->user->getResetCode());
 
-        return $config->get('anomaly.module.users::reset.paths.complete') . '?' . http_build_query(
-            compact('email', 'code')
-        );
+        $query = "?email={$email}&code={$code}&redirect={$this->redirect}";
+
+        return $config->get('anomaly.module.users::paths.reset') . $query;
     }
 }

@@ -100,16 +100,9 @@ class LoginFormBuilder extends FormBuilder
         'panel_class'         => '',
         'panel_body_class'    => '',
         'panel_title_class'   => '',
-        'panel_heading_class' => ''
+        'panel_heading_class' => '',
+        'success_message'     => 'anomaly.module.users::message.logged_in'
     ];
-
-    /**
-     * Fired when the form is ready to build.
-     */
-    public function onReady()
-    {
-        $this->dispatch(new SetOptions($this));
-    }
 
     /**
      * Fired when the form is posting.

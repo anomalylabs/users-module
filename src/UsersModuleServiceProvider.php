@@ -94,6 +94,7 @@ class UsersModuleServiceProvider extends AddonServiceProvider
         'login'                                                     => 'Anomaly\UsersModule\User\Login\LoginFormBuilder',
         'register'                                                  => 'Anomaly\UsersModule\User\Register\RegisterFormBuilder',
         'reset_password'                                            => 'Anomaly\UsersModule\User\Password\ResetPasswordFormBuilder',
+        'forgot_password'                                           => 'Anomaly\UsersModule\User\Password\ForgotPasswordFormBuilder',
         'App\Http\Middleware\Authenticate'                          => 'Anomaly\UsersModule\Http\Middleware\Authenticate',
         'Anomaly\Streams\Platform\Model\Users\UsersUsersEntryModel' => 'Anomaly\UsersModule\User\UserModel',
         'Anomaly\Streams\Platform\Model\Users\UsersRolesEntryModel' => 'Anomaly\UsersModule\Role\RoleModel'

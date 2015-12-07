@@ -45,10 +45,11 @@ class UserPassword
 
     /**
      * @param UserInterface $user
+     * @param string        $reset
      * @return bool
      */
-    public function send(UserInterface $user)
+    public function send(UserInterface $user, $reset = '/')
     {
-        return $this->dispatch(new SendResetEmail($user));
+        return $this->dispatch(new SendResetEmail($user, $reset));
     }
 }

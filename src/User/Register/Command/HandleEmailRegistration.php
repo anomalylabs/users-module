@@ -45,7 +45,7 @@ class HandleEmailRegistration implements SelfHandling
         /* @var UserInterface $user */
         $user = $this->builder->getFormEntry();
 
-        $activator->send($user, $this->builder->getFormOption('redirect', '/'));
+        $activator->send($user, $this->builder->getFormOption('activate_redirect', '/'));
 
         if (!is_null($message = $this->builder->getFormOption('confirm_message'))) {
             $messages->info($message);

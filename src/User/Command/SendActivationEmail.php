@@ -1,7 +1,6 @@
 <?php namespace Anomaly\UsersModule\User\Command;
 
 use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
-use Anomaly\UsersModule\Activation\Contract\ActivationRepositoryInterface;
 use Anomaly\UsersModule\User\Contract\UserInterface;
 use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Foundation\Bus\DispatchesJobs;

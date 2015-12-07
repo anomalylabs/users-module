@@ -4,7 +4,7 @@ use Anomaly\Streams\Platform\Message\MessageBag;
 use Anomaly\UsersModule\User\Contract\UserRepositoryInterface;
 use Anomaly\UsersModule\User\UserPassword;
 use Illuminate\Contracts\Config\Repository;
-use Illuminate\Routing\Redirector;
+use Illuminate\Http\Request;
 
 /**
  * Class ResetPasswordFormHandler
@@ -23,7 +23,7 @@ class ResetPasswordFormHandler
      * @param UserRepositoryInterface  $users
      * @param ResetPasswordFormBuilder $builder
      * @param MessageBag               $messages
-     * @param Redirector               $redirect
+     * @param Request                  $request
      * @param Repository               $config
      * @param UserPassword             $password
      */
@@ -31,7 +31,7 @@ class ResetPasswordFormHandler
         UserRepositoryInterface $users,
         ResetPasswordFormBuilder $builder,
         MessageBag $messages,
-        Redirector $redirect,
+        Request $request,
         Repository $config,
         UserPassword $password
     ) {
@@ -57,8 +57,6 @@ class ResetPasswordFormHandler
         if (!$password->reset($user, $builder->getCode(), $builder->getFormValue('password'))) {
 
             $messages->error(trans('anomaly.module.users::error.reset_password'));
-
-            $builder->setFormResponse($redirect->to('users/reset'));
 
             return;
         }

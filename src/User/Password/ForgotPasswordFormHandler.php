@@ -27,6 +27,6 @@ class ForgotPasswordFormHandler
         $user = $users->findByEmail($builder->getFormValue('email'));
 
         $password->forgot($user);
-        $password->send($user);
+        $password->send($user, $builder->getFormOption('reset_redirect'));
     }
 }

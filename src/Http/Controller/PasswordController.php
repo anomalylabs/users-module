@@ -14,9 +14,7 @@ class PasswordController extends PublicController
 {
 
     /**
-     * Return the reset view.
-     *
-     * @return \Illuminate\Contracts\View\View|mixed
+     * Reset a user password.
      */
     public function reset()
     {
