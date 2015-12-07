@@ -139,7 +139,7 @@ class UsersModuleServiceProvider extends AddonServiceProvider
         );
 
         $router->get(
-            $config->get('anomaly.module.users::register.path.activate'),
+            $config->get('anomaly.module.users::register.paths.activate'),
             'Anomaly\UsersModule\Http\Controller\RegisterController@activate'
         );
     }
