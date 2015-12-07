@@ -4,7 +4,6 @@ use Anomaly\Streams\Platform\Message\MessageBag;
 use Anomaly\UsersModule\User\Contract\UserRepositoryInterface;
 use Anomaly\UsersModule\User\UserPassword;
 use Illuminate\Contracts\Config\Repository;
-use Illuminate\Http\Request;
 
 /**
  * Class ResetPasswordFormHandler
@@ -23,16 +22,12 @@ class ResetPasswordFormHandler
      * @param UserRepositoryInterface  $users
      * @param ResetPasswordFormBuilder $builder
      * @param MessageBag               $messages
-     * @param Request                  $request
-     * @param Repository               $config
      * @param UserPassword             $password
      */
     public function handle(
         UserRepositoryInterface $users,
         ResetPasswordFormBuilder $builder,
         MessageBag $messages,
-        Request $request,
-        Repository $config,
         UserPassword $password
     ) {
         $user = $users->findByEmail($builder->getEmail());
@@ -44,8 +39,6 @@ class ResetPasswordFormHandler
         if (!$user) {
 
             $messages->error(trans('anomaly.module.users::error.reset_password'));
-
-            $builder->setFormResponse($config->get('anomaly.module.users::paths.complete'));
 
             return;
         }

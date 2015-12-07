@@ -22,9 +22,17 @@ class ForgotPasswordFormHandler
      * @param UserRepositoryInterface   $users
      * @param UserPassword              $password
      */
-    public function handle(ForgotPasswordFormBuilder $builder, UserRepositoryInterface $users, UserPassword $password)
-    {
+    public function handle(
+        ForgotPasswordFormBuilder $builder,
+        UserRepositoryInterface $users,
+        UserPassword $password,
+        Repository $config
+    ) {
         $user = $users->findByEmail($builder->getFormValue('email'));
+
+        if ($path = $builder->getFormOption('reset_path')) {
+            $config->set('anomaly.module.users::paths.reset', $path);
+        }
 
         $password->forgot($user);
         $password->send($user, $builder->getFormOption('reset_redirect'));
