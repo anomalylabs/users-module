@@ -1,16 +1,16 @@
-<?php namespace Anomaly\UsersModule\User\Reset;
+<?php namespace Anomaly\UsersModule\User\Password;
 
 use Anomaly\Streams\Platform\Ui\Form\FormBuilder;
 
 /**
- * Class ResetFormBuilder
+ * Class ForgotPasswordFormBuilder
  *
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
  * @package       Anomaly\UsersModule\Reset\Confirm
  */
-class ResetFormBuilder extends FormBuilder
+class ForgotPasswordFormBuilder extends FormBuilder
 {
 
     /**
@@ -29,8 +29,15 @@ class ResetFormBuilder extends FormBuilder
         'submit'
     ];
 
-    public function onReady()
-    {
-        //$this->dispatch(new SetOptions($this));
-    }
+    /**
+     * The form options.
+     *
+     * @var array
+     */
+    protected $options = [
+        'panel_class'         => '',
+        'panel_body_class'    => '',
+        'panel_title_class'   => '',
+        'panel_heading_class' => ''
+    ];
 }

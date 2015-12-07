@@ -1,34 +1,33 @@
-<?php namespace Anomaly\UsersModule\User\Reset;
+<?php namespace Anomaly\UsersModule\User\Password;
 
 /**
- * Class ResetFormFields
+ * Class ForgotPasswordFormFields
  *
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
- * @package       Anomaly\UsersModule\User\Reset
+ * @package       Anomaly\UsersModule\User\Password
  */
-class ResetFormFields
+class ForgotPasswordFormFields
 {
 
     /**
      * Handle the fields.
      *
-     * @param ResetFormBuilder $builder
+     * @param ForgotPasswordFormBuilder $builder
      */
-    public function handle(ResetFormBuilder $builder)
+    public function handle(ForgotPasswordFormBuilder $builder)
     {
         $builder->setFields(
             [
                 'email' => [
-                    'type'         => 'anomaly.field_type.email',
-                    'label'        => 'anomaly.module.users::field.email.name',
-                    'instructions' => 'anomaly.module.users::field.email.instructions_alt',
-                    'required'     => true,
-                    'rules'        => [
+                    'type'       => 'anomaly.field_type.email',
+                    'label'      => 'anomaly.module.users::field.email.name',
+                    'required'   => true,
+                    'rules'      => [
                         'valid_email'
                     ],
-                    'validators'   => [
+                    'validators' => [
                         'valid_email' => [
                             'handler' => 'Anomaly\UsersModule\User\Validation\ValidateEmail@handle',
                             'message' => 'anomaly.module.users::error.invalid_login'

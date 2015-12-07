@@ -87,7 +87,7 @@ class LoginFormBuilder extends FormBuilder
      */
     protected $actions = [
         'blue' => [
-            'text'   => 'anomaly.module.users::button.login'
+            'text' => 'anomaly.module.users::button.login'
         ]
     ];
 
@@ -97,7 +97,10 @@ class LoginFormBuilder extends FormBuilder
      * @var array
      */
     protected $options = [
-        'wrapper_view' => 'anomaly.module.users::login'
+        'panel_class'         => '',
+        'panel_body_class'    => '',
+        'panel_title_class'   => '',
+        'panel_heading_class' => ''
     ];
 
     /**

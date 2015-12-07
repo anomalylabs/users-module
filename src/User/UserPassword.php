@@ -1,46 +1,46 @@
 <?php namespace Anomaly\UsersModule\User;
 
-use Anomaly\UsersModule\User\Reset\Command\CompleteReset;
 use Anomaly\UsersModule\User\Contract\UserInterface;
-use Anomaly\UsersModule\User\Reset\Command\SendResetEmail;
-use Anomaly\UsersModule\User\Reset\Command\StartPasswordReset;
+use Anomaly\UsersModule\User\Password\Command\ResetPassword;
+use Anomaly\UsersModule\User\Password\Command\SendResetEmail;
+use Anomaly\UsersModule\User\Password\Command\StartPasswordReset;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 
 /**
- * Class UserReset
+ * Class UserPassword
  *
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
  * @package       Anomaly\UsersModule\User
  */
-class UserReset
+class UserPassword
 {
 
     use DispatchesJobs;
 
     /**
-     * Start a user reset process.
+     * Start a password reset.
      *
      * @param UserInterface $user
      * @return bool
      */
-    public function start(UserInterface $user)
+    public function forgot(UserInterface $user)
     {
         return $this->dispatch(new StartPasswordReset($user));
     }
 
     /**
-     * Complete a user'd password reset.
+     * Reset a user's password.
      *
      * @param UserInterface $user
      * @param               $code
      * @param               $password
      * @return bool
      */
-    public function complete(UserInterface $user, $code, $password)
+    public function reset(UserInterface $user, $code, $password)
     {
-        return $this->dispatch(new CompleteReset($user, $code, $password));
+        return $this->dispatch(new ResetPassword($user, $code, $password));
     }
 
     /**

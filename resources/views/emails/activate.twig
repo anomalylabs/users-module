@@ -1,10 +1,10 @@
 <p>Hello {{ user.display_name }},</p>
 
 <p>
-    Thank you for registering at {{ setting_value('streams::site_name') }}. Before we can activate your
+    Thank you for registering at {{ setting_value('streams::site_name', url()) }}. Before we can activate your
     account, please complete the registration process by clicking on the following link:
 </p>
 
 <p>
-    <a href="{{ url(activate_path(user.object)) }}">Activate Account</a>
+    <a href="{{ url(path) }}">Activate Account</a>
 </p>

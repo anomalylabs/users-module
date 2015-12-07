@@ -91,9 +91,12 @@ class UsersModuleServiceProvider extends AddonServiceProvider
      * @var array
      */
     protected $bindings = [
+        'login'                                                     => 'Anomaly\UsersModule\User\Login\LoginFormBuilder',
+        'register'                                                  => 'Anomaly\UsersModule\User\Register\RegisterFormBuilder',
+        'reset_password'                                            => 'Anomaly\UsersModule\User\Password\ResetPasswordFormBuilder',
+        'App\Http\Middleware\Authenticate'                          => 'Anomaly\UsersModule\Http\Middleware\Authenticate',
         'Anomaly\Streams\Platform\Model\Users\UsersUsersEntryModel' => 'Anomaly\UsersModule\User\UserModel',
-        'Anomaly\Streams\Platform\Model\Users\UsersRolesEntryModel' => 'Anomaly\UsersModule\Role\RoleModel',
-        'App\Http\Middleware\Authenticate'                          => 'Anomaly\UsersModule\Http\Middleware\Authenticate'
+        'Anomaly\Streams\Platform\Model\Users\UsersRolesEntryModel' => 'Anomaly\UsersModule\Role\RoleModel'
     ];
 
     /**
@@ -120,27 +123,17 @@ class UsersModuleServiceProvider extends AddonServiceProvider
     public function map(Repository $config, Router $router)
     {
         $router->get(
-            $config->get('anomaly.module.users::login.paths.logout'),
+            $config->get('anomaly.module.users::paths.logout'),
             'Anomaly\UsersModule\Http\Controller\LoginController@logout'
         );
 
         $router->get(
-            $config->get('anomaly.module.users::reset.paths.reset'),
-            'Anomaly\UsersModule\Http\Controller\ResetController@reset'
+            $config->get('anomaly.module.users::paths.reset'),
+            'Anomaly\UsersModule\Http\Controller\PasswordController@reset'
         );
 
         $router->get(
-            $config->get('anomaly.module.users::reset.paths.complete'),
-            'Anomaly\UsersModule\Http\Controller\ResetController@complete'
-        );
-
-        $router->get(
-            $config->get('anomaly.module.users::register.paths.register'),
-            'Anomaly\UsersModule\Http\Controller\RegisterController@register'
-        );
-
-        $router->get(
-            $config->get('anomaly.module.users::register.paths.activate'),
+            $config->get('anomaly.module.users::paths.activate'),
             'Anomaly\UsersModule\Http\Controller\RegisterController@activate'
         );
     }

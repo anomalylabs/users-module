@@ -1,10 +1,8 @@
 <?php namespace Anomaly\UsersModule\User\Register\Command;
 
-use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
 use Anomaly\Streams\Platform\Message\MessageBag;
 use Anomaly\UsersModule\User\Register\RegisterFormBuilder;
 use Illuminate\Contracts\Bus\SelfHandling;
-use Illuminate\Routing\Redirector;
 
 /**
  * Class HandleManualRegistration
@@ -37,17 +35,12 @@ class HandleManualRegistration implements SelfHandling
     /**
      * Handle the command.
      *
-     * @param SettingRepositoryInterface $settings
-     * @param MessageBag                 $messages
-     * @param Redirector                 $redirect
+     * @param MessageBag $messages
      */
-    public function handle(SettingRepositoryInterface $settings, MessageBag $messages, Redirector $redirect)
+    public function handle(MessageBag $messages)
     {
-        $messages->info('anomaly.module.users::message.pending_admin_activation');
-
-        $this->builder->setFormResponse(
-            $redirect->to($settings->value('anomaly.module.users::register_redirect', '/'))
-        );
+        if (!is_null($message = $this->builder->getFormOption('pending_message'))) {
+            $messages->info($message);
+        }
     }
-
 }

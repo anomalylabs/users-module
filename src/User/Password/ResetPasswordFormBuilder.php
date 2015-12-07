@@ -1,18 +1,17 @@
-<?php namespace Anomaly\UsersModule\User\Reset;
+<?php namespace Anomaly\UsersModule\User\Password;
 
 use Anomaly\Streams\Platform\Ui\Form\FormBuilder;
 use Illuminate\Contracts\Encryption\Encrypter;
-use Illuminate\Http\Request;
 
 /**
- * Class CompleteResetFormBuilder
+ * Class ResetPasswordFormBuilder
  *
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
- * @package       Anomaly\UsersModule\User\Reset
+ * @package       Anomaly\UsersModule\User\Password
  */
-class CompleteResetFormBuilder extends FormBuilder
+class ResetPasswordFormBuilder extends FormBuilder
 {
 
     /**
@@ -46,21 +45,16 @@ class CompleteResetFormBuilder extends FormBuilder
     ];
 
     /**
-     * Fired just before building.
+     * The form options.
      *
-     * @param Encrypter $encrypter
-     * @param Request   $request
+     * @var array
      */
-    public function onReady(Encrypter $encrypter, Request $request)
-    {
-        if (!$this->getCode()) {
-            $this->setCode($encrypter->decrypt($request->get('code')));
-        }
-
-        if (!$this->getEmail()) {
-            $this->setEmail($encrypter->decrypt($request->get('email')));
-        }
-    }
+    protected $options = [
+        'panel_class'         => '',
+        'panel_body_class'    => '',
+        'panel_title_class'   => '',
+        'panel_heading_class' => ''
+    ];
 
     /**
      * Get the email.

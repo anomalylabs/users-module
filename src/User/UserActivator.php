@@ -58,10 +58,11 @@ class UserActivator
      * Send an activation email.
      *
      * @param UserInterface $user
+     * @param string        $redirect
      * @return bool
      */
-    public function send(UserInterface $user)
+    public function send(UserInterface $user, $redirect = '/')
     {
-        return $this->dispatch(new SendActivationEmail($user));
+        return $this->dispatch(new SendActivationEmail($user, $redirect));
     }
 }

@@ -1,11 +1,10 @@
 <?php namespace Anomaly\UsersModule\User\Register\Command;
 
-use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
 use Anomaly\Streams\Platform\Message\MessageBag;
+use Anomaly\UsersModule\User\Contract\UserInterface;
 use Anomaly\UsersModule\User\Register\RegisterFormBuilder;
 use Anomaly\UsersModule\User\UserActivator;
 use Illuminate\Contracts\Bus\SelfHandling;
-use Illuminate\Routing\Redirector;
 
 /**
  * Class HandleEmailRegistration
@@ -38,24 +37,18 @@ class HandleEmailRegistration implements SelfHandling
     /**
      * Handle the command.
      *
-     * @param SettingRepositoryInterface $settings
-     * @param UserActivator              $activator
-     * @param MessageBag                 $messages
-     * @param Redirector                 $redirect
+     * @param UserActivator $activator
+     * @param MessageBag    $messages
      */
-    public function handle(
-        SettingRepositoryInterface $settings,
-        UserActivator $activator,
-        MessageBag $messages,
-        Redirector $redirect
-    ) {
-        $activator->send($this->builder->getFormEntry());
+    public function handle(UserActivator $activator, MessageBag $messages)
+    {
+        /* @var UserInterface $user */
+        $user = $this->builder->getFormEntry();
 
-        $messages->info('anomaly.module.users::message.pending_email_activation');
+        $activator->send($user, $this->builder->getFormOption('redirect', '/'));
 
-        $this->builder->setFormResponse(
-            $redirect->to($settings->value('anomaly.module.users::register_redirect', '/'))
-        );
+        if (!is_null($message = $this->builder->getFormOption('confirm_message'))) {
+            $messages->info($message);
+        }
     }
-
 }

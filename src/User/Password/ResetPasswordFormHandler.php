@@ -1,39 +1,39 @@
-<?php namespace Anomaly\UsersModule\User\Reset;
+<?php namespace Anomaly\UsersModule\User\Password;
 
 use Anomaly\Streams\Platform\Message\MessageBag;
 use Anomaly\UsersModule\User\Contract\UserRepositoryInterface;
-use Anomaly\UsersModule\User\UserReset;
+use Anomaly\UsersModule\User\UserPassword;
 use Illuminate\Contracts\Config\Repository;
 use Illuminate\Routing\Redirector;
 
 /**
- * Class CompleteResetFormHandler
+ * Class ResetPasswordFormHandler
  *
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
- * @package       Anomaly\UsersModule\User\Reset
+ * @package       Anomaly\UsersModule\User\Password
  */
-class CompleteResetFormHandler
+class ResetPasswordFormHandler
 {
 
     /**
      * Handle the form.
      *
      * @param UserRepositoryInterface  $users
-     * @param CompleteResetFormBuilder $builder
+     * @param ResetPasswordFormBuilder $builder
      * @param MessageBag               $messages
      * @param Redirector               $redirect
      * @param Repository               $config
-     * @param UserReset                $reset
+     * @param UserPassword             $password
      */
     public function handle(
         UserRepositoryInterface $users,
-        CompleteResetFormBuilder $builder,
+        ResetPasswordFormBuilder $builder,
         MessageBag $messages,
         Redirector $redirect,
         Repository $config,
-        UserReset $reset
+        UserPassword $password
     ) {
         $user = $users->findByEmail($builder->getEmail());
 
@@ -54,7 +54,7 @@ class CompleteResetFormHandler
          * If we can't successfully reset the
          * provided user then back back to the form.
          */
-        if (!$reset->complete($user, $builder->getCode(), $builder->getFormValue('password'))) {
+        if (!$password->reset($user, $builder->getCode(), $builder->getFormValue('password'))) {
 
             $messages->error(trans('anomaly.module.users::error.reset_password'));
 

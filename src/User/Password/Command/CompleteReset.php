@@ -1,18 +1,18 @@
-<?php namespace Anomaly\UsersModule\User\Reset\Command;
+<?php namespace Anomaly\UsersModule\User\Password\Command;
 
 use Anomaly\UsersModule\User\Contract\UserInterface;
 use Anomaly\UsersModule\User\Contract\UserRepositoryInterface;
 use Illuminate\Contracts\Bus\SelfHandling;
 
 /**
- * Class CompleteReset
+ * Class ResetPassword
  *
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
- * @package       Anomaly\UsersModule\User\Reset\Command
+ * @package       Anomaly\UsersModule\User\Password\Command
  */
-class CompleteReset implements SelfHandling
+class ResetPassword implements SelfHandling
 {
 
     /**
@@ -37,7 +37,7 @@ class CompleteReset implements SelfHandling
     protected $password;
 
     /**
-     * Create a new CompleteResetReset instance.
+     * Create a new ResetPasswordReset instance.
      *
      * @param UserInterface $user
      * @param               $code

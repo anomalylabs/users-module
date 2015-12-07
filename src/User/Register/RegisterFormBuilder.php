@@ -16,6 +16,15 @@ class RegisterFormBuilder extends FormBuilder
 {
 
     /**
+     * The form roles.
+     *
+     * @var array
+     */
+    protected $roles = [
+        'user'
+    ];
+
+    /**
      * The form model.
      *
      * @var string
@@ -37,31 +46,13 @@ class RegisterFormBuilder extends FormBuilder
     ];
 
     /**
-     * The form skips.
-     *
-     * @var array
-     */
-    protected $skips = [
-        /*'roles',
-        'enabled',
-        'activated',
-        'reset_code',
-        'ip_address',
-        'permissions',
-        'last_login_at',
-        'remember_token',
-        'activation_code',
-        'last_activity_at'*/
-    ];
-    
-    /**
      * The form actions.
      *
      * @var array
      */
     protected $actions = [
         'blue' => [
-            'text'   => 'anomaly.module.users::button.register'
+            'text' => 'anomaly.module.users::button.register'
         ]
     ];
 
@@ -71,22 +62,44 @@ class RegisterFormBuilder extends FormBuilder
      * @var array
      */
     protected $options = [
-        'wrapper_view' => 'anomaly.module.users::register'
+        'panel_class'         => '',
+        'panel_body_class'    => '',
+        'panel_title_class'   => '',
+        'panel_heading_class' => '',
+        'success_message'     => 'anomaly.module.users::success.user_registered',
+        'pending_message'     => 'anomaly.module.users::message.pending_admin_activation',
+        'confirm_message'     => 'anomaly.module.users::message.pending_email_activation',
+        'activated_message'   => 'anomaly.module.users::message.account_activated'
     ];
-
-    /**
-     * Fired when the builder is ready.
-     */
-    public function onReady()
-    {
-        $this->dispatch(new SetOptions($this));
-    }
 
     /**
      * Fired after the form is saved.
      */
     public function onSaved()
     {
-        $this->dispatch(new AssociateActivationRoles($this->getFormEntry()));
+        $this->dispatch(new AssociateActivationRoles($this));
+    }
+
+    /**
+     * Get the roles.
+     *
+     * @return array
+     */
+    public function getRoles()
+    {
+        return $this->roles;
+    }
+
+    /**
+     * Set roles.
+     *
+     * @param $roles
+     * @return $this
+     */
+    public function setRoles($roles)
+    {
+        $this->roles = $roles;
+
+        return $this;
     }
 }

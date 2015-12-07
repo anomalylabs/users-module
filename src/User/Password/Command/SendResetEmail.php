@@ -1,4 +1,4 @@
-<?php namespace Anomaly\UsersModule\User\Reset\Command;
+<?php namespace Anomaly\UsersModule\User\Password\Command;
 
 use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
 use Anomaly\UsersModule\User\Contract\UserInterface;
@@ -12,7 +12,7 @@ use Illuminate\Mail\Message;
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
- * @package       Anomaly\UsersModule\User\Reset\Command
+ * @package       Anomaly\UsersModule\User\Password\Command
  */
 class SendResetEmail implements SelfHandling
 {

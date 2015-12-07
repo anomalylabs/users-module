@@ -3,14 +3,14 @@
 use Anomaly\Streams\Platform\Http\Controller\PublicController;
 
 /**
- * Class ResetController
+ * Class PasswordController
  *
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
  * @package       Anomaly\UsersModule\Http\Controller
  */
-class ResetController extends PublicController
+class PasswordController extends PublicController
 {
 
     /**
@@ -21,15 +21,5 @@ class ResetController extends PublicController
     public function reset()
     {
         return $this->view->make('anomaly.module.users::reset');
-    }
-
-    /**
-     * Return the complete reset view.
-     *
-     * @return \Illuminate\Contracts\View\View|mixed
-     */
-    public function complete()
-    {
-        return $this->view->make('anomaly.module.users::complete');
     }
 }

@@ -1,7 +1,7 @@
-<?php namespace Anomaly\UsersModule\User\Reset\Command;
+<?php namespace Anomaly\UsersModule\User\Password\Command;
 
 use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
-use Anomaly\UsersModule\User\Reset\ResetFormBuilder;
+use Anomaly\UsersModule\User\Password\ForgotPasswordFormBuilder;
 use Illuminate\Contracts\Bus\SelfHandling;
 
 /**
@@ -10,7 +10,7 @@ use Illuminate\Contracts\Bus\SelfHandling;
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
- * @package       Anomaly\UsersModule\User\Reset\Command
+ * @package       Anomaly\UsersModule\User\Password\Command
  */
 class SetOptions implements SelfHandling
 {
@@ -18,16 +18,16 @@ class SetOptions implements SelfHandling
     /**
      * The reset form builder.
      *
-     * @var ResetFormBuilder
+     * @var ForgotPasswordFormBuilder
      */
     protected $builder;
 
     /**
      * Create a new SetDefaultOptions instance.
      *
-     * @param ResetFormBuilder $builder
+     * @param ForgotPasswordFormBuilder $builder
      */
-    public function __construct(ResetFormBuilder $builder)
+    public function __construct(ForgotPasswordFormBuilder $builder)
     {
         $this->builder = $builder;
     }

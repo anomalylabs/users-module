@@ -17,16 +17,6 @@ class RegisterController extends PublicController
 {
 
     /**
-     * Return the register view.
-     *
-     * @return \Illuminate\Contracts\View\View|mixed
-     */
-    public function register()
-    {
-        return $this->view->make('anomaly.module.users::register');
-    }
-
-    /**
      * Activate a registered user.
      *
      * @param SettingRepositoryInterface $settings
