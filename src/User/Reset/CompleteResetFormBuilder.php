@@ -1,6 +1,8 @@
 <?php namespace Anomaly\UsersModule\User\Reset;
 
 use Anomaly\Streams\Platform\Ui\Form\FormBuilder;
+use Illuminate\Contracts\Encryption\Encrypter;
+use Illuminate\Http\Request;
 
 /**
  * Class CompleteResetFormBuilder
@@ -42,6 +44,23 @@ class CompleteResetFormBuilder extends FormBuilder
     protected $actions = [
         'submit'
     ];
+
+    /**
+     * Fired just before building.
+     *
+     * @param Encrypter $encrypter
+     * @param Request   $request
+     */
+    public function onReady(Encrypter $encrypter, Request $request)
+    {
+        if (!$this->getCode()) {
+            $this->setCode($encrypter->decrypt($request->get('code')));
+        }
+
+        if (!$this->getEmail()) {
+            $this->setEmail($encrypter->decrypt($request->get('email')));
+        }
+    }
 
     /**
      * Get the email.

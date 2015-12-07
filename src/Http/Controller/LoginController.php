@@ -18,16 +18,6 @@ class LoginController extends PublicController
 {
 
     /**
-     * Return the login view.
-     *
-     * @return \Illuminate\Contracts\View\View|mixed
-     */
-    public function login()
-    {
-        return $this->view->make('anomaly.module.users::login');
-    }
-
-    /**
      * Logout the active user.
      *
      * @param SettingRepositoryInterface $settings
@@ -41,7 +31,7 @@ class LoginController extends PublicController
             $authenticator->logout();
         }
 
-        $this->messages->success('anomaly.module.users::message.logged_out');
+        $this->messages->success($this->request->get('message', 'anomaly.module.users::message.logged_out'));
 
         return $this->response->redirectTo(
             $this->request->get('redirect', $settings->value('anomaly.module.users::logout_redirect', '/'))

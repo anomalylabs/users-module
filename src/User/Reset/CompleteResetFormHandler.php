@@ -1,9 +1,9 @@
 <?php namespace Anomaly\UsersModule\User\Reset;
 
-use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
 use Anomaly\Streams\Platform\Message\MessageBag;
 use Anomaly\UsersModule\User\Contract\UserRepositoryInterface;
 use Anomaly\UsersModule\User\UserReset;
+use Illuminate\Contracts\Config\Repository;
 use Illuminate\Routing\Redirector;
 
 /**
@@ -20,19 +20,19 @@ class CompleteResetFormHandler
     /**
      * Handle the form.
      *
-     * @param SettingRepositoryInterface $settings
-     * @param UserRepositoryInterface    $users
-     * @param CompleteResetFormBuilder   $builder
-     * @param MessageBag                 $messages
-     * @param Redirector                 $redirect
-     * @param UserReset                  $reset
+     * @param UserRepositoryInterface  $users
+     * @param CompleteResetFormBuilder $builder
+     * @param MessageBag               $messages
+     * @param Redirector               $redirect
+     * @param Repository               $config
+     * @param UserReset                $reset
      */
     public function handle(
-        SettingRepositoryInterface $settings,
         UserRepositoryInterface $users,
         CompleteResetFormBuilder $builder,
         MessageBag $messages,
         Redirector $redirect,
+        Repository $config,
         UserReset $reset
     ) {
         $user = $users->findByEmail($builder->getEmail());
@@ -45,7 +45,7 @@ class CompleteResetFormHandler
 
             $messages->error(trans('anomaly.module.users::error.reset_password'));
 
-            $builder->setFormResponse($settings->value('anomaly.module.users::password_reset_path', 'reset/complete'));
+            $builder->setFormResponse($config->get('anomaly.module.users::paths.complete'));
 
             return;
         }
@@ -64,9 +64,5 @@ class CompleteResetFormHandler
         }
 
         $messages->success(trans('anomaly.module.users::success.reset_password'));
-
-        $builder->setFormResponse(
-            $redirect->to($settings->value('anomaly.module.users::complete_reset_redirect', '/'))
-        );
     }
 }
