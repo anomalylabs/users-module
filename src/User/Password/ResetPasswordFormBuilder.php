@@ -50,6 +50,7 @@ class ResetPasswordFormBuilder extends FormBuilder
      * @var array
      */
     protected $options = [
+        'redirect'            => '/',
         'panel_class'         => '',
         'panel_body_class'    => '',
         'panel_title_class'   => '',
