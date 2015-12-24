@@ -2,7 +2,6 @@
 
 use Anomaly\Streams\Platform\Ui\Form\FormBuilder;
 use Anomaly\UsersModule\User\Contract\UserInterface;
-use Anomaly\UsersModule\User\Login\Command\SetOptions;
 use Anomaly\UsersModule\User\UserSecurity;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -102,6 +101,7 @@ class LoginFormBuilder extends FormBuilder
         'panel_body_class'    => '',
         'panel_title_class'   => '',
         'panel_heading_class' => '',
+        'breadcrumb'          => 'anomaly.module.users::breadcrumb.login',
         'success_message'     => 'anomaly.module.users::message.logged_in'
     ];
 
