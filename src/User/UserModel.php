@@ -125,7 +125,7 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, \Illumina
         }
 
         if (!$role) {
-            return true;
+            return false;
         }
 
         /* @var RoleInterface $role */
