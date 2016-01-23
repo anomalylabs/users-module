@@ -4,6 +4,7 @@ use Anomaly\Streams\Platform\Http\Controller\PublicController;
 use Anomaly\UsersModule\User\Login\LoginFormBuilder;
 use Anomaly\UsersModule\User\UserAuthenticator;
 use Illuminate\Auth\Guard;
+use Illuminate\Contracts\Config\Repository;
 use Illuminate\Routing\Redirector;
 
 /**
@@ -22,10 +23,11 @@ class LoginController extends PublicController
      *
      * @param LoginFormBuilder $form
      * @param Redirector       $redirect
+     * @param Repository       $config
      * @param Guard            $auth
      * @return \Illuminate\Http\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
-    public function login(LoginFormBuilder $form, Redirector $redirect, Guard $auth)
+    public function login(LoginFormBuilder $form, Redirector $redirect, Repository $config, Guard $auth)
     {
         /**
          * If we're already logged in
@@ -35,11 +37,11 @@ class LoginController extends PublicController
          * configurable landing page.
          */
         if ($auth->check()) {
-            return $redirect->to('admin/dashboard');
+            return $redirect->to($config->get('anomaly.module.users::paths.cp_home', 'admin/dashboard'));
         }
 
         return $form
-            ->setOption('redirect', 'admin/dashboard')
+            ->setOption('redirect', $config->get('anomaly.module.users::paths.cp_home', 'admin/dashboard'))
             ->setOption('wrapper_view', 'theme::login')
             ->render();
     }

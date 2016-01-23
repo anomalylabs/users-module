@@ -101,8 +101,7 @@ class LoginFormBuilder extends FormBuilder
         'panel_body_class'    => '',
         'panel_title_class'   => '',
         'panel_heading_class' => '',
-        'breadcrumb'          => false,
-        'success_message'     => 'anomaly.module.users::message.logged_in'
+        'breadcrumb'          => false
     ];
 
     /**

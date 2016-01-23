@@ -3,5 +3,6 @@
 return [
     'reset'    => 'reset',
     'logout'   => 'logout',
-    'activate' => 'activate'
+    'activate' => 'activate',
+    'cp_home'  => 'admin/dashboard',
 ];
