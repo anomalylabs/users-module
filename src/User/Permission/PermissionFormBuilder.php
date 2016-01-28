@@ -94,6 +94,19 @@ class PermissionFormBuilder extends FormBuilder
     }
 
     /**
+     * If nothing is posted then
+     * the user gets no permissions.
+     *
+     * @param UserRepositoryInterface $users
+     */
+    public function onPost(UserRepositoryInterface $users)
+    {
+        if (!$this->hasPostData() && $entry = $this->getEntry()) {
+            $users->save($entry->setAttribute('permissions', []));
+        }
+    }
+
+    /**
      * Get the addon.
      *
      * @return null|Addon

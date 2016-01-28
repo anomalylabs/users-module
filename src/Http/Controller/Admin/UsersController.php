@@ -3,10 +3,7 @@
 use Anomaly\Streams\Platform\Http\Controller\AdminController;
 use Anomaly\UsersModule\User\Form\UserFormBuilder;
 use Anomaly\UsersModule\User\Permission\PermissionFormBuilder;
-use Anomaly\UsersModule\User\Table\UserPermissionTableBuilder;
 use Anomaly\UsersModule\User\Table\UserTableBuilder;
-use Anomaly\UsersModule\User\UserBlocker;
-use Anomaly\UsersModule\User\UserManager;
 
 /**
  * Class UsersController

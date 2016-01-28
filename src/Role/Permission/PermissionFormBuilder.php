@@ -95,6 +95,19 @@ class PermissionFormBuilder extends FormBuilder
     }
 
     /**
+     * If nothing is posted then
+     * the role gets no permissions.
+     *
+     * @param RoleRepositoryInterface $roles
+     */
+    public function onPost(RoleRepositoryInterface $roles)
+    {
+        if (!$this->hasPostData() && $entry = $this->getEntry()) {
+            $roles->save($entry->setAttribute('permissions', []));
+        }
+    }
+
+    /**
      * Get the addon.
      *
      * @return null|Addon

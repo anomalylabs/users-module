@@ -26,7 +26,16 @@ class PermissionFormHandler
     {
         /* @var UserInterface $user */
         $user = $builder->getEntry();
-
+dd(array_keys(
+    array_dot(
+        array_map(
+            function ($values) {
+                return array_combine(array_values($values), array_pad([], count($values), true));
+            },
+            array_filter($builder->getFormInput())
+        )
+    )
+));
         $users->save(
             $user->setPermissions(
                 array_keys(
