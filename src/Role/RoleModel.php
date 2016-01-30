@@ -20,7 +20,16 @@ class RoleModel extends UsersRolesEntryModel implements RoleInterface
      *
      * @var int
      */
-    protected $cacheMinutes = 99999;
+    protected $ttl = 99999;
+
+    /**
+     * Eager loaded relations.
+     *
+     * @var array
+     */
+    protected $with = [
+        'translations'
+    ];
 
     /**
      * Get the role slug.
