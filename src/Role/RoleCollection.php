@@ -15,19 +15,31 @@ class RoleCollection extends EntryCollection
 {
 
     /**
-     * Return all but the admin role.
+     * Return all permissions.
      *
+     * @return array
+     */
+    public function permissions()
+    {
+        return $this->map(
+            function (RoleInterface $role) {
+                return $role->getPermissions();
+            }
+        )->flatten()->all();
+    }
+
+    /**
+     * Return if a role as access to a the permission.
+     *
+     * @param string $permission
      * @return RoleCollection
      */
-    public function notAdmin()
+    public function hasPermission($permission)
     {
-        return $this->make(
-            array_filter(
-                $this->items,
-                function (RoleInterface $role) {
-                    return $role->getSlug() !== 'admin';
-                }
-            )
+        return $this->filter(
+            function (RoleInterface $role) use ($permission) {
+                return $role->hasPermission($permission);
+            }
         );
     }
 }
