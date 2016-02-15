@@ -1,8 +1,8 @@
 <?php namespace Anomaly\UsersModule\User\Contract;
 
 use Anomaly\Streams\Platform\Entry\Contract\EntryInterface;
-use Anomaly\Streams\Platform\Entry\EntryCollection;
 use Anomaly\UsersModule\Role\Contract\RoleInterface;
+use Anomaly\UsersModule\Role\RoleCollection;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
@@ -52,17 +52,9 @@ interface UserInterface extends EntryInterface
     public function getLastName();
 
     /**
-     * Set the password.
-     *
-     * @param $password
-     * @return $this
-     */
-    public function setPassword($password);
-
-    /**
      * Get related roles.
      *
-     * @return EntryCollection
+     * @return RoleCollection
      */
     public function getRoles();
 
@@ -97,14 +89,6 @@ interface UserInterface extends EntryInterface
      * @return array
      */
     public function getPermissions();
-
-    /**
-     * Set the permissions.
-     *
-     * @param array $permissions
-     * @return $this
-     */
-    public function setPermissions(array $permissions);
 
     /**
      * Return whether a user or it's roles has a permission.
@@ -145,27 +129,11 @@ interface UserInterface extends EntryInterface
     public function getResetCode();
 
     /**
-     * Set the reset code.
-     *
-     * @param $code
-     * @return $this
-     */
-    public function setResetCode($code);
-
-    /**
      * Get the activation code.
      *
      * @return string
      */
     public function getActivationCode();
-
-    /**
-     * Set the activation code.
-     *
-     * @param $code
-     * @return $this
-     */
-    public function setActivationCode($code);
 
     /**
      * Return the roles relationship.

@@ -68,8 +68,8 @@ class ResetPassword implements SelfHandling
             return false;
         }
 
-        $this->user->setResetCode(null);
-        $this->user->setPassword($this->password);
+        $this->user->setAttribute('reset_code', null);
+        $this->user->setAttribute('password', $this->password);
 
         $users->save($this->user);
 

@@ -62,19 +62,6 @@ class RoleModel extends UsersRolesEntryModel implements RoleInterface
     }
 
     /**
-     * Set the permissions.
-     *
-     * @param array $permissions
-     * @return $this
-     */
-    public function setPermissions(array $permissions)
-    {
-        $this->permissions = $permissions;
-
-        return $this;
-    }
-
-    /**
      * Return if a role as access to a the permission.
      *
      * @param string $permission

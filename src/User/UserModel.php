@@ -1,10 +1,10 @@
 <?php namespace Anomaly\UsersModule\User;
 
-use Anomaly\Streams\Platform\Entry\EntryCollection;
 use Anomaly\Streams\Platform\Model\Users\UsersUsersEntryModel;
 use Anomaly\Streams\Platform\Support\Collection;
 use Anomaly\UsersModule\Role\Command\GetRole;
 use Anomaly\UsersModule\Role\Contract\RoleInterface;
+use Anomaly\UsersModule\Role\RoleCollection;
 use Anomaly\UsersModule\User\Contract\UserInterface;
 use Illuminate\Auth\Authenticatable;
 
@@ -90,22 +90,9 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, \Illumina
     }
 
     /**
-     * Set the password.
-     *
-     * @param $password
-     * @return $this
-     */
-    public function setPassword($password)
-    {
-        $this->password = $password;
-
-        return $this;
-    }
-
-    /**
      * Get related roles.
      *
-     * @return EntryCollection
+     * @return RoleCollection
      */
     public function getRoles()
     {
@@ -190,19 +177,6 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, \Illumina
     public function getPermissions()
     {
         return $this->permissions;
-    }
-
-    /**
-     * Set the permissions.
-     *
-     * @param array $permissions
-     * @return $this
-     */
-    public function setPermissions(array $permissions)
-    {
-        $this->permissions = $permissions;
-
-        return $this;
     }
 
     /**
@@ -313,19 +287,6 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, \Illumina
     }
 
     /**
-     * Set the reset code.
-     *
-     * @param $code
-     * @return $this
-     */
-    public function setResetCode($code)
-    {
-        $this->reset_code = $code;
-
-        return $this;
-    }
-
-    /**
      * Get the activation code.
      *
      * @return string
@@ -333,19 +294,6 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, \Illumina
     public function getActivationCode()
     {
         return $this->activation_code;
-    }
-
-    /**
-     * Set the activation code.
-     *
-     * @param $code
-     * @return $this
-     */
-    public function setActivationCode($code)
-    {
-        $this->activation_code = $code;
-
-        return $this;
     }
 
     /**

@@ -32,20 +32,28 @@ class PermissionFormFields
         Repository $config
     ) {
         /* @var UserInterface $user */
-        $user = $builder->getEntry();
+        $user      = $builder->getEntry();
+        $roles     = $user->getRoles();
+        $inherited = $roles->permissions();
 
         $fields = [];
 
-        $namespaces = ['streams'];
+        $namespaces = array_merge(['streams'], $addons->withConfig('permissions')->namespaces());
 
-        /* @var Addon $addon */
-        foreach ($addons->withConfig('permissions') as $addon) {
-            $namespaces[] = $addon->getNamespace();
-        }
-
+        /**
+         * gather all the addons with a
+         * permissions configuration file.
+         *
+         * @var Addon $addon
+         */
         foreach ($namespaces as $namespace) {
+
             foreach ($config->get($namespace . '::permissions', []) as $group => $permissions) {
 
+                /**
+                 * Determine the general
+                 * form UI components.
+                 */
                 $label = $namespace . '::permission.' . $group . '.name';
 
                 if (!$translator->has($warning = $namespace . '::permission.' . $group . '.warning')) {
@@ -56,31 +64,38 @@ class PermissionFormFields
                     $instructions = null;
                 }
 
+                /**
+                 * Gather the available
+                 * permissions for the group.
+                 */
+                $available = array_combine(
+                    array_map(
+                        function ($permission) use ($namespace, $group) {
+                            return $namespace . '::' . $group . '.' . $permission;
+                        },
+                        $permissions
+                    ),
+                    array_map(
+                        function ($permission) use ($namespace, $group) {
+                            return $namespace . '::permission.' . $group . '.option.' . $permission;
+                        },
+                        $permissions
+                    )
+                );
+
+                /**
+                 * Build the checkboxes field
+                 * type to handle the UI.
+                 */
                 $fields[$namespace . '::' . $group] = [
                     'label'        => $label,
                     'warning'      => $warning,
                     'instructions' => $instructions,
                     'type'         => 'anomaly.field_type.checkboxes',
-                    'value'        => function () use ($user, $namespace, $group) {
-                        return array_map(
-                            function ($permission) use ($user, $namespace, $group) {
-                                return str_replace($namespace . '::' . $group . '.', '', $permission);
-                            },
-                            $user->getPermissions()
-                        );
-                    },
+                    'value'        => array_merge($user->getPermissions(), $inherited),
                     'config'       => [
-                        'options' => function () use ($group, $permissions, $namespace) {
-                            return array_combine(
-                                $permissions,
-                                array_map(
-                                    function ($permission) use ($namespace, $group) {
-                                        return $namespace . '::permission.' . $group . '.option.' . $permission;
-                                    },
-                                    $permissions
-                                )
-                            );
-                        }
+                        'disabled' => $inherited,
+                        'options'  => $available
                     ]
                 ];
             }

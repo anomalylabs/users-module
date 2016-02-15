@@ -14,6 +14,15 @@ class UserTableBuilder extends TableBuilder
 {
 
     /**
+     * The table actions.
+     *
+     * @var array
+     */
+    public $actions = [
+        'delete'
+    ];
+
+    /**
      * The table filters.
      *
      * @var array
@@ -52,15 +61,6 @@ class UserTableBuilder extends TableBuilder
             'icon'   => 'lock',
             'href'   => 'admin/users/permissions/{entry.id}'
         ]
-    ];
-
-    /**
-     * The table actions.
-     *
-     * @var array
-     */
-    public $actions = [
-        'delete'
     ];
 
 }

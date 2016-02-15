@@ -33,13 +33,13 @@ class StartPasswordReset implements SelfHandling
     }
 
     /**
-     * Handle the comand.
+     * Handle the command.
      *
      * @param UserRepositoryInterface $users
      * @return bool
      */
     public function handle(UserRepositoryInterface $users)
     {
-        return $users->save($this->user->setResetCode(str_random(40)));
+        return $users->save($this->user->setAttribute('reset_code', str_random(40)));
     }
 }

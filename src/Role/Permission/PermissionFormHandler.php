@@ -1,5 +1,6 @@
 <?php namespace Anomaly\UsersModule\Role\Permission;
 
+use Anomaly\Streams\Platform\Model\EloquentModel;
 use Anomaly\UsersModule\Role\Contract\RoleInterface;
 use Anomaly\UsersModule\Role\Contract\RoleRepositoryInterface;
 use Illuminate\Routing\Redirector;
@@ -24,23 +25,10 @@ class PermissionFormHandler
      */
     public function handle(PermissionFormBuilder $builder, RoleRepositoryInterface $roles, Redirector $redirect)
     {
-        /* @var RoleInterface $role */
+        /* @var RoleInterface|EloquentModel $role */
         $role = $builder->getEntry();
 
-        $roles->save(
-            $role->setPermissions(
-                array_keys(
-                    array_dot(
-                        array_map(
-                            function ($values) {
-                                return array_combine(array_values($values), array_pad([], count($values), true));
-                            },
-                            array_filter($builder->getFormInput())
-                        )
-                    )
-                )
-            )
-        );
+        $roles->save($role->setAttribute('permissions', array_filter(array_flatten($builder->getFormInput()))));
 
         $builder->setFormResponse($redirect->refresh());
     }
