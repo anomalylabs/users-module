@@ -31,4 +31,56 @@ class UserPresenter extends EntryPresenter
     {
         return implode(' ', array_filter([$this->object->getFirstName(), $this->object->getLastName()]));
     }
+
+    /**
+     * Return the user's status as a label.
+     *
+     * @param string $size
+     * @return null|string
+     */
+    public function statusLabel($size = 'sm')
+    {
+        $color  = 'default';
+        $status = $this->status();
+
+        switch ($status) {
+            case 'active':
+                $color = 'success';
+                break;
+
+            case 'inactive':
+                $color = 'default';
+                break;
+
+            case 'disabled':
+                $color = 'danger';
+                break;
+        }
+
+        return '<span class="label label-' . $size . ' label-' . $color . '">' . trans(
+            'anomaly.module.users::field.status.option.' . $status
+        ) . '</span>';
+    }
+
+    /**
+     * Return the status key.
+     *
+     * @return null|string
+     */
+    public function status()
+    {
+        if (!$this->object->isEnabled()) {
+            return 'disabled';
+        }
+
+        if ($this->object->isEnabled() && !$this->object->isActivated()) {
+            return 'inactive';
+        }
+
+        if ($this->object->isEnabled() && $this->object->isActivated()) {
+            return 'active';
+        }
+
+        return null;
+    }
 }

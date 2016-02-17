@@ -1,6 +1,7 @@
 <?php namespace Anomaly\UsersModule\User\Table;
 
 use Anomaly\Streams\Platform\Ui\Table\TableBuilder;
+use Anomaly\UsersModule\User\Table\Filter\StatusFilterQuery;
 
 /**
  * Class UserTableBuilder
@@ -28,11 +29,24 @@ class UserTableBuilder extends TableBuilder
      * @var array
      */
     protected $filters = [
-        'username',
-        'email',
+        'search' => [
+            'filter' => 'search',
+            'fields' => [
+                'display_name',
+                'username',
+                'email'
+            ]
+        ],
         'roles',
-        'activated',
-        'enabled'
+        'status' => [
+            'filter'  => 'select',
+            'query'   => StatusFilterQuery::class,
+            'options' => [
+                'active'   => 'anomaly.module.users::field.status.option.active',
+                'inactive' => 'anomaly.module.users::field.status.option.inactive',
+                'disabled' => 'anomaly.module.users::field.status.option.disabled'
+            ]
+        ]
     ];
 
     /**
@@ -41,13 +55,12 @@ class UserTableBuilder extends TableBuilder
      * @var array
      */
     protected $columns = [
-        'entry.edit_link' => [
-            'sort_column' => 'display_name'
-        ],
+        'display_name',
         'username',
         'email',
-        'activated'       => 'entry.activated.label',
-        'enabled'         => 'entry.enabled.label'
+        'status' => [
+            'value' => 'entry.status_label'
+        ]
     ];
 
     /**
@@ -56,6 +69,7 @@ class UserTableBuilder extends TableBuilder
      * @var array
      */
     protected $buttons = [
+        'edit',
         'permissions' => [
             'button' => 'info',
             'icon'   => 'lock',

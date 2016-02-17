@@ -19,7 +19,13 @@ class RoleTableBuilder extends TableBuilder
      * @var array
      */
     protected $filters = [
-        'slug'
+        'search' => [
+            'fields' => [
+                'title',
+                'slug',
+                'description'
+            ]
+        ]
     ];
 
     /**
@@ -29,7 +35,7 @@ class RoleTableBuilder extends TableBuilder
      */
     protected $columns = [
         'name',
-        'slug'
+        'description'
     ];
 
     /**
@@ -38,12 +44,12 @@ class RoleTableBuilder extends TableBuilder
      * @var array
      */
     protected $buttons = [
+        'edit',
         'permissions' => [
             'button' => 'info',
             'icon'   => 'lock',
             'href'   => 'admin/users/roles/permissions/{entry.id}'
-        ],
-        'edit'
+        ]
     ];
 
     /**

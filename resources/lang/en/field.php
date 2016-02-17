@@ -4,6 +4,9 @@ return [
     'name'             => [
         'name' => 'Name'
     ],
+    'description'      => [
+        'name' => 'Description'
+    ],
     'first_name'       => [
         'name' => 'First Name'
     ],
@@ -48,5 +51,13 @@ return [
     ],
     'remember_me'      => [
         'name' => 'Remember me'
+    ],
+    'status'           => [
+        'name'   => 'Status',
+        'option' => [
+            'active'   => 'Active',
+            'inactive' => 'Inactive',
+            'disabled' => 'Disabled'
+        ]
     ]
 ];

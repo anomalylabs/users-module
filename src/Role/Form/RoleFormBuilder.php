@@ -14,13 +14,6 @@ class RoleFormBuilder extends FormBuilder
 {
 
     /**
-     * The form fields.
-     *
-     * @var array
-     */
-    protected $fields = ['*'];
-
-    /**
      * The form buttons.
      *
      * @var array

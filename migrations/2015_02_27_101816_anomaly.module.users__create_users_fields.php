@@ -40,6 +40,7 @@ class AnomalyModuleUsersCreateUsersFields extends Migration
         'first_name'                 => 'anomaly.field_type.text',
         'last_name'                  => 'anomaly.field_type.text',
         'name'                       => 'anomaly.field_type.text',
+        'description'                => 'anomaly.field_type.textarea',
         'reset_code'                 => 'anomaly.field_type.text',
         'reset_code_expires_at'      => 'anomaly.field_type.datetime',
         'activation_code'            => 'anomaly.field_type.text',
