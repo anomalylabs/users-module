@@ -15,24 +15,6 @@ class UserFormBuilder extends FormBuilder
 {
 
     /**
-     * The form actions.
-     *
-     * @var array
-     */
-    protected $actions = [
-        'save'
-    ];
-
-    /**
-     * The form buttons.
-     *
-     * @var array
-     */
-    protected $buttons = [
-        'cancel'
-    ];
-
-    /**
      * Fired just before posting.
      *
      * @param Request $request

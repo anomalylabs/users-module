@@ -14,15 +14,6 @@ class RoleFormBuilder extends FormBuilder
 {
 
     /**
-     * The form buttons.
-     *
-     * @var array
-     */
-    protected $buttons = [
-        'cancel'
-    ];
-
-    /**
      * The skipped fields.
      *
      * @var array
