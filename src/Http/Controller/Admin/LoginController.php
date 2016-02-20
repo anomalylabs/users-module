@@ -37,11 +37,11 @@ class LoginController extends PublicController
          * configurable landing page.
          */
         if ($auth->check()) {
-            return $redirect->to($config->get('anomaly.module.users::paths.cp_home', 'admin/dashboard'));
+            return $redirect->to($config->get('streams::access.home', 'admin/dashboard'));
         }
 
         return $form
-            ->setOption('redirect', $config->get('anomaly.module.users::paths.cp_home', 'admin/dashboard'))
+            ->setOption('redirect', $config->get('streams::access.home', 'admin/dashboard'))
             ->setOption('wrapper_view', 'theme::login')
             ->render();
     }
