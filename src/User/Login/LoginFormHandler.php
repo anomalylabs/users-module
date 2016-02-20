@@ -29,6 +29,6 @@ class LoginFormHandler
 
         $authenticator->login($user, $builder->getFormValue('remember_me'));
 
-        $builder->setFormResponse($redirect->intended($builder->getFormOption('redirect')));
+        $builder->setFormResponse($redirect->intended($builder->getFormOption('redirect', '/')));
     }
 }
