@@ -41,7 +41,8 @@ class RoleSeeder extends Seeder
         $this->roles->create(
             [
                 'en'   => [
-                    'name' => 'Admin'
+                    'name'        => 'Admin',
+                    'description' => 'The super admin role.'
                 ],
                 'slug' => 'admin'
             ]
@@ -50,7 +51,8 @@ class RoleSeeder extends Seeder
         $this->roles->create(
             [
                 'en'   => [
-                    'name' => 'User'
+                    'name'        => 'User',
+                    'description' => 'The default user role.'
                 ],
                 'slug' => 'user'
             ]
