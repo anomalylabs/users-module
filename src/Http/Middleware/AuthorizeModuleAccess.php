@@ -51,7 +51,7 @@ class AuthorizeModuleAccess
      */
     public function handle(Request $request, Closure $next)
     {
-        if ($request->segment(1) !== 'admin') {
+        if ($request->segment(1) !== 'admin' || in_array($request->path(), ['admin/login', 'admin/logout'])) {
             return $next($request);
         }
 
