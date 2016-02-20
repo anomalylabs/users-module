@@ -62,15 +62,11 @@ class RegisterFormBuilder extends FormBuilder
      * @var array
      */
     protected $options = [
-        'redirect'            => '/',
-        'panel_class'         => '',
-        'panel_body_class'    => '',
-        'panel_title_class'   => '',
-        'panel_heading_class' => '',
-        'success_message'     => 'anomaly.module.users::success.user_registered',
-        'pending_message'     => 'anomaly.module.users::message.pending_admin_activation',
-        'confirm_message'     => 'anomaly.module.users::message.pending_email_activation',
-        'activated_message'   => 'anomaly.module.users::message.account_activated'
+        'redirect'          => '/',
+        'success_message'   => 'anomaly.module.users::success.user_registered',
+        'pending_message'   => 'anomaly.module.users::message.pending_admin_activation',
+        'confirm_message'   => 'anomaly.module.users::message.pending_email_activation',
+        'activated_message' => 'anomaly.module.users::message.account_activated'
     ];
 
     /**

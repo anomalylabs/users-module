@@ -96,12 +96,8 @@ class LoginFormBuilder extends FormBuilder
      * @var array
      */
     protected $options = [
-        'redirect'            => '/',
-        'panel_class'         => '',
-        'panel_body_class'    => '',
-        'panel_title_class'   => '',
-        'panel_heading_class' => '',
-        'breadcrumb'          => false
+        'redirect'   => '/',
+        'breadcrumb' => false
     ];
 
     /**
