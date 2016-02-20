@@ -3,7 +3,6 @@
 use Anomaly\Streams\Platform\Addon\Plugin\Plugin;
 use Anomaly\Streams\Platform\Support\Decorator;
 use Anomaly\UsersModule\Role\Command\GetRole;
-use Anomaly\UsersModule\User\Command\GetLogoutPath;
 use Anomaly\UsersModule\User\Command\GetUser;
 
 /**
@@ -36,13 +35,6 @@ class UsersModulePlugin extends Plugin
                 function ($identifier) {
                     return (new Decorator())->decorate($this->dispatch(new GetRole($identifier)));
                 }
-            ),
-            new \Twig_SimpleFunction(
-                'logout_path',
-                function () {
-                    return $this->dispatch(new GetLogoutPath());
-                },
-                ['is_safe' => ['html']]
             )
         ];
     }
