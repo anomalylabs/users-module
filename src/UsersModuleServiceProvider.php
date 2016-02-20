@@ -46,11 +46,6 @@ class UsersModuleServiceProvider extends AddonServiceProvider
         ],
         'Anomaly\Streams\Platform\Application\Event\ApplicationHasLoaded' => [
             'Anomaly\UsersModule\User\Listener\TouchLastActivity'
-        ],
-        'Anomaly\Streams\Platform\Installer\Event\StreamsHasInstalled'    => [
-            'Anomaly\UsersModule\Installer\Listener\CreateAdminUser',
-            'Anomaly\UsersModule\Installer\Listener\CreateAdminRole',
-            'Anomaly\UsersModule\Installer\Listener\CreateUserRole'
         ]
     ];
 
