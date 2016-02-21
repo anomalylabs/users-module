@@ -20,7 +20,8 @@ class AnomalyModuleUsersCreateRolesStream extends Migration
     protected $stream = [
         'slug'         => 'roles',
         'title_column' => 'name',
-        'translatable' => true
+        'translatable' => true,
+        'trashable'    => true
     ];
 
     /**

@@ -19,7 +19,8 @@ class AnomalyModuleUsersCreateUsersStream extends Migration
      */
     protected $stream = [
         'slug'         => 'users',
-        'title_column' => 'display_name'
+        'title_column' => 'display_name',
+        'trashable'    => true
     ];
 
     /**
