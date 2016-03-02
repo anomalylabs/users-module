@@ -1,5 +1,7 @@
 <?php namespace Anomaly\UsersModule\Role;
 
+use Anomaly\Streams\Platform\Entry\EntryCollection;
+use Anomaly\Streams\Platform\Entry\EntryRepository;
 use Anomaly\UsersModule\Role\Contract\RoleInterface;
 use Anomaly\UsersModule\Role\Contract\RoleRepositoryInterface;
 use Illuminate\Support\Collection;
@@ -7,12 +9,12 @@ use Illuminate\Support\Collection;
 /**
  * Class RoleRepositoryInterface
  *
- * @link          http://anomaly.is/streams-platform
- * @author        AnomalyLabs, Inc. <hello@anomaly.is>
- * @author        Ryan Thompson <ryan@anomaly.is>
+ * @link          http://pyrocms.com/
+ * @author        PyroCMS, Inc. <support@pyrocms.com>
+ * @author        Ryan Thompson <ryan@pyrocms.com>
  * @package       Anomaly\UsersModule\RoleInterface
  */
-class RoleRepository implements RoleRepositoryInterface
+class RoleRepository extends EntryRepository implements RoleRepositoryInterface
 {
 
     /**
@@ -33,48 +35,13 @@ class RoleRepository implements RoleRepositoryInterface
     }
 
     /**
-     * Return all roles.
+     * Return all but the admin role.
      *
-     * @return Collection
+     * @return RoleCollection
      */
-    public function all()
+    public function allButAdmin()
     {
-        return $this->model->all();
-    }
-
-    /**
-     * Create a new role.
-     *
-     * @param array $attributes
-     * @return RoleInterface
-     */
-    public function create(array $attributes)
-    {
-        return $this->model->create($attributes);
-    }
-
-    /**
-     * Delete a role.
-     *
-     * @param RoleInterface $role
-     * @return RoleInterface
-     */
-    public function delete(RoleInterface $role)
-    {
-        $role->delete();
-
-        return $role;
-    }
-
-    /**
-     * Find a role.
-     *
-     * @param $id
-     * @return null|RoleInterface
-     */
-    public function find($id)
-    {
-        return $this->model->find($id);
+        return $this->model->where('slug', '!=', 'admin')->get();
     }
 
     /**
@@ -86,6 +53,23 @@ class RoleRepository implements RoleRepositoryInterface
     public function findBySlug($slug)
     {
         return $this->model->where('slug', $slug)->first();
+    }
+
+    /**
+     * Find a role by a permission key.
+     *
+     * @param $permission
+     * @return null|EntryCollection
+     */
+    public function findByPermission($permission)
+    {
+        $query = $this->model->newQuery();
+
+        foreach ((array)$permission as $key) {
+            $query->where('permissions', 'LIKE', '%"' . str_replace('*', '%', $key) . '"%');
+        }
+
+        return $query->get();
     }
 
     /**

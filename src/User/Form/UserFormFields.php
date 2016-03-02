@@ -5,16 +5,16 @@ use Anomaly\UsersModule\User\UserModel;
 /**
  * Class UserFormFields
  *
- * @link          http://anomaly.is/streams-platform
- * @author        AnomalyLabs, Inc. <hello@anomaly.is>
- * @author        Ryan Thompson <ryan@anomaly.is>
+ * @link          http://pyrocms.com/
+ * @author        PyroCMS, Inc. <support@pyrocms.com>
+ * @author        Ryan Thompson <ryan@pyrocms.com>
  * @package       Anomaly\UsersModule\User\Form
  */
 class UserFormFields
 {
 
     /**
-     * Handle the fom fields.
+     * Handle the form fields.
      *
      * @param UserFormBuilder $builder
      */
@@ -27,21 +27,19 @@ class UserFormFields
             'username',
             'email',
             'password' => [
-                'value' => ''
+                'value'    => '',
+                'required' => false,
+                'rules'    => [
+                    'required_if:password,*'
+                ]
             ],
+            'activated',
+            'enabled',
             'roles'
         ];
 
         $assignments = $users->getAssignments();
 
-        $builder->setFields(
-            array_merge(
-                $fields,
-                array_diff(
-                    $assignments->fieldSlugs(),
-                    config('anomaly.module.users::config.protected_fields')
-                )
-            )
-        );
+        $builder->setFields(array_merge($fields, $assignments->notLocked()->fieldSlugs()));
     }
 }

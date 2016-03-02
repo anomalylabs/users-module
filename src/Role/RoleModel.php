@@ -2,13 +2,14 @@
 
 use Anomaly\Streams\Platform\Model\Users\UsersRolesEntryModel;
 use Anomaly\UsersModule\Role\Contract\RoleInterface;
+use Anomaly\UsersModule\User\UserCollection;
 
 /**
  * Class RoleModel
  *
- * @link          http://anomaly.is/streams-platform
- * @author        AnomalyLabs, Inc. <hello@anomaly.is>
- * @author        Ryan Thompson <ryan@anomaly.is>
+ * @link          http://pyrocms.com/
+ * @author        PyroCMS, Inc. <support@pyrocms.com>
+ * @author        Ryan Thompson <ryan@pyrocms.com>
  * @package       Anomaly\UsersModule\RoleInterface
  */
 class RoleModel extends UsersRolesEntryModel implements RoleInterface
@@ -19,17 +20,16 @@ class RoleModel extends UsersRolesEntryModel implements RoleInterface
      *
      * @var int
      */
-    protected $cacheMinutes = 99999;
+    protected $ttl = 99999;
 
     /**
-     * Get the role's ID.
+     * Eager loaded relations.
      *
-     * @return int
+     * @var array
      */
-    public function getId()
-    {
-        return $this->getKey();
-    }
+    protected $with = [
+        'translations'
+    ];
 
     /**
      * Get the role slug.
@@ -81,12 +81,31 @@ class RoleModel extends UsersRolesEntryModel implements RoleInterface
             return true;
         }
 
-        foreach ($this->permissions as $perm) {
-            if (str_is($permission, $perm)) {
-                return true;
-            }
-        }
-
         return false;
+    }
+
+    /**
+     * Get the related users.
+     *
+     * @return UserCollection
+     */
+    public function getUsers()
+    {
+        return $this->users;
+    }
+
+    /**
+     * Return the users relation.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function users()
+    {
+        return $this->belongsToMany(
+            'Anomaly\UsersModule\User\UserModel',
+            'users_users_roles',
+            'related_id',
+            'entry_id'
+        );
     }
 }

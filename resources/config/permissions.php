@@ -1,22 +1,20 @@
 <?php
 
 return [
-    'settings',
-    'users' => [
+    'users'    => [
         'read',
-        'create',
-        'edit',
-        'delete',
-        'permissions',
-        'activate',
-        'unblock',
-        'block'
+        'write',
+        'delete'
     ],
-    'roles' => [
+    'roles'    => [
         'read',
-        'create',
-        'edit',
-        'delete',
-        'permissions'
+        'write',
+        'delete'
+    ],
+    'fields'   => [
+        'manage'
+    ],
+    'settings' => [
+        'manage'
     ]
 ];

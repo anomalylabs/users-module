@@ -1,32 +1,20 @@
 <?php namespace Anomaly\UsersModule\User\Contract;
 
-use Anomaly\Streams\Platform\Entry\EntryCollection;
+use Anomaly\Streams\Platform\Entry\Contract\EntryInterface;
+use Anomaly\UsersModule\Role\Contract\RoleInterface;
+use Anomaly\UsersModule\Role\RoleCollection;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
  * Interface UserInterface
  *
- * @link          http://anomaly.is/streams-platform
- * @author        AnomalyLabs, Inc. <hello@anomaly.is>
- * @author        Ryan Thompson <ryan@anomaly.is>
+ * @link          http://pyrocms.com/
+ * @author        PyroCMS, Inc. <support@pyrocms.com>
+ * @author        Ryan Thompson <ryan@pyrocms.com>
  * @package       Anomaly\UsersModule\User\Contract
  */
-interface UserInterface
+interface UserInterface extends EntryInterface
 {
-
-    /**
-     * Return the roles relationship.
-     *
-     * @return BelongsToMany
-     */
-    public function roles();
-
-    /**
-     * Get the user's ID.
-     *
-     * @return int
-     */
-    public function getId();
 
     /**
      * Get the email.
@@ -64,40 +52,36 @@ interface UserInterface
     public function getLastName();
 
     /**
-     * Get the name.
-     *
-     * @return string
-     */
-    public function name();
-
-    /**
-     * Get the activated flag.
-     *
-     * @return bool
-     */
-    public function isActivated();
-
-    /**
-     * Get the blocked flag.
-     *
-     * @return bool
-     */
-    public function isBlocked();
-
-    /**
      * Get related roles.
      *
-     * @return EntryCollection
+     * @return RoleCollection
      */
     public function getRoles();
 
     /**
      * Return whether a user is in a role.
      *
-     * @param string|array $role
+     * @param $role
      * @return bool
      */
     public function hasRole($role);
+
+    /**
+     * Return whether a user is in
+     * any of the provided roles.
+     *
+     * @param $roles
+     * @return bool
+     */
+    public function hasAnyRole($roles);
+
+    /**
+     * Return whether the user
+     * is an admin or not.
+     *
+     * @return bool
+     */
+    public function isAdmin();
 
     /**
      * Get the permissions.
@@ -118,8 +102,57 @@ interface UserInterface
     /**
      * Return whether a user has any of provided permission.
      *
-     * @param $string
+     * @param $permissions
      * @return bool
      */
-    public function hasAnyPermission(array $string);
+    public function hasAnyPermission(array $permissions);
+
+    /**
+     * Return the activated flag.
+     *
+     * @return bool
+     */
+    public function isActivated();
+
+    /**
+     * Return the enabled flag.
+     *
+     * @return bool
+     */
+    public function isEnabled();
+
+    /**
+     * Get the reset code.
+     *
+     * @return string
+     */
+    public function getResetCode();
+
+    /**
+     * Get the activation code.
+     *
+     * @return string
+     */
+    public function getActivationCode();
+
+    /**
+     * Return the roles relationship.
+     *
+     * @return BelongsToMany
+     */
+    public function roles();
+
+    /**
+     * Return the full name.
+     *
+     * @return string
+     */
+    public function name();
+
+    /**
+     * Attach a role to the user.
+     *
+     * @param RoleInterface $role
+     */
+    public function attachRole(RoleInterface $role);
 }

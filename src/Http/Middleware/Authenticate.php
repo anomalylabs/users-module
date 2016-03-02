@@ -1,19 +1,21 @@
 <?php namespace Anomaly\UsersModule\Http\Middleware;
 
-use Anomaly\UsersModule\Security\SecurityChecker;
+use Anomaly\UsersModule\User\UserSecurity;
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Redirector;
+use Illuminate\Routing\ResponseFactory;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * Class Authenticate
+ * Class AuthenticateRequest
  *
  * This class replaces the Laravel version in app/
  *
- * @link          http://anomaly.is/streams-platform
- * @author        AnomalyLabs, Inc. <hello@anomaly.is>
- * @author        Ryan Thompson <ryan@anomaly.is>
+ * @link          http://pyrocms.com/
+ * @author        PyroCMS, Inc. <support@pyrocms.com>
+ * @author        Ryan Thompson <ryan@pyrocms.com>
  * @package       Anomaly\UsersModule\Http\Middleware
  */
 class Authenticate
@@ -24,24 +26,46 @@ class Authenticate
      *
      * @var Guard
      */
-    protected $auth;
+    protected $guard;
 
     /**
      * The security utility.
      *
-     * @var SecurityChecker
+     * @var UserSecurity
      */
     protected $security;
 
     /**
-     * Create a new filter instance.
+     * The response factory.
      *
-     * @param Guard           $auth
-     * @param SecurityChecker $security
+     * @var ResponseFactory
      */
-    public function __construct(Guard $auth, SecurityChecker $security)
-    {
-        $this->auth     = $auth;
+    protected $response;
+
+    /**
+     * The redirector utility.
+     *
+     * @var Redirector
+     */
+    protected $redirect;
+
+    /**
+     * Create a new AuthenticateRequest instance.
+     *
+     * @param Guard           $guard
+     * @param Redirector      $redirect
+     * @param ResponseFactory $response
+     * @param UserSecurity    $security
+     */
+    public function __construct(
+        Guard $guard,
+        Redirector $redirect,
+        ResponseFactory $response,
+        UserSecurity $security
+    ) {
+        $this->guard    = $guard;
+        $this->redirect = $redirect;
+        $this->response = $response;
         $this->security = $security;
     }
 
@@ -54,19 +78,21 @@ class Authenticate
      */
     public function handle(Request $request, Closure $next)
     {
-        $user = $this->auth->user();
-
-        $response = $this->security->check($request, $user);
+        $response = $this->security->check($this->guard->user());
 
         if ($response instanceof Response) {
             return $response;
         }
 
-        if ($this->auth->guest()) {
+        if ($this->guard->guest()) {
             if ($request->ajax()) {
-                return response('Unauthorized.', 401);
+                return $this->response->make('Unauthorized.', 401);
             } else {
-                return redirect()->guest('admin/login');
+                if ($request->segment(1) === 'admin') {
+                    return $this->redirect->guest('admin/login');
+                } else {
+                    return $this->redirect->guest('login');
+                }
             }
         }
 

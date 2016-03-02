@@ -1,40 +1,68 @@
 <?php namespace Anomaly\UsersModule\User;
 
+use Anomaly\UsersModule\User\Command\ActivateUserByCode;
 use Anomaly\UsersModule\User\Command\ActivateUserByForce;
-use Anomaly\UsersModule\User\Command\DeactivateUser;
+use Anomaly\UsersModule\User\Command\SendActivationEmail;
+use Anomaly\UsersModule\User\Command\StartUserActivation;
 use Anomaly\UsersModule\User\Contract\UserInterface;
-use Illuminate\Foundation\Bus\DispatchesCommands;
+use Illuminate\Foundation\Bus\DispatchesJobs;
 
 /**
  * Class UserActivator
  *
- * @link          http://anomaly.is/streams-platform
- * @author        AnomalyLabs, Inc. <hello@anomaly.is>
- * @author        Ryan Thompson <ryan@anomaly.is>
+ * @link          http://pyrocms.com/
+ * @author        PyroCMS, Inc. <support@pyrocms.com>
+ * @author        Ryan Thompson <ryan@pyrocms.com>
  * @package       Anomaly\UsersModule\User
  */
 class UserActivator
 {
 
-    use DispatchesCommands;
+    use DispatchesJobs;
 
     /**
-     * Activate a user without a code.
+     * Start a user activation process.
      *
      * @param UserInterface $user
+     * @return bool
      */
-    public function force(UserInterface $user)
+    public function start(UserInterface $user)
     {
-        $this->dispatch(new ActivateUserByForce($user));
+        return $this->dispatch(new StartUserActivation($user));
     }
 
     /**
-     * Deactivate a user.
+     * Activate a user by code.
      *
      * @param UserInterface $user
+     * @param               $code
+     * @return bool
      */
-    public function deactivate(UserInterface $user)
+    public function activate(UserInterface $user, $code)
     {
-        $this->dispatch(new DeactivateUser($user));
+        return $this->dispatch(new ActivateUserByCode($user, $code));
+    }
+
+    /**
+     * Activate a user by force.
+     *
+     * @param UserInterface $user
+     * @return bool
+     */
+    public function force(UserInterface $user)
+    {
+        return $this->dispatch(new ActivateUserByForce($user));
+    }
+
+    /**
+     * Send an activation email.
+     *
+     * @param UserInterface $user
+     * @param string        $redirect
+     * @return bool
+     */
+    public function send(UserInterface $user, $redirect = '/')
+    {
+        return $this->dispatch(new SendActivationEmail($user, $redirect));
     }
 }

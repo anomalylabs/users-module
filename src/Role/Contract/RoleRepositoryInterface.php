@@ -1,48 +1,26 @@
 <?php namespace Anomaly\UsersModule\Role\Contract;
 
-use Illuminate\Support\Collection;
+use Anomaly\Streams\Platform\Entry\Contract\EntryRepositoryInterface;
+use Anomaly\Streams\Platform\Entry\EntryCollection;
+use Anomaly\UsersModule\Role\RoleCollection;
 
 /**
  * Interface RoleRepositoryInterface
  *
- * @link          http://anomaly.is/streams-platform
- * @author        AnomalyLabs, Inc. <hello@anomaly.is>
- * @author        Ryan Thompson <ryan@anomaly.is>
+ * @link          http://pyrocms.com/
+ * @author        PyroCMS, Inc. <support@pyrocms.com>
+ * @author        Ryan Thompson <ryan@pyrocms.com>
  * @package       Anomaly\UsersModule\RoleInterface\Contract
  */
-interface RoleRepositoryInterface
+interface RoleRepositoryInterface extends EntryRepositoryInterface
 {
 
     /**
-     * Return all roles.
+     * Return all but the admin role.
      *
-     * @return Collection
+     * @return RoleCollection
      */
-    public function all();
-
-    /**
-     * Create a new role.
-     *
-     * @param array $attributes
-     * @return RoleInterface
-     */
-    public function create(array $attributes);
-
-    /**
-     * Delete a role.
-     *
-     * @param RoleInterface $role
-     * @return RoleInterface
-     */
-    public function delete(RoleInterface $role);
-
-    /**
-     * Find a role.
-     *
-     * @param $id
-     * @return null|RoleInterface
-     */
-    public function find($id);
+    public function allButAdmin();
 
     /**
      * Find a role by it's slug.
@@ -51,6 +29,14 @@ interface RoleRepositoryInterface
      * @return null|RoleInterface
      */
     public function findBySlug($slug);
+
+    /**
+     * Find a role by a permission key.
+     *
+     * @param $permission
+     * @return null|EntryCollection
+     */
+    public function findByPermission($permission);
 
     /**
      * Update permissions for a role.

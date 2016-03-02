@@ -1,17 +1,17 @@
 <?php namespace Anomaly\UsersModule\Http\Controller\Admin;
 
 use Anomaly\Streams\Platform\Http\Controller\AdminController;
-use Anomaly\UsersModule\Role\Contract\RoleRepositoryInterface;
 use Anomaly\UsersModule\Role\Form\RoleFormBuilder;
+use Anomaly\UsersModule\Role\Permission\PermissionFormBuilder;
 use Anomaly\UsersModule\Role\Table\RolePermissionTableBuilder;
 use Anomaly\UsersModule\Role\Table\RoleTableBuilder;
 
 /**
  * Class RolesController
  *
- * @link          http://anomaly.is/streams-platform
- * @author        AnomalyLabs, Inc. <hello@anomaly.is>
- * @author        Ryan Thompson <ryan@anomaly.is>
+ * @link          http://pyrocms.com/
+ * @author        PyroCMS, Inc. <support@pyrocms.com>
+ * @author        Ryan Thompson <ryan@pyrocms.com>
  * @package       Anomaly\UsersModule\Http\Controller\Admin
  */
 class RolesController extends AdminController
@@ -52,23 +52,14 @@ class RolesController extends AdminController
     }
 
     /**
-     * Manage permissions for a role.
+     * Return the form for editing permissions.
      *
-     * @param RolePermissionTableBuilder $table
-     * @param RoleRepositoryInterface    $roles
-     * @param                            $id
+     * @param PermissionFormBuilder $form
+     * @param                       $id
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function permissions(RolePermissionTableBuilder $table, RoleRepositoryInterface $roles, $id)
+    public function permissions(PermissionFormBuilder $form, $id)
     {
-        $role = $roles->find($id);
-
-        if ($role->getSlug() == 'admin') {
-            abort(403, trans('module::message.edit_admin_error'));
-        }
-
-        $table->setRole($role);
-
-        return $table->render();
+        return $form->render($id);
     }
 }

@@ -1,10 +1,14 @@
 <?php
 
 return [
-    'edit_admin_error'              => 'Admin can not be edited.',
-    'block_users_success'           => ':count user(s) were blocked successfully.',
-    'unblock_users_success'         => ':count user(s) were unblocked successfully.',
-    'activate_users_success'        => ':count user(s) were activated successfully.',
-    'save_user_permissions_success' => 'User permissions for ":username" have been saved successfully.',
-    'save_role_permissions_success' => 'Role permissions for ":slug" have been saved successfully.'
+    'logged_in'                => 'You are now logged in.',
+    'logged_out'               => 'You are now logged out.',
+    'invalid_login'            => 'Incorrect email or password.',
+    'user_already_activated'   => 'Your account is already activated.',
+    'choose_field_type'        => 'What field type would you like to use?',
+    'account_activated'        => 'Your account has been activated.',
+    'pending_email_activation' => 'Please confirm your email to activate your account.',
+    'invalid_email'            => 'An account with the provided email could not be found.',
+    'pending_admin_activation' => 'Your account is pending activation from an administrator.',
+    'confirm_reset_password'   => 'Please check your email to finish resetting your password.'
 ];

@@ -1,73 +1,27 @@
 <?php namespace Anomaly\UsersModule\User\Contract;
 
-use Anomaly\UsersModule\Role\Contract\RoleInterface;
+use Anomaly\Streams\Platform\Entry\Contract\EntryRepositoryInterface;
 
 /**
  * Interface UserRepositoryInterface
  *
- * @link          http://anomaly.is/streams-platform
- * @author        AnomalyLabs, Inc. <hello@anomaly.is>
- * @author        Ryan Thompson <ryan@anomaly.is>
+ * @method null|UserInterface find($id)
+ *
+ * @link          http://pyrocms.com/
+ * @author        PyroCMS, Inc. <support@pyrocms.com>
+ * @author        Ryan Thompson <ryan@pyrocms.com>
  * @package       Anomaly\UsersModule\User\Contract
  */
-interface UserRepositoryInterface
+interface UserRepositoryInterface extends EntryRepositoryInterface
 {
 
     /**
-     * Create a new user.
+     * Find a user by their email.
      *
-     * @param array $credentials
-     * @return UserInterface
-     */
-    public function create(array $credentials);
-
-    /**
-     * Delete a user.
-     *
-     * @param UserInterface $user
-     * @return UserInterface
-     */
-    public function delete(UserInterface $user);
-
-    /**
-     * Activate a user.
-     *
-     * @param UserInterface $user
-     * @return UserInterface
-     */
-    public function activate(UserInterface $user);
-
-    /**
-     * Deactivate a user.
-     *
-     * @param UserInterface $user
-     * @return UserInterface
-     */
-    public function deactivate(UserInterface $user);
-
-    /**
-     * Block a user.
-     *
-     * @param UserInterface $user
-     * @return UserInterface
-     */
-    public function block(UserInterface $user);
-
-    /**
-     * Unblock a user.
-     *
-     * @param UserInterface $user
-     * @return UserInterface
-     */
-    public function unblock(UserInterface $user);
-
-    /**
-     * Find a user.
-     *
-     * @param $id
+     * @param $email
      * @return null|UserInterface
      */
-    public function find($id);
+    public function findByEmail($email);
 
     /**
      * Find a user by their username.
@@ -75,7 +29,7 @@ interface UserRepositoryInterface
      * @param $username
      * @return null|UserInterface
      */
-    public function findUserByUsername($username);
+    public function findByUsername($username);
 
     /**
      * Find a user by their credentials.
@@ -86,34 +40,32 @@ interface UserRepositoryInterface
     public function findByCredentials(array $credentials);
 
     /**
-     * Attach a role to a user.
+     * Find a user by their reset code.
      *
-     * @param UserInterface $user
-     * @param RoleInterface $role
-     * @return UserInterface
+     * @param $code
+     * @return null|UserInterface
      */
-    public function attachRole(UserInterface $user, RoleInterface $role);
+    public function findByResetCode($code);
 
     /**
-     * Update permissions for a user.
+     * Find a user by their activation code.
      *
-     * @param UserInterface $user
-     * @param array         $permissions
-     * @return UserInterface
+     * @param $code
+     * @return null|UserInterface
      */
-    public function updatePermissions(UserInterface $user, array $permissions);
+    public function findByActivationCode($code);
 
     /**
      * Touch a user's last activity and IP.
      *
-     * @param UserInterface $user
+     * @return bool
      */
     public function touchLastActivity(UserInterface $user);
 
     /**
      * Touch a user's last login.
      *
-     * @param UserInterface $user
+     * @return bool
      */
     public function touchLastLogin(UserInterface $user);
 }

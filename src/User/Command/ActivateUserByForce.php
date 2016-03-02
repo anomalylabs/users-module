@@ -1,20 +1,22 @@
 <?php namespace Anomaly\UsersModule\User\Command;
 
 use Anomaly\UsersModule\User\Contract\UserInterface;
+use Anomaly\UsersModule\User\Contract\UserRepositoryInterface;
+use Illuminate\Contracts\Bus\SelfHandling;
 
 /**
  * Class ActivateUserByForce
  *
- * @link          http://anomaly.is/streams-platform
- * @author        AnomalyLabs, Inc. <hello@anomaly.is>
- * @author        Ryan Thompson <ryan@anomaly.is>
+ * @link          http://pyrocms.com/
+ * @author        PyroCMS, Inc. <support@pyrocms.com>
+ * @author        Ryan Thompson <ryan@pyrocms.com>
  * @package       Anomaly\UsersModule\User\Command
  */
-class ActivateUserByForce
+class ActivateUserByForce implements SelfHandling
 {
 
     /**
-     * The user object.
+     * The user instance.
      *
      * @var UserInterface
      */
@@ -31,12 +33,18 @@ class ActivateUserByForce
     }
 
     /**
-     * Get the user.
+     * Handle the command.
      *
-     * @return UserInterface
+     * @param UserRepositoryInterface $users
+     * @return bool
      */
-    public function getUser()
+    public function handle(UserRepositoryInterface $users)
     {
-        return $this->user;
+        $this->user->activated       = true;
+        $this->user->activation_code = null;
+
+        $users->save($this->user);
+
+        return true;
     }
 }

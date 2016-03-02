@@ -1,24 +1,43 @@
 <?php namespace Anomaly\UsersModule\User;
 
-use Anomaly\Streams\Platform\Entry\EntryCollection;
-use Anomaly\Streams\Platform\Model\EloquentCollection;
 use Anomaly\Streams\Platform\Model\Users\UsersUsersEntryModel;
+use Anomaly\Streams\Platform\Support\Collection;
+use Anomaly\UsersModule\Role\Command\GetRole;
 use Anomaly\UsersModule\Role\Contract\RoleInterface;
+use Anomaly\UsersModule\Role\RoleCollection;
 use Anomaly\UsersModule\User\Contract\UserInterface;
 use Illuminate\Auth\Authenticatable;
 
 /**
  * Class UserModel
  *
- * @link          http://anomaly.is/streams-platform
- * @author        AnomalyLabs, Inc. <hello@anomaly.is>
- * @author        Ryan Thompson <ryan@anomaly.is>
+ * @link          http://pyrocms.com/
+ * @author        PyroCMS, Inc. <support@pyrocms.com>
+ * @author        Ryan Thompson <ryan@pyrocms.com>
  * @package       Anomaly\UsersModule\User
  */
 class UserModel extends UsersUsersEntryModel implements UserInterface, \Illuminate\Contracts\Auth\Authenticatable
 {
 
     use Authenticatable;
+
+    /**
+     * The eager loaded relationships.
+     *
+     * @var array
+     */
+    protected $with = [
+        'roles'
+    ];
+
+    /**
+     * The hidden attributes.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'password'
+    ];
 
     /**
      * Get the email.
@@ -71,39 +90,9 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, \Illumina
     }
 
     /**
-     * Get the name.
-     *
-     * @return string
-     */
-    public function name()
-    {
-        return implode(' ', array_filter([$this->getFirstName(), $this->getLastName()]));
-    }
-
-    /**
-     * Get the activated flag.
-     *
-     * @return bool
-     */
-    public function isActivated()
-    {
-        return $this->activated;
-    }
-
-    /**
-     * Get the blocked flag.
-     *
-     * @return bool
-     */
-    public function isBlocked()
-    {
-        return $this->blocked;
-    }
-
-    /**
      * Get related roles.
      *
-     * @return EntryCollection
+     * @return RoleCollection
      */
     public function getRoles()
     {
@@ -113,18 +102,71 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, \Illumina
     /**
      * Return whether a user is in a role.
      *
-     * @param string|array $role
+     * @param $role
      * @return bool
      */
     public function hasRole($role)
     {
-        $roles = $this->getRoles();
-
-        if ($roles instanceof EloquentCollection) {
-            $roles = $roles->lists('slug');
+        if (!is_object($role)) {
+            $role = $this->dispatch(new GetRole($role));
         }
 
-        return (in_array($role, $roles));
+        if (!$role) {
+            return false;
+        }
+
+        /* @var RoleInterface $role */
+        foreach ($roles = $this->getRoles() as $attached) {
+            if ($attached->getId() === $role->getId()) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * Return whether a user is in
+     * any of the provided roles.
+     *
+     * @param $roles
+     * @return bool
+     */
+    public function hasAnyRole($roles)
+    {
+        if ($roles instanceof Collection) {
+            $roles = $roles->all();
+        }
+
+        if (!$roles) {
+            return false;
+        }
+
+        foreach ($roles as $role) {
+            if ($this->hasRole($role)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * Return whether the user
+     * is an admin or not.
+     *
+     * @return bool
+     */
+    public function isAdmin()
+    {
+        /* @var RoleInterface $role */
+        foreach ($roles = $this->getRoles() as $role) {
+            if ($role->getSlug() === 'admin') {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /**
@@ -201,6 +243,76 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, \Illumina
      */
     public function isDeletable()
     {
-        return !$this->hasRole('admin');
+        // You can't delete yourself.
+        if ($this->getId() == app('auth')->id()) {
+            return false;
+        }
+
+        // Only admins can delete admins
+        if (!app('auth')->user()->isAdmin() && $this->isAdmin()) {
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * Return the activated flag.
+     *
+     * @return bool
+     */
+    public function isActivated()
+    {
+        return $this->activated;
+    }
+
+    /**
+     * Return the enabled flag.
+     *
+     * @return bool
+     */
+    public function isEnabled()
+    {
+        return $this->enabled;
+    }
+
+    /**
+     * Get the reset code.
+     *
+     * @return string
+     */
+    public function getResetCode()
+    {
+        return $this->reset_code;
+    }
+
+    /**
+     * Get the activation code.
+     *
+     * @return string
+     */
+    public function getActivationCode()
+    {
+        return $this->activation_code;
+    }
+
+    /**
+     * Return the full name.
+     *
+     * @return string
+     */
+    public function name()
+    {
+        return $this->getFirstName() . ' ' . $this->getLastName();
+    }
+
+    /**
+     * Attach a role to the user.
+     *
+     * @param RoleInterface $role
+     */
+    public function attachRole(RoleInterface $role)
+    {
+        $this->roles()->attach($role);
     }
 }

@@ -1,64 +1,83 @@
 <?php
 
 return [
-    'name'         => [
+    'name'             => [
         'name'         => 'Name',
-        'instructions' => 'What is the name of the role?',
-        'placeholder'  => 'Editor'
+        'instructions' => [
+            'roles' => 'Specify a short descriptive name for this role.'
+        ]
     ],
-    'first_name'   => [
+    'description'      => [
+        'name'         => 'Description',
+        'instructions' => [
+            'roles' => 'Briefly describe this role.'
+        ]
+    ],
+    'first_name'       => [
         'name'         => 'First Name',
-        'instructions' => 'What is the user\'s real first name?',
-        'placeholder'  => 'John'
+        'instructions' => 'Specify the user\'s real first name.'
     ],
-    'last_name'    => [
+    'last_name'        => [
         'name'         => 'Last Name',
-        'instructions' => 'What is the user\'s real last name?',
-        'placeholder'  => 'Doe'
+        'instructions' => 'Specify the user\'s real last name.'
     ],
-    'display_name' => [
+    'display_name'     => [
         'name'         => 'Display Name',
-        'instructions' => 'What is the publicly displayed name of the user? If left empty, the username will be used.',
-        'placeholder'  => 'Mr. John Doe'
+        'instructions' => 'Specify the user\'s publicly displayable name.'
     ],
-    'username'     => [
+    'username'         => [
         'name'         => 'Username',
-        'instructions' => 'What is the user\'s username? This must be unique across all users.',
-        'placeholder'  => 'johndoe1'
+        'instructions' => 'The username is used for uniquely identifying and displaying this user.'
     ],
-    'email'        => [
+    'email'            => [
         'name'         => 'Email',
-        'instructions' => 'What is the user\'s login email? This must be unique across all users.',
-        'placeholder'  => 'example@domain.com'
+        'instructions' => 'The email is used for logging in.'
     ],
-    'password'     => [
+    'password'         => [
         'name'         => 'Password',
-        'instructions' => 'Enter a secure login password for the user.'
+        'instructions' => 'Specify the user\'s secure password.'
     ],
-    'slug'         => [
+    'confirm_password' => [
+        'name' => 'Confirm Password'
+    ],
+    'slug'             => [
         'name'         => 'Slug',
-        'instructions' => 'Enter the role\'s slug. This is primarily used behind the scenes and must be unique across all roles.',
-        'placeholder'  => 'editor'
+        'instructions' => [
+            'roles' => 'The slug is used in uniquely identifying this role.'
+        ]
     ],
-    'roles'        => [
+    'roles'            => [
         'name'         => 'Roles',
-        'count'        => ':count role(s)',
-        'instructions' => 'Choose the roles to attach to this user.'
+        'instructions' => 'Specify which roles the user belongs to.'
     ],
-    'permissions'  => [
-        'name'  => 'Permissions',
-        'count' => ':count permission(s)'
+    'permissions'      => [
+        'name' => 'Permissions'
     ],
-    'activated'    => [
-        'name'          => 'Activated',
-        'activated'     => 'Activated',
-        'not_activated' => 'Not Activated'
+    'last_activity_at' => [
+        'name' => 'Last Activity'
     ],
-    'blocked'      => [
-        'name'    => 'Blocked',
-        'blocked' => 'Blocked'
+    'activated'        => [
+        'name'         => 'Activated',
+        'label'        => 'Is this user activated?',
+        'instructions' => 'The user will not be able to login unless activated.'
     ],
-    'website'      => [
-        'name' => 'Website'
+    'enabled'          => [
+        'name'         => 'Enabled',
+        'label'        => 'Is this user enabled?',
+        'instructions' => 'The user will not be able to login or activate if disabled.'
+    ],
+    'activation_code'  => [
+        'name' => 'Activation Code'
+    ],
+    'remember_me'      => [
+        'name' => 'Remember me'
+    ],
+    'status'           => [
+        'name'   => 'Status',
+        'option' => [
+            'active'   => 'Active',
+            'inactive' => 'Inactive',
+            'disabled' => 'Disabled'
+        ]
     ]
 ];

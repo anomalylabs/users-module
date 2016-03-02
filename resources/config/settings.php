@@ -1,27 +1,15 @@
 <?php
 
 return [
-    'allow_registration' => [
-        'type' => 'anomaly.field_type.boolean'
-    ],
-    'activation_mode'    => [
-        'type'   => 'anomaly.field_type.select',
-        'config' => [
-            'options' => [
-                'manual'    => 'anomaly.module.users::setting.activation_mode.option.manual',
+    'activation_mode' => [
+        'required' => true,
+        'type'     => 'anomaly.field_type.select',
+        'config'   => [
+            'default_value' => 'manual',
+            'options'       => [
                 'email'     => 'anomaly.module.users::setting.activation_mode.option.email',
+                'manual'    => 'anomaly.module.users::setting.activation_mode.option.manual',
                 'automatic' => 'anomaly.module.users::setting.activation_mode.option.automatic'
-            ]
-        ]
-    ],
-    'profile_visibility' => [
-        'type'   => 'anomaly.field_type.select',
-        'config' => [
-            'options' => [
-                'everyone' => 'anomaly.module.users::setting.profile_visibility.option.everyone',
-                'owner'    => 'anomaly.module.users::setting.profile_visibility.option.owner',
-                'disabled' => 'anomaly.module.users::setting.profile_visibility.option.disabled',
-                'users'    => 'anomaly.module.users::setting.profile_visibility.option.users'
             ]
         ]
     ]
