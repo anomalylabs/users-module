@@ -1,64 +1,83 @@
 <?php
 
 return [
-    'name'         => [
+    'name'             => [
         'name'         => 'Nom',
-        'instructions' => 'Nom du rôle',
-        'placeholder'  => 'Editeur'
+        'instructions' => [
+            'roles' => 'Choisissez un nom pour ce rôle.'
+        ]
     ],
-    'first_name'   => [
+    'description'      => [
+        'name'         => 'Description',
+        'instructions' => [
+            'roles' => 'Décrivez ce rôle.'
+        ]
+    ],
+    'first_name'       => [
         'name'         => 'Prénom',
-        'instructions' => 'Quel est le prénom ?',
-        'placeholder'  => 'Martin'
+        'instructions' => 'Entrez le prénom de l\'utilisateur.'
     ],
-    'last_name'    => [
+    'last_name'        => [
         'name'         => 'Nom',
-        'instructions' => 'Quel est le nom de famille ?',
-        'placeholder'  => 'Dupond'
+        'instructions' => 'Entrez le nom de l\'utilisateur.'
     ],
-    'display_name' => [
+    'display_name'     => [
         'name'         => 'Nom affiché',
-        'instructions' => "Quel est le nom public à afficher ? Si laissé vide, le nom d'utilisateur sera utilisé.",
-        'placeholder'  => 'M. Martin Dupond'
+        'instructions' => 'Entrez le nom publiquement affiché de l\'utilisateur.'
     ],
-    'username'     => [
-        'name'         => "Nom d'utilisateur",
-        'instructions' => "Le nom d'utilisateur est unique pour tout le site.",
-        'placeholder'  => 'martindupond'
+    'username'         => [
+        'name'         => 'Nom d\'utilisateur',
+        'instructions' => 'Le nom d\'utilisateur est utilisé pour identifier de manière unique l\'utilisateur.'
     ],
-    'email'        => [
+    'email'            => [
         'name'         => 'Email',
-        'instructions' => "Adresse email valide de l'utilisateur. Est unique pour tout le site.",
-        'placeholder'  => 'exemple@domaine.fr'
+        'instructions' => 'Email de l\'utilisateur. Utilisé pour se connecter.'
     ],
-    'password'     => [
+    'password'         => [
         'name'         => 'Mot de passe',
-        'instructions' => "Mot de passe de connexion de l'utilisateur."
+        'instructions' => 'Choisissez un mot de passe sécurisé pour l\'utilisateur.'
     ],
-    'slug'         => [
+    'confirm_password' => [
+        'name' => 'Confirmer mot de passe'
+    ],
+    'slug'             => [
         'name'         => 'Slug',
-        'instructions' => "Entrez le slug du rôle, c'est un identifiant unique du nom du rôle.",
-        'placeholder'  => 'editeur'
+        'instructions' => [
+            'roles' => 'Le slug est utilisé pour identifier de manière unique le rôle.'
+        ]
     ],
-    'roles'        => [
+    'roles'            => [
         'name'         => 'Rôles',
-        'count'        => ':count rôle(s)',
-        'instructions' => "Choisissez les rôles attachés à l'utilisateur."
+        'instructions' => 'Choisissez quel rôle à l\'utilisateur.'
     ],
-    'permissions'  => [
-        'name'  => 'Permissions',
-        'count' => ':count permission(s)'
+    'permissions'      => [
+        'name' => 'Permissions'
     ],
-    'activated'    => [
-        'name'          => 'Activation',
-        'activated'     => 'Activaté',
-        'not_activated' => 'Désactivé'
+    'last_activity_at' => [
+        'name' => 'Dernière activité'
     ],
-    'blocked'      => [
-        'name'    => 'Bloqué',
-        'blocked' => 'Bloqué'
+    'activated'        => [
+        'name'         => 'Actif',
+        'label'        => 'Est-ce que l\'utilisateur est actif ?',
+        'instructions' => 'L\'utilisateur ne pourra pas se connecter tant qu\'il n\'est pas actif.'
     ],
-    'website'      => [
-        'name' => 'Site internet'
+    'enabled'          => [
+        'name'         => 'Activé',
+        'label'        => 'Est-ce que l\'utilisateur est activé ?',
+        'instructions' => 'L\'utilisateur ne pourra pas se connecter ni même activer son compte tant qu\'il n\'est pas activé.'
+    ],
+    'activation_code'  => [
+        'name' => 'Code d\'activation'
+    ],
+    'remember_me'      => [
+        'name' => 'Se souvenir de moi'
+    ],
+    'status'           => [
+        'name'   => 'Statut',
+        'option' => [
+            'active'   => 'Actif',
+            'inactive' => 'Inactif',
+            'disabled' => 'Désactivé'
+        ]
     ]
 ];
