@@ -82,13 +82,17 @@ class AuthorizeRoutePermission
             abort(403);
         }
 
-        if (!$this->authorizer->authorize(array_get($this->route->getAction(), 'anomaly.module.users::permission'))) {
+        $permission = array_get($this->route->getAction(), 'anomaly.module.users::permission');
+        $redirect   = array_get($this->route->getAction(), 'anomaly.module.users::redirect');
+        $message    = array_get($this->route->getAction(), 'anomaly.module.users::message');
 
-            if ($message = array_get($this->route->getAction(), 'anomaly.module.users::message')) {
+        if ($permission && !$this->authorizer->authorize($permission)) {
+
+            if ($message) {
                 $this->messages->error($message);
             }
 
-            if ($redirect = array_get($this->route->getAction(), 'anomaly.module.users::redirect')) {
+            if ($redirect) {
                 return $this->redirect->to($redirect);
             }
 

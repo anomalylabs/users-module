@@ -15,6 +15,24 @@ class RoleCollection extends EntryCollection
 {
 
     /**
+     * Create a new RoleCollection instance.
+     *
+     * @param array $items
+     */
+    public function __construct($items = [])
+    {
+        /* @var RoleInterface $item */
+        foreach ($items as $key => $item) {
+
+            if ($item instanceof RoleInterface) {
+                $key = $item->getSlug();
+            }
+
+            $this->items[$key] = $item;
+        }
+    }
+
+    /**
      * Return all permissions.
      *
      * @return array
