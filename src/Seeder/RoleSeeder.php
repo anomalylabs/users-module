@@ -57,5 +57,15 @@ class RoleSeeder extends Seeder
                 'slug' => 'user'
             ]
         );
+
+        $this->roles->create(
+            [
+                'en'   => [
+                    'name'        => 'Guest',
+                    'description' => 'The fallback role for non-users.'
+                ],
+                'slug' => 'guest'
+            ]
+        );
     }
 }
