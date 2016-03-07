@@ -53,7 +53,9 @@ class UsersModule extends Module
      */
     public function onRegistered()
     {
-        $this->dispatch(new SetGuestRole());
+        if ($this->isInstalled()) {
+            $this->dispatch(new SetGuestRole());
+        }
     }
 
 }
