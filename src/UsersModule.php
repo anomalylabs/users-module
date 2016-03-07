@@ -1,6 +1,7 @@
 <?php namespace Anomaly\UsersModule;
 
 use Anomaly\Streams\Platform\Addon\Module\Module;
+use Anomaly\UsersModule\Role\Command\SetGuestRole;
 
 /**
  * Class UsersModule
@@ -46,5 +47,13 @@ class UsersModule extends Module
             ]
         ]
     ];
+
+    /**
+     * Fire after the addon registers.
+     */
+    public function onRegistered()
+    {
+        $this->dispatch(new SetGuestRole());
+    }
 
 }
