@@ -23,6 +23,8 @@ class SetGuestRole implements SelfHandling
      */
     public function handle(RoleRepositoryInterface $roles, Authorizer $authorizer)
     {
-        $authorizer->setGuest($roles->findBySlug('guest'));
+        if ($guest = $roles->findBySlug('guest')) {
+            $authorizer->setGuest($guest);
+        }
     }
 }
