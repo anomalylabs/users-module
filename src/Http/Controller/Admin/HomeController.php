@@ -1,6 +1,7 @@
 <?php namespace Anomaly\UsersModule\Http\Controller\Admin;
 
 use Anomaly\Streams\Platform\Http\Controller\AdminController;
+use Anomaly\Streams\Platform\Ui\ControlPanel\Component\Navigation\NavigationCollection;
 use Illuminate\Contracts\Config\Repository;
 use Illuminate\Routing\Redirector;
 
@@ -18,12 +19,14 @@ class HomeController extends AdminController
     /**
      * Redirect to the users home page.
      *
-     * @param Redirector $redirect
-     * @param Repository $config
+     * @param NavigationCollection $navigation
+     * @param Redirector           $redirect
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function index(Redirector $redirect, Repository $config)
+    public function index(NavigationCollection $navigation, Redirector $redirect)
     {
-        return $redirect->to($config->get('anomaly.module.users::paths.cp_home', 'admin/dashboard'));
+        $home = $navigation->home();
+
+        return $redirect->to($home->getHref());
     }
 }

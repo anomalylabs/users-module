@@ -1,6 +1,7 @@
 <?php namespace Anomaly\UsersModule\Http\Controller\Admin;
 
 use Anomaly\Streams\Platform\Http\Controller\PublicController;
+use Anomaly\Streams\Platform\Ui\ControlPanel\Component\Navigation\NavigationCollection;
 use Anomaly\UsersModule\User\Login\LoginFormBuilder;
 use Anomaly\UsersModule\User\UserAuthenticator;
 use Illuminate\Auth\Guard;
@@ -27,8 +28,13 @@ class LoginController extends PublicController
      * @param Guard            $auth
      * @return \Illuminate\Http\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
-    public function login(LoginFormBuilder $form, Redirector $redirect, Repository $config, Guard $auth)
-    {
+    public function login(
+        NavigationCollection $navigation,
+        LoginFormBuilder $form,
+        Redirector $redirect,
+        Repository $config,
+        Guard $auth
+    ) {
         /**
          * If we're already logged in
          * proceed to the dashboard.
@@ -36,12 +42,12 @@ class LoginController extends PublicController
          * Replace this later with a
          * configurable landing page.
          */
-        if ($auth->check()) {
-            return $redirect->to($config->get('anomaly.module.users::paths.home', 'admin/dashboard'));
+        if ($auth->check() && $home = $navigation->home()) {
+            return $redirect->to($config->get($home->getHref()));
         }
 
         return $form
-            ->setOption('redirect', $config->get('anomaly.module.users::paths.home', 'admin/dashboard'))
+            ->setOption('redirect', 'admin')
             ->setOption('wrapper_view', 'theme::login')
             ->render();
     }
