@@ -2,8 +2,8 @@
 
 return [
     'login'           => [
-        'label'        => 'Login',
-        'instructions' => 'How should users login?',
+        'label'        => 'Login Field',
+        'instructions' => 'Which field should be used for logging in?',
         'option'       => [
             'email'    => 'Email',
             'username' => 'Username'
