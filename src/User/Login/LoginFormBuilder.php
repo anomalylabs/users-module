@@ -33,53 +33,6 @@ class LoginFormBuilder extends FormBuilder
     protected $user = null;
 
     /**
-     * The form fields.
-     *
-     * @var array
-     */
-    protected $fields = [
-        'email'       => [
-            'label'      => 'anomaly.module.users::field.email.name',
-            'type'       => 'anomaly.field_type.email',
-            'required'   => true,
-            'rules'      => [
-                'valid_email'
-            ],
-            'validators' => [
-                'valid_email' => [
-                    'handler' => 'Anomaly\UsersModule\User\Validation\ValidateEmail@handle',
-                    'message' => 'anomaly.module.users::message.invalid_login'
-                ]
-            ]
-        ],
-        'password'    => [
-            'label'      => 'anomaly.module.users::field.password.name',
-            'type'       => 'anomaly.field_type.text',
-            'required'   => true,
-            'config'     => [
-                'type' => 'password'
-            ],
-            'rules'      => [
-                'valid_credentials'
-            ],
-            'validators' => [
-                'valid_credentials' => [
-                    'handler' => 'Anomaly\UsersModule\User\Validation\ValidateCredentials@handle',
-                    'message' => 'anomaly.module.users::message.invalid_login'
-                ]
-            ]
-        ],
-        'remember_me' => [
-            'label'  => false,
-            'type'   => 'anomaly.field_type.boolean',
-            'config' => [
-                'mode'           => 'checkbox',
-                'checkbox_label' => 'anomaly.module.users::field.remember_me.name'
-            ]
-        ]
-    ];
-
-    /**
      * The form actions.
      *
      * @var array

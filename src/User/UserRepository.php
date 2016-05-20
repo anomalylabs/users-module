@@ -40,7 +40,13 @@ class UserRepository extends EntryRepository implements UserRepositoryInterface
      */
     public function findByCredentials(array $credentials)
     {
-        $user = $this->model->where('email', $credentials['email'])->first();
+        if (isset($credentials['email'])) {
+            $user = $this->findByEmail($credentials['email']);
+        } elseif (isset($credentials['username'])) {
+            $user = $this->findByUsername($credentials['username']);
+        } else {
+            return null;
+        }
 
         if ($user && app('hash')->check($credentials['password'], $user->password)) {
             return $user;
