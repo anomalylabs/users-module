@@ -66,8 +66,8 @@ class LoginFormFields
                         'label'  => false,
                         'type'   => 'anomaly.field_type.boolean',
                         'config' => [
-                            'mode'           => 'checkbox',
-                            'checkbox_label' => 'anomaly.module.users::field.remember_me.name'
+                            'mode'  => 'checkbox',
+                            'label' => 'anomaly.module.users::field.remember_me.name'
                         ]
                     ]
                 ]
