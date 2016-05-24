@@ -1,12 +1,12 @@
 <?php
 
 return [
-    'name'        => 'Utilisateurs',
-    'description' => 'Gestion des utilisateurs et des permissions.',
+    'title'       => 'Utilisateurs',
+    'name'        => 'Module Utilisateurs',
+    'description' => 'Gérez les utilisateurs, les rôles et les permissions.',
     'section'     => [
-        'users'    => 'Utilisateurs',
-        'roles'    => 'Rôles',
-        'fields'   => 'Champs',
-        'settings' => 'Paramètres'
+        'users'  => 'Utilisateurs',
+        'roles'  => 'Rôles',
+        'fields' => 'Champs'
     ]
 ];

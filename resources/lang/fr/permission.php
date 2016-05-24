@@ -1,20 +1,32 @@
 <?php
 
 return [
-    'create'   => 'Créer',
-    'read'     => 'Voir',
-    'edit'     => 'Modifier',
-    'delete'   => 'Supprimer',
-    'settings' => 'Paramètres du module',
     'users'    => [
-        'label'       => 'Gestion utilisateur',
-        'permissions' => 'Permissions',
-        'activate'    => 'Activer',
-        'unblock'     => 'Débloquer',
-        'block'       => 'Bloquer'
+        'name'   => 'Utilisateurs',
+        'option' => [
+            'read'   => 'Peut accèder aux Utilisateurs ?',
+            'write'  => 'Peut ajouter et modifier les utilisateurs ?',
+            'delete' => 'Peut supprimer les utilisateurs ?'
+        ]
     ],
     'roles'    => [
-        'label'       => 'Gesstion rôle',
-        'permissions' => 'Permissions'
+        'name'   => 'Rôles',
+        'option' => [
+            'read'   => 'Peut accèder aux Rôles ?',
+            'write'  => 'Peut ajouter et modifier les rôles ?',
+            'delete' => 'Peut supprimer les rôles ?'
+        ]
+    ],
+    'fields'   => [
+        'name'   => 'Champs',
+        'option' => [
+            'manage' => 'Peut gérer les champs personnalisés ?'
+        ]
+    ],
+    'settings' => [
+        'name'   => 'Paramètres',
+        'option' => [
+            'manage' => 'Peut gérer les paramètres du module ?'
+        ]
     ]
 ];

@@ -9,9 +9,9 @@ use Illuminate\Translation\Translator;
 /**
  * Class PermissionFormFields
  *
- * @link          http://anomaly.is/streams-platform
- * @author        AnomalyLabs, Inc. <hello@anomaly.is>
- * @author        Ryan Thompson <ryan@anomaly.is>
+ * @link          http://pyrocms.com/
+ * @author        PyroCMS, Inc. <support@pyrocms.com>
+ * @author        Ryan Thompson <ryan@pyrocms.com>
  * @package       Anomaly\UsersModule\Role\Permission
  */
 class PermissionFormFields
@@ -36,45 +36,63 @@ class PermissionFormFields
 
         $fields = [];
 
-        /* @var Addon $addon */
-        foreach ($addons->withConfig('permissions') as $addon) {
-            foreach ($config->get($addon->getNamespace('permissions'), []) as $group => $permissions) {
+        $namespaces = array_merge(['streams'], $addons->withConfig('permissions')->namespaces());
 
-                $label = $addon->getNamespace('permission.' . $group . '.name');
+        /**
+         * gather all the addons with a
+         * permissions configuration file.
+         *
+         * @var Addon $addon
+         */
+        foreach ($namespaces as $namespace) {
 
-                if (!$translator->has($warning = $addon->getNamespace('permission.' . $group . '.warning'))) {
+            foreach ($config->get($namespace . '::permissions', []) as $group => $permissions) {
+
+                /**
+                 * Determine the general
+                 * form UI components.
+                 */
+                $label = $namespace . '::permission.' . $group . '.name';
+
+                if (!$translator->has($warning = $namespace . '::permission.' . $group . '.warning')) {
                     $warning = null;
                 }
 
-                if (!$translator->has($instructions = $addon->getNamespace('permission.' . $group . '.instructions'))) {
+                if (!$translator->has($instructions = $namespace . '::permission.' . $group . '.instructions')) {
                     $instructions = null;
                 }
 
-                $fields[$addon->getNamespace($group)] = [
+                /**
+                 * Gather the available
+                 * permissions for the group.
+                 */
+                $available = array_combine(
+                    array_map(
+                        function ($permission) use ($namespace, $group) {
+                            return $namespace . '::' . $group . '.' . $permission;
+                        },
+                        $permissions
+                    ),
+                    array_map(
+                        function ($permission) use ($namespace, $group) {
+                            return $namespace . '::permission.' . $group . '.option.' . $permission;
+                        },
+                        $permissions
+                    )
+                );
+
+                /**
+                 * Build the checkboxes field
+                 * type to handle the UI.
+                 */
+                $fields[$namespace . '::' . $group] = [
                     'label'        => $label,
                     'warning'      => $warning,
                     'instructions' => $instructions,
                     'type'         => 'anomaly.field_type.checkboxes',
-                    'value'        => function () use ($role, $addon, $group) {
-                        return array_map(
-                            function ($permission) use ($role, $addon, $group) {
-                                return str_replace($addon->getNamespace($group) . '.', '', $permission);
-                            },
-                            $role->getPermissions()
-                        );
-                    },
+                    'value'        => $role->getPermissions(),
                     'config'       => [
-                        'options' => function () use ($group, $permissions, $addon) {
-                            return array_combine(
-                                $permissions,
-                                array_map(
-                                    function ($permission) use ($addon, $group) {
-                                        return $addon->getNamespace('permission.' . $group . '.option.' . $permission);
-                                    },
-                                    $permissions
-                                )
-                            );
-                        }
+                        'options' => $available
                     ]
                 ];
             }

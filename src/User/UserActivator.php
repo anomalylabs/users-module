@@ -10,9 +10,9 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 /**
  * Class UserActivator
  *
- * @link          http://anomaly.is/streams-platform
- * @author        AnomalyLabs, Inc. <hello@anomaly.is>
- * @author        Ryan Thompson <ryan@anomaly.is>
+ * @link          http://pyrocms.com/
+ * @author        PyroCMS, Inc. <support@pyrocms.com>
+ * @author        Ryan Thompson <ryan@pyrocms.com>
  * @package       Anomaly\UsersModule\User
  */
 class UserActivator
@@ -58,10 +58,11 @@ class UserActivator
      * Send an activation email.
      *
      * @param UserInterface $user
+     * @param string        $redirect
      * @return bool
      */
-    public function send(UserInterface $user)
+    public function send(UserInterface $user, $redirect = '/')
     {
-        return $this->dispatch(new SendActivationEmail($user));
+        return $this->dispatch(new SendActivationEmail($user, $redirect));
     }
 }

@@ -8,9 +8,9 @@ use Illuminate\Translation\Translator;
 /**
  * Class PermissionFormSections
  *
- * @link          http://anomaly.is/streams-platform
- * @author        AnomalyLabs, Inc. <hello@anomaly.is>
- * @author        Ryan Thompson <ryan@anomaly.is>
+ * @link          http://pyrocms.com/
+ * @author        PyroCMS, Inc. <support@pyrocms.com>
+ * @author        Ryan Thompson <ryan@pyrocms.com>
  * @package       Anomaly\UsersModule\User\Permission
  */
 class PermissionFormSections
@@ -27,6 +27,12 @@ class PermissionFormSections
     public function handle(PermissionFormBuilder $builder, AddonCollection $addons, Repository $config)
     {
         $sections = [];
+
+        $sections['streams']['title'] = 'streams::message.system';
+
+        foreach ($config->get('streams::permissions', []) as $group => $permissions) {
+            $sections['streams']['fields'][] = 'streams::' . $group;
+        }
 
         /* @var Addon $addon */
         foreach ($addons->withConfig('permissions') as $addon) {

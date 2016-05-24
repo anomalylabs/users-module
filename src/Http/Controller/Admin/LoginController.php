@@ -1,17 +1,19 @@
 <?php namespace Anomaly\UsersModule\Http\Controller\Admin;
 
 use Anomaly\Streams\Platform\Http\Controller\PublicController;
+use Anomaly\Streams\Platform\Ui\ControlPanel\Component\Navigation\NavigationCollection;
 use Anomaly\UsersModule\User\Login\LoginFormBuilder;
 use Anomaly\UsersModule\User\UserAuthenticator;
 use Illuminate\Auth\Guard;
+use Illuminate\Contracts\Config\Repository;
 use Illuminate\Routing\Redirector;
 
 /**
  * Class LoginController
  *
- * @link          http://anomaly.is/streams-platform
- * @author        AnomalyLabs, Inc. <hello@anomaly.is>
- * @author        Ryan Thompson <ryan@anomaly.is>
+ * @link          http://pyrocms.com/
+ * @author        PyroCMS, Inc. <support@pyrocms.com>
+ * @author        Ryan Thompson <ryan@pyrocms.com>
  * @package       Anomaly\UsersModule\Http\Controller\Admin
  */
 class LoginController extends PublicController
@@ -22,11 +24,17 @@ class LoginController extends PublicController
      *
      * @param LoginFormBuilder $form
      * @param Redirector       $redirect
+     * @param Repository       $config
      * @param Guard            $auth
      * @return \Illuminate\Http\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
-    public function login(LoginFormBuilder $form, Redirector $redirect, Guard $auth)
-    {
+    public function login(
+        NavigationCollection $navigation,
+        LoginFormBuilder $form,
+        Redirector $redirect,
+        Repository $config,
+        Guard $auth
+    ) {
         /**
          * If we're already logged in
          * proceed to the dashboard.
@@ -34,12 +42,12 @@ class LoginController extends PublicController
          * Replace this later with a
          * configurable landing page.
          */
-        if ($auth->check()) {
-            return $redirect->to('admin/dashboard');
+        if ($auth->check() && $home = $navigation->home()) {
+            return $redirect->to($config->get($home->getHref()));
         }
 
         return $form
-            ->setOption('redirect', 'admin/dashboard')
+            ->setOption('redirect', 'admin')
             ->setOption('wrapper_view', 'theme::login')
             ->render();
     }

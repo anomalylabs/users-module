@@ -9,9 +9,9 @@ use Illuminate\Http\Request;
 /**
  * Class HandleActivateRequest
  *
- * @link          http://anomaly.is/streams-platform
- * @author        AnomalyLabs, Inc. <hello@anomaly.is>
- * @author        Ryan Thompson <ryan@anomaly.is>
+ * @link          http://pyrocms.com/
+ * @author        PyroCMS, Inc. <support@pyrocms.com>
+ * @author        Ryan Thompson <ryan@pyrocms.com>
  * @package       Anomaly\UsersModule\User\Register\Command
  */
 class HandleActivateRequest implements SelfHandling
@@ -32,8 +32,15 @@ class HandleActivateRequest implements SelfHandling
         Encrypter $encrypter,
         Request $request
     ) {
-        $code  = $encrypter->decrypt($request->get('code'));
-        $email = $encrypter->decrypt($request->get('email'));
+        $code  = $request->get('code');
+        $email = $request->get('email');
+
+        if (!$code || !$email) {
+            return false;
+        }
+
+        $code  = $encrypter->decrypt($code);
+        $email = $encrypter->decrypt($email);
 
         if (!$user = $users->findByEmail($email)) {
             return false;

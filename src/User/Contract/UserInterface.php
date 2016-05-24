@@ -1,16 +1,16 @@
 <?php namespace Anomaly\UsersModule\User\Contract;
 
 use Anomaly\Streams\Platform\Entry\Contract\EntryInterface;
-use Anomaly\Streams\Platform\Entry\EntryCollection;
 use Anomaly\UsersModule\Role\Contract\RoleInterface;
+use Anomaly\UsersModule\Role\RoleCollection;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
  * Interface UserInterface
  *
- * @link          http://anomaly.is/streams-platform
- * @author        AnomalyLabs, Inc. <hello@anomaly.is>
- * @author        Ryan Thompson <ryan@anomaly.is>
+ * @link          http://pyrocms.com/
+ * @author        PyroCMS, Inc. <support@pyrocms.com>
+ * @author        Ryan Thompson <ryan@pyrocms.com>
  * @package       Anomaly\UsersModule\User\Contract
  */
 interface UserInterface extends EntryInterface
@@ -52,36 +52,28 @@ interface UserInterface extends EntryInterface
     public function getLastName();
 
     /**
-     * Set the password.
-     *
-     * @param $password
-     * @return $this
-     */
-    public function setPassword($password);
-
-    /**
      * Get related roles.
      *
-     * @return EntryCollection
+     * @return RoleCollection
      */
     public function getRoles();
 
     /**
      * Return whether a user is in a role.
      *
-     * @param RoleInterface $role
+     * @param $role
      * @return bool
      */
-    public function hasRole(RoleInterface $role);
+    public function hasRole($role);
 
     /**
      * Return whether a user is in
      * any of the provided roles.
      *
-     * @param EntryCollection $roles
+     * @param $roles
      * @return bool
      */
-    public function hasAnyRole(EntryCollection $roles);
+    public function hasAnyRole($roles);
 
     /**
      * Return whether the user
@@ -97,14 +89,6 @@ interface UserInterface extends EntryInterface
      * @return array
      */
     public function getPermissions();
-
-    /**
-     * Set the permissions.
-     *
-     * @param array $permissions
-     * @return $this
-     */
-    public function setPermissions(array $permissions);
 
     /**
      * Return whether a user or it's roles has a permission.
@@ -145,27 +129,11 @@ interface UserInterface extends EntryInterface
     public function getResetCode();
 
     /**
-     * Set the reset code.
-     *
-     * @param $code
-     * @return $this
-     */
-    public function setResetCode($code);
-
-    /**
      * Get the activation code.
      *
      * @return string
      */
     public function getActivationCode();
-
-    /**
-     * Set the activation code.
-     *
-     * @param $code
-     * @return $this
-     */
-    public function setActivationCode($code);
 
     /**
      * Return the roles relationship.

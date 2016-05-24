@@ -6,28 +6,58 @@ use Anomaly\UsersModule\Role\Contract\RoleInterface;
 /**
  * Class RoleCollection
  *
- * @link          http://anomaly.is/streams-platform
- * @author        AnomalyLabs, Inc. <hello@anomaly.is>
- * @author        Ryan Thompson <ryan@anomaly.is>
+ * @link          http://pyrocms.com/
+ * @author        PyroCMS, Inc. <support@pyrocms.com>
+ * @author        Ryan Thompson <ryan@pyrocms.com>
  * @package       Anomaly\UsersModule\Role
  */
 class RoleCollection extends EntryCollection
 {
 
     /**
-     * Return all but the admin role.
+     * Create a new RoleCollection instance.
      *
+     * @param array $items
+     */
+    public function __construct($items = [])
+    {
+        /* @var RoleInterface $item */
+        foreach ($items as $key => $item) {
+
+            if ($item instanceof RoleInterface) {
+                $key = $item->getSlug();
+            }
+
+            $this->items[$key] = $item;
+        }
+    }
+
+    /**
+     * Return all permissions.
+     *
+     * @return array
+     */
+    public function permissions()
+    {
+        return $this->map(
+            function (RoleInterface $role) {
+                return $role->getPermissions();
+            }
+        )->flatten()->all();
+    }
+
+    /**
+     * Return if a role as access to a the permission.
+     *
+     * @param string $permission
      * @return RoleCollection
      */
-    public function notAdmin()
+    public function hasPermission($permission)
     {
-        return $this->make(
-            array_filter(
-                $this->items,
-                function (RoleInterface $role) {
-                    return $role->getSlug() !== 'admin';
-                }
-            )
+        return $this->filter(
+            function (RoleInterface $role) use ($permission) {
+                return $role->hasPermission($permission);
+            }
         );
     }
 }

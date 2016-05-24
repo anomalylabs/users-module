@@ -1,13 +1,14 @@
 <?php namespace Anomaly\UsersModule;
 
 use Anomaly\Streams\Platform\Addon\Module\Module;
+use Anomaly\UsersModule\Role\Command\SetGuestRole;
 
 /**
  * Class UsersModule
  *
- * @link          http://anomaly.is/streams-platform
- * @author        AnomalyLabs, Inc. <hello@anomaly.is>
- * @author        Ryan Thompson <ryan@anomaly.is>
+ * @link          http://pyrocms.com/
+ * @author        PyroCMS, Inc. <support@pyrocms.com>
+ * @author        Ryan Thompson <ryan@pyrocms.com>
  * @package       Anomaly\UsersModule
  */
 class UsersModule extends Module
@@ -46,5 +47,15 @@ class UsersModule extends Module
             ]
         ]
     ];
+
+    /**
+     * Fire after the addon registers.
+     */
+    public function onRegistered()
+    {
+        if ($this->isInstalled()) {
+            $this->dispatch(new SetGuestRole());
+        }
+    }
 
 }

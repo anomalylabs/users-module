@@ -1,17 +1,17 @@
 <?php namespace Anomaly\UsersModule\User\Register\Command;
 
-use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
+use Anomaly\Streams\Platform\Message\MessageBag;
+use Anomaly\UsersModule\User\Contract\UserInterface;
 use Anomaly\UsersModule\User\Register\RegisterFormBuilder;
 use Anomaly\UsersModule\User\UserActivator;
 use Illuminate\Contracts\Bus\SelfHandling;
-use Illuminate\Routing\Redirector;
 
 /**
  * Class HandleAutomaticRegistration
  *
- * @link          http://anomaly.is/streams-platform
- * @author        AnomalyLabs, Inc. <hello@anomaly.is>
- * @author        Ryan Thompson <ryan@anomaly.is>
+ * @link          http://pyrocms.com/
+ * @author        PyroCMS, Inc. <support@pyrocms.com>
+ * @author        Ryan Thompson <ryan@pyrocms.com>
  * @package       Anomaly\UsersModule\User\Register\Command
  */
 class HandleAutomaticRegistration implements SelfHandling
@@ -37,20 +37,19 @@ class HandleAutomaticRegistration implements SelfHandling
     /**
      * Handle the command.
      *
-     * @param SettingRepositoryInterface $settings
-     * @param UserActivator              $activator
-     * @param Redirector                 $redirect
+     * @param UserActivator $activator
+     * @param MessageBag    $messages
      */
-    public function handle(
-        SettingRepositoryInterface $settings,
-        UserActivator $activator,
-        Redirector $redirect
-    ) {
-        $activator->force($this->builder->getFormEntry());
+    public function handle(UserActivator $activator, MessageBag $messages)
+    {
+        /* @var UserInterface $user */
+        $user = $this->builder->getFormEntry();
 
-        $this->builder->setFormResponse(
-            $redirect->to($settings->value('anomaly.module.users::activated_redirect', '/'))
-        );
+        $activator->force($user);
+
+        if (!is_null($message = $this->builder->getFormOption('activated_message'))) {
+            $messages->info($message);
+        }
     }
 
 }

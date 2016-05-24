@@ -7,9 +7,9 @@ use Anomaly\UsersModule\User\UserCollection;
 /**
  * Class RoleModel
  *
- * @link          http://anomaly.is/streams-platform
- * @author        AnomalyLabs, Inc. <hello@anomaly.is>
- * @author        Ryan Thompson <ryan@anomaly.is>
+ * @link          http://pyrocms.com/
+ * @author        PyroCMS, Inc. <support@pyrocms.com>
+ * @author        Ryan Thompson <ryan@pyrocms.com>
  * @package       Anomaly\UsersModule\RoleInterface
  */
 class RoleModel extends UsersRolesEntryModel implements RoleInterface
@@ -20,7 +20,16 @@ class RoleModel extends UsersRolesEntryModel implements RoleInterface
      *
      * @var int
      */
-    protected $cacheMinutes = 99999;
+    protected $ttl = 99999;
+
+    /**
+     * Eager loaded relations.
+     *
+     * @var array
+     */
+    protected $with = [
+        'translations'
+    ];
 
     /**
      * Get the role slug.
@@ -50,19 +59,6 @@ class RoleModel extends UsersRolesEntryModel implements RoleInterface
     public function getPermissions()
     {
         return $this->permissions;
-    }
-
-    /**
-     * Set the permissions.
-     *
-     * @param array $permissions
-     * @return $this
-     */
-    public function setPermissions(array $permissions)
-    {
-        $this->permissions = $permissions;
-
-        return $this;
     }
 
     /**

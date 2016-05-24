@@ -2,16 +2,15 @@
 
 use Anomaly\Streams\Platform\Ui\Form\FormBuilder;
 use Anomaly\UsersModule\User\Contract\UserInterface;
-use Anomaly\UsersModule\User\Login\Command\SetOptions;
 use Anomaly\UsersModule\User\UserSecurity;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Class LoginFormBuilder
  *
- * @link          http://anomaly.is/streams-platform
- * @author        AnomalyLabs, Inc. <hello@anomaly.is>
- * @author        Ryan Thompson <ryan@anomaly.is>
+ * @link          http://pyrocms.com/
+ * @author        PyroCMS, Inc. <support@pyrocms.com>
+ * @author        Ryan Thompson <ryan@pyrocms.com>
  * @package       Anomaly\UsersModule\User\Form
  */
 class LoginFormBuilder extends FormBuilder
@@ -34,60 +33,13 @@ class LoginFormBuilder extends FormBuilder
     protected $user = null;
 
     /**
-     * The form fields.
-     *
-     * @var array
-     */
-    protected $fields = [
-        'email'       => [
-            'label'      => 'anomaly.module.users::field.email.name',
-            'type'       => 'anomaly.field_type.email',
-            'required'   => true,
-            'rules'      => [
-                'valid_email'
-            ],
-            'validators' => [
-                'valid_email' => [
-                    'handler' => 'Anomaly\UsersModule\User\Validation\ValidateEmail@handle',
-                    'message' => 'anomaly.module.users::message.invalid_login'
-                ]
-            ]
-        ],
-        'password'    => [
-            'label'      => 'anomaly.module.users::field.password.name',
-            'type'       => 'anomaly.field_type.text',
-            'required'   => true,
-            'config'     => [
-                'type' => 'password'
-            ],
-            'rules'      => [
-                'valid_credentials'
-            ],
-            'validators' => [
-                'valid_credentials' => [
-                    'handler' => 'Anomaly\UsersModule\User\Validation\ValidateCredentials@handle',
-                    'message' => 'anomaly.module.users::message.invalid_login'
-                ]
-            ]
-        ],
-        'remember_me' => [
-            'label'  => false,
-            'type'   => 'anomaly.field_type.boolean',
-            'config' => [
-                'mode'           => 'checkbox',
-                'checkbox_label' => 'anomaly.module.users::field.remember_me.name'
-            ]
-        ]
-    ];
-
-    /**
      * The form actions.
      *
      * @var array
      */
     protected $actions = [
         'blue' => [
-            'text'   => 'anomaly.module.users::button.login'
+            'text' => 'anomaly.module.users::button.login'
         ]
     ];
 
@@ -97,16 +49,9 @@ class LoginFormBuilder extends FormBuilder
      * @var array
      */
     protected $options = [
-        'wrapper_view' => 'anomaly.module.users::login'
+        'redirect'   => '/',
+        'breadcrumb' => false
     ];
-
-    /**
-     * Fired when the form is ready to build.
-     */
-    public function onReady()
-    {
-        $this->dispatch(new SetOptions($this));
-    }
 
     /**
      * Fired when the form is posting.

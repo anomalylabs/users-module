@@ -1,17 +1,19 @@
 <?php namespace Anomaly\UsersModule\User;
 
-use Anomaly\Streams\Platform\Entry\EntryCollection;
 use Anomaly\Streams\Platform\Model\Users\UsersUsersEntryModel;
+use Anomaly\Streams\Platform\Support\Collection;
+use Anomaly\UsersModule\Role\Command\GetRole;
 use Anomaly\UsersModule\Role\Contract\RoleInterface;
+use Anomaly\UsersModule\Role\RoleCollection;
 use Anomaly\UsersModule\User\Contract\UserInterface;
 use Illuminate\Auth\Authenticatable;
 
 /**
  * Class UserModel
  *
- * @link          http://anomaly.is/streams-platform
- * @author        AnomalyLabs, Inc. <hello@anomaly.is>
- * @author        Ryan Thompson <ryan@anomaly.is>
+ * @link          http://pyrocms.com/
+ * @author        PyroCMS, Inc. <support@pyrocms.com>
+ * @author        Ryan Thompson <ryan@pyrocms.com>
  * @package       Anomaly\UsersModule\User
  */
 class UserModel extends UsersUsersEntryModel implements UserInterface, \Illuminate\Contracts\Auth\Authenticatable
@@ -36,16 +38,6 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, \Illumina
     protected $hidden = [
         'password'
     ];
-
-    /**
-     * Boot the model.
-     */
-    protected static function boot()
-    {
-        self::observe(app(substr(__CLASS__, 0, -5) . 'Observer'));
-
-        parent::boot();
-    }
 
     /**
      * Get the email.
@@ -98,22 +90,9 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, \Illumina
     }
 
     /**
-     * Set the password.
-     *
-     * @param $password
-     * @return $this
-     */
-    public function setPassword($password)
-    {
-        $this->password = $password;
-
-        return $this;
-    }
-
-    /**
      * Get related roles.
      *
-     * @return EntryCollection
+     * @return RoleCollection
      */
     public function getRoles()
     {
@@ -123,22 +102,22 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, \Illumina
     /**
      * Return whether a user is in a role.
      *
-     * @param RoleInterface $role
+     * @param $role
      * @return bool
      */
-    public function hasRole(RoleInterface $role)
+    public function hasRole($role)
     {
-        if (!$role) {
-            return true;
+        if (!is_object($role)) {
+            $role = $this->dispatch(new GetRole($role));
         }
 
-        if ($this->isAdmin()) {
-            return true;
+        if (!$role) {
+            return false;
         }
 
         /* @var RoleInterface $role */
-        foreach ($roles = $this->getRoles() as $userRole) {
-            if ($userRole->getId() === $role->getId()) {
+        foreach ($roles = $this->getRoles() as $attached) {
+            if ($attached->getId() === $role->getId()) {
                 return true;
             }
         }
@@ -150,13 +129,17 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, \Illumina
      * Return whether a user is in
      * any of the provided roles.
      *
-     * @param EntryCollection $roles
+     * @param $roles
      * @return bool
      */
-    public function hasAnyRole(EntryCollection $roles)
+    public function hasAnyRole($roles)
     {
-        if ($roles->isEmpty()) {
-            return true;
+        if ($roles instanceof Collection) {
+            $roles = $roles->all();
+        }
+
+        if (!$roles) {
+            return false;
         }
 
         foreach ($roles as $role) {
@@ -194,19 +177,6 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, \Illumina
     public function getPermissions()
     {
         return $this->permissions;
-    }
-
-    /**
-     * Set the permissions.
-     *
-     * @param array $permissions
-     * @return $this
-     */
-    public function setPermissions(array $permissions)
-    {
-        $this->permissions = $permissions;
-
-        return $this;
     }
 
     /**
@@ -317,19 +287,6 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, \Illumina
     }
 
     /**
-     * Set the reset code.
-     *
-     * @param $code
-     * @return $this
-     */
-    public function setResetCode($code)
-    {
-        $this->reset_code = $code;
-
-        return $this;
-    }
-
-    /**
      * Get the activation code.
      *
      * @return string
@@ -337,19 +294,6 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, \Illumina
     public function getActivationCode()
     {
         return $this->activation_code;
-    }
-
-    /**
-     * Set the activation code.
-     *
-     * @param $code
-     * @return $this
-     */
-    public function setActivationCode($code)
-    {
-        $this->activation_code = $code;
-
-        return $this;
     }
 
     /**

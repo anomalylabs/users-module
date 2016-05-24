@@ -6,10 +6,6 @@ return [
         'instructions' => 'Vad ska den här rollen heta?',
         'placeholder'  => 'Redaktör'
     ],
-    'avatar'                => [
-        'name'         => 'Porträtt',
-        'instructions' => 'Välj en porträttbild.'
-    ],
     'first_name'            => [
         'name'         => 'Förstanamn',
         'instructions' => 'Vad är användarens förstanamn?',

@@ -7,9 +7,9 @@ use Illuminate\Contracts\Bus\SelfHandling;
 /**
  * Class StartUserActivation
  *
- * @link          http://anomaly.is/streams-platform
- * @author        AnomalyLabs, Inc. <hello@anomaly.is>
- * @author        Ryan Thompson <ryan@anomaly.is>
+ * @link          http://pyrocms.com/
+ * @author        PyroCMS, Inc. <support@pyrocms.com>
+ * @author        Ryan Thompson <ryan@pyrocms.com>
  * @package       Anomaly\UsersModule\User\Command
  */
 class StartUserActivation implements SelfHandling
@@ -40,7 +40,7 @@ class StartUserActivation implements SelfHandling
      */
     public function handle(UserRepositoryInterface $users)
     {
-        $users->save($this->user->setActivationCode(str_random(40)));
+        $users->save($this->user->setAttribute('activation_code', str_random(40)));
 
         return true;
     }

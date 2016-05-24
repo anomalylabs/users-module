@@ -11,9 +11,9 @@ use Illuminate\Routing\Redirector;
 /**
  * Class PermissionFormBuilder
  *
- * @link          http://anomaly.is/streams-platform
- * @author        AnomalyLabs, Inc. <hello@anomaly.is>
- * @author        Ryan Thompson <ryan@anomaly.is>
+ * @link          http://pyrocms.com/
+ * @author        PyroCMS, Inc. <support@pyrocms.com>
+ * @author        Ryan Thompson <ryan@pyrocms.com>
  * @package       Anomaly\UsersModule\User\Permission
  */
 class PermissionFormBuilder extends FormBuilder
@@ -91,6 +91,19 @@ class PermissionFormBuilder extends FormBuilder
 
         $breadcrumbs->add($user->getDisplayName(), 'admin/users/edit/' . $user->getId());
         $breadcrumbs->add('anomaly.module.users::breadcrumb.permissions', 'admin/users/permissions/' . $user->getId());
+    }
+
+    /**
+     * If nothing is posted then
+     * the user gets no permissions.
+     *
+     * @param UserRepositoryInterface $users
+     */
+    public function onPost(UserRepositoryInterface $users)
+    {
+        if (!$this->hasPostData() && $entry = $this->getEntry()) {
+            $users->save($entry->setAttribute('permissions', []));
+        }
     }
 
     /**

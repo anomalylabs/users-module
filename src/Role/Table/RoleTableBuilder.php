@@ -5,9 +5,9 @@ use Anomaly\Streams\Platform\Ui\Table\TableBuilder;
 /**
  * Class RoleTableBuilder
  *
- * @link          http://anomaly.is/streams-platform
- * @author        AnomalyLabs, Inc. <hello@anomaly.is>
- * @author        Ryan Thompson <ryan@anomaly.is>
+ * @link          http://pyrocms.com/
+ * @author        PyroCMS, Inc. <support@pyrocms.com>
+ * @author        Ryan Thompson <ryan@pyrocms.com>
  * @package       Anomaly\UsersModule\RoleInterface\Table
  */
 class RoleTableBuilder extends TableBuilder
@@ -19,7 +19,13 @@ class RoleTableBuilder extends TableBuilder
      * @var array
      */
     protected $filters = [
-        'slug'
+        'search' => [
+            'fields' => [
+                'title',
+                'slug',
+                'description'
+            ]
+        ]
     ];
 
     /**
@@ -29,7 +35,7 @@ class RoleTableBuilder extends TableBuilder
      */
     protected $columns = [
         'name',
-        'slug'
+        'description'
     ];
 
     /**
@@ -38,12 +44,12 @@ class RoleTableBuilder extends TableBuilder
      * @var array
      */
     protected $buttons = [
+        'edit',
         'permissions' => [
             'button' => 'info',
             'icon'   => 'lock',
             'href'   => 'admin/users/roles/permissions/{entry.id}'
-        ],
-        'edit'
+        ]
     ];
 
     /**

@@ -1,50 +1,35 @@
 <?php namespace Anomaly\UsersModule\Http\Controller;
 
-use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
 use Anomaly\Streams\Platform\Http\Controller\PublicController;
 use Anomaly\UsersModule\User\UserAuthenticator;
 use Illuminate\Auth\Guard;
-use Illuminate\Http\Request;
 
 /**
  * Class LoginController
  *
- * @link          http://anomaly.is/streams-platform
- * @author        AnomalyLabs, Inc. <hello@anomaly.is>
- * @author        Ryan Thompson <ryan@anomaly.is>
+ * @link          http://pyrocms.com/
+ * @author        PyroCMS, Inc. <support@pyrocms.com>
+ * @author        Ryan Thompson <ryan@pyrocms.com>
  * @package       Anomaly\UsersModule\Http\Controller
  */
 class LoginController extends PublicController
 {
 
     /**
-     * Return the login view.
-     *
-     * @return \Illuminate\Contracts\View\View|mixed
-     */
-    public function login()
-    {
-        return $this->view->make('anomaly.module.users::login');
-    }
-
-    /**
      * Logout the active user.
      *
-     * @param SettingRepositoryInterface $settings
-     * @param UserAuthenticator          $authenticator
-     * @param Guard                      $auth
+     * @param UserAuthenticator $authenticator
+     * @param Guard             $auth
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function logout(SettingRepositoryInterface $settings, UserAuthenticator $authenticator, Guard $auth)
+    public function logout(UserAuthenticator $authenticator, Guard $auth)
     {
         if (!$auth->guest()) {
             $authenticator->logout();
         }
 
-        $this->messages->success('anomaly.module.users::message.logged_out');
+        $this->messages->success($this->request->get('message', 'anomaly.module.users::message.logged_out'));
 
-        return $this->response->redirectTo(
-            $this->request->get('redirect', $settings->value('anomaly.module.users::logout_redirect', '/'))
-        );
+        return $this->response->redirectTo($this->request->get('redirect', '/'));
     }
 }

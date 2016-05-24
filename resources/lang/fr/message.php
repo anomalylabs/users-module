@@ -1,10 +1,14 @@
 <?php
 
 return [
-    'edit_admin_error'              => "L'administrateur ne peut être modifié.",
-    'block_users_success'           => ':count utilisateur(s) bloqué(s) avec succès !',
-    'unblock_users_success'         => ':count utilisateur(s) débloqué(s) avec succès !',
-    'activate_users_success'        => ':count utilisateur(s) activé(s) avec succès !',
-    'save_user_permissions_success' => 'Permissions pour ":username" ont été sauvegardées avec succès !',
-    'save_role_permissions_success' => 'Permissions du rôle ":slug" ont été sauvegardés avec succès !'
+    'logged_in'                => 'Vous êtes maintenant connecté.',
+    'logged_out'               => 'Vous êtes maintenant déconnecté.',
+    'invalid_login'            => 'Email ou mot de passe incorrect.',
+    'user_already_activated'   => 'Votre compte est déjà activé.',
+    'choose_field_type'        => 'Quel champs souhaitez-vous utiliser ?',
+    'account_activated'        => 'Votre compte a été activé.',
+    'pending_email_activation' => 'Merci de confirmer votre email pour activer votre compte.',
+    'invalid_email'            => 'Aucun compte ne correspond à l\'email fourni.',
+    'pending_admin_activation' => 'Votre compte est en attente de validation par un administrateur.',
+    'confirm_reset_password'   => 'Merci de vérifier vos emails pour changer votre mot de passe.'
 ];

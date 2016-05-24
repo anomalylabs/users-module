@@ -6,9 +6,9 @@ use Anomaly\UsersModule\User\UserCollection;
 /**
  * Interface RoleInterface
  *
- * @link          http://anomaly.is/streams-platform
- * @author        AnomalyLabs, Inc. <hello@anomaly.is>
- * @author        Ryan Thompson <ryan@anomaly.is>
+ * @link          http://pyrocms.com/
+ * @author        PyroCMS, Inc. <support@pyrocms.com>
+ * @author        Ryan Thompson <ryan@pyrocms.com>
  * @package       Anomaly\UsersModule\RoleInterface\Contract
  */
 interface RoleInterface extends EntryInterface
@@ -34,14 +34,6 @@ interface RoleInterface extends EntryInterface
      * @return array
      */
     public function getPermissions();
-
-    /**
-     * Set the permissions.
-     *
-     * @param array $permissions
-     * @return $this
-     */
-    public function setPermissions(array $permissions);
 
     /**
      * Return if a role as access to a the permission.

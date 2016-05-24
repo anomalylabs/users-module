@@ -5,9 +5,9 @@ use Anomaly\Streams\Platform\Database\Migration\Migration;
 /**
  * Class AnomalyModuleUsersCreateUsersStream
  *
- * @link          http://anomaly.is/streams-platform
- * @author        AnomalyLabs, Inc. <hello@anomaly.is>
- * @author        Ryan Thompson <ryan@anomaly.is>
+ * @link          http://pyrocms.com/
+ * @author        PyroCMS, Inc. <support@pyrocms.com>
+ * @author        Ryan Thompson <ryan@pyrocms.com>
  */
 class AnomalyModuleUsersCreateUsersStream extends Migration
 {
@@ -19,7 +19,8 @@ class AnomalyModuleUsersCreateUsersStream extends Migration
      */
     protected $stream = [
         'slug'         => 'users',
-        'title_column' => 'display_name'
+        'title_column' => 'display_name',
+        'trashable'    => true
     ];
 
     /**
@@ -49,7 +50,6 @@ class AnomalyModuleUsersCreateUsersStream extends Migration
         'last_name',
         'activated',
         'enabled',
-        'avatar',
         'permissions',
         'last_login_at',
         'remember_token',

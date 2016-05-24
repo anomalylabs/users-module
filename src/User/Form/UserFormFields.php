@@ -5,9 +5,9 @@ use Anomaly\UsersModule\User\UserModel;
 /**
  * Class UserFormFields
  *
- * @link          http://anomaly.is/streams-platform
- * @author        AnomalyLabs, Inc. <hello@anomaly.is>
- * @author        Ryan Thompson <ryan@anomaly.is>
+ * @link          http://pyrocms.com/
+ * @author        PyroCMS, Inc. <support@pyrocms.com>
+ * @author        Ryan Thompson <ryan@pyrocms.com>
  * @package       Anomaly\UsersModule\User\Form
  */
 class UserFormFields
@@ -21,7 +21,6 @@ class UserFormFields
     public function handle(UserFormBuilder $builder, UserModel $users)
     {
         $fields = [
-            'avatar',
             'first_name',
             'last_name',
             'display_name',

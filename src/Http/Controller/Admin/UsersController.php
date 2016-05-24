@@ -3,10 +3,7 @@
 use Anomaly\Streams\Platform\Http\Controller\AdminController;
 use Anomaly\UsersModule\User\Form\UserFormBuilder;
 use Anomaly\UsersModule\User\Permission\PermissionFormBuilder;
-use Anomaly\UsersModule\User\Table\UserPermissionTableBuilder;
 use Anomaly\UsersModule\User\Table\UserTableBuilder;
-use Anomaly\UsersModule\User\UserBlocker;
-use Anomaly\UsersModule\User\UserManager;
 
 /**
  * Class UsersController
@@ -14,9 +11,9 @@ use Anomaly\UsersModule\User\UserManager;
  * This is the primary class for managing
  * users through the UI.
  *
- * @link          http://anomaly.is/streams-platform
- * @author        AnomalyLabs, Inc. <hello@anomaly.is>
- * @author        Ryan Thompson <ryan@anomaly.is>
+ * @link          http://pyrocms.com/
+ * @author        PyroCMS, Inc. <support@pyrocms.com>
+ * @author        Ryan Thompson <ryan@pyrocms.com>
  * @package       Anomaly\UsersModule\Http\Controller\Admin
  */
 class UsersController extends AdminController

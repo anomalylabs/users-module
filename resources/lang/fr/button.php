@@ -1,13 +1,13 @@
 <?php
 
 return [
-    'login'      => 'Se connecter',
-    'logout'     => 'Se déconnecter',
-    'block'      => 'Bloquer',
-    'unblock'    => 'Débloquer',
-    'activate'   => 'Activer',
-    'deactivate' => 'Désactiver',
-    'new_user'   => 'Nouvel utilisateur',
-    'new_role'   => 'Nouveau rôle',
-    'new_field'  => 'Nouveau champs'
+    'login'          => 'Connexion',
+    'register'       => 'Inscription',
+    'logout'         => 'Déconnexion',
+    'activate'       => 'Activer',
+    'new_user'       => 'Nouvel utilisateur',
+    'new_role'       => 'Nouveau rôle',
+    'add_field'      => 'Ajouter champs',
+    'permissions'    => 'Permissions',
+    'reset_password' => 'Réinitialiser mot de passe'
 ];

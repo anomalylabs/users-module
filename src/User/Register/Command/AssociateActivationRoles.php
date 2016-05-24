@@ -1,55 +1,53 @@
 <?php namespace Anomaly\UsersModule\User\Register\Command;
 
-use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
-use Anomaly\UsersModule\Role\Contract\RoleRepositoryInterface;
+use Anomaly\UsersModule\Role\Command\GetRole;
 use Anomaly\UsersModule\User\Contract\UserInterface;
+use Anomaly\UsersModule\User\Register\RegisterFormBuilder;
 use Illuminate\Contracts\Bus\SelfHandling;
+use Illuminate\Foundation\Bus\DispatchesJobs;
 
 /**
  * Class AssociateActivationRoles
  *
- * @link          http://anomaly.is/streams-platform
- * @author        AnomalyLabs, Inc. <hello@anomaly.is>
- * @author        Ryan Thompson <ryan@anomaly.is>
+ * @link          http://pyrocms.com/
+ * @author        PyroCMS, Inc. <support@pyrocms.com>
+ * @author        Ryan Thompson <ryan@pyrocms.com>
  * @package       Anomaly\UsersModule\User\Register\Command
  */
 class AssociateActivationRoles implements SelfHandling
 {
 
+    use DispatchesJobs;
+
     /**
-     * The user instance.
+     * The form builder.
      *
-     * @var UserInterface
+     * @var RegisterFormBuilder
      */
-    protected $user;
+    protected $builder;
 
     /**
      * Create a new AssociateActivationRoles instance.
      *
-     * @param UserInterface $user
+     * @param RegisterFormBuilder $builder
      */
-    public function __construct(UserInterface $user)
+    public function __construct(RegisterFormBuilder $builder)
     {
-        $this->user = $user;
+        $this->builder = $builder;
     }
 
     /**
      * Handle the command.
-     *
-     * @param SettingRepositoryInterface $settings
-     * @param RoleRepositoryInterface    $roles
      */
-    public function handle(
-        SettingRepositoryInterface $settings,
-        RoleRepositoryInterface $roles
-    ) {
-        $activationRoles = $settings->value('anomaly.module.users::activation_roles', []);
+    public function handle()
+    {
+        /* @var UserInterface $user */
+        $user = $this->builder->getFormEntry();
 
-        foreach ($activationRoles as $role) {
-            if ($role = $roles->find($role)) {
-                $this->user->attachRole($role);
+        foreach ($this->builder->getRoles() as $role) {
+            if ($role = $this->dispatch(new GetRole($role))) {
+                $user->attachRole($role);
             }
         }
     }
-
 }

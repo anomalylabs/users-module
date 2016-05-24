@@ -5,9 +5,9 @@ use Anomaly\UsersModule\User\UserModel;
 /**
  * Class UserFormSections
  *
- * @link          http://anomaly.is/streams-platform
- * @author        AnomalyLabs, Inc. <hello@anomaly.is>
- * @author        Ryan Thompson <ryan@anomaly.is>
+ * @link          http://pyrocms.com/
+ * @author        PyroCMS, Inc. <support@pyrocms.com>
+ * @author        Ryan Thompson <ryan@pyrocms.com>
  * @package       Anomaly\UsersModule\User\Form
  */
 class UserFormSections
@@ -21,7 +21,6 @@ class UserFormSections
     public function handle(UserFormBuilder $builder, UserModel $users)
     {
         $fields = [
-            'avatar',
             'first_name',
             'last_name',
             'display_name',
@@ -39,17 +38,11 @@ class UserFormSections
 
         $builder->setSections(
             [
-                [
-                    'tabs' => [
-                        'general' => [
-                            'title'  => 'anomaly.module.users::tab.general',
-                            'fields' => $fields
-                        ],
-                        'profile' => [
-                            'title'  => 'anomaly.module.users::tab.profile',
-                            'fields' => $profileFields
-                        ]
-                    ]
+                'general' => [
+                    'fields' => $fields
+                ],
+                'profile' => [
+                    'fields' => $profileFields
                 ]
             ]
         );

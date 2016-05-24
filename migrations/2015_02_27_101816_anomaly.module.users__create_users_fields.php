@@ -5,9 +5,9 @@ use Anomaly\Streams\Platform\Database\Migration\Migration;
 /**
  * Class AnomalyModuleUsersCreateUsersFields
  *
- * @link          http://anomaly.is/streams-platform
- * @author        AnomalyLabs, Inc. <hello@anomaly.is>
- * @author        Ryan Thompson <ryan@anomaly.is>
+ * @link          http://pyrocms.com/
+ * @author        PyroCMS, Inc. <support@pyrocms.com>
+ * @author        Ryan Thompson <ryan@pyrocms.com>
  */
 class AnomalyModuleUsersCreateUsersFields extends Migration
 {
@@ -31,13 +31,6 @@ class AnomalyModuleUsersCreateUsersFields extends Migration
                 'type' => 'password'
             ]
         ],
-        'avatar'                     => [
-            'type'   => 'anomaly.field_type.file',
-            'config' => [
-                'disk'   => 'public',
-                'folder' => 'Users Module/Avatars'
-            ]
-        ],
         'remember_token'             => 'anomaly.field_type.text',
         'ip_address'                 => 'anomaly.field_type.text',
         'last_login_at'              => 'anomaly.field_type.datetime',
@@ -47,6 +40,7 @@ class AnomalyModuleUsersCreateUsersFields extends Migration
         'first_name'                 => 'anomaly.field_type.text',
         'last_name'                  => 'anomaly.field_type.text',
         'name'                       => 'anomaly.field_type.text',
+        'description'                => 'anomaly.field_type.textarea',
         'reset_code'                 => 'anomaly.field_type.text',
         'reset_code_expires_at'      => 'anomaly.field_type.datetime',
         'activation_code'            => 'anomaly.field_type.text',

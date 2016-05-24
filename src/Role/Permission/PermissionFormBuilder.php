@@ -10,9 +10,9 @@ use Illuminate\Routing\Redirector;
 /**
  * Class PermissionFormBuilder
  *
- * @link          http://anomaly.is/streams-platform
- * @author        AnomalyLabs, Inc. <hello@anomaly.is>
- * @author        Ryan Thompson <ryan@anomaly.is>
+ * @link          http://pyrocms.com/
+ * @author        PyroCMS, Inc. <support@pyrocms.com>
+ * @author        Ryan Thompson <ryan@pyrocms.com>
  * @package       Anomaly\UsersModule\Role\Permission
  */
 class PermissionFormBuilder extends FormBuilder
@@ -92,6 +92,19 @@ class PermissionFormBuilder extends FormBuilder
             'anomaly.module.users::breadcrumb.permissions',
             'admin/users/roles/permissions/' . $role->getId()
         );
+    }
+
+    /**
+     * If nothing is posted then
+     * the role gets no permissions.
+     *
+     * @param RoleRepositoryInterface $roles
+     */
+    public function onPost(RoleRepositoryInterface $roles)
+    {
+        if (!$this->hasPostData() && $entry = $this->getEntry()) {
+            $roles->save($entry->setAttribute('permissions', []));
+        }
     }
 
     /**

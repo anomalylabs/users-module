@@ -1,58 +1,18 @@
 <?php namespace Anomaly\UsersModule\User\Table;
 
 use Anomaly\Streams\Platform\Ui\Table\TableBuilder;
+use Anomaly\UsersModule\User\Table\Filter\StatusFilterQuery;
 
 /**
  * Class UserTableBuilder
  *
- * @link          http://anomaly.is/streams-platform
- * @author        AnomalyLabs, Inc. <hello@anomaly.is>
- * @author        Ryan Thompson <ryan@anomaly.is>
+ * @link          http://pyrocms.com/
+ * @author        PyroCMS, Inc. <support@pyrocms.com>
+ * @author        Ryan Thompson <ryan@pyrocms.com>
  * @package       Anomaly\UsersModule\User\Table
  */
 class UserTableBuilder extends TableBuilder
 {
-
-    /**
-     * The table filters.
-     *
-     * @var array
-     */
-    protected $filters = [
-        'username',
-        'email',
-        'roles',
-        'activated',
-        'enabled'
-    ];
-
-    /**
-     * The table columns.
-     *
-     * @var array
-     */
-    protected $columns = [
-        'entry.edit_link' => [
-            'sort_column' => 'display_name'
-        ],
-        'username',
-        'email',
-        'activated'       => 'entry.activated.label',
-        'enabled'         => 'entry.enabled.label'
-    ];
-
-    /**
-     * The table buttons.
-     *
-     * @var array
-     */
-    protected $buttons = [
-        'permissions' => [
-            'button' => 'info',
-            'icon'   => 'lock',
-            'href'   => 'admin/users/permissions/{entry.id}'
-        ]
-    ];
 
     /**
      * The table actions.
@@ -61,6 +21,60 @@ class UserTableBuilder extends TableBuilder
      */
     public $actions = [
         'delete'
+    ];
+
+    /**
+     * The table filters.
+     *
+     * @var array
+     */
+    protected $filters = [
+        'search' => [
+            'filter' => 'search',
+            'fields' => [
+                'display_name',
+                'username',
+                'email'
+            ]
+        ],
+        'roles',
+        'status' => [
+            'filter'  => 'select',
+            'query'   => StatusFilterQuery::class,
+            'options' => [
+                'active'   => 'anomaly.module.users::field.status.option.active',
+                'inactive' => 'anomaly.module.users::field.status.option.inactive',
+                'disabled' => 'anomaly.module.users::field.status.option.disabled'
+            ]
+        ]
+    ];
+
+    /**
+     * The table columns.
+     *
+     * @var array
+     */
+    protected $columns = [
+        'display_name',
+        'username',
+        'email',
+        'status' => [
+            'value' => 'entry.status_label'
+        ]
+    ];
+
+    /**
+     * The table buttons.
+     *
+     * @var array
+     */
+    protected $buttons = [
+        'edit',
+        'permissions' => [
+            'button' => 'info',
+            'icon'   => 'lock',
+            'href'   => 'admin/users/permissions/{entry.id}'
+        ]
     ];
 
 }

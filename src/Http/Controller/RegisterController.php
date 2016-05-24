@@ -4,28 +4,17 @@ use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
 use Anomaly\Streams\Platform\Http\Controller\PublicController;
 use Anomaly\UsersModule\User\Register\Command\HandleActivateRequest;
 use Illuminate\Contracts\Encryption\Encrypter;
-use Illuminate\Http\Request;
 
 /**
  * Class RegisterController
  *
- * @link          http://anomaly.is/streams-platform
- * @author        AnomalyLabs, Inc. <hello@anomaly.is>
- * @author        Ryan Thompson <ryan@anomaly.is>
+ * @link          http://pyrocms.com/
+ * @author        PyroCMS, Inc. <support@pyrocms.com>
+ * @author        Ryan Thompson <ryan@pyrocms.com>
  * @package       Anomaly\UsersModule\Http\Controller
  */
 class RegisterController extends PublicController
 {
-
-    /**
-     * Return the register view.
-     *
-     * @return \Illuminate\Contracts\View\View|mixed
-     */
-    public function register()
-    {
-        return $this->view->make('anomaly.module.users::register');
-    }
 
     /**
      * Activate a registered user.
@@ -44,6 +33,6 @@ class RegisterController extends PublicController
 
         $this->messages->success('anomaly.module.users::success.activate_user');
 
-        return $this->redirect->to($settings->value('anomaly.module.users::activated_redirect', '/'));
+        return $this->redirect->to($this->request->get('redirect', '/'));
     }
 }
