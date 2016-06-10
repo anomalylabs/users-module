@@ -21,7 +21,7 @@ class RoleTableBuilder extends TableBuilder
     protected $filters = [
         'search' => [
             'fields' => [
-                'title',
+                'name',
                 'slug',
                 'description'
             ]
