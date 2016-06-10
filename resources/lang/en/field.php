@@ -69,6 +69,9 @@ return [
     'activation_code'  => [
         'name' => 'Activation Code'
     ],
+    'reset_code'       => [
+        'name' => 'Reset Code'
+    ],
     'remember_me'      => [
         'name' => 'Remember me'
     ],

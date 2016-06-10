@@ -19,7 +19,7 @@ class PasswordController extends PublicController
      */
     public function forgot()
     {
-        return $this->view->make('anomaly.module.users::forgot');
+        return $this->view->make('anomaly.module.users::password/forgot');
     }
 
     /**
@@ -29,6 +29,6 @@ class PasswordController extends PublicController
      */
     public function reset()
     {
-        return $this->view->make('anomaly.module.users::reset');
+        return $this->view->make('anomaly.module.users::password/reset');
     }
 }

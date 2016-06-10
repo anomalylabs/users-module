@@ -53,6 +53,6 @@ class GetResetPasswordPath implements SelfHandling
         $email = $encrypter->encrypt($this->user->getEmail());
         $code  = $encrypter->encrypt($this->user->getResetCode());
 
-        return "/reset?email={$email}&code={$code}&redirect={$this->redirect}";
+        return "/users/password/reset?email={$email}&code={$code}&redirect={$this->redirect}";
     }
 }

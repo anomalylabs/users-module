@@ -23,7 +23,7 @@ class RegisterController extends PublicController
      */
     public function register()
     {
-        return $this->view->make('anomaly.module.users::register');
+        return $this->view->make('anomaly.module.users::register/register');
     }
 
     /**

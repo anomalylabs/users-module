@@ -18,9 +18,34 @@ class ResetPasswordFormFields
      */
     public function handle(ResetPasswordFormBuilder $builder)
     {
-        $builder->setFields(
+        $builder->setFields([]);
+
+        if (!$builder->getEmail()) {
+            $builder->addField(
+                [
+                    'field'    => 'email',
+                    'type'     => 'anomaly.field_type.email',
+                    'label'    => 'anomaly.module.users::field.email.name',
+                    'required' => true,
+                ]
+            );
+        }
+
+        if (!$builder->getCode()) {
+            $builder->addField(
+                [
+                    'field'    => 'code',
+                    'type'     => 'anomaly.field_type.text',
+                    'label'    => 'anomaly.module.users::field.reset_code.name',
+                    'required' => true,
+                ]
+            );
+        }
+
+        $builder->addFields(
             [
-                'password'              => [
+                [
+                    'field'    => 'password',
                     'type'     => 'anomaly.field_type.text',
                     'label'    => 'anomaly.module.users::field.password.name',
                     'required' => true,
@@ -31,13 +56,14 @@ class ResetPasswordFormFields
                         'type' => 'password'
                     ]
                 ],
-                'password_confirmation' => [
+                [
+                    'field'    => 'password_confirmation',
                     'type'     => 'anomaly.field_type.text',
                     'label'    => 'anomaly.module.users::field.confirm_password.name',
                     'required' => true,
                     'config'   => [
                         'type' => 'password'
-                    ]
+                    ],
                 ]
             ]
         );

@@ -52,6 +52,6 @@ class GetActivatePath implements SelfHandling
         $email = $encrypter->encrypt($this->user->getEmail());
         $code  = $encrypter->encrypt($this->user->getActivationCode());
 
-        return "/activate?email={$email}&code={$code}&redirect={$this->redirect}";
+        return "/users/activate?email={$email}&code={$code}&redirect={$this->redirect}";
     }
 }
