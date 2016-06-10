@@ -55,6 +55,12 @@ class UsersModuleServiceProvider extends AddonServiceProvider
      * @var array
      */
     protected $routes = [
+        'login'                              => 'Anomaly\UsersModule\Http\Controller\LoginController@login',
+        'logout'                             => 'Anomaly\UsersModule\Http\Controller\LoginController@logout',
+        'register'                           => 'Anomaly\UsersModule\Http\Controller\RegisterController@register',
+        'activate'                           => 'Anomaly\UsersModule\Http\Controller\RegisterController@activate',
+        'reset'                              => 'Anomaly\UsersModule\Http\Controller\PasswordController@reset',
+        'forgot'                             => 'Anomaly\UsersModule\Http\Controller\PasswordController@forgot',
         'admin'                              => 'Anomaly\UsersModule\Http\Controller\Admin\HomeController@index',
         'auth/login'                         => 'Anomaly\UsersModule\Http\Controller\Admin\LoginController@logout',
         'auth/logout'                        => 'Anomaly\UsersModule\Http\Controller\Admin\LoginController@logout',
@@ -118,16 +124,6 @@ class UsersModuleServiceProvider extends AddonServiceProvider
      */
     public function map(Repository $config, Router $router)
     {
-        $router->get(
-            $config->get('anomaly.module.users::paths.logout'),
-            'Anomaly\UsersModule\Http\Controller\LoginController@logout'
-        );
-
-        $router->get(
-            $config->get('anomaly.module.users::paths.reset'),
-            'Anomaly\UsersModule\Http\Controller\PasswordController@reset'
-        );
-
         $router->get(
             $config->get('anomaly.module.users::paths.activate'),
             'Anomaly\UsersModule\Http\Controller\RegisterController@activate'

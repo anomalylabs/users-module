@@ -45,17 +45,14 @@ class GetResetPasswordPath implements SelfHandling
     /**
      * Handle the command.
      *
-     * @param Repository $config
-     * @param Encrypter  $encrypter
+     * @param Encrypter $encrypter
      * @return string
      */
-    public function handle(Repository $config, Encrypter $encrypter)
+    public function handle(Encrypter $encrypter)
     {
         $email = $encrypter->encrypt($this->user->getEmail());
         $code  = $encrypter->encrypt($this->user->getResetCode());
 
-        $query = "?email={$email}&code={$code}&redirect={$this->redirect}";
-
-        return $config->get('anomaly.module.users::paths.reset') . $query;
+        return "/reset?email={$email}&code={$code}&redirect={$this->redirect}";
     }
 }

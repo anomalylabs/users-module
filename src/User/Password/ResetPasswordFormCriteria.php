@@ -24,7 +24,12 @@ class ResetPasswordFormCriteria extends FormCriteria
      */
     public function onReady(Encrypter $encrypter, Request $request)
     {
-        array_set($this->parameters, 'code', $encrypter->decrypt($request->get('code')));
-        array_set($this->parameters, 'email', $encrypter->decrypt($request->get('email')));
+        if ($code = $request->get('code')) {
+            array_set($this->parameters, 'code', $encrypter->decrypt($code));
+        }
+
+        if ($email = $request->get('email')) {
+            array_set($this->parameters, 'email', $encrypter->decrypt($email));
+        }
     }
 }

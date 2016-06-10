@@ -16,6 +16,16 @@ class LoginController extends PublicController
 {
 
     /**
+     * Return the login form.
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function login()
+    {
+        return $this->view->make('anomaly.module.users::login');
+    }
+
+    /**
      * Logout the active user.
      *
      * @param UserAuthenticator $authenticator

@@ -57,12 +57,9 @@ class SendActivationEmail implements SelfHandling
     {
         $path = $this->dispatch(new GetActivatePath($this->user, $this->redirect));
 
-        return $mailer->send(
-            'anomaly.module.users::emails/activate',
-            [
-                'user' => $this->user,
-                'path' => $path
-            ],
+        $mailer->send(
+            'anomaly.module.users::message/activate',
+            compact('user', 'path'),
             function (Message $message) use ($settings) {
                 $message
                     ->subject('Activate Your Account')
@@ -70,5 +67,7 @@ class SendActivationEmail implements SelfHandling
                     ->from($settings->value('streams::server_email', 'noreply@localhost.com'));
             }
         );
+
+        return empty($mailer->failures());
     }
 }
