@@ -115,18 +115,4 @@ class UsersModuleServiceProvider extends AddonServiceProvider
         'Anomaly\UsersModule\Persistence\Contract\PersistenceRepositoryInterface' => 'Anomaly\UsersModule\Persistence\PersistenceRepository',
         'Anomaly\UsersModule\Authenticator\Authenticator'                         => 'Anomaly\UsersModule\Authenticator\Authenticator',
     ];
-
-    /**
-     * Map additional routes.
-     *
-     * @param Repository $config
-     * @param Router     $router
-     */
-    public function map(Repository $config, Router $router)
-    {
-        $router->get(
-            $config->get('anomaly.module.users::paths.activate'),
-            'Anomaly\UsersModule\Http\Controller\RegisterController@activate'
-        );
-    }
 }
