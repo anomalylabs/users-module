@@ -1,4 +1,4 @@
-<?php namespace Anomaly\UsersModule\Seeder;
+<?php namespace Anomaly\UsersModule\Role;
 
 use Anomaly\Streams\Platform\Database\Seeder\Seeder;
 use Anomaly\UsersModule\Role\Contract\RoleRepositoryInterface;
@@ -9,7 +9,7 @@ use Anomaly\UsersModule\Role\Contract\RoleRepositoryInterface;
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\UsersModule\Seeder
+ * @package       Anomaly\UsersModule\Role
  */
 class RoleSeeder extends Seeder
 {

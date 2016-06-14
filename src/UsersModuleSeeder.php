@@ -1,8 +1,8 @@
 <?php namespace Anomaly\UsersModule;
 
 use Anomaly\Streams\Platform\Database\Seeder\Seeder;
-use Anomaly\UsersModule\Seeder\RoleSeeder;
-use Anomaly\UsersModule\Seeder\UserSeeder;
+use Anomaly\UsersModule\Role\RoleSeeder;
+use Anomaly\UsersModule\User\UserSeeder;
 
 /**
  * Class UsersModuleSeeder

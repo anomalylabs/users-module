@@ -1,10 +1,9 @@
-<?php namespace Anomaly\UsersModule\Seeder;
+<?php namespace Anomaly\UsersModule\User;
 
 use Anomaly\Streams\Platform\Database\Seeder\Seeder;
 use Anomaly\UsersModule\Role\Contract\RoleRepositoryInterface;
 use Anomaly\UsersModule\User\Contract\UserInterface;
 use Anomaly\UsersModule\User\Contract\UserRepositoryInterface;
-use Anomaly\UsersModule\User\UserActivator;
 
 /**
  * Class UserSeeder
@@ -12,7 +11,7 @@ use Anomaly\UsersModule\User\UserActivator;
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\UsersModule\Seeder
+ * @package       Anomaly\UsersModule\User
  */
 class UserSeeder extends Seeder
 {
