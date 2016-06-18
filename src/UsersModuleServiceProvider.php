@@ -55,6 +55,12 @@ class UsersModuleServiceProvider extends AddonServiceProvider
      * @var array
      */
     protected $routes = [
+        'login'                              => 'Anomaly\UsersModule\Http\Controller\LoginController@login',
+        'logout'                             => 'Anomaly\UsersModule\Http\Controller\LoginController@logout',
+        'users/register'                     => 'Anomaly\UsersModule\Http\Controller\RegisterController@register',
+        'users/activate'                     => 'Anomaly\UsersModule\Http\Controller\RegisterController@activate',
+        'users/password/reset'               => 'Anomaly\UsersModule\Http\Controller\PasswordController@reset',
+        'users/password/forgot'              => 'Anomaly\UsersModule\Http\Controller\PasswordController@forgot',
         'admin'                              => 'Anomaly\UsersModule\Http\Controller\Admin\HomeController@index',
         'auth/login'                         => 'Anomaly\UsersModule\Http\Controller\Admin\LoginController@logout',
         'auth/logout'                        => 'Anomaly\UsersModule\Http\Controller\Admin\LoginController@logout',
@@ -109,28 +115,4 @@ class UsersModuleServiceProvider extends AddonServiceProvider
         'Anomaly\UsersModule\Persistence\Contract\PersistenceRepositoryInterface' => 'Anomaly\UsersModule\Persistence\PersistenceRepository',
         'Anomaly\UsersModule\Authenticator\Authenticator'                         => 'Anomaly\UsersModule\Authenticator\Authenticator',
     ];
-
-    /**
-     * Map additional routes.
-     *
-     * @param Repository $config
-     * @param Router     $router
-     */
-    public function map(Repository $config, Router $router)
-    {
-        $router->get(
-            $config->get('anomaly.module.users::paths.logout'),
-            'Anomaly\UsersModule\Http\Controller\LoginController@logout'
-        );
-
-        $router->get(
-            $config->get('anomaly.module.users::paths.reset'),
-            'Anomaly\UsersModule\Http\Controller\PasswordController@reset'
-        );
-
-        $router->get(
-            $config->get('anomaly.module.users::paths.activate'),
-            'Anomaly\UsersModule\Http\Controller\RegisterController@activate'
-        );
-    }
 }

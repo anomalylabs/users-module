@@ -60,7 +60,7 @@ class ResetPasswordFormBuilder extends FormBuilder
      */
     public function getEmail()
     {
-        return $this->email;
+        return $this->getFormValue('email', $this->email);
     }
 
     /**
@@ -83,7 +83,7 @@ class ResetPasswordFormBuilder extends FormBuilder
      */
     public function getCode()
     {
-        return $this->code;
+        return $this->getFormValue('code', $this->code);
     }
 
     /**

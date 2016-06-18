@@ -37,12 +37,18 @@ class RegisterFormBuilder extends FormBuilder
      * @var array
      */
     protected $fields = [
-        'first_name',
-        'last_name',
-        'display_name',
-        'username',
-        'email',
-        'password'
+        'display_name' => [
+            'instructions' => false
+        ],
+        'username'     => [
+            'instructions' => false
+        ],
+        'email'        => [
+            'instructions' => false
+        ],
+        'password'     => [
+            'instructions' => false
+        ],
     ];
 
     /**

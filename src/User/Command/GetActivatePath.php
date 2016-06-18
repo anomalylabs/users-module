@@ -45,16 +45,13 @@ class GetActivatePath implements SelfHandling
     /**
      * Handle the command.
      *
-     * @param Repository $config
      * @return string|null
      */
-    public function handle(Repository $config, Encrypter $encrypter)
+    public function handle(Encrypter $encrypter)
     {
         $email = $encrypter->encrypt($this->user->getEmail());
         $code  = $encrypter->encrypt($this->user->getActivationCode());
 
-        $query = "?email={$email}&code={$code}&redirect={$this->redirect}";
-
-        return $config->get('anomaly.module.users::paths.activate', 'activate') . $query;
+        return "/users/activate?email={$email}&code={$code}&redirect={$this->redirect}";
     }
 }

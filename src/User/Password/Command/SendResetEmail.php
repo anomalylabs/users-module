@@ -51,18 +51,15 @@ class SendResetEmail implements SelfHandling
      *
      * @param Mailer                     $mailer
      * @param SettingRepositoryInterface $settings
-     * @return mixed
+     * @return bool
      */
     public function handle(Mailer $mailer, SettingRepositoryInterface $settings)
     {
         $path = $this->dispatch(new GetResetPasswordPath($this->user, $this->redirect));
 
-        return $mailer->send(
-            'anomaly.module.users::emails/reset',
-            [
-                'user' => $this->user,
-                'path' => $path
-            ],
+        $mailer->send(
+            'anomaly.module.users::message/reset',
+            compact('user', 'path'),
             function (Message $message) use ($settings) {
                 $message
                     ->subject('Reset your password')
@@ -70,5 +67,7 @@ class SendResetEmail implements SelfHandling
                     ->from($settings->value('streams::server_email', 'noreply@localhost'));
             }
         );
+
+        return empty($mailer->failures());
     }
 }
