@@ -26,7 +26,7 @@ return [
     'settings' => [
         'name'   => '設定',
         'option' => [
-            'manage' => '可管理 addon 設定。'
+            'manage' => '可管理附加元件 addon 設定。'
         ]
     ]
 ];
