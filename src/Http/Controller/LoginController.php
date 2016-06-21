@@ -22,7 +22,7 @@ class LoginController extends PublicController
      */
     public function login()
     {
-        return $this->view->make('anomaly.module.users::login/login');
+        return $this->view->make('anomaly.module.users::login');
     }
 
     /**
