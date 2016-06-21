@@ -2,7 +2,6 @@
 
 use Anomaly\Streams\Platform\Addon\AddonServiceProvider;
 use Illuminate\Contracts\Config\Repository;
-use Illuminate\Routing\Router;
 
 /**
  * Class UsersModuleServiceProvider
@@ -55,12 +54,30 @@ class UsersModuleServiceProvider extends AddonServiceProvider
      * @var array
      */
     protected $routes = [
-        'login'                              => 'Anomaly\UsersModule\Http\Controller\LoginController@login',
-        'logout'                             => 'Anomaly\UsersModule\Http\Controller\LoginController@logout',
-        'users/register'                     => 'Anomaly\UsersModule\Http\Controller\RegisterController@register',
-        'users/activate'                     => 'Anomaly\UsersModule\Http\Controller\RegisterController@activate',
-        'users/password/reset'               => 'Anomaly\UsersModule\Http\Controller\PasswordController@reset',
-        'users/password/forgot'              => 'Anomaly\UsersModule\Http\Controller\PasswordController@forgot',
+        'login'                              => [
+            'as'   => 'anomaly.module.users::login',
+            'uses' => 'Anomaly\UsersModule\Http\Controller\LoginController@login'
+        ],
+        'logout'                             => [
+            'as'   => 'anomaly.module.users::logout',
+            'uses' => 'Anomaly\UsersModule\Http\Controller\LoginController@logout'
+        ],
+        'users/register'                     => [
+            'as'   => 'anomaly.module.users::register',
+            'uses' => 'Anomaly\UsersModule\Http\Controller\RegisterController@register'
+        ],
+        'users/activate'                     => [
+            'as'   => 'anomaly.module.users::activate',
+            'uses' => 'Anomaly\UsersModule\Http\Controller\RegisterController@activate'
+        ],
+        'users/password/reset'               => [
+            'as'   => 'anomaly.module.users::password.reset',
+            'uses' => 'Anomaly\UsersModule\Http\Controller\PasswordController@reset'
+        ],
+        'users/password/forgot'              => [
+            'as'   => 'anomaly.module.users::password.reset',
+            'uses' => 'Anomaly\UsersModule\Http\Controller\PasswordController@forgot'
+        ],
         'admin'                              => 'Anomaly\UsersModule\Http\Controller\Admin\HomeController@index',
         'auth/login'                         => 'Anomaly\UsersModule\Http\Controller\Admin\LoginController@logout',
         'auth/logout'                        => 'Anomaly\UsersModule\Http\Controller\Admin\LoginController@logout',
