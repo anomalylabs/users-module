@@ -58,7 +58,7 @@ class LoginFormBuilder extends FormBuilder
      *
      * @param UserSecurity $security
      */
-    public function onPosting(UserSecurity $security)
+    public function onPost(UserSecurity $security)
     {
         $response = $security->attempt();
 

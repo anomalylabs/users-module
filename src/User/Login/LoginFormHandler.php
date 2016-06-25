@@ -1,7 +1,9 @@
 <?php namespace Anomaly\UsersModule\User\Login;
 
 use Anomaly\UsersModule\User\UserAuthenticator;
+use Anomaly\UsersModule\User\UserSecurity;
 use Illuminate\Routing\Redirector;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Class LoginFormHandler
@@ -19,11 +21,27 @@ class LoginFormHandler
      *
      * @param LoginFormBuilder  $builder
      * @param UserAuthenticator $authenticator
+     * @param UserSecurity      $security
      * @param Redirector        $redirect
      */
-    public function handle(LoginFormBuilder $builder, UserAuthenticator $authenticator, Redirector $redirect)
-    {
+    public function handle(
+        LoginFormBuilder $builder,
+        UserAuthenticator $authenticator,
+        UserSecurity $security,
+        Redirector $redirect
+    ) {
         if (!$user = $builder->getUser()) {
+            return;
+        }
+
+        $response = $security->check($user);
+
+        if ($response instanceof Response) {
+
+            $authenticator->logout($user);
+
+            $builder->setFormResponse($response);
+
             return;
         }
 
