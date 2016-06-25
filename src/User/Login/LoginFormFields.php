@@ -1,6 +1,6 @@
 <?php namespace Anomaly\UsersModule\User\Login;
 
-use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
+use Illuminate\Contracts\Config\Repository;
 
 /**
  * Class LoginFormFields
@@ -16,12 +16,12 @@ class LoginFormFields
     /**
      * Handle the fields.
      *
-     * @param LoginFormBuilder           $builder
-     * @param SettingRepositoryInterface $settings
+     * @param LoginFormBuilder $builder
+     * @param Repository       $config
      */
-    public function handle(LoginFormBuilder $builder, SettingRepositoryInterface $settings)
+    public function handle(LoginFormBuilder $builder, Repository $config)
     {
-        $method = $settings->value('anomaly.module.users::login', 'email');
+        $method = $config->get('anomaly.module.users::config.login');
 
         if ($method == 'username') {
             $login = [

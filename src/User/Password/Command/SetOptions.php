@@ -1,8 +1,8 @@
 <?php namespace Anomaly\UsersModule\User\Password\Command;
 
-use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
 use Anomaly\UsersModule\User\Password\ForgotPasswordFormBuilder;
 use Illuminate\Contracts\Bus\SelfHandling;
+use Illuminate\Contracts\Config\Repository;
 
 /**
  * Class SetDefaultOptions
@@ -35,18 +35,18 @@ class SetOptions implements SelfHandling
     /**
      * Handle the command.
      *
-     * @param SettingRepositoryInterface $settings
+     * @param Repository $config
      */
-    public function handle(SettingRepositoryInterface $settings)
+    public function handle(Repository $config)
     {
         if (!$this->builder->getOption('redirect')) {
-            $this->builder->setOption('redirect', $settings->value('anomaly.module.users::reset_redirect', '/'));
+            $this->builder->setOption('redirect', '/');
         }
 
         if (!$this->builder->getOption('success_message')) {
             $this->builder->setOption(
                 'success_message',
-                $settings->value('anomaly.module.users::reset_message', 'You are now logged in.')
+                'You are now logged in.'
             );
         }
 

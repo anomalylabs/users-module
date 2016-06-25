@@ -4,6 +4,8 @@ return [
     'login'           => [
         'required'    => true,
         'placeholder' => false,
+        'env'         => 'LOGIN',
+        'bind'        => 'anomaly.module.users::config.login',
         'type'        => 'anomaly.field_type.select',
         'config'      => [
             'default_value' => 'email',
@@ -16,6 +18,8 @@ return [
     'activation_mode' => [
         'required'    => true,
         'placeholder' => false,
+        'env'         => 'ACTIVATION_MODE',
+        'bind'        => 'anomaly.module.users::config.activation_mode',
         'type'        => 'anomaly.field_type.select',
         'config'      => [
             'default_value' => 'manual',
