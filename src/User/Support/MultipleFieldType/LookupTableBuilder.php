@@ -1,4 +1,4 @@
-<?php namespace Anomaly\UsersModule\User\Support\RelationshipFieldType;
+<?php namespace Anomaly\UsersModule\User\Support\MultipleFieldType;
 
 use Anomaly\UsersModule\User\Table\Filter\StatusFilterQuery;
 
@@ -8,9 +8,9 @@ use Anomaly\UsersModule\User\Table\Filter\StatusFilterQuery;
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\UsersModule\User\Support\RelationshipFieldType
+ * @package       Anomaly\UsersModule\User\Support\MultipleFieldType
  */
-class LookupTableBuilder extends \Anomaly\RelationshipFieldType\Table\LookupTableBuilder
+class LookupTableBuilder extends \Anomaly\MultipleFieldType\Table\LookupTableBuilder
 {
 
     /**
