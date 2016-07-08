@@ -10,7 +10,7 @@ return [
     | Specify whether to use the 'email' or 'username' for logging in.
     |
     */
-    'login' => env('LOGIN', 'email'),
+    'login'           => env('LOGIN', 'email'),
 
     /*
     |--------------------------------------------------------------------------
@@ -25,6 +25,4 @@ return [
     |
     */
     'activation_mode' => env('ACTIVATION_MODE', 'email'),
-
-
 ];

@@ -1,5 +1,5 @@
 {
-    "Usage": {
+    "prologue": {
         "title": {
             "en": "Prologue"
         },
@@ -7,6 +7,28 @@
             "introduction": {
                 "title": {
                     "en": "Introduction"
+                }
+            }
+        }
+    },
+    "usage": {
+        "title": {
+            "en": "Usage"
+        },
+        "pages": {
+            "users": {
+                "title": {
+                    "en": "Users"
+                }
+            },
+            "roles": {
+                "title": {
+                    "en": "Roles"
+                }
+            },
+            "Permissions": {
+                "title": {
+                    "en": "Permissions"
                 }
             }
         }

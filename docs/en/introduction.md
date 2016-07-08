@@ -9,9 +9,4 @@
 
 `anomaly.module.users`
 
-The Users module provides a robust permission based authentication for Streams Platform. 
-
-
-<a name="configuration"></a>
-## Configuration
-
+The Users module provides a robust permission based authentication for Streams Platform.
