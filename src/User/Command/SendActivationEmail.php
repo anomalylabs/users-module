@@ -1,8 +1,8 @@
 <?php namespace Anomaly\UsersModule\User\Command;
 
-use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
 use Anomaly\UsersModule\User\Contract\UserInterface;
 use Illuminate\Contracts\Bus\SelfHandling;
+use Illuminate\Contracts\Config\Repository;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Mail\Mailer;
 use Illuminate\Mail\Message;
@@ -49,22 +49,22 @@ class SendActivationEmail implements SelfHandling
     /**
      * Handle the command.
      *
-     * @param Mailer                     $mailer
-     * @param SettingRepositoryInterface $settings
+     * @param Mailer     $mailer
+     * @param Repository $config
      * @return bool
      */
-    public function handle(Mailer $mailer, SettingRepositoryInterface $settings)
+    public function handle(Mailer $mailer, Repository $config)
     {
         $path = $this->dispatch(new GetActivatePath($this->user, $this->redirect));
 
         $mailer->send(
             'anomaly.module.users::message/activate',
             compact('user', 'path'),
-            function (Message $message) use ($settings) {
+            function (Message $message) use ($config) {
                 $message
                     ->subject('Activate Your Account')
                     ->to($this->user->getEmail(), $this->user->getDisplayName())
-                    ->from($settings->value('streams::server_email', 'noreply@localhost.com'));
+                    ->from($config->get('mail.from.address', 'noreply@localhost.com'));
             }
         );
 

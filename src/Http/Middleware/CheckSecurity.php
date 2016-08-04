@@ -9,7 +9,7 @@ use Illuminate\Routing\ResponseFactory;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * Class AuthenticateRequest
+ * Class CheckSecurityRequest
  *
  * This class replaces the Laravel version in app/
  *
@@ -18,7 +18,7 @@ use Symfony\Component\HttpFoundation\Response;
  * @author        Ryan Thompson <ryan@pyrocms.com>
  * @package       Anomaly\UsersModule\Http\Middleware
  */
-class Authenticate
+class CheckSecurity
 {
 
     /**
@@ -50,7 +50,7 @@ class Authenticate
     protected $redirect;
 
     /**
-     * Create a new AuthenticateRequest instance.
+     * Create a new CheckSecurityRequest instance.
      *
      * @param Guard           $guard
      * @param Redirector      $redirect
@@ -78,16 +78,10 @@ class Authenticate
      */
     public function handle(Request $request, Closure $next)
     {
-        if ($this->guard->guest()) {
-            if ($request->ajax()) {
-                return $this->response->make('Unauthorized.', 401);
-            } else {
-                if ($request->segment(1) === 'admin') {
-                    return $this->redirect->guest('admin/login');
-                } else {
-                    return $this->redirect->guest('login');
-                }
-            }
+        $response = $this->security->check($this->guard->user());
+
+        if ($response instanceof Response) {
+            return $response;
         }
 
         return $next($request);

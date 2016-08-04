@@ -1,11 +1,11 @@
 <?php namespace Anomaly\UsersModule\User\Register;
 
-use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
 use Anomaly\UsersModule\User\Contract\UserInterface;
 use Anomaly\UsersModule\User\Register\Command\HandleAutomaticRegistration;
 use Anomaly\UsersModule\User\Register\Command\HandleEmailRegistration;
 use Anomaly\UsersModule\User\Register\Command\HandleManualRegistration;
 use Anomaly\UsersModule\User\UserActivator;
+use Illuminate\Contracts\Config\Repository;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 
 /**
@@ -24,12 +24,12 @@ class RegisterFormHandler
     /**
      * Handle the form.
      *
-     * @param SettingRepositoryInterface $settings
-     * @param RegisterFormBuilder        $builder
-     * @param UserActivator              $activator
+     * @param Repository          $config
+     * @param RegisterFormBuilder $builder
+     * @param UserActivator       $activator
      * @throws \Exception
      */
-    public function handle(SettingRepositoryInterface $settings, RegisterFormBuilder $builder, UserActivator $activator)
+    public function handle(Repository $config, RegisterFormBuilder $builder, UserActivator $activator)
     {
         if (!$builder->canSave()) {
             return;
@@ -42,7 +42,7 @@ class RegisterFormHandler
 
         $activator->start($user);
 
-        $mode = $settings->value('anomaly.module.users::activation_mode', 'manual');
+        $mode = $config->get('anomaly.module.users::config.activation_mode');
 
         if ($mode === 'automatic') {
             $this->dispatch(new HandleAutomaticRegistration($builder));

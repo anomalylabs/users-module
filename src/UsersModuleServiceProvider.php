@@ -29,9 +29,11 @@ class UsersModuleServiceProvider extends AddonServiceProvider
      * @var array
      */
     protected $middleware = [
+        'Anomaly\UsersModule\Http\Middleware\CheckSecurity',
+        'Anomaly\UsersModule\Http\Middleware\AuthorizeRouteRoles',
         'Anomaly\UsersModule\Http\Middleware\AuthorizeModuleAccess',
         'Anomaly\UsersModule\Http\Middleware\AuthorizeControlPanel',
-        'Anomaly\UsersModule\Http\Middleware\AuthorizeRoutePermission'
+        'Anomaly\UsersModule\Http\Middleware\AuthorizeRoutePermission',
     ];
 
     /**
@@ -75,7 +77,7 @@ class UsersModuleServiceProvider extends AddonServiceProvider
             'uses' => 'Anomaly\UsersModule\Http\Controller\PasswordController@reset'
         ],
         'users/password/forgot'              => [
-            'as'   => 'anomaly.module.users::password.reset',
+            'as'   => 'anomaly.module.users::password.forgot',
             'uses' => 'Anomaly\UsersModule\Http\Controller\PasswordController@forgot'
         ],
         'admin'                              => 'Anomaly\UsersModule\Http\Controller\Admin\HomeController@index',

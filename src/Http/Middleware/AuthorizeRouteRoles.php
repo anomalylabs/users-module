@@ -1,22 +1,30 @@
 <?php namespace Anomaly\UsersModule\Http\Middleware;
 
 use Anomaly\Streams\Platform\Message\MessageBag;
-use Anomaly\Streams\Platform\Support\Authorizer;
+use Anomaly\UsersModule\User\Contract\UserInterface;
 use Closure;
+use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
 use Illuminate\Routing\Route;
 
 /**
- * Class AuthorizeRoutePermission
+ * Class AuthorizeRouteRoles
  *
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
  * @package       Anomaly\UsersModule\Http\Middleware
  */
-class AuthorizeRoutePermission
+class AuthorizeRouteRoles
 {
+
+    /**
+     * The auth guard.
+     *
+     * @var Guard
+     */
+    protected $auth;
 
     /**
      * The route object.
@@ -40,26 +48,19 @@ class AuthorizeRoutePermission
     protected $messages;
 
     /**
-     * The authorizer utility.
-     *
-     * @var Authorizer
-     */
-    protected $authorizer;
-
-    /**
      * Create a new AuthorizeModuleAccess instance.
      *
+     * @param Guard      $auth
      * @param Route      $route
      * @param Redirector $redirect
      * @param MessageBag $messages
-     * @param Authorizer $authorizer
      */
-    public function __construct(Route $route, Redirector $redirect, MessageBag $messages, Authorizer $authorizer)
+    public function __construct(Route $route, Redirector $redirect, MessageBag $messages, Guard $auth)
     {
-        $this->route      = $route;
-        $this->redirect   = $redirect;
-        $this->messages   = $messages;
-        $this->authorizer = $authorizer;
+        $this->auth     = $auth;
+        $this->route    = $route;
+        $this->redirect = $redirect;
+        $this->messages = $messages;
     }
 
     /**
@@ -75,18 +76,14 @@ class AuthorizeRoutePermission
             return $next($request);
         }
 
-        if ($request->segment(1) == 'admin' && !$this->authorizer->authorize(
-                'anomaly.module.users::general.control_panel'
-            )
-        ) {
-            abort(403);
-        }
+        /* @var UserInterface $user */
+        $user = $this->auth->user();
 
-        $permission = array_get($this->route->getAction(), 'anomaly.module.users::permission');
-        $redirect   = array_get($this->route->getAction(), 'anomaly.module.users::redirect');
-        $message    = array_get($this->route->getAction(), 'anomaly.module.users::message');
+        $role     = array_get($this->route->getAction(), 'anomaly.module.users::role');
+        $redirect = array_get($this->route->getAction(), 'anomaly.module.users::redirect');
+        $message  = array_get($this->route->getAction(), 'anomaly.module.users::message');
 
-        if ($permission && !$this->authorizer->authorizeAny((array)$permission)) {
+        if ($role && (!$user || !$user->hasAnyRole((array)$role))) {
 
             if ($message) {
                 $this->messages->error($message);
