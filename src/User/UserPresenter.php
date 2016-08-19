@@ -33,6 +33,16 @@ class UserPresenter extends EntryPresenter
     }
 
     /**
+     * Return the user gravatar.
+     *
+     * @return string
+     */
+    public function gravatar()
+    {
+        return 'https://www.gravatar.com/avatar/' . md5($this->object->getEmail());
+    }
+
+    /**
      * Return the user's status as a label.
      *
      * @param string $size
