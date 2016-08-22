@@ -35,11 +35,14 @@ class UserPresenter extends EntryPresenter
     /**
      * Return the user gravatar.
      *
+     * @param array $parameters
      * @return string
      */
-    public function gravatar()
+    public function gravatar($parameters = [])
     {
-        return 'https://www.gravatar.com/avatar/' . md5($this->object->getEmail());
+        return 'https://www.gravatar.com/avatar/' . md5($this->object->getEmail()) . '?' . http_build_query(
+            $parameters
+        );
     }
 
     /**
