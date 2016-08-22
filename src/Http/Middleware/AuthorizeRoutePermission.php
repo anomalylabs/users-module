@@ -3,6 +3,7 @@
 use Anomaly\Streams\Platform\Message\MessageBag;
 use Anomaly\Streams\Platform\Support\Authorizer;
 use Closure;
+use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
 use Illuminate\Routing\Route;
@@ -17,6 +18,13 @@ use Illuminate\Routing\Route;
  */
 class AuthorizeRoutePermission
 {
+
+    /**
+     * The auth guard.
+     *
+     * @var Guard
+     */
+    private $auth;
 
     /**
      * The route object.
@@ -38,7 +46,6 @@ class AuthorizeRoutePermission
      * @var MessageBag
      */
     protected $messages;
-
     /**
      * The authorizer utility.
      *
@@ -49,13 +56,20 @@ class AuthorizeRoutePermission
     /**
      * Create a new AuthorizeModuleAccess instance.
      *
-     * @param Route      $route
+     * @param Guard $auth
+     * @param Route $route
      * @param Redirector $redirect
      * @param MessageBag $messages
      * @param Authorizer $authorizer
      */
-    public function __construct(Route $route, Redirector $redirect, MessageBag $messages, Authorizer $authorizer)
-    {
+    public function __construct(
+        Guard $auth,
+        Route $route,
+        Redirector $redirect,
+        MessageBag $messages,
+        Authorizer $authorizer
+    ) {
+        $this->auth       = $auth;
         $this->route      = $route;
         $this->redirect   = $redirect;
         $this->messages   = $messages;
@@ -65,7 +79,7 @@ class AuthorizeRoutePermission
     /**
      * Check the authorization of module access.
      *
-     * @param  Request  $request
+     * @param  Request $request
      * @param  \Closure $next
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -86,7 +100,7 @@ class AuthorizeRoutePermission
         $redirect   = array_get($this->route->getAction(), 'anomaly.module.users::redirect');
         $message    = array_get($this->route->getAction(), 'anomaly.module.users::message');
 
-        if ($permission && !$this->authorizer->authorizeAny((array)$permission)) {
+        if ($permission && !$this->authorizer->authorizeAny((array)$permission, true)) {
 
             if ($message) {
                 $this->messages->error($message);
