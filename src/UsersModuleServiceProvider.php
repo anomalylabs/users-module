@@ -56,6 +56,10 @@ class UsersModuleServiceProvider extends AddonServiceProvider
      * @var array
      */
     protected $routes = [
+        '@{username}'                        => [
+            'as'   => 'anomaly.module.users::users.view',
+            'uses' => 'Anomaly\UsersModule\Http\Controller\UsersController@view'
+        ],
         'login'                              => [
             'as'   => 'anomaly.module.users::login',
             'uses' => 'Anomaly\UsersModule\Http\Controller\LoginController@login'
