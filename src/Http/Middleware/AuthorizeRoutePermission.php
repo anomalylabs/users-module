@@ -20,13 +20,6 @@ class AuthorizeRoutePermission
 {
 
     /**
-     * The auth guard.
-     *
-     * @var Guard
-     */
-    private $auth;
-
-    /**
      * The route object.
      *
      * @var Route
@@ -56,7 +49,6 @@ class AuthorizeRoutePermission
     /**
      * Create a new AuthorizeModuleAccess instance.
      *
-     * @param Guard $auth
      * @param Route $route
      * @param Redirector $redirect
      * @param MessageBag $messages
@@ -69,7 +61,6 @@ class AuthorizeRoutePermission
         MessageBag $messages,
         Authorizer $authorizer
     ) {
-        $this->auth       = $auth;
         $this->route      = $route;
         $this->redirect   = $redirect;
         $this->messages   = $messages;
