@@ -2,6 +2,6 @@
 
 {% block content %}
 
-    {{ form('login') }}
+    {{ form('login').redirect(request_get('redirect'))|raw }}
 
 {% endblock %}
