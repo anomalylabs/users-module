@@ -91,7 +91,7 @@ class AuthorizeRoutePermission
         $redirect   = array_get($this->route->getAction(), 'anomaly.module.users::redirect');
         $message    = array_get($this->route->getAction(), 'anomaly.module.users::message');
 
-        if ($permission && !$this->authorizer->authorizeAny((array)$permission, true)) {
+        if ($permission && !$this->authorizer->authorizeAny((array)$permission, null, true)) {
 
             if ($message) {
                 $this->messages->error($message);
