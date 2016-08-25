@@ -11,7 +11,6 @@ use Illuminate\Routing\Redirector;
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\UsersModule\Http\Controller\Admin
  */
 class HomeController extends AdminController
 {
@@ -19,8 +18,8 @@ class HomeController extends AdminController
     /**
      * Redirect to the users home page.
      *
-     * @param NavigationCollection $navigation
-     * @param Redirector           $redirect
+     * @param  NavigationCollection              $navigation
+     * @param  Redirector                        $redirect
      * @return \Illuminate\Http\RedirectResponse
      */
     public function index(NavigationCollection $navigation, Redirector $redirect)

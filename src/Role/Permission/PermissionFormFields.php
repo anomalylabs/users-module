@@ -12,7 +12,6 @@ use Illuminate\Translation\Translator;
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\UsersModule\Role\Permission
  */
 class PermissionFormFields
 {
@@ -38,7 +37,7 @@ class PermissionFormFields
 
         $namespaces = array_merge(['streams'], $addons->withConfig('permissions')->namespaces());
 
-        /**
+        /*
          * gather all the addons with a
          * permissions configuration file.
          *
@@ -48,7 +47,7 @@ class PermissionFormFields
 
             foreach ($config->get($namespace . '::permissions', []) as $group => $permissions) {
 
-                /**
+                /*
                  * Determine the general
                  * form UI components.
                  */
@@ -62,7 +61,7 @@ class PermissionFormFields
                     $instructions = null;
                 }
 
-                /**
+                /*
                  * Gather the available
                  * permissions for the group.
                  */
@@ -81,7 +80,7 @@ class PermissionFormFields
                     )
                 );
 
-                /**
+                /*
                  * Build the checkboxes field
                  * type to handle the UI.
                  */
@@ -92,8 +91,8 @@ class PermissionFormFields
                     'type'         => 'anomaly.field_type.checkboxes',
                     'value'        => $role->getPermissions(),
                     'config'       => [
-                        'options' => $available
-                    ]
+                        'options' => $available,
+                    ],
                 ];
             }
         }

@@ -1,7 +1,6 @@
 <?php namespace Anomaly\UsersModule\User\Password\Command;
 
 use Anomaly\UsersModule\User\Contract\UserInterface;
-use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Contracts\Config\Repository;
 use Illuminate\Contracts\Encryption\Encrypter;
 
@@ -11,9 +10,8 @@ use Illuminate\Contracts\Encryption\Encrypter;
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\UsersModule\User\Password\Command
  */
-class GetResetPasswordPath implements SelfHandling
+class GetResetPasswordPath
 {
 
     /**
@@ -45,7 +43,7 @@ class GetResetPasswordPath implements SelfHandling
     /**
      * Handle the command.
      *
-     * @param Encrypter $encrypter
+     * @param  Encrypter $encrypter
      * @return string
      */
     public function handle(Encrypter $encrypter)

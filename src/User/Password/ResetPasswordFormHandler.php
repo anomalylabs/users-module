@@ -11,7 +11,6 @@ use Illuminate\Contracts\Config\Repository;
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\UsersModule\User\Password
  */
 class ResetPasswordFormHandler
 {
@@ -32,7 +31,7 @@ class ResetPasswordFormHandler
     ) {
         $user = $users->findByEmail($builder->getEmail());
 
-        /**
+        /*
          * If we can't find the user by the email
          * provided then head back to the form.
          */
@@ -43,7 +42,7 @@ class ResetPasswordFormHandler
             return;
         }
 
-        /**
+        /*
          * If we can't successfully reset the
          * provided user then back back to the form.
          */

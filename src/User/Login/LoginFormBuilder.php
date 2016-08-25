@@ -11,7 +11,6 @@ use Symfony\Component\HttpFoundation\Response;
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\UsersModule\User\Form
  */
 class LoginFormBuilder extends FormBuilder
 {
@@ -39,8 +38,8 @@ class LoginFormBuilder extends FormBuilder
      */
     protected $actions = [
         'blue' => [
-            'text' => 'anomaly.module.users::button.login'
-        ]
+            'text' => 'anomaly.module.users::button.login',
+        ],
     ];
 
     /**
@@ -50,7 +49,7 @@ class LoginFormBuilder extends FormBuilder
      */
     protected $options = [
         'redirect'   => '/',
-        'breadcrumb' => false
+        'breadcrumb' => false,
     ];
 
     /**
@@ -83,7 +82,7 @@ class LoginFormBuilder extends FormBuilder
     /**
      * Set the user.
      *
-     * @param UserInterface $user
+     * @param  UserInterface $user
      * @return $this
      */
     public function setUser(UserInterface $user)

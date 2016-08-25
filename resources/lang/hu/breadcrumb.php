@@ -1,6 +1,6 @@
 <?php
 
 return [
-    'login' => 'Bejelentkezés',
+    'login'       => 'Bejelentkezés',
     'permissions' => 'Jogok',
 ];

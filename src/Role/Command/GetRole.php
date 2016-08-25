@@ -1,7 +1,7 @@
 <?php namespace Anomaly\UsersModule\Role\Command;
 
 use Anomaly\UsersModule\Role\Contract\RoleRepositoryInterface;
-use Illuminate\Contracts\Bus\SelfHandling;
+
 
 /**
  * Class GetRole
@@ -9,9 +9,8 @@ use Illuminate\Contracts\Bus\SelfHandling;
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\UsersModule\Role\Command
  */
-class GetRole implements SelfHandling
+class GetRole
 {
 
     /**
@@ -34,7 +33,7 @@ class GetRole implements SelfHandling
     /**
      * Handle the command.
      *
-     * @param RoleRepositoryInterface $roles
+     * @param  RoleRepositoryInterface                                                                             $roles
      * @return \Anomaly\Streams\Platform\Model\EloquentModel|\Anomaly\UsersModule\Role\Contract\RoleInterface|null
      */
     public function handle(RoleRepositoryInterface $roles)

@@ -12,7 +12,6 @@ use Illuminate\Support\Collection;
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\UsersModule\RoleInterface
  */
 class RoleRepository extends EntryRepository implements RoleRepositoryInterface
 {
@@ -75,8 +74,8 @@ class RoleRepository extends EntryRepository implements RoleRepositoryInterface
     /**
      * Update permissions for a role.
      *
-     * @param RoleInterface $role
-     * @param array         $permissions
+     * @param  RoleInterface $role
+     * @param  array         $permissions
      * @return RoleInterface
      */
     public function updatePermissions(RoleInterface $role, array $permissions)

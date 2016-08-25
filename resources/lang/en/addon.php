@@ -7,6 +7,6 @@ return [
     'section'     => [
         'users'  => 'Users',
         'roles'  => 'Roles',
-        'fields' => 'Fields'
-    ]
+        'fields' => 'Fields',
+    ],
 ];

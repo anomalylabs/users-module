@@ -8,6 +8,6 @@ return [
         'users'    => 'Benutzer',
         'roles'    => 'Rollen',
         'fields'   => 'Felder',
-        'settings' => 'Einstellungen'
-    ]
+        'settings' => 'Einstellungen',
+    ],
 ];

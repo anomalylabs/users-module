@@ -10,7 +10,6 @@ use Anomaly\Streams\Platform\Entry\Contract\EntryRepositoryInterface;
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\UsersModule\User\Contract
  */
 interface UserRepositoryInterface extends EntryRepositoryInterface
 {
@@ -34,7 +33,7 @@ interface UserRepositoryInterface extends EntryRepositoryInterface
     /**
      * Find a user by their credentials.
      *
-     * @param array $credentials
+     * @param  array              $credentials
      * @return null|UserInterface
      */
     public function findByCredentials(array $credentials);

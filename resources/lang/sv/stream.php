@@ -2,9 +2,9 @@
 
 return [
     'users' => [
-        'name' => 'Användare'
+        'name' => 'Användare',
     ],
     'roles' => [
-        'name' => 'Roller'
-    ]
+        'name' => 'Roller',
+    ],
 ];

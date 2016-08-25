@@ -9,14 +9,13 @@ use Anomaly\UsersModule\User\Contract\UserRepositoryInterface;
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\UsersModule\Http\Controller
  */
 class UsersController extends PublicController
 {
     /**
      * View a user profile.
      *
-     * @param UserRepositoryInterface $users
+     * @param  UserRepositoryInterface               $users
      * @return \Illuminate\Contracts\View\View|mixed
      */
     public function view(UserRepositoryInterface $users)

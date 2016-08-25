@@ -8,7 +8,6 @@ use Anomaly\UsersModule\User\UserModel;
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\UsersModule\User\Form
  */
 class UserFormSections
 {
@@ -29,7 +28,7 @@ class UserFormSections
             'activated',
             'enabled',
             'password',
-            'roles'
+            'roles',
         ];
 
         $assignments = $users->getAssignments();
@@ -39,11 +38,11 @@ class UserFormSections
         $builder->setSections(
             [
                 'general' => [
-                    'fields' => $fields
+                    'fields' => $fields,
                 ],
                 'profile' => [
-                    'fields' => $profileFields
-                ]
+                    'fields' => $profileFields,
+                ],
             ]
         );
     }

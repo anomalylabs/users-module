@@ -2,7 +2,7 @@
 
 use Anomaly\UsersModule\User\Contract\UserInterface;
 use Anomaly\UsersModule\User\Contract\UserRepositoryInterface;
-use Illuminate\Contracts\Bus\SelfHandling;
+
 
 /**
  * Class ActivateUserByCode
@@ -10,9 +10,8 @@ use Illuminate\Contracts\Bus\SelfHandling;
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\UsersModule\User\Command
  */
-class ActivateUserByCode implements SelfHandling
+class ActivateUserByCode
 {
 
     /**
@@ -44,7 +43,7 @@ class ActivateUserByCode implements SelfHandling
     /**
      * Handle the command.
      *
-     * @param UserRepositoryInterface $users
+     * @param  UserRepositoryInterface $users
      * @return bool
      */
     public function handle(UserRepositoryInterface $users)

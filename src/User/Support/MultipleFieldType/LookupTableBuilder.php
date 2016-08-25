@@ -8,7 +8,6 @@ use Anomaly\UsersModule\User\Table\Filter\StatusFilterQuery;
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\UsersModule\User\Support\MultipleFieldType
  */
 class LookupTableBuilder extends \Anomaly\MultipleFieldType\Table\LookupTableBuilder
 {
@@ -24,8 +23,8 @@ class LookupTableBuilder extends \Anomaly\MultipleFieldType\Table\LookupTableBui
             'fields' => [
                 'display_name',
                 'username',
-                'email'
-            ]
+                'email',
+            ],
         ],
         'roles',
         'status' => [
@@ -34,9 +33,9 @@ class LookupTableBuilder extends \Anomaly\MultipleFieldType\Table\LookupTableBui
             'options' => [
                 'active'   => 'anomaly.module.users::field.status.option.active',
                 'inactive' => 'anomaly.module.users::field.status.option.inactive',
-                'disabled' => 'anomaly.module.users::field.status.option.disabled'
-            ]
-        ]
+                'disabled' => 'anomaly.module.users::field.status.option.disabled',
+            ],
+        ],
     ];
 
     /**
@@ -49,7 +48,7 @@ class LookupTableBuilder extends \Anomaly\MultipleFieldType\Table\LookupTableBui
         'username',
         'email',
         'status' => [
-            'value' => 'entry.status_label'
-        ]
+            'value' => 'entry.status_label',
+        ],
     ];
 }

@@ -8,7 +8,6 @@ use Anomaly\UsersModule\User\Contract\UserRepositoryInterface;
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\UsersModule\User\Validation
  */
 class ValidateEmail
 {
@@ -16,8 +15,8 @@ class ValidateEmail
     /**
      * Handle the validation.
      *
-     * @param UserRepositoryInterface $users
-     * @param                         $value
+     * @param  UserRepositoryInterface $users
+     * @param                          $value
      * @return bool
      */
     public function handle(UserRepositoryInterface $users, $value)

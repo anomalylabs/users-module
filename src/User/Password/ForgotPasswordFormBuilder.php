@@ -9,7 +9,6 @@ use Illuminate\Contracts\Config\Repository;
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\UsersModule\Reset\Confirm
  */
 class ForgotPasswordFormBuilder extends FormBuilder
 {
@@ -27,7 +26,7 @@ class ForgotPasswordFormBuilder extends FormBuilder
      * @var array
      */
     protected $actions = [
-        'submit'
+        'submit',
     ];
 
     /**
@@ -36,6 +35,6 @@ class ForgotPasswordFormBuilder extends FormBuilder
      * @var array
      */
     protected $options = [
-        'redirect' => '/'
+        'redirect' => '/',
     ];
 }

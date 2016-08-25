@@ -6,7 +6,6 @@
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\UsersModule\User\Support\MultipleFieldType
  */
 class ValueTableBuilder extends \Anomaly\MultipleFieldType\Table\ValueTableBuilder
 {
@@ -21,7 +20,7 @@ class ValueTableBuilder extends \Anomaly\MultipleFieldType\Table\ValueTableBuild
         'username',
         'email',
         'status' => [
-            'value' => 'entry.status_label'
-        ]
+            'value' => 'entry.status_label',
+        ],
     ];
 }

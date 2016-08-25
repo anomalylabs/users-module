@@ -4,17 +4,17 @@ return [
     'users'    => [
         'read',
         'write',
-        'delete'
+        'delete',
     ],
     'roles'    => [
         'read',
         'write',
-        'delete'
+        'delete',
     ],
     'fields'   => [
-        'manage'
+        'manage',
     ],
     'settings' => [
-        'manage'
-    ]
+        'manage',
+    ],
 ];

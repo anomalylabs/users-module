@@ -20,7 +20,7 @@ class AnomalyModuleUsersCreateUsersStream extends Migration
     protected $stream = [
         'slug'         => 'users',
         'title_column' => 'display_name',
-        'trashable'    => true
+        'trashable'    => true,
     ];
 
     /**
@@ -31,20 +31,20 @@ class AnomalyModuleUsersCreateUsersStream extends Migration
     protected $assignments = [
         'email'        => [
             'required' => true,
-            'unique'   => true
+            'unique'   => true,
         ],
         'username'     => [
             'required' => true,
-            'unique'   => true
+            'unique'   => true,
         ],
         'password'     => [
-            'required' => true
+            'required' => true,
         ],
         'roles'        => [
-            'required' => true
+            'required' => true,
         ],
         'display_name' => [
-            'required' => true
+            'required' => true,
         ],
         'first_name',
         'last_name',
@@ -56,7 +56,7 @@ class AnomalyModuleUsersCreateUsersStream extends Migration
         'activation_code',
         'reset_code',
         'last_activity_at',
-        'ip_address'
+        'ip_address',
     ];
 
 }

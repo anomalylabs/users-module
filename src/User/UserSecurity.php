@@ -14,7 +14,6 @@ use Illuminate\Routing\Redirector;
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\UsersModule\User
  */
 class UserSecurity
 {
@@ -79,7 +78,7 @@ class UserSecurity
         /* @var SecurityCheckInterface $extension */
         foreach ($extensions as $extension) {
 
-            /**
+            /*
              * If the security check does not return
              * false then we can assume it passed.
              */
@@ -101,7 +100,7 @@ class UserSecurity
     /**
      * Check authorization.
      *
-     * @param UserInterface $user
+     * @param  UserInterface                                       $user
      * @return bool|\Illuminate\Http\RedirectResponse|mixed|string
      */
     public function check(UserInterface $user = null)
@@ -111,7 +110,7 @@ class UserSecurity
         /* @var SecurityCheckInterface $extension */
         foreach ($extensions as $extension) {
 
-            /**
+            /*
              * If the security check does not return
              * false then we can assume it passed.
              */

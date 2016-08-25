@@ -13,5 +13,5 @@ return [
     'add_field'      => 'Feld hinzufügen',
     'deactivate'     => 'Deaktivieren',
     'permissions'    => 'Berechtigungen',
-    'reset_password' => 'Passwort zurücksetzen'
+    'reset_password' => 'Passwort zurücksetzen',
 ];

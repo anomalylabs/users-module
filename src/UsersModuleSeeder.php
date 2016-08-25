@@ -10,7 +10,6 @@ use Anomaly\UsersModule\User\UserSeeder;
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\UsersModule
  */
 class UsersModuleSeeder extends Seeder
 {

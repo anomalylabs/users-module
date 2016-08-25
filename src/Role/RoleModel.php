@@ -10,7 +10,6 @@ use Anomaly\UsersModule\User\UserCollection;
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\UsersModule\RoleInterface
  */
 class RoleModel extends UsersRolesEntryModel implements RoleInterface
 {
@@ -28,7 +27,7 @@ class RoleModel extends UsersRolesEntryModel implements RoleInterface
      * @var array
      */
     protected $with = [
-        'translations'
+        'translations',
     ];
 
     /**
@@ -64,7 +63,7 @@ class RoleModel extends UsersRolesEntryModel implements RoleInterface
     /**
      * Return if a role as access to a the permission.
      *
-     * @param string $permission
+     * @param  string $permission
      * @return mixed
      */
     public function hasPermission($permission)

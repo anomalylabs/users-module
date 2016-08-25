@@ -12,7 +12,6 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\UsersModule\User
  */
 class UserPassword
 {
@@ -22,7 +21,7 @@ class UserPassword
     /**
      * Start a password reset.
      *
-     * @param UserInterface $user
+     * @param  UserInterface $user
      * @return bool
      */
     public function forgot(UserInterface $user)
@@ -33,9 +32,9 @@ class UserPassword
     /**
      * Reset a user's password.
      *
-     * @param UserInterface $user
-     * @param               $code
-     * @param               $password
+     * @param  UserInterface $user
+     * @param                $code
+     * @param                $password
      * @return bool
      */
     public function reset(UserInterface $user, $code, $password)
@@ -44,8 +43,8 @@ class UserPassword
     }
 
     /**
-     * @param UserInterface $user
-     * @param string        $reset
+     * @param  UserInterface $user
+     * @param  string        $reset
      * @return bool
      */
     public function send(UserInterface $user, $reset = '/')

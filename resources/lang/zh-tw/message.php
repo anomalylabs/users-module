@@ -10,5 +10,5 @@ return [
     'pending_email_activation' => '為了啟動您的帳號，請確認電子郵件是否正確。',
     'invalid_email'            => '找不到使用這個電子郵件的帳戶。',
     'pending_admin_activation' => '您的帳號目前正在等候管理員啟動。',
-    'confirm_reset_password'   => '請檢查您的電子郵件，以完成密碼重置。'
+    'confirm_reset_password'   => '請檢查您的電子郵件，以完成密碼重置。',
 ];

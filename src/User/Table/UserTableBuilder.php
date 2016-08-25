@@ -9,7 +9,6 @@ use Anomaly\UsersModule\User\Table\Filter\StatusFilterQuery;
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\UsersModule\User\Table
  */
 class UserTableBuilder extends TableBuilder
 {
@@ -20,7 +19,7 @@ class UserTableBuilder extends TableBuilder
      * @var array
      */
     public $actions = [
-        'delete'
+        'delete',
     ];
 
     /**
@@ -34,8 +33,8 @@ class UserTableBuilder extends TableBuilder
             'fields' => [
                 'display_name',
                 'username',
-                'email'
-            ]
+                'email',
+            ],
         ],
         'roles',
         'status' => [
@@ -44,9 +43,9 @@ class UserTableBuilder extends TableBuilder
             'options' => [
                 'active'   => 'anomaly.module.users::field.status.option.active',
                 'inactive' => 'anomaly.module.users::field.status.option.inactive',
-                'disabled' => 'anomaly.module.users::field.status.option.disabled'
-            ]
-        ]
+                'disabled' => 'anomaly.module.users::field.status.option.disabled',
+            ],
+        ],
     ];
 
     /**
@@ -59,8 +58,8 @@ class UserTableBuilder extends TableBuilder
         'username',
         'email',
         'status' => [
-            'value' => 'entry.status_label'
-        ]
+            'value' => 'entry.status_label',
+        ],
     ];
 
     /**
@@ -73,8 +72,8 @@ class UserTableBuilder extends TableBuilder
         'permissions' => [
             'button' => 'info',
             'icon'   => 'lock',
-            'href'   => 'admin/users/permissions/{entry.id}'
-        ]
+            'href'   => 'admin/users/permissions/{entry.id}',
+        ],
     ];
 
 }

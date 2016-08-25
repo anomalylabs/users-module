@@ -2,5 +2,5 @@
 
 return [
     'general' => '一般',
-    'profile' => '個資'
+    'profile' => '個資',
 ];

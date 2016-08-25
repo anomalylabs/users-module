@@ -9,7 +9,6 @@ use Anomaly\UsersModule\User\Contract\UserInterface;
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\UsersModule\User
  */
 class UserPresenter extends EntryPresenter
 {
@@ -35,7 +34,7 @@ class UserPresenter extends EntryPresenter
     /**
      * Return the user gravatar.
      *
-     * @param array $parameters
+     * @param  array  $parameters
      * @return string
      */
     public function gravatar($parameters = [])
@@ -48,7 +47,7 @@ class UserPresenter extends EntryPresenter
     /**
      * Return the user's status as a label.
      *
-     * @param string $size
+     * @param  string      $size
      * @return null|string
      */
     public function statusLabel($size = 'sm')

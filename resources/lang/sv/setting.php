@@ -4,7 +4,7 @@ return [
     'allow_registration' => [
         'label'        => 'Tillåt Registrering',
         'instructions' => 'Tillåt användare att registrera sig själva genom webbsidan?',
-        'text'         => 'Ja, tillåt öppen registrering av användare'
+        'text'         => 'Ja, tillåt öppen registrering av användare',
     ],
     'activation_mode'    => [
         'label'        => 'Aktiveringsläge',
@@ -12,8 +12,8 @@ return [
         'option'       => [
             'manual'    => 'Kräv att en administratör manuellt aktiverar användaren.',
             'email'     => 'Skicka ett aktiveringsmejl till användaren.',
-            'automatic' => 'Aktivera användaren automatiskt efter registrering.'
-        ]
+            'automatic' => 'Aktivera användaren automatiskt efter registrering.',
+        ],
     ],
     'profile_visibility' => [
         'label'        => 'Profilsynlighet',
@@ -22,7 +22,7 @@ return [
             'everyone' => 'Alla kan titta på offentliga användarprofiler.',
             'owner'    => 'Bara profilägaren själv kan se sin profil.',
             'disabled' => 'Inaktivera detta.',
-            'users'    => 'Alla inloggade användare kan se andra användares profiler.'
-        ]
-    ]
+            'users'    => 'Alla inloggade användare kan se andra användares profiler.',
+        ],
+    ],
 ];

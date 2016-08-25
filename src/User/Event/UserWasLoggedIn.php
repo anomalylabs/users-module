@@ -8,7 +8,6 @@ use Anomaly\UsersModule\User\Contract\UserInterface;
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\UsersModule\User\Event
  */
 class UserWasLoggedIn
 {

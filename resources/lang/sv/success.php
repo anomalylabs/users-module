@@ -6,5 +6,5 @@ return [
     'activate_users'  => ':count användare har aktiverats.',
     'suspend_users'   => ':count användare har stängts av.',
     'reinstate_users' => ':count användare har blivit återinsatta.',
-    'reset_passwords' => ':count lösenordsåterställning(ar) har skickats.'
+    'reset_passwords' => ':count lösenordsåterställning(ar) har skickats.',
 ];

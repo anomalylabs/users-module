@@ -8,7 +8,6 @@ use Anomaly\UsersModule\User\UserModel;
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\UsersModule\User\Form
  */
 class UserFormFields
 {
@@ -30,12 +29,12 @@ class UserFormFields
                 'value'    => '',
                 'required' => false,
                 'rules'    => [
-                    'required_if:password,*'
-                ]
+                    'required_if:password,*',
+                ],
             ],
             'activated',
             'enabled',
-            'roles'
+            'roles',
         ];
 
         $assignments = $users->getAssignments();

@@ -10,7 +10,6 @@ use Anomaly\UsersModule\User\Contract\UserInterface;
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\UsersModule\User\Authenticator
  */
 class AuthenticatorExtension extends Extension implements AuthenticatorExtensionInterface
 {
@@ -18,7 +17,7 @@ class AuthenticatorExtension extends Extension implements AuthenticatorExtension
     /**
      * Authenticate a set of credentials.
      *
-     * @param array $credentials
+     * @param  array              $credentials
      * @return null|UserInterface
      */
     public function authenticate(array $credentials)

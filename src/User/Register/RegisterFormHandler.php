@@ -14,7 +14,6 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\UsersModule\User\Register
  */
 class RegisterFormHandler
 {
@@ -24,9 +23,9 @@ class RegisterFormHandler
     /**
      * Handle the form.
      *
-     * @param Repository          $config
-     * @param RegisterFormBuilder $builder
-     * @param UserActivator       $activator
+     * @param  Repository          $config
+     * @param  RegisterFormBuilder $builder
+     * @param  UserActivator       $activator
      * @throws \Exception
      */
     public function handle(Repository $config, RegisterFormBuilder $builder, UserActivator $activator)

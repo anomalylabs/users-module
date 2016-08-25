@@ -3,5 +3,5 @@
 return [
     'online'   => 'Actif',
     'inactive' => 'Inactif',
-    'enabled'  => 'Activé'
+    'enabled'  => 'Activé',
 ];

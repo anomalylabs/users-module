@@ -2,7 +2,7 @@
 
 use Anomaly\UsersModule\User\Contract\UserRepositoryInterface;
 use Illuminate\Contracts\Auth\Guard;
-use Illuminate\Contracts\Bus\SelfHandling;
+
 
 /**
  * Class GetUser
@@ -10,9 +10,8 @@ use Illuminate\Contracts\Bus\SelfHandling;
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\UsersModule\User\Command
  */
-class GetUser implements SelfHandling
+class GetUser
 {
 
     /**
@@ -35,8 +34,8 @@ class GetUser implements SelfHandling
     /**
      * Handle the command.
      *
-     * @param UserRepositoryInterface $users
-     * @param Guard                   $auth
+     * @param  UserRepositoryInterface                                                                          $users
+     * @param  Guard                                                                                            $auth
      * @return \Anomaly\UsersModule\User\Contract\UserInterface|\Illuminate\Contracts\Auth\Authenticatable|null
      */
     public function handle(UserRepositoryInterface $users, Guard $auth)

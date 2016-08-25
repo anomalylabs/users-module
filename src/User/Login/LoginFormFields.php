@@ -8,7 +8,6 @@ use Illuminate\Contracts\Config\Repository;
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\UsersModule\User\Login
  */
 class LoginFormFields
 {
@@ -28,16 +27,16 @@ class LoginFormFields
                 'username' => [
                     'label'    => 'anomaly.module.users::field.username.name',
                     'type'     => 'anomaly.field_type.text',
-                    'required' => true
-                ]
+                    'required' => true,
+                ],
             ];
         } else {
             $login = [
                 'email' => [
                     'label'    => 'anomaly.module.users::field.email.name',
                     'type'     => 'anomaly.field_type.email',
-                    'required' => true
-                ]
+                    'required' => true,
+                ],
             ];
         }
 
@@ -50,26 +49,26 @@ class LoginFormFields
                         'type'       => 'anomaly.field_type.text',
                         'required'   => true,
                         'config'     => [
-                            'type' => 'password'
+                            'type' => 'password',
                         ],
                         'rules'      => [
-                            'valid_credentials'
+                            'valid_credentials',
                         ],
                         'validators' => [
                             'valid_credentials' => [
                                 'handler' => 'Anomaly\UsersModule\User\Validation\ValidateCredentials@handle',
-                                'message' => 'anomaly.module.users::message.invalid_login'
-                            ]
-                        ]
+                                'message' => 'anomaly.module.users::message.invalid_login',
+                            ],
+                        ],
                     ],
                     'remember_me' => [
                         'label'  => false,
                         'type'   => 'anomaly.field_type.boolean',
                         'config' => [
                             'mode'  => 'checkbox',
-                            'label' => 'anomaly.module.users::field.remember_me.name'
-                        ]
-                    ]
+                            'label' => 'anomaly.module.users::field.remember_me.name',
+                        ],
+                    ],
                 ]
             )
         );

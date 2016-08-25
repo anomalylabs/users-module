@@ -6,7 +6,6 @@
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\UsersModule\User\Password
  */
 class ForgotPasswordFormFields
 {
@@ -25,15 +24,15 @@ class ForgotPasswordFormFields
                     'label'      => 'anomaly.module.users::field.email.name',
                     'required'   => true,
                     'rules'      => [
-                        'valid_email'
+                        'valid_email',
                     ],
                     'validators' => [
                         'valid_email' => [
                             'handler' => 'Anomaly\UsersModule\User\Validation\ValidateEmail@handle',
-                            'message' => 'anomaly.module.users::message.invalid_email'
-                        ]
-                    ]
-                ]
+                            'message' => 'anomaly.module.users::message.invalid_email',
+                        ],
+                    ],
+                ],
             ]
         );
     }

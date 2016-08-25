@@ -5,6 +5,6 @@ return [
         'title'       => 'username',
         'description' => 'email',
         //'view_path'   => 'entry.path',
-        'edit_path'   => 'admin/users/edit/{entry.id}'
-    ]
+        'edit_path'   => 'admin/users/edit/{entry.id}',
+    ],
 ];

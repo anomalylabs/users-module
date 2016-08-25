@@ -9,7 +9,6 @@ use Anomaly\UsersModule\User\Login\LoginFormBuilder;
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\UsersModule\User\Validation
  */
 class ValidateCredentials
 {
@@ -17,8 +16,8 @@ class ValidateCredentials
     /**
      * Handle the validation.
      *
-     * @param UserRepositoryInterface $users
-     * @param LoginFormBuilder        $builder
+     * @param  UserRepositoryInterface $users
+     * @param  LoginFormBuilder        $builder
      * @return bool
      */
     public function handle(UserRepositoryInterface $users, LoginFormBuilder $builder)

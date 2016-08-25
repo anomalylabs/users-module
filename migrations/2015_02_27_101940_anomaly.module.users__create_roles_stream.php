@@ -21,7 +21,7 @@ class AnomalyModuleUsersCreateRolesStream extends Migration
         'slug'         => 'roles',
         'title_column' => 'name',
         'translatable' => true,
-        'trashable'    => true
+        'trashable'    => true,
     ];
 
     /**
@@ -32,16 +32,16 @@ class AnomalyModuleUsersCreateRolesStream extends Migration
     protected $assignments = [
         'name'        => [
             'required'     => true,
-            'translatable' => true
+            'translatable' => true,
         ],
         'slug'        => [
             'required' => true,
-            'unique'   => true
+            'unique'   => true,
         ],
         'description' => [
-            'translatable' => true
+            'translatable' => true,
         ],
-        'permissions'
+        'permissions',
     ];
 
 }

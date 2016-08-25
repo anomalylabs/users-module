@@ -2,7 +2,7 @@
 
 use Anomaly\Streams\Platform\Support\Authorizer;
 use Anomaly\UsersModule\Role\Contract\RoleRepositoryInterface;
-use Illuminate\Contracts\Bus\SelfHandling;
+
 
 /**
  * Class SetGuestRole
@@ -10,9 +10,8 @@ use Illuminate\Contracts\Bus\SelfHandling;
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\UsersModule\Role\Command
  */
-class SetGuestRole implements SelfHandling
+class SetGuestRole
 {
 
     /**

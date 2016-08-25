@@ -2,9 +2,9 @@
 
 return [
     'users' => [
-        'name' => '用户'
+        'name' => '用户',
     ],
     'roles' => [
-        'name' => '角色'
-    ]
+        'name' => '角色',
+    ],
 ];

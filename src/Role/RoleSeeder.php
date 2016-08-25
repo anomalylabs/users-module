@@ -9,7 +9,6 @@ use Anomaly\UsersModule\Role\Contract\RoleRepositoryInterface;
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\UsersModule\Role
  */
 class RoleSeeder extends Seeder
 {
@@ -42,9 +41,9 @@ class RoleSeeder extends Seeder
             [
                 'en'   => [
                     'name'        => 'Admin',
-                    'description' => 'The super admin role.'
+                    'description' => 'The super admin role.',
                 ],
-                'slug' => 'admin'
+                'slug' => 'admin',
             ]
         );
 
@@ -52,9 +51,9 @@ class RoleSeeder extends Seeder
             [
                 'en'   => [
                     'name'        => 'User',
-                    'description' => 'The default user role.'
+                    'description' => 'The default user role.',
                 ],
-                'slug' => 'user'
+                'slug' => 'user',
             ]
         );
 
@@ -62,9 +61,9 @@ class RoleSeeder extends Seeder
             [
                 'en'   => [
                     'name'        => 'Guest',
-                    'description' => 'The fallback role for non-users.'
+                    'description' => 'The fallback role for non-users.',
                 ],
-                'slug' => 'guest'
+                'slug' => 'guest',
             ]
         );
     }

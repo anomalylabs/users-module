@@ -10,5 +10,5 @@ return [
     'pending_email_activation' => 'Please confirm your email to activate your account.',
     'invalid_email'            => 'An account with the provided email could not be found.',
     'pending_admin_activation' => 'Your account is pending activation from an administrator.',
-    'confirm_reset_password'   => 'Please check your email to finish resetting your password.'
+    'confirm_reset_password'   => 'Please check your email to finish resetting your password.',
 ];

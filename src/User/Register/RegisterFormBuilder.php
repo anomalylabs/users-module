@@ -10,7 +10,6 @@ use Anomaly\UsersModule\User\Register\Command\SetOptions;
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\UsersModule\User\Register
  */
 class RegisterFormBuilder extends FormBuilder
 {
@@ -21,7 +20,7 @@ class RegisterFormBuilder extends FormBuilder
      * @var array
      */
     protected $roles = [
-        'user'
+        'user',
     ];
 
     /**
@@ -38,16 +37,16 @@ class RegisterFormBuilder extends FormBuilder
      */
     protected $fields = [
         'display_name' => [
-            'instructions' => false
+            'instructions' => false,
         ],
         'username'     => [
-            'instructions' => false
+            'instructions' => false,
         ],
         'email'        => [
-            'instructions' => false
+            'instructions' => false,
         ],
         'password'     => [
-            'instructions' => false
+            'instructions' => false,
         ],
     ];
 
@@ -58,8 +57,8 @@ class RegisterFormBuilder extends FormBuilder
      */
     protected $actions = [
         'blue' => [
-            'text' => 'anomaly.module.users::button.register'
-        ]
+            'text' => 'anomaly.module.users::button.register',
+        ],
     ];
 
     /**
@@ -72,7 +71,7 @@ class RegisterFormBuilder extends FormBuilder
         'success_message'   => 'anomaly.module.users::success.user_registered',
         'pending_message'   => 'anomaly.module.users::message.pending_admin_activation',
         'confirm_message'   => 'anomaly.module.users::message.pending_email_activation',
-        'activated_message' => 'anomaly.module.users::message.account_activated'
+        'activated_message' => 'anomaly.module.users::message.account_activated',
     ];
 
     /**

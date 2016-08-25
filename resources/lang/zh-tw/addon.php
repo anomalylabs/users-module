@@ -7,6 +7,6 @@ return [
     'section'     => [
         'users'  => '用戶',
         'roles'  => '角色',
-        'fields' => '欄位'
-    ]
+        'fields' => '欄位',
+    ],
 ];

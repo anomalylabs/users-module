@@ -11,10 +11,10 @@ return [
         'permissions' => 'Permisos',
         'activate'    => 'Activar',
         'unblock'     => 'Desbloquear',
-        'block'       => 'Bloquear'
+        'block'       => 'Bloquear',
     ],
     'roles'    => [
         'label'       => 'Administración de roles',
-        'permissions' => 'Permisos'
-    ]
+        'permissions' => 'Permisos',
+    ],
 ];

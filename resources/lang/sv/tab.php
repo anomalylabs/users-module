@@ -2,5 +2,5 @@
 
 return [
     'general' => 'Allmänt',
-    'profile' => 'Profil'
+    'profile' => 'Profil',
 ];

@@ -10,7 +10,6 @@ use Illuminate\Contracts\Auth\Guard;
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\UsersModule\Http\Controller
  */
 class LoginController extends PublicController
 {
@@ -28,8 +27,8 @@ class LoginController extends PublicController
     /**
      * Logout the active user.
      *
-     * @param UserAuthenticator $authenticator
-     * @param Guard             $auth
+     * @param  UserAuthenticator                 $authenticator
+     * @param  Guard                             $auth
      * @return \Illuminate\Http\RedirectResponse
      */
     public function logout(UserAuthenticator $authenticator, Guard $auth)

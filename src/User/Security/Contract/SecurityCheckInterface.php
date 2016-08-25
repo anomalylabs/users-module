@@ -9,7 +9,6 @@ use Symfony\Component\HttpFoundation\Response;
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\UsersModule\User\Security\Contract
  */
 interface SecurityCheckInterface
 {
@@ -24,7 +23,7 @@ interface SecurityCheckInterface
     /**
      * Check an HTTP request.
      *
-     * @param UserInterface $user
+     * @param  UserInterface $user
      * @return bool|Response
      */
     public function check(UserInterface $user = null);

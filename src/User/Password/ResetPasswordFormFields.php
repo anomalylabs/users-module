@@ -6,7 +6,6 @@
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\UsersModule\User\Password
  */
 class ResetPasswordFormFields
 {
@@ -50,11 +49,11 @@ class ResetPasswordFormFields
                     'label'    => 'anomaly.module.users::field.password.name',
                     'required' => true,
                     'rules'    => [
-                        'confirmed'
+                        'confirmed',
                     ],
                     'config'   => [
-                        'type' => 'password'
-                    ]
+                        'type' => 'password',
+                    ],
                 ],
                 [
                     'field'    => 'password_confirmation',
@@ -62,9 +61,9 @@ class ResetPasswordFormFields
                     'label'    => 'anomaly.module.users::field.confirm_password.name',
                     'required' => true,
                     'config'   => [
-                        'type' => 'password'
+                        'type' => 'password',
                     ],
-                ]
+                ],
             ]
         );
     }

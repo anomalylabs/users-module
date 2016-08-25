@@ -2,5 +2,5 @@
 
 return [
     'general' => '一般',
-    'profile' => '个资'
+    'profile' => '个资',
 ];

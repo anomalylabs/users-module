@@ -2,5 +2,5 @@
 
 return [
     'reset_password' => 'Your password could not be reset.',
-    'activate_user'  => 'Your account could not be activated.'
+    'activate_user'  => 'Your account could not be activated.',
 ];

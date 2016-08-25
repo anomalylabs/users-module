@@ -1,12 +1,12 @@
 <?php
 
 return [
-    'title' => 'Utenti',
-    'name' => 'Modulo Utenti',
+    'title'       => 'Utenti',
+    'name'        => 'Modulo Utenti',
     'description' => 'Gestisci utenti, ruoli e permessi',
-    'section' => [
+    'section'     => [
         'users' => 'Utenti',
-    'roles' => 'Ruoli',
-    'fields' => 'Campi',
+    'roles'     => 'Ruoli',
+    'fields'    => 'Campi',
     ],
 ];

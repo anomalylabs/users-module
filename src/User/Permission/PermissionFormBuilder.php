@@ -14,7 +14,6 @@ use Illuminate\Routing\Redirector;
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\UsersModule\User\Permission
  */
 class PermissionFormBuilder extends FormBuilder
 {
@@ -48,8 +47,8 @@ class PermissionFormBuilder extends FormBuilder
      */
     protected $actions = [
         'save' => [
-            'href' => 'admin/users/permissions/{request.route.parameters.id}'
-        ]
+            'href' => 'admin/users/permissions/{request.route.parameters.id}',
+        ],
     ];
 
     /**
@@ -59,16 +58,16 @@ class PermissionFormBuilder extends FormBuilder
      */
     protected $options = [
         'breadcrumb' => false,
-        'permission' => 'anomaly.module.users::users.permissions'
+        'permission' => 'anomaly.module.users::users.permissions',
     ];
 
     /**
      * Fired when builder is ready to build.
      *
-     * @param UserRepositoryInterface $users
-     * @param BreadcrumbCollection    $breadcrumbs
-     * @param MessageBag              $messages
-     * @param Redirector              $redirect
+     * @param  UserRepositoryInterface           $users
+     * @param  BreadcrumbCollection              $breadcrumbs
+     * @param  MessageBag                        $messages
+     * @param  Redirector                        $redirect
      * @return \Illuminate\Http\RedirectResponse
      */
     public function onReady(
@@ -119,7 +118,7 @@ class PermissionFormBuilder extends FormBuilder
     /**
      * Set the addon.
      *
-     * @param Addon $addon
+     * @param  Addon $addon
      * @return $this
      */
     public function setAddon(Addon $addon)

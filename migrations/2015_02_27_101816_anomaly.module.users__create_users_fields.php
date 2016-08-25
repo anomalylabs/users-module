@@ -22,14 +22,14 @@ class AnomalyModuleUsersCreateUsersFields extends Migration
         'username'                   => [
             'type'   => 'anomaly.field_type.slug',
             'config' => [
-                'type' => '_'
-            ]
+                'type' => '_',
+            ],
         ],
         'password'                   => [
             'type'   => 'anomaly.field_type.text',
             'config' => [
-                'type' => 'password'
-            ]
+                'type' => 'password',
+            ],
         ],
         'remember_token'             => 'anomaly.field_type.text',
         'ip_address'                 => 'anomaly.field_type.text',
@@ -48,27 +48,27 @@ class AnomalyModuleUsersCreateUsersFields extends Migration
         'activated'                  => [
             'type'   => 'anomaly.field_type.boolean',
             'config' => [
-                'default_value' => false
-            ]
+                'default_value' => false,
+            ],
         ],
         'enabled'                    => [
             'type'   => 'anomaly.field_type.boolean',
             'config' => [
-                'default_value' => true
-            ]
+                'default_value' => true,
+            ],
         ],
         'slug'                       => [
             'type'   => 'anomaly.field_type.slug',
             'config' => [
-                'slugify' => 'name'
-            ]
+                'slugify' => 'name',
+            ],
         ],
         'roles'                      => [
             'type'   => 'anomaly.field_type.multiple',
             'config' => [
-                'related' => 'Anomaly\UsersModule\Role\RoleModel'
-            ]
-        ]
+                'related' => 'Anomaly\UsersModule\Role\RoleModel',
+            ],
+        ],
     ];
 
 }

@@ -3,29 +3,29 @@
 return [
     'users' => [
         'name' => 'Felhasználók',
-    'option' => [
+    'option'   => [
         'read' => 'Hozzáférhet a felhasználók részhez.',
-    'write' => 'Létrehozhat és szerkeszthet felhasználókat.',
-    'delete' => 'Törölhet felhasználókat.',
+    'write'    => 'Létrehozhat és szerkeszthet felhasználókat.',
+    'delete'   => 'Törölhet felhasználókat.',
     ],
     ],
     'roles' => [
         'name' => 'Szerepek',
-    'option' => [
+    'option'   => [
         'read' => 'Hozzáférhet a szerepek részhez.',
-    'write' => 'Létrehozhat és szerkeszthet szerepeket.',
-    'delete' => 'Törölhet szerepeket.',
+    'write'    => 'Létrehozhat és szerkeszthet szerepeket.',
+    'delete'   => 'Törölhet szerepeket.',
     ],
     ],
     'fields' => [
         'name' => 'Mezők',
-    'option' => [
+    'option'   => [
         'manage' => 'Kezelhet egyéni mezőket.',
     ],
     ],
     'settings' => [
         'name' => 'Beállítások',
-    'option' => [
+    'option'   => [
         'manage' => 'Kezelheti a kiegészítők beállításait.',
     ],
     ],

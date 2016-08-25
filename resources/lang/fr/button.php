@@ -9,5 +9,5 @@ return [
     'new_role'       => 'Nouveau rôle',
     'add_field'      => 'Ajouter champs',
     'permissions'    => 'Permissions',
-    'reset_password' => 'Réinitialiser mot de passe'
+    'reset_password' => 'Réinitialiser mot de passe',
 ];

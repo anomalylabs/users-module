@@ -14,7 +14,6 @@ use Illuminate\Routing\Route;
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\UsersModule\Http\Middleware
  */
 class AuthorizeRoutePermission
 {
@@ -49,7 +48,7 @@ class AuthorizeRoutePermission
     /**
      * Create a new AuthorizeModuleAccess instance.
      *
-     * @param Route $route
+     * @param Route      $route
      * @param Redirector $redirect
      * @param MessageBag $messages
      * @param Authorizer $authorizer
@@ -70,8 +69,8 @@ class AuthorizeRoutePermission
     /**
      * Check the authorization of module access.
      *
-     * @param  Request $request
-     * @param  \Closure $next
+     * @param  Request                           $request
+     * @param  \Closure                          $next
      * @return \Illuminate\Http\RedirectResponse
      */
     public function handle(Request $request, Closure $next)

@@ -9,5 +9,5 @@ return [
     'deactivate' => 'Desactivar',
     'new_user'   => 'Nuevo Usuario',
     'new_role'   => 'Nuevo rol',
-    'new_field'  => 'Nuevo Campo'
+    'new_field'  => 'Nuevo Campo',
 ];

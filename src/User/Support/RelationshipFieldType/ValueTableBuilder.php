@@ -6,7 +6,6 @@
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\UsersModule\User\Support\RelationshipFieldType
  */
 class ValueTableBuilder extends \Anomaly\RelationshipFieldType\Table\ValueTableBuilder
 {
@@ -21,7 +20,7 @@ class ValueTableBuilder extends \Anomaly\RelationshipFieldType\Table\ValueTableB
         'username',
         'email',
         'status' => [
-            'value' => 'entry.status_label'
-        ]
+            'value' => 'entry.status_label',
+        ],
     ];
 }

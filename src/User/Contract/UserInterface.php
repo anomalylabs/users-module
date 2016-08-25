@@ -11,7 +11,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\UsersModule\User\Contract
  */
 interface UserInterface extends EntryInterface
 {
@@ -93,8 +92,8 @@ interface UserInterface extends EntryInterface
     /**
      * Return whether a user or it's roles has a permission.
      *
-     * @param      $permission
-     * @param bool $checkRoles
+     * @param        $permission
+     * @param  bool  $checkRoles
      * @return mixed
      */
     public function hasPermission($permission, $checkRoles = true);

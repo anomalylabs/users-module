@@ -9,7 +9,6 @@ use Anomaly\UsersModule\Role\Contract\RoleInterface;
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\UsersModule\Role
  */
 class RoleCollection extends EntryCollection
 {
@@ -49,7 +48,7 @@ class RoleCollection extends EntryCollection
     /**
      * Return if a role as access to a the permission.
      *
-     * @param string $permission
+     * @param  string         $permission
      * @return RoleCollection
      */
     public function hasPermission($permission)

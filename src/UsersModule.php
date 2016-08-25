@@ -9,7 +9,6 @@ use Anomaly\UsersModule\Role\Command\SetGuestRole;
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\UsersModule
  */
 class UsersModule extends Module
 {
@@ -29,23 +28,23 @@ class UsersModule extends Module
     protected $sections = [
         'users'  => [
             'buttons' => [
-                'new_user'
-            ]
+                'new_user',
+            ],
         ],
         'roles'  => [
             'buttons' => [
-                'new_role'
-            ]
+                'new_role',
+            ],
         ],
         'fields' => [
             'buttons' => [
                 'add_field' => [
                     'data-toggle' => 'modal',
                     'data-target' => '#modal',
-                    'href'        => 'admin/users/fields/choose'
-                ]
-            ]
-        ]
+                    'href'        => 'admin/users/fields/choose',
+                ],
+            ],
+        ],
     ];
 
     /**

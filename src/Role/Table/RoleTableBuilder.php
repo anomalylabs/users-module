@@ -8,7 +8,6 @@ use Anomaly\Streams\Platform\Ui\Table\TableBuilder;
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\UsersModule\RoleInterface\Table
  */
 class RoleTableBuilder extends TableBuilder
 {
@@ -23,9 +22,9 @@ class RoleTableBuilder extends TableBuilder
             'fields' => [
                 'name',
                 'slug',
-                'description'
-            ]
-        ]
+                'description',
+            ],
+        ],
     ];
 
     /**
@@ -35,7 +34,7 @@ class RoleTableBuilder extends TableBuilder
      */
     protected $columns = [
         'name',
-        'description'
+        'description',
     ];
 
     /**
@@ -48,8 +47,8 @@ class RoleTableBuilder extends TableBuilder
         'permissions' => [
             'button' => 'info',
             'icon'   => 'lock',
-            'href'   => 'admin/users/roles/permissions/{entry.id}'
-        ]
+            'href'   => 'admin/users/roles/permissions/{entry.id}',
+        ],
     ];
 
     /**
@@ -58,7 +57,7 @@ class RoleTableBuilder extends TableBuilder
      * @var array
      */
     protected $actions = [
-        'delete'
+        'delete',
     ];
 
 }

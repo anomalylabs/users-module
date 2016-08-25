@@ -7,6 +7,6 @@ return [
         'users'    => 'Usuarios',
         'roles'    => 'Roles',
         'fields'   => 'Campos',
-        'settings' => 'Configuraciones'
-    ]
+        'settings' => 'Configuraciones',
+    ],
 ];

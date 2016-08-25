@@ -11,7 +11,6 @@ use Anomaly\UsersModule\User\Contract\UserRepositoryInterface;
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\UsersModule\User
  */
 class UserSeeder extends Seeder
 {
@@ -70,7 +69,7 @@ class UserSeeder extends Seeder
                 'display_name' => 'Administrator',
                 'email'        => env('ADMIN_EMAIL'),
                 'username'     => env('ADMIN_USERNAME'),
-                'password'     => env('ADMIN_PASSWORD')
+                'password'     => env('ADMIN_PASSWORD'),
             ]
         );
 
@@ -80,7 +79,7 @@ class UserSeeder extends Seeder
                 'display_name' => 'Demo User',
                 'email'        => 'demo@pyrocms.com',
                 'password'     => 'password',
-                'username'     => 'demo'
+                'username'     => 'demo',
             ]
         );
 

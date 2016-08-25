@@ -10,7 +10,6 @@ use Anomaly\UsersModule\User\Contract\UserRepositoryInterface;
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\UsersModule\User
  */
 class UserRepository extends EntryRepository implements UserRepositoryInterface
 {
@@ -35,7 +34,7 @@ class UserRepository extends EntryRepository implements UserRepositoryInterface
     /**
      * Find a user by their credentials.
      *
-     * @param array $credentials
+     * @param  array              $credentials
      * @return null|UserInterface
      */
     public function findByCredentials(array $credentials)
@@ -102,7 +101,7 @@ class UserRepository extends EntryRepository implements UserRepositoryInterface
     /**
      * Touch a user's last activity and IP.
      *
-     * @param UserInterface $user
+     * @param  UserInterface $user
      * @return bool
      */
     public function touchLastActivity(UserInterface $user)
@@ -116,7 +115,7 @@ class UserRepository extends EntryRepository implements UserRepositoryInterface
     /**
      * Touch a user's last login.
      *
-     * @param UserInterface $user
+     * @param  UserInterface $user
      * @return bool
      */
     public function touchLastLogin(UserInterface $user)

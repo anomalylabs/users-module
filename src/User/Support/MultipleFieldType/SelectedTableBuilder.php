@@ -6,7 +6,6 @@
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\UsersModule\User\Support\MultipleFieldType
  */
 class SelectedTableBuilder extends \Anomaly\MultipleFieldType\Table\SelectedTableBuilder
 {
@@ -21,7 +20,7 @@ class SelectedTableBuilder extends \Anomaly\MultipleFieldType\Table\SelectedTabl
         'username',
         'email',
         'status' => [
-            'value' => 'entry.status_label'
-        ]
+            'value' => 'entry.status_label',
+        ],
     ];
 }

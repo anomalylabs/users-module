@@ -14,7 +14,6 @@ use Illuminate\Routing\Redirector;
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\UsersModule\Http\Controller\Admin
  */
 class LoginController extends PublicController
 {
@@ -22,10 +21,10 @@ class LoginController extends PublicController
     /**
      * Return the admin login form.
      *
-     * @param LoginFormBuilder $form
-     * @param Redirector       $redirect
-     * @param Repository       $config
-     * @param Guard            $auth
+     * @param  LoginFormBuilder                                                             $form
+     * @param  Redirector                                                                   $redirect
+     * @param  Repository                                                                   $config
+     * @param  Guard                                                                        $auth
      * @return \Illuminate\Http\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function login(
@@ -35,7 +34,7 @@ class LoginController extends PublicController
         Repository $config,
         Guard $auth
     ) {
-        /**
+        /*
          * If we're already logged in
          * proceed to the dashboard.
          *
@@ -55,8 +54,8 @@ class LoginController extends PublicController
     /**
      * Log the user out.
      *
-     * @param UserAuthenticator $authenticator
-     * @param Guard             $auth
+     * @param  UserAuthenticator                            $authenticator
+     * @param  Guard                                        $auth
      * @return \Illuminate\Http\RedirectResponse|Redirector
      */
     public function logout(UserAuthenticator $authenticator, Guard $auth)

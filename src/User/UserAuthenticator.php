@@ -60,8 +60,8 @@ class UserAuthenticator
     /**
      * Attempt to login a user.
      *
-     * @param array $credentials
-     * @param bool  $remember
+     * @param  array              $credentials
+     * @param  bool               $remember
      * @return bool|UserInterface
      */
     public function attempt(array $credentials, $remember = false)
@@ -79,7 +79,7 @@ class UserAuthenticator
     /**
      * Attempt to authenticate the credentials.
      *
-     * @param array $credentials
+     * @param  array              $credentials
      * @return bool|UserInterface
      */
     public function authenticate(array $credentials)

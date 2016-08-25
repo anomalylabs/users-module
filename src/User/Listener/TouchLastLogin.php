@@ -9,7 +9,6 @@ use Anomaly\UsersModule\User\Event\UserWasLoggedIn;
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\UsersModule\User\Listener
  */
 class TouchLastLogin
 {

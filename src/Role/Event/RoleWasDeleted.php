@@ -8,7 +8,6 @@ use Anomaly\UsersModule\Role\Contract\RoleInterface;
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\UsersModule\RoleInterface\Event
  */
 class RoleWasDeleted
 {

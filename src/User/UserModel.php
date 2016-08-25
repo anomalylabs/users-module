@@ -14,7 +14,6 @@ use Illuminate\Auth\Authenticatable;
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\UsersModule\User
  */
 class UserModel extends UsersUsersEntryModel implements UserInterface, \Illuminate\Contracts\Auth\Authenticatable
 {
@@ -27,7 +26,7 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, \Illumina
      * @var array
      */
     protected $with = [
-        'roles'
+        'roles',
     ];
 
     /**
@@ -36,7 +35,7 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, \Illumina
      * @var array
      */
     protected $hidden = [
-        'password'
+        'password',
     ];
 
     /**
@@ -182,8 +181,8 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, \Illumina
     /**
      * Return whether a user or it's roles has a permission.
      *
-     * @param      $permission
-     * @param bool $checkRoles
+     * @param        $permission
+     * @param  bool  $checkRoles
      * @return mixed
      */
     public function hasPermission($permission, $checkRoles = true)

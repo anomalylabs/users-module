@@ -13,5 +13,5 @@ return [
     'add_field'      => 'Lägg Till Fält',
     'deactivate'     => 'Inaktivera',
     'permissions'    => 'Behörigheter',
-    'reset_password' => 'Återställ Lösenord'
+    'reset_password' => 'Återställ Lösenord',
 ];

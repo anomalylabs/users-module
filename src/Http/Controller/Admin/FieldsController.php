@@ -16,7 +16,6 @@ use Anomaly\UsersModule\User\UserModel;
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\UsersModule\Http\Controller\Admin
  */
 class FieldsController extends AdminController
 {
@@ -24,7 +23,7 @@ class FieldsController extends AdminController
     /**
      * Return an index of existing fields.
      *
-     * @param FieldTableBuilder $table
+     * @param  FieldTableBuilder                          $table
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function index(AssignmentTableBuilder $table, UserModel $users)
@@ -37,7 +36,7 @@ class FieldsController extends AdminController
     /**
      * Choose a field type for creating a field.
      *
-     * @param FieldTypeCollection $fieldTypes
+     * @param  FieldTypeCollection   $fieldTypes
      * @return \Illuminate\View\View
      */
     public function choose(FieldTypeCollection $fieldTypes)
@@ -48,9 +47,9 @@ class FieldsController extends AdminController
     /**
      * Return the form for a new field.
      *
-     * @param FieldFormBuilder    $form
-     * @param UserModel           $users
-     * @param FieldTypeCollection $fieldTypes
+     * @param  FieldFormBuilder                           $form
+     * @param  UserModel                                  $users
+     * @param  FieldTypeCollection                        $fieldTypes
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function create(FieldFormBuilder $form, UserModel $users, FieldTypeCollection $fieldTypes)
@@ -66,10 +65,10 @@ class FieldsController extends AdminController
     /**
      * Return a form to edit the field.
      *
-     * @param AssignmentRepositoryInterface $assignments
-     * @param FieldFormBuilder              $form
-     * @param UserModel                     $model
-     * @param                               $id
+     * @param  AssignmentRepositoryInterface              $assignments
+     * @param  FieldFormBuilder                           $form
+     * @param  UserModel                                  $model
+     * @param                                             $id
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function edit(AssignmentRepositoryInterface $assignments, FieldFormBuilder $form, UserModel $model, $id)

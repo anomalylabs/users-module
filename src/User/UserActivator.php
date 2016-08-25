@@ -13,7 +13,6 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\UsersModule\User
  */
 class UserActivator
 {
@@ -23,7 +22,7 @@ class UserActivator
     /**
      * Start a user activation process.
      *
-     * @param UserInterface $user
+     * @param  UserInterface $user
      * @return bool
      */
     public function start(UserInterface $user)
@@ -34,8 +33,8 @@ class UserActivator
     /**
      * Activate a user by code.
      *
-     * @param UserInterface $user
-     * @param               $code
+     * @param  UserInterface $user
+     * @param                $code
      * @return bool
      */
     public function activate(UserInterface $user, $code)
@@ -46,7 +45,7 @@ class UserActivator
     /**
      * Activate a user by force.
      *
-     * @param UserInterface $user
+     * @param  UserInterface $user
      * @return bool
      */
     public function force(UserInterface $user)
@@ -57,8 +56,8 @@ class UserActivator
     /**
      * Send an activation email.
      *
-     * @param UserInterface $user
-     * @param string        $redirect
+     * @param  UserInterface $user
+     * @param  string        $redirect
      * @return bool
      */
     public function send(UserInterface $user, $redirect = '/')

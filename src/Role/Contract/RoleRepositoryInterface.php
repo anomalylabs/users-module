@@ -10,7 +10,6 @@ use Anomaly\UsersModule\Role\RoleCollection;
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\UsersModule\RoleInterface\Contract
  */
 interface RoleRepositoryInterface extends EntryRepositoryInterface
 {
@@ -41,8 +40,8 @@ interface RoleRepositoryInterface extends EntryRepositoryInterface
     /**
      * Update permissions for a role.
      *
-     * @param RoleInterface $role
-     * @param array         $permissions
+     * @param  RoleInterface $role
+     * @param  array         $permissions
      * @return RoleInterface
      */
     public function updatePermissions(RoleInterface $role, array $permissions);

@@ -1,7 +1,6 @@
 <?php namespace Anomaly\UsersModule\User\Command;
 
 use Anomaly\UsersModule\User\Contract\UserInterface;
-use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Contracts\Config\Repository;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Mail\Mailer;
@@ -13,9 +12,8 @@ use Illuminate\Mail\Message;
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\UsersModule\User\Command
  */
-class SendActivationEmail implements SelfHandling
+class SendActivationEmail
 {
 
     use DispatchesJobs;
@@ -49,8 +47,8 @@ class SendActivationEmail implements SelfHandling
     /**
      * Handle the command.
      *
-     * @param Mailer     $mailer
-     * @param Repository $config
+     * @param  Mailer     $mailer
+     * @param  Repository $config
      * @return bool
      */
     public function handle(Mailer $mailer, Repository $config)

@@ -11,7 +11,6 @@ use Anomaly\UsersModule\User\Command\GetUser;
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\UsersModule
  */
 class UsersModulePlugin extends Plugin
 {
@@ -35,7 +34,7 @@ class UsersModulePlugin extends Plugin
                 function ($identifier) {
                     return (new Decorator())->decorate($this->dispatch(new GetRole($identifier)));
                 }
-            )
+            ),
         ];
     }
 }

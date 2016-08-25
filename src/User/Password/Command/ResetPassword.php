@@ -2,7 +2,7 @@
 
 use Anomaly\UsersModule\User\Contract\UserInterface;
 use Anomaly\UsersModule\User\Contract\UserRepositoryInterface;
-use Illuminate\Contracts\Bus\SelfHandling;
+
 
 /**
  * Class ResetPassword
@@ -10,9 +10,8 @@ use Illuminate\Contracts\Bus\SelfHandling;
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\UsersModule\User\Password\Command
  */
-class ResetPassword implements SelfHandling
+class ResetPassword
 {
 
     /**
@@ -53,7 +52,7 @@ class ResetPassword implements SelfHandling
     /**
      * Handle the command.
      *
-     * @param UserRepositoryInterface $users
+     * @param  UserRepositoryInterface $users
      * @return bool
      */
     public function handle(UserRepositoryInterface $users)

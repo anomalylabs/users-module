@@ -4,7 +4,7 @@ use Anomaly\Streams\Platform\Message\MessageBag;
 use Anomaly\UsersModule\User\Contract\UserInterface;
 use Anomaly\UsersModule\User\Register\RegisterFormBuilder;
 use Anomaly\UsersModule\User\UserActivator;
-use Illuminate\Contracts\Bus\SelfHandling;
+
 
 /**
  * Class HandleEmailRegistration
@@ -12,9 +12,8 @@ use Illuminate\Contracts\Bus\SelfHandling;
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\UsersModule\User\Register\Command
  */
-class HandleEmailRegistration implements SelfHandling
+class HandleEmailRegistration
 {
 
     /**

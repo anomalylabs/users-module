@@ -12,7 +12,6 @@ use Anomaly\UsersModule\Role\Table\RoleTableBuilder;
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\UsersModule\Http\Controller\Admin
  */
 class RolesController extends AdminController
 {
@@ -20,7 +19,7 @@ class RolesController extends AdminController
     /**
      * Return an index of existing roles.
      *
-     * @param RoleTableBuilder $form
+     * @param  RoleTableBuilder                                                 $form
      * @return \Illuminate\View\View|\Symfony\Component\HttpFoundation\Response
      */
     public function index(RoleTableBuilder $form)
@@ -31,7 +30,7 @@ class RolesController extends AdminController
     /**
      * Return a form for a new role.
      *
-     * @param RoleFormBuilder $form
+     * @param  RoleFormBuilder                                                  $form
      * @return \Illuminate\View\View|\Symfony\Component\HttpFoundation\Response
      */
     public function create(RoleFormBuilder $form)
@@ -42,8 +41,8 @@ class RolesController extends AdminController
     /**
      * Return a form for an existing role.
      *
-     * @param RoleFormBuilder $form
-     * @param                 $id
+     * @param  RoleFormBuilder                                                  $form
+     * @param                                                                   $id
      * @return \Illuminate\View\View|\Symfony\Component\HttpFoundation\Response
      */
     public function edit(RoleFormBuilder $form, $id)
@@ -54,8 +53,8 @@ class RolesController extends AdminController
     /**
      * Return the form for editing permissions.
      *
-     * @param PermissionFormBuilder $form
-     * @param                       $id
+     * @param  PermissionFormBuilder                      $form
+     * @param                                             $id
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function permissions(PermissionFormBuilder $form, $id)

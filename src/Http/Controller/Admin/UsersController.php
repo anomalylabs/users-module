@@ -14,7 +14,6 @@ use Anomaly\UsersModule\User\Table\UserTableBuilder;
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\UsersModule\Http\Controller\Admin
  */
 class UsersController extends AdminController
 {
@@ -22,7 +21,7 @@ class UsersController extends AdminController
     /**
      * Return an index of existing users.
      *
-     * @param UserTableBuilder $table
+     * @param  UserTableBuilder                           $table
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function index(UserTableBuilder $table)
@@ -33,7 +32,7 @@ class UsersController extends AdminController
     /**
      * Return the form for creating a new user.
      *
-     * @param UserFormBuilder $form
+     * @param  UserFormBuilder                            $form
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function create(UserFormBuilder $form)
@@ -44,8 +43,8 @@ class UsersController extends AdminController
     /**
      * Return the form for editing an existing user.
      *
-     * @param UserFormBuilder $form
-     * @param                 $id
+     * @param  UserFormBuilder                            $form
+     * @param                                             $id
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function edit(UserFormBuilder $form, $id)
@@ -56,8 +55,8 @@ class UsersController extends AdminController
     /**
      * Return the form for editing permissions.
      *
-     * @param PermissionFormBuilder $form
-     * @param                       $id
+     * @param  PermissionFormBuilder                      $form
+     * @param                                             $id
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function permissions(PermissionFormBuilder $form, $id)

@@ -2,7 +2,6 @@
 
 use Anomaly\UsersModule\User\Contract\UserRepositoryInterface;
 use Anomaly\UsersModule\User\UserActivator;
-use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Contracts\Encryption\Encrypter;
 use Illuminate\Http\Request;
 
@@ -12,18 +11,17 @@ use Illuminate\Http\Request;
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\UsersModule\User\Register\Command
  */
-class HandleActivateRequest implements SelfHandling
+class HandleActivateRequest
 {
 
     /**
      * Handle the command.
      *
-     * @param UserRepositoryInterface $users
-     * @param UserActivator           $activator
-     * @param Encrypter               $encrypter
-     * @param Request                 $request
+     * @param  UserRepositoryInterface $users
+     * @param  UserActivator           $activator
+     * @param  Encrypter               $encrypter
+     * @param  Request                 $request
      * @return bool
      */
     public function handle(

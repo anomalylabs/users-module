@@ -9,5 +9,5 @@ return [
     'new_role'       => '新增角色',
     'add_field'      => '新增欄位',
     'permissions'    => '權限',
-    'reset_password' => '重設密碼'
+    'reset_password' => '重設密碼',
 ];

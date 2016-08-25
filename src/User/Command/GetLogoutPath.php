@@ -1,6 +1,6 @@
 <?php namespace Anomaly\UsersModule\User\Command;
 
-use Illuminate\Contracts\Bus\SelfHandling;
+
 use Illuminate\Contracts\Config\Repository;
 
 /**
@@ -9,15 +9,14 @@ use Illuminate\Contracts\Config\Repository;
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\UsersModule\User\Command
  */
-class GetLogoutPath implements SelfHandling
+class GetLogoutPath
 {
 
     /**
      * Handle the command.
      *
-     * @param Repository $config
+     * @param  Repository $config
      * @return string
      */
     public function handle(Repository $config)

@@ -9,7 +9,6 @@ use Illuminate\Contracts\Config\Repository;
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\UsersModule
  */
 class UsersModuleServiceProvider extends AddonServiceProvider
 {
@@ -20,7 +19,7 @@ class UsersModuleServiceProvider extends AddonServiceProvider
      * @var array
      */
     protected $plugins = [
-        'Anomaly\UsersModule\UsersModulePlugin'
+        'Anomaly\UsersModule\UsersModulePlugin',
     ];
 
     /**
@@ -43,11 +42,11 @@ class UsersModuleServiceProvider extends AddonServiceProvider
      */
     protected $listeners = [
         'Anomaly\UsersModule\User\Event\UserWasLoggedIn'                  => [
-            'Anomaly\UsersModule\User\Listener\TouchLastLogin'
+            'Anomaly\UsersModule\User\Listener\TouchLastLogin',
         ],
         'Anomaly\Streams\Platform\Application\Event\ApplicationHasLoaded' => [
-            'Anomaly\UsersModule\User\Listener\TouchLastActivity'
-        ]
+            'Anomaly\UsersModule\User\Listener\TouchLastActivity',
+        ],
     ];
 
     /**
@@ -58,31 +57,31 @@ class UsersModuleServiceProvider extends AddonServiceProvider
     protected $routes = [
         '@{username}'                        => [
             'as'   => 'anomaly.module.users::users.view',
-            'uses' => 'Anomaly\UsersModule\Http\Controller\UsersController@view'
+            'uses' => 'Anomaly\UsersModule\Http\Controller\UsersController@view',
         ],
         'login'                              => [
             'as'   => 'anomaly.module.users::login',
-            'uses' => 'Anomaly\UsersModule\Http\Controller\LoginController@login'
+            'uses' => 'Anomaly\UsersModule\Http\Controller\LoginController@login',
         ],
         'logout'                             => [
             'as'   => 'anomaly.module.users::logout',
-            'uses' => 'Anomaly\UsersModule\Http\Controller\LoginController@logout'
+            'uses' => 'Anomaly\UsersModule\Http\Controller\LoginController@logout',
         ],
         'users/register'                     => [
             'as'   => 'anomaly.module.users::register',
-            'uses' => 'Anomaly\UsersModule\Http\Controller\RegisterController@register'
+            'uses' => 'Anomaly\UsersModule\Http\Controller\RegisterController@register',
         ],
         'users/activate'                     => [
             'as'   => 'anomaly.module.users::activate',
-            'uses' => 'Anomaly\UsersModule\Http\Controller\RegisterController@activate'
+            'uses' => 'Anomaly\UsersModule\Http\Controller\RegisterController@activate',
         ],
         'users/password/reset'               => [
             'as'   => 'anomaly.module.users::password.reset',
-            'uses' => 'Anomaly\UsersModule\Http\Controller\PasswordController@reset'
+            'uses' => 'Anomaly\UsersModule\Http\Controller\PasswordController@reset',
         ],
         'users/password/forgot'              => [
             'as'   => 'anomaly.module.users::password.forgot',
-            'uses' => 'Anomaly\UsersModule\Http\Controller\PasswordController@forgot'
+            'uses' => 'Anomaly\UsersModule\Http\Controller\PasswordController@forgot',
         ],
         'admin'                              => 'Anomaly\UsersModule\Http\Controller\Admin\HomeController@index',
         'auth/login'                         => 'Anomaly\UsersModule\Http\Controller\Admin\LoginController@logout',
@@ -106,7 +105,7 @@ class UsersModuleServiceProvider extends AddonServiceProvider
         'admin/users/fields'                 => 'Anomaly\UsersModule\Http\Controller\Admin\FieldsController@index',
         'admin/users/fields/choose'          => 'Anomaly\UsersModule\Http\Controller\Admin\FieldsController@choose',
         'admin/users/fields/create'          => 'Anomaly\UsersModule\Http\Controller\Admin\FieldsController@create',
-        'admin/users/fields/edit/{id}'       => 'Anomaly\UsersModule\Http\Controller\Admin\FieldsController@edit'
+        'admin/users/fields/edit/{id}'       => 'Anomaly\UsersModule\Http\Controller\Admin\FieldsController@edit',
     ];
 
     /**
@@ -121,7 +120,7 @@ class UsersModuleServiceProvider extends AddonServiceProvider
         'forgot_password'                                           => 'Anomaly\UsersModule\User\Password\ForgotPasswordFormBuilder',
         'Anomaly\Streams\Platform\Http\Middleware\Authenticate'     => 'Anomaly\UsersModule\Http\Middleware\Authenticate',
         'Anomaly\Streams\Platform\Model\Users\UsersUsersEntryModel' => 'Anomaly\UsersModule\User\UserModel',
-        'Anomaly\Streams\Platform\Model\Users\UsersRolesEntryModel' => 'Anomaly\UsersModule\Role\RoleModel'
+        'Anomaly\Streams\Platform\Model\Users\UsersRolesEntryModel' => 'Anomaly\UsersModule\Role\RoleModel',
     ];
 
     /**

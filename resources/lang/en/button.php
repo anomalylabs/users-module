@@ -9,5 +9,5 @@ return [
     'new_role'       => 'New Role',
     'add_field'      => 'Add Field',
     'permissions'    => 'Permissions',
-    'reset_password' => 'Reset Password'
+    'reset_password' => 'Reset Password',
 ];

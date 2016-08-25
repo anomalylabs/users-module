@@ -2,19 +2,19 @@
 
 return [
     'login' => [
-        'label' => 'Bejelentkezés Mező',
+        'label'    => 'Bejelentkezés Mező',
     'instructions' => 'Melyik mezőt használljuk a bejelentkezéshez?',
-    'option' => [
+    'option'       => [
         'email' => 'Email',
-    'username' => 'Felhasználónév',
+    'username'  => 'Felhasználónév',
     ],
     ],
     'activation_mode' => [
-        'label' => 'Aktiválás Módja',
+        'label'    => 'Aktiválás Módja',
     'instructions' => 'Hogyan aktiváljuk a felhasználókat a regisztráció után?',
-    'option' => [
+    'option'       => [
         'email' => 'Aktiváló email küldése a felhasználónak.',
-    'manual' => 'Az adminisztrátor kézzel aktiválja a felhasználót.',
+    'manual'    => 'Az adminisztrátor kézzel aktiválja a felhasználót.',
     'automatic' => 'Automatikusan aktiválódjon a felhasználó a regisztráció után.',
     ],
     ],

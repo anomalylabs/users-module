@@ -9,7 +9,6 @@ use Illuminate\Contracts\Encryption\Encrypter;
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\UsersModule\User\Password
  */
 class ResetPasswordFormBuilder extends FormBuilder
 {
@@ -41,7 +40,7 @@ class ResetPasswordFormBuilder extends FormBuilder
      * @var array
      */
     protected $actions = [
-        'submit'
+        'submit',
     ];
 
     /**
@@ -50,7 +49,7 @@ class ResetPasswordFormBuilder extends FormBuilder
      * @var array
      */
     protected $options = [
-        'redirect' => '/'
+        'redirect' => '/',
     ];
 
     /**
