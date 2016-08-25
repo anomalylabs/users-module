@@ -1,7 +1,7 @@
 <?php namespace Anomaly\UsersModule\User\Listener;
 
 use Anomaly\UsersModule\User\Contract\UserRepositoryInterface;
-use Illuminate\Auth\Guard;
+use Illuminate\Contracts\Auth\Guard;
 
 /**
  * Class TouchLastActivity
