@@ -1,6 +1,8 @@
 <?php namespace Anomaly\UsersModule\User\Register;
 
+use Anomaly\UsersModule\User\UserModel;
 use Anomaly\UsersModule\User\Contract\UserInterface;
+use Anomaly\UsersModule\User\Notification\UserHasRegistered;
 use Anomaly\UsersModule\User\Register\Command\HandleAutomaticRegistration;
 use Anomaly\UsersModule\User\Register\Command\HandleEmailRegistration;
 use Anomaly\UsersModule\User\Register\Command\HandleManualRegistration;
@@ -8,16 +10,8 @@ use Anomaly\UsersModule\User\UserActivator;
 use Illuminate\Contracts\Config\Repository;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 
-/**
- * Class RegisterFormHandler
- *
- * @link          http://pyrocms.com/
- * @author        PyroCMS, Inc. <support@pyrocms.com>
- * @author        Ryan Thompson <ryan@pyrocms.com>
- */
 class RegisterFormHandler
 {
-
     use DispatchesJobs;
 
     /**
@@ -44,11 +38,13 @@ class RegisterFormHandler
         $mode = $config->get('anomaly.module.users::config.activation_mode');
 
         if ($mode === 'automatic') {
-            $this->dispatch(new HandleAutomaticRegistration($builder));
+            //$this->dispatch(new HandleAutomaticRegistration($builder));
         } elseif ($mode === 'manual') {
-            $this->dispatch(new HandleManualRegistration($builder));
+            //$this->dispatch(new HandleManualRegistration($builder));
         } elseif ($mode === 'email') {
-            $this->dispatch(new HandleEmailRegistration($builder));
+            //$this->dispatch(new HandleEmailRegistration($builder));
         }
+
+        UserModel::first()->notify(new UserHasRegistered($user));
     }
 }

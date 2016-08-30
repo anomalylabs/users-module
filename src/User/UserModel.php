@@ -1,23 +1,17 @@
 <?php namespace Anomaly\UsersModule\User;
 
-use Anomaly\Streams\Platform\Model\Users\UsersUsersEntryModel;
-use Anomaly\Streams\Platform\Support\Collection;
-use Anomaly\UsersModule\Role\Command\GetRole;
-use Anomaly\UsersModule\Role\Contract\RoleInterface;
 use Anomaly\UsersModule\Role\RoleCollection;
+use Anomaly\UsersModule\Role\Command\GetRole;
+use Anomaly\Streams\Platform\Support\Collection;
+use Anomaly\UsersModule\Role\Contract\RoleInterface;
 use Anomaly\UsersModule\User\Contract\UserInterface;
+use Anomaly\Streams\Platform\Model\Users\UsersUsersEntryModel;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Auth\Authenticatable;
 
-/**
- * Class UserModel
- *
- * @link          http://pyrocms.com/
- * @author        PyroCMS, Inc. <support@pyrocms.com>
- * @author        Ryan Thompson <ryan@pyrocms.com>
- */
 class UserModel extends UsersUsersEntryModel implements UserInterface, \Illuminate\Contracts\Auth\Authenticatable
 {
-
+    use Notifiable;
     use Authenticatable;
 
     /**
@@ -313,5 +307,15 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, \Illumina
     public function attachRole(RoleInterface $role)
     {
         $this->roles()->attach($role);
+    }
+
+    /**
+     * Route notifications for the Slack channel.
+     *
+     * @return string
+     */
+    public function routeNotificationForSlack()
+    {
+        return env('SLACK_WEBHOOK');
     }
 }
