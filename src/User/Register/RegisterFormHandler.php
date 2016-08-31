@@ -1,17 +1,21 @@
 <?php namespace Anomaly\UsersModule\User\Register;
 
 use Anomaly\UsersModule\User\UserModel;
+use Anomaly\UsersModule\User\UserActivator;
+use Anomaly\Streams\Platform\Traits\Eventable;
+use Anomaly\Streams\Platform\Traits\Transmitter;
 use Anomaly\UsersModule\User\Contract\UserInterface;
 use Anomaly\UsersModule\User\Notification\UserHasRegistered;
 use Anomaly\UsersModule\User\Register\Command\HandleAutomaticRegistration;
 use Anomaly\UsersModule\User\Register\Command\HandleEmailRegistration;
 use Anomaly\UsersModule\User\Register\Command\HandleManualRegistration;
-use Anomaly\UsersModule\User\UserActivator;
-use Illuminate\Contracts\Config\Repository;
 use Illuminate\Foundation\Bus\DispatchesJobs;
+use Illuminate\Contracts\Config\Repository;
 
 class RegisterFormHandler
 {
+    use Eventable;
+    use Transmitter;
     use DispatchesJobs;
 
     /**
@@ -45,6 +49,6 @@ class RegisterFormHandler
             $this->dispatch(new HandleEmailRegistration($builder));
         }
 
-        UserModel::first()->notify(new UserHasRegistered($user));
+        $this->transmit(new UserHasRegistered($user));
     }
 }
