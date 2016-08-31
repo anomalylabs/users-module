@@ -52,9 +52,8 @@ class ActivateYourAccount extends Notification
     public function toMail(UserInterface $notifiable)
     {
         return (new MailMessage())
-            ->success()
-            ->line('Howdy ' . $notifiable->getUsername() . ' please confirm your email!')
-            ->action('Confirm your account!', $notifiable->route('activate', ['redirect' => $this->redirect]))
-            ->line('Howdy ' . $notifiable->getUsername() . ' please confirm your email!');
+            ->greeting(trans('anomaly.module.users::notifications/activate.greeting', $notifiable->toArray()))
+            ->line(trans('anomaly.module.users::notifications/activate.instructions', $notifiable->toArray()))
+            ->action(trans('anomaly.module.users::notifications/activate.button', $notifiable->toArray()), $notifiable->route('activate', ['redirect' => $this->redirect]));
     }
 }
