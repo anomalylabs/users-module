@@ -2,6 +2,7 @@
 
 use Anomaly\UsersModule\User\Contract\UserRepositoryInterface;
 use Anomaly\UsersModule\User\Login\LoginFormBuilder;
+use Anomaly\UsersModule\User\UserAuthenticator;
 
 /**
  * Class ValidateCredentials
@@ -9,7 +10,6 @@ use Anomaly\UsersModule\User\Login\LoginFormBuilder;
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\UsersModule\User\Validation
  */
 class ValidateCredentials
 {
@@ -17,15 +17,15 @@ class ValidateCredentials
     /**
      * Handle the validation.
      *
-     * @param UserRepositoryInterface $users
-     * @param LoginFormBuilder        $builder
+     * @param  UserAuthenticator $authenticator
+     * @param  LoginFormBuilder  $builder
      * @return bool
      */
-    public function handle(UserRepositoryInterface $users, LoginFormBuilder $builder)
+    public function handle(UserAuthenticator $authenticator, LoginFormBuilder $builder)
     {
         $values = $builder->getFormValues();
 
-        if (!$user = $users->findByCredentials($values->all())) {
+        if (!$user = $authenticator->authenticate($values->all())) {
             return false;
         }
 

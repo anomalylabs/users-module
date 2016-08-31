@@ -60,14 +60,13 @@ class UserAuthenticator
     /**
      * Attempt to login a user.
      *
-     * @param array $credentials
-     * @param bool  $remember
+     * @param  array              $credentials
+     * @param  bool               $remember
      * @return bool|UserInterface
      */
     public function attempt(array $credentials, $remember = false)
     {
         if ($user = $this->authenticate($credentials)) {
-
             $this->login($user, $remember);
 
             return $user;
@@ -79,7 +78,7 @@ class UserAuthenticator
     /**
      * Attempt to authenticate the credentials.
      *
-     * @param array $credentials
+     * @param  array              $credentials
      * @return bool|UserInterface
      */
     public function authenticate(array $credentials)
@@ -88,7 +87,7 @@ class UserAuthenticator
 
         /* @var AuthenticatorExtensionInterface $authenticator */
         foreach ($authenticators as $authenticator) {
-            if ($user = $authenticator->authenticate($credentials) instanceof UserInterface) {
+            if (($user = $authenticator->authenticate($credentials)) instanceof UserInterface) {
                 return $user;
             }
         }
