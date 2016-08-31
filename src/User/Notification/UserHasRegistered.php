@@ -2,9 +2,9 @@
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Notifications\Notification;
-use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Messages\SlackMessage;
 use Anomaly\UsersModule\User\Contract\UserInterface;
+use Anomaly\Streams\Platform\Notification\Message\MailMessage;
 
 class UserHasRegistered extends Notification
 {

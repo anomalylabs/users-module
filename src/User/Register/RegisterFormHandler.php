@@ -38,11 +38,11 @@ class RegisterFormHandler
         $mode = $config->get('anomaly.module.users::config.activation_mode');
 
         if ($mode === 'automatic') {
-            //$this->dispatch(new HandleAutomaticRegistration($builder));
+            $this->dispatch(new HandleAutomaticRegistration($builder));
         } elseif ($mode === 'manual') {
-            //$this->dispatch(new HandleManualRegistration($builder));
+            $this->dispatch(new HandleManualRegistration($builder));
         } elseif ($mode === 'email') {
-            //$this->dispatch(new HandleEmailRegistration($builder));
+            $this->dispatch(new HandleEmailRegistration($builder));
         }
 
         UserModel::first()->notify(new UserHasRegistered($user));

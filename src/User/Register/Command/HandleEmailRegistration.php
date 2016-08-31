@@ -4,15 +4,8 @@ use Anomaly\Streams\Platform\Message\MessageBag;
 use Anomaly\UsersModule\User\Contract\UserInterface;
 use Anomaly\UsersModule\User\Register\RegisterFormBuilder;
 use Anomaly\UsersModule\User\UserActivator;
+use Anomaly\UsersModule\User\Notification\ActivateYourAccount;
 
-
-/**
- * Class HandleEmailRegistration
- *
- * @link          http://pyrocms.com/
- * @author        PyroCMS, Inc. <support@pyrocms.com>
- * @author        Ryan Thompson <ryan@pyrocms.com>
- */
 class HandleEmailRegistration
 {
 
@@ -44,7 +37,9 @@ class HandleEmailRegistration
         /* @var UserInterface $user */
         $user = $this->builder->getFormEntry();
 
-        $activator->send($user, $this->builder->getFormOption('activate_redirect', '/'));
+        //$activator->send($user, $this->builder->getFormOption('activate_redirect', '/'));
+
+        $user->notify(new ActivateYourAccount($user));
 
         if (!is_null($message = $this->builder->getFormOption('confirm_message'))) {
             $messages->info($message);
