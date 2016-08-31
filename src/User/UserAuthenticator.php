@@ -67,7 +67,6 @@ class UserAuthenticator
     public function attempt(array $credentials, $remember = false)
     {
         if ($user = $this->authenticate($credentials)) {
-
             $this->login($user, $remember);
 
             return $user;
@@ -88,7 +87,7 @@ class UserAuthenticator
 
         /* @var AuthenticatorExtensionInterface $authenticator */
         foreach ($authenticators as $authenticator) {
-            if ($user = $authenticator->authenticate($credentials) instanceof UserInterface) {
+            if (($user = $authenticator->authenticate($credentials)) instanceof UserInterface) {
                 return $user;
             }
         }
