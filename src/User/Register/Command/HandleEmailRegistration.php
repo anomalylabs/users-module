@@ -1,10 +1,9 @@
 <?php namespace Anomaly\UsersModule\User\Register\Command;
 
+use Anomaly\UsersModule\User\UserActivator;
 use Anomaly\Streams\Platform\Message\MessageBag;
 use Anomaly\UsersModule\User\Contract\UserInterface;
 use Anomaly\UsersModule\User\Register\RegisterFormBuilder;
-use Anomaly\UsersModule\User\UserActivator;
-use Anomaly\UsersModule\User\Notification\ActivateYourAccount;
 
 class HandleEmailRegistration
 {
@@ -37,9 +36,7 @@ class HandleEmailRegistration
         /* @var UserInterface $user */
         $user = $this->builder->getFormEntry();
 
-        //$activator->send($user, $this->builder->getFormOption('activate_redirect', '/'));
-
-        $user->notify(new ActivateYourAccount($user));
+        $activator->send($user, $this->builder->getFormOption('activate_redirect', '/'));
 
         if (!is_null($message = $this->builder->getFormOption('confirm_message'))) {
             $messages->info($message);

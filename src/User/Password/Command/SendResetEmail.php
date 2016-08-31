@@ -1,21 +1,14 @@
 <?php namespace Anomaly\UsersModule\User\Password\Command;
 
 use Anomaly\UsersModule\User\Contract\UserInterface;
+use Anomaly\UsersModule\User\Notification\ResetYourPassword;
 use Illuminate\Contracts\Config\Repository;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Mail\Mailer;
 use Illuminate\Mail\Message;
 
-/**
- * Class SendResetEmail
- *
- * @link          http://pyrocms.com/
- * @author        PyroCMS, Inc. <support@pyrocms.com>
- * @author        Ryan Thompson <ryan@pyrocms.com>
- */
 class SendResetEmail
 {
-
     use DispatchesJobs;
 
     /**
@@ -47,25 +40,10 @@ class SendResetEmail
     /**
      * Handle the command.
      *
-     * @param  Mailer     $mailer
-     * @param  Repository $config
      * @return bool
      */
-    public function handle(Mailer $mailer, Repository $config)
+    public function handle()
     {
-        $path = $this->dispatch(new GetResetPasswordPath($this->user, $this->redirect));
-
-        $mailer->send(
-            'anomaly.module.users::message/reset',
-            compact('user', 'path'),
-            function (Message $message) use ($config) {
-                $message
-                    ->subject('Reset your password')
-                    ->to($this->user->getEmail(), $this->user->getDisplayName())
-                    ->from($config->get('mail.from.address', 'noreply@localhost'));
-            }
-        );
-
-        return empty($mailer->failures());
+        return $this->user->notify(new ResetYourPassword($this->redirect));
     }
 }

@@ -5,13 +5,6 @@ use Anomaly\UsersModule\User\UserActivator;
 use Illuminate\Contracts\Encryption\Encrypter;
 use Illuminate\Http\Request;
 
-/**
- * Class HandleActivateRequest
- *
- * @link          http://pyrocms.com/
- * @author        PyroCMS, Inc. <support@pyrocms.com>
- * @author        Ryan Thompson <ryan@pyrocms.com>
- */
 class HandleActivateRequest
 {
 

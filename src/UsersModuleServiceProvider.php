@@ -3,13 +3,6 @@
 use Anomaly\Streams\Platform\Addon\AddonServiceProvider;
 use Illuminate\Contracts\Config\Repository;
 
-/**
- * Class UsersModuleServiceProvider
- *
- * @link          http://pyrocms.com/
- * @author        PyroCMS, Inc. <support@pyrocms.com>
- * @author        Ryan Thompson <ryan@pyrocms.com>
- */
 class UsersModuleServiceProvider extends AddonServiceProvider
 {
 
@@ -67,16 +60,16 @@ class UsersModuleServiceProvider extends AddonServiceProvider
             'as'   => 'anomaly.module.users::logout',
             'uses' => 'Anomaly\UsersModule\Http\Controller\LoginController@logout',
         ],
-        'users/register'                     => [
+        'register'                     => [
             'as'   => 'anomaly.module.users::register',
             'uses' => 'Anomaly\UsersModule\Http\Controller\RegisterController@register',
         ],
         'users/activate'                     => [
-            'as'   => 'anomaly.module.users::activate',
+            'as'   => 'anomaly.module.users::users.activate',
             'uses' => 'Anomaly\UsersModule\Http\Controller\RegisterController@activate',
         ],
         'users/password/reset'               => [
-            'as'   => 'anomaly.module.users::password.reset',
+            'as'   => 'anomaly.module.users::users.reset',
             'uses' => 'Anomaly\UsersModule\Http\Controller\PasswordController@reset',
         ],
         'users/password/forgot'              => [

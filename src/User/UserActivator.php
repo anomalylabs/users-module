@@ -7,16 +7,8 @@ use Anomaly\UsersModule\User\Command\StartUserActivation;
 use Anomaly\UsersModule\User\Contract\UserInterface;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 
-/**
- * Class UserActivator
- *
- * @link          http://pyrocms.com/
- * @author        PyroCMS, Inc. <support@pyrocms.com>
- * @author        Ryan Thompson <ryan@pyrocms.com>
- */
 class UserActivator
 {
-
     use DispatchesJobs;
 
     /**
