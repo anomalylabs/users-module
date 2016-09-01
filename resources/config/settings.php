@@ -22,7 +22,7 @@ return [
         'bind'        => 'anomaly.module.users::config.activation_mode',
         'type'        => 'anomaly.field_type.select',
         'config'      => [
-            'default_value' => 'manual',
+            'default_value' => 'email',
             'options'       => [
                 'email'     => 'anomaly.module.users::setting.activation_mode.option.email',
                 'manual'    => 'anomaly.module.users::setting.activation_mode.option.manual',

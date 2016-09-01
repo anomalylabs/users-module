@@ -9,13 +9,6 @@ use Anomaly\Streams\Platform\Notification\Message\MailMessage;
 class ActivateYourAccount extends Notification
 {
     /**
-     * The notification view.
-     *
-     * @var string
-     */
-    public $view = 'anomaly.module.users::notifications.activate';
-
-    /**
      * Redirect here after activating.
      *
      * @var string
@@ -51,9 +44,13 @@ class ActivateYourAccount extends Notification
      */
     public function toMail(UserInterface $notifiable)
     {
+        $data = $notifiable->toArray();
+
         return (new MailMessage())
-            ->greeting(trans('anomaly.module.users::notifications/activate.greeting', $notifiable->toArray()))
-            ->line(trans('anomaly.module.users::notifications/activate.instructions', $notifiable->toArray()))
-            ->action(trans('anomaly.module.users::notifications/activate.button', $notifiable->toArray()), $notifiable->route('activate', ['redirect' => $this->redirect]));
+            ->view('anomaly.module.users::notifications.activate_your_account')
+            ->subject(trans('anomaly.module.users::notification.activate_your_account.subject', $data))
+            ->greeting(trans('anomaly.module.users::notification.activate_your_account.greeting', $data))
+            ->line(trans('anomaly.module.users::notification.activate_your_account.instructions', $data))
+            ->action(trans('anomaly.module.users::notification.activate_your_account.button', $data), $notifiable->route('activate', ['redirect' => $this->redirect]));
     }
 }

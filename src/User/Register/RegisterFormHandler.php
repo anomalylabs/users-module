@@ -14,7 +14,6 @@ use Illuminate\Contracts\Config\Repository;
 
 class RegisterFormHandler
 {
-    use Eventable;
     use Transmitter;
     use DispatchesJobs;
 

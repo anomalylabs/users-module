@@ -44,11 +44,14 @@ class UserHasRegistered extends Notification
      */
     public function toMail(UserInterface $notifiable)
     {
+        $data = $this->user->toArray();
+
         return (new MailMessage())
             ->success()
-            ->line($this->user->getUsername() . ' has registered!')
-            ->action('Activate this user!', url('activate'))
-            ->line('Ignore this message otheriwse.');
+            ->view('anomaly.module.users::notifications.user_has_registered')
+            ->subject(trans('anomaly.module.users::notification.user_has_registered.subject', $data))
+            ->line(trans('anomaly.module.users::notification.user_has_registered.instructions', $data))
+            ->action(trans('anomaly.module.users::notification.user_has_registered.button', $data), $this->user->route('view'));
     }
 
     /**

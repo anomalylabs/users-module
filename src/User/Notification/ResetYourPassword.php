@@ -9,13 +9,6 @@ use Anomaly\Streams\Platform\Notification\Message\MailMessage;
 class ResetYourPassword extends Notification
 {
     /**
-     * The notification view.
-     *
-     * @var string
-     */
-    public $view = 'anomaly.module.users::notifications.reset';
-
-    /**
      * Redirect here after activating.
      *
      * @var string
@@ -51,9 +44,16 @@ class ResetYourPassword extends Notification
      */
     public function toMail(UserInterface $notifiable)
     {
+        $data = $notifiable->toArray();
+
         return (new MailMessage())
             ->error()
-            ->line('Howdy ' . $notifiable->getUsername() . ' please confirm your email!')
-            ->action('Reset your password!', $notifiable->route('reset', ['redirect' => $this->redirect]));
+            ->view('anomaly.module.users::notifications.reset_your_password')
+            ->subject(trans('anomaly.module.users::notification.reset_your_password.subject', $data))
+            ->greeting(trans('anomaly.module.users::notification.reset_your_password.greeting', $data))
+            ->line(trans('anomaly.module.users::notification.reset_your_password.notice', $data))
+            ->line(trans('anomaly.module.users::notification.reset_your_password.warning', $data))
+            ->line(trans('anomaly.module.users::notification.reset_your_password.instructions', $data))
+            ->action(trans('anomaly.module.users::notification.reset_your_password.button', $data), $notifiable->route('reset', ['redirect' => $this->redirect]));
     }
 }
