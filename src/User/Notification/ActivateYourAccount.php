@@ -1,13 +1,22 @@
 <?php namespace Anomaly\UsersModule\User\Notification;
 
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Notifications\Notification;
-use Illuminate\Notifications\Messages\SlackMessage;
-use Anomaly\UsersModule\User\Contract\UserInterface;
 use Anomaly\Streams\Platform\Notification\Message\MailMessage;
+use Anomaly\UsersModule\User\Contract\UserInterface;
+use Illuminate\Bus\Queueable;
+use Illuminate\Notifications\Notification;
 
+/**
+ * Class ActivateYourAccount
+ *
+ * @link          http://pyrocms.com/
+ * @author        PyroCMS, Inc. <support@pyrocms.com>
+ * @author        Ryan Thompson <ryan@pyrocms.com>
+ */
 class ActivateYourAccount extends Notification
 {
+
+    use Queueable;
+
     /**
      * Redirect here after activating.
      *
@@ -51,6 +60,9 @@ class ActivateYourAccount extends Notification
             ->subject(trans('anomaly.module.users::notification.activate_your_account.subject', $data))
             ->greeting(trans('anomaly.module.users::notification.activate_your_account.greeting', $data))
             ->line(trans('anomaly.module.users::notification.activate_your_account.instructions', $data))
-            ->action(trans('anomaly.module.users::notification.activate_your_account.button', $data), $notifiable->route('activate', ['redirect' => $this->redirect]));
+            ->action(
+                trans('anomaly.module.users::notification.activate_your_account.button', $data),
+                $notifiable->route('activate', ['redirect' => $this->redirect])
+            );
     }
 }

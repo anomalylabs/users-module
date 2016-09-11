@@ -1,13 +1,22 @@
 <?php namespace Anomaly\UsersModule\User\Notification;
 
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Notifications\Notification;
-use Illuminate\Notifications\Messages\SlackMessage;
-use Anomaly\UsersModule\User\Contract\UserInterface;
 use Anomaly\Streams\Platform\Notification\Message\MailMessage;
+use Anomaly\UsersModule\User\Contract\UserInterface;
+use Illuminate\Bus\Queueable;
+use Illuminate\Notifications\Notification;
 
+/**
+ * Class UserPendingActivation
+ *
+ * @link          http://pyrocms.com/
+ * @author        PyroCMS, Inc. <support@pyrocms.com>
+ * @author        Ryan Thompson <ryan@pyrocms.com>
+ */
 class UserPendingActivation extends Notification
 {
+
+    use Queueable;
+    
     /**
      * The user pending activation.
      *
@@ -50,6 +59,9 @@ class UserPendingActivation extends Notification
             ->view('anomaly.module.users::notifications.user_pending_activation')
             ->subject(trans('anomaly.module.users::notification.user_pending_activation.subject', $data))
             ->line(trans('anomaly.module.users::notification.user_pending_activation.instructions', $data))
-            ->action(trans('anomaly.module.users::notification.user_pending_activation.button', $data), url('admin/users/edit/' . $this->user->getId()));
+            ->action(
+                trans('anomaly.module.users::notification.user_pending_activation.button', $data),
+                url('admin/users/edit/' . $this->user->getId())
+            );
     }
 }

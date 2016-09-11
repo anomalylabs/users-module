@@ -1,16 +1,24 @@
 <?php namespace Anomaly\UsersModule\User;
 
-use Anomaly\UsersModule\Role\RoleCollection;
-use Anomaly\UsersModule\Role\Command\GetRole;
-use Anomaly\Streams\Platform\Support\Collection;
-use Anomaly\UsersModule\Role\Contract\RoleInterface;
-use Anomaly\UsersModule\User\Contract\UserInterface;
 use Anomaly\Streams\Platform\Model\Users\UsersUsersEntryModel;
-use Illuminate\Notifications\Notifiable;
+use Anomaly\Streams\Platform\Support\Collection;
+use Anomaly\UsersModule\Role\Command\GetRole;
+use Anomaly\UsersModule\Role\Contract\RoleInterface;
+use Anomaly\UsersModule\Role\RoleCollection;
+use Anomaly\UsersModule\User\Contract\UserInterface;
 use Illuminate\Auth\Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
+/**
+ * Class UserModel
+ *
+ * @link          http://pyrocms.com/
+ * @author        PyroCMS, Inc. <support@pyrocms.com>
+ * @author        Ryan Thompson <ryan@pyrocms.com>
+ */
 class UserModel extends UsersUsersEntryModel implements UserInterface, \Illuminate\Contracts\Auth\Authenticatable
 {
+
     use Notifiable;
     use Authenticatable;
 
