@@ -109,7 +109,7 @@ class UserRepository extends EntryRepository implements UserRepositoryInterface
         $user->last_activity_at = time();
         $user->ip_address       = $_SERVER['REMOTE_ADDR'];
 
-        return $this->save($user);
+        //return $this->save($user);
     }
 
     /**
