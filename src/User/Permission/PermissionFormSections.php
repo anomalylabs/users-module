@@ -19,9 +19,9 @@ class PermissionFormSections
      * Handle the fields.
      *
      * @param PermissionFormBuilder $builder
-     * @param AddonCollection       $addons
-     * @param Translator            $translator
-     * @param Repository            $config
+     * @param AddonCollection $addons
+     * @param Translator $translator
+     * @param Repository $config
      */
     public function handle(PermissionFormBuilder $builder, AddonCollection $addons, Repository $config)
     {
@@ -41,7 +41,7 @@ class PermissionFormSections
 
             foreach ($config->get($addon->getNamespace('permissions'), []) as $group => $permissions) {
 
-                $sections[$addon->getNamespace()]['fields'][] = $addon->getNamespace($group);
+                $sections[$addon->getNamespace()]['fields'][] = str_replace('.', '_', $addon->getNamespace($group));
             }
         }
 

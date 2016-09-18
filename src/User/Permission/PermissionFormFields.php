@@ -1,6 +1,5 @@
 <?php namespace Anomaly\UsersModule\User\Permission;
 
-use Anomaly\Streams\Platform\Addon\Addon;
 use Anomaly\Streams\Platform\Addon\AddonCollection;
 use Anomaly\UsersModule\User\Contract\UserInterface;
 use Illuminate\Config\Repository;
@@ -20,9 +19,9 @@ class PermissionFormFields
      * Handle the fields.
      *
      * @param PermissionFormBuilder $builder
-     * @param AddonCollection       $addons
-     * @param Translator            $translator
-     * @param Repository            $config
+     * @param AddonCollection $addons
+     * @param Translator $translator
+     * @param Repository $config
      */
     public function handle(
         PermissionFormBuilder $builder,
@@ -86,7 +85,7 @@ class PermissionFormFields
                  * Build the checkboxes field
                  * type to handle the UI.
                  */
-                $fields[$namespace . '::' . $group] = [
+                $fields[str_replace('.', '_', $namespace . '::' . $group)] = [
                     'label'        => $label,
                     'warning'      => $warning,
                     'instructions' => $instructions,

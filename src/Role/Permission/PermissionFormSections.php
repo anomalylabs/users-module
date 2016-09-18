@@ -41,7 +41,7 @@ class PermissionFormSections
 
             foreach ($config->get($addon->getNamespace('permissions'), []) as $group => $permissions) {
 
-                $sections[$addon->getNamespace()]['fields'][] = $addon->getNamespace($group);
+                $sections[$addon->getNamespace()]['fields'][] = str_replace('.', '_', $addon->getNamespace($group));
             }
         }
 
