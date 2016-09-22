@@ -23,11 +23,11 @@ class ResetPasswordFormCriteria extends FormCriteria
      */
     public function onInitialized(Encrypter $encrypter, Request $request)
     {
-        if ($code = $request->get('code')) {
+        if ($code = $request->query('code')) {
             array_set($this->parameters, 'code', $encrypter->decrypt($code));
         }
 
-        if ($email = $request->get('email')) {
+        if ($email = $request->query('email')) {
             array_set($this->parameters, 'email', $encrypter->decrypt($email));
         }
     }
