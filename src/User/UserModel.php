@@ -213,13 +213,14 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, \Illumina
     /**
      * Return whether a user has any of provided permission.
      *
-     * @param $permissions
+     * @param array $permissions
+     * @param bool  $checkRoles
      * @return bool
      */
-    public function hasAnyPermission(array $permissions)
+    public function hasAnyPermission(array $permissions, $checkRoles = true)
     {
         foreach ($permissions as $permission) {
-            if ($this->hasPermission($permission)) {
+            if ($this->hasPermission($permission, $checkRoles)) {
                 return true;
             }
         }
