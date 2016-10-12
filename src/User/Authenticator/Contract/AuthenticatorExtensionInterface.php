@@ -15,7 +15,7 @@ interface AuthenticatorExtensionInterface
     /**
      * Authenticate a set of credentials.
      *
-     * @param  array              $credentials
+     * @param  array $credentials
      * @return null|UserInterface
      */
     public function authenticate(array $credentials);
