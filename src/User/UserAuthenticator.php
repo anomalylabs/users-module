@@ -9,7 +9,15 @@ use Anomaly\UsersModule\User\Event\UserWasLoggedOut;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Container\Container;
 use Illuminate\Contracts\Events\Dispatcher;
+use Illuminate\Http\RedirectResponse;
 
+/**
+ * Class UserAuthenticator
+ *
+ * @link   http://pyrocms.com/
+ * @author PyroCMS, Inc. <support@pyrocms.com>
+ * @author Ryan Thompson <ryan@pyrocms.com>
+ */
 class UserAuthenticator
 {
 
@@ -60,16 +68,19 @@ class UserAuthenticator
     /**
      * Attempt to login a user.
      *
-     * @param  array              $credentials
-     * @param  bool               $remember
+     * @param  array $credentials
+     * @param  bool  $remember
      * @return bool|UserInterface
      */
     public function attempt(array $credentials, $remember = false)
     {
-        if ($user = $this->authenticate($credentials)) {
-            $this->login($user, $remember);
+        if ($response = $this->authenticate($credentials)) {
 
-            return $user;
+            if ($response instanceof UserInterface) {
+                $this->login($response, $remember);
+            }
+
+            return $response;
         }
 
         return false;
@@ -78,7 +89,7 @@ class UserAuthenticator
     /**
      * Attempt to authenticate the credentials.
      *
-     * @param  array              $credentials
+     * @param  array $credentials
      * @return bool|UserInterface
      */
     public function authenticate(array $credentials)
@@ -87,8 +98,15 @@ class UserAuthenticator
 
         /* @var AuthenticatorExtensionInterface $authenticator */
         foreach ($authenticators as $authenticator) {
-            if (($user = $authenticator->authenticate($credentials)) instanceof UserInterface) {
-                return $user;
+
+            $response = $authenticator->authenticate($credentials);
+
+            if ($response instanceof UserInterface) {
+                return $response;
+            }
+
+            if ($response instanceof RedirectResponse) {
+                return $response;
             }
         }
 

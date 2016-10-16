@@ -29,6 +29,12 @@ class LoginFormHandler
         UserSecurity $security,
         Redirector $redirect
     ) {
+
+        /**
+         * If we don't have a user from
+         * validation there there is more
+         * to do yet! Let the form redirect.
+         */
         if (!$user = $builder->getUser()) {
             return;
         }
