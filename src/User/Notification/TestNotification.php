@@ -1,21 +1,22 @@
 <?php namespace Anomaly\UsersModule\User\Notification;
 
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
 /**
  * Class TestNotification
  *
- * @link          http://pyrocms.com/
- * @author        PyroCMS, Inc. <support@pyrocms.com>
- * @author        Ryan Thompson <ryan@pyrocms.com>
+ * @link   http://pyrocms.com/
+ * @author PyroCMS, Inc. <support@pyrocms.com>
+ * @author Ryan Thompson <ryan@pyrocms.com>
  */
-class TestNotification extends Notification
+class TestNotification extends Notification implements ShouldQueue
 {
 
     use Queueable;
-    
+
     /**
      * Get the notification's delivery channels.
      *

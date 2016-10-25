@@ -3,20 +3,21 @@
 use Anomaly\Streams\Platform\Notification\Message\MailMessage;
 use Anomaly\UsersModule\User\Contract\UserInterface;
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Notification;
 
 /**
  * Class UserPendingActivation
  *
- * @link          http://pyrocms.com/
- * @author        PyroCMS, Inc. <support@pyrocms.com>
- * @author        Ryan Thompson <ryan@pyrocms.com>
+ * @link   http://pyrocms.com/
+ * @author PyroCMS, Inc. <support@pyrocms.com>
+ * @author Ryan Thompson <ryan@pyrocms.com>
  */
-class UserPendingActivation extends Notification
+class UserPendingActivation extends Notification implements ShouldQueue
 {
 
     use Queueable;
-    
+
     /**
      * The user pending activation.
      *
