@@ -22,7 +22,8 @@ class AnomalyModuleUsersCreateUsersFields extends Migration
         'username'                   => [
             'type'   => 'anomaly.field_type.slug',
             'config' => [
-                'type' => '_',
+                'type'      => '_',
+                'lowercase' => false,
             ],
         ],
         'password'                   => [
