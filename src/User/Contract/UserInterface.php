@@ -135,13 +135,6 @@ interface UserInterface extends EntryInterface
     public function getActivationCode();
 
     /**
-     * Return the roles relationship.
-     *
-     * @return BelongsToMany
-     */
-    public function roles();
-
-    /**
      * Return the full name.
      *
      * @return string
