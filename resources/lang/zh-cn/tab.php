@@ -1,6 +1,6 @@
 <?php
 
 return [
-    'general' => '一般',
-    'profile' => '个资',
+    'general' => '常规',
+    'profile' => '个人资料',
 ];
