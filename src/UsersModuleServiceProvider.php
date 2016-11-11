@@ -68,6 +68,10 @@ class UsersModuleServiceProvider extends AddonServiceProvider
             'as'   => 'anomaly.module.users::users.activate',
             'uses' => 'Anomaly\UsersModule\Http\Controller\RegisterController@activate',
         ],
+        'users/password/change'               => [
+            'as'   => 'anomaly.module.users::users.change',
+            'uses' => 'Anomaly\UsersModule\Http\Controller\PasswordController@change',
+        ],
         'users/password/reset'               => [
             'as'   => 'anomaly.module.users::users.reset',
             'uses' => 'Anomaly\UsersModule\Http\Controller\PasswordController@reset',
@@ -111,6 +115,7 @@ class UsersModuleServiceProvider extends AddonServiceProvider
         'register'                                                  => 'Anomaly\UsersModule\User\Register\RegisterFormBuilder',
         'reset_password'                                            => 'Anomaly\UsersModule\User\Password\ResetPasswordFormBuilder',
         'forgot_password'                                           => 'Anomaly\UsersModule\User\Password\ForgotPasswordFormBuilder',
+        'change_password'                                           => 'Anomaly\UsersModule\User\Password\ChangePasswordFormBuilder',
         'Illuminate\Auth\Middleware\Authenticate'                   => 'Anomaly\UsersModule\Http\Middleware\Authenticate',
         'Anomaly\Streams\Platform\Http\Middleware\Authenticate'     => 'Anomaly\UsersModule\Http\Middleware\Authenticate',
         'Anomaly\Streams\Platform\Model\Users\UsersUsersEntryModel' => 'Anomaly\UsersModule\User\UserModel',

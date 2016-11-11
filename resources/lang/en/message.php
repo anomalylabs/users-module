@@ -11,4 +11,6 @@ return [
     'invalid_email'            => 'An account with the provided email could not be found.',
     'pending_admin_activation' => 'Your account is pending activation from an administrator.',
     'confirm_reset_password'   => 'Please check your email to finish resetting your password.',
+    'invalid_password_old'     => 'Invalid old password.',
+    'confirm_password_change'  => 'Your password has been changed.',
 ];

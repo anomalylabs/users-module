@@ -40,6 +40,18 @@ return [
     'confirm_password' => [
         'name' => 'Confirm Password',
     ],
+    'password_old'         => [
+        'name'         => 'Old Password',
+        'instructions' => 'Specify current password.',
+    ],
+    'password_new'         => [
+        'name'         => 'New Password',
+        'instructions' => 'Specify new password.',
+    ],
+    'password_new_confirmation' => [
+        'name'         => 'Confirm New Password',
+        'instructions' => 'Specify new password again.',
+    ],
     'slug'             => [
         'name'         => 'Slug',
         'instructions' => [
