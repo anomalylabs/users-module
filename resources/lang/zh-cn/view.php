@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'online'   => '上线中',
-    'inactive' => '禁用中',
-    'enabled'  => '已启动',
+    'online'   => '在线',
+    'inactive' => '未活动',
+    'enabled'  => '已启用',
 ];
