@@ -1,8 +1,14 @@
 <?php namespace Anomaly\UsersModule;
 
 use Anomaly\Streams\Platform\Addon\AddonServiceProvider;
-use Illuminate\Contracts\Config\Repository;
 
+/**
+ * Class UsersModuleServiceProvider
+ *
+ * @link   http://pyrocms.com/
+ * @author PyroCMS, Inc. <support@pyrocms.com>
+ * @author Ryan Thompson <ryan@pyrocms.com>
+ */
 class UsersModuleServiceProvider extends AddonServiceProvider
 {
 
@@ -60,7 +66,7 @@ class UsersModuleServiceProvider extends AddonServiceProvider
             'as'   => 'anomaly.module.users::logout',
             'uses' => 'Anomaly\UsersModule\Http\Controller\LoginController@logout',
         ],
-        'register'                     => [
+        'register'                           => [
             'as'   => 'anomaly.module.users::register',
             'uses' => 'Anomaly\UsersModule\Http\Controller\RegisterController@register',
         ],
@@ -111,8 +117,6 @@ class UsersModuleServiceProvider extends AddonServiceProvider
         'register'                                                  => 'Anomaly\UsersModule\User\Register\RegisterFormBuilder',
         'reset_password'                                            => 'Anomaly\UsersModule\User\Password\ResetPasswordFormBuilder',
         'forgot_password'                                           => 'Anomaly\UsersModule\User\Password\ForgotPasswordFormBuilder',
-        'Illuminate\Auth\Middleware\Authenticate'                   => 'Anomaly\UsersModule\Http\Middleware\Authenticate',
-        'Anomaly\Streams\Platform\Http\Middleware\Authenticate'     => 'Anomaly\UsersModule\Http\Middleware\Authenticate',
         'Anomaly\Streams\Platform\Model\Users\UsersUsersEntryModel' => 'Anomaly\UsersModule\User\UserModel',
         'Anomaly\Streams\Platform\Model\Users\UsersRolesEntryModel' => 'Anomaly\UsersModule\Role\RoleModel',
     ];
