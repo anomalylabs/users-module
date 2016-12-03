@@ -23,7 +23,7 @@ class FieldsController extends AdminController
     /**
      * Return an index of existing fields.
      *
-     * @param  FieldTableBuilder                          $table
+     * @param  FieldTableBuilder $table
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function index(AssignmentTableBuilder $table, UserModel $users)
@@ -36,20 +36,20 @@ class FieldsController extends AdminController
     /**
      * Choose a field type for creating a field.
      *
-     * @param  FieldTypeCollection   $fieldTypes
+     * @param  FieldTypeCollection $fieldTypes
      * @return \Illuminate\View\View
      */
     public function choose(FieldTypeCollection $fieldTypes)
     {
-        return view('anomaly.module.users::ajax/choose_field_type', ['field_types' => $fieldTypes]);
+        return $this->view->make('anomaly.module.users::admin/fields/choose', ['field_types' => $fieldTypes]);
     }
 
     /**
      * Return the form for a new field.
      *
-     * @param  FieldFormBuilder                           $form
-     * @param  UserModel                                  $users
-     * @param  FieldTypeCollection                        $fieldTypes
+     * @param  FieldFormBuilder    $form
+     * @param  UserModel           $users
+     * @param  FieldTypeCollection $fieldTypes
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function create(FieldFormBuilder $form, UserModel $users, FieldTypeCollection $fieldTypes)
@@ -57,7 +57,7 @@ class FieldsController extends AdminController
         $form
             ->setStream($users->getStream())
             ->setOption('auto_assign', true)
-            ->setFieldType($fieldTypes->get($_GET['field_type']));
+            ->setFieldType($fieldTypes->get($this->request->get('field_type')));
 
         return $form->render();
     }
