@@ -33,7 +33,7 @@ interface UserRepositoryInterface extends EntryRepositoryInterface
     /**
      * Find a user by their credentials.
      *
-     * @param  array              $credentials
+     * @param  array $credentials
      * @return null|UserInterface
      */
     public function findByCredentials(array $credentials);

@@ -63,6 +63,8 @@ class UserSeeder extends Seeder
         $admin = $this->roles->findBySlug('admin');
         $user  = $this->roles->findBySlug('user');
 
+        $this->users->unguard();
+
         /* @var UserInterface $administrator */
         $administrator = $this->users->create(
             [
