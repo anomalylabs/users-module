@@ -12,9 +12,9 @@ use Illuminate\Notifications\Notifiable;
 /**
  * Class UserModel
  *
- * @link          http://pyrocms.com/
- * @author        PyroCMS, Inc. <support@pyrocms.com>
- * @author        Ryan Thompson <ryan@pyrocms.com>
+ * @link   http://pyrocms.com/
+ * @author PyroCMS, Inc. <support@pyrocms.com>
+ * @author Ryan Thompson <ryan@pyrocms.com>
  */
 class UserModel extends UsersUsersEntryModel implements UserInterface, \Illuminate\Contracts\Auth\Authenticatable
 {
@@ -32,11 +32,11 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, \Illumina
     ];
 
     /**
-     * The hidden attributes.
+     * The guarded attributes.
      *
      * @var array
      */
-    protected $hidden = [
+    protected $guarded = [
         'password',
     ];
 
