@@ -107,4 +107,14 @@ class RoleModel extends UsersRolesEntryModel implements RoleInterface
             'entry_id'
         );
     }
+
+    /**
+     * Return if the model is deletable.
+     *
+     * @return bool
+     */
+    public function isDeletable()
+    {
+        return $this->getSlug() !== 'admin';
+    }
 }
