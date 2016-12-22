@@ -4,9 +4,10 @@ return [
     'users'    => [
         'name'   => 'Users',
         'option' => [
-            'read'   => 'Can access users section.',
-            'write'  => 'Can create and edit users.',
-            'delete' => 'Can delete users.',
+            'read'         => 'Can access users section.',
+            'write'        => 'Can create and edit users.',
+            'write_admins' => 'Can create and edit admins.',
+            'delete'       => 'Can delete users.',
         ],
     ],
     'roles'    => [

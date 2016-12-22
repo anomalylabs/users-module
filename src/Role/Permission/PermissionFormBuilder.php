@@ -63,10 +63,10 @@ class PermissionFormBuilder extends FormBuilder
     /**
      * Fired when builder is ready to build.
      *
-     * @param  RoleRepositoryInterface           $roles
-     * @param  BreadcrumbCollection              $breadcrumbs
-     * @param  MessageBag                        $messages
-     * @param  Redirector                        $redirect
+     * @param  RoleRepositoryInterface $roles
+     * @param  BreadcrumbCollection    $breadcrumbs
+     * @param  MessageBag              $messages
+     * @param  Redirector              $redirect
      * @return \Illuminate\Http\RedirectResponse
      */
     public function onReady(
@@ -79,7 +79,7 @@ class PermissionFormBuilder extends FormBuilder
 
         if ($role->getSlug() === 'admin') {
 
-            $messages->warning('anomaly.module.users::warning.modify_admin_role');
+            $messages->warning('anomaly.module.users::warning.modify_admin_permissions');
 
             $this->setFormResponse($redirect->to('admin/users/roles'));
 
