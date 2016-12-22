@@ -4,6 +4,7 @@ return [
     'users'    => [
         'read',
         'write',
+        'write_admins',
         'delete',
     ],
     'roles'    => [

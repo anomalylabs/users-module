@@ -1,6 +1,7 @@
 <?php namespace Anomaly\UsersModule\User\Form;
 
 use Anomaly\UsersModule\User\UserModel;
+use Anomaly\UsersModule\User\Validation\ValidateRoles;
 
 /**
  * Class UserFormFields
@@ -34,7 +35,17 @@ class UserFormFields
             ],
             'activated',
             'enabled',
-            'roles',
+            'roles'    => [
+                'rules'      => [
+                    'valid_roles',
+                ],
+                'validators' => [
+                    'valid_roles' => [
+                        'handler' => ValidateRoles::class,
+                        'message' => 'anomaly.module.users::error.modify_admins',
+                    ],
+                ],
+            ],
         ];
 
         $assignments = $users->getAssignments();
