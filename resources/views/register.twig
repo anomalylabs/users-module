@@ -2,6 +2,6 @@
 
 {% block content %}
 
-    {{ form('register').redirect(request_get('redirect'))|raw }}
+    {{ form('register').redirect(request_get('redirect', '/'))|raw }}
 
 {% endblock %}
