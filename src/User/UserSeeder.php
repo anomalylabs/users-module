@@ -1,9 +1,12 @@
 <?php namespace Anomaly\UsersModule\User;
 
+use Anomaly\Streams\Platform\Application\Command\ReadEnvironmentFile;
+use Anomaly\Streams\Platform\Application\Command\WriteEnvironmentFile;
 use Anomaly\Streams\Platform\Database\Seeder\Seeder;
 use Anomaly\UsersModule\Role\Contract\RoleRepositoryInterface;
 use Anomaly\UsersModule\User\Contract\UserInterface;
 use Anomaly\UsersModule\User\Contract\UserRepositoryInterface;
+use Illuminate\Foundation\Bus\DispatchesJobs;
 
 /**
  * Class UserSeeder
@@ -14,6 +17,8 @@ use Anomaly\UsersModule\User\Contract\UserRepositoryInterface;
  */
 class UserSeeder extends Seeder
 {
+
+    use DispatchesJobs;
 
     /**
      * The user repository.
@@ -65,13 +70,15 @@ class UserSeeder extends Seeder
 
         $this->users->unguard();
 
+        $data = $this->dispatch(new ReadEnvironmentFile());
+
         /* @var UserInterface $administrator */
         $administrator = $this->users->create(
             [
                 'display_name' => 'Administrator',
-                'email'        => env('ADMIN_EMAIL'),
-                'username'     => env('ADMIN_USERNAME'),
-                'password'     => env('ADMIN_PASSWORD'),
+                'email'        => array_pull($data, 'ADMIN_EMAIL'),
+                'username'     => array_pull($data, 'ADMIN_USERNAME'),
+                'password'     => array_pull($data, 'ADMIN_PASSWORD'),
             ]
         );
 
@@ -90,5 +97,7 @@ class UserSeeder extends Seeder
 
         $this->activator->force($demo);
         $this->activator->force($administrator);
+
+        $this->dispatch(new WriteEnvironmentFile($data));
     }
 }
