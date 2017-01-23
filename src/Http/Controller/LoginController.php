@@ -21,14 +21,19 @@ class LoginController extends PublicController
      */
     public function login()
     {
+        $this->template->set(
+            'meta_title',
+            'anomaly.module.users::breadcrumb.login'
+        );
+
         return $this->view->make('anomaly.module.users::login');
     }
 
     /**
      * Logout the active user.
      *
-     * @param  UserAuthenticator                 $authenticator
-     * @param  Guard                             $auth
+     * @param  UserAuthenticator $authenticator
+     * @param  Guard             $auth
      * @return \Illuminate\Http\RedirectResponse
      */
     public function logout(UserAuthenticator $authenticator, Guard $auth)

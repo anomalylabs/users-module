@@ -18,6 +18,11 @@ class PasswordController extends PublicController
      */
     public function forgot()
     {
+        $this->template->set(
+            'meta_title',
+            'anomaly.module.users::breadcrumb.reset_password'
+        );
+
         return $this->view->make('anomaly.module.users::password/forgot');
     }
 
@@ -28,6 +33,11 @@ class PasswordController extends PublicController
      */
     public function reset()
     {
+        $this->template->set(
+            'meta_title',
+            'anomaly.module.users::breadcrumb.reset_password'
+        );
+
         return $this->view->make('anomaly.module.users::password/reset');
     }
 }
