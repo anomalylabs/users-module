@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'forgot_password'          => 'Forgot your password?',
     'logged_in'                => 'You are now logged in.',
     'logged_out'               => 'You are now logged out.',
     'invalid_login'            => 'Incorrect login or password.',
