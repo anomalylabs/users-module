@@ -2,7 +2,6 @@
 
 use Anomaly\Streams\Platform\Http\Controller\PublicController;
 use Anomaly\UsersModule\User\Register\Command\HandleActivateRequest;
-use Illuminate\Contracts\Encryption\Encrypter;
 
 /**
  * Class RegisterController
@@ -21,6 +20,11 @@ class RegisterController extends PublicController
      */
     public function register()
     {
+        $this->template->set(
+            'meta_title',
+            'anomaly.module.users::breadcrumb.register'
+        );
+
         return $this->view->make('anomaly.module.users::register');
     }
 
