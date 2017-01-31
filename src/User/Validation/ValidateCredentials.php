@@ -1,7 +1,6 @@
 <?php namespace Anomaly\UsersModule\User\Validation;
 
 use Anomaly\UsersModule\User\Contract\UserInterface;
-use Anomaly\UsersModule\User\Contract\UserRepositoryInterface;
 use Anomaly\UsersModule\User\Login\LoginFormBuilder;
 use Anomaly\UsersModule\User\UserAuthenticator;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,14 +19,12 @@ class ValidateCredentials
      * Handle the validation.
      *
      * @param  UserAuthenticator $authenticator
-     * @param  LoginFormBuilder  $builder
+     * @param  LoginFormBuilder $builder
      * @return bool
      */
     public function handle(UserAuthenticator $authenticator, LoginFormBuilder $builder)
     {
-        $values = $builder->getFormValues();
-
-        if (!$response = $authenticator->authenticate($values->all())) {
+        if (!$response = $authenticator->authenticate($builder->getPostData())) {
             return false;
         }
 
