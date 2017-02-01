@@ -2,7 +2,6 @@
 
 use Anomaly\Streams\Platform\Http\Controller\AdminController;
 use Anomaly\Streams\Platform\Ui\ControlPanel\Component\Navigation\NavigationCollection;
-use Illuminate\Contracts\Config\Repository;
 use Illuminate\Routing\Redirector;
 
 /**
@@ -18,13 +17,13 @@ class HomeController extends AdminController
     /**
      * Redirect to the users home page.
      *
-     * @param  NavigationCollection              $navigation
-     * @param  Redirector                        $redirect
+     * @param  NavigationCollection $navigation
+     * @param  Redirector           $redirect
      * @return \Illuminate\Http\RedirectResponse
      */
     public function index(NavigationCollection $navigation, Redirector $redirect)
     {
-        $home = $navigation->home();
+        $home = $navigation->first();
 
         return $redirect->to($home->getHref());
     }
