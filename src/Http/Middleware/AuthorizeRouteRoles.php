@@ -65,8 +65,8 @@ class AuthorizeRouteRoles
     /**
      * Check the authorization of module access.
      *
-     * @param  Request                           $request
-     * @param  \Closure                          $next
+     * @param  Request  $request
+     * @param  \Closure $next
      * @return \Illuminate\Http\RedirectResponse
      */
     public function handle(Request $request, Closure $next)
@@ -78,11 +78,19 @@ class AuthorizeRouteRoles
         /* @var UserInterface $user */
         $user = $this->auth->user();
 
-        $role     = array_get($this->route->getAction(), 'anomaly.module.users::role');
+        $role     = (array)array_get($this->route->getAction(), 'anomaly.module.users::role');
         $redirect = array_get($this->route->getAction(), 'anomaly.module.users::redirect');
         $message  = array_get($this->route->getAction(), 'anomaly.module.users::message');
 
-        if ($role && (!$user || !$user->hasAnyRole((array)$role))) {
+        /**
+         * If the guest role is desired
+         * then pass through if no user.
+         */
+        if ($role && in_array('guest', $role) && !$user) {
+            return $next($request);
+        }
+
+        if ($role && (!$user || !$user->hasAnyRole($role))) {
 
             if ($message) {
                 $this->messages->error($message);
