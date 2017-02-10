@@ -17,6 +17,7 @@ class RegisterController extends PublicController
     /**
      * Return the register view.
      *
+     * @param  Translator $translator
      * @return \Illuminate\Contracts\View\View|mixed
      */
     public function register(Translator $translator)

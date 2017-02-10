@@ -18,13 +18,14 @@ class LoginController extends PublicController
     /**
      * Return the login form.
      *
+     * @param  Translator $translator
      * @return \Illuminate\Http\RedirectResponse
      */
     public function login(Translator $translator)
     {
         $this->template->set(
             'meta_title',
-            $translator->trans(('anomaly.module.users::breadcrumb.login'))
+            $translator->trans('anomaly.module.users::breadcrumb.login')
         );
 
         return $this->view->make('anomaly.module.users::login');

@@ -16,6 +16,8 @@ class PasswordController extends PublicController
 
     /**
      * Return a forgot password view.
+     *
+     * @param  Translator $translator
      */
     public function forgot(Translator $translator)
     {
@@ -30,6 +32,7 @@ class PasswordController extends PublicController
     /**
      * Reset a user password.
      *
+     * @param  Translator $translator
      * @return \Illuminate\Contracts\View\View|mixed
      */
     public function reset(Translator $translator)
