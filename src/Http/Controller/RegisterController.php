@@ -2,6 +2,7 @@
 
 use Anomaly\Streams\Platform\Http\Controller\PublicController;
 use Anomaly\UsersModule\User\Register\Command\HandleActivateRequest;
+use Illuminate\Translation\Translator;
 
 /**
  * Class RegisterController
@@ -18,11 +19,11 @@ class RegisterController extends PublicController
      *
      * @return \Illuminate\Contracts\View\View|mixed
      */
-    public function register()
+    public function register(Translator $translator)
     {
         $this->template->set(
             'meta_title',
-            'anomaly.module.users::breadcrumb.register'
+            $translator->trans('anomaly.module.users::breadcrumb.register')
         );
 
         return $this->view->make('anomaly.module.users::register');

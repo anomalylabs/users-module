@@ -3,6 +3,7 @@
 use Anomaly\Streams\Platform\Http\Controller\PublicController;
 use Anomaly\UsersModule\User\UserAuthenticator;
 use Illuminate\Contracts\Auth\Guard;
+use Illuminate\Translation\Translator;
 
 /**
  * Class LoginController
@@ -19,11 +20,11 @@ class LoginController extends PublicController
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function login()
+    public function login(Translator $translator)
     {
         $this->template->set(
             'meta_title',
-            'anomaly.module.users::breadcrumb.login'
+            $translator->trans(('anomaly.module.users::breadcrumb.login'))
         );
 
         return $this->view->make('anomaly.module.users::login');
