@@ -2,6 +2,7 @@
 
 use Anomaly\Streams\Platform\Http\Controller\PublicController;
 use Illuminate\Contracts\Encryption\Encrypter;
+use Illuminate\Translation\Translator;
 
 /**
  * Class PasswordController
@@ -15,12 +16,14 @@ class PasswordController extends PublicController
 
     /**
      * Return a forgot password view.
+     *
+     * @param  Translator $translator
      */
-    public function forgot()
+    public function forgot(Translator $translator)
     {
         $this->template->set(
             'meta_title',
-            'anomaly.module.users::breadcrumb.reset_password'
+            $translator->trans('anomaly.module.users::breadcrumb.reset_password')
         );
 
         return $this->view->make('anomaly.module.users::password/forgot');
@@ -29,13 +32,14 @@ class PasswordController extends PublicController
     /**
      * Reset a user password.
      *
+     * @param  Translator $translator
      * @return \Illuminate\Contracts\View\View|mixed
      */
-    public function reset()
+    public function reset(Translator $translator)
     {
         $this->template->set(
             'meta_title',
-            'anomaly.module.users::breadcrumb.reset_password'
+            $translator->trans('anomaly.module.users::breadcrumb.reset_password')
         );
 
         return $this->view->make('anomaly.module.users::password/reset');
