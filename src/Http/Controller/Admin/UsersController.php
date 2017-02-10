@@ -21,7 +21,7 @@ class UsersController extends AdminController
     /**
      * Return an index of existing users.
      *
-     * @param  UserTableBuilder                           $table
+     * @param  UserTableBuilder $table
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function index(UserTableBuilder $table)
@@ -32,7 +32,7 @@ class UsersController extends AdminController
     /**
      * Return the form for creating a new user.
      *
-     * @param  UserFormBuilder                            $form
+     * @param  UserFormBuilder $form
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function create(UserFormBuilder $form)

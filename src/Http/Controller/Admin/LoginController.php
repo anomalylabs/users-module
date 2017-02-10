@@ -21,10 +21,10 @@ class LoginController extends PublicController
     /**
      * Return the admin login form.
      *
-     * @param  LoginFormBuilder                                                             $form
-     * @param  Redirector                                                                   $redirect
-     * @param  Repository                                                                   $config
-     * @param  Guard                                                                        $auth
+     * @param  LoginFormBuilder $form
+     * @param  Redirector       $redirect
+     * @param  Repository       $config
+     * @param  Guard            $auth
      * @return \Illuminate\Http\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function login(
@@ -54,8 +54,8 @@ class LoginController extends PublicController
     /**
      * Log the user out.
      *
-     * @param  UserAuthenticator                            $authenticator
-     * @param  Guard                                        $auth
+     * @param  UserAuthenticator $authenticator
+     * @param  Guard             $auth
      * @return \Illuminate\Http\RedirectResponse|Redirector
      */
     public function logout(UserAuthenticator $authenticator, Guard $auth)

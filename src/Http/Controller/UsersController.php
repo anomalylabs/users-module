@@ -12,10 +12,11 @@ use Anomaly\UsersModule\User\Contract\UserRepositoryInterface;
  */
 class UsersController extends PublicController
 {
+
     /**
      * View a user profile.
      *
-     * @param  UserRepositoryInterface               $users
+     * @param  UserRepositoryInterface $users
      * @return \Illuminate\Contracts\View\View|mixed
      */
     public function view(UserRepositoryInterface $users)

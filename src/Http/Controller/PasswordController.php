@@ -1,7 +1,6 @@
 <?php namespace Anomaly\UsersModule\Http\Controller;
 
 use Anomaly\Streams\Platform\Http\Controller\PublicController;
-use Illuminate\Contracts\Encryption\Encrypter;
 use Illuminate\Translation\Translator;
 
 /**
