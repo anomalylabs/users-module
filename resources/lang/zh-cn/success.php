@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'reset_password'  => '您的密码已经重新设定了。',
-    'activate_user'   => '您的帐号已经激活了。',
-    'user_registered' => '您的帐号已经注册了。',
+    'reset_password'  => '密码已重设.',
+    'activate_user'   => '账号已激活.',
+    'user_registered' => '帐号已注册.',
 ];

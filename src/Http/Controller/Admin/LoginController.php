@@ -42,7 +42,7 @@ class LoginController extends PublicController
          * configurable landing page.
          */
         if ($auth->check() && $home = $navigation->home()) {
-            return $redirect->to($config->get($home->getHref()));
+            return $redirect->to($home->getHref());
         }
 
         return $form
