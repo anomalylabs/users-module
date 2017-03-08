@@ -41,7 +41,7 @@ class LoginController extends PublicController
          * Replace this later with a
          * configurable landing page.
          */
-        if ($auth->check() && $home = $navigation->home()) {
+        if ($auth->check() && $home = $navigation->first()) {
             return $redirect->to($home->getHref());
         }
 
