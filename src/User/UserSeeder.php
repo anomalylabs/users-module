@@ -63,7 +63,6 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        $this->users->truncate();
 
         $admin = $this->roles->findBySlug('admin');
         $user  = $this->roles->findBySlug('user');

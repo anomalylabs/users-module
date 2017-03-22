@@ -35,7 +35,6 @@ class RoleSeeder extends Seeder
      */
     public function run()
     {
-        $this->roles->truncate();
 
         $this->roles->create(
             [
