@@ -5,7 +5,6 @@ use Anomaly\Streams\Platform\Ui\ControlPanel\Component\Navigation\NavigationColl
 use Anomaly\UsersModule\User\Login\LoginFormBuilder;
 use Anomaly\UsersModule\User\UserAuthenticator;
 use Illuminate\Contracts\Auth\Guard;
-use Illuminate\Contracts\Config\Repository;
 use Illuminate\Routing\Redirector;
 
 /**
@@ -22,16 +21,14 @@ class LoginController extends PublicController
      * Return the admin login form.
      *
      * @param  LoginFormBuilder $form
-     * @param  Redirector       $redirect
-     * @param  Repository       $config
-     * @param  Guard            $auth
+     * @param  Redirector $redirect
+     * @param  Guard $auth
      * @return \Illuminate\Http\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function login(
         NavigationCollection $navigation,
         LoginFormBuilder $form,
         Redirector $redirect,
-        Repository $config,
         Guard $auth
     ) {
         /*
@@ -55,7 +52,7 @@ class LoginController extends PublicController
      * Log the user out.
      *
      * @param  UserAuthenticator $authenticator
-     * @param  Guard             $auth
+     * @param  Guard $auth
      * @return \Illuminate\Http\RedirectResponse|Redirector
      */
     public function logout(UserAuthenticator $authenticator, Guard $auth)
