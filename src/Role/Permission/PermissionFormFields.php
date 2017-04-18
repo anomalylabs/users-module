@@ -2,7 +2,7 @@
 
 use Anomaly\Streams\Platform\Addon\AddonCollection;
 use Anomaly\UsersModule\Role\Contract\RoleInterface;
-use Illuminate\Config\Repository;
+use Illuminate\Contracts\Config\Repository;
 use Illuminate\Translation\Translator;
 
 /**
