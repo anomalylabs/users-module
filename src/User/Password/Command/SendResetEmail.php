@@ -2,19 +2,18 @@
 
 use Anomaly\UsersModule\User\Contract\UserInterface;
 use Anomaly\UsersModule\User\Notification\ResetYourPassword;
-use Illuminate\Contracts\Config\Repository;
 use Illuminate\Foundation\Bus\DispatchesJobs;
-use Illuminate\Mail\Mailer;
-use Illuminate\Mail\Message;
+use Illuminate\Notifications\Notifiable;
 
 class SendResetEmail
 {
+
     use DispatchesJobs;
 
     /**
      * The user instance.
      *
-     * @var UserInterface
+     * @var UserInterface|Notifiable
      */
     protected $user;
 

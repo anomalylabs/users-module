@@ -1,5 +1,6 @@
 <?php namespace Anomaly\UsersModule\User\Password\Command;
 
+use Anomaly\Streams\Platform\Model\EloquentModel;
 use Anomaly\UsersModule\User\Contract\UserInterface;
 use Anomaly\UsersModule\User\Contract\UserRepositoryInterface;
 
@@ -17,7 +18,7 @@ class StartPasswordReset
     /**
      * The user instance.
      *
-     * @var UserInterface
+     * @var UserInterface|EloquentModel
      */
     protected $user;
 
