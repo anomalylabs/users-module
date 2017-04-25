@@ -1,5 +1,6 @@
 <?php namespace Anomaly\UsersModule\User\Password;
 
+use Anomaly\Streams\Platform\Message\MessageBag;
 use Anomaly\UsersModule\User\Contract\UserRepositoryInterface;
 use Anomaly\UsersModule\User\UserPassword;
 use Illuminate\Contracts\Config\Repository;
@@ -20,12 +21,14 @@ class ForgotPasswordFormHandler
      * @param ForgotPasswordFormBuilder $builder
      * @param UserRepositoryInterface   $users
      * @param UserPassword              $password
+     * @param MessageBag                $messages
      * @param Repository                $config
      */
     public function handle(
         ForgotPasswordFormBuilder $builder,
         UserRepositoryInterface $users,
         UserPassword $password,
+        MessageBag $messages,
         Repository $config
     ) {
         if ($builder->hasFormErrors()) {
@@ -40,5 +43,7 @@ class ForgotPasswordFormHandler
 
         $password->forgot($user);
         $password->send($user, $builder->getFormOption('reset_redirect'));
+
+        $messages->success($builder->getFormOption('success_message'));
     }
 }
