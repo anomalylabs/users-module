@@ -15,13 +15,6 @@ class RoleModel extends UsersRolesEntryModel implements RoleInterface
 {
 
     /**
-     * The cache minutes.
-     *
-     * @var int
-     */
-    protected $ttl = 99999;
-
-    /**
      * Eager loaded relations.
      *
      * @var array
