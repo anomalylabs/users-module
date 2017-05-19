@@ -7,8 +7,8 @@ return [
         'placeholder'  => 'Redaktör',
     ],
     'first_name'            => [
-        'name'         => 'Förstanamn',
-        'instructions' => 'Vad är användarens förstanamn?',
+        'name'         => 'Förnamn',
+        'instructions' => 'Vad är användarens förnamn?',
         'placeholder'  => 'Joel',
     ],
     'last_name'             => [
