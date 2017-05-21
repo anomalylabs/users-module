@@ -1,6 +1,7 @@
 <?php namespace Anomaly\UsersModule\Http\Controller;
 
 use Anomaly\Streams\Platform\Http\Controller\PublicController;
+use Anomaly\Streams\Platform\Routing\UrlGenerator;
 use Anomaly\UsersModule\User\UserAuthenticator;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Translation\Translator;
@@ -38,7 +39,7 @@ class LoginController extends PublicController
      * @param  Guard             $auth
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function logout(UserAuthenticator $authenticator, Guard $auth)
+    public function logout(UserAuthenticator $authenticator, Guard $auth, UrlGenerator $url)
     {
         if (!$auth->guest()) {
             $authenticator->logout();
@@ -46,6 +47,6 @@ class LoginController extends PublicController
 
         $this->messages->success($this->request->get('message', 'anomaly.module.users::message.logged_out'));
 
-        return $this->response->redirectTo($this->request->get('redirect', '/'));
+        return $this->response->redirectTo($this->url->to($this->request->get('redirect', '/')));
     }
 }
