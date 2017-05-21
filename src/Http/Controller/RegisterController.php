@@ -39,12 +39,13 @@ class RegisterController extends PublicController
     {
         if (!$this->dispatch(new HandleActivateRequest())) {
 
-            $this->messages->success('anomaly.module.users::error.activate_user');
+            $this->messages->error('anomaly.module.users::error.activate_user');
 
             return $this->redirect->to('/');
         }
 
         $this->messages->success('anomaly.module.users::success.activate_user');
+        $this->messages->success('anomaly.module.users::success.logged_in');
 
         return $this->redirect->to($this->request->get('redirect', '/'));
     }
