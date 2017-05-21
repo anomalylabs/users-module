@@ -39,6 +39,6 @@ class LoginController extends PublicController
 
         $this->messages->success($this->request->get('message', 'anomaly.module.users::message.logged_out'));
 
-        return $this->response->redirectTo($this->request->get('redirect', '/'));
+        return $this->response->redirectTo((url($this->request->get('redirect', '/'))));
     }
 }
