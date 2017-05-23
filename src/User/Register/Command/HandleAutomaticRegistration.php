@@ -52,6 +52,8 @@ class HandleAutomaticRegistration
         if (!is_null($message = $this->builder->getFormOption('activated_message'))) {
             $messages->info($message);
         }
+
+        $messages->success('anomaly.module.users::success.logged_in');
     }
 
 }
