@@ -41,4 +41,21 @@ class RoleCollection extends EntryCollection
             }
         );
     }
+
+    /**
+     * Return if the role exists or not.
+     *
+     * @param $role
+     * @return bool
+     */
+    public function hasRole($role)
+    {
+        return (bool)$this->first(
+            function ($item) use ($role) {
+
+                /* @var RoleInterface $item */
+                return $item->getSlug() == $role;
+            }
+        );
+    }
 }
