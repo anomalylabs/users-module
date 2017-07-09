@@ -12,4 +12,6 @@ return [
     'invalid_email'            => 'An account with the provided email could not be found.',
     'pending_admin_activation' => 'Your account is pending activation from an administrator.',
     'confirm_reset_password'   => 'Please check your email to finish resetting your password.',
+    'no_user_found'            => 'We could not find that user id',
+    'not_an_admin'             => 'You do not appear to be an administrator',
 ];
