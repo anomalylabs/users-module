@@ -21,7 +21,7 @@ class UsersController extends PublicController
      */
     public function view(UserRepositoryInterface $users)
     {
-        if (!$user = $users->findByUsername($this->route->getParameter('username'))) {
+        if (!$user = $users->findByUsername($this->route->parameter('username'))) {
             abort(404);
         }
 
