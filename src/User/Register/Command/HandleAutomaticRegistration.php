@@ -53,7 +53,7 @@ class HandleAutomaticRegistration
             $messages->info($message);
         }
 
-        $messages->success('anomaly.module.users::success.logged_in');
+        $messages->success('anomaly.module.users::message.logged_in');
     }
 
 }
