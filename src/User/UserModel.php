@@ -7,6 +7,7 @@ use Anomaly\UsersModule\Role\Contract\RoleInterface;
 use Anomaly\UsersModule\Role\RoleCollection;
 use Anomaly\UsersModule\User\Contract\UserInterface;
 use Illuminate\Auth\Authenticatable;
+use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Notifications\Notifiable;
 
 /**
@@ -21,6 +22,7 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, \Illumina
 
     use Notifiable;
     use Authenticatable;
+    use CanResetPassword;
 
     /**
      * The eager loaded relationships.
