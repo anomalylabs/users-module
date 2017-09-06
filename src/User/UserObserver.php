@@ -35,7 +35,9 @@ class UserObserver extends EntryObserver
      */
     public function deleted(EntryInterface $entry)
     {
-        $this->events->fire(new UserWasDeleted($entry));
+        if (!$entry->isForceDeleting()) {
+            $this->events->fire(new UserWasDeleted($entry));
+        }
 
         parent::deleted($entry);
     }
