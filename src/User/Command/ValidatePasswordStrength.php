@@ -54,13 +54,20 @@ class ValidatePasswordStrength
                 'password' => $this->password,
             ],
             [
-                'password' => [
-                    'min:' . $config->get('anomaly.module.users::password.minimum_length'),
-                    'regex:/' . implode(array_keys($requirements)) . '/',
-                ],
+                'password' => array_merge(
+                    [
+                        'min:' . $config->get('anomaly.module.users::password.minimum_length'),
+                    ],
+                    array_map(
+                        function ($requirement) {
+                            return 'regex:/' . $requirement . '/';
+                        },
+                        $requirements
+                    )
+                ),
             ]
         );
-
+        
         if (!$validator->passes()) {
 
             $failed = array_filter(
