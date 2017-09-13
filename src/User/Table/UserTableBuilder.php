@@ -74,6 +74,11 @@ class UserTableBuilder extends TableBuilder
             'icon'   => 'lock',
             'href'   => 'admin/users/permissions/{entry.id}',
         ],
+        'login_as' => [
+            'button' => 'primary',
+            'icon'   => 'sign-in',
+            'href'   => 'admin/users/loginas/{entry.id}',
+        ],
     ];
 
 }

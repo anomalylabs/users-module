@@ -10,4 +10,5 @@ return [
     'add_field'      => 'Add Field',
     'permissions'    => 'Permissions',
     'reset_password' => 'Reset Password',
+    'login_as'       => 'Login As',
 ];

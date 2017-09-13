@@ -2,8 +2,10 @@
 
 use Anomaly\Streams\Platform\Http\Controller\AdminController;
 use Anomaly\UsersModule\User\Form\UserFormBuilder;
+use Anomaly\UsersModule\User\Contract\UserRepositoryInterface;
 use Anomaly\UsersModule\User\Permission\PermissionFormBuilder;
 use Anomaly\UsersModule\User\Table\UserTableBuilder;
+use Auth;
 
 /**
  * Class UsersController
@@ -62,5 +64,27 @@ class UsersController extends AdminController
     public function permissions(PermissionFormBuilder $form, $id)
     {
         return $form->render($id);
+    }
+
+    /**
+     * Login the admin user as a different user and redirect.
+     *
+     * @param                                             $id
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function loginAs(UserRepositoryInterface $users, $id)
+    {
+        if(@Auth::user() && @Auth::user()->hasRole('admin'))
+        {
+            $user = $users->find($id);
+            if ($user) {
+                Auth::login($user);
+                return redirect()->to('/');
+            } else {
+                return redirect()->back()->with('error',trans('anomaly.module.users::message.no_user_found'));
+            }
+        } else {
+            return redirect()->back()->with('error',trans('anomaly.module.users::message.not_an_admin'));
+        }
     }
 }
