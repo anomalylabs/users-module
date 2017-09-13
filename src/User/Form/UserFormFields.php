@@ -1,6 +1,7 @@
 <?php namespace Anomaly\UsersModule\User\Form;
 
 use Anomaly\UsersModule\User\UserModel;
+use Anomaly\UsersModule\User\Validation\ValidatePassword;
 use Anomaly\UsersModule\User\Validation\ValidateRoles;
 
 /**
@@ -27,10 +28,17 @@ class UserFormFields
             'username',
             'email',
             'password' => [
-                'value'    => '',
-                'required' => false,
-                'rules'    => [
+                'value'      => '',
+                'required'   => false,
+                'rules'      => [
                     'required_if:password,*',
+                    'valid_password',
+                ],
+                'validators' => [
+                    'valid_password' => [
+                        'message' => false,
+                        'handler' => ValidatePassword::class,
+                    ],
                 ],
             ],
             'activated',

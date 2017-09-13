@@ -1,10 +1,12 @@
 <?php namespace Anomaly\UsersModule\User;
 
+use Anomaly\UsersModule\User\Command\ValidatePasswordStrength;
 use Anomaly\UsersModule\User\Contract\UserInterface;
 use Anomaly\UsersModule\User\Password\Command\ResetPassword;
 use Anomaly\UsersModule\User\Password\Command\SendResetEmail;
 use Anomaly\UsersModule\User\Password\Command\StartPasswordReset;
 use Illuminate\Foundation\Bus\DispatchesJobs;
+use Illuminate\Validation\Validator;
 
 /**
  * Class UserPassword
@@ -17,6 +19,34 @@ class UserPassword
 {
 
     use DispatchesJobs;
+
+    /**
+     * Check if the password
+     * passes validation.
+     *
+     * @param $password
+     * @return bool
+     */
+    public function passes($password)
+    {
+        return $this
+            ->validate($password)
+            ->passes();
+    }
+
+    /**
+     * Validate the password.
+     *
+     * @param $password
+     * @return Validator
+     */
+    public function validate($password)
+    {
+        /* @var Validator $validator */
+        $validator = $this->dispatch(new ValidatePasswordStrength($password));
+
+        return $validator;
+    }
 
     /**
      * Start a password reset.

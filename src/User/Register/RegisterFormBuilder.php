@@ -3,6 +3,7 @@
 use Anomaly\Streams\Platform\Ui\Form\FormBuilder;
 use Anomaly\UsersModule\User\Register\Command\AssociateActivationRoles;
 use Anomaly\UsersModule\User\Register\Command\SetOptions;
+use Anomaly\UsersModule\User\Validation\ValidatePassword;
 
 /**
  * Class RegisterFormBuilder
@@ -47,6 +48,15 @@ class RegisterFormBuilder extends FormBuilder
         ],
         'password'     => [
             'instructions' => false,
+            'rules'        => [
+                'valid_password',
+            ],
+            'validators'   => [
+                'valid_password' => [
+                    'message' => false,
+                    'handler' => ValidatePassword::class,
+                ],
+            ],
         ],
     ];
 
