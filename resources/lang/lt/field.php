@@ -4,7 +4,7 @@ return [
     'name' => [
         'name' => 'Vardas',
         'instructions' => [
-            'roles' => 'Užvardinkite rolę trumpai ir aiškiai.',
+            'roles' => 'Apibūdinkite rolę trumpai ir aiškiai.',
         ],
     ],
     'description' => [
@@ -15,27 +15,27 @@ return [
     ],
     'first_name' => [
         'name' => 'Vardas',
-        'instructions' => 'Nurodykite vartotoją tikrą vardą',
+        'instructions' => 'Nurodykite naudotojo tikrą vardą',
     ],
     'last_name' => [
         'name' => 'Pavardė',
-        'instructions' => 'Nurodykite vartotojo tikrą pavardę.',
+        'instructions' => 'Nurodykite naudotojo tikrą pavardę.',
     ],
     'display_name' => [
         'name' => 'Rodomas vardas',
         'instructions' => 'Nurodykite vardą kuris bus rodomas viešai.',
     ],
     'username' => [
-        'name' => 'Vartotojo vardas',
-        'instructions' => 'Vartotojo vardas yra naudojamas šio vartotojo identifikacijai ir atvaizdavimui.',
+        'name' => 'Naudotojo vardas',
+        'instructions' => 'Naudotojo vardas yra naudojamas šio jo atpažinimui ir atvaizdavimui.',
     ],
     'email' => [
         'name' => 'El.paštas',
         'instructions' => 'El.paštas kuris naudojamas prisijungiant.',
     ],
     'password' => [
-        'name' => 'Slaptažodisnu',
-        'instructions' => 'Vartotojo slaptažodis.',
+        'name' => 'Slaptažodis',
+        'instructions' => 'Naudotojo slaptažodis.',
     ],
     'confirm_password' => [
         'name' => 'Pakartokite slaptažodį',
@@ -43,28 +43,28 @@ return [
     'slug' => [
         'name' => 'Slug',
         'instructions' => [
-            'roles' => 'Slug naudojamas identifikuojant rolę.',
+            'roles' => 'Slug naudojamas atpažįstant rolę.',
         ],
     ],
     'roles' => [
         'name' => 'Rolės',
-        'instructions' => 'Nurodykite kuri rolė priskiriama  šiam vartotojui.',
+        'instructions' => 'Nurodykite kuri rolė priskiriama šiam naudotojui.',
     ],
     'permissions' => [
-        'name' => 'Leidimai',
+        'name' => 'Teisės',
     ],
     'last_activity_at' => [
         'name' => 'Paskutinis aktyvumas',
     ],
     'activated' => [
         'name' => 'Aktyvuotas',
-        'label' => 'Ar šis vartotojas aktyvuotas?',
-        'instructions' => 'Vartotojas negalės prisijungti iki tol kol nebuss aktyvuotas.',
+        'label' => 'Ar šis naudotojas aktyvuotas?',
+        'instructions' => 'Naudotojas negalės prisijungti iki tol kol nebus aktyvuotas.',
     ],
     'enabled' => [
         'name' => 'Išjungtas',
-        'label' => 'Ar šis vartotojas įjungtas?',
-        'instructions' => 'Vartotojas negalės prisijunti arba būti aktyvuotas jei išjuntas.',
+        'label' => 'Ar šis naudotojas įjungtas?',
+        'instructions' => 'Naudotojas negalės prisijunti arba būti aktyvuotas jei išjuntas.',
     ],
     'activation_code' => [
         'name' => 'Aktyvavimo kodas',
