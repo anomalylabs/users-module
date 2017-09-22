@@ -93,7 +93,6 @@ class UserTableBuilder extends TableBuilder
         'settings' => [
             'text'     => false,
             'href'     => false,
-            'type'     => 'default',
             'dropdown' => [
                 'permissions' => [
                     'button' => 'info',
