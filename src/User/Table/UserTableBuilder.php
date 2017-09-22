@@ -96,22 +96,24 @@ class UserTableBuilder extends TableBuilder
             'dropdown' => [
                 'permissions' => [
                     'button' => 'info',
-                    'icon'   => 'lock',
                     'href'   => 'admin/users/permissions/{entry.id}',
                 ],
                 'impersonate' => [
-                    'icon'       => 'fa fa-user-secret',
                     'text'       => 'anomaly.module.users::button.login_as_user',
                     'permission' => 'anomaly.module.users::users.impersonate',
                 ],
                 'reset'       => [
-                    'icon'       => 'glyphicons glyphicons-keys',
                     'text'       => 'anomaly.module.users::button.reset_password',
                     'permission' => 'anomaly.module.users::users.reset',
                     'attributes' => [
                         'data-toggle'  => 'confirm',
                         'data-message' => 'anomaly.module.users::message.confirm_reset_user',
                     ],
+                ],
+                'view'        => [
+                    'icon'   => null,
+                    'target' => '_blank',
+                    'text'   => 'anomaly.module.users::button.view_profile',
                 ],
             ],
         ],

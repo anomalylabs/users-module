@@ -17,11 +17,12 @@ class UsersController extends PublicController
      * View a user profile.
      *
      * @param  UserRepositoryInterface $users
+     * @param                          $username
      * @return \Illuminate\Contracts\View\View|mixed
      */
-    public function view(UserRepositoryInterface $users)
+    public function view(UserRepositoryInterface $users, $username)
     {
-        if (!$user = $users->findByUsername($this->route->parameter('username'))) {
+        if (!$user = $users->findByUsername($username)) {
             abort(404);
         }
 

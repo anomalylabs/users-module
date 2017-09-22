@@ -135,6 +135,7 @@ class UsersModuleServiceProvider extends AddonServiceProvider
         'admin/users'                        => 'Anomaly\UsersModule\Http\Controller\Admin\UsersController@index',
         'admin/users/create'                 => 'Anomaly\UsersModule\Http\Controller\Admin\UsersController@create',
         'admin/users/edit/{id}'              => 'Anomaly\UsersModule\Http\Controller\Admin\UsersController@edit',
+        'admin/users/view/{id}'              => 'Anomaly\UsersModule\Http\Controller\Admin\UsersController@view',
         'admin/users/delete/{id}'            => 'Anomaly\UsersModule\Http\Controller\Admin\UsersController@delete',
         'admin/users/permissions/{id}'       => 'Anomaly\UsersModule\Http\Controller\Admin\UsersController@permissions',
         'admin/users/impersonate/{id}'       => 'Anomaly\UsersModule\Http\Controller\Admin\UsersController@impersonate',

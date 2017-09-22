@@ -97,6 +97,8 @@ class UsersController extends AdminController
     }
 
     /**
+     * Initiate a user reset.
+     *
      * @param Authorizer              $authorizer
      * @param UserPassword            $password
      * @param UserRepositoryInterface $users
@@ -126,5 +128,22 @@ class UsersController extends AdminController
         $this->messages->success('anomaly.module.users::success.reset_user');
 
         return $this->redirect->back();
+    }
+
+    /**
+     * Redirect to a user's profile.
+     *
+     * @param UserRepositoryInterface $users
+     * @param                         $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function view(UserRepositoryInterface $users, $id)
+    {
+        /* @var UserInterface $user */
+        if (!$user = $users->find($id)) {
+            abort(404);
+        }
+
+        return $this->redirect->to($user->route('view'));
     }
 }
