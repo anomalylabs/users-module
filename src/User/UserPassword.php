@@ -2,7 +2,9 @@
 
 use Anomaly\UsersModule\User\Command\ValidatePasswordStrength;
 use Anomaly\UsersModule\User\Contract\UserInterface;
+use Anomaly\UsersModule\User\Password\Command\InvalidatePassword;
 use Anomaly\UsersModule\User\Password\Command\ResetPassword;
+use Anomaly\UsersModule\User\Password\Command\SendInvalidatedEmail;
 use Anomaly\UsersModule\User\Password\Command\SendResetEmail;
 use Anomaly\UsersModule\User\Password\Command\StartPasswordReset;
 use Illuminate\Foundation\Bus\DispatchesJobs;
@@ -73,6 +75,8 @@ class UserPassword
     }
 
     /**
+     * Send the reset email.
+     *
      * @param  UserInterface $user
      * @param  string        $reset
      * @return bool
@@ -80,5 +84,21 @@ class UserPassword
     public function send(UserInterface $user, $reset = '/')
     {
         return $this->dispatch(new SendResetEmail($user, $reset));
+    }
+
+    /**
+     * Invalidate a user password and request reset.
+     *
+     * @param  UserInterface $user
+     * @param  string        $reset
+     * @return bool
+     */
+    public function invalidate(UserInterface $user, $reset = '/')
+    {
+        $this->forgot($user);
+
+        $this->dispatch(new InvalidatePassword($user));
+
+        return $this->dispatch(new SendInvalidatedEmail($user, $reset));
     }
 }

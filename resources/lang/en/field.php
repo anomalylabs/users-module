@@ -6,6 +6,7 @@ return [
         'instructions' => [
             'roles' => 'Specify a short descriptive name for this role.',
         ],
+
     ],
     'description'      => [
         'name'         => 'Description',
@@ -36,6 +37,7 @@ return [
     'password'         => [
         'name'         => 'Password',
         'instructions' => 'Specify the user\'s secure password.',
+        'impersonate'  => 'Please confirm your current password to continue.',
     ],
     'confirm_password' => [
         'name' => 'Confirm Password',

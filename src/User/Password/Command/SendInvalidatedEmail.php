@@ -1,18 +1,18 @@
 <?php namespace Anomaly\UsersModule\User\Password\Command;
 
 use Anomaly\UsersModule\User\Contract\UserInterface;
-use Anomaly\UsersModule\User\Notification\ResetYourPassword;
+use Anomaly\UsersModule\User\Notification\PasswordInvalidated;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Notifications\Notifiable;
 
 /**
- * Class SendResetEmail
+ * Class SendInvalidatedEmail
  *
  * @link   http://pyrocms.com/
  * @author PyroCMS, Inc. <support@pyrocms.com>
  * @author Ryan Thompson <ryan@pyrocms.com>
  */
-class SendResetEmail
+class SendInvalidatedEmail
 {
 
     use DispatchesJobs;
@@ -32,7 +32,7 @@ class SendResetEmail
     protected $redirect;
 
     /**
-     * Create a new SendResetEmail instance.
+     * Create a new SendInvalidatedEmail instance.
      *
      * @param UserInterface $user
      * @param string        $redirect
@@ -50,6 +50,6 @@ class SendResetEmail
      */
     public function handle()
     {
-        return $this->user->notify(new ResetYourPassword($this->redirect));
+        return $this->user->notify(new PasswordInvalidated($this->redirect));
     }
 }

@@ -5,6 +5,7 @@ return [
         'read',
         'write',
         'write_admins',
+        'impersonate',
         'delete',
     ],
     'roles'    => [

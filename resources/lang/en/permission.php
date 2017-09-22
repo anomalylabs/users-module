@@ -7,6 +7,8 @@ return [
             'read'         => 'Can access users section.',
             'write'        => 'Can create and edit users.',
             'write_admins' => 'Can create and edit admins.',
+            'impersonate'  => 'Can impersonate other users.',
+            'reset'        => 'Can reset users.',
             'delete'       => 'Can delete users.',
         ],
     ],

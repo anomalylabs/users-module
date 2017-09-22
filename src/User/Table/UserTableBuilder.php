@@ -2,6 +2,7 @@
 
 use Anomaly\Streams\Platform\Ui\Table\TableBuilder;
 use Anomaly\UsersModule\User\Table\Filter\StatusFilterQuery;
+use Anomaly\UsersModule\User\Table\View\OnlineQuery;
 
 /**
  * Class UserTableBuilder
@@ -12,6 +13,26 @@ use Anomaly\UsersModule\User\Table\Filter\StatusFilterQuery;
  */
 class UserTableBuilder extends TableBuilder
 {
+
+    /**
+     * The table views.
+     *
+     * @var array
+     */
+    protected $views = [
+        'all',
+        'online' => [
+            'query'   => OnlineQuery::class,
+            'text'    => 'anomaly.module.users::view.online',
+            'columns' => [
+                'entry.last_activity_at.diffForHumans()',
+                'display_name',
+                'username',
+                'email',
+            ],
+        ],
+        'trash',
+    ];
 
     /**
      * The table actions.
@@ -69,10 +90,31 @@ class UserTableBuilder extends TableBuilder
      */
     protected $buttons = [
         'edit',
-        'permissions' => [
-            'button' => 'info',
-            'icon'   => 'lock',
-            'href'   => 'admin/users/permissions/{entry.id}',
+        'settings' => [
+            'text'     => false,
+            'href'     => false,
+            'type'     => 'default',
+            'dropdown' => [
+                'permissions' => [
+                    'button' => 'info',
+                    'icon'   => 'lock',
+                    'href'   => 'admin/users/permissions/{entry.id}',
+                ],
+                'impersonate' => [
+                    'icon'       => 'fa fa-user-secret',
+                    'text'       => 'anomaly.module.users::button.login_as_user',
+                    'permission' => 'anomaly.module.users::users.impersonate',
+                ],
+                'reset'       => [
+                    'icon'       => 'glyphicons glyphicons-keys',
+                    'text'       => 'anomaly.module.users::button.reset_password',
+                    'permission' => 'anomaly.module.users::users.reset',
+                    'attributes' => [
+                        'data-toggle'  => 'confirm',
+                        'data-message' => 'anomaly.module.users::message.confirm_reset_user',
+                    ],
+                ],
+            ],
         ],
     ];
 
