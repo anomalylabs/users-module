@@ -94,14 +94,6 @@ class UserTableBuilder extends TableBuilder
             'text'     => false,
             'href'     => false,
             'dropdown' => [
-                'permissions' => [
-                    'button' => 'info',
-                    'href'   => 'admin/users/permissions/{entry.id}',
-                ],
-                'impersonate' => [
-                    'text'       => 'anomaly.module.users::button.login_as_user',
-                    'permission' => 'anomaly.module.users::users.impersonate',
-                ],
                 'reset'       => [
                     'text'       => 'anomaly.module.users::button.reset_password',
                     'permission' => 'anomaly.module.users::users.reset',
@@ -109,6 +101,14 @@ class UserTableBuilder extends TableBuilder
                         'data-toggle'  => 'confirm',
                         'data-message' => 'anomaly.module.users::message.confirm_reset_user',
                     ],
+                ],
+                'impersonate' => [
+                    'text'       => 'anomaly.module.users::button.login_as_user',
+                    'permission' => 'anomaly.module.users::users.impersonate',
+                ],
+                'permissions' => [
+                    'button' => 'info',
+                    'href'   => 'admin/users/permissions/{entry.id}',
                 ],
                 'view'        => [
                     'icon'   => null,
