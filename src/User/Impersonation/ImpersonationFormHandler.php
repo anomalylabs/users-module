@@ -2,7 +2,7 @@
 
 use Anomaly\Streams\Platform\Message\MessageBag;
 use Anomaly\UsersModule\User\UserAuthenticator;
-use Illuminate\Contracts\Translation\Translator;
+use Illuminate\Translation\Translator;
 use Illuminate\Routing\Redirector;
 
 /**
