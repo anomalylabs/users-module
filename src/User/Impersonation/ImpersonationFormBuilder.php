@@ -2,7 +2,7 @@
 
 use Anomaly\Streams\Platform\Ui\Form\FormBuilder;
 use Anomaly\UsersModule\User\Contract\UserInterface;
-use Illuminate\Contracts\Translation\Translator;
+use Illuminate\Translation\Translator;
 
 /**
  * Class ImpersonationFormBuilder

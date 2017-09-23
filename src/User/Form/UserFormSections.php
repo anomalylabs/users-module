@@ -37,11 +37,17 @@ class UserFormSections
 
         $builder->setSections(
             [
-                'general' => [
-                    'fields' => $fields,
-                ],
-                'profile' => [
-                    'fields' => $profileFields,
+                'user' => [
+                    'tabs' => [
+                        'account' => [
+                            'text'   => 'Account',
+                            'fields' => $fields,
+                        ],
+                        'profile' => [
+                            'text'   => 'Profile',
+                            'fields' => $profileFields,
+                        ],
+                    ],
                 ],
             ]
         );
