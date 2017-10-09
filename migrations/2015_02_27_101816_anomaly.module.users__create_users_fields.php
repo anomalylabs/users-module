@@ -1,6 +1,7 @@
 <?php
 
 use Anomaly\Streams\Platform\Database\Migration\Migration;
+use Anomaly\UsersModule\Role\RoleModel;
 
 /**
  * Class AnomalyModuleUsersCreateUsersFields
@@ -67,7 +68,7 @@ class AnomalyModuleUsersCreateUsersFields extends Migration
         'roles'                      => [
             'type'   => 'anomaly.field_type.multiple',
             'config' => [
-                'related' => 'Anomaly\UsersModule\Role\RoleModel',
+                'related' => RoleModel::class,
             ],
         ],
     ];
