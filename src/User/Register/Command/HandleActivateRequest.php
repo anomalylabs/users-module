@@ -13,7 +13,7 @@ class HandleActivateRequest
      * Handle the command.
      *
      * @param  UserRepositoryInterface $users
-     * @param UserAuthenticator        $authenticator
+     * @param  UserAuthenticator       $authenticator
      * @param  UserActivator           $activator
      * @param  Encrypter               $encrypter
      * @param  Request                 $request
@@ -25,22 +25,21 @@ class HandleActivateRequest
         UserActivator $activator,
         Encrypter $encrypter,
         Request $request
-    ) {
-        $code  = $request->get('code');
-        $email = $request->get('email');
-
-        if (!$code || !$email) {
+    )
+    {
+        if (!$code = $request->get('code')) {
             return false;
         }
 
-        $code  = $encrypter->decrypt($code);
-        $email = $encrypter->decrypt($email);
-
-        if (!$user = $users->findByEmail($email)) {
+        if (!$email = $request->get('email')) {
             return false;
         }
 
-        if ($activated = $activator->activate($user, $code)) {
+        if (!$user = $users->findByEmail($encrypter->decrypt($email))) {
+            return false;
+        }
+
+        if ($activated = $activator->activate($user, $encrypter->decrypt($code))) {
             $authenticator->login($user);
         }
 
