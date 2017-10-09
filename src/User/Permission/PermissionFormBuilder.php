@@ -76,20 +76,29 @@ class PermissionFormBuilder extends FormBuilder
         BreadcrumbCollection $breadcrumbs,
         MessageBag $messages,
         Redirector $redirect
-    ) {
+    )
+    {
         $this->setEntry($user = $users->find($this->getEntry()));
 
         if ($user->hasRole($roles->findBySlug('admin'))) {
-
-            $messages->warning('anomaly.module.users::warning.modify_admin_permissions');
+            $messages->warning(
+                'anomaly.module.users::warning.modify_admin_permissions'
+            );
 
             $this->setFormResponse($redirect->to('admin/users'));
 
             return;
         }
 
-        $breadcrumbs->add($user->getDisplayName(), 'admin/users/edit/' . $user->getId());
-        $breadcrumbs->add('anomaly.module.users::breadcrumb.permissions', 'admin/users/permissions/' . $user->getId());
+        $breadcrumbs->add(
+            $user->getDisplayName(),
+            'admin/users/edit/' . $user->getId()
+        );
+
+        $breadcrumbs->add(
+            'anomaly.module.users::breadcrumb.permissions',
+            'admin/users/permissions/' . $user->getId()
+        );
     }
 
     /**
@@ -127,4 +136,5 @@ class PermissionFormBuilder extends FormBuilder
 
         return $this;
     }
+
 }
