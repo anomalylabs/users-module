@@ -1,16 +1,13 @@
 <?php namespace Anomaly\UsersModule\User\Register;
 
-use Anomaly\UsersModule\User\UserModel;
-use Anomaly\UsersModule\User\UserActivator;
-use Anomaly\Streams\Platform\Traits\Eventable;
 use Anomaly\Streams\Platform\Traits\Transmitter;
-use Anomaly\UsersModule\User\Contract\UserInterface;
 use Anomaly\UsersModule\User\Notification\UserHasRegistered;
 use Anomaly\UsersModule\User\Register\Command\HandleAutomaticRegistration;
 use Anomaly\UsersModule\User\Register\Command\HandleEmailRegistration;
 use Anomaly\UsersModule\User\Register\Command\HandleManualRegistration;
-use Illuminate\Foundation\Bus\DispatchesJobs;
+use Anomaly\UsersModule\User\UserActivator;
 use Illuminate\Contracts\Config\Repository;
+use Illuminate\Foundation\Bus\DispatchesJobs;
 
 class RegisterFormHandler
 {
@@ -25,9 +22,14 @@ class RegisterFormHandler
      * @param  UserActivator       $activator
      * @throws \Exception
      */
-    public function handle(Repository $config, RegisterFormBuilder $builder, UserActivator $activator)
+    public function handle(
+        Repository $config,
+        RegisterFormBuilder $builder,
+        UserActivator $activator
+    )
     {
-        if (!$builder->canSave()) {
+        if (!$builder->canSave())
+        {
             return;
         }
 
@@ -38,14 +40,20 @@ class RegisterFormHandler
 
         $activator->start($user);
 
-        $mode = $config->get('anomaly.module.users::config.activation_mode');
+        $mode = $config->get('anomaly.module.users::config.activation_mode', 'automatic');
 
-        if ($mode === 'automatic') {
-            $this->dispatch(new HandleAutomaticRegistration($builder));
-        } elseif ($mode === 'manual') {
-            $this->dispatch(new HandleManualRegistration($builder));
-        } elseif ($mode === 'email') {
-            $this->dispatch(new HandleEmailRegistration($builder));
+        switch ($mode) {
+            case 'automatic':
+                $this->dispatch(new HandleAutomaticRegistration($builder));
+                break;
+
+            case 'manual':
+                $this->dispatch(new HandleManualRegistration($builder));
+                break;
+
+            case 'email':
+                $this->dispatch(new HandleEmailRegistration($builder));
+                break;
         }
 
         $this->transmit(new UserHasRegistered($user));
