@@ -12,7 +12,10 @@ class AnomalyModuleUsersMakeUsersSearchable extends Migration
      */
     public function up()
     {
-        $this->streams()->findBySlugAndNamespace('users', 'users')->setAttribute('searchable', true)->save();
+        $this->streams()
+            ->findBySlugAndNamespace('users', 'users')
+            ->setAttribute('searchable', true)
+            ->save();
     }
 
     /**
@@ -22,6 +25,9 @@ class AnomalyModuleUsersMakeUsersSearchable extends Migration
      */
     public function down()
     {
-        $this->streams()->findBySlugAndNamespace('users', 'users')->setAttribute('searchable', false)->save();
+        $this->streams()
+            ->findBySlugAndNamespace('users', 'users')
+            ->setAttribute('searchable', false)
+            ->save();
     }
 }
