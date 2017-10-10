@@ -1,7 +1,6 @@
 <?php namespace Anomaly\UsersModule\User\Permission;
 
 use Anomaly\Streams\Platform\Addon\AddonCollection;
-use Anomaly\UsersModule\User\Contract\UserInterface;
 use Illuminate\Contracts\Config\Repository;
 use Illuminate\Translation\Translator;
 
@@ -30,35 +29,39 @@ class PermissionFormFields
         Repository $config
     ) {
         /* @var UserInterface $user */
-        $user      = $builder->getEntry();
-        $roles     = $user->getRoles();
+        /* @var RoleCollection $roles */
+        $user  = $builder->getEntry();
+        $roles = $user->getRoles();
+
         $inherited = $roles->permissions();
+        $fields    = [];
 
-        $fields = [];
-
-        $namespaces = array_merge(['streams'], $addons->withConfig('permissions')->namespaces());
+        $namespaces = array_merge(
+            ['streams'],
+            $addons->withConfig('permissions')->namespaces()
+        );
 
         /*
          * gather all the addons with a
          * permissions configuration file.
-         *
-         * @var Addon $addon
          */
         foreach ($namespaces as $namespace) {
 
-            foreach ($config->get($namespace . '::permissions', []) as $group => $permissions) {
+            foreach ($config->get("{$namespace}::permissions", []) as $group => $permissions) {
 
                 /*
                  * Determine the general
                  * form UI components.
                  */
-                $label = $namespace . '::permission.' . $group . '.name';
-
-                if (!$translator->has($warning = $namespace . '::permission.' . $group . '.warning')) {
+                if (!$translator->has(
+                    $warning = $this->getWarning($namespace, $group)
+                )) {
                     $warning = null;
                 }
 
-                if (!$translator->has($instructions = $namespace . '::permission.' . $group . '.instructions')) {
+                if (!$translator->has(
+                    $instructions = $this->getInstructions($namespace, $group)
+                )) {
                     $instructions = null;
                 }
 
@@ -69,24 +72,25 @@ class PermissionFormFields
                 $available = array_combine(
                     array_map(
                         function ($permission) use ($namespace, $group) {
-                            return $namespace . '::' . $group . '.' . $permission;
+                            return "{$namespace}::{$group}.{$permission}";
                         },
                         $permissions
                     ),
                     array_map(
                         function ($permission) use ($namespace, $group) {
-                            return $namespace . '::permission.' . $group . '.option.' . $permission;
+                            return "{$namespace}::permission.{$group}.option.{$permission}";
                         },
                         $permissions
                     )
                 );
 
+
                 /*
                  * Build the checkboxes field
                  * type to handle the UI.
                  */
-                $fields[str_replace('.', '_', $namespace . '::' . $group)] = [
-                    'label'        => $label,
+                $fields[str_replace('.', '_', "{$namespace}::{$group}")] = [
+                    'label'        => $this->getName($namespace, $group),
                     'warning'      => $warning,
                     'instructions' => $instructions,
                     'type'         => 'anomaly.field_type.checkboxes',
@@ -101,4 +105,22 @@ class PermissionFormFields
 
         $builder->setFields($fields);
     }
+
+    /**
+     * Map calling class method.
+     *
+     * @param string $method
+     * @param array  $parameters
+     */
+    public function __call($method, $parameters)
+    {
+        if (starts_with($method, 'get')) {
+            $namespace = array_get($parameters, 0);
+            $group     = array_get($parameters, 1);
+            $key       = strtolower(str_replace('get', '', $method));
+
+            return "{$namespace}::permission.{$group}.{$key}";
+        }
+    }
+
 }
