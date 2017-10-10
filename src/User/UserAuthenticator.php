@@ -134,11 +134,9 @@ class UserAuthenticator
     public function logout(UserInterface $user = null)
     {
         if (!$user) {
-            $user = $this->guard->user();
-        }
-
-        if (!$user) {
-            return;
+            if (!$user = $this->guard->user()) {
+                return;
+            }
         }
 
         $this->guard->logout($user);
