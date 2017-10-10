@@ -237,7 +237,7 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, \Illumina
      */
     public function setPasswordAttribute($password)
     {
-        $this->attributes['password'] = app('hash')->make($password);
+        array_set($this->attributes, 'password', app('hash')->make($password));
     }
 
     /**
