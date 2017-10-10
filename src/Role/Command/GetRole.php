@@ -1,7 +1,8 @@
 <?php namespace Anomaly\UsersModule\Role\Command;
 
+use Anomaly\Streams\Platform\Model\EloquentModel;
+use Anomaly\Streams\Platform\Support\Presenter;
 use Anomaly\UsersModule\Role\Contract\RoleRepositoryInterface;
-
 
 /**
  * Class GetRole
@@ -33,19 +34,30 @@ class GetRole
     /**
      * Handle the command.
      *
-     * @param  RoleRepositoryInterface                                                                             $roles
-     * @return \Anomaly\Streams\Platform\Model\EloquentModel|\Anomaly\UsersModule\Role\Contract\RoleInterface|null
+     * @param  RoleRepositoryInterface          $roles
+     * @return EloquentModel|RoleInterface|null
      */
     public function handle(RoleRepositoryInterface $roles)
     {
+        if (is_object($this->identifier)) {
+            if ($this->identifier instanceof Presenter) {
+                return $this->identifier->getObject();
+            }
+
+            if ($this->identifier instanceof EloquentModel) {
+                return $this->identifier;
+            }
+        }
+
+        if (is_string($this->identifier)) {
+            return $roles->findBySlug($this->identifier);
+        }
+
         if (is_numeric($this->identifier)) {
             return $roles->find($this->identifier);
         }
 
-        if (!is_numeric($this->identifier)) {
-            return $roles->findBySlug($this->identifier);
-        }
-
         return null;
     }
+
 }
