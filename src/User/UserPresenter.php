@@ -59,8 +59,9 @@ class UserPresenter extends EntryPresenter
      */
     public function statusLabel($size = 'sm')
     {
-        $color  = 'default';
         $status = $this->status();
+        $trans  = trans("anomaly.module.users::field.status.option.{$status}");
+        $color  = 'default';
 
         switch ($status) {
             case 'active':
@@ -76,9 +77,7 @@ class UserPresenter extends EntryPresenter
                 break;
         }
 
-        return '<span class="label label-' . $size . ' label-' . $color . '">' . trans(
-                'anomaly.module.users::field.status.option.' . $status
-            ) . '</span>';
+        return "<span class=\"label label-{$size} label-{$color}\">{$trans}</span>";
     }
 
     /**
