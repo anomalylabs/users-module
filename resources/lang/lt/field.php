@@ -34,7 +34,7 @@ return [
         'instructions' => 'El.paštas kuris naudojamas prisijungiant.',
     ],
     'password' => [
-        'name' => 'Slaptažodisnu',
+        'name' => 'Slaptažodis',
         'instructions' => 'Vartotojo slaptažodis.',
     ],
     'confirm_password' => [
