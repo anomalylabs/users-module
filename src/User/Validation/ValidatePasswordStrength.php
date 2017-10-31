@@ -1,4 +1,4 @@
-<?php namespace Anomaly\UsersModule\User\Command;
+<?php namespace Anomaly\UsersModule\User\Validation;
 
 use Illuminate\Contracts\Config\Repository;
 use Illuminate\Validation\Validator;
