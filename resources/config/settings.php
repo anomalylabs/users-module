@@ -41,10 +41,9 @@ return [
         ],
     ],
     'password_requirements' => [
-        'required' => true,
-        'bind'     => 'anomaly.module.users::password.requirements',
-        'type'     => 'anomaly.field_type.checkboxes',
-        'config'   => [
+        'bind'   => 'anomaly.module.users::password.requirements',
+        'type'   => 'anomaly.field_type.checkboxes',
+        'config' => [
             'default_value' => [
                 '[a-z]',
                 '[A-Z]',
