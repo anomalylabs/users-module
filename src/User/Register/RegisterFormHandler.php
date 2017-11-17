@@ -1,6 +1,7 @@
 <?php namespace Anomaly\UsersModule\User\Register;
 
 use Anomaly\Streams\Platform\Traits\Transmitter;
+use Anomaly\UsersModule\User\Contract\UserInterface;
 use Anomaly\UsersModule\User\Notification\UserHasRegistered;
 use Anomaly\UsersModule\User\Register\Command\HandleAutomaticRegistration;
 use Anomaly\UsersModule\User\Register\Command\HandleEmailRegistration;
@@ -9,8 +10,16 @@ use Anomaly\UsersModule\User\UserActivator;
 use Illuminate\Contracts\Config\Repository;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 
+/**
+ * Class RegisterFormHandler
+ *
+ * @link   http://pyrocms.com/
+ * @author PyroCMS, Inc. <support@pyrocms.com>
+ * @author Ryan Thompson <ryan@pyrocms.com>
+ */
 class RegisterFormHandler
 {
+
     use Transmitter;
     use DispatchesJobs;
 
@@ -26,10 +35,8 @@ class RegisterFormHandler
         Repository $config,
         RegisterFormBuilder $builder,
         UserActivator $activator
-    )
-    {
-        if (!$builder->canSave())
-        {
+    ) {
+        if (!$builder->canSave()) {
             return;
         }
 

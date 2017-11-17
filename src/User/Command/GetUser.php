@@ -49,7 +49,7 @@ class GetUser
         if ($this->identifier instanceof UserInterface) {
             return $this->identifier;
         }
-        
+
         if ($this->identifier instanceof UserPresenter) {
             return $this->identifier->getObject();
         }
