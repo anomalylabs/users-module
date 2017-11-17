@@ -1,6 +1,8 @@
 <?php namespace Anomaly\UsersModule\User\Command;
 
+use Anomaly\UsersModule\User\Contract\UserInterface;
 use Anomaly\UsersModule\User\Contract\UserRepositoryInterface;
+use Anomaly\UsersModule\User\UserPresenter;
 use Illuminate\Contracts\Auth\Guard;
 
 
@@ -34,14 +36,22 @@ class GetUser
     /**
      * Handle the command.
      *
-     * @param  UserRepositoryInterface                                                                          $users
-     * @param  Guard                                                                                            $auth
+     * @param  UserRepositoryInterface $users
+     * @param  Guard                   $auth
      * @return \Anomaly\UsersModule\User\Contract\UserInterface|\Illuminate\Contracts\Auth\Authenticatable|null
      */
     public function handle(UserRepositoryInterface $users, Guard $auth)
     {
         if (is_null($this->identifier)) {
             return $auth->user();
+        }
+
+        if ($this->identifier instanceof UserInterface) {
+            return $this->identifier;
+        }
+        
+        if ($this->identifier instanceof UserPresenter) {
+            return $this->identifier->getObject();
         }
 
         if (is_numeric($this->identifier)) {
