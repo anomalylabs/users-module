@@ -58,9 +58,16 @@ class UserMentions
         $url = str_replace(
             '__username__',
             '$2',
-            route('anomaly.module.users::users.view', ['username' => '__username__'])
+            route(
+                'anomaly.module.users::users.view',
+                ['username' => '__username__']
+            )
         );
 
-        return preg_replace('/(^|[^a-z0-9_])@([a-z0-9_]+)/i', '$1<a href="' . $url . '">@$2</a>', $text);
+        return preg_replace(
+            '/(^|\s)@(\w+)/i',
+            "$1<a href=\"{$url}\">@$2</a>",
+            $text
+        );
     }
 }
