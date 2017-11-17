@@ -158,15 +158,14 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, \Illumina
     }
 
     /**
-     * Return whether the user
-     * is an admin or not.
+     * Return whether the user is an admin or not.
      *
      * @return bool
      */
     public function isAdmin()
     {
         /* @var RoleInterface $role */
-        foreach ($roles = $this->getRoles() as $role) {
+        foreach ($this->getRoles() as $role) {
             if ($role->getSlug() === 'admin') {
                 return true;
             }
