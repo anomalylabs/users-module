@@ -129,20 +129,23 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, \Illumina
     }
 
     /**
-     * Return whether a user is in
-     * any of the provided roles.
+     * Return whether a user is in any of the provided roles.
      *
      * @param $roles
      * @return bool
      */
     public function hasAnyRole($roles)
     {
+        if (!$roles) {
+            return false;
+        }
+
         if ($roles instanceof Collection) {
             $roles = $roles->all();
         }
 
-        if (!$roles) {
-            return false;
+        if (!is_array($roles)) {
+            $roles = array_wrap($roles);
         }
 
         foreach ($roles as $role) {
