@@ -8,7 +8,6 @@ use Anomaly\UsersModule\User\Password\Command\SendInvalidatedEmail;
 use Anomaly\UsersModule\User\Password\Command\SendResetEmail;
 use Anomaly\UsersModule\User\Password\Command\StartPasswordReset;
 use Illuminate\Foundation\Bus\DispatchesJobs;
-use Illuminate\Validation\Validator;
 
 /**
  * Class UserPassword
@@ -23,17 +22,14 @@ class UserPassword
     use DispatchesJobs;
 
     /**
-     * Check if the password
-     * passes validation.
+     * Check if the password passes validation.
      *
      * @param $password
      * @return bool
      */
     public function passes($password)
     {
-        return $this
-            ->validate($password)
-            ->passes();
+        return $this->validate($password)->passes();
     }
 
     /**
@@ -44,10 +40,7 @@ class UserPassword
      */
     public function validate($password)
     {
-        /* @var Validator $validator */
-        $validator = $this->dispatch(new ValidatePasswordStrength($password));
-
-        return $validator;
+        return $this->dispatch(new ValidatePasswordStrength($password));
     }
 
     /**
@@ -96,9 +89,9 @@ class UserPassword
     public function invalidate(UserInterface $user, $reset = '/')
     {
         $this->forgot($user);
-
         $this->dispatch(new InvalidatePassword($user));
 
         return $this->dispatch(new SendInvalidatedEmail($user, $reset));
     }
+
 }
