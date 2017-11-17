@@ -37,13 +37,13 @@ class UserMentions
      */
     public function find($text)
     {
-        preg_match_all('/(@\w+)/', $text, $matches);
+        preg_match_all('/(?:^|\s)@(\w+)/i', $text, $matches);
 
         return array_map(
             function ($match) {
-                return str_slug(substr($match, 1), '_');
+                return str_slug($match, '_');
             },
-            array_unique(array_flatten($matches))
+            array_unique(array_get($matches, '1', []))
         );
     }
 
