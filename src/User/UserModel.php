@@ -309,7 +309,7 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, \Illumina
      */
     public function name()
     {
-        return $this->getFirstName() . ' ' . $this->getLastName();
+        return "{$this->getFirstName()} {$this->getLastName()}";
     }
 
     /**
