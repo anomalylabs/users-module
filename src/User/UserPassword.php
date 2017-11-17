@@ -1,12 +1,12 @@
 <?php namespace Anomaly\UsersModule\User;
 
-use Anomaly\UsersModule\User\Command\ValidatePasswordStrength;
 use Anomaly\UsersModule\User\Contract\UserInterface;
 use Anomaly\UsersModule\User\Password\Command\InvalidatePassword;
 use Anomaly\UsersModule\User\Password\Command\ResetPassword;
 use Anomaly\UsersModule\User\Password\Command\SendInvalidatedEmail;
 use Anomaly\UsersModule\User\Password\Command\SendResetEmail;
 use Anomaly\UsersModule\User\Password\Command\StartPasswordReset;
+use Anomaly\UsersModule\User\Validation\ValidatePasswordStrength;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Validation\Validator;
 
