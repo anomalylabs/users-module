@@ -37,7 +37,7 @@ class UserMentions
      */
     public function find($text)
     {
-        preg_match_all('/(?:^|\s)@(\w+)/i', $text, $matches);
+        preg_match_all('/(?!^|\s)@(\w+)/i', $text, $matches);
 
         return array_map(
             function ($match) {
