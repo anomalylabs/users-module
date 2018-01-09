@@ -7,6 +7,7 @@ use Anomaly\UsersModule\Role\Contract\RoleInterface;
 use Anomaly\UsersModule\Role\RoleCollection;
 use Anomaly\UsersModule\User\Contract\UserInterface;
 use Illuminate\Auth\Authenticatable;
+use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Notifications\Notifiable;
 
 /**
@@ -21,6 +22,7 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, \Illumina
 
     use Notifiable;
     use Authenticatable;
+    use CanResetPassword;
 
     /**
      * The eager loaded relationships.
@@ -127,20 +129,23 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, \Illumina
     }
 
     /**
-     * Return whether a user is in
-     * any of the provided roles.
+     * Return whether a user is in any of the provided roles.
      *
      * @param $roles
      * @return bool
      */
     public function hasAnyRole($roles)
     {
+        if (!$roles) {
+            return false;
+        }
+
         if ($roles instanceof Collection) {
             $roles = $roles->all();
         }
 
-        if (!$roles) {
-            return false;
+        if (!is_array($roles)) {
+            $roles = array_wrap($roles);
         }
 
         foreach ($roles as $role) {
@@ -153,15 +158,14 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, \Illumina
     }
 
     /**
-     * Return whether the user
-     * is an admin or not.
+     * Return whether the user is an admin or not.
      *
      * @return bool
      */
     public function isAdmin()
     {
         /* @var RoleInterface $role */
-        foreach ($roles = $this->getRoles() as $role) {
+        foreach ($this->getRoles() as $role) {
             if ($role->getSlug() === 'admin') {
                 return true;
             }
@@ -235,7 +239,7 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, \Illumina
      */
     public function setPasswordAttribute($password)
     {
-        $this->attributes['password'] = app('hash')->make($password);
+        array_set($this->attributes, 'password', app('hash')->make($password));
     }
 
     /**
@@ -305,7 +309,7 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, \Illumina
      */
     public function name()
     {
-        return $this->getFirstName() . ' ' . $this->getLastName();
+        return "{$this->getFirstName()} {$this->getLastName()}";
     }
 
     /**

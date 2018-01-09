@@ -1,7 +1,9 @@
 <?php namespace Anomaly\UsersModule\User\Listener;
 
+use Anomaly\UsersModule\User\Contract\UserInterface;
 use Anomaly\UsersModule\User\Contract\UserRepositoryInterface;
 use Illuminate\Contracts\Auth\Guard;
+use Laravel\Scout\Searchable;
 
 /**
  * Class TouchLastActivity
@@ -44,8 +46,13 @@ class TouchLastActivity
      */
     public function handle()
     {
+        /* @var UserInterface|Searchable $user */
         if ($user = $this->auth->user()) {
-            $this->users->touchLastActivity($user);
+            $user::withoutSyncingToSearch(
+                function () use ($user) {
+                    $this->users->touchLastActivity($user);
+                }
+            );
         }
     }
 }

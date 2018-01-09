@@ -22,7 +22,15 @@ class SetGuestRole
      */
     public function handle(RoleRepositoryInterface $roles, Authorizer $authorizer)
     {
-        if ($guest = $roles->findBySlug('guest')) {
+        $guest = $roles->cache(
+            'anomaly.module.users::roles.guest',
+            60 * 60 * 24, // 1 day
+            function () use ($roles) {
+                return $roles->findBySlug('guest');
+            }
+        );
+
+        if ($guest) {
             $authorizer->setGuest($guest);
         }
     }

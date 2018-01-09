@@ -1,13 +1,14 @@
 <?php namespace Anomaly\UsersModule\Http\Controller\Admin;
 
 use Anomaly\Streams\Platform\Addon\FieldType\FieldTypeCollection;
+use Anomaly\Streams\Platform\Assignment\AssignmentModel;
 use Anomaly\Streams\Platform\Assignment\Contract\AssignmentInterface;
 use Anomaly\Streams\Platform\Assignment\Contract\AssignmentRepositoryInterface;
 use Anomaly\Streams\Platform\Assignment\Table\AssignmentTableBuilder;
 use Anomaly\Streams\Platform\Field\Form\FieldAssignmentFormBuilder;
 use Anomaly\Streams\Platform\Field\Form\FieldFormBuilder;
-use Anomaly\Streams\Platform\Field\Table\FieldTableBuilder;
 use Anomaly\Streams\Platform\Http\Controller\AdminController;
+use Anomaly\UsersModule\Assignment\AssignmentObserver;
 use Anomaly\UsersModule\User\UserModel;
 
 /**
@@ -23,14 +24,17 @@ class FieldsController extends AdminController
     /**
      * Return an index of existing fields.
      *
-     * @param  FieldTableBuilder $table
+     * @param  AssignmentTableBuilder $table
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function index(AssignmentTableBuilder $table, UserModel $users)
     {
-        $table->setOption('sortable', true)->setStream($users->getStream());
+        AssignmentModel::observe(AssignmentObserver::class);
 
-        return $table->render();
+        return $table
+            ->setOption('sortable', true)
+            ->setStream($users->getStream())
+            ->render();
     }
 
     /**

@@ -14,24 +14,6 @@ class RoleCollection extends EntryCollection
 {
 
     /**
-     * Create a new RoleCollection instance.
-     *
-     * @param array $items
-     */
-    public function __construct($items = [])
-    {
-        /* @var RoleInterface $item */
-        foreach ($items as $key => $item) {
-
-            if ($item instanceof RoleInterface) {
-                $key = $item->getSlug();
-            }
-
-            $this->items[$key] = $item;
-        }
-    }
-
-    /**
      * Return all permissions.
      *
      * @return array
@@ -48,7 +30,7 @@ class RoleCollection extends EntryCollection
     /**
      * Return if a role as access to a the permission.
      *
-     * @param  string         $permission
+     * @param  string $permission
      * @return RoleCollection
      */
     public function hasPermission($permission)
@@ -56,6 +38,23 @@ class RoleCollection extends EntryCollection
         return $this->filter(
             function (RoleInterface $role) use ($permission) {
                 return $role->hasPermission($permission);
+            }
+        );
+    }
+
+    /**
+     * Return if the role exists or not.
+     *
+     * @param $role
+     * @return bool
+     */
+    public function hasRole($role)
+    {
+        return (bool)$this->first(
+            function ($item) use ($role) {
+
+                /* @var RoleInterface $item */
+                return $item->getSlug() == $role;
             }
         );
     }

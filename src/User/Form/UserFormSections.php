@@ -37,11 +37,17 @@ class UserFormSections
 
         $builder->setSections(
             [
-                'general' => [
-                    'fields' => $fields,
-                ],
-                'profile' => [
-                    'fields' => $profileFields,
+                'user' => [
+                    'tabs' => [
+                        'account' => [
+                            'title'  => 'anomaly.module.users::tab.account',
+                            'fields' => $fields,
+                        ],
+                        'profile' => [
+                            'title'  => 'anomaly.module.users::tab.profile',
+                            'fields' => $profileFields,
+                        ],
+                    ],
                 ],
             ]
         );

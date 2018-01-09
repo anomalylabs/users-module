@@ -2,6 +2,7 @@
 
 use Anomaly\UsersModule\User\Contract\UserRepositoryInterface;
 use Anomaly\UsersModule\User\UserActivator;
+use Anomaly\UsersModule\User\UserAuthenticator;
 use Illuminate\Contracts\Encryption\Encrypter;
 use Illuminate\Http\Request;
 
@@ -12,6 +13,7 @@ class HandleActivateRequest
      * Handle the command.
      *
      * @param  UserRepositoryInterface $users
+     * @param UserAuthenticator        $authenticator
      * @param  UserActivator           $activator
      * @param  Encrypter               $encrypter
      * @param  Request                 $request
@@ -19,6 +21,7 @@ class HandleActivateRequest
      */
     public function handle(
         UserRepositoryInterface $users,
+        UserAuthenticator $authenticator,
         UserActivator $activator,
         Encrypter $encrypter,
         Request $request
@@ -37,6 +40,10 @@ class HandleActivateRequest
             return false;
         }
 
-        return $activator->activate($user, $code);
+        if ($activated = $activator->activate($user, $code)) {
+            $authenticator->login($user);
+        }
+
+        return $activated;
     }
 }

@@ -1,6 +1,7 @@
 <?php namespace Anomaly\UsersModule\User;
 
 use Anomaly\Streams\Platform\Entry\EntryPresenter;
+use Anomaly\Streams\Platform\Image\Image;
 use Anomaly\UsersModule\User\Contract\UserInterface;
 
 /**
@@ -34,26 +35,33 @@ class UserPresenter extends EntryPresenter
     /**
      * Return the user gravatar.
      *
-     * @param  array  $parameters
-     * @return string
+     * @param  array $parameters
+     * @return Image
      */
     public function gravatar($parameters = [])
     {
-        return 'https://www.gravatar.com/avatar/' . md5($this->object->getEmail()) . '?' . http_build_query(
-            $parameters
+        /* @var Image $image */
+        $image = app(Image::class);
+
+        return $image->make(
+            'https://www.gravatar.com/avatar/' . md5($this->object->getEmail()) . '?' . http_build_query(
+                $parameters
+            ),
+            'image'
         );
     }
 
     /**
      * Return the user's status as a label.
      *
-     * @param  string      $size
+     * @param  string $size
      * @return null|string
      */
     public function statusLabel($size = 'sm')
     {
-        $color  = 'default';
         $status = $this->status();
+        $trans  = trans("anomaly.module.users::field.status.option.{$status}");
+        $color  = 'default';
 
         switch ($status) {
             case 'active':
@@ -69,9 +77,7 @@ class UserPresenter extends EntryPresenter
                 break;
         }
 
-        return '<span class="label label-' . $size . ' label-' . $color . '">' . trans(
-            'anomaly.module.users::field.status.option.' . $status
-        ) . '</span>';
+        return "<span class=\"label label-{$size} label-{$color}\">{$trans}</span>";
     }
 
     /**

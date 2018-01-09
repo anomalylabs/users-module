@@ -15,13 +15,6 @@ class RoleModel extends UsersRolesEntryModel implements RoleInterface
 {
 
     /**
-     * The cache minutes.
-     *
-     * @var int
-     */
-    protected $ttl = 99999;
-
-    /**
      * Eager loaded relations.
      *
      * @var array
@@ -106,5 +99,15 @@ class RoleModel extends UsersRolesEntryModel implements RoleInterface
             'related_id',
             'entry_id'
         );
+    }
+
+    /**
+     * Return if the model is deletable.
+     *
+     * @return bool
+     */
+    public function isDeletable()
+    {
+        return $this->getSlug() !== 'admin';
     }
 }

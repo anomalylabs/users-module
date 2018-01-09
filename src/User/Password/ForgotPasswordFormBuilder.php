@@ -1,7 +1,6 @@
 <?php namespace Anomaly\UsersModule\User\Password;
 
 use Anomaly\Streams\Platform\Ui\Form\FormBuilder;
-use Illuminate\Contracts\Config\Repository;
 
 /**
  * Class ForgotPasswordFormBuilder
@@ -35,6 +34,7 @@ class ForgotPasswordFormBuilder extends FormBuilder
      * @var array
      */
     protected $options = [
-        'redirect' => '/',
+        'redirect'        => '/',
+        'success_message' => 'anomaly.module.users::message.confirm_reset_password',
     ];
 }

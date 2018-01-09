@@ -44,6 +44,6 @@ class ForgotPasswordFormHandler
         $password->forgot($user);
         $password->send($user, $builder->getFormOption('reset_redirect'));
 
-        $messages->success('anomaly.module.users::message.confirm_reset_password');
+        $messages->success($builder->getFormOption('success_message'));
     }
 }

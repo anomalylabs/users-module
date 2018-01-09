@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'forgot_password'          => 'Forgot your password?',
     'logged_in'                => 'You are now logged in.',
     'logged_out'               => 'You are now logged out.',
     'invalid_login'            => 'Incorrect login or password.',
@@ -11,4 +12,8 @@ return [
     'invalid_email'            => 'An account with the provided email could not be found.',
     'pending_admin_activation' => 'Your account is pending activation from an administrator.',
     'confirm_reset_password'   => 'Please check your email to finish resetting your password.',
+    'confirm_reset_user'       => 'Are you sure you want to initiate a password reset for this user?<br><br>Their current password will be invalidated.',
+    'impersonate'              => 'You are about to login as ":display_name"',
+    'impersonating'            => 'You are now logged in as ":username"',
+    'invalid_password'         => 'The password you entered is incorrect.',
 ];

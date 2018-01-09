@@ -37,13 +37,13 @@ class UserMentions
      */
     public function find($text)
     {
-        preg_match_all('/(@\w+)/', $text, $matches);
+        preg_match_all('/(?!^|\s)@(\w+)/i', $text, $matches);
 
         return array_map(
             function ($match) {
-                return str_slug(substr($match, 1), '_');
+                return str_slug($match, '_');
             },
-            array_unique(array_flatten($matches))
+            array_unique(array_get($matches, '1', []))
         );
     }
 
@@ -57,10 +57,17 @@ class UserMentions
     {
         $url = str_replace(
             '__username__',
-            '$2',
-            route('anomaly.module.users::users.view', ['username' => '__username__'])
+            '$1',
+            route(
+                'anomaly.module.users::users.view',
+                ['username' => '__username__']
+            )
         );
 
-        return preg_replace('/(^|[^a-z0-9_])@([a-z0-9_]+)/i', '$1<a href="' . $url . '">@$2</a>', $text);
+        return preg_replace(
+            '/(?!^|\s)@(\w+)/i',
+            "<a href=\"{$url}\">@$1</a>",
+            $text
+        );
     }
 }

@@ -3,6 +3,7 @@
 use Anomaly\Streams\Platform\Notification\Message\MailMessage;
 use Anomaly\UsersModule\User\Contract\UserInterface;
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Notification;
 
 /**
@@ -12,7 +13,7 @@ use Illuminate\Notifications\Notification;
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
  */
-class ActivateYourAccount extends Notification
+class ActivateYourAccount extends Notification implements ShouldQueue
 {
 
     use Queueable;

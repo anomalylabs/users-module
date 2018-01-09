@@ -2,7 +2,7 @@
 
 use Anomaly\Streams\Platform\Http\Controller\PublicController;
 use Anomaly\UsersModule\User\Register\Command\HandleActivateRequest;
-use Illuminate\Contracts\Encryption\Encrypter;
+use Illuminate\Translation\Translator;
 
 /**
  * Class RegisterController
@@ -17,10 +17,16 @@ class RegisterController extends PublicController
     /**
      * Return the register view.
      *
+     * @param  Translator $translator
      * @return \Illuminate\Contracts\View\View|mixed
      */
-    public function register()
+    public function register(Translator $translator)
     {
+        $this->template->set(
+            'meta_title',
+            $translator->trans('anomaly.module.users::breadcrumb.register')
+        );
+
         return $this->view->make('anomaly.module.users::register');
     }
 
@@ -33,12 +39,13 @@ class RegisterController extends PublicController
     {
         if (!$this->dispatch(new HandleActivateRequest())) {
 
-            $this->messages->success('anomaly.module.users::error.activate_user');
+            $this->messages->error('anomaly.module.users::error.activate_user');
 
             return $this->redirect->to('/');
         }
 
         $this->messages->success('anomaly.module.users::success.activate_user');
+        $this->messages->success('anomaly.module.users::message.logged_in');
 
         return $this->redirect->to($this->request->get('redirect', '/'));
     }

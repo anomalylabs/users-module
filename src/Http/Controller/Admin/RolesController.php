@@ -19,7 +19,7 @@ class RolesController extends AdminController
     /**
      * Return an index of existing roles.
      *
-     * @param  RoleTableBuilder                                                 $form
+     * @param  RoleTableBuilder $form
      * @return \Illuminate\View\View|\Symfony\Component\HttpFoundation\Response
      */
     public function index(RoleTableBuilder $form)
@@ -30,7 +30,7 @@ class RolesController extends AdminController
     /**
      * Return a form for a new role.
      *
-     * @param  RoleFormBuilder                                                  $form
+     * @param  RoleFormBuilder $form
      * @return \Illuminate\View\View|\Symfony\Component\HttpFoundation\Response
      */
     public function create(RoleFormBuilder $form)

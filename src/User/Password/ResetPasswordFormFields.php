@@ -1,5 +1,7 @@
 <?php namespace Anomaly\UsersModule\User\Password;
 
+use Anomaly\UsersModule\User\Validation\ValidatePassword;
+
 /**
  * Class ResetPasswordFormFields
  *
@@ -44,14 +46,21 @@ class ResetPasswordFormFields
         $builder->addFields(
             [
                 [
-                    'field'    => 'password',
-                    'type'     => 'anomaly.field_type.text',
-                    'label'    => 'anomaly.module.users::field.password.name',
-                    'required' => true,
-                    'rules'    => [
+                    'field'      => 'password',
+                    'type'       => 'anomaly.field_type.text',
+                    'label'      => 'anomaly.module.users::field.password.name',
+                    'required'   => true,
+                    'rules'      => [
                         'confirmed',
+                        'valid_password',
                     ],
-                    'config'   => [
+                    'validators' => [
+                        'valid_password' => [
+                            'message' => false,
+                            'handler' => ValidatePassword::class,
+                        ],
+                    ],
+                    'config'     => [
                         'type' => 'password',
                     ],
                 ],
