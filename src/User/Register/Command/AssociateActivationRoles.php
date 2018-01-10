@@ -1,7 +1,6 @@
 <?php namespace Anomaly\UsersModule\User\Register\Command;
 
 use Anomaly\UsersModule\Role\Command\GetRole;
-use Anomaly\UsersModule\User\Contract\UserInterface;
 use Anomaly\UsersModule\User\Register\RegisterFormBuilder;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 
