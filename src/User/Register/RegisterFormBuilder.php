@@ -106,7 +106,7 @@ class RegisterFormBuilder extends FormBuilder
     /**
      * Set roles.
      *
-     * @param array $roles
+     * @param $roles
      * @return $this
      */
     public function setRoles($roles)
