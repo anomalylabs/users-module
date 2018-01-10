@@ -4,7 +4,7 @@ return [
     'name' => [
         'name' => 'Vardas',
         'instructions' => [
-            'roles' => 'Užvardinkite rolę trumpai ir aiškiai.',
+            'roles' => 'Apibūdinkite rolę trumpai ir aiškiai.',
         ],
     ],
     'description' => [
@@ -27,7 +27,7 @@ return [
     ],
     'username' => [
         'name' => 'Vartotojo vardas',
-        'instructions' => 'Vartotojo vardas yra naudojamas šio vartotojo identifikacijai ir atvaizdavimui.',
+        'instructions' => 'Vartotojo vardas yra naudojamas jo atpažinimui ir atvaizdavimui.',
     ],
     'email' => [
         'name' => 'El.paštas',
@@ -43,15 +43,15 @@ return [
     'slug' => [
         'name' => 'Slug',
         'instructions' => [
-            'roles' => 'Slug naudojamas identifikuojant rolę.',
+            'roles' => 'Slug naudojamas atpažįstant rolę.',
         ],
     ],
     'roles' => [
         'name' => 'Rolės',
-        'instructions' => 'Nurodykite kuri rolė priskiriama  šiam vartotojui.',
+        'instructions' => 'Nurodykite kuri rolė priskiriama šiam vartotojui.',
     ],
     'permissions' => [
-        'name' => 'Leidimai',
+        'name' => 'Teisės',
     ],
     'last_activity_at' => [
         'name' => 'Paskutinis aktyvumas',
@@ -59,7 +59,7 @@ return [
     'activated' => [
         'name' => 'Aktyvuotas',
         'label' => 'Ar šis vartotojas aktyvuotas?',
-        'instructions' => 'Vartotojas negalės prisijungti iki tol kol nebuss aktyvuotas.',
+        'instructions' => 'Vartotojas negalės prisijungti iki tol kol nebus aktyvuotas.',
     ],
     'enabled' => [
         'name' => 'Išjungtas',
