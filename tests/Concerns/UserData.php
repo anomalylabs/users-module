@@ -1,14 +1,15 @@
-<?php namespace Anomaly\UsersModuleTest\Traits;
+<?php namespace Anomaly\UsersModuleTest\Concerns;
 
 use Anomaly\UsersModule\Role\RoleCollection;
 use Anomaly\UsersModule\Role\RoleModel;
+use Anomaly\UsersModule\User\Contract\UserInterface;
 use Anomaly\UsersModule\User\UserModel;
 
 /**
  * Class UserWithRoles
- * @package Anomaly\UsersModuleTest\Traits
+ * @package Anomaly\UsersModuleTest\Concerns
  */
-trait UserWithRoles
+trait UserData
 {
     /**
      * Get a single user with several roles.
@@ -35,4 +36,14 @@ trait UserWithRoles
 
         return $user->fresh();
     }
+
+    /**
+     * @param array $attributes
+     * @return UserModel
+     */
+    public function getBasicUser($attributes = []) : UserModel
+    {
+        return factory(UserModel::class)->create($attributes);
+    }
+
 }

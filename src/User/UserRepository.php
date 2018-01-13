@@ -107,7 +107,7 @@ class UserRepository extends EntryRepository implements UserRepositoryInterface
     public function touchLastActivity(UserInterface $user)
     {
         $user->last_activity_at = time();
-        $user->ip_address       = $_SERVER['REMOTE_ADDR'];
+        $user->ip_address       = request()->ip();
 
         return $this->save($user);
     }

@@ -3,7 +3,7 @@
 use Anomaly\UsersModule\Role\RoleCollection;
 use Anomaly\UsersModule\Role\RoleModel;
 use Anomaly\UsersModule\User\UserModel;
-use Anomaly\UsersModuleTest\Traits\UserWithRoles;
+use Anomaly\UsersModuleTest\Concerns\UserData;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 /**
@@ -12,7 +12,7 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
  */
 class UserModelTest extends \TestCase
 {
-    use UserWithRoles, DatabaseTransactions;
+    use UserData, DatabaseTransactions;
 
     /** @test */
     public function returnsTheUsersRolesCorrectly()

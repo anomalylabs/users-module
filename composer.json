@@ -28,7 +28,11 @@
     },
     "autoload": {
         "psr-4": {
-            "Anomaly\\UsersModule\\": "src/",
+            "Anomaly\\UsersModule\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
             "Anomaly\\UsersModuleTest\\": "tests/"
         }
     }
