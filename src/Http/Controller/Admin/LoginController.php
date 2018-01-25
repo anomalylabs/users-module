@@ -44,7 +44,7 @@ class LoginController extends PublicController
 
         return $form
             ->setOption('redirect', 'admin')
-            ->setOption('wrapper_view', 'anomaly.module.users::admin/login')
+            ->setOption('wrapper_view', 'theme::login')
             ->render();
     }
 
