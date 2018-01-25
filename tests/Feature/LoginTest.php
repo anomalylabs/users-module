@@ -20,12 +20,13 @@ class LoginTest extends \TestCase
 //            ->see('Password');
 //    }
 //
-//    /** @test */
-//    public function cantAccessAdminPagesUnauthenticated()
-//    {
-//        $this->visit('admin/users')
-//            ->followRedirects();
-//    }
+    /** @test */
+    public function cantAccessAdminPagesUnauthenticated()
+    {
+        $response = $this->get('admin/users');
+
+        $response->assertStatus(200);
+    }
 //
 //    /** @test */
 //    public function cantAccessAdminPagesWithWrongPermissions()
