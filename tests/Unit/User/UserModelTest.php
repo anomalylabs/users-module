@@ -8,16 +8,20 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 /**
  * Class UserModelTest
+ *
  * @package Anomaly\UsersModuleTest
  */
 class UserModelTest extends \TestCase
 {
+
     use UserData, DatabaseTransactions;
 
     /** @test */
     public function returnsTheUsersRolesCorrectly()
     {
+        dd('Test');
         $roleCollection = new RoleCollection();
+
         $roleCollection->add(factory(RoleModel::class)->create(['slug' => 'first_role']));
         $roleCollection->add(factory(RoleModel::class)->create(['slug' => 'second_role']));
 
@@ -26,6 +30,7 @@ class UserModelTest extends \TestCase
 
         $this->assertTrue($user->hasRole($roleCollection->first()));
         $this->assertTrue($user->hasRole($roleCollection->last()));
+
         $this->assertEquals(
             $roleCollection->pluck('slug')->toArray(),
             $user->getRoles()->pluck('slug')->toArray()

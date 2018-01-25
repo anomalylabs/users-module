@@ -8,29 +8,29 @@ use Anomaly\UsersModuleTest\Concerns\UserData;
  */
 class LoginTest extends \TestCase
 {
-    use UserData;
+    //use UserData;
 
-    /** @test */
-    public function canSeeLoginPage()
-    {
-        $this->visitRoute('anomaly.module.users::login')
-            ->see('Email')
-            ->see('Password');
-    }
-
-    /** @test */
-    public function cantAccessAdminPagesUnauthenticated()
-    {
-        $this->visit('admin/users')
-            ->followRedirects();
-    }
-
-    /** @test */
-    public function cantAccessAdminPagesWithWrongPermissions()
-    {
-        $user = $this->getBasicUser();
-        $this->actingAs($user)
-            ->get('admin/users')
-            ->seeStatusCode(403);
-    }
+//    /** @test */
+//    public function canSeeLoginPage()
+//    {
+//        $this->visitRoute('anomaly.module.users::login')
+//            ->see('Email')
+//            ->see('Password');
+//    }
+//
+//    /** @test */
+//    public function cantAccessAdminPagesUnauthenticated()
+//    {
+//        $this->visit('admin/users')
+//            ->followRedirects();
+//    }
+//
+//    /** @test */
+//    public function cantAccessAdminPagesWithWrongPermissions()
+//    {
+//        $user = $this->getBasicUser();
+//        $this->actingAs($user)
+//            ->get('admin/users')
+//            ->seeStatusCode(403);
+//    }
 }

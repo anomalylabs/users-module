@@ -2,15 +2,16 @@
 
 use Anomaly\UsersModule\Role\RoleCollection;
 use Anomaly\UsersModule\Role\RoleModel;
-use Anomaly\UsersModule\User\Contract\UserInterface;
 use Anomaly\UsersModule\User\UserModel;
 
 /**
  * Class UserWithRoles
+ *
  * @package Anomaly\UsersModuleTest\Concerns
  */
 trait UserData
 {
+
     /**
      * Get a single user with several roles.
      *
@@ -19,8 +20,10 @@ trait UserData
      */
     public function getUserWithRoles(RoleCollection $roles = null)
     {
+
         /** @var UserModel $user */
         $user = factory(UserModel::class)->create();
+
         if (is_null($roles)) {
             $user->attachRole(
                 factory(RoleModel::class)->create(['permissions' => 'anomaly.module.test::test.permission1'])
@@ -29,9 +32,11 @@ trait UserData
                 factory(RoleModel::class)->create(['permissions' => 'anomaly.module.test::test.permission2'])
             );
         } else {
-            $roles->each(function ($role) use ($user) {
-                $user->attachRole($role);
-            });
+            $roles->each(
+                function ($role) use ($user) {
+                    $user->attachRole($role);
+                }
+            );
         }
 
         return $user->fresh();
@@ -41,7 +46,7 @@ trait UserData
      * @param array $attributes
      * @return UserModel
      */
-    public function getBasicUser($attributes = []) : UserModel
+    public function getBasicUser($attributes = []): UserModel
     {
         return factory(UserModel::class)->create($attributes);
     }
