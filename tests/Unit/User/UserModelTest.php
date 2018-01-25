@@ -16,24 +16,28 @@ class UserModelTest extends \TestCase
 
     use UserData, DatabaseTransactions;
 
-    /** @test */
-    public function returnsTheUsersRolesCorrectly()
+    /**
+     * Set up the user for testing.
+     *
+     * @return UserModel|null
+     */
+    protected function setUpUser()
     {
-        dd('Test');
         $roleCollection = new RoleCollection();
 
         $roleCollection->add(factory(RoleModel::class)->create(['slug' => 'first_role']));
         $roleCollection->add(factory(RoleModel::class)->create(['slug' => 'second_role']));
 
         /** @var UserModel $user */
-        $user = $this->getUserWithRoles($roleCollection);
+        return $this->getUserWithRoles($roleCollection);
+    }
 
-        $this->assertTrue($user->hasRole($roleCollection->first()));
-        $this->assertTrue($user->hasRole($roleCollection->last()));
+    /** @test */
+    public function returnsTheUsersRolesCorrectly()
+    {
+        $user = $this->setUpUser();
 
-        $this->assertEquals(
-            $roleCollection->pluck('slug')->toArray(),
-            $user->getRoles()->pluck('slug')->toArray()
-        );
+        $this->assertTrue($user->hasRole('first_role'));
+        $this->assertTrue($user->hasRole('second_role'));
     }
 }

@@ -4,11 +4,13 @@ use Anomaly\UsersModuleTest\Concerns\UserData;
 
 /**
  * Class LoginTest
+ *
  * @package Anomaly\UsersModuleTest\Feature
  */
 class LoginTest extends \TestCase
 {
-    //use UserData;
+
+    use UserData;
 
 //    /** @test */
 //    public function canSeeLoginPage()
