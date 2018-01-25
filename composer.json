@@ -30,5 +30,10 @@
         "psr-4": {
             "Anomaly\\UsersModule\\": "src/"
         }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Anomaly\\UsersModuleTest\\": "tests/"
+        }
     }
 }
