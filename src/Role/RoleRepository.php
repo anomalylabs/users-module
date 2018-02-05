@@ -4,7 +4,6 @@ use Anomaly\Streams\Platform\Entry\EntryCollection;
 use Anomaly\Streams\Platform\Entry\EntryRepository;
 use Anomaly\UsersModule\Role\Contract\RoleInterface;
 use Anomaly\UsersModule\Role\Contract\RoleRepositoryInterface;
-use Illuminate\Support\Collection;
 
 /**
  * Class RoleRepositoryInterface
@@ -44,6 +43,19 @@ class RoleRepository extends EntryRepository implements RoleRepositoryInterface
     }
 
     /**
+     * Return all but the admin and guest role.
+     *
+     * @return RoleCollection
+     */
+    public function allButAdminAndGuest()
+    {
+        return $this->model
+            ->where('slug', '!=', 'admin')
+            ->where('slug', '!=', 'guest')
+            ->get();
+    }
+
+    /**
      * Find a role by it's slug.
      *
      * @param $slug
@@ -75,7 +87,7 @@ class RoleRepository extends EntryRepository implements RoleRepositoryInterface
      * Update permissions for a role.
      *
      * @param  RoleInterface $role
-     * @param  array         $permissions
+     * @param  array $permissions
      * @return RoleInterface
      */
     public function updatePermissions(RoleInterface $role, array $permissions)

@@ -22,6 +22,13 @@ interface RoleRepositoryInterface extends EntryRepositoryInterface
     public function allButAdmin();
 
     /**
+     * Return all but the admin and guest role.
+     *
+     * @return RoleCollection
+     */
+    public function allButAdminAndGuest();
+
+    /**
      * Find a role by it's slug.
      *
      * @param $slug
