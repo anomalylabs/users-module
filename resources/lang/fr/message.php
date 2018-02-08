@@ -11,4 +11,5 @@ return [
     'invalid_email'            => 'Aucun compte ne correspond à l\'email fourni.',
     'pending_admin_activation' => 'Votre compte est en attente de validation par un administrateur.',
     'confirm_reset_password'   => 'Merci de vérifier vos emails pour changer votre mot de passe.',
+    'forgot_password'          => 'Mot de passe oublié ?'    
 ];
