@@ -77,10 +77,7 @@ class AuthorizeRouteRoles
 
         /* @var UserInterface $user */
         $user = $this->auth->user();
-
-        $role     = (array)array_get($this->route->getAction(), 'anomaly.module.users::role');
-        $redirect = array_get($this->route->getAction(), 'anomaly.module.users::redirect');
-        $message  = array_get($this->route->getAction(), 'anomaly.module.users::message');
+        $role = (array)array_get($this->route->getAction(), 'anomaly.module.users::role');
 
         /**
          * If the guest role is desired
@@ -92,12 +89,21 @@ class AuthorizeRouteRoles
 
         if ($role && (!$user || !$user->hasAnyRole($role))) {
 
+            $redirect = array_get($this->route->getAction(), 'anomaly.module.users::redirect');
+            $message  = array_get($this->route->getAction(), 'anomaly.module.users::message');
+
             if ($message) {
                 $this->messages->error($message);
             }
 
             if ($redirect) {
                 return $this->redirect->to($redirect);
+            }
+
+            $route = array_get($this->route->getAction(), 'anomaly.module.users::route');
+
+            if ($route) {
+                return $this->redirect->route($route);
             }
 
             abort(403);
