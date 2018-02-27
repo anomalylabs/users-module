@@ -1,7 +1,9 @@
 <?php namespace Anomaly\UsersModule\Http\Controller;
 
 use Anomaly\Streams\Platform\Http\Controller\PublicController;
+use Anomaly\UsersModule\User\Contract\UserInterface;
 use Anomaly\UsersModule\User\Contract\UserRepositoryInterface;
+use Illuminate\Contracts\Auth\Guard;
 
 /**
  * Class UsersController
@@ -12,6 +14,23 @@ use Anomaly\UsersModule\User\Contract\UserRepositoryInterface;
  */
 class UsersController extends PublicController
 {
+
+    /**
+     * Redirect the current user
+     * to their profile route.
+     *
+     * @param Guard $auth
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function self(Guard $auth)
+    {
+        /* @var UserInterface $user */
+        if (!$user = $auth->user()) {
+            abort(404);
+        }
+
+        return $this->redirect->to($user->route('view'));
+    }
 
     /**
      * View a user profile.
