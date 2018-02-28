@@ -59,7 +59,6 @@ class UserHasRegistered extends Notification implements ShouldQueue
         $data = $this->user->toArray();
 
         return (new MailMessage())
-            ->success()
             ->view('anomaly.module.users::notifications.user_has_registered')
             ->subject(trans('anomaly.module.users::notification.user_has_registered.subject', $data))
             ->line(trans('anomaly.module.users::notification.user_has_registered.instructions', $data))
