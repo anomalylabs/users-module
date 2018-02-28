@@ -4,6 +4,7 @@ use Anomaly\Streams\Platform\Notification\Message\MailMessage;
 use Anomaly\UsersModule\User\Contract\UserInterface;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Notifications\AnonymousNotifiable;
 use Illuminate\Notifications\Messages\SlackMessage;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Notifications\Notification;
@@ -40,21 +41,20 @@ class UserHasRegistered extends Notification implements ShouldQueue
     /**
      * Get the notification's delivery channels.
      *
-     * @param  UserInterface $notifiable
      * @return array
      */
-    public function via(UserInterface $notifiable)
+    public function via()
     {
-        return ['mail', 'slack', 'database'];
+        return ['mail', 'slack'];
     }
 
     /**
      * Return the mail message.
      *
-     * @param  UserInterface $notifiable
+     * @param AnonymousNotifiable $notifiable
      * @return MailMessage
      */
-    public function toMail(UserInterface $notifiable)
+    public function toMail(AnonymousNotifiable $notifiable)
     {
         $data = $this->user->toArray();
 
@@ -92,7 +92,7 @@ class UserHasRegistered extends Notification implements ShouldQueue
                             ]
                         );
                 }
-            );;
+            );
     }
 
     /**

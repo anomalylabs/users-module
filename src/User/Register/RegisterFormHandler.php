@@ -2,12 +2,13 @@
 
 use Anomaly\Streams\Platform\Traits\Transmitter;
 use Anomaly\UsersModule\User\Contract\UserInterface;
-use Anomaly\UsersModule\User\Notification\UserHasRegistered;
+use Anomaly\UsersModule\User\Event\UserHasRegistered;
 use Anomaly\UsersModule\User\Register\Command\HandleAutomaticRegistration;
 use Anomaly\UsersModule\User\Register\Command\HandleEmailRegistration;
 use Anomaly\UsersModule\User\Register\Command\HandleManualRegistration;
 use Anomaly\UsersModule\User\UserActivator;
 use Illuminate\Contracts\Config\Repository;
+use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 
 /**
@@ -33,6 +34,7 @@ class RegisterFormHandler
      */
     public function handle(
         Repository $config,
+        Dispatcher $events,
         RegisterFormBuilder $builder,
         UserActivator $activator
     ) {
@@ -63,6 +65,6 @@ class RegisterFormHandler
                 break;
         }
 
-        $this->transmit(new UserHasRegistered($user));
+        $events->dispatch(new UserHasRegistered($user));
     }
 }

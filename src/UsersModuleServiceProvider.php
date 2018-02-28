@@ -13,7 +13,9 @@ use Anomaly\UsersModule\Role\Contract\RoleRepositoryInterface;
 use Anomaly\UsersModule\Role\RoleModel;
 use Anomaly\UsersModule\Role\RoleRepository;
 use Anomaly\UsersModule\User\Contract\UserRepositoryInterface;
+use Anomaly\UsersModule\User\Event\UserHasRegistered;
 use Anomaly\UsersModule\User\Event\UserWasLoggedIn;
+use Anomaly\UsersModule\User\Listener\SendNewUserNotifications;
 use Anomaly\UsersModule\User\Listener\TouchLastActivity;
 use Anomaly\UsersModule\User\Listener\TouchLastLogin;
 use Anomaly\UsersModule\User\Login\LoginFormBuilder;
@@ -63,6 +65,9 @@ class UsersModuleServiceProvider extends AddonServiceProvider
     protected $listeners = [
         UserWasLoggedIn::class      => [
             TouchLastLogin::class,
+        ],
+        UserHasRegistered::class    => [
+            SendNewUserNotifications::class,
         ],
         ApplicationHasLoaded::class => [
             TouchLastActivity::class,

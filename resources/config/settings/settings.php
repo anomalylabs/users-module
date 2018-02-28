@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'login'                 => [
+    'login'                     => [
         'required'    => true,
         'placeholder' => false,
         'env'         => 'LOGIN',
@@ -15,7 +15,7 @@ return [
             ],
         ],
     ],
-    'activation_mode'       => [
+    'activation_mode'           => [
         'required'    => true,
         'placeholder' => false,
         'env'         => 'ACTIVATION_MODE',
@@ -30,7 +30,7 @@ return [
             ],
         ],
     ],
-    'password_length'       => [
+    'password_length'           => [
         'required' => true,
         'env'      => 'PASSWORD_LENGTH',
         'bind'     => 'anomaly.module.users::password.minimum_length',
@@ -40,7 +40,7 @@ return [
             'min'           => 4,
         ],
     ],
-    'password_requirements' => [
+    'password_requirements'     => [
         'bind'   => 'anomaly.module.users::password.requirements',
         'type'   => 'anomaly.field_type.checkboxes',
         'config' => [
@@ -54,6 +54,20 @@ return [
                 '[A-Z]'        => 'anomaly.module.users::setting.password_requirements.option.[A-Z]',
                 '[!@#$%^&*()]' => 'anomaly.module.users::setting.password_requirements.option.[!@#$%^&*()]',
             ],
+        ],
+    ],
+    'new_user_notification'     => [
+        'type'   => 'anomaly.field_type.tags',
+        'bind'   => 'anomaly.module.users::notifications.new_user',
+        'config' => [
+            'filter_tags' => FILTER_VALIDATE_EMAIL,
+        ],
+    ],
+    'pending_user_notification' => [
+        'type'   => 'anomaly.field_type.tags',
+        'bind'   => 'anomaly.module.users::notifications.pending_user',
+        'config' => [
+            'filter_tags' => FILTER_VALIDATE_EMAIL,
         ],
     ],
 ];

@@ -1,12 +1,16 @@
 <?php namespace Anomaly\UsersModule\User\Register\Command;
 
-use Anomaly\Streams\Platform\Traits\Transmitter;
 use Anomaly\Streams\Platform\Message\MessageBag;
-use Anomaly\UsersModule\User\Register\RegisterFormBuilder;
+use Anomaly\Streams\Platform\Traits\Transmitter;
+use Anomaly\UsersModule\User\Contract\UserInterface;
 use Anomaly\UsersModule\User\Notification\UserPendingActivation;
+use Anomaly\UsersModule\User\Register\RegisterFormBuilder;
+use Illuminate\Contracts\Config\Repository;
+use Illuminate\Notifications\AnonymousNotifiable;
 
 class HandleManualRegistration
 {
+
     use Transmitter;
 
     /**
@@ -30,13 +34,25 @@ class HandleManualRegistration
      * Handle the command.
      *
      * @param MessageBag $messages
+     * @param Repository $config
      */
-    public function handle(MessageBag $messages)
+    public function handle(MessageBag $messages, Repository $config)
     {
         if (!is_null($message = $this->builder->getFormOption('pending_message'))) {
             $messages->info($message);
         }
 
-        $this->transmit(new UserPendingActivation($this->builder->getFormEntry()));
+        /* @var UserInterface $user */
+        $user = $this->builder->getFormEntry();
+
+        $recipients = $config->get('anomaly.module.users::notifications.pending_user', []);
+
+        foreach ($recipients as $email) {
+            (new AnonymousNotifiable)
+                ->route('mail', $email)
+                ->notify(
+                    new UserPendingActivation($user)
+                );
+        }
     }
 }

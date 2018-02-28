@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'login'                 => [
+    'login'                     => [
         'label'        => 'Login Field',
         'instructions' => 'Which field should be used for logging in?',
         'option'       => [
@@ -9,7 +9,7 @@ return [
             'username' => 'Username',
         ],
     ],
-    'activation_mode'       => [
+    'activation_mode'           => [
         'label'        => 'Activation Mode',
         'instructions' => 'How should users be activated after they register?',
         'option'       => [
@@ -18,11 +18,11 @@ return [
             'automatic' => 'Automatically activate the user after they register.',
         ],
     ],
-    'password_length'       => [
+    'password_length'           => [
         'label'        => 'Password Length',
         'instructions' => 'Specify the minimum length for passwords.',
     ],
-    'password_requirements' => [
+    'password_requirements'     => [
         'label'        => 'Password Requirements',
         'instructions' => 'Specify the character requirements for passwords.',
         'option'       => [
@@ -31,5 +31,13 @@ return [
             '[A-Z]'        => 'The password must contain at least one uppercase letter.',
             '[!@#$%^&*()]' => 'The password must contain at least one special character.',
         ],
+    ],
+    'new_user_notification'     => [
+        'name'         => 'New User Notification',
+        'instructions' => 'Who should be notified of new users?',
+    ],
+    'pending_user_notification' => [
+        'name'         => 'Pending User Notification',
+        'instructions' => 'Who should be notified of users requiring activation?',
     ],
 ];

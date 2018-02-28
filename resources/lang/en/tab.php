@@ -1,7 +1,9 @@
 <?php
 
 return [
-    'general' => 'General',
-    'account' => 'Account',
-    'profile' => 'Profile',
+    'general'       => 'General',
+    'account'       => 'Account',
+    'profile'       => 'Profile',
+    'security'      => 'Security',
+    'notifications' => 'Notifications',
 ];
