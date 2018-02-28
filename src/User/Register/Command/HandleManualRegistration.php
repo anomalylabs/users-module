@@ -1,17 +1,21 @@
 <?php namespace Anomaly\UsersModule\User\Register\Command;
 
 use Anomaly\Streams\Platform\Message\MessageBag;
-use Anomaly\Streams\Platform\Traits\Transmitter;
 use Anomaly\UsersModule\User\Contract\UserInterface;
 use Anomaly\UsersModule\User\Notification\UserPendingActivation;
 use Anomaly\UsersModule\User\Register\RegisterFormBuilder;
 use Illuminate\Contracts\Config\Repository;
 use Illuminate\Notifications\AnonymousNotifiable;
 
+/**
+ * Class HandleManualRegistration
+ *
+ * @link   http://pyrocms.com/
+ * @author PyroCMS, Inc. <support@pyrocms.com>
+ * @author Ryan Thompson <ryan@pyrocms.com>
+ */
 class HandleManualRegistration
 {
-
-    use Transmitter;
 
     /**
      * The form builder.

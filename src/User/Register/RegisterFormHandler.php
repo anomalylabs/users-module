@@ -1,6 +1,5 @@
 <?php namespace Anomaly\UsersModule\User\Register;
 
-use Anomaly\Streams\Platform\Traits\Transmitter;
 use Anomaly\UsersModule\User\Contract\UserInterface;
 use Anomaly\UsersModule\User\Event\UserHasRegistered;
 use Anomaly\UsersModule\User\Register\Command\HandleAutomaticRegistration;
@@ -21,7 +20,6 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 class RegisterFormHandler
 {
 
-    use Transmitter;
     use DispatchesJobs;
 
     /**
