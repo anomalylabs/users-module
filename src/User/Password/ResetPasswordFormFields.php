@@ -5,9 +5,9 @@ use Anomaly\UsersModule\User\Validation\ValidatePassword;
 /**
  * Class ResetPasswordFormFields
  *
- * @link          http://pyrocms.com/
- * @author        PyroCMS, Inc. <support@pyrocms.com>
- * @author        Ryan Thompson <ryan@pyrocms.com>
+ * @link   http://pyrocms.com/
+ * @author PyroCMS, Inc. <support@pyrocms.com>
+ * @author Ryan Thompson <ryan@pyrocms.com>
  */
 class ResetPasswordFormFields
 {
@@ -23,8 +23,8 @@ class ResetPasswordFormFields
 
         if (!$builder->getEmail()) {
             $builder->addField(
+                'email',
                 [
-                    'field'    => 'email',
                     'type'     => 'anomaly.field_type.email',
                     'label'    => 'anomaly.module.users::field.email.name',
                     'required' => true,
@@ -34,8 +34,8 @@ class ResetPasswordFormFields
 
         if (!$builder->getCode()) {
             $builder->addField(
+                'code',
                 [
-                    'field'    => 'code',
                     'type'     => 'anomaly.field_type.text',
                     'label'    => 'anomaly.module.users::field.reset_code.name',
                     'required' => true,
