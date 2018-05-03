@@ -48,8 +48,9 @@ class LoginFormBuilder extends FormBuilder
      * @var array
      */
     protected $options = [
-        'redirect'   => '/',
-        'breadcrumb' => false,
+        'redirect'        => '/',
+        'breadcrumb'      => false,
+        'success_message' => false,
     ];
 
     /**
