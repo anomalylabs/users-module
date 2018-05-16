@@ -3,10 +3,10 @@
 use Anomaly\Streams\Platform\Message\MessageBag;
 use Anomaly\Streams\Platform\Support\Authorizer;
 use Closure;
-use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
 use Illuminate\Routing\Route;
+use Illuminate\Session\Store;
 
 /**
  * Class AuthorizeRoutePermission
@@ -24,6 +24,13 @@ class AuthorizeRoutePermission
      * @var Route
      */
     protected $route;
+
+    /**
+     * The session store.
+     *
+     * @var Store
+     */
+    protected $session;
 
     /**
      * The redirect utility.
@@ -50,18 +57,20 @@ class AuthorizeRoutePermission
      * Create a new AuthorizeModuleAccess instance.
      *
      * @param Route      $route
+     * @param Store      $session
      * @param Redirector $redirect
      * @param MessageBag $messages
      * @param Authorizer $authorizer
      */
     public function __construct(
-        Guard $auth,
         Route $route,
+        Store $session,
         Redirector $redirect,
         MessageBag $messages,
         Authorizer $authorizer
     ) {
         $this->route      = $route;
+        $this->session    = $session;
         $this->redirect   = $redirect;
         $this->messages   = $messages;
         $this->authorizer = $authorizer;
@@ -91,11 +100,16 @@ class AuthorizeRoutePermission
 
         if ($permission && !$this->authorizer->authorizeAny($permission, null, true)) {
 
-            $redirect   = array_get($this->route->getAction(), 'anomaly.module.users::redirect');
-            $message    = array_get($this->route->getAction(), 'anomaly.module.users::message');
+            $redirect = array_get($this->route->getAction(), 'anomaly.module.users::redirect');
+            $intended = array_get($this->route->getAction(), 'anomaly.module.users::intended');
+            $message  = array_get($this->route->getAction(), 'anomaly.module.users::message');
 
             if ($message) {
                 $this->messages->error($message);
+            }
+
+            if ($intended !== false) {
+                $this->session->put('url.intended', $request->fullUrl());
             }
 
             if ($redirect) {
