@@ -62,7 +62,7 @@ class UserPendingActivation extends Notification implements ShouldQueue
             ->line(trans('anomaly.module.users::notification.user_pending_activation.instructions', $data))
             ->action(
                 trans('anomaly.module.users::notification.user_pending_activation.button', $data),
-                url('admin/users/edit/' . $this->user->getId())
+                url('admin/users?view=pending')
             );
     }
 }
