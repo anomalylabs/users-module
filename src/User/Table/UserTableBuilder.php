@@ -1,8 +1,10 @@
 <?php namespace Anomaly\UsersModule\User\Table;
 
+use Anomaly\UsersModule\User\Table\Action\Activate;
 use Anomaly\Streams\Platform\Ui\Table\TableBuilder;
 use Anomaly\UsersModule\User\Table\Filter\StatusFilterQuery;
 use Anomaly\UsersModule\User\Table\View\OnlineQuery;
+use Anomaly\UsersModule\User\Table\View\PendingQuery;
 
 /**
  * Class UserTableBuilder
@@ -21,7 +23,7 @@ class UserTableBuilder extends TableBuilder
      */
     protected $views = [
         'all',
-        'online' => [
+        'online'  => [
             'query'   => OnlineQuery::class,
             'text'    => 'anomaly.module.users::view.online',
             'columns' => [
@@ -29,6 +31,36 @@ class UserTableBuilder extends TableBuilder
                 'display_name',
                 'username',
                 'email',
+            ],
+        ],
+        'pending' => [
+            'query'   => PendingQuery::class,
+            'text'    => 'anomaly.module.users::view.pending',
+            'columns' => [
+                'display_name',
+                'username',
+                'email',
+            ],
+            'filters' => [
+                'search' => [
+                    'filter' => 'search',
+                    'fields' => [
+                        'display_name',
+                        'username',
+                        'email',
+                    ],
+                ],
+            ],
+            'buttons' => [
+                'edit',
+            ],
+            'actions' => [
+                'activate' => [
+                    'handler' => Activate::class,
+                    'type'    => 'success',
+                    'icon'    => 'check',
+                ],
+                'delete',
             ],
         ],
         'trash',

@@ -33,4 +33,10 @@ return [
         'instructions' => ':username has just registered! To view their profile click the button below.',
         'button'       => 'View Profile',
     ],
+    'user_has_been_activated' => [
+        'subject'      => 'Account Activated',
+        'greeting'     => 'Hello :display_name!',
+        'instructions' => 'Your account has been activated.',
+        'button'       => 'Login',
+    ],
 ];

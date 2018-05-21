@@ -2,6 +2,7 @@
 
 return [
     'online'   => 'Online',
-    'inactive' => 'Inactive',
     'enabled'  => 'Enabled',
+    'pending'  => 'Pending',
+    'inactive' => 'Inactive',
 ];
