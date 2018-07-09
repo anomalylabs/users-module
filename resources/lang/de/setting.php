@@ -1,28 +1,43 @@
 <?php
 
 return [
-    'allow_registration' => [
-        'label'        => 'Erlaube Registrierungen',
-        'instructions' => 'Soll es Benutzern erlaubt sein, sich über die Website registrieren zu können?',
-        'text'         => 'Ja, erlaube die Benutzer-Registrierung',
+    'login'                     => [
+        'label'        => 'Login Feld',
+        'instructions' => 'Welches Feld soll für den Login verwendet werden?',
+        'option'       => [
+            'email'    => 'E-Mail',
+            'username' => 'Benutzername',
+        ],
     ],
-    'activation_mode'    => [
+    'activation_mode'           => [
         'label'        => 'Aktivierungsmodus',
-        'instructions' => 'Wie sollen Benutzer nach der Registrierung aktiviert werden?',
+        'instructions' => 'Wie sollen Benutzer aktiviert werden nachdem Sie sich registriert haben?',
         'option'       => [
-            'manual'    => 'Ein Administrator muss die Benutzer manuell aktivieren.',
-            'email'     => 'Sende eine E-Mail mit einer Aktivierungsbestätigung an den Benutzer.',
-            'automatic' => 'Aktiviere den Benutzer nach der Registrierung automatisch.',
+            'email'     => 'Schick eine Aktivierungsmail an den Benutzer.',
+            'manual'    => 'Ein Administrator muss den Benutzer manuell aktivieren.',
+            'automatic' => 'Aktiviere Benutzer automatisch nachdem Sie sich registriert haben.',
         ],
     ],
-    'profile_visibility' => [
-        'label'        => 'Sichtbarkeit des Profils',
-        'instructions' => 'Definieren Sie, wer Benutzerprofile auf der öffentlichen Website einsehen kann.',
+    'password_length'           => [
+        'label'        => 'Passwortlänge',
+        'instructions' => 'Geben sie die Minimallänge für das Passwort an.',
+    ],
+    'password_requirements'     => [
+        'label'        => 'Passwortanforderungen',
+        'instructions' => 'Geben Sie die Anforderungen für das Passwort an.',
         'option'       => [
-            'everyone' => 'Jeder kann öffentliche Profile einsehen.',
-            'owner'    => 'Nur der Besitzer des Profils kann sein Profil einsehen.',
-            'disabled' => 'Deaktiviere diese Funktion.',
-            'users'    => 'Jeder angemeldete Benutzer kann die Profile der anderen Benutzer einsehen.',
+            '[0-9]'        => 'Das Passwort muss mindestens eine Zahl enthalten.',
+            '[a-z]'        => 'Das Passwort muss mindestens einen Kleinbuchstaben enthalten.',
+            '[A-Z]'        => 'Das Passwort muss mindestens einen Großbuchstaben enthalten.',
+            '[!@#$%^&*()]' => 'Das Passwort muss mindestens ein Sonderzeichen enthalten.',
         ],
+    ],
+    'new_user_notification'     => [
+        'name'         => 'Benachrichtigungen für neue Benutzer.',
+        'instructions' => 'Wer soll über neue Benutzer benachrichtigt werden?',
+    ],
+    'pending_user_notification' => [
+        'name'         => 'Ausstehende Benutzer Benachrichtigungen',
+        'instructions' => 'Wer soll über Benutzer benachrichtigt werden, die eine Aktivierung benötigen?',
     ],
 ];
