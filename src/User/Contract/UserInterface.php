@@ -147,4 +147,11 @@ interface UserInterface extends EntryInterface
      * @param RoleInterface $role
      */
     public function attachRole(RoleInterface $role);
+
+    /**
+     * Detach a role from the user
+     *
+     * @param RoleInterface $role
+     */
+    public function detachRole(RoleInterface $role);
 }
