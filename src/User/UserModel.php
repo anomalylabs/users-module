@@ -319,6 +319,15 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, \Illumina
     }
 
     /**
+     * Detach a role from the user
+     *
+     * @param RoleInterface $role
+     */
+    public function detachRole(RoleInterface $role) {
+        $this->roles()->detach($role);
+    }
+
+    /**
      * Route notifications for the Slack channel.
      *
      * @return string
