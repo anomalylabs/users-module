@@ -90,7 +90,7 @@ class AuthorizeRoutePermission
         }
 
         if ($request->segment(1) == 'admin' && !$this->authorizer->authorize(
-                'anomaly.module.users::general.control_panel'
+                'streams::general.control_panel'
             )
         ) {
             abort(403);
