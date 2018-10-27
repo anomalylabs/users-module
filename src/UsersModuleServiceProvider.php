@@ -24,6 +24,7 @@ use Anomaly\UsersModule\User\Password\ResetPasswordFormBuilder;
 use Anomaly\UsersModule\User\Register\RegisterFormBuilder;
 use Anomaly\UsersModule\User\UserModel;
 use Anomaly\UsersModule\User\UserRepository;
+use Illuminate\Contracts\Config\Repository;
 
 /**
  * Class UsersModuleServiceProvider
@@ -163,4 +164,20 @@ class UsersModuleServiceProvider extends AddonServiceProvider
         'admin/users/fields/create'          => 'Anomaly\UsersModule\Http\Controller\Admin\FieldsController@create',
         'admin/users/fields/edit/{id}'       => 'Anomaly\UsersModule\Http\Controller\Admin\FieldsController@edit',
     ];
+
+    /**
+     * Register the addon.
+     *
+     * @param Repository $config
+     */
+    public function register(Repository $config)
+    {
+        foreach ($config->get($this->addon->getNamespace('config.permissions')) as $namespace => $group) {
+            foreach (array_get($group, 'permissions', []) as $permission => $permissions) {
+                foreach ($permissions['available'] as $option) {
+                    $config->set($namespace . '::permissions.' . $permission . '.' . $option);
+                }
+            }
+        }
+    }
 }

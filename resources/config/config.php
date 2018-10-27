@@ -25,4 +25,14 @@ return [
     |
     */
     'activation_mode' => env('ACTIVATION_MODE', 'email'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Permissions
+    |--------------------------------------------------------------------------
+    |
+    | Define additional permissions here.
+    |
+    */
+    'permissions'     => [],
 ];

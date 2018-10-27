@@ -19,9 +19,9 @@ class PermissionFormSections
      * Handle the fields.
      *
      * @param PermissionFormBuilder $builder
-     * @param AddonCollection       $addons
-     * @param Translator            $translator
-     * @param Repository            $config
+     * @param AddonCollection $addons
+     * @param Translator $translator
+     * @param Repository $config
      */
     public function handle(PermissionFormBuilder $builder, AddonCollection $addons, Repository $config)
     {
@@ -42,6 +42,33 @@ class PermissionFormSections
             foreach ($config->get($addon->getNamespace('permissions'), []) as $group => $permissions) {
 
                 $sections[$addon->getNamespace()]['fields'][] = str_replace('.', '_', $addon->getNamespace($group));
+            }
+        }
+
+        /**
+         * Allow custom configured permissions
+         * to be hooked in to the form as well.
+         */
+        if ($permissions = $config->get('anomaly.module.users::config.permissions')) {
+
+            foreach ($permissions as $namespace => $group) {
+
+                if ($title = array_get($group, 'title')) {
+                    $sections[$namespace]['title'] = $title;
+                }
+
+                if ($description = array_get($group, 'description')) {
+                    $sections[$namespace]['description'] = $description;
+                }
+
+                $sections[$namespace]['fields'] = array_get($sections[$namespace], 'fields', []);
+
+                $sections[$namespace]['fields'] += array_map(
+                    function ($permission) use ($namespace) {
+                        return str_replace('.', '_', $namespace . '::' . $permission);
+                    },
+                    array_keys(array_get($group, 'permissions'))
+                );
             }
         }
 
