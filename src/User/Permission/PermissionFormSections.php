@@ -45,6 +45,33 @@ class PermissionFormSections
             }
         }
 
+        /**
+         * Allow custom configured permissions
+         * to be hooked in to the form as well.
+         */
+        if ($permissions = $config->get('anomaly.module.users::config.permissions')) {
+
+            foreach ($permissions as $namespace => $group) {
+
+                if ($title = array_get($group, 'title')) {
+                    $sections[$namespace]['title'] = $title;
+                }
+
+                if ($description = array_get($group, 'description')) {
+                    $sections[$namespace]['description'] = $description;
+                }
+
+                $sections[$namespace]['fields'] = array_get($sections[$namespace], 'fields', []);
+
+                $sections[$namespace]['fields'] += array_map(
+                    function ($permission) use ($namespace) {
+                        return str_replace('.', '_', $namespace . '::' . $permission);
+                    },
+                    array_keys(array_get($group, 'permissions'))
+                );
+            }
+        }
+
         $builder->setSections($sections);
     }
 }

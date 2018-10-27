@@ -99,6 +99,28 @@ class PermissionFormFields
             }
         }
 
+        /**
+         * Allow custom configured permissions
+         * to be hooked in to the form as well.
+         */
+        if ($permissions = $config->get('anomaly.module.users::config.permissions')) {
+
+            foreach ($permissions as $namespace => $group) {
+                foreach (array_get($group, 'permissions', []) as $permission => $permissions) {
+                    $fields[str_replace('.', '_', $namespace . '::' . $permission)] = [
+                        'label'        => array_get($permissions, 'label'),
+                        'warning'      => array_get($permissions, 'warning'),
+                        'instructions' => array_get($permissions, 'instructions'),
+                        'type'         => 'anomaly.field_type.checkboxes',
+                        'value'        => $role->getPermissions(),
+                        'config'       => [
+                            'options' => array_get($permissions, 'available', []),
+                        ],
+                    ];
+                }
+            }
+        }
+
         $builder->setFields($fields);
     }
 }
