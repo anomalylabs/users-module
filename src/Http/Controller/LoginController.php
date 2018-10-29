@@ -20,10 +20,15 @@ class LoginController extends PublicController
      * Return the login form.
      *
      * @param  Translator $translator
+     * @param Guard $auth
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function login(Translator $translator)
+    public function login(Translator $translator, Guard $auth)
     {
+        if ($auth->check()) {
+            return $this->redirect->to($this->request->get('redirect', '/'));
+        }
+
         $this->template->set(
             'meta_title',
             $translator->trans('anomaly.module.users::breadcrumb.login')
@@ -36,7 +41,7 @@ class LoginController extends PublicController
      * Logout the active user.
      *
      * @param  UserAuthenticator $authenticator
-     * @param  Guard             $auth
+     * @param  Guard $auth
      * @return \Illuminate\Http\RedirectResponse
      */
     public function logout(UserAuthenticator $authenticator, Guard $auth, UrlGenerator $url)
