@@ -49,9 +49,9 @@ class UserSecurity
     /**
      * Create a new SecurityChecker instance.
      *
-     * @param Dispatcher          $events
-     * @param Redirector          $redirect
-     * @param Container           $container
+     * @param Dispatcher $events
+     * @param Redirector $redirect
+     * @param Container $container
      * @param ExtensionCollection $extensions
      */
     public function __construct(
@@ -89,7 +89,7 @@ class UserSecurity
                 continue;
             }
 
-            $this->events->fire(new SecurityCheckHasFailed($extension));
+            $this->events->dispatch(new SecurityCheckHasFailed($extension));
 
             return $response;
         }
@@ -100,12 +100,14 @@ class UserSecurity
     /**
      * Check authorization.
      *
-     * @param  UserInterface                                       $user
+     * @param  UserInterface $user
      * @return bool|\Illuminate\Http\RedirectResponse|mixed|string
      */
     public function check(UserInterface $user = null)
     {
-        $extensions = $this->extensions->search('anomaly.module.users::security_check.*');
+        $extensions = $this->extensions
+            ->search('anomaly.module.users::security_check.*')
+            ->enabled();
 
         /* @var SecurityCheckInterface $extension */
         foreach ($extensions as $extension) {
@@ -121,7 +123,7 @@ class UserSecurity
                 continue;
             }
 
-            $this->events->fire(new SecurityCheckHasFailed($extension));
+            $this->events->dispatch(new SecurityCheckHasFailed($extension));
 
             return $response;
         }
