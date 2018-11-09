@@ -52,9 +52,9 @@ class UserAuthenticator
     /**
      * Create a new Authenticator instance.
      *
-     * @param Guard               $guard
-     * @param Dispatcher          $events
-     * @param Container           $container
+     * @param Guard $guard
+     * @param Dispatcher $events
+     * @param Container $container
      * @param ExtensionCollection $extensions
      */
     public function __construct(Guard $guard, Dispatcher $events, Container $container, ExtensionCollection $extensions)
@@ -69,7 +69,7 @@ class UserAuthenticator
      * Attempt to login a user.
      *
      * @param  array $credentials
-     * @param  bool  $remember
+     * @param  bool $remember
      * @return bool|UserInterface
      */
     public function attempt(array $credentials, $remember = false)
@@ -94,7 +94,9 @@ class UserAuthenticator
      */
     public function authenticate(array $credentials)
     {
-        $authenticators = $this->extensions->search('anomaly.module.users::authenticator.*');
+        $authenticators = $this->extensions
+            ->search('anomaly.module.users::authenticator.*')
+            ->enabled();
 
         /* @var AuthenticatorExtensionInterface $authenticator */
         foreach ($authenticators as $authenticator) {
@@ -117,13 +119,13 @@ class UserAuthenticator
      * Force login a user.
      *
      * @param UserInterface $user
-     * @param bool          $remember
+     * @param bool $remember
      */
     public function login(UserInterface $user, $remember = false)
     {
         $this->guard->login($user, $remember);
 
-        $this->events->fire(new UserWasLoggedIn($user));
+        $this->events->dispatch(new UserWasLoggedIn($user));
     }
 
     /**
@@ -143,7 +145,7 @@ class UserAuthenticator
 
         $this->guard->logout($user);
 
-        $this->events->fire(new UserWasLoggedOut($user));
+        $this->events->dispatch(new UserWasLoggedOut($user));
     }
 
     /**
@@ -155,6 +157,6 @@ class UserAuthenticator
     {
         $this->guard->logout($user);
 
-        $this->events->fire(new UserWasKickedOut($user, $reason));
+        $this->events->dispatch(new UserWasKickedOut($user, $reason));
     }
 }
