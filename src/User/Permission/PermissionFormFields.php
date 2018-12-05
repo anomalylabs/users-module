@@ -112,7 +112,7 @@ class PermissionFormFields
                         'warning'      => array_get($permissions, 'warning'),
                         'instructions' => array_get($permissions, 'instructions'),
                         'type'         => 'anomaly.field_type.checkboxes',
-                        'value'        => $role->getPermissions(),
+                        'value'        => $user->getPermissions(),
                         'config'       => [
                             'options' => array_get($permissions, 'available', []),
                         ],
