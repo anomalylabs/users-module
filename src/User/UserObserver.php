@@ -2,6 +2,8 @@
 
 use Anomaly\Streams\Platform\Entry\Contract\EntryInterface;
 use Anomaly\Streams\Platform\Entry\EntryObserver;
+use Anomaly\UsersModule\User\Command\SetStrId;
+use Anomaly\UsersModule\User\Contract\UserInterface;
 use Anomaly\UsersModule\User\Event\UserWasCreated;
 use Anomaly\UsersModule\User\Event\UserWasDeleted;
 use Anomaly\UsersModule\User\Event\UserWasUpdated;
@@ -9,12 +11,25 @@ use Anomaly\UsersModule\User\Event\UserWasUpdated;
 /**
  * Class UserObserver
  *
- * @link          http://pyrocms.com/
- * @author        PyroCMS, Inc. <support@pyrocms.com>
- * @author        Ryan Thompson <ryan@pyrocms.com>
+ * @link   http://pyrocms.com/
+ * @author PyroCMS, Inc. <support@pyrocms.com>
+ * @author Ryan Thompson <ryan@pyrocms.com>
  */
 class UserObserver extends EntryObserver
 {
+
+    /**
+     * Fired just before a user is created.
+     *
+     * @param EntryInterface|UserInterface $entry
+     */
+    public function creating(EntryInterface $entry)
+    {
+        $this->dispatchNow(new SetStrId($entry));
+
+        parent::creating($entry);
+    }
+
 
     /**
      * Fired after a user is created.
@@ -41,7 +56,7 @@ class UserObserver extends EntryObserver
 
         parent::deleted($entry);
     }
-    
+
     /**
      * Fired after a user is updated.
      *
@@ -50,7 +65,7 @@ class UserObserver extends EntryObserver
     public function updated(EntryInterface $entry)
     {
         $this->events->fire(new UserWasUpdated($entry));
-        
+
         parent::updated($entry);
     }
 }

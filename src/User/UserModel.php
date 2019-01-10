@@ -43,6 +43,16 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, \Illumina
     ];
 
     /**
+     * Get the string ID.
+     *
+     * @return string
+     */
+    public function getStrId()
+    {
+        return $this->str_id;
+    }
+
+    /**
      * Get the email.
      *
      * @return string
@@ -184,7 +194,7 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, \Illumina
      * Return whether a user or it's roles has a permission.
      *
      * @param        $permission
-     * @param  bool  $checkRoles
+     * @param  bool $checkRoles
      * @return mixed
      */
     public function hasPermission($permission, $checkRoles = true)
@@ -214,7 +224,7 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, \Illumina
      * Return whether a user has any of provided permission.
      *
      * @param array $permissions
-     * @param bool  $checkRoles
+     * @param bool $checkRoles
      * @return bool
      */
     public function hasAnyPermission(array $permissions, $checkRoles = true)
@@ -323,7 +333,8 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, \Illumina
      *
      * @param RoleInterface $role
      */
-    public function detachRole(RoleInterface $role) {
+    public function detachRole(RoleInterface $role)
+    {
         $this->roles()->detach($role);
     }
 

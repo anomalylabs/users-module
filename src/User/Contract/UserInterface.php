@@ -3,7 +3,6 @@
 use Anomaly\Streams\Platform\Entry\Contract\EntryInterface;
 use Anomaly\UsersModule\Role\Contract\RoleInterface;
 use Anomaly\UsersModule\Role\RoleCollection;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
  * Interface UserInterface
@@ -14,6 +13,13 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  */
 interface UserInterface extends EntryInterface
 {
+
+    /**
+     * Get the string ID.
+     *
+     * @return string
+     */
+    public function getStrId();
 
     /**
      * Get the email.
@@ -93,7 +99,7 @@ interface UserInterface extends EntryInterface
      * Return whether a user or it's roles has a permission.
      *
      * @param        $permission
-     * @param  bool  $checkRoles
+     * @param  bool $checkRoles
      * @return mixed
      */
     public function hasPermission($permission, $checkRoles = true);
