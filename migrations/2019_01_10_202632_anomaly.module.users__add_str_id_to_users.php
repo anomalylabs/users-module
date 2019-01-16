@@ -58,7 +58,7 @@ class AnomalyModuleUsersAddStrIdToUsers extends Migration
         $users = app(UserRepositoryInterface::class);
 
         /* @var UserInterface|EloquentModel $user */
-        foreach ($users->newQuery()->withTrashed()->get() as $user) {
+        foreach ($users->allWithTrashed() as $user) {
             $users->save($user->setRawAttribute('str_id', str_random(24)));
         }
 
