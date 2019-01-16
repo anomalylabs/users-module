@@ -1,6 +1,7 @@
 <?php namespace Anomaly\UsersModule\User;
 
 use Anomaly\Streams\Platform\Entry\EntryRepository;
+use Anomaly\Streams\Platform\Model\EloquentModel;
 use Anomaly\UsersModule\User\Contract\UserInterface;
 use Anomaly\UsersModule\User\Contract\UserRepositoryInterface;
 
@@ -34,7 +35,7 @@ class UserRepository extends EntryRepository implements UserRepositoryInterface
     /**
      * Find a user by their credentials.
      *
-     * @param  array              $credentials
+     * @param  array $credentials
      * @return null|UserInterface
      */
     public function findByCredentials(array $credentials)
@@ -101,7 +102,7 @@ class UserRepository extends EntryRepository implements UserRepositoryInterface
     /**
      * Touch a user's last activity and IP.
      *
-     * @param  UserInterface $user
+     * @param  UserInterface|EloquentModel $user
      * @return bool
      */
     public function touchLastActivity(UserInterface $user)
@@ -109,7 +110,9 @@ class UserRepository extends EntryRepository implements UserRepositoryInterface
         $user->last_activity_at = time();
         $user->ip_address       = request()->ip();
 
-        return $this->save($user);
+        return $this->withoutEvents($user, function(UserInterface $user) {
+            return $user->save();
+        });
     }
 
     /**
