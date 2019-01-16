@@ -46,7 +46,6 @@ class AnomalyModuleUsersAddStrIdToUsers extends Migration
     protected $assignments = [
         'str_id' => [
             'required' => true,
-            'unique'   => true,
         ],
     ];
 
@@ -62,6 +61,12 @@ class AnomalyModuleUsersAddStrIdToUsers extends Migration
         foreach ($users->all() as $user) {
             $users->save($user->setRawAttribute('str_id', str_random(24)));
         }
+
+        $field      = $this->fields()->findBySlugAndNamespace('str_id', 'users');
+        $stream     = $this->streams()->findBySlugAndNamespace('users', 'users');
+        $assignment = $this->assignments()->findByStreamAndField($stream, $field);
+
+        $this->assignments()->save($assignment->setAttribute('unique', true));
     }
 
 }
