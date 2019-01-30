@@ -57,9 +57,9 @@ class AuthorizeRouteRoles
     /**
      * Create a new AuthorizeModuleAccess instance.
      *
-     * @param Guard      $auth
-     * @param Route      $route
-     * @param Store      $session
+     * @param Guard $auth
+     * @param Route $route
+     * @param Store $session
      * @param Redirector $redirect
      * @param MessageBag $messages
      */
@@ -80,7 +80,7 @@ class AuthorizeRouteRoles
     /**
      * Check the authorization of module access.
      *
-     * @param  Request  $request
+     * @param  Request $request
      * @param  \Closure $next
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -93,6 +93,13 @@ class AuthorizeRouteRoles
         /* @var UserInterface $user */
         $user = $this->auth->user();
         $role = (array)array_get($this->route->getAction(), 'anomaly.module.users::role');
+
+        /**
+         * Check if the user is an admin.
+         */
+        if ($user && $user->isAdmin()) {
+            return $next($request);
+        }
 
         /**
          * If the guest role is desired
