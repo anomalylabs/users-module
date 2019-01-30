@@ -2,7 +2,9 @@
 
 use Anomaly\Streams\Platform\Message\MessageBag;
 use Anomaly\Streams\Platform\Support\Authorizer;
+use Anomaly\UsersModule\User\Contract\UserInterface;
 use Closure;
+use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
 use Illuminate\Routing\Route;
@@ -17,6 +19,13 @@ use Illuminate\Session\Store;
  */
 class AuthorizeRoutePermission
 {
+
+    /**
+     * The auth guard.
+     *
+     * @var Guard
+     */
+    protected $auth;
 
     /**
      * The route object.
@@ -56,19 +65,22 @@ class AuthorizeRoutePermission
     /**
      * Create a new AuthorizeModuleAccess instance.
      *
-     * @param Route      $route
-     * @param Store      $session
+     * @param Guard $auth
+     * @param Route $route
+     * @param Store $session
      * @param Redirector $redirect
      * @param MessageBag $messages
      * @param Authorizer $authorizer
      */
     public function __construct(
+        Guard $auth,
         Route $route,
         Store $session,
         Redirector $redirect,
         MessageBag $messages,
         Authorizer $authorizer
     ) {
+        $this->auth       = $auth;
         $this->route      = $route;
         $this->session    = $session;
         $this->redirect   = $redirect;
@@ -79,7 +91,7 @@ class AuthorizeRoutePermission
     /**
      * Check the authorization of module access.
      *
-     * @param  Request  $request
+     * @param  Request $request
      * @param  \Closure $next
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -96,6 +108,15 @@ class AuthorizeRoutePermission
             abort(403);
         }
 
+        /**
+         * Check if the user is an admin.
+         *
+         * @var UserInterface $user
+         */
+        if (($user = $this->auth->user()) && $user->isAdmin()) {
+            return $next($request);
+        }
+        
         $permission = (array)array_get($this->route->getAction(), 'anomaly.module.users::permission');
 
         if ($permission && !$this->authorizer->authorizeAny($permission, null, true)) {
