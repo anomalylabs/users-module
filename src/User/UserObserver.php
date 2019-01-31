@@ -34,7 +34,7 @@ class UserObserver extends EntryObserver
     /**
      * Fired after a user is created.
      *
-     * @param EntryInterface $entry
+     * @param EntryInterface|UserInterface $entry
      */
     public function created(EntryInterface $entry)
     {
@@ -44,21 +44,9 @@ class UserObserver extends EntryObserver
     }
 
     /**
-     * Fired just before a user is updated.
-     *
-     * @param EntryInterface|UserInterface $entry
-     */
-    public function updating(EntryInterface $entry)
-    {
-        $this->dispatchNow(new SetStrId($entry));
-
-        parent::updating($entry);
-    }
-
-    /**
      * Fired after a user is updated.
      *
-     * @param EntryInterface $entry
+     * @param EntryInterface|UserInterface $entry
      */
     public function updated(EntryInterface $entry)
     {
@@ -70,7 +58,7 @@ class UserObserver extends EntryObserver
     /**
      * Fired after a user is deleted.
      *
-     * @param EntryInterface $entry
+     * @param EntryInterface|UserInterface $entry
      */
     public function deleted(EntryInterface $entry)
     {
