@@ -44,17 +44,15 @@ class UserObserver extends EntryObserver
     }
 
     /**
-     * Fired after a user is deleted.
+     * Fired just before a user is updated.
      *
-     * @param EntryInterface $entry
+     * @param EntryInterface|UserInterface $entry
      */
-    public function deleted(EntryInterface $entry)
+    public function updating(EntryInterface $entry)
     {
-        if (!$entry->isForceDeleting()) {
-            $this->events->fire(new UserWasDeleted($entry));
-        }
+        $this->dispatchNow(new SetStrId($entry));
 
-        parent::deleted($entry);
+        parent::updating($entry);
     }
 
     /**
@@ -67,5 +65,19 @@ class UserObserver extends EntryObserver
         $this->events->fire(new UserWasUpdated($entry));
 
         parent::updated($entry);
+    }
+
+    /**
+     * Fired after a user is deleted.
+     *
+     * @param EntryInterface $entry
+     */
+    public function deleted(EntryInterface $entry)
+    {
+        if (!$entry->isForceDeleting()) {
+            $this->events->fire(new UserWasDeleted($entry));
+        }
+
+        parent::deleted($entry);
     }
 }
