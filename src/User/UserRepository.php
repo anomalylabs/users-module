@@ -110,7 +110,7 @@ class UserRepository extends EntryRepository implements UserRepositoryInterface
         $user->last_activity_at = time();
         $user->ip_address       = request()->ip();
 
-        return $this->withoutEvents($user, function(UserInterface $user) {
+        return $this->withoutEvents(function() use ($user) {
             return $user->save();
         });
     }
