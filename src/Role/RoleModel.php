@@ -1,17 +1,18 @@
 <?php namespace Anomaly\UsersModule\Role;
 
 use Anomaly\Streams\Platform\Model\Users\UsersRolesEntryModel;
+use Anomaly\Streams\Platform\User\Contract\RoleInterface as StreamsRole;
 use Anomaly\UsersModule\Role\Contract\RoleInterface;
 use Anomaly\UsersModule\User\UserCollection;
 
 /**
  * Class RoleModel
  *
- * @link          http://pyrocms.com/
- * @author        PyroCMS, Inc. <support@pyrocms.com>
- * @author        Ryan Thompson <ryan@pyrocms.com>
+ * @link   http://pyrocms.com/
+ * @author PyroCMS, Inc. <support@pyrocms.com>
+ * @author Ryan Thompson <ryan@pyrocms.com>
  */
-class RoleModel extends UsersRolesEntryModel implements RoleInterface
+class RoleModel extends UsersRolesEntryModel implements RoleInterface, StreamsRole
 {
 
     /**
