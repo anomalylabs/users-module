@@ -2,6 +2,7 @@
 
 use Anomaly\Streams\Platform\Model\Users\UsersUsersEntryModel;
 use Anomaly\Streams\Platform\Support\Collection;
+use Anomaly\Streams\Platform\User\Contract\UserInterface as StreamsUser;
 use Anomaly\UsersModule\Role\Command\GetRole;
 use Anomaly\UsersModule\Role\Contract\RoleInterface;
 use Anomaly\UsersModule\Role\RoleCollection;
@@ -17,7 +18,7 @@ use Illuminate\Notifications\Notifiable;
  * @author PyroCMS, Inc. <support@pyrocms.com>
  * @author Ryan Thompson <ryan@pyrocms.com>
  */
-class UserModel extends UsersUsersEntryModel implements UserInterface, \Illuminate\Contracts\Auth\Authenticatable
+class UserModel extends UsersUsersEntryModel implements UserInterface, StreamsUser, \Illuminate\Contracts\Auth\Authenticatable
 {
 
     use Notifiable;
