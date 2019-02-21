@@ -105,64 +105,43 @@ class UsersModuleServiceProvider extends AddonServiceProvider
      * @var array
      */
     protected $routes = [
-        '/users/self'                        => [
+        '/users/self'           => [
             'as'   => 'anomaly.module.users::self',
             'uses' => 'Anomaly\UsersModule\Http\Controller\UsersController@self',
         ],
-        '@{username}'                        => [
+        '@{username}'           => [
             'as'   => 'anomaly.module.users::users.view',
             'uses' => 'Anomaly\UsersModule\Http\Controller\UsersController@view',
         ],
-        'login'                              => [
+        'login'                 => [
             'as'   => 'anomaly.module.users::login',
             'uses' => 'Anomaly\UsersModule\Http\Controller\LoginController@login',
         ],
-        'logout'                             => [
+        'logout'                => [
             'as'   => 'anomaly.module.users::logout',
             'uses' => 'Anomaly\UsersModule\Http\Controller\LoginController@logout',
         ],
-        'register'                           => [
+        'register'              => [
             'as'   => 'anomaly.module.users::register',
             'uses' => 'Anomaly\UsersModule\Http\Controller\RegisterController@register',
         ],
-        'users/activate'                     => [
+        'users/activate'        => [
             'as'   => 'anomaly.module.users::users.activate',
             'uses' => 'Anomaly\UsersModule\Http\Controller\RegisterController@activate',
         ],
-        'users/password/reset'               => [
+        'users/password/reset'  => [
             'as'   => 'anomaly.module.users::users.reset',
             'uses' => 'Anomaly\UsersModule\Http\Controller\PasswordController@reset',
         ],
-        'users/password/forgot'              => [
+        'users/password/forgot' => [
             'as'   => 'anomaly.module.users::password.forgot',
             'uses' => 'Anomaly\UsersModule\Http\Controller\PasswordController@forgot',
         ],
-        'admin'                              => 'Anomaly\UsersModule\Http\Controller\Admin\HomeController@index',
-        'auth/login'                         => 'Anomaly\UsersModule\Http\Controller\Admin\LoginController@logout',
-        'auth/logout'                        => 'Anomaly\UsersModule\Http\Controller\Admin\LoginController@logout',
-        'admin/login'                        => 'Anomaly\UsersModule\Http\Controller\Admin\LoginController@login',
-        'admin/logout'                       => 'Anomaly\UsersModule\Http\Controller\Admin\LoginController@logout',
-        'admin/users'                        => 'Anomaly\UsersModule\Http\Controller\Admin\UsersController@index',
-        'admin/users/create'                 => 'Anomaly\UsersModule\Http\Controller\Admin\UsersController@create',
-        'admin/users/edit/{id}'              => 'Anomaly\UsersModule\Http\Controller\Admin\UsersController@edit',
-        'admin/users/view/{id}'              => 'Anomaly\UsersModule\Http\Controller\Admin\UsersController@view',
-        'admin/users/delete/{id}'            => 'Anomaly\UsersModule\Http\Controller\Admin\UsersController@delete',
-        'admin/users/permissions/{id}'       => 'Anomaly\UsersModule\Http\Controller\Admin\UsersController@permissions',
-        'admin/users/impersonate/{id}'       => 'Anomaly\UsersModule\Http\Controller\Admin\UsersController@impersonate',
-        'admin/users/activate/{id}'          => 'Anomaly\UsersModule\Http\Controller\Admin\UsersController@activate',
-        'admin/users/deactivate/{id}'        => 'Anomaly\UsersModule\Http\Controller\Admin\UsersController@deactivate',
-        'admin/users/block/{id}'             => 'Anomaly\UsersModule\Http\Controller\Admin\UsersController@block',
-        'admin/users/unblock/{id}'           => 'Anomaly\UsersModule\Http\Controller\Admin\UsersController@unblock',
-        'admin/users/logout/{id}'            => 'Anomaly\UsersModule\Http\Controller\Admin\UsersController@logout',
-        'admin/users/reset/{id}'             => 'Anomaly\UsersModule\Http\Controller\Admin\UsersController@reset',
-        'admin/users/roles'                  => 'Anomaly\UsersModule\Http\Controller\Admin\RolesController@index',
-        'admin/users/roles/create'           => 'Anomaly\UsersModule\Http\Controller\Admin\RolesController@create',
-        'admin/users/roles/edit/{id}'        => 'Anomaly\UsersModule\Http\Controller\Admin\RolesController@edit',
-        'admin/users/roles/permissions/{id}' => 'Anomaly\UsersModule\Http\Controller\Admin\RolesController@permissions',
-        'admin/users/fields'                 => 'Anomaly\UsersModule\Http\Controller\Admin\FieldsController@index',
-        'admin/users/fields/choose'          => 'Anomaly\UsersModule\Http\Controller\Admin\FieldsController@choose',
-        'admin/users/fields/create'          => 'Anomaly\UsersModule\Http\Controller\Admin\FieldsController@create',
-        'admin/users/fields/edit/{id}'       => 'Anomaly\UsersModule\Http\Controller\Admin\FieldsController@edit',
+        'admin'                 => 'Anomaly\UsersModule\Http\Controller\Admin\HomeController@index',
+        'auth/login'            => 'Anomaly\UsersModule\Http\Controller\Admin\LoginController@logout',
+        'auth/logout'           => 'Anomaly\UsersModule\Http\Controller\Admin\LoginController@logout',
+        'admin/login'           => 'Anomaly\UsersModule\Http\Controller\Admin\LoginController@login',
+        'admin/logout'          => 'Anomaly\UsersModule\Http\Controller\Admin\LoginController@logout',
     ];
 
     /**
