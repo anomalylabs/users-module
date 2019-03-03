@@ -46,7 +46,7 @@ class CheckSecurity
         if ($request->segment(1) !== 'admin' || in_array($request->path(), ['admin/login', 'admin/logout'])) {
             return $next($request);
         }
-        
+
         $response = $this->security->check(auth()->user());
 
         if ($response instanceof Response) {
