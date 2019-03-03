@@ -2,10 +2,7 @@
 
 use Anomaly\UsersModule\User\UserSecurity;
 use Closure;
-use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Redirector;
-use Illuminate\Routing\ResponseFactory;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
@@ -13,19 +10,12 @@ use Symfony\Component\HttpFoundation\Response;
  *
  * This class replaces the Laravel version in app/
  *
- * @link          http://pyrocms.com/
- * @author        PyroCMS, Inc. <support@pyrocms.com>
- * @author        Ryan Thompson <ryan@pyrocms.com>
+ * @link   http://pyrocms.com/
+ * @author PyroCMS, Inc. <support@pyrocms.com>
+ * @author Ryan Thompson <ryan@pyrocms.com>
  */
 class CheckSecurity
 {
-
-    /**
-     * The Guard implementation.
-     *
-     * @var Guard
-     */
-    protected $guard;
 
     /**
      * The security utility.
@@ -35,49 +25,29 @@ class CheckSecurity
     protected $security;
 
     /**
-     * The response factory.
+     * Create a new CheckSecurity instance.
      *
-     * @var ResponseFactory
+     * @param UserSecurity $security
      */
-    protected $response;
-
-    /**
-     * The redirector utility.
-     *
-     * @var Redirector
-     */
-    protected $redirect;
-
-    /**
-     * Create a new CheckSecurityRequest instance.
-     *
-     * @param Guard           $guard
-     * @param Redirector      $redirect
-     * @param ResponseFactory $response
-     * @param UserSecurity    $security
-     */
-    public function __construct(
-        Guard $guard,
-        Redirector $redirect,
-        ResponseFactory $response,
-        UserSecurity $security
-    ) {
-        $this->guard    = $guard;
-        $this->redirect = $redirect;
-        $this->response = $response;
+    public function __construct(UserSecurity $security)
+    {
         $this->security = $security;
     }
 
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  \Closure                 $next
-     * @return mixed
+     * @param Request $request
+     * @param Closure $next
+     * @return bool|\Illuminate\Http\RedirectResponse|mixed|string
      */
     public function handle(Request $request, Closure $next)
     {
-        $response = $this->security->check($this->guard->user());
+        if ($request->segment(1) !== 'admin' || in_array($request->path(), ['admin/login', 'admin/logout'])) {
+            return $next($request);
+        }
+        
+        $response = $this->security->check(auth()->user());
 
         if ($response instanceof Response) {
             return $response;
