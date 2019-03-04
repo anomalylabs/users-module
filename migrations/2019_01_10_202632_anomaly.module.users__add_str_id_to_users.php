@@ -4,6 +4,7 @@ use Anomaly\Streams\Platform\Database\Migration\Migration;
 use Anomaly\Streams\Platform\Model\EloquentModel;
 use Anomaly\UsersModule\User\Contract\UserInterface;
 use Anomaly\UsersModule\User\Contract\UserRepositoryInterface;
+use Anomaly\UsersModule\User\UserRepository;
 
 /**
  * Class AnomalyModuleUsersAddStrIdToUsers
@@ -54,8 +55,12 @@ class AnomalyModuleUsersAddStrIdToUsers extends Migration
      */
     public function up()
     {
-        /* @var UserRepositoryInterface $users */
-        $users = app(UserRepositoryInterface::class);
+        /**
+         * Load the concrete on purpose.
+         *
+         * @var UserRepositoryInterface $users
+         */
+        $users = app(UserRepository::class);
 
         /* @var UserInterface|EloquentModel $user */
         foreach ($users->allWithTrashed() as $user) {
