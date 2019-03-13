@@ -7,22 +7,27 @@
         "users",
         "module"
     ],
-    "homepage": "http://pyrocms.com/",
+    "homepage": "http://pyrocms.com/addons/anomaly/users-module",
     "license": "MIT",
     "authors": [
         {
             "name": "PyroCMS, Inc.",
-            "email": "support@pyrocms.com",
             "homepage": "http://pyrocms.com/",
             "role": "Owner"
         },
         {
             "name": "Ryan Thompson",
-            "email": "ryan@pyrocms.com",
             "homepage": "http://ryanthepyro.com/",
-            "role": "Owner"
+            "role": "Developer"
         }
     ],
+    "support": {
+        "docs": "https://pyrocms.com/documentation/users-module",
+        "system": "https://pyrocms.com/forum/channels/users-module",
+        "slack": "https://pyrocms.com/slack",
+        "issues": "https://github.com/pyrocms/pyrocms/issues?q=is:issue is:open [users-module]",
+        "source": "https://github.com/anomalylabs/users-module"
+    },
     "require": {
         "anomaly/streams-platform": "^1.6"
     },
