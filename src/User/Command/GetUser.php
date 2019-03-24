@@ -5,13 +5,12 @@ use Anomaly\UsersModule\User\Contract\UserRepositoryInterface;
 use Anomaly\UsersModule\User\UserPresenter;
 use Illuminate\Contracts\Auth\Guard;
 
-
 /**
  * Class GetUser
  *
- * @link          http://pyrocms.com/
- * @author        PyroCMS, Inc. <support@pyrocms.com>
- * @author        Ryan Thompson <ryan@pyrocms.com>
+ * @link   http://pyrocms.com/
+ * @author PyroCMS, Inc. <support@pyrocms.com>
+ * @author Ryan Thompson <ryan@pyrocms.com>
  */
 class GetUser
 {
@@ -37,7 +36,7 @@ class GetUser
      * Handle the command.
      *
      * @param  UserRepositoryInterface $users
-     * @param  Guard                   $auth
+     * @param  Guard $auth
      * @return \Anomaly\UsersModule\User\Contract\UserInterface|\Illuminate\Contracts\Auth\Authenticatable|null
      */
     public function handle(UserRepositoryInterface $users, Guard $auth)
@@ -56,6 +55,10 @@ class GetUser
 
         if (is_numeric($this->identifier)) {
             return $users->find($this->identifier);
+        }
+
+        if (is_string($this->identifier)) {
+            return $users->findByStrId($this->identifier);
         }
 
         if (filter_var($this->identifier, FILTER_VALIDATE_EMAIL)) {

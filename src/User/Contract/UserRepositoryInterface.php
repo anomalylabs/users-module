@@ -7,12 +7,20 @@ use Anomaly\Streams\Platform\Entry\Contract\EntryRepositoryInterface;
  *
  * @method null|UserInterface find($id)
  *
- * @link          http://pyrocms.com/
- * @author        PyroCMS, Inc. <support@pyrocms.com>
- * @author        Ryan Thompson <ryan@pyrocms.com>
+ * @link   http://pyrocms.com/
+ * @author PyroCMS, Inc. <support@pyrocms.com>
+ * @author Ryan Thompson <ryan@pyrocms.com>
  */
 interface UserRepositoryInterface extends EntryRepositoryInterface
 {
+
+    /**
+     * Find a user by string ID.
+     *
+     * @param $id
+     * @return UserInterface|null
+     */
+    public function findByStrId($id);
 
     /**
      * Find a user by their email.

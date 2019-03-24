@@ -33,6 +33,17 @@ class UserRepository extends EntryRepository implements UserRepositoryInterface
     }
 
     /**
+     * Find a user by string ID.
+     *
+     * @param $id
+     * @return UserInterface|null
+     */
+    public function findByStrId($id)
+    {
+        return $this->model->where('str_id', $id)->first();
+    }
+
+    /**
      * Find a user by their credentials.
      *
      * @param  array $credentials
