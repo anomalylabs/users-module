@@ -64,6 +64,11 @@ class AnomalyModuleUsersAddStrIdToUsers extends Migration
 
         /* @var UserInterface|EloquentModel $user */
         foreach ($users->allWithTrashed() as $user) {
+
+            if ($user->getStrId()) {
+                continue;
+            }
+
             $users->save($user->setRawAttribute('str_id', str_random(24)));
         }
 
