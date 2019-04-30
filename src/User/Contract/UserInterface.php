@@ -1,7 +1,7 @@
 <?php namespace Anomaly\UsersModule\User\Contract;
 
 use Anomaly\Streams\Platform\Entry\Contract\EntryInterface;
-use Anomaly\UsersModule\Role\Contract\RoleInterface;
+use Anomaly\Streams\Platform\User\Contract\RoleInterface;
 use Anomaly\UsersModule\Role\RoleCollection;
 
 /**
