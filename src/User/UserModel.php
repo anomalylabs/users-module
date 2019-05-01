@@ -116,7 +116,7 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, StreamsUs
     /**
      * Return whether a user is in a role.
      *
-     * @param $role
+     * @param RoleInterface $role
      * @return bool
      */
     public function hasRole(RoleInterface $role)
