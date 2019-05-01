@@ -119,7 +119,7 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, StreamsUs
      * @param $role
      * @return bool
      */
-    public function hasRole($role)
+    public function hasRole(RoleInterface $role)
     {
         if (!is_object($role)) {
             $role = $this->dispatch(new GetRole($role));
