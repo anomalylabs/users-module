@@ -6,6 +6,7 @@ use Anomaly\Streams\Platform\User\Contract\UserInterface as StreamsUser;
 use Anomaly\UsersModule\Role\Command\GetRole;
 use Anomaly\Streams\Platform\User\Contract\RoleInterface;
 use Anomaly\UsersModule\Role\RoleCollection;
+use Anomaly\UsersModule\Role\RolePresenter;
 use Anomaly\UsersModule\User\Contract\UserInterface;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Auth\Passwords\CanResetPassword;
@@ -116,10 +117,10 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, StreamsUs
     /**
      * Return whether a user is in a role.
      *
-     * @param RoleInterface $role
+     * @param RoleInterface|RolePresenter|string $role
      * @return bool
      */
-    public function hasRole(RoleInterface $role)
+    public function hasRole($role)
     {
         if (!is_object($role)) {
             $role = $this->dispatch(new GetRole($role));

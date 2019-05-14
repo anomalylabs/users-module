@@ -3,6 +3,7 @@
 use Anomaly\Streams\Platform\Entry\Contract\EntryInterface;
 use Anomaly\Streams\Platform\User\Contract\RoleInterface;
 use Anomaly\UsersModule\Role\RoleCollection;
+use Anomaly\UsersModule\Role\RolePresenter;
 
 /**
  * Interface UserInterface
@@ -66,10 +67,10 @@ interface UserInterface extends EntryInterface
     /**
      * Return whether a user is in a role.
      *
-     * @param RoleInterface $role
+     * @param RoleInterface|RolePresenter|string $role
      * @return bool
      */
-    public function hasRole(RoleInterface $role);
+    public function hasRole($role);
 
     /**
      * Return whether a user is in
