@@ -2,9 +2,9 @@
 
 use Anomaly\Streams\Platform\Model\Users\UsersUsersEntryModel;
 use Anomaly\Streams\Platform\Support\Collection;
+use Anomaly\Streams\Platform\User\Contract\RoleInterface;
 use Anomaly\Streams\Platform\User\Contract\UserInterface as StreamsUser;
 use Anomaly\UsersModule\Role\Command\GetRole;
-use Anomaly\Streams\Platform\User\Contract\RoleInterface;
 use Anomaly\UsersModule\Role\RoleCollection;
 use Anomaly\UsersModule\Role\RolePresenter;
 use Anomaly\UsersModule\User\Contract\UserInterface;
@@ -348,5 +348,30 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, StreamsUs
     public function routeNotificationForSlack()
     {
         return env('SLACK_WEBHOOK');
+    }
+
+    /**
+     * Return the model as a searchable array.
+     *
+     * @return array
+     */
+    public function toSearchableArray()
+    {
+        $array = parent::toSearchableArray();
+
+        array_pull($array, 'password');
+
+        return $array;
+    }
+
+    /**
+     * Return if the model should
+     * be searchable or not.
+     *
+     * @return bool
+     */
+    public function shouldBeSearchable()
+    {
+        return $this->isActivated();
     }
 }
