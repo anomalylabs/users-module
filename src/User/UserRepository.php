@@ -152,11 +152,7 @@ class UserRepository extends EntryRepository implements UserRepositoryInterface
             ->get();
 
         foreach ($stale as $user) {
-            dispatch(
-                function () use ($user) {
-                    $this->forceDelete($user);
-                }
-            );
+            $this->forceDelete($user);
         }
     }
 }
