@@ -56,6 +56,17 @@ class UsersModuleServiceProvider extends AddonServiceProvider
     ];
 
     /**
+     * The addon schedules.
+     *
+     * @var array
+     */
+    protected $schedules = [
+        'daily' => [
+            UsersCleanup::class,
+        ],
+    ];
+
+    /**
      * The module middleware.
      *
      * @var array
