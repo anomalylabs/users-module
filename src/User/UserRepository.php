@@ -148,7 +148,7 @@ class UserRepository extends EntryRepository implements UserRepositoryInterface
     {
         $stale = $this->model
             ->where('activated', false)
-            ->where('created_at', '<', now()->subMonth())
+            ->whereDate('created_at', '<', now()->subMonth())
             ->get();
 
         foreach ($stale as $user) {
