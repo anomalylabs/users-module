@@ -75,4 +75,9 @@ interface UserRepositoryInterface extends EntryRepositoryInterface
      * @return bool
      */
     public function touchLastLogin(UserInterface $user);
+
+    /**
+     * Cleanup pending users.
+     */
+    public function cleanup();
 }

@@ -4,6 +4,7 @@ use Anomaly\Streams\Platform\Addon\AddonServiceProvider;
 use Anomaly\Streams\Platform\Application\Event\ApplicationHasLoaded;
 use Anomaly\Streams\Platform\Model\Users\UsersRolesEntryModel;
 use Anomaly\Streams\Platform\Model\Users\UsersUsersEntryModel;
+use Anomaly\UsersModule\Console\UsersCleanup;
 use Anomaly\UsersModule\Http\Middleware\AuthorizeControlPanel;
 use Anomaly\UsersModule\Http\Middleware\AuthorizeModuleAccess;
 use Anomaly\UsersModule\Http\Middleware\AuthorizeRoutePermission;
@@ -35,6 +36,15 @@ use Illuminate\Contracts\Config\Repository;
  */
 class UsersModuleServiceProvider extends AddonServiceProvider
 {
+
+    /**
+     * The addon commands.
+     *
+     * @var array
+     */
+    protected $commands = [
+        UsersCleanup::class,
+    ];
 
     /**
      * The addon plugins.

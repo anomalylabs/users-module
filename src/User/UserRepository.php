@@ -121,9 +121,11 @@ class UserRepository extends EntryRepository implements UserRepositoryInterface
         $user->last_activity_at = time();
         $user->ip_address       = request()->ip();
 
-        return $this->withoutEvents(function() use ($user) {
-            return $user->save();
-        });
+        return $this->withoutEvents(
+            function () use ($user) {
+                return $user->save();
+            }
+        );
     }
 
     /**
@@ -137,5 +139,24 @@ class UserRepository extends EntryRepository implements UserRepositoryInterface
         $user->last_login_at = time();
 
         return $this->save($user);
+    }
+
+    /**
+     * Cleanup pending users.
+     */
+    public function cleanup()
+    {
+        $stale = $this->model
+            ->where('activated', false)
+            ->where('created_at', '<', now()->subMonth())
+            ->get();
+
+        foreach ($stale as $user) {
+            dispatch(
+                function () use ($user) {
+                    $this->forceDelete($user);
+                }
+            );
+        }
     }
 }
