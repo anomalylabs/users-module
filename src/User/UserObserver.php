@@ -38,7 +38,7 @@ class UserObserver extends EntryObserver
      */
     public function created(EntryInterface $entry)
     {
-        $this->events->fire(new UserWasCreated($entry));
+        event(new UserWasCreated($entry));
 
         parent::created($entry);
     }
@@ -50,7 +50,7 @@ class UserObserver extends EntryObserver
      */
     public function updated(EntryInterface $entry)
     {
-        $this->events->fire(new UserWasUpdated($entry));
+        event(new UserWasUpdated($entry));
 
         parent::updated($entry);
     }
@@ -63,7 +63,7 @@ class UserObserver extends EntryObserver
     public function deleted(EntryInterface $entry)
     {
         if (!$entry->isForceDeleting()) {
-            $this->events->fire(new UserWasDeleted($entry));
+            event(new UserWasDeleted($entry));
         }
 
         parent::deleted($entry);
