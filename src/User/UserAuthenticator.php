@@ -7,8 +7,6 @@ use Anomaly\UsersModule\User\Event\UserWasKickedOut;
 use Anomaly\UsersModule\User\Event\UserWasLoggedIn;
 use Anomaly\UsersModule\User\Event\UserWasLoggedOut;
 use Illuminate\Contracts\Auth\Guard;
-use Illuminate\Contracts\Container\Container;
-use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Http\RedirectResponse;
 
 /**
@@ -29,20 +27,6 @@ class UserAuthenticator
     protected $guard;
 
     /**
-     * The event dispatcher.
-     *
-     * @var Dispatcher
-     */
-    protected $events;
-
-    /**
-     * The service container.
-     *
-     * @var Container
-     */
-    protected $container;
-
-    /**
      * The extension collection.
      *
      * @var ExtensionCollection
@@ -53,15 +37,11 @@ class UserAuthenticator
      * Create a new Authenticator instance.
      *
      * @param Guard $guard
-     * @param Dispatcher $events
-     * @param Container $container
      * @param ExtensionCollection $extensions
      */
-    public function __construct(Guard $guard, Dispatcher $events, Container $container, ExtensionCollection $extensions)
+    public function __construct(Guard $guard, ExtensionCollection $extensions)
     {
         $this->guard      = $guard;
-        $this->events     = $events;
-        $this->container  = $container;
         $this->extensions = $extensions;
     }
 
@@ -125,7 +105,7 @@ class UserAuthenticator
     {
         $this->guard->login($user, $remember);
 
-        $this->events->dispatch(new UserWasLoggedIn($user));
+        event(new UserWasLoggedIn($user));
     }
 
     /**
@@ -145,7 +125,7 @@ class UserAuthenticator
 
         $this->guard->logout($user);
 
-        $this->events->dispatch(new UserWasLoggedOut($user));
+        event(new UserWasLoggedOut($user));
     }
 
     /**
@@ -157,6 +137,6 @@ class UserAuthenticator
     {
         $this->guard->logout($user);
 
-        $this->events->dispatch(new UserWasKickedOut($user, $reason));
+        event(new UserWasKickedOut($user, $reason));
     }
 }

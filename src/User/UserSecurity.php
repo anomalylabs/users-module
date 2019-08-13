@@ -4,26 +4,17 @@ use Anomaly\Streams\Platform\Addon\Extension\ExtensionCollection;
 use Anomaly\UsersModule\User\Contract\UserInterface;
 use Anomaly\UsersModule\User\Event\SecurityCheckHasFailed;
 use Anomaly\UsersModule\User\Security\Contract\SecurityCheckInterface;
-use Illuminate\Contracts\Container\Container;
-use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Routing\Redirector;
 
 /**
  * Class UserSecurity
  *
- * @link          http://pyrocms.com/
- * @author        PyroCMS, Inc. <support@pyrocms.com>
- * @author        Ryan Thompson <ryan@pyrocms.com>
+ * @link   http://pyrocms.com/
+ * @author PyroCMS, Inc. <support@pyrocms.com>
+ * @author Ryan Thompson <ryan@pyrocms.com>
  */
 class UserSecurity
 {
-
-    /**
-     * The event dispatcher.
-     *
-     * @var Dispatcher
-     */
-    protected $events;
 
     /**
      * The redirect service.
@@ -31,13 +22,6 @@ class UserSecurity
      * @var Redirector
      */
     protected $redirect;
-
-    /**
-     * The service container.
-     *
-     * @var Container
-     */
-    protected $container;
 
     /**
      * The extension collection.
@@ -49,20 +33,10 @@ class UserSecurity
     /**
      * Create a new SecurityChecker instance.
      *
-     * @param Dispatcher $events
-     * @param Redirector $redirect
-     * @param Container $container
      * @param ExtensionCollection $extensions
      */
-    public function __construct(
-        Dispatcher $events,
-        Redirector $redirect,
-        Container $container,
-        ExtensionCollection $extensions
-    ) {
-        $this->events     = $events;
-        $this->redirect   = $redirect;
-        $this->container  = $container;
+    public function __construct(ExtensionCollection $extensions)
+    {
         $this->extensions = $extensions;
     }
 
@@ -89,7 +63,7 @@ class UserSecurity
                 continue;
             }
 
-            $this->events->dispatch(new SecurityCheckHasFailed($extension));
+            event(new SecurityCheckHasFailed($extension));
 
             return $response;
         }
@@ -123,7 +97,7 @@ class UserSecurity
                 continue;
             }
 
-            $this->events->dispatch(new SecurityCheckHasFailed($extension));
+            event(new SecurityCheckHasFailed($extension));
 
             return $response;
         }

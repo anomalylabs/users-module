@@ -6,9 +6,6 @@ use Anomaly\UsersModule\User\Register\Command\HandleAutomaticRegistration;
 use Anomaly\UsersModule\User\Register\Command\HandleEmailRegistration;
 use Anomaly\UsersModule\User\Register\Command\HandleManualRegistration;
 use Anomaly\UsersModule\User\UserActivator;
-use Illuminate\Contracts\Config\Repository;
-use Illuminate\Contracts\Events\Dispatcher;
-use Illuminate\Foundation\Bus\DispatchesJobs;
 
 /**
  * Class RegisterFormHandler
@@ -20,19 +17,14 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 class RegisterFormHandler
 {
 
-    use DispatchesJobs;
-
     /**
      * Handle the form.
      *
-     * @param  Repository          $config
      * @param  RegisterFormBuilder $builder
-     * @param  UserActivator       $activator
+     * @param  UserActivator $activator
      * @throws \Exception
      */
     public function handle(
-        Repository $config,
-        Dispatcher $events,
         RegisterFormBuilder $builder,
         UserActivator $activator
     ) {
@@ -47,22 +39,22 @@ class RegisterFormHandler
 
         $activator->start($user);
 
-        $mode = $config->get('anomaly.module.users::config.activation_mode', 'automatic');
+        $mode = config('anomaly.module.users::config.activation_mode', 'automatic');
 
         switch ($mode) {
             case 'automatic':
-                $this->dispatch(new HandleAutomaticRegistration($builder));
+                dispatch_now(new HandleAutomaticRegistration($builder));
                 break;
 
             case 'manual':
-                $this->dispatch(new HandleManualRegistration($builder));
+                dispatch_now(new HandleManualRegistration($builder));
                 break;
 
             case 'email':
-                $this->dispatch(new HandleEmailRegistration($builder));
+                dispatch_now(new HandleEmailRegistration($builder));
                 break;
         }
 
-        $events->dispatch(new UserHasRegistered($user));
+        event(new UserHasRegistered($user));
     }
 }
