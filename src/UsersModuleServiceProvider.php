@@ -127,6 +127,7 @@ class UsersModuleServiceProvider extends AddonServiceProvider
      */
     protected $routes = [
         '/users/self'           => [
+            'ttl'  => 0,
             'as'   => 'anomaly.module.users::self',
             'uses' => 'Anomaly\UsersModule\Http\Controller\UsersController@self',
         ],
@@ -135,34 +136,55 @@ class UsersModuleServiceProvider extends AddonServiceProvider
             'uses' => 'Anomaly\UsersModule\Http\Controller\UsersController@view',
         ],
         'login'                 => [
+            'ttl'  => 0,
             'as'   => 'anomaly.module.users::login',
             'uses' => 'Anomaly\UsersModule\Http\Controller\LoginController@login',
         ],
         'logout'                => [
+            'ttl'  => 0,
             'as'   => 'anomaly.module.users::logout',
             'uses' => 'Anomaly\UsersModule\Http\Controller\LoginController@logout',
         ],
         'register'              => [
+            'ttl'  => 0,
             'as'   => 'anomaly.module.users::register',
             'uses' => 'Anomaly\UsersModule\Http\Controller\RegisterController@register',
         ],
         'users/activate'        => [
+            'ttl'  => 0,
             'as'   => 'anomaly.module.users::users.activate',
             'uses' => 'Anomaly\UsersModule\Http\Controller\RegisterController@activate',
         ],
         'users/password/reset'  => [
+            'ttl'  => 0,
             'as'   => 'anomaly.module.users::users.reset',
             'uses' => 'Anomaly\UsersModule\Http\Controller\PasswordController@reset',
         ],
         'users/password/forgot' => [
+            'ttl'  => 0,
             'as'   => 'anomaly.module.users::password.forgot',
             'uses' => 'Anomaly\UsersModule\Http\Controller\PasswordController@forgot',
         ],
-        'admin'                 => 'Anomaly\UsersModule\Http\Controller\Admin\HomeController@index',
-        'auth/login'            => 'Anomaly\UsersModule\Http\Controller\Admin\LoginController@logout',
-        'auth/logout'           => 'Anomaly\UsersModule\Http\Controller\Admin\LoginController@logout',
-        'admin/login'           => 'Anomaly\UsersModule\Http\Controller\Admin\LoginController@login',
-        'admin/logout'          => 'Anomaly\UsersModule\Http\Controller\Admin\LoginController@logout',
+        'admin'                 => [
+            'ttl'  => 0,
+            'uses' => 'Anomaly\UsersModule\Http\Controller\Admin\HomeController@index',
+        ],
+        'auth/login'            => [
+            'ttl'  => 0,
+            'uses' => 'Anomaly\UsersModule\Http\Controller\Admin\LoginController@logout',
+        ],
+        'auth/logout'           => [
+            'ttl'  => 0,
+            'uses' => 'Anomaly\UsersModule\Http\Controller\Admin\LoginController@logout',
+        ],
+        'admin/login'           => [
+            'ttl'  => 0,
+            'uses' => 'Anomaly\UsersModule\Http\Controller\Admin\LoginController@login',
+        ],
+        'admin/logout'          => [
+            'ttl'  => 0,
+            'uses' => 'Anomaly\UsersModule\Http\Controller\Admin\LoginController@logout',
+        ],
     ];
 
     /**
