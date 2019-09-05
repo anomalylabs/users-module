@@ -2,16 +2,15 @@
 
 use Anomaly\Streams\Platform\Ui\Form\FormBuilder;
 use Anomaly\UsersModule\User\Register\Command\AssociateActivationRoles;
-use Anomaly\UsersModule\User\Register\Command\SetOptions;
-use Anomaly\UsersModule\User\Validation\ValidatePassword;
 use Anomaly\UsersModule\User\UserModel;
+use Anomaly\UsersModule\User\Validation\ValidatePassword;
 
 /**
  * Class RegisterFormBuilder
  *
- * @link          http://pyrocms.com/
- * @author        PyroCMS, Inc. <support@pyrocms.com>
- * @author        Ryan Thompson <ryan@pyrocms.com>
+ * @link   http://pyrocms.com/
+ * @author PyroCMS, Inc. <support@pyrocms.com>
+ * @author Ryan Thompson <ryan@pyrocms.com>
  */
 class RegisterFormBuilder extends FormBuilder
 {
