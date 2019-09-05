@@ -1,24 +1,20 @@
 <?php namespace Anomaly\UsersModule\User;
 
-use Anomaly\Streams\Platform\Application\Command\ReadEnvironmentFile;
-use Anomaly\Streams\Platform\Application\Command\WriteEnvironmentFile;
 use Anomaly\Streams\Platform\Database\Seeder\Seeder;
+use Anomaly\Streams\Platform\Model\Users\UsersUsersEntryModel;
 use Anomaly\UsersModule\Role\Contract\RoleRepositoryInterface;
 use Anomaly\UsersModule\User\Contract\UserInterface;
 use Anomaly\UsersModule\User\Contract\UserRepositoryInterface;
-use Illuminate\Foundation\Bus\DispatchesJobs;
 
 /**
  * Class UserSeeder
  *
- * @link          http://pyrocms.com/
- * @author        PyroCMS, Inc. <support@pyrocms.com>
- * @author        Ryan Thompson <ryan@pyrocms.com>
+ * @link   http://pyrocms.com/
+ * @author PyroCMS, Inc. <support@pyrocms.com>
+ * @author Ryan Thompson <ryan@pyrocms.com>
  */
 class UserSeeder extends Seeder
 {
-
-    use DispatchesJobs;
 
     /**
      * The user repository.
@@ -46,13 +42,15 @@ class UserSeeder extends Seeder
      *
      * @param UserRepositoryInterface $users
      * @param RoleRepositoryInterface $roles
-     * @param UserActivator           $activator
+     * @param UserActivator $activator
      */
     public function __construct(
         UserRepositoryInterface $users,
         RoleRepositoryInterface $roles,
         UserActivator $activator
     ) {
+        parent::__construct();
+
         $this->users     = $users;
         $this->roles     = $roles;
         $this->activator = $activator;
@@ -63,25 +61,28 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
+        if (!env('ADMIN_EMAIL') || !env('ADMIN_USERNAME') || !env('ADMIN_PASSWORD')) {
+            throw new \Exception(
+                'You must define ADMIN_EMAIL, ADMIN_USERNAME, and ADMIN_PASSWORD in .env to seed the Users module.'
+            );
+        }
 
         $admin = $this->roles->findBySlug('admin');
         $user  = $this->roles->findBySlug('user');
 
         $this->users->unguard();
 
-        $data = $this->dispatch(new ReadEnvironmentFile());
-
-        /* @var UserInterface $administrator */
+        /* @var UserInterface|UsersUsersEntryModel $administrator */
         $administrator = $this->users->create(
             [
                 'display_name' => 'Administrator',
-                'email'        => array_pull($data, 'ADMIN_EMAIL'),
-                'username'     => array_pull($data, 'ADMIN_USERNAME'),
-                'password'     => array_pull($data, 'ADMIN_PASSWORD'),
+                'email'        => env('ADMIN_EMAIL'),
+                'username'     => env('ADMIN_USERNAME'),
+                'password'     => env('ADMIN_PASSWORD'),
             ]
         );
 
-        /* @var UserInterface $demo */
+        /* @var UserInterface|UsersUsersEntryModel $demo */
         $demo = $this->users->create(
             [
                 'display_name' => 'Demo User',
@@ -96,7 +97,5 @@ class UserSeeder extends Seeder
 
         $this->activator->force($demo);
         $this->activator->force($administrator);
-
-        $this->dispatch(new WriteEnvironmentFile($data));
     }
 }

@@ -27,6 +27,8 @@ class RoleSeeder extends Seeder
      */
     public function __construct(RoleRepositoryInterface $roles)
     {
+        parent::__construct();
+
         $this->roles = $roles;
     }
 
