@@ -1,23 +1,22 @@
 <?php namespace Anomaly\UsersModule\User\Table\Filter;
 
 use Anomaly\Streams\Platform\Ui\Table\Component\Filter\Contract\FilterInterface;
-use Anomaly\Streams\Platform\Ui\Table\Component\Filter\Query\GenericFilterQuery;
 use Illuminate\Database\Eloquent\Builder;
 
 /**
  * Class StatusFilterQuery
  *
- * @link          http://pyrocms.com/
- * @author        PyroCMS, Inc. <support@pyrocms.com>
- * @author        Ryan Thompson <ryan@pyrocms.com>
+ * @link   http://pyrocms.com/
+ * @author PyroCMS, Inc. <support@pyrocms.com>
+ * @author Ryan Thompson <ryan@pyrocms.com>
  */
-class StatusFilterQuery extends GenericFilterQuery
+class StatusFilterQuery
 {
 
     /**
      * Handle the filter query.
      *
-     * @param Builder         $query
+     * @param Builder $query
      * @param FilterInterface $filter
      */
     public function handle(Builder $query, FilterInterface $filter)
