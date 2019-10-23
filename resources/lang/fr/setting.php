@@ -28,8 +28,8 @@ return [
         'option'       => [
             '[0-9]'        => 'Le mot de passe doit contenir au moins un nombre.',
             '[a-z]'        => 'Le mot de passe doit contenir au moins une lettre en minuscule.',
-            '[A-Z]'        => 'Le mot de passe doit contenir au moins one lettre en majuscule.',
-            '[!@#$%^&*()]' => 'Le mot de passe doit contenir au moins one un caractère spécial.',
+            '[A-Z]'        => 'Le mot de passe doit contenir au moins une lettre en majuscule.',
+            '[!@#$%^&*()]' => 'Le mot de passe doit contenir au moins un un caractère spécial.',
         ],
     ],
     'new_user_notification'     => [
