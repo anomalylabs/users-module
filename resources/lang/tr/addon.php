@@ -1,12 +1,12 @@
 <?php
 
 return [
-    "title" => "Kullanıcılar",
-    "name" => "Kullanıcılar Modülü",
-    "description" => "Kullanıcı rolleri ve izinlerini yönetin.",
-    "section" => [
-        "users" => "Kullanıcılar",
-        "roles" => "Roller",
-        "fields" => "Alanlar",
+    'title'       => 'Kullanıcılar',
+    'name'        => 'Kullanıcılar Modülü',
+    'description' => 'Kullanıcıları, rolleri ve izinleri yönetin.',
+    'section'     => [
+        'users'  => 'Kullanıcılar',
+        'roles'  => 'Roller',
+        'fields' => 'Alanlar',
     ],
 ];

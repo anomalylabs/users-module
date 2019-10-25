@@ -1,13 +1,10 @@
 <?php
 
 return [
-    "users" => [
-        "name" => "Kullanıcılar",
-
+    'users' => [
+        'name' => 'Kullanıcılar',
     ],
-    "roles" => [
-        "name" => "Roller",
-
+    'roles' => [
+        'name' => 'Roller',
     ],
-
 ];

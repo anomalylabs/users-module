@@ -1,8 +1,8 @@
 <?php
 
 return [
-    "online" => "İnternet üzerinden",
-    "enabled" => "Etkin",
-    "pending" => "kadar",
-    "inactive" => "etkisiz"
+    'online'   => 'Online',
+    'enabled'  => 'Etkin',
+    'pending'  => 'Bekleyen',
+    'inactive' => 'Pasif',
 ];
