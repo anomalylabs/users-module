@@ -111,4 +111,14 @@ class RoleModel extends UsersRolesEntryModel implements RoleInterface, StreamsRo
     {
         return $this->getSlug() !== 'admin';
     }
+    
+    /**
+     * Add permissions to the role
+     *
+     * @param array $permissions
+     */
+    public function addPermissions(array $permissions)
+    {
+        $this->permissions = array_merge($this->permissions, $permissions);
+    }
 }
