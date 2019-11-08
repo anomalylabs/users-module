@@ -1,4 +1,6 @@
-<?php namespace Anomaly\UsersModule\User;
+<?php
+
+namespace Anomaly\UsersModule\User;
 
 use Anomaly\Streams\Platform\Model\Users\UsersUsersEntryModel;
 use Anomaly\Streams\Platform\Support\Collection;
@@ -241,6 +243,19 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, StreamsUs
     }
 
     /**
+     * Add permissions to the user.
+     *
+     * @param array $permissions
+     * @return $this
+     */
+    public function addPermissions(array $permissions)
+    {
+        $this->permissions = array_merge($this->permissions, $permissions);
+
+        return $this;
+    }
+
+    /**
      * Hash the password whenever setting it.
      *
      * @param $password
@@ -373,15 +388,5 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, StreamsUs
     public function shouldBeSearchable()
     {
         return $this->isActivated();
-    }
-    
-    /**
-     * Add permissions to the user
-     *
-     * @param array $permissions
-     */
-    public function addPermissions(array $permissions)
-    {
-        $this->permissions = array_merge($this->permissions, $permissions);
     }
 }

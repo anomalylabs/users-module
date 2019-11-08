@@ -1,4 +1,6 @@
-<?php namespace Anomaly\UsersModule\User\Contract;
+<?php
+
+namespace Anomaly\UsersModule\User\Contract;
 
 use Anomaly\Streams\Platform\Entry\Contract\EntryInterface;
 use Anomaly\Streams\Platform\User\Contract\RoleInterface;
@@ -112,6 +114,14 @@ interface UserInterface extends EntryInterface
      * @return bool
      */
     public function hasAnyPermission(array $permissions);
+
+    /**
+     * Add permissions to the user.
+     *
+     * @param array $permissions
+     * @return $this
+     */
+    public function addPermissions(array $permissions);
 
     /**
      * Return the activated flag.
