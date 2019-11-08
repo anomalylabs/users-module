@@ -374,4 +374,14 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, StreamsUs
     {
         return $this->isActivated();
     }
+    
+    /**
+     * Add permissions to the user
+     *
+     * @param array $permissions
+     */
+    public function addPermissions(array $permissions)
+    {
+        $this->permissions = array_merge($this->permissions, $permissions);
+    }
 }
