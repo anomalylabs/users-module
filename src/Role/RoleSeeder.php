@@ -1,4 +1,6 @@
-<?php namespace Anomaly\UsersModule\Role;
+<?php
+
+namespace Anomaly\UsersModule\Role;
 
 use Anomaly\Streams\Platform\Database\Seeder\Seeder;
 use Anomaly\UsersModule\Role\Contract\RoleRepositoryInterface;
@@ -35,10 +37,11 @@ class RoleSeeder extends Seeder
      */
     public function run()
     {
+        $this->roles->truncate();
 
         $this->roles->create(
             [
-                'en'   => [
+                config('app.locale', 'en')   => [
                     'name'        => 'Admin',
                     'description' => 'The super admin role.',
                 ],
@@ -48,7 +51,7 @@ class RoleSeeder extends Seeder
 
         $this->roles->create(
             [
-                'en'   => [
+                config('app.locale', 'en')   => [
                     'name'        => 'User',
                     'description' => 'The default user role.',
                 ],
@@ -58,7 +61,7 @@ class RoleSeeder extends Seeder
 
         $this->roles->create(
             [
-                'en'   => [
+                config('app.locale', 'en')   => [
                     'name'        => 'Guest',
                     'description' => 'The fallback role for non-users.',
                 ],

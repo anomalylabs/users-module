@@ -1,4 +1,6 @@
-<?php namespace Anomaly\UsersModule\User;
+<?php
+
+namespace Anomaly\UsersModule\User;
 
 use Anomaly\Streams\Platform\Application\Command\ReadEnvironmentFile;
 use Anomaly\Streams\Platform\Application\Command\WriteEnvironmentFile;
@@ -63,6 +65,8 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
+
+        $this->users->truncate();
 
         $admin = $this->roles->findBySlug('admin');
         $user  = $this->roles->findBySlug('user');
