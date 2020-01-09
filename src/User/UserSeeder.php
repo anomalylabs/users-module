@@ -1,4 +1,6 @@
-<?php namespace Anomaly\UsersModule\User;
+<?php
+
+namespace Anomaly\UsersModule\User;
 
 use Anomaly\Streams\Platform\Database\Seeder\Seeder;
 use Anomaly\Streams\Platform\Model\Users\UsersUsersEntryModel;
@@ -66,6 +68,8 @@ class UserSeeder extends Seeder
                 'You must define ADMIN_EMAIL, ADMIN_USERNAME, and ADMIN_PASSWORD in .env to seed the Users module.'
             );
         }
+
+        $this->users->truncate();
 
         $admin = $this->roles->findBySlug('admin');
         $user  = $this->roles->findBySlug('user');
