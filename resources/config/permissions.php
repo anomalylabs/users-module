@@ -7,6 +7,7 @@ return [
         'write_admins',
         'impersonate',
         'delete',
+        'manage_permissions'
     ],
     'roles'    => [
         'read',

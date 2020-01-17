@@ -64,8 +64,12 @@ class UsersController extends AdminController
      * @param                                             $id
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function permissions(PermissionFormBuilder $form, $id)
+    public function permissions(Authorizer $authorizer, PermissionFormBuilder $form, $id)
     {
+        if (!$authorizer->authorize('anomaly.module.users::users.manage_permissions')) {
+            abort(403);
+        }
+
         return $form->render($id);
     }
 

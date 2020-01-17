@@ -146,6 +146,7 @@ class UserTableBuilder extends TableBuilder
                 'permissions' => [
                     'button' => 'info',
                     'href'   => 'admin/users/permissions/{entry.id}',
+                    'permission' => 'anomaly.module.users::users.manage_permissions',
                 ],
                 'impersonate' => [
                     'text'       => 'anomaly.module.users::button.login_as_user',
