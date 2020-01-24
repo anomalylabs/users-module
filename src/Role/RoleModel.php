@@ -1,4 +1,6 @@
-<?php namespace Anomaly\UsersModule\Role;
+<?php
+
+namespace Anomaly\UsersModule\Role;
 
 use Anomaly\Streams\Platform\Model\Users\UsersRolesEntryModel;
 use Anomaly\Streams\Platform\User\Contract\RoleInterface as StreamsRole;
@@ -78,6 +80,36 @@ class RoleModel extends UsersRolesEntryModel implements RoleInterface, StreamsRo
     }
 
     /**
+     * Return whether a role has any of provided permission.
+     *
+     * @param array $permissions
+     * @return bool
+     */
+    public function hasAnyPermission(array $permissions)
+    {
+        foreach ($permissions as $permission) {
+            if ($this->hasPermission($permission)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * Add permissions to the role.
+     *
+     * @param array $permissions
+     * @return $this
+     */
+    public function addPermissions(array $permissions)
+    {
+        $this->permissions = array_merge($this->permissions, $permissions);
+
+        return $this;
+    }
+
+    /**
      * Get the related users.
      *
      * @return UserCollection
@@ -110,15 +142,5 @@ class RoleModel extends UsersRolesEntryModel implements RoleInterface, StreamsRo
     public function isDeletable()
     {
         return $this->getSlug() !== 'admin';
-    }
-    
-    /**
-     * Add permissions to the role
-     *
-     * @param array $permissions
-     */
-    public function addPermissions(array $permissions)
-    {
-        $this->permissions = array_merge($this->permissions, $permissions);
     }
 }
