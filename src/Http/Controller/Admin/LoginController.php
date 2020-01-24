@@ -1,4 +1,6 @@
-<?php namespace Anomaly\UsersModule\Http\Controller\Admin;
+<?php
+
+namespace Anomaly\UsersModule\Http\Controller\Admin;
 
 use Anomaly\Streams\Platform\Http\Controller\PublicController;
 use Anomaly\Streams\Platform\Ui\ControlPanel\Component\Navigation\NavigationCollection;
