@@ -3,9 +3,7 @@
 namespace Anomaly\UsersModule\User;
 
 use Anomaly\Streams\Platform\Database\Seeder\Seeder;
-use Anomaly\Streams\Platform\Model\Users\UsersUsersEntryModel;
 use Anomaly\UsersModule\Role\Contract\RoleRepositoryInterface;
-use Anomaly\UsersModule\User\Contract\UserInterface;
 use Anomaly\UsersModule\User\Contract\UserRepositoryInterface;
 
 /**
