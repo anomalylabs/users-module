@@ -15,6 +15,6 @@ return [
     'confirm_reset_password'   => 'Şifrenizi sıfırlamayı tamamlamak için lütfen e-postanızı kontrol edin.',
     'confirm_reset_user'       => 'Bu kullanıcı için bir şifre sıfırlama başlatmak istediğinize emin misiniz?<br><br>Mevcut şifreleri geçersiz sayılacak.',
     'impersonate'              => 'Olarak giriş yapmak üzeresiniz ":display_name"',
-    'impersonating'            => 'Şimdi olarak giriş yaptınız ":username"',
+    'impersonating'            => '":username" olarak giriş yaptınız ',
     'invalid_password'         => 'Girdiğiniz şifre yanlış.',
 ];
