@@ -40,6 +40,8 @@ class ImpersonationFormHandler
             )
         );
 
+        $builder->setSave(false);
+
         $builder->setFormResponse($redirector->to('/'));
     }
 }
