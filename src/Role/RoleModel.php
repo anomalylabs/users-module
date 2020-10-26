@@ -6,6 +6,7 @@ use Anomaly\Streams\Platform\Model\Users\UsersRolesEntryModel;
 use Anomaly\Streams\Platform\User\Contract\RoleInterface as StreamsRole;
 use Anomaly\UsersModule\Role\Contract\RoleInterface;
 use Anomaly\UsersModule\User\UserCollection;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * Class RoleModel
@@ -16,6 +17,7 @@ use Anomaly\UsersModule\User\UserCollection;
  */
 class RoleModel extends UsersRolesEntryModel implements RoleInterface, StreamsRole
 {
+    use HasFactory;
 
     /**
      * Eager loaded relations.

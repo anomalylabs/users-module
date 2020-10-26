@@ -13,6 +13,7 @@ use Anomaly\UsersModule\User\Contract\UserInterface;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * Class UserModel
@@ -24,6 +25,7 @@ use Illuminate\Notifications\Notifiable;
 class UserModel extends UsersUsersEntryModel implements UserInterface, StreamsUser, \Illuminate\Contracts\Auth\Authenticatable
 {
 
+    use HasFactory;
     use Notifiable;
     use Authenticatable;
     use CanResetPassword;
