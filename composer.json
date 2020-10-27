@@ -29,7 +29,7 @@
         "source": "https://github.com/anomalylabs/users-module"
     },
     "require": {
-        "anomaly/streams-platform": "^1.6"
+        "anomaly/streams-platform": "^1.8"
     },
     "autoload": {
         "psr-4": {
@@ -38,7 +38,8 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Anomaly\\UsersModuleTest\\": "tests/"
+            "Anomaly\\UsersModuleTest\\": "tests/",
+            "Database\\Factories\\Anomaly\\UsersModule\\": "factories/"
         }
     }
 }
