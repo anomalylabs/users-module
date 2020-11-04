@@ -22,14 +22,14 @@ trait UserData
     {
 
         /** @var UserModel $user */
-        $user = factory(UserModel::class)->create();
+        $user = UserModel::factory()->create();
 
         if (is_null($roles)) {
             $user->attachRole(
-                factory(RoleModel::class)->create(['permissions' => 'anomaly.module.test::test.permission1'])
+                RoleModel::factory()->create(['permissions' => 'anomaly.module.test::test.permission1'])
             );
             $user->attachRole(
-                factory(RoleModel::class)->create(['permissions' => 'anomaly.module.test::test.permission2'])
+                RoleModel::factory()->create(['permissions' => 'anomaly.module.test::test.permission2'])
             );
         } else {
             $roles->each(
@@ -48,7 +48,7 @@ trait UserData
      */
     public function getBasicUser($attributes = []): UserModel
     {
-        return factory(UserModel::class)->create($attributes);
+        return UserModel::factory()->create($attributes);
     }
 
 }

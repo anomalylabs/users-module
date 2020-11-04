@@ -12,28 +12,28 @@ class LoginTest extends \TestCase
 
     use UserData;
 
-//    /** @test */
-//    public function canSeeLoginPage()
-//    {
-//        $this->visitRoute('anomaly.module.users::login')
-//            ->see('Email')
-//            ->see('Password');
-//    }
-//
+    /** @test */
+    public function canSeeLoginPage()
+    {
+        $this->get(env('APPLICATION_URL') . '/login')
+            ->assertSee('Email')
+            ->assertSee('Password');
+    }
+
     /** @test */
     public function cantAccessAdminPagesUnauthenticated()
     {
-        $response = $this->get('admin/users');
+        $response = $this->get(env('APPLICATION_URL') . '/admin/users');
 
         $response->assertStatus(302);
     }
-//
-//    /** @test */
-//    public function cantAccessAdminPagesWithWrongPermissions()
-//    {
-//        $user = $this->getBasicUser();
-//        $this->actingAs($user)
-//            ->get('admin/users')
-//            ->seeStatusCode(403);
-//    }
+
+    /** @test */
+    public function cantAccessAdminPagesWithWrongPermissions()
+    {
+        $user = $this->getBasicUser();
+        $this->actingAs($user)
+            ->get(env('APPLICATION_URL') . '/admin/users')
+            ->assertStatus(403);
+    }
 }
