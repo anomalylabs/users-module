@@ -25,8 +25,8 @@ class UserModelTest extends \TestCase
     {
         $roleCollection = new RoleCollection();
 
-        $roleCollection->add(factory(RoleModel::class)->create(['slug' => 'first_role']));
-        $roleCollection->add(factory(RoleModel::class)->create(['slug' => 'second_role']));
+        $roleCollection->add(RoleModel::factory()->create(['slug' => 'first_role']));
+        $roleCollection->add(RoleModel::factory()->create(['slug' => 'second_role']));
 
         /** @var UserModel $user */
         return $this->getUserWithRoles($roleCollection);
