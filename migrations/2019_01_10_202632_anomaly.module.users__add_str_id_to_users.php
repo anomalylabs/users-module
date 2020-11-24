@@ -1,10 +1,11 @@
 <?php
 
-use Anomaly\Streams\Platform\Database\Migration\Migration;
+use Anomaly\UsersModule\User\UserRepository;
 use Anomaly\Streams\Platform\Model\EloquentModel;
 use Anomaly\UsersModule\User\Contract\UserInterface;
+use Anomaly\Streams\Platform\Database\Migration\Migration;
 use Anomaly\UsersModule\User\Contract\UserRepositoryInterface;
-use Anomaly\UsersModule\User\UserRepository;
+use Anomaly\Streams\Platform\Entry\Command\AutoloadEntryModels;
 
 /**
  * Class AnomalyModuleUsersAddStrIdToUsers
@@ -55,6 +56,12 @@ class AnomalyModuleUsersAddStrIdToUsers extends Migration
      */
     public function up()
     {
+        /**
+         * Ensure the potentially newly generated
+         * models are autoloaded so we can use them.
+         */
+        $this->dispatchNow(new AutoloadEntryModels());
+        
         /**
          * Load the concrete on purpose.
          *
