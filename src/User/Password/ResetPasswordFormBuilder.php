@@ -1,7 +1,6 @@
 <?php namespace Anomaly\UsersModule\User\Password;
 
 use Anomaly\Streams\Platform\Ui\Form\FormBuilder;
-use Illuminate\Contracts\Encryption\Encrypter;
 
 /**
  * Class ResetPasswordFormBuilder
