@@ -25,7 +25,7 @@ class PasswordController extends PublicController
             $translator->trans('anomaly.module.users::breadcrumb.reset_password')
         );
 
-        return $this->view->make('anomaly.module.users::password/forgot');
+        return $this->view->make('anomaly.module.users::password.forgot');
     }
 
     /**
@@ -41,6 +41,6 @@ class PasswordController extends PublicController
             $translator->trans('anomaly.module.users::breadcrumb.reset_password')
         );
 
-        return $this->view->make('anomaly.module.users::password/reset');
+        return $this->view->make('anomaly.module.users::password.reset');
     }
 }
