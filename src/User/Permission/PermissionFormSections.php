@@ -67,7 +67,7 @@ class PermissionFormSections
                     function ($permission) use ($namespace) {
                         return str_replace('.', '_', $namespace . '::' . $permission);
                     },
-                    array_keys(array_get($group, 'permissions'))
+                    array_keys(array_get($group, 'permissions', []))
                 );
             }
         }
