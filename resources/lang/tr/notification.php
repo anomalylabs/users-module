@@ -39,4 +39,11 @@ return [
         'instructions' => 'Hesabınız aktive edildi.',
         'button'       => 'Oturum aç',
     ],
+    'welcome_user' => [
+        'subject'      => 'Hoşgeldiniz !',
+        'greeting'     => 'Hoşgeldiniz :display_name !',
+        'instructions' => 'Online satışlarda başarıya giden yolunuz biz olalım. 
+        Hayallerinizdeki online mağazayı kurmak için Ocify kullanın.',
+        'button'       => 'Hemen Başla',
+    ]
 ];

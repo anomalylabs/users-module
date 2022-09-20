@@ -39,4 +39,11 @@ return [
         'instructions' => 'Your account has been activated.',
         'button'       => 'Login',
     ],
+    'welcome_user' => [
+        'subject'      => 'Welcome !',
+        'greeting'     => 'Welcome :display_name !',
+        'instructions' => 'This site is your new companion on the road to online success. 
+        Use our no-code builder to create the website or online store of your dreams.',
+        'button'       => 'Get Started',
+    ]
 ];
