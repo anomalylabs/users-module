@@ -56,7 +56,7 @@ class UserHasRegistered extends Notification implements ShouldQueue
      */
     public function toMail(AnonymousNotifiable $notifiable)
     {
-        $data = $this->user->toArray();
+        $data = $this->user->attributesToArray();
 
         return (new MailMessage())
             ->view('anomaly.module.users::notifications.user_has_registered')

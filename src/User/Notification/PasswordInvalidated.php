@@ -54,7 +54,7 @@ class PasswordInvalidated extends Notification implements ShouldQueue
      */
     public function toMail(UserInterface $notifiable)
     {
-        $data = $notifiable->toArray();
+        $data = $notifiable->attributesToArray();
 
         return (new MailMessage())
             ->error()

@@ -37,7 +37,7 @@ class UserHasBeenActivated extends Notification implements ShouldQueue
      */
     public function toMail(UserInterface $notifiable)
     {
-        $data = $notifiable->toArray();
+        $data = $notifiable->attributesToArray();
 
         return (new MailMessage())
             ->view('anomaly.module.users::notifications.user_has_been_activated')

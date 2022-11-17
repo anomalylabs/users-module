@@ -54,7 +54,7 @@ class ActivateYourAccount extends Notification implements ShouldQueue
      */
     public function toMail(UserInterface $notifiable)
     {
-        $data = $notifiable->toArray();
+        $data = $notifiable->attributesToArray();
 
         return (new MailMessage())
             ->view('anomaly.module.users::notifications.activate_your_account')
