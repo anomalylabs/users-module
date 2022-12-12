@@ -30,12 +30,22 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, StreamsUs
     use Authenticatable;
     use CanResetPassword;
 
+    protected $appends = [
+        'full_name'
+    ];
+
+    public function getFullNameAttribute()
+    {
+        return $this->first_name . ' ' . $this->last_name;
+    }
+
     /**
      * The eager loaded relationships.
      *
      * @var array
      */
-    protected $with = [
+    protected
+        $with = [
         'roles',
     ];
 
@@ -44,7 +54,8 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, StreamsUs
      *
      * @var array
      */
-    protected $guarded = [
+    protected
+        $guarded = [
         'password',
     ];
 
@@ -53,7 +64,8 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, StreamsUs
      *
      * @return string
      */
-    public function getStrId()
+    public
+    function getStrId()
     {
         return $this->str_id;
     }
@@ -63,7 +75,8 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, StreamsUs
      *
      * @return string
      */
-    public function getEmail()
+    public
+    function getEmail()
     {
         return $this->email;
     }
@@ -73,7 +86,8 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, StreamsUs
      *
      * @return string
      */
-    public function getUsername()
+    public
+    function getUsername()
     {
         return $this->username;
     }
@@ -83,7 +97,8 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, StreamsUs
      *
      * @return string
      */
-    public function getDisplayName()
+    public
+    function getDisplayName()
     {
         return $this->display_name;
     }
@@ -93,7 +108,8 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, StreamsUs
      *
      * @return string
      */
-    public function getFirstName()
+    public
+    function getFirstName()
     {
         return $this->first_name;
     }
@@ -103,7 +119,8 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, StreamsUs
      *
      * @return string
      */
-    public function getLastName()
+    public
+    function getLastName()
     {
         return $this->last_name;
     }
@@ -113,7 +130,8 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, StreamsUs
      *
      * @return RoleCollection
      */
-    public function getRoles()
+    public
+    function getRoles()
     {
         return $this->roles;
     }
@@ -124,7 +142,8 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, StreamsUs
      * @param RoleInterface|RolePresenter|string $role
      * @return bool
      */
-    public function hasRole($role)
+    public
+    function hasRole($role)
     {
         if (!is_object($role)) {
             $role = $this->dispatch(new GetRole($role));
@@ -150,7 +169,8 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, StreamsUs
      * @param $roles
      * @return bool
      */
-    public function hasAnyRole($roles)
+    public
+    function hasAnyRole($roles)
     {
         if (!$roles) {
             return false;
@@ -174,7 +194,8 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, StreamsUs
      *
      * @return bool
      */
-    public function isAdmin()
+    public
+    function isAdmin()
     {
         /* @var RoleInterface $role */
         foreach ($this->getRoles() as $role) {
@@ -191,7 +212,8 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, StreamsUs
      *
      * @return array
      */
-    public function getPermissions()
+    public
+    function getPermissions()
     {
         return $this->permissions;
     }
@@ -200,10 +222,11 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, StreamsUs
      * Return whether a user or it's roles has a permission.
      *
      * @param        $permission
-     * @param  bool $checkRoles
+     * @param bool $checkRoles
      * @return mixed
      */
-    public function hasPermission($permission, $checkRoles = true)
+    public
+    function hasPermission($permission, $checkRoles = true)
     {
         if (!$permission) {
             return true;
@@ -233,7 +256,8 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, StreamsUs
      * @param bool $checkRoles
      * @return bool
      */
-    public function hasAnyPermission(array $permissions, $checkRoles = true)
+    public
+    function hasAnyPermission(array $permissions, $checkRoles = true)
     {
         foreach ($permissions as $permission) {
             if ($this->hasPermission($permission, $checkRoles)) {
@@ -250,7 +274,8 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, StreamsUs
      * @param array $permissions
      * @return $this
      */
-    public function addPermissions(array $permissions)
+    public
+    function addPermissions(array $permissions)
     {
         $this->permissions = array_merge($this->permissions, $permissions);
 
@@ -262,7 +287,8 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, StreamsUs
      *
      * @param $password
      */
-    public function setPasswordAttribute($password)
+    public
+    function setPasswordAttribute($password)
     {
         array_set($this->attributes, 'password', app('hash')->make($password));
     }
@@ -272,7 +298,8 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, StreamsUs
      *
      * @return bool
      */
-    public function isDeletable()
+    public
+    function isDeletable()
     {
         // You can't delete yourself.
         if ($this->getId() == app('auth')->id()) {
@@ -292,7 +319,8 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, StreamsUs
      *
      * @return bool
      */
-    public function isActivated()
+    public
+    function isActivated()
     {
         return $this->activated;
     }
@@ -302,7 +330,8 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, StreamsUs
      *
      * @return bool
      */
-    public function isEnabled()
+    public
+    function isEnabled()
     {
         return $this->enabled;
     }
@@ -312,7 +341,8 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, StreamsUs
      *
      * @return string
      */
-    public function getResetCode()
+    public
+    function getResetCode()
     {
         return $this->reset_code;
     }
@@ -322,7 +352,8 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, StreamsUs
      *
      * @return string
      */
-    public function getActivationCode()
+    public
+    function getActivationCode()
     {
         return $this->activation_code;
     }
@@ -332,7 +363,8 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, StreamsUs
      *
      * @return string
      */
-    public function name()
+    public
+    function name()
     {
         return "{$this->getFirstName()} {$this->getLastName()}";
     }
@@ -342,7 +374,8 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, StreamsUs
      *
      * @param RoleInterface $role
      */
-    public function attachRole(RoleInterface $role)
+    public
+    function attachRole(RoleInterface $role)
     {
         $this->roles()->attach($role);
     }
@@ -352,7 +385,8 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, StreamsUs
      *
      * @param RoleInterface $role
      */
-    public function detachRole(RoleInterface $role)
+    public
+    function detachRole(RoleInterface $role)
     {
         $this->roles()->detach($role);
     }
@@ -362,7 +396,8 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, StreamsUs
      *
      * @return string
      */
-    public function routeNotificationForSlack()
+    public
+    function routeNotificationForSlack()
     {
         return env('SLACK_WEBHOOK');
     }
@@ -372,7 +407,8 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, StreamsUs
      *
      * @return array
      */
-    public function toSearchableArray()
+    public
+    function toSearchableArray()
     {
         $array = parent::toSearchableArray();
 
@@ -387,7 +423,8 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, StreamsUs
      *
      * @return bool
      */
-    public function shouldBeSearchable()
+    public
+    function shouldBeSearchable()
     {
         return $this->isActivated();
     }
