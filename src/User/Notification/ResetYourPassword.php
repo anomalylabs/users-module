@@ -55,6 +55,10 @@ class ResetYourPassword extends Notification implements ShouldQueue
     public function toMail(UserInterface $notifiable)
     {
         $data = $notifiable->toArray();
+        
+        if (isset($data['roles'])) {
+            unset($data['roles']);
+        }
 
         return (new MailMessage())
             ->error()
