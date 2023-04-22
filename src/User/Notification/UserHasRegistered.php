@@ -45,7 +45,7 @@ class UserHasRegistered extends Notification implements ShouldQueue
      */
     public function via()
     {
-        return ['mail', 'slack'];
+        return ['mail'];
     }
 
     /**
