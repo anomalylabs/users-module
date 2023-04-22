@@ -56,6 +56,10 @@ class UserPendingActivation extends Notification implements ShouldQueue
     {
         $data = $this->user->toArray();
 
+        if (isset($data['roles'])) {
+            unset($data['roles']);
+        }
+
         return (new MailMessage())
             ->view('anomaly.module.users::notifications.user_pending_activation')
             ->subject(trans('anomaly.module.users::notification.user_pending_activation.subject', $data))
