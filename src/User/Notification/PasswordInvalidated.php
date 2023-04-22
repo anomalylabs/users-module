@@ -56,6 +56,10 @@ class PasswordInvalidated extends Notification implements ShouldQueue
     {
         $data = $notifiable->toArray();
 
+        if (isset($data['roles'])) {
+            unset($data['roles']);
+        }
+
         return (new MailMessage())
             ->error()
             ->view('anomaly.module.users::notifications.password_invalidated')

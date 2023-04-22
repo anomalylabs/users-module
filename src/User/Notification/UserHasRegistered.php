@@ -58,6 +58,10 @@ class UserHasRegistered extends Notification implements ShouldQueue
     {
         $data = $this->user->toArray();
 
+        if (isset($data['roles'])) {
+            unset($data['roles']);
+        }
+
         return (new MailMessage())
             ->view('anomaly.module.users::notifications.user_has_registered')
             ->subject(trans('anomaly.module.users::notification.user_has_registered.subject', $data))

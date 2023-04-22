@@ -39,6 +39,10 @@ class UserHasBeenActivated extends Notification implements ShouldQueue
     {
         $data = $notifiable->toArray();
 
+        if (isset($data['roles'])) {
+            unset($data['roles']);
+        }
+
         return (new MailMessage())
             ->view('anomaly.module.users::notifications.user_has_been_activated')
             ->subject(trans('anomaly.module.users::notification.user_has_been_activated.subject', $data))
