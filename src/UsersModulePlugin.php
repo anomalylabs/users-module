@@ -27,13 +27,13 @@ class UsersModulePlugin extends Plugin
             new \Twig_SimpleFunction(
                 'user',
                 function ($identifier = null) {
-                    return (new Decorator())->decorate($this->dispatch(new GetUser($identifier)));
+                    return (new Decorator())->decorate(dispatch_sync(new GetUser($identifier)));
                 }
             ),
             new \Twig_SimpleFunction(
                 'role',
                 function ($identifier) {
-                    return (new Decorator())->decorate($this->dispatch(new GetRole($identifier)));
+                    return (new Decorator())->decorate(dispatch_sync(new GetRole($identifier)));
                 }
             ),
             new \Twig_SimpleFunction(

@@ -7,7 +7,6 @@ use Anomaly\UsersModule\User\Password\Command\ResetPassword;
 use Anomaly\UsersModule\User\Password\Command\SendInvalidatedEmail;
 use Anomaly\UsersModule\User\Password\Command\SendResetEmail;
 use Anomaly\UsersModule\User\Password\Command\StartPasswordReset;
-use Illuminate\Foundation\Bus\DispatchesJobs;
 
 /**
  * Class UserPassword
@@ -18,9 +17,6 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
  */
 class UserPassword
 {
-
-    use DispatchesJobs;
-
     /**
      * Check if the password passes validation.
      *
@@ -40,7 +36,7 @@ class UserPassword
      */
     public function validate($password)
     {
-        return $this->dispatch(new ValidatePasswordStrength($password));
+        return dispatch_sync(new ValidatePasswordStrength($password));
     }
 
     /**
@@ -51,7 +47,7 @@ class UserPassword
      */
     public function forgot(UserInterface $user)
     {
-        return $this->dispatch(new StartPasswordReset($user));
+        return dispatch_sync(new StartPasswordReset($user));
     }
 
     /**
@@ -64,7 +60,7 @@ class UserPassword
      */
     public function reset(UserInterface $user, $code, $password)
     {
-        return $this->dispatch(new ResetPassword($user, $code, $password));
+        return dispatch_sync(new ResetPassword($user, $code, $password));
     }
 
     /**
@@ -76,7 +72,7 @@ class UserPassword
      */
     public function send(UserInterface $user, $reset = '/')
     {
-        return $this->dispatch(new SendResetEmail($user, $reset));
+        return dispatch_sync(new SendResetEmail($user, $reset));
     }
 
     /**
@@ -89,9 +85,9 @@ class UserPassword
     public function invalidate(UserInterface $user, $reset = '/')
     {
         $this->forgot($user);
-        $this->dispatch(new InvalidatePassword($user));
+        dispatch_sync(new InvalidatePassword($user));
 
-        return $this->dispatch(new SendInvalidatedEmail($user, $reset));
+        return dispatch_sync(new SendInvalidatedEmail($user, $reset));
     }
 
 }

@@ -5,12 +5,9 @@ use Anomaly\UsersModule\User\Command\ActivateUserByForce;
 use Anomaly\UsersModule\User\Command\SendActivationEmail;
 use Anomaly\UsersModule\User\Command\StartUserActivation;
 use Anomaly\UsersModule\User\Contract\UserInterface;
-use Illuminate\Foundation\Bus\DispatchesJobs;
 
 class UserActivator
 {
-    use DispatchesJobs;
-
     /**
      * Start a user activation process.
      *
@@ -19,7 +16,7 @@ class UserActivator
      */
     public function start(UserInterface $user)
     {
-        return $this->dispatch(new StartUserActivation($user));
+        return dispatch_sync(new StartUserActivation($user));
     }
 
     /**
@@ -31,7 +28,7 @@ class UserActivator
      */
     public function activate(UserInterface $user, $code)
     {
-        return $this->dispatch(new ActivateUserByCode($user, $code));
+        return dispatch_sync(new ActivateUserByCode($user, $code));
     }
 
     /**
@@ -42,7 +39,7 @@ class UserActivator
      */
     public function force(UserInterface $user)
     {
-        return $this->dispatch(new ActivateUserByForce($user));
+        return dispatch_sync(new ActivateUserByForce($user));
     }
 
     /**
@@ -54,6 +51,6 @@ class UserActivator
      */
     public function send(UserInterface $user, $redirect = '/')
     {
-        return $this->dispatch(new SendActivationEmail($user, $redirect));
+        return dispatch_sync(new SendActivationEmail($user, $redirect));
     }
 }

@@ -43,15 +43,15 @@ class RegisterFormHandler
 
         switch ($mode) {
             case 'automatic':
-                dispatch_now(new HandleAutomaticRegistration($builder));
+                dispatch_sync(new HandleAutomaticRegistration($builder));
                 break;
 
             case 'manual':
-                dispatch_now(new HandleManualRegistration($builder));
+                dispatch_sync(new HandleManualRegistration($builder));
                 break;
 
             case 'email':
-                dispatch_now(new HandleEmailRegistration($builder));
+                dispatch_sync(new HandleEmailRegistration($builder));
                 break;
         }
 

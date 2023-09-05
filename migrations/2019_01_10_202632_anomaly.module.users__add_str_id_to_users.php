@@ -60,8 +60,8 @@ class AnomalyModuleUsersAddStrIdToUsers extends Migration
          * Ensure the potentially newly generated
          * models are autoloaded so we can use them.
          */
-        $this->dispatchNow(new AutoloadEntryModels());
-        
+        dispatch_sync(new AutoloadEntryModels());
+
         /**
          * Load the concrete on purpose.
          *

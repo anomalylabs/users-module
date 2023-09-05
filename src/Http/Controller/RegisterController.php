@@ -37,7 +37,7 @@ class RegisterController extends PublicController
      */
     public function activate()
     {
-        if (!$this->dispatch(new HandleActivateRequest())) {
+        if (!dispatch_sync(new HandleActivateRequest())) {
 
             $this->messages->error('anomaly.module.users::error.activate_user');
 

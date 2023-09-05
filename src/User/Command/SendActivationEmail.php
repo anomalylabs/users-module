@@ -2,15 +2,9 @@
 
 use Anomaly\UsersModule\User\Contract\UserInterface;
 use Anomaly\UsersModule\User\Notification\ActivateYourAccount;
-use Illuminate\Contracts\Config\Repository;
-use Illuminate\Foundation\Bus\DispatchesJobs;
-use Illuminate\Mail\Mailer;
-use Illuminate\Mail\Message;
 
 class SendActivationEmail
 {
-    use DispatchesJobs;
-
     /**
      * The user instance.
      *

@@ -25,7 +25,7 @@ class UserObserver extends EntryObserver
      */
     public function creating(EntryInterface $entry)
     {
-        $this->dispatchNow(new SetStrId($entry));
+        dispatch_sync(new SetStrId($entry));
 
         parent::creating($entry);
     }

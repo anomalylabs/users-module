@@ -2,7 +2,6 @@
 
 use Anomaly\UsersModule\User\Contract\UserInterface;
 use Anomaly\UsersModule\User\Notification\ActivateYourAccount;
-use Illuminate\Foundation\Bus\DispatchesJobs;
 
 /**
  * Class SendUserRegisteredEmail
@@ -13,9 +12,6 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
  */
 class SendUserRegisteredEmail
 {
-
-    use DispatchesJobs;
-
     /**
      * The user instance.
      *

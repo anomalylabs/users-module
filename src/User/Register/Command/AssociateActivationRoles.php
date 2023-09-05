@@ -2,7 +2,6 @@
 
 use Anomaly\UsersModule\Role\Command\GetRole;
 use Anomaly\UsersModule\User\Register\RegisterFormBuilder;
-use Illuminate\Foundation\Bus\DispatchesJobs;
 
 /**
  * Class AssociateActivationRoles
@@ -13,9 +12,6 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
  */
 class AssociateActivationRoles
 {
-
-    use DispatchesJobs;
-
     /**
      * The form builder.
      *
@@ -42,7 +38,7 @@ class AssociateActivationRoles
         $user = $this->builder->getFormEntry();
 
         foreach ($this->builder->getRoles() as $role) {
-            if ($role = $this->dispatch(new GetRole($role))) {
+            if ($role = dispatch_sync(new GetRole($role))) {
                 $user->attachRole($role);
             }
         }
