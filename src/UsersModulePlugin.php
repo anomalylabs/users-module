@@ -5,6 +5,8 @@ use Anomaly\Streams\Platform\Support\Decorator;
 use Anomaly\UsersModule\Role\Command\GetRole;
 use Anomaly\UsersModule\User\Command\GetUser;
 use Anomaly\UsersModule\User\UserMentions;
+use Twig\TwigFunction;
+use Twig\TwigFilter;
 
 /**
  * Class UsersModulePlugin
@@ -24,19 +26,19 @@ class UsersModulePlugin extends Plugin
     public function getFunctions()
     {
         return [
-            new \Twig_SimpleFunction(
+            new TwigFunction(
                 'user',
                 function ($identifier = null) {
                     return (new Decorator())->decorate(dispatch_sync(new GetUser($identifier)));
                 }
             ),
-            new \Twig_SimpleFunction(
+            new TwigFunction(
                 'role',
                 function ($identifier) {
                     return (new Decorator())->decorate(dispatch_sync(new GetRole($identifier)));
                 }
             ),
-            new \Twig_SimpleFunction(
+            new TwigFunction(
                 'mentions_*',
                 function ($name) {
                     $arguments = array_slice(func_get_args(), 1);
@@ -58,7 +60,7 @@ class UsersModulePlugin extends Plugin
     public function getFilters()
     {
         return [
-            new \Twig_SimpleFilter(
+            new TwigFilter(
                 'mentions_*',
                 function ($name) {
                     $arguments = array_slice(func_get_args(), 1);

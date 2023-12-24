@@ -1,5 +1,5 @@
 {
-    "name": "anomaly/users-module",
+    "name": "purepanel/users-module",
     "type": "streams-addon",
     "description": "Manage users, roles, and permissions.",
     "keywords": [
