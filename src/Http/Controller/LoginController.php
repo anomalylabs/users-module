@@ -2,6 +2,7 @@
 
 use Anomaly\Streams\Platform\Http\Controller\PublicController;
 use Anomaly\Streams\Platform\Routing\UrlGenerator;
+use Anomaly\UsersModule\Traits\RedirectsSafely;
 use Anomaly\UsersModule\User\UserAuthenticator;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Translation\Translator;
@@ -16,6 +17,8 @@ use Illuminate\Translation\Translator;
 class LoginController extends PublicController
 {
 
+    use RedirectsSafely;
+
     /**
      * Return the login form.
      *
@@ -26,7 +29,7 @@ class LoginController extends PublicController
     public function login(Translator $translator, Guard $auth)
     {
         if ($auth->check()) {
-            return $this->redirect->to($this->request->get('redirect', '/'));
+            return $this->redirect->to($this->resolveRedirect($this->request->get('redirect')));
         }
 
         $this->template->set(
@@ -52,6 +55,8 @@ class LoginController extends PublicController
 
         $this->messages->success($this->request->get('message', 'anomaly.module.users::message.logged_out'));
 
-        return $this->response->redirectTo($this->url->to($this->request->get('redirect', '/')));
+        return $this->response->redirectTo(
+            $this->url->to($this->resolveRedirect($this->request->get('redirect')))
+        );
     }
 }

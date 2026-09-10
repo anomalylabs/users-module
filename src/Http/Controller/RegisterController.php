@@ -1,6 +1,7 @@
 <?php namespace Anomaly\UsersModule\Http\Controller;
 
 use Anomaly\Streams\Platform\Http\Controller\PublicController;
+use Anomaly\UsersModule\Traits\RedirectsSafely;
 use Anomaly\UsersModule\User\Register\Command\HandleActivateRequest;
 use Illuminate\Translation\Translator;
 
@@ -13,6 +14,8 @@ use Illuminate\Translation\Translator;
  */
 class RegisterController extends PublicController
 {
+
+    use RedirectsSafely;
 
     /**
      * Return the register view.
@@ -47,6 +50,6 @@ class RegisterController extends PublicController
         $this->messages->success('anomaly.module.users::success.activate_user');
         $this->messages->success('anomaly.module.users::message.logged_in');
 
-        return $this->redirect->to($this->request->get('redirect', '/'));
+        return $this->redirect->to($this->resolveRedirect($this->request->get('redirect')));
     }
 }
