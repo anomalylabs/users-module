@@ -49,6 +49,18 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, StreamsUs
     ];
 
     /**
+     * The searchable attributes.
+     *
+     * @var array
+     */
+    protected $searchableAttributes = [
+        'username',
+        'display_name',
+        'first_name',
+        'last_name',
+    ];
+
+    /**
      * Get the string ID.
      *
      * @return string
@@ -374,11 +386,10 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, StreamsUs
      */
     public function toSearchableArray()
     {
-        $array = parent::toSearchableArray();
-
-        array_pull($array, 'password');
-
-        return $array;
+        return array_only(
+            parent::toSearchableArray(),
+            array_merge(['id'], $this->searchableAttributes)
+        );
     }
 
     /**
