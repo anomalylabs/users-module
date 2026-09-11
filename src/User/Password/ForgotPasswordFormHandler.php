@@ -3,7 +3,9 @@
 use Anomaly\Streams\Platform\Message\MessageBag;
 use Anomaly\UsersModule\User\Contract\UserRepositoryInterface;
 use Anomaly\UsersModule\User\UserPassword;
+use Illuminate\Cache\RateLimiter;
 use Illuminate\Contracts\Config\Repository;
+use Illuminate\Http\Request;
 
 /**
  * Class ForgotPasswordFormHandler
@@ -23,17 +25,34 @@ class ForgotPasswordFormHandler
      * @param UserPassword              $password
      * @param MessageBag                $messages
      * @param Repository                $config
+     * @param RateLimiter               $limiter
+     * @param Request                   $request
      */
     public function handle(
         ForgotPasswordFormBuilder $builder,
         UserRepositoryInterface $users,
         UserPassword $password,
         MessageBag $messages,
-        Repository $config
+        Repository $config,
+        RateLimiter $limiter,
+        Request $request
     ) {
         if ($builder->hasFormErrors()) {
             return;
         }
+
+        $key = 'anomaly.module.users::forgot.' . $request->ip();
+
+        if ($limiter->tooManyAttempts($key, $config->get('anomaly.module.users::config.reset_attempts'))) {
+
+            $messages->error(
+                trans('anomaly.module.users::error.throttled', ['seconds' => $limiter->availableIn($key)])
+            );
+
+            return;
+        }
+
+        $limiter->hit($key, $config->get('anomaly.module.users::config.reset_decay'));
 
         $user = $users->findByEmail($builder->getFormValue('email'));
 
@@ -41,8 +60,10 @@ class ForgotPasswordFormHandler
             $config->set('anomaly.module.users::paths.reset', $path);
         }
 
-        $password->forgot($user);
-        $password->send($user, $builder->getFormOption('reset_redirect'));
+        if ($user) {
+            $password->forgot($user);
+            $password->send($user, $builder->getFormOption('reset_redirect'));
+        }
 
         $messages->success($builder->getFormOption('success_message'));
     }

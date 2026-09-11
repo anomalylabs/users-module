@@ -59,11 +59,35 @@ class UserRepository extends EntryRepository implements UserRepositoryInterface
             return null;
         }
 
-        if ($user && app('hash')->check($credentials['password'], $user->password)) {
-            return $user;
+        $password = array_get($credentials, 'password', '');
+
+        /*
+         * Hash on a miss as well as a hit. Returning early when no user is found
+         * skips bcrypt entirely, which makes the response time disclose whether
+         * the address is registered.
+         */
+        if (!$user) {
+            app('hash')->check($password, $this->dummyHash());
+
+            return null;
         }
 
-        return null;
+        return app('hash')->check($password, $user->password) ? $user : null;
+    }
+
+    /**
+     * Return a hash to compare against when no user was found.
+     *
+     * @return string
+     */
+    protected function dummyHash()
+    {
+        return app('cache')->rememberForever(
+            'anomaly.module.users::dummy_hash',
+            function () {
+                return app('hash')->make(str_random(40));
+            }
+        );
     }
 
     /**

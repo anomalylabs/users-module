@@ -6,4 +6,5 @@ return [
     'modify_admins'      => 'You are not authorized to create or edit admin users.',
     'impersonate_admins' => 'Admin users can not be impersonated.',
     'reset_admins'       => 'Admin password resets are not allowed.',
+    'throttled'          => 'Too many attempts. Please try again in :seconds seconds.',
 ];
