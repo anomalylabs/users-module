@@ -48,12 +48,30 @@ class UsersController extends AdminController
     /**
      * Return the form for editing an existing user.
      *
+     * @param  Authorizer                                 $authorizer
+     * @param  UserRepositoryInterface                    $users
      * @param  UserFormBuilder                            $form
      * @param                                             $id
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function edit(UserFormBuilder $form, $id)
-    {
+    public function edit(
+        Authorizer $authorizer,
+        UserRepositoryInterface $users,
+        UserFormBuilder $form,
+        $id
+    ) {
+        /* @var UserInterface $user */
+        if (!$user = $users->find($id)) {
+            abort(404);
+        }
+
+        if ($user->isAdmin() && !$authorizer->authorize('anomaly.module.users::users.write_admins')) {
+
+            $this->messages->error('anomaly.module.users::error.modify_admins');
+
+            return $this->redirect->back();
+        }
+
         return $form->render($id);
     }
 
