@@ -61,6 +61,9 @@ class LoginController extends PublicController
     {
         if (!$auth->guest()) {
             $authenticator->logout();
+
+            session()->invalidate();
+            session()->regenerateToken();
         }
 
         $this->messages->success('anomaly.module.users::message.logged_out');

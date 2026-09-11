@@ -123,7 +123,7 @@ class UserAuthenticator
             return;
         }
 
-        $this->guard->logout($user);
+        $this->guard->logout();
 
         event(new UserWasLoggedOut($user));
     }
@@ -135,7 +135,7 @@ class UserAuthenticator
      */
     public function kickOut(UserInterface $user, $reason)
     {
-        $this->guard->logout($user);
+        $this->guard->logout();
 
         event(new UserWasKickedOut($user, $reason));
     }
