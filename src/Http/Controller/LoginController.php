@@ -45,15 +45,26 @@ class LoginController extends PublicController
      *
      * @param  UserAuthenticator $authenticator
      * @param  Guard $auth
+     * @param  Translator $translator
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function logout(UserAuthenticator $authenticator, Guard $auth, UrlGenerator $url)
-    {
+    public function logout(
+        UserAuthenticator $authenticator,
+        Guard $auth,
+        UrlGenerator $url,
+        Translator $translator
+    ) {
         if (!$auth->guest()) {
             $authenticator->logout();
         }
 
-        $this->messages->success($this->request->get('message', 'anomaly.module.users::message.logged_out'));
+        $message = $this->request->get('message', 'anomaly.module.users::message.logged_out');
+
+        if (!$translator->has($message)) {
+            $message = 'anomaly.module.users::message.logged_out';
+        }
+
+        $this->messages->success($message);
 
         return $this->response->redirectTo(
             $this->url->to($this->resolveRedirect($this->request->get('redirect')))
