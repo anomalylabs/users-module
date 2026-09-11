@@ -57,7 +57,7 @@ class PermissionFormBuilder extends FormBuilder
      */
     protected $options = [
         'breadcrumb' => false,
-        'permission' => 'anomaly.module.users::users.permissions',
+        'permission' => 'anomaly.module.users::users.manage_permissions',
     ];
 
     /**
