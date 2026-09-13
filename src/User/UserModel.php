@@ -376,7 +376,7 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, StreamsUs
      */
     public function routeNotificationForSlack()
     {
-        return env('SLACK_WEBHOOK');
+        return config('anomaly.module.users::notifications.slack_webhook');
     }
 
     /**

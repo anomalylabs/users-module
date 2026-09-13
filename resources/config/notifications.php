@@ -26,4 +26,15 @@ return [
 
     'pending_user' => [],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Slack Webhook
+    |--------------------------------------------------------------------------
+    |
+    | The endpoint to route Slack notifications to.
+    |
+    */
+
+    'slack_webhook' => env('SLACK_WEBHOOK'),
+
 ];
