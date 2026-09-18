@@ -6,6 +6,7 @@ return [
         'write',
         'write_admins',
         'impersonate',
+        'reset',
         'delete',
         'manage_permissions'
     ],

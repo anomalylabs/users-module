@@ -101,13 +101,6 @@ class AuthorizeRoutePermission
             return $next($request);
         }
 
-        if ($request->segment(1) == 'admin' && !$this->authorizer->authorize(
-                'streams::general.control_panel'
-            )
-        ) {
-            abort(403);
-        }
-
         /**
          * Check if the user is an admin.
          *
