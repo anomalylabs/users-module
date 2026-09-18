@@ -71,8 +71,14 @@ return [
     'activation_code'  => [
         'name' => 'Activation Code',
     ],
+    'activation_code_expires_at' => [
+        'name' => 'Activation Code Expires At',
+    ],
     'reset_code'       => [
         'name' => 'Reset Code',
+    ],
+    'reset_code_expires_at' => [
+        'name' => 'Reset Code Expires At',
     ],
     'remember_me'      => [
         'name' => 'Remember me',

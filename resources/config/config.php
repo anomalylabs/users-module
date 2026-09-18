@@ -40,6 +40,18 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Code Lifetimes
+    |--------------------------------------------------------------------------
+    |
+    | How many minutes a password reset code and an activation code remain
+    | valid for. A code carrying no expiry is treated as expired.
+    |
+    */
+    'reset_code_ttl'      => 60,
+    'activation_code_ttl' => 60 * 24 * 7,
+
+    /*
+    |--------------------------------------------------------------------------
     | Permissions
     |--------------------------------------------------------------------------
     |

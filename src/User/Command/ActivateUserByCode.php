@@ -2,6 +2,7 @@
 
 use Anomaly\UsersModule\User\Contract\UserInterface;
 use Anomaly\UsersModule\User\Contract\UserRepositoryInterface;
+use Carbon\Carbon;
 
 
 /**
@@ -48,6 +49,10 @@ class ActivateUserByCode
      */
     public function handle(UserRepositoryInterface $users)
     {
+        if (!$this->code) {
+            return false;
+        }
+
         if (!$user = $users->findByActivationCode($this->code)) {
             return false;
         }
@@ -56,8 +61,15 @@ class ActivateUserByCode
             return false;
         }
 
-        $this->user->activated       = true;
-        $this->user->activation_code = null;
+        $expires = $user->getAttribute('activation_code_expires_at');
+
+        if (!$expires || Carbon::parse($expires)->isPast()) {
+            return false;
+        }
+
+        $this->user->activated                  = true;
+        $this->user->activation_code            = null;
+        $this->user->activation_code_expires_at = null;
 
         $users->save($this->user);
 

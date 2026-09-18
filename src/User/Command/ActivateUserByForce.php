@@ -39,8 +39,9 @@ class ActivateUserByForce
      */
     public function handle(UserRepositoryInterface $users)
     {
-        $this->user->activated       = true;
-        $this->user->activation_code = null;
+        $this->user->activated                  = true;
+        $this->user->activation_code            = null;
+        $this->user->activation_code_expires_at = null;
 
         $users->save($this->user);
 

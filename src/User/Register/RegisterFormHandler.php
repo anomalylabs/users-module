@@ -37,8 +37,6 @@ class RegisterFormHandler
         /* @var UserInterface $user */
         $user = $builder->getFormEntry();
 
-        $activator->start($user);
-
         $mode = config('anomaly.module.users::config.activation_mode', 'automatic');
 
         switch ($mode) {
@@ -51,6 +49,8 @@ class RegisterFormHandler
                 break;
 
             case 'email':
+                $activator->start($user);
+
                 dispatch_sync(new HandleEmailRegistration($builder));
                 break;
         }

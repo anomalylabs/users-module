@@ -3,6 +3,7 @@
 use Anomaly\Streams\Platform\Model\EloquentModel;
 use Anomaly\UsersModule\User\Contract\UserInterface;
 use Anomaly\UsersModule\User\Contract\UserRepositoryInterface;
+use Carbon\Carbon;
 
 
 /**
@@ -58,6 +59,10 @@ class ResetPassword
      */
     public function handle(UserRepositoryInterface $users)
     {
+        if (!$this->code) {
+            return false;
+        }
+
         $user = $users->findByResetCode($this->code);
 
         if (!$user) {
@@ -68,7 +73,14 @@ class ResetPassword
             return false;
         }
 
+        $expires = $user->getAttribute('reset_code_expires_at');
+
+        if (!$expires || Carbon::parse($expires)->isPast()) {
+            return false;
+        }
+
         $this->user->setAttribute('reset_code', null);
+        $this->user->setAttribute('reset_code_expires_at', null);
         $this->user->setAttribute('password', $this->password);
 
         $users->save($this->user);

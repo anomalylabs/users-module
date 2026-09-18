@@ -3,6 +3,7 @@
 use Anomaly\Streams\Platform\Model\EloquentModel;
 use Anomaly\UsersModule\User\Contract\UserInterface;
 use Anomaly\UsersModule\User\Contract\UserRepositoryInterface;
+use Carbon\Carbon;
 
 
 /**
@@ -40,6 +41,15 @@ class StartPasswordReset
      */
     public function handle(UserRepositoryInterface $users)
     {
-        return $users->save($this->user->setAttribute('reset_code', str_random(40)));
+        return $users->save(
+            $this->user
+                ->setAttribute('reset_code', str_random(40))
+                ->setAttribute(
+                    'reset_code_expires_at',
+                    Carbon::now()->addMinutes(
+                        (int) config('anomaly.module.users::config.reset_code_ttl', 60)
+                    )
+                )
+        );
     }
 }

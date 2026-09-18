@@ -2,6 +2,7 @@
 
 use Anomaly\UsersModule\User\Contract\UserInterface;
 use Anomaly\UsersModule\User\Contract\UserRepositoryInterface;
+use Carbon\Carbon;
 
 
 /**
@@ -39,7 +40,16 @@ class StartUserActivation
      */
     public function handle(UserRepositoryInterface $users)
     {
-        $users->save($this->user->setAttribute('activation_code', str_random(40)));
+        $users->save(
+            $this->user
+                ->setAttribute('activation_code', str_random(40))
+                ->setAttribute(
+                    'activation_code_expires_at',
+                    Carbon::now()->addMinutes(
+                        (int) config('anomaly.module.users::config.activation_code_ttl', 60 * 24 * 7)
+                    )
+                )
+        );
 
         return true;
     }
