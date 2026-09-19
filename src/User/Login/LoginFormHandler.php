@@ -29,6 +29,9 @@ class LoginFormHandler
         UserSecurity $security,
         Redirector $redirect
     ) {
+        if (!$builder->canSave()) {
+            return;
+        }
 
         /**
          * If we don't have a user from
