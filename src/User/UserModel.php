@@ -49,6 +49,21 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, StreamsUs
     ];
 
     /**
+     * The hidden attributes.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'password',
+        'reset_code',
+        'reset_code_expires_at',
+        'activation_code',
+        'remember_token',
+        'translations',
+        'stream',
+    ];
+
+    /**
      * The searchable attributes.
      *
      * @var array
