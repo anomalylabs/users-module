@@ -395,6 +395,16 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, StreamsUs
     }
 
     /**
+     * Return whether the model is searchable or not.
+     *
+     * @return bool
+     */
+    public function isSearchable()
+    {
+        return parent::isSearchable() && !config('anomaly.module.users::search.disable_search_index', true);
+    }
+
+    /**
      * Return the model as a searchable array.
      *
      * @return array
@@ -415,6 +425,6 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, StreamsUs
      */
     public function shouldBeSearchable()
     {
-        return $this->isActivated();
+        return $this->isSearchable() && $this->isActivated();
     }
 }
