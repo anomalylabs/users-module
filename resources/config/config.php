@@ -52,6 +52,19 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Public Entry Points
+    |--------------------------------------------------------------------------
+    |
+    | Whether visitors may register, and whether users may log in on the
+    | public site. The control panel login is always available. While the
+    | public login is off it only accepts users with control panel access.
+    |
+    */
+    'registration' => true,
+    'public_login' => true,
+
+    /*
+    |--------------------------------------------------------------------------
     | Permissions
     |--------------------------------------------------------------------------
     |

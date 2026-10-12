@@ -1,8 +1,10 @@
 <?php namespace Anomaly\UsersModule\User\Login;
 
+use Anomaly\Streams\Platform\Support\Authorizer;
 use Anomaly\Streams\Platform\Ui\Form\FormBuilder;
 use Anomaly\UsersModule\User\Contract\UserInterface;
 use Anomaly\UsersModule\User\UserSecurity;
+use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
@@ -54,12 +56,26 @@ class LoginFormBuilder extends FormBuilder
     ];
 
     /**
+     * Fired when the form is ready.
+     */
+    public function onReady()
+    {
+        if (!$this->isAvailable()) {
+            $this->setFormResponse(new Response('', 404));
+        }
+    }
+
+    /**
      * Fired when the form is posting.
      *
      * @param UserSecurity $security
      */
     public function onPost(UserSecurity $security)
     {
+        if (!$this->isAvailable()) {
+            abort(404);
+        }
+
         $response = $security->attempt();
 
         if ($response instanceof Response) {
@@ -68,6 +84,52 @@ class LoginFormBuilder extends FormBuilder
 
             $this->setSave(false);
         }
+    }
+
+    /**
+     * Return the login context, admin or public.
+     *
+     * Forms without a context option are treated
+     * as admin when they redirect into the admin.
+     *
+     * @return string
+     */
+    public function getContext()
+    {
+        if ($context = $this->getOption('context')) {
+            return $context === 'admin' ? 'admin' : 'public';
+        }
+
+        $redirect = ltrim((string) $this->getOption('redirect'), '/');
+
+        return $redirect === 'admin' || Str::startsWith($redirect, 'admin/') ? 'admin' : 'public';
+    }
+
+    /**
+     * Return whether the login
+     * is available in its context.
+     *
+     * @return bool
+     */
+    public function isAvailable()
+    {
+        return $this->getContext() === 'admin' || config('anomaly.module.users::config.public_login', true);
+    }
+
+    /**
+     * Return whether the user may
+     * log in through this form.
+     *
+     * @param  UserInterface $user
+     * @return bool
+     */
+    public function admits(UserInterface $user)
+    {
+        if ($this->getContext() !== 'admin' || config('anomaly.module.users::config.public_login', true)) {
+            return true;
+        }
+
+        return app(Authorizer::class)->authorize('streams::control_panel.access', $user);
     }
 
     /**

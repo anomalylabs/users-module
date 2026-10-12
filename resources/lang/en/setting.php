@@ -9,6 +9,14 @@ return [
             'username' => 'Username',
         ],
     ],
+    'public_login'              => [
+        'label'        => 'Public Login',
+        'instructions' => 'Should users be able to log in on the public site? The control panel login is always available, and only accepts users with control panel access while this is off.',
+    ],
+    'registration'              => [
+        'label'        => 'Registration',
+        'instructions' => 'Should visitors be able to register an account?',
+    ],
     'activation_mode'           => [
         'label'        => 'Activation Mode',
         'instructions' => 'How should users be activated after they register?',

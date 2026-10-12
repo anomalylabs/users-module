@@ -28,6 +28,10 @@ class LoginController extends PublicController
      */
     public function login(Translator $translator, Guard $auth)
     {
+        if (!config('anomaly.module.users::config.public_login', true)) {
+            abort(404);
+        }
+
         if ($auth->check()) {
             return $this->redirect->to($this->resolveRedirect($this->request->get('redirect')));
         }

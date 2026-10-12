@@ -25,6 +25,10 @@ class RegisterController extends PublicController
      */
     public function register(Translator $translator)
     {
+        if (!config('anomaly.module.users::config.registration', true)) {
+            abort(404);
+        }
+
         $this->template->set(
             'meta_title',
             $translator->trans('anomaly.module.users::breadcrumb.register')

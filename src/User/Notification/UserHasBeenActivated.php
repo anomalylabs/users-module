@@ -50,7 +50,9 @@ class UserHasBeenActivated extends Notification implements ShouldQueue
             ->line(trans('anomaly.module.users::notification.user_has_been_activated.instructions', $data))
             ->action(
                 trans('anomaly.module.users::notification.user_has_been_activated.button', $data),
-                route('anomaly.module.users::login')
+                config('anomaly.module.users::config.public_login', true)
+                    ? route('anomaly.module.users::login')
+                    : url('admin/login')
             );
     }
 }

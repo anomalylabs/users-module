@@ -4,6 +4,7 @@ use Anomaly\Streams\Platform\Ui\Form\FormBuilder;
 use Anomaly\UsersModule\User\Register\Command\AssociateActivationRoles;
 use Anomaly\UsersModule\User\UserModel;
 use Anomaly\UsersModule\User\Validation\ValidatePassword;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Class RegisterFormBuilder
@@ -83,6 +84,26 @@ class RegisterFormBuilder extends FormBuilder
         'confirm_message'   => 'anomaly.module.users::message.pending_email_activation',
         'activated_message' => 'anomaly.module.users::message.account_activated',
     ];
+
+    /**
+     * Fired when the form is ready.
+     */
+    public function onReady()
+    {
+        if (!config('anomaly.module.users::config.registration', true)) {
+            $this->setFormResponse(new Response('', 404));
+        }
+    }
+
+    /**
+     * Fired when the form is posting.
+     */
+    public function onPost()
+    {
+        if (!config('anomaly.module.users::config.registration', true)) {
+            abort(404);
+        }
+    }
 
     /**
      * Fired after the form is saved.

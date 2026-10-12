@@ -7,6 +7,8 @@ return [
                 'title'  => 'anomaly.module.users::tab.security',
                 'fields' => [
                     'login',
+                    'public_login',
+                    'registration',
                     'activation_mode',
                     'password_length',
                     'password_requirements',

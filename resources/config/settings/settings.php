@@ -15,6 +15,20 @@ return [
             ],
         ],
     ],
+    'public_login'              => [
+        'bind'   => 'anomaly.module.users::config.public_login',
+        'type'   => 'anomaly.field_type.boolean',
+        'config' => [
+            'default_value' => true,
+        ],
+    ],
+    'registration'              => [
+        'bind'   => 'anomaly.module.users::config.registration',
+        'type'   => 'anomaly.field_type.boolean',
+        'config' => [
+            'default_value' => true,
+        ],
+    ],
     'activation_mode'           => [
         'required'    => true,
         'placeholder' => false,

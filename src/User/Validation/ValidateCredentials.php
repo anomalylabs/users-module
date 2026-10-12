@@ -29,6 +29,11 @@ class ValidateCredentials
         }
 
         if ($response instanceof UserInterface) {
+
+            if (!$builder->admits($response)) {
+                return false;
+            }
+
             $builder->setUser($response);
         }
 

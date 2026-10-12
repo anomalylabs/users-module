@@ -46,6 +46,7 @@ class LoginController extends PublicController
 
         return $form
             ->setOption('redirect', 'admin')
+            ->setOption('context', 'admin')
             ->setOption('wrapper_view', 'theme::login')
             ->render();
     }

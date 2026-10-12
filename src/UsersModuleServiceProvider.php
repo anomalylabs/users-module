@@ -136,6 +136,7 @@ class UsersModuleServiceProvider extends AddonServiceProvider
             'uses' => 'Anomaly\UsersModule\Http\Controller\UsersController@view',
         ],
         'login'                 => [
+            'ttl'  => 0,
             'as'   => 'anomaly.module.users::login',
             'uses' => 'Anomaly\UsersModule\Http\Controller\LoginController@login',
         ],
@@ -145,6 +146,7 @@ class UsersModuleServiceProvider extends AddonServiceProvider
             'uses' => 'Anomaly\UsersModule\Http\Controller\LoginController@logout',
         ],
         'register'              => [
+            'ttl'  => 0,
             'as'   => 'anomaly.module.users::register',
             'uses' => 'Anomaly\UsersModule\Http\Controller\RegisterController@register',
         ],
