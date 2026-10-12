@@ -1,0 +1,21 @@
+{% extends ["theme::layouts/login", "anomaly.module.users::admin/two_factor/layout"] %}
+
+{% block content %}
+    <div class="container">
+
+        {% include "theme::partials/messages" ignore missing %}
+
+        <h3>{{ trans('anomaly.module.users::message.two_factor_challenge') }}</h3>
+
+        <p>{{ trans('anomaly.module.users::message.two_factor_' ~ method) }}</p>
+
+        {{ form('two_factor_challenge').context(context)|raw }}
+
+        <p>
+            <small>{{ trans('anomaly.module.users::message.two_factor_recovery') }}</small>
+        </p>
+
+        {% include "anomaly.module.users::admin/two_factor/partials/methods" %}
+
+    </div>
+{% endblock %}

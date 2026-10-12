@@ -1,0 +1,45 @@
+{% extends ["theme::layouts/login", "anomaly.module.users::admin/two_factor/layout"] %}
+
+{% block content %}
+    <div class="container">
+
+        {% include "theme::partials/messages" ignore missing %}
+
+        <h3>{{ trans('anomaly.module.users::message.two_factor_setup') }}</h3>
+
+        {% if not method %}
+
+            <p>{{ trans('anomaly.module.users::message.two_factor_choose') }}</p>
+
+            <ul>
+                {% for option in methods %}
+                    <li>
+                        <a href="{{ url_to('admin/two-factor/setup?method=' ~ option) }}">
+                            {{ trans('anomaly.module.users::setting.two_factor_admin_methods.option.' ~ option) }}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+
+        {% else %}
+
+            {% include "anomaly.module.users::admin/two_factor/partials/enrol" %}
+
+            {{ form('two_factor_setup').context(context)|raw }}
+
+            {% if methods|length > 1 %}
+                <a href="{{ url_to('admin/two-factor/setup?method=' ~ (method == 'email' ? 'authenticator' : 'email')) }}">
+                    {{ trans('anomaly.module.users::setting.two_factor_admin_methods.option.' ~ (method == 'email' ? 'authenticator' : 'email')) }}
+                </a>
+            {% endif %}
+
+        {% endif %}
+
+        <br>
+
+        <a href="{{ url_to('admin/logout') }}">
+            <small>{{ trans('anomaly.module.users::button.logout') }}</small>
+        </a>
+
+    </div>
+{% endblock %}

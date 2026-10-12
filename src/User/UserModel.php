@@ -59,6 +59,11 @@ class UserModel extends UsersUsersEntryModel implements UserInterface, StreamsUs
         'reset_code_expires_at',
         'activation_code',
         'remember_token',
+        'two_factor_secret',
+        'two_factor_totp_confirmed_at',
+        'two_factor_email_confirmed_at',
+        'two_factor_recovery_codes',
+        'two_factor_last_step',
         'translations',
         'stream',
     ];

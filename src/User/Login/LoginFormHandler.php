@@ -1,5 +1,6 @@
 <?php namespace Anomaly\UsersModule\User\Login;
 
+use Anomaly\UsersModule\User\TwoFactor\TwoFactor;
 use Anomaly\UsersModule\User\UserAuthenticator;
 use Anomaly\UsersModule\User\UserSecurity;
 use Illuminate\Routing\Redirector;
@@ -21,12 +22,14 @@ class LoginFormHandler
      * @param LoginFormBuilder  $builder
      * @param UserAuthenticator $authenticator
      * @param UserSecurity      $security
+     * @param TwoFactor         $twoFactor
      * @param Redirector        $redirect
      */
     public function handle(
         LoginFormBuilder $builder,
         UserAuthenticator $authenticator,
         UserSecurity $security,
+        TwoFactor $twoFactor,
         Redirector $redirect
     ) {
         if (!$builder->canSave()) {
@@ -47,6 +50,20 @@ class LoginFormHandler
         if ($response instanceof Response) {
 
             $authenticator->logout($user);
+
+            $builder->setFormResponse($response);
+
+            return;
+        }
+
+        $response = $twoFactor->intercept(
+            $user,
+            $builder->getContext(),
+            $builder->getFormValue('remember_me'),
+            $builder->getFormOption('redirect', '/')
+        );
+
+        if ($response instanceof Response) {
 
             $builder->setFormResponse($response);
 

@@ -9,6 +9,7 @@ return [
             'write_admins' => 'Can create and edit admins.',
             'impersonate'  => 'Can impersonate other users.',
             'reset'        => 'Can reset users.',
+            'reset_two_factor' => 'Can turn off two-factor authentication for users they can edit.',
             'delete'       => 'Can delete users.',
             'manage_permissions' => 'Can manage a user\'s permissions.',
         ],

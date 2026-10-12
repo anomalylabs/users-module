@@ -83,6 +83,25 @@ return [
     'remember_me'      => [
         'name' => 'Remember me',
     ],
+    'two_factor_secret'             => [
+        'name' => 'Two-factor Secret',
+    ],
+    'two_factor_totp_confirmed_at'  => [
+        'name' => 'Authenticator App Confirmed At',
+    ],
+    'two_factor_email_confirmed_at' => [
+        'name' => 'Email Codes Confirmed At',
+    ],
+    'two_factor_recovery_codes'     => [
+        'name' => 'Recovery Codes',
+    ],
+    'two_factor_last_step'          => [
+        'name' => 'Two-factor Last Step',
+    ],
+    'two_factor_code'               => [
+        'name'        => 'Code',
+        'placeholder' => 'Enter your code',
+    ],
     'status'           => [
         'name'   => 'Status',
         'option' => [

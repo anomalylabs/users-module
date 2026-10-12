@@ -1,5 +1,6 @@
 <?php namespace Anomaly\UsersModule\User\Table;
 
+use Anomaly\Streams\Platform\Support\Authorizer;
 use Anomaly\Streams\Platform\Ui\Table\TableBuilder;
 use Anomaly\UsersModule\User\Table\Action\Activate;
 use Anomaly\UsersModule\User\Table\Filter\StatusFilterQuery;
@@ -160,8 +161,29 @@ class UserTableBuilder extends TableBuilder
                         'data-message' => 'anomaly.module.users::message.confirm_reset_user',
                     ],
                 ],
+                'two_factor'  => [
+                    'text'       => 'anomaly.module.users::button.two_factor',
+                    'href'       => 'admin/users/two-factor/{entry.id}',
+                    'permission' => 'anomaly.module.users::users.reset_two_factor',
+                ],
             ],
         ],
     ];
 
+    /**
+     * Fired when the builder is ready to build.
+     *
+     * @param Authorizer $authorizer
+     */
+    public function onReady(Authorizer $authorizer)
+    {
+        if (!$authorizer->authorize('anomaly.module.users::users.write')) {
+
+            $buttons = $this->getButtons();
+
+            array_forget($buttons, 'settings.dropdown.two_factor');
+
+            $this->setButtons($buttons);
+        }
+    }
 }

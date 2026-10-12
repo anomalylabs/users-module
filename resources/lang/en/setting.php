@@ -40,6 +40,24 @@ return [
             '[!@#$%^&*()]' => 'The password must contain at least one special character.',
         ],
     ],
+    'two_factor_admin'          => [
+        'label'        => 'Control Panel Two-factor',
+        'instructions' => 'Should users with control panel access be asked for a second factor when they sign in?',
+        'warning'      => 'Required sends every control panel user, including those already signed in, to set up a method before they can continue.',
+        'option'       => [
+            'off'      => 'Off',
+            'optional' => 'Optional: ask users who have set up a method.',
+            'required' => 'Required: every control panel user must set up a method.',
+        ],
+    ],
+    'two_factor_admin_methods'  => [
+        'label'        => 'Control Panel Methods',
+        'instructions' => 'Which methods may be used for the control panel? Untick email to require an authenticator app.',
+        'option'       => [
+            'authenticator' => 'Authenticator app',
+            'email'         => 'Emailed code',
+        ],
+    ],
     'new_user_notification'     => [
         'name'         => 'New User Notification',
         'instructions' => 'Who should be notified of new users?',

@@ -3,6 +3,7 @@
 use Anomaly\Streams\Platform\Http\Controller\PublicController;
 use Anomaly\Streams\Platform\Routing\UrlGenerator;
 use Anomaly\UsersModule\Traits\RedirectsSafely;
+use Anomaly\UsersModule\User\TwoFactor\TwoFactor;
 use Anomaly\UsersModule\User\UserAuthenticator;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Translation\Translator;
@@ -48,16 +49,20 @@ class LoginController extends PublicController
      * Logout the active user.
      *
      * @param  UserAuthenticator $authenticator
+     * @param  TwoFactor $twoFactor
      * @param  Guard $auth
      * @param  Translator $translator
      * @return \Illuminate\Http\RedirectResponse
      */
     public function logout(
         UserAuthenticator $authenticator,
+        TwoFactor $twoFactor,
         Guard $auth,
         UrlGenerator $url,
         Translator $translator
     ) {
+        $twoFactor->forget();
+
         if (!$auth->guest()) {
             $authenticator->logout();
 

@@ -5,5 +5,6 @@ return [
     'account'       => 'Account',
     'profile'       => 'Profile',
     'security'      => 'Security',
+    'two_factor'    => 'Two-factor',
     'notifications' => 'Notifications',
 ];

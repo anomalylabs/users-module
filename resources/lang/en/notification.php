@@ -39,4 +39,11 @@ return [
         'instructions' => 'Your account has been activated.',
         'button'       => 'Login',
     ],
+    'two_factor_code'         => [
+        'subject'      => 'Your Verification Code',
+        'greeting'     => 'Hello :display_name!',
+        'instructions' => 'Your verification code is :code',
+        'expiry'       => 'It expires in :minutes minutes.',
+        'warning'      => 'If you did not just try to sign in, someone may know your password. Please change it.',
+    ],
 ];

@@ -8,6 +8,8 @@ use Anomaly\UsersModule\User\Form\UserFormBuilder;
 use Anomaly\UsersModule\User\Impersonation\ImpersonationFormBuilder;
 use Anomaly\UsersModule\User\Permission\PermissionFormBuilder;
 use Anomaly\UsersModule\User\Table\UserTableBuilder;
+use Anomaly\UsersModule\User\TwoFactor\TwoFactor;
+use Anomaly\UsersModule\User\TwoFactor\TwoFactorRecovery;
 use Anomaly\UsersModule\User\UserPassword;
 
 /**
@@ -150,6 +152,68 @@ class UsersController extends AdminController
         $this->messages->success('anomaly.module.users::success.reset_user');
 
         return $this->redirect->back();
+    }
+
+    /**
+     * Show a user's two-factor methods,
+     * and turn them all off on POST.
+     *
+     * @param  Authorizer              $authorizer
+     * @param  UserRepositoryInterface $users
+     * @param  TwoFactor               $twoFactor
+     * @param  TwoFactorRecovery       $recovery
+     * @param                          $id
+     * @return \Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse
+     */
+    public function twoFactor(
+        Authorizer $authorizer,
+        UserRepositoryInterface $users,
+        TwoFactor $twoFactor,
+        TwoFactorRecovery $recovery,
+        $id
+    ) {
+        if (
+            !$authorizer->authorize('anomaly.module.users::users.reset_two_factor')
+            || !$authorizer->authorize('anomaly.module.users::users.write')
+        ) {
+            abort(403);
+        }
+
+        /* @var UserInterface $user */
+        if (!$user = $users->find($id)) {
+            abort(404);
+        }
+
+        if ($user->isAdmin() && !$authorizer->authorize('anomaly.module.users::users.write_admins')) {
+
+            $this->messages->error('anomaly.module.users::error.modify_admins');
+
+            return $this->redirect->to('admin/users');
+        }
+
+        $enrolled = $twoFactor->enrolledMethods($user);
+
+        if ($this->request->isMethod('post')) {
+
+            if ($enrolled) {
+
+                $twoFactor->reset($user);
+
+                $this->messages->success('anomaly.module.users::message.two_factor_user_reset');
+            }
+
+            return $this->redirect->to('admin/users/two-factor/' . $user->getId());
+        }
+
+        $methods   = array_values(array_unique(array_merge($twoFactor->allowedMethods('admin'), $enrolled)));
+        $remaining = $recovery->remaining($user);
+
+        $this->template->set('meta_title', trans('anomaly.module.users::message.two_factor_manage'));
+
+        return $this->view->make(
+            'anomaly.module.users::admin/users/two_factor',
+            compact('user', 'enrolled', 'methods', 'remaining')
+        );
     }
 
     /**

@@ -7,6 +7,7 @@ return [
         'write_admins',
         'impersonate',
         'reset',
+        'reset_two_factor',
         'delete',
         'manage_permissions'
     ],

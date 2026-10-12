@@ -70,6 +70,44 @@ return [
             ],
         ],
     ],
+    'two_factor_admin'          => [
+        'required'    => true,
+        'placeholder' => false,
+        'bind'        => 'anomaly.module.users::two_factor.admin',
+        'type'        => 'anomaly.field_type.select',
+        'rules'       => [
+            'two_factor_enrolled',
+        ],
+        'validators'  => [
+            'two_factor_enrolled' => [
+                'handler' => 'Anomaly\UsersModule\User\Validation\ValidateTwoFactorSetting@handle',
+                'message' => 'anomaly.module.users::message.two_factor_enrol_first',
+            ],
+        ],
+        'config'      => [
+            'default_value' => 'off',
+            'options'       => [
+                'off'      => 'anomaly.module.users::setting.two_factor_admin.option.off',
+                'optional' => 'anomaly.module.users::setting.two_factor_admin.option.optional',
+                'required' => 'anomaly.module.users::setting.two_factor_admin.option.required',
+            ],
+        ],
+    ],
+    'two_factor_admin_methods'  => [
+        'required' => true,
+        'bind'     => 'anomaly.module.users::two_factor.admin_methods',
+        'type'     => 'anomaly.field_type.checkboxes',
+        'config'   => [
+            'default_value' => [
+                'authenticator',
+                'email',
+            ],
+            'options'       => [
+                'authenticator' => 'anomaly.module.users::setting.two_factor_admin_methods.option.authenticator',
+                'email'         => 'anomaly.module.users::setting.two_factor_admin_methods.option.email',
+            ],
+        ],
+    ],
     'new_user_notification'     => [
         'type'   => 'anomaly.field_type.tags',
         'bind'   => 'anomaly.module.users::notifications.new_user',

@@ -1,0 +1,25 @@
+{% if method == 'email' %}
+    <form method="post" action="{{ url_to('admin/two-factor/email') }}">
+        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+        <input type="hidden" name="purpose" value="verify">
+        <button type="submit" class="btn btn-link">
+            {{ trans('anomaly.module.users::button.send_code') }}
+        </button>
+    </form>
+
+    {% if 'authenticator' in methods %}
+        <a href="{{ url_to('admin/two-factor?method=authenticator') }}">
+            {{ trans('anomaly.module.users::button.use_app') }}
+        </a>
+    {% endif %}
+{% elseif 'email' in methods %}
+    <a href="{{ url_to('admin/two-factor?method=email') }}">
+        {{ trans('anomaly.module.users::button.send_code') }}
+    </a>
+{% endif %}
+
+<br>
+
+<a href="{{ url_to('admin/logout') }}">
+    <small>{{ trans('anomaly.module.users::button.logout') }}</small>
+</a>

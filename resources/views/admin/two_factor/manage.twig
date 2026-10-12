@@ -1,0 +1,74 @@
+{% extends "theme::layouts/default" %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-block card-body">
+
+                <h4>{{ trans('anomaly.module.users::message.two_factor_manage') }}</h4>
+
+                <table class="table">
+                    <tbody>
+                    {% for method in methods %}
+                        <tr>
+                            <td>
+                                {{ trans('anomaly.module.users::setting.two_factor_admin_methods.option.' ~ method) }}
+                            </td>
+                            <td>
+                                {% if method in enrolled %}
+                                    <span class="tag tag-success">{{ trans('anomaly.module.users::message.two_factor_enabled') }}</span>
+                                {% else %}
+                                    <span class="tag tag-default">{{ trans('anomaly.module.users::message.two_factor_not_enabled') }}</span>
+                                {% endif %}
+                            </td>
+                            <td class="text-right">
+                                {% if method in enrolled %}
+                                    <form method="post" action="{{ url_to('admin/two-factor/disable') }}">
+                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                        <input type="hidden" name="method" value="{{ method }}">
+                                        <button type="submit" class="btn btn-sm btn-danger" data-toggle="confirm"
+                                                data-message="{{ trans('anomaly.module.users::message.two_factor_confirm_off') }}">
+                                            {{ trans('anomaly.module.users::button.turn_off') }}
+                                        </button>
+                                    </form>
+                                {% elseif method in allowed %}
+                                    <a href="{{ url_to('admin/two-factor/setup?method=' ~ method) }}" class="btn btn-sm btn-success">
+                                        {{ trans('anomaly.module.users::button.set_up') }}
+                                    </a>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+
+        {% if enrolled %}
+            <div class="card">
+                <div class="card-block card-body">
+
+                    <h4>{{ trans('anomaly.module.users::message.two_factor_codes_title') }}</h4>
+
+                    <p>{{ trans('anomaly.module.users::message.two_factor_recovery_info') }}</p>
+
+                    <p>
+                        <span class="tag tag-{{ remaining > 2 ? 'success' : (remaining ? 'warning' : 'danger') }}">
+                            {{ trans_choice('anomaly.module.users::message.two_factor_recovery_left', remaining, {'count': remaining}) }}
+                        </span>
+                    </p>
+
+                    <form method="post" action="{{ url_to('admin/two-factor/regenerate') }}">
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        <button type="submit" class="btn btn-sm btn-default" data-toggle="confirm"
+                                data-message="{{ trans('anomaly.module.users::message.two_factor_confirm_regen') }}">
+                            {{ trans('anomaly.module.users::button.regenerate') }}
+                        </button>
+                    </form>
+
+                </div>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

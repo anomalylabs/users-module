@@ -1,0 +1,24 @@
+{% if method == 'authenticator' %}
+
+    <p>{{ trans('anomaly.module.users::message.two_factor_scan') }}</p>
+
+    <div class="two-factor-qr">{{ qr|raw }}</div>
+
+    <p>
+        {{ trans('anomaly.module.users::message.two_factor_manual_key') }}
+        <code>{{ secret|split('', 4)|join(' ') }}</code>
+    </p>
+
+{% else %}
+
+    <p>{{ trans('anomaly.module.users::message.two_factor_email_setup', {'email': user.email}) }}</p>
+
+    <form method="post" action="{{ url_to('admin/two-factor/email') }}">
+        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+        <input type="hidden" name="purpose" value="setup">
+        <button type="submit" class="btn btn-link">
+            {{ trans('anomaly.module.users::button.send_code') }}
+        </button>
+    </form>
+
+{% endif %}

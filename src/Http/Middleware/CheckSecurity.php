@@ -1,5 +1,6 @@
 <?php namespace Anomaly\UsersModule\Http\Middleware;
 
+use Anomaly\UsersModule\Traits\RecognisesAuthRoutes;
 use Anomaly\UsersModule\User\UserSecurity;
 use Closure;
 use Illuminate\Http\Request;
@@ -16,6 +17,8 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class CheckSecurity
 {
+
+    use RecognisesAuthRoutes;
 
     /**
      * The security utility.
@@ -43,7 +46,7 @@ class CheckSecurity
      */
     public function handle(Request $request, Closure $next)
     {
-        if ($request->segment(1) !== 'admin' || in_array($request->path(), ['admin/login', 'admin/logout'])) {
+        if ($request->segment(1) !== 'admin' || $this->isLoginRoute($request)) {
             return $next($request);
         }
 

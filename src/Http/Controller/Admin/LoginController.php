@@ -5,6 +5,7 @@ namespace Anomaly\UsersModule\Http\Controller\Admin;
 use Anomaly\Streams\Platform\Http\Controller\PublicController;
 use Anomaly\Streams\Platform\Ui\ControlPanel\Component\Navigation\NavigationCollection;
 use Anomaly\UsersModule\User\Login\LoginFormBuilder;
+use Anomaly\UsersModule\User\TwoFactor\TwoFactor;
 use Anomaly\UsersModule\User\UserAuthenticator;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Routing\Redirector;
@@ -55,11 +56,14 @@ class LoginController extends PublicController
      * Log the user out.
      *
      * @param  UserAuthenticator $authenticator
+     * @param  TwoFactor $twoFactor
      * @param  Guard $auth
      * @return \Illuminate\Http\RedirectResponse|Redirector
      */
-    public function logout(UserAuthenticator $authenticator, Guard $auth)
+    public function logout(UserAuthenticator $authenticator, TwoFactor $twoFactor, Guard $auth)
     {
+        $twoFactor->forget();
+
         if (!$auth->guest()) {
             $authenticator->logout();
 

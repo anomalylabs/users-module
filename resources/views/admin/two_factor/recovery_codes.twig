@@ -1,0 +1,19 @@
+{% extends ["theme::layouts/login", "anomaly.module.users::admin/two_factor/layout"] %}
+
+{% block content %}
+    <div class="container">
+
+        {% include "theme::partials/messages" ignore missing %}
+
+        <h3>{{ trans('anomaly.module.users::message.two_factor_codes_title') }}</h3>
+
+        <p>{{ trans('anomaly.module.users::message.two_factor_recovery_save') }}</p>
+
+        {% include "anomaly.module.users::admin/two_factor/partials/codes" %}
+
+        <a href="{{ url_to('admin/two-factor/continue') }}" class="btn btn-primary">
+            {{ trans('anomaly.module.users::button.continue') }}
+        </a>
+
+    </div>
+{% endblock %}

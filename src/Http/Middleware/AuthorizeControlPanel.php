@@ -1,6 +1,7 @@
 <?php namespace Anomaly\UsersModule\Http\Middleware;
 
 use Anomaly\Streams\Platform\Support\Authorizer;
+use Anomaly\UsersModule\Traits\RecognisesAuthRoutes;
 use Closure;
 use Illuminate\Http\Request;
 
@@ -13,6 +14,8 @@ use Illuminate\Http\Request;
  */
 class AuthorizeControlPanel
 {
+
+    use RecognisesAuthRoutes;
 
     /**
      * The authorizer utility.
@@ -40,7 +43,7 @@ class AuthorizeControlPanel
      */
     public function handle(Request $request, Closure $next)
     {
-        if ($request->segment(1) !== 'admin' || in_array($request->path(), ['admin/login', 'admin/logout'])) {
+        if ($request->segment(1) !== 'admin' || $this->isLoginRoute($request) || $this->isTwoFactorRoute($request)) {
             return $next($request);
         }
 

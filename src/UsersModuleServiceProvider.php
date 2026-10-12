@@ -4,12 +4,14 @@ use Anomaly\Streams\Platform\Addon\AddonServiceProvider;
 use Anomaly\Streams\Platform\Application\Event\ApplicationHasLoaded;
 use Anomaly\Streams\Platform\Model\Users\UsersRolesEntryModel;
 use Anomaly\Streams\Platform\Model\Users\UsersUsersEntryModel;
+use Anomaly\UsersModule\Console\ResetTwoFactor;
 use Anomaly\UsersModule\Console\UsersCleanup;
 use Anomaly\UsersModule\Http\Middleware\AuthorizeControlPanel;
 use Anomaly\UsersModule\Http\Middleware\AuthorizeModuleAccess;
 use Anomaly\UsersModule\Http\Middleware\AuthorizeRoutePermission;
 use Anomaly\UsersModule\Http\Middleware\AuthorizeRouteRoles;
 use Anomaly\UsersModule\Http\Middleware\CheckSecurity;
+use Anomaly\UsersModule\Http\Middleware\EnforceTwoFactor;
 use Anomaly\UsersModule\Role\Contract\RoleRepositoryInterface;
 use Anomaly\UsersModule\Role\RoleModel;
 use Anomaly\UsersModule\Role\RoleRepository;
@@ -23,6 +25,8 @@ use Anomaly\UsersModule\User\Login\LoginFormBuilder;
 use Anomaly\UsersModule\User\Password\ForgotPasswordFormBuilder;
 use Anomaly\UsersModule\User\Password\ResetPasswordFormBuilder;
 use Anomaly\UsersModule\User\Register\RegisterFormBuilder;
+use Anomaly\UsersModule\User\TwoFactor\Challenge\TwoFactorChallengeFormBuilder;
+use Anomaly\UsersModule\User\TwoFactor\Setup\TwoFactorSetupFormBuilder;
 use Anomaly\UsersModule\User\UserModel;
 use Anomaly\UsersModule\User\UserRepository;
 use Illuminate\Contracts\Config\Repository;
@@ -44,6 +48,7 @@ class UsersModuleServiceProvider extends AddonServiceProvider
      */
     protected $commands = [
         UsersCleanup::class,
+        ResetTwoFactor::class,
     ];
 
     /**
@@ -73,6 +78,7 @@ class UsersModuleServiceProvider extends AddonServiceProvider
      */
     protected $middleware = [
         CheckSecurity::class,
+        EnforceTwoFactor::class,
         AuthorizeRouteRoles::class,
         AuthorizeModuleAccess::class,
         AuthorizeControlPanel::class,
@@ -106,6 +112,8 @@ class UsersModuleServiceProvider extends AddonServiceProvider
         'register'                  => RegisterFormBuilder::class,
         'reset_password'            => ResetPasswordFormBuilder::class,
         'forgot_password'           => ForgotPasswordFormBuilder::class,
+        'two_factor_challenge'      => TwoFactorChallengeFormBuilder::class,
+        'two_factor_setup'          => TwoFactorSetupFormBuilder::class,
         UsersUsersEntryModel::class => UserModel::class,
         UsersRolesEntryModel::class => RoleModel::class,
     ];
@@ -180,6 +188,54 @@ class UsersModuleServiceProvider extends AddonServiceProvider
         'admin/logout'          => [
             'ttl'  => 0,
             'uses' => 'Anomaly\UsersModule\Http\Controller\Admin\LoginController@logout',
+        ],
+        'admin/two-factor'                => [
+            'ttl'            => 0,
+            'streams::addon' => false,
+            'uses'           => 'Anomaly\UsersModule\Http\Controller\Admin\TwoFactorController@challenge',
+        ],
+        'admin/two-factor/setup'          => [
+            'ttl'            => 0,
+            'streams::addon' => false,
+            'uses'           => 'Anomaly\UsersModule\Http\Controller\Admin\TwoFactorController@setup',
+        ],
+        'admin/two-factor/email'          => [
+            'ttl'            => 0,
+            'streams::addon' => false,
+            'verb'           => 'post',
+            'uses'           => 'Anomaly\UsersModule\Http\Controller\Admin\TwoFactorController@email',
+        ],
+        'admin/two-factor/recovery-codes' => [
+            'ttl'            => 0,
+            'streams::addon' => false,
+            'uses'           => 'Anomaly\UsersModule\Http\Controller\Admin\TwoFactorController@codes',
+        ],
+        'admin/two-factor/continue'       => [
+            'ttl'            => 0,
+            'streams::addon' => false,
+            'uses'           => 'Anomaly\UsersModule\Http\Controller\Admin\TwoFactorController@proceed',
+        ],
+        'admin/two-factor/manage'         => [
+            'ttl'            => 0,
+            'streams::addon' => false,
+            'uses'           => 'Anomaly\UsersModule\Http\Controller\Admin\TwoFactorController@manage',
+        ],
+        'admin/two-factor/disable'        => [
+            'ttl'            => 0,
+            'streams::addon' => false,
+            'verb'           => 'post',
+            'uses'           => 'Anomaly\UsersModule\Http\Controller\Admin\TwoFactorController@disable',
+        ],
+        'admin/two-factor/regenerate'     => [
+            'ttl'            => 0,
+            'streams::addon' => false,
+            'verb'           => 'post',
+            'uses'           => 'Anomaly\UsersModule\Http\Controller\Admin\TwoFactorController@regenerate',
+        ],
+        'admin/users/two-factor/{id}'     => [
+            'ttl'         => 0,
+            'constraints' => ['id' => '[0-9]+'],
+            'uses'        => 'Anomaly\UsersModule\Http\Controller\Admin\UsersController@twoFactor',
         ],
     ];
 

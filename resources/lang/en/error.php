@@ -7,4 +7,5 @@ return [
     'impersonate_admins' => 'Admin users can not be impersonated.',
     'reset_admins'       => 'Admin password resets are not allowed.',
     'throttled'          => 'Too many attempts. Please try again in :seconds seconds.',
+    'two_factor_code'    => 'The code is incorrect or has expired.',
 ];

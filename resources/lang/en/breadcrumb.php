@@ -5,4 +5,5 @@ return [
     'register'       => 'Register',
     'permissions'    => 'Permissions',
     'reset_password' => 'Reset Password',
+    'two_factor'     => 'Two-factor Authentication',
 ];

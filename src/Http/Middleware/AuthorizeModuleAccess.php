@@ -2,6 +2,7 @@
 
 use Anomaly\Streams\Platform\Addon\Module\ModuleCollection;
 use Anomaly\Streams\Platform\Support\Authorizer;
+use Anomaly\UsersModule\Traits\RecognisesAuthRoutes;
 use Closure;
 use Illuminate\Http\Request;
 
@@ -14,6 +15,8 @@ use Illuminate\Http\Request;
  */
 class AuthorizeModuleAccess
 {
+
+    use RecognisesAuthRoutes;
 
     /**
      * The module collection.
@@ -50,7 +53,13 @@ class AuthorizeModuleAccess
      */
     public function handle(Request $request, Closure $next)
     {
-        if ($request->segment(1) !== 'admin' || in_array($request->path(), ['admin/login', 'admin/logout', 'admin'])) {
+        if (
+            $request->segment(1) !== 'admin'
+            || $request->path() === 'admin'
+            || $this->isLoginRoute($request)
+            || $this->isTwoFactorRoute($request)
+            || $this->isTwoFactorManageRoute($request)
+        ) {
             return $next($request);
         }
 
